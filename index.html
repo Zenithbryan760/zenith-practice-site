@@ -7,34 +7,78 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header class="header">
+    <div class="container">
+      <h1>Zenith Roofing Services</h1>
+      <p class="contact-info">
+        Call or Text: <a href="tel:8589006163">858-900-6163</a><br />
+        CA Lic. #1036112
+      </p>
+    </div>
+    <nav class="nav-bar container">
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Services</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Shingle Roofing</a></li>
+            <li><a href="#">Tile Lift & Relay</a></li>
+            <li><a href="#">Torch Down / Flat Roofs</a></li>
+            <li><a href="#">Silicone Coatings</a></li>
+            <li><a href="#">Gutters</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Projects / Gallery</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Glossary</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<nav class="nav-bar container">
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="trust.html">Why Choose Us</a></li>
-    <li><a href="testimonials.html">Reviews</a></li>
-    <li><a href="service-areas.html">Service Areas</a></li>
-    <li><a href="cta.html">Contact</a></li>
-  </ul>
-</nav>
+  <section class="hero">
+    <div class="container">
+      <h2>Dependable Roofing for Southern California Homes & Businesses</h2>
+      <p>Shingle • Tile • Flat Roofs • Repairs • Gutters</p>
 
-<section class="hero">
-  <div class="container">
-    <h2>Dependable Roofing for Southern California Homes & Businesses</h2>
-    <p>Shingle • Tile • Flat Roofs • Repairs • Gutters</p>
+      <form name="estimate" method="POST" data-netlify="true" class="hero-form">
+        <input type="hidden" name="form-name" value="estimate" />
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Full Name" required />
+          <input type="tel" name="phone" placeholder="Phone Number" required />
+          <input type="email" name="email" placeholder="Email" required />
+        </div>
+        <textarea name="message" placeholder="Tell us about your project..." rows="4" required></textarea>
+        <button type="submit" class="button">Request Free Estimate</button>
+      </form>
+    </div>
+  </section>
 
-    <form name="estimate" method="POST" data-netlify="true" class="hero-form">
-      <input type="hidden" name="form-name" value="estimate" />
-      <div class="form-row">
-        <input type="text" name="name" placeholder="Full Name" required />
-        <input type="tel" name="phone" placeholder="Phone Number" required />
-        <input type="email" name="email" placeholder="Email" required />
-      </div>
-      <textarea name="message" placeholder="Tell us about your project..." rows="4" required></textarea>
-      <button type="submit" class="button">Request Free Estimate</button>
-    </form>
-  </div>
-</section>
+  <section class="service-areas">
+    <div class="container">
+      <h2>Serving San Diego, Temecula & Surrounding Areas</h2>
+      <p><strong>Zenith Roofing Services</strong> proudly serves clients across <strong>San Diego County</strong>, <strong>Temecula</strong>, and throughout <strong>Southern California</strong>.</p>
+
+      <h3>Local Expertise in San Diego & Temecula</h3>
+      <p><em>Escondido, Vista, Carlsbad, Oceanside, Encinitas, Fallbrook, Bonsall, Valley Center, Rancho Bernardo, San Diego, Point Loma, La Jolla, Carmel Mountain, Scripps Ranch, Poway, Del Mar, Miramar, Mira Mesa, Clairemont, La Mesa, San Marcos, Fairbanks Ranch, Lake San Marcos, Rancho San Diego, Lemon Grove, Spring Valley, Bonita, Solana Beach, Santee, Imperial Beach, National City, El Cajon, Coronado</em></p>
+      <p>We also work throughout <strong>Temecula, Murrieta, Menifee, Wildomar, Lake Elsinore</strong> and the surrounding Inland Empire.</p>
+
+      <h3>Expanded Coverage Throughout Southern California</h3>
+      <ul>
+        <li>Riverside County</li>
+        <li>Orange County</li>
+        <li>Los Angeles County</li>
+      </ul>
+
+      <p>Whether you're a homeowner or managing a commercial property, <strong>Zenith Roofing Services</strong> is your trusted partner for quality roofing. Contact us today to schedule your free estimate.</p>
+
+      <p><strong>✅ Licensed & Insured<br />
+      ✅ Local Experts<br />
+      ✅ Satisfaction Guaranteed</strong></p>
+    </div>
+  </section>
 
 </body>
 </html>
