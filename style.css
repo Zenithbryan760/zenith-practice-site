@@ -1,123 +1,119 @@
-/* Base Variables */
+/* ---------- Brand Colors ---------- */
 :root {
-  --zenith-blue: #072e59;
+  --zenith-blue:   #072e59;
   --zenith-orange: #f7941d;
-  --white: #ffffff;
-  --text-gray: #333333;
+  --white:         #ffffff;
+  --text-gray:     #333333;
 }
 
+/* ---------- Base ---------- */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #fff;
+  background: var(--white);
   color: var(--text-gray);
 }
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
+/* ---------- Navigation ---------- */
+.nav-bar      { background: var(--zenith-blue); text-align: center; }
+.nav-links    { list-style: none; margin: 0; padding: 0;
+                display: flex; justify-content: center; flex-wrap: wrap; }
+.nav-links li { position: relative; }
+.nav-links a  { color: var(--white); padding: 15px 20px; text-decoration: none; font-weight: bold; }
+.nav-links a:hover { background: var(--zenith-orange); }
+
+.dropdown-menu     { display: none; position: absolute; top: 100%; left: 0;
+                     background: var(--zenith-blue); min-width: 180px; z-index: 1000; }
+.dropdown-menu li a{ white-space: nowrap; display: block; padding: 10px 20px; }
+.dropdown:hover .dropdown-menu { display: block; }
+
+/* ---------- Header ---------- */
 .header {
-  background-color: var(--zenith-blue);
+  background: var(--zenith-blue);
   color: var(--white);
+  text-align: center;
   padding: 20px 0;
-  text-align: center;
 }
+.header .contact-info { margin-top: 6px; font-size: 14px; }
+.header .contact-info a { color: var(--zenith-orange); }
 
-.header .contact-info {
-  margin-top: 5px;
-  font-size: 14px;
-}
-
-.nav-bar {
-  background-color: var(--zenith-blue);
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  text-align: center;
-}
-
-.nav-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.nav-links li {
-  position: relative;
-}
-
-.nav-links a {
-  display: block;
-  padding: 15px 20px;
-  color: var(--white);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.nav-links a:hover {
-  background-color: var(--zenith-orange);
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: var(--zenith-blue);
-  padding: 0;
-  min-width: 180px;
-  z-index: 1000;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu li a {
-  padding: 10px 20px;
-  white-space: nowrap;
-}
-
+/* ---------- Hero ---------- */
 .hero {
-  background-color: var(--zenith-blue);
+  background: var(--zenith-blue);
   color: var(--white);
-  padding: 60px 20px;
   text-align: center;
+  padding: 60px 20px;
 }
+.hero h2 { margin-bottom: 10px; }
+.hero p  { margin-bottom: 30px; }
 
-.hero h2 {
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 1.1em;
-  margin-bottom: 30px;
-}
-
-.hero-form {
-  max-width: 700px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.form-row input {
-  flex: 1 1 30%;
-  min-width: 200px;
-}
+.hero-form        { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+.form-row         { display: flex; flex-wrap: wrap; gap: 15px; }
+.form-row input   { flex: 1 1 30%; min-width: 200px; }
 
 .hero-form input,
-.he
+.hero-form textarea { padding: 10px; border: none; border-radius: 4px; font-size: 1em; }
+.hero-form input:focus,
+.hero-form textarea:focus { outline: none; border: 2px solid var(--zenith-orange); }
+
+.button {
+  background: var(--zenith-orange);
+  color: var(--white);
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.button:hover { background: #e6871c; }
+
+/* ---------- Trust Section ---------- */
+.trust {
+  background: #f9f9f9;
+  text-align: center;
+  padding: 60px 20px;
+}
+.trust h2 { color: var(--zenith-blue); margin-bottom: 20px; }
+.trust ul { list-style: none; padding: 0; margin: 0; line-height: 2; }
+
+/* ---------- Testimonials ---------- */
+.testimonials {
+  background: #f7f7f7;
+  text-align: center;
+  padding: 60px 20px;
+}
+.testimonials h2 { color: var(--zenith-blue); margin-bottom: 20px; }
+.testimonials blockquote { font-style: italic; max-width: 600px; margin: 20px auto; color: #555; }
+
+/* ---------- CTA Banner ---------- */
+.cta-banner {
+  background: var(--zenith-blue);
+  color: var(--white);
+  text-align: center;
+  padding: 60px 20px;
+}
+.cta-banner .button { margin-top: 20px; }
+
+/* ---------- Service Areas ---------- */
+.service-areas {
+  background: #f9f9f9;
+  text-align: center;
+  padding: 60px 20px;
+}
+.service-areas h2,
+.service-areas h3 { color: var(--zenith-blue); }
+.service-areas ul { list-style: disc; padding-left: 40px; text-align: left; display: inline-block; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .form-row      { flex-direction: column; }
+  .nav-links     { flex-direction: column; }
+  .nav-links li  { width: 100%; }
+  .nav-links a   { display: block; width: 100%; text-align: center; }
+}
