@@ -39,13 +39,26 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <div class="container">
-      <h2>Dependable Roofing for Southern California Homes & Businesses</h2>
-      <p>Shingle • Tile • Flat Roofs • Repairs • Gutters</p>
-      <a href="#" class="button">Request a Free Estimate</a>
-    </div>
-  </section>
+ <section class="hero">
+  <div class="container">
+    <h2>Dependable Roofing for Southern California Homes & Businesses</h2>
+    <p>Shingle • Tile • Flat Roofs • Repairs • Gutters</p>
+
+    <form name="estimate" method="POST" data-netlify="true" class="hero-form">
+      <input type="hidden" name="form-name" value="estimate" />
+
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="tel" name="phone" placeholder="Phone Number" required />
+        <input type="email" name="email" placeholder="Email" required />
+      </div>
+
+      <textarea name="message" placeholder="Tell us about your project..." rows="4" required></textarea>
+
+      <button type="submit" class="button">Request Free Estimate</button>
+    </form>
+  </div>
+</section>
 
   <section class="services">
     <div class="container">
