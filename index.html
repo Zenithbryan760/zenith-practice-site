@@ -8,14 +8,13 @@
 </head>
 <body>
   <header class="header">
-    <div class="container header-top">
-      <h1 class="logo">Zenith Roofing Services</h1>
-      <div class="contact">
-        <p>Call or Text: <a href="tel:8589006163">858-900-6163</a></p>
-        <p>CA Lic. #1036112</p>
-      </div>
+    <div class="container">
+      <h1>Zenith Roofing Services</h1>
+      <p class="contact-info">
+        Call or Text: <a href="tel:8589006163">858-900-6163</a><br />
+        CA Lic. #1036112
+      </p>
     </div>
-
     <nav class="nav-bar container">
       <ul class="nav-links">
         <li><a href="#">Home</a></li>
@@ -39,81 +38,26 @@
     </nav>
   </header>
 
- <section class="hero">
-  <div class="container">
-    <h2>Dependable Roofing for Southern California Homes & Businesses</h2>
-    <p>Shingle • Tile • Flat Roofs • Repairs • Gutters</p>
-
-    <form name="estimate" method="POST" data-netlify="true" class="hero-form">
-      <input type="hidden" name="form-name" value="estimate" />
-
-      <div class="form-row">
-        <input type="text" name="name" placeholder="Full Name" required />
-        <input type="tel" name="phone" placeholder="Phone Number" required />
-        <input type="email" name="email" placeholder="Email" required />
-      </div>
-
-      <textarea name="message" placeholder="Tell us about your project..." rows="4" required></textarea>
-
-      <button type="submit" class="button">Request Free Estimate</button>
-    </form>
-  </div>
-</section>
-
-  <section class="services">
+  <section class="hero">
     <div class="container">
-      <h3>Our Roofing Services</h3>
-      <div class="service-boxes">
-        <div class="box">
-          <h4>Roof Replacement</h4>
-          <p>Tile, shingle, flat, and silicone systems professionally installed.</p>
+      <h2>Dependable Roofing for Southern California Homes & Businesses</h2>
+      <p>Shingle • Tile • Flat Roofs • Repairs • Gutters</p>
+
+      <form name="estimate" method="POST" data-netlify="true" class="hero-form">
+        <input type="hidden" name="form-name" value="estimate" />
+
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Full Name" required />
+          <input type="tel" name="phone" placeholder="Phone Number" required />
+          <input type="email" name="email" placeholder="Email" required />
         </div>
-        <div class="box">
-          <h4>Repairs & Maintenance</h4>
-          <p>Fix leaks and prevent damage with expert tile resets and inspections.</p>
-        </div>
-        <div class="box">
-          <h4>Gutters & Skylights</h4>
-          <p>Installations, replacements, and sealed skylight systems.</p>
-        </div>
-      </div>
+
+        <textarea name="message" placeholder="Tell us about your project..." rows="4" required></textarea>
+
+        <button type="submit" class="button">Request Free Estimate</button>
+      </form>
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Zenith Roofing Services, Inc. | Escondido, CA | Lic #1036112</p>
-    </div>
-  </footer>
 </body>
 </html>
-<section class="contact-form">
-  <div class="container">
-    <h3>Request a Free Estimate</h3>
-    <form name="contact" method="POST" data-netlify="true">
-      <input type="hidden" name="form-name" value="contact" />
-
-      <div class="form-group">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" required />
-      </div>
-
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" required />
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required />
-      </div>
-
-      <div class="form-group">
-        <label for="message">Your Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-      </div>
-
-      <button type="submit" class="button">Send Message</button>
-    </form>
-  </div>
-</section>
