@@ -1,163 +1,50 @@
-<!-- =============================================
-     Zenith Roofing Services – Blog & Glossary Templates
-     Author: Bryan Ramirez (Zenith Roofing Services, Inc.)
-     License #1036112     |     858‑900‑6163
-     ---------------------------------------------------
-     This file contains **two** self‑contained HTML templates:
-       1. blog.html      – Dynamic blog index layout
-       2. glossary.html  – Roofing glossary page
-
-     Copy each section into its own .html file or integrate into
-     your CMS.  Styles are kept minimal and utility‑class based
-     so you can drop Tailwind or any framework on top.
-========================================================-->
-
-<!-- ================  blog.html  ==================== -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Roofing tips, maintenance guides, and code updates from Zenith Roofing Services – serving San Diego & Southern California." />
-  <title>Blog | Zenith Roofing Services</title>
-  <style>
-    body {font-family: system-ui, sans-serif; margin: 0; line-height: 1.6;}
-    header, footer {background: #0d2a41; color: #fff; padding: 1rem 1.5rem;}
-    nav a {color:#fff; margin-right:1rem; text-decoration:none;}
-    .container{max-width:960px;margin:0 auto;padding:1.5rem;}
-    .post-card{border:1px solid #eee; border-radius:8px; padding:1rem; margin-bottom:1.5rem;}
-    .post-card h3{margin-top:0;}
-    .badge{background:#0d2a41; color:#fff; padding:0.15rem 0.5rem; border-radius:4px; font-size:0.75rem;}
-    aside{border-left:2px solid #eee; padding-left:1.5rem;}
-    footer p{font-size:0.8rem;margin:0;}
-  </style>
+  <title>Zenith Roofing Services</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/services">Services</a>
-      <a href="/projects">Projects</a>
-      <a href="/reviews">Reviews</a>
-      <a href="/about">About</a>
-      <a href="/blog">Blog</a>
-      <a href="/glossary">Glossary</a>
-      <a href="/contact">Contact</a>
-    </nav>
+    <div class="container">
+      <h1>Zenith Roofing Services</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main class="container" role="main">
-    <h1>Roofing Insights & Tips</h1>
-    <p>Fresh articles posted regularly by Bryan Ramirez and the Zenith crew.</p>
+  <section class="hero">
+    <div class="container">
+      <h2>Protecting Your Home from the Top Down</h2>
+      <p>Serving San Diego County and surrounding areas with expert roofing solutions.</p>
+      <a href="contact.html" class="button">Get a Free Estimate</a>
+    </div>
+  </section>
 
-    <!-- Blog Post Preview Cards -->
-    <article class="post-card">
-      <h3><a href="/blog/when-to-replace-a-shingle-roof">When to Replace a Shingle Roof — 5 Warning Signs</a></h3>
-      <p class="badge">Roof Maintenance</p>
-      <p>Shingles curling at the edges? Granules in the gutters? Learn the top indicators that it’s time for a replacement and how long the process takes…</p>
-      <p><small>Posted July 10, 2025 • 3 min read</small></p>
-    </article>
-
-    <article class="post-card">
-      <h3><a href="/blog/title-24-cool-roof-explained">Title 24 Cool Roof Requirements Explained (2025 Update)</a></h3>
-      <p class="badge">Codes & Insurance</p>
-      <p>California’s Title 24 energy code now mandates “cool roof” shingles in many climate zones. Here’s what homeowners need to know before reroofing…</p>
-      <p><small>Posted July 8, 2025 • 4 min read</small></p>
-    </article>
-
-    <!-- Repeat .post-card blocks or generate dynamically in your CMS -->
-  </main>
-
-  <aside class="container" style="display:flex;gap:2rem;flex-wrap:wrap;">
-    <section style="flex:1 1 260px;">
-      <h3>Categories</h3>
+  <section class="services">
+    <div class="container">
+      <h3>Our Services</h3>
       <ul>
-        <li><a href="/blog/category/roof-maintenance">Roof Maintenance</a></li>
-        <li><a href="/blog/category/codes-insurance">Codes & Insurance</a></li>
-        <li><a href="/blog/category/materials">Materials Explained</a></li>
-        <li><a href="/blog/category/project-spotlight">Project Spotlight</a></li>
+        <li>Shingle Roof Replacement</li>
+        <li>Tile Lift & Reset</li>
+        <li>Flat Roof & Torch Down Systems</li>
+        <li>Gutter Installation</li>
       </ul>
-    </section>
-
-    <section style="flex:1 1 260px;">
-      <h3>Recent Posts</h3>
-      <ul>
-        <li><a href="/blog/how-to-clean-gutters">How to Clean Your Gutters Like a Pro</a></li>
-        <li><a href="/blog/torch-down-vs-silicone">Torch‑Down vs. Silicone Coatings</a></li>
-        <li><a href="/blog/mobile-home-roof-replacement">Mobile‑Home Roof Replacement Guide</a></li>
-      </ul>
-    </section>
-  </aside>
+    </div>
+  </section>
 
   <footer>
-    <p>© 2025 Zenith Roofing Services, Inc. | License #1036112 | Escondido, CA • Call/Text 858‑900‑6163</p>
+    <div class="container">
+      <p>&copy; 2025 Zenith Roofing Services. All rights reserved.</p>
+    </div>
   </footer>
 </body>
 </html>
-
-
-<!-- ==============  glossary.html  ================ -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Roofing glossary of terms by Zenith Roofing Services – definitions of underlayment, modified bitumen, torch‑down, and more." />
-  <title>Roofing Glossary | Zenith Roofing Services</title>
-  <style>
-    body {font-family: system-ui, sans-serif; margin: 0; line-height: 1.6;}
-    header, footer {background:#0d2a41; color:#fff; padding:1rem 1.5rem;}
-    nav a {color:#fff; margin-right:1rem; text-decoration:none;}
-    .container{max-width:960px;margin:0 auto;padding:1.5rem;}
-    dt{font-weight:600; margin-top:1rem;}
-    footer p{font-size:0.8rem;margin:0;}
-  </style>
-</head>
-<body>
-  <header>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/services">Services</a>
-      <a href="/projects">Projects</a>
-      <a href="/reviews">Reviews</a>
-      <a href="/about">About</a>
-      <a href="/blog">Blog</a>
-      <a href="/glossary">Glossary</a>
-      <a href="/contact">Contact</a>
-    </nav>
-  </header>
-
-  <main class="container" role="main">
-    <h1>Roofing Glossary</h1>
-    <p>An A–Z reference of common roofing terms so you can talk the talk and make informed decisions.</p>
-
-    <dl>
-      <dt>Asphalt Shingle</dt>
-      <dd>A widely used roofing material composed of a fiberglass or organic mat coated with asphalt and topped with mineral granules for UV protection.</dd>
-
-      <dt>Base Sheet</dt>
-      <dd>The first ply of roofing membrane in a built‑up or modified‑bitumen roof system, typically fastened directly to the deck.</dd>
-
-      <dt>Cool Roof (Title 24)</dt>
-      <dd>A roofing surface designed to reflect more sunlight and absorb less heat, required by California’s energy code in certain climate zones.</dd>
-
-      <dt>Dead Valley</dt>
-      <dd>A section of roof with minimal slope where water can collect; often requires special waterproofing like torch‑down or tapered insulation.</dd>
-
-      <dt>Modified Bitumen</dt>
-      <dd>A durable, asphalt‑based roofing membrane reinforced with modifiers (APP or SBS) and installed via torch, cold‑adhesive, or self‑adhesive methods.</dd>
-
-      <dt>Underlayment</dt>
-      <dd>A water‑resistant or waterproof barrier installed under the primary roof covering to protect the deck from moisture.</dd>
-
-      <!-- Add more <dt><dd> pairs alphabetically as needed -->
-    </dl>
-  </main>
-
-  <footer>
-    <p>© 2025 Zenith Roofing Services, Inc. | License #1036112 | Escondido, CA • Call/Text 858‑900‑6163</p>
-  </footer>
-</body>
-</html>
-
-<!-- ====================  END  ==================== -->
