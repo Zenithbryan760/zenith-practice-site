@@ -4,49 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zenith Roofing Services</title>
+  <meta name="description" content="Zenith Roofing Services offers professional roofing solutions throughout San Diego, Temecula, and Southern California. Shingle, tile, flat roofs, and more." />
   <link rel="stylesheet" href="style.css" />
-  <meta name="description" content="Zenith Roofing Services provides expert roofing solutions in San Diego and Temecula, including shingles, tile, torch-down, and silicone coatings. Licensed & insured.">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Zenith Roofing Services – San Diego & Temecula Roof Experts">
-  <meta property="og:description" content="Family-owned. Licensed & insured. Get a free estimate today!">
-  <meta property="og:image" content="https://zenithroofingservices.com/images/social-preview.jpg">
-  <meta property="og:url" content="https://zenithroofingservices.com">
-  <meta name="twitter:card" content="summary_large_image">
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "RoofingContractor",
-      "name": "Zenith Roofing Services, Inc.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "970 W Valley Pkwy #458",
-        "addressLocality": "Escondido",
-        "addressRegion": "CA",
-        "postalCode": "92025"
-      },
-      "telephone": "+1-858-900-6163",
-      "url": "https://www.zenithroofingservices.com",
-      "areaServed": ["San Diego", "Temecula", "Oceanside"]
-    }
-  </script>
 </head>
 <body>
 
 <video autoplay muted loop playsinline class="background-video">
   <source src="roofing-bg.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
 </video>
 
+<!-- ====== HEADER & NAV ====== -->
 <header class="header">
-  <div class="container header-inner">
-    <div class="logo-section">
-      <img src="zenith-logo.png" alt="Zenith Roofing Services Logo" class="logo">
+  <div class="container header-layout">
+    <div class="logo-license">
+      <img src="zenith-logo.png" alt="Zenith Roofing Services Logo" class="logo" />
       <p class="license">Lic# 1036112</p>
     </div>
-    <div class="phone-section">
-      <p class="phone-number">Call or Text: <a href="tel:8589006163">858-900-6163</a></p>
+    <div class="phone-call">
+      <img src="858-900-6163.png" alt="Call or Text 858-900-6163" class="phone-img" />
       <a href="tel:8589006163" class="call-button">Call Now</a>
     </div>
   </div>
+
   <nav class="nav-bar">
     <ul class="nav-links">
       <li><a href="#">Home</a></li>
@@ -70,8 +50,95 @@
   </nav>
 </header>
 
-<!-- Additional Sections Follow -->
-<!-- HERO, FORM, CTA, TRUST, TESTIMONIALS, SERVICE AREAS... -->
+<!-- ====== HERO + FORM ====== -->
+<section class="hero">
+  <div class="container">
+    <h2>Dependable Roofing for Southern California Homes & Businesses</h2>
+    <p>Shingle • Tile • Flat Roofs • Repairs • Gutters</p>
+
+    <form name="estimate" method="POST" data-netlify="true" class="hero-form">
+      <input type="hidden" name="form-name" value="estimate" />
+
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="tel" name="phone" placeholder="Phone Number" required />
+      </div>
+
+      <div class="form-row">
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="text" name="address" placeholder="Street Address" required />
+      </div>
+
+      <div class="form-row">
+        <input type="text" name="city" placeholder="City" required />
+        <input type="text" name="state" value="CA" readonly />
+        <input type="text" name="zip" placeholder="ZIP Code" required />
+      </div>
+
+      <textarea name="message" placeholder="Tell us about your project…" rows="4" required></textarea>
+      <button type="submit" class="button">Request Free Estimate</button>
+    </form>
+
+    <p class="disclaimer">
+      <em>
+        *Free estimates are not available for real estate transactions.
+        If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please refer to our
+        <a href="#">Real Estate Services</a> section.
+      </em>
+    </p>
+  </div>
+</section>
+
+<!-- ====== TRUST ====== -->
+<section class="trust">
+  <div class="container">
+    <h2>Why Choose Zenith Roofing?</h2>
+    <ul>
+      <li>✅ Licensed & Insured – CA Lic. #1036112</li>
+      <li>✅ Local, Family-Owned Business</li>
+      <li>✅ 10+ Years of Roofing Experience</li>
+      <li>✅ High-Quality Materials & Warranties</li>
+      <li>✅ Excellent Customer Reviews</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====== TESTIMONIALS ====== -->
+<section class="testimonials">
+  <div class="container">
+    <h2>What Our Clients Say</h2>
+    <blockquote>“Zenith did a fantastic job on our roof. Great communication and no surprises!” – Sarah R., Temecula</blockquote>
+    <blockquote>“Professional and honest. I’d hire them again in a heartbeat.” – Mark T., San Diego</blockquote>
+  </div>
+</section>
+
+<!-- ====== CTA BANNER ====== -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Ready for a Roof You Can Trust?</h2>
+    <p>Contact Zenith Roofing Services today for a free, no-pressure estimate.</p>
+    <a href="tel:8589006163" class="button">Call 858-900-6163</a>
+  </div>
+</section>
+
+<!-- ====== SERVICE AREAS ====== -->
+<section class="service-areas">
+  <div class="container">
+    <h2>Serving San Diego, Temecula & Surrounding Areas</h2>
+    <h3>Local Expertise in San Diego & Temecula</h3>
+    <p><em>Escondido, Vista, Carlsbad, Oceanside, Encinitas, Fallbrook, Bonsall, Valley Center, Rancho Bernardo, Point Loma, La Jolla, Carmel Mountain, Scripps Ranch, Poway, Del Mar, Miramar, Mira Mesa, Clairemont, La Mesa, San Marcos, Fairbanks Ranch, Lake San Marcos, Rancho San Diego, Lemon Grove, Spring Valley, Bonita, Solana Beach, Santee, Imperial Beach, National City, El Cajon, Coronado</em></p>
+    <p><em>Temecula, Murrieta, Menifee, Wildomar, Lake Elsinore</em> and the surrounding Inland Empire.</p>
+
+    <h3>Expanded Coverage Throughout Southern California</h3>
+    <ul>
+      <li>Riverside County</li>
+      <li>Orange County</li>
+      <li>Los Angeles County</li>
+    </ul>
+
+    <p><strong>✅ Licensed & Insured  ✅ Local Experts  ✅ Satisfaction Guaranteed</strong></p>
+  </div>
+</section>
 
 </body>
 </html>
