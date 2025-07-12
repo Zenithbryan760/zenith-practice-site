@@ -28,16 +28,16 @@ body {
 
 .header-inner {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  padding: 0 20px;
 }
 
 .header-left {
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   gap: 40px;
-  margin-bottom: 10px;
 }
 
 .logo-block,
@@ -60,7 +60,7 @@ body {
 
 .phone-img {
   max-height: 28px;
-  filter: brightness(10); /* makes white numbers stand out */
+  filter: brightness(10);
   margin-bottom: 4px;
 }
 
@@ -75,14 +75,19 @@ body {
   text-decoration: none;
   transition: background 0.3s ease;
 }
+
 .call-button:hover {
   background-color: #e6871c;
 }
 
 .nav-bar {
   background: var(--zenith-blue);
-  width: 100%;
   text-align: center;
+}
+
+.nav-links-container {
+  display: flex;
+  justify-content: center;
 }
 
 .nav-links {
@@ -288,14 +293,15 @@ body {
     text-align: center;
   }
 
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .header-left {
     flex-direction: column;
     align-items: center;
     gap: 12px;
-  }
-
-  .nav-bar {
-    padding: 10px 0;
   }
 
   .phone-img {
