@@ -128,3 +128,11 @@ body {
   opacity: 0.35;
   pointer-events: none;
 }
+.hero {
+  background-color: rgba(7, 46, 89, 0.7); /* navy overlay with transparency */
+  color: var(--white);
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
