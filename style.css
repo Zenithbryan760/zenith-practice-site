@@ -117,3 +117,14 @@ body {
   .nav-links li  { width: 100%; }
   .nav-links a   { display: block; width: 100%; text-align: center; }
 }
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.35;
+  pointer-events: none;
+}
