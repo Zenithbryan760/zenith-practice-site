@@ -37,17 +37,37 @@ body {
   background: var(--zenith-blue);
   color: var(--white);
   text-align: center;
-  padding: 20px 0;
+  padding: 30px 0;
 }
 .header .contact-info { margin-top: 6px; font-size: 14px; }
 .header .contact-info a { color: var(--zenith-orange); }
 
+.branding {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+.branding-logo {
+  width: 60px;
+  height: auto;
+}
+.branding-text {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
 /* ---------- Hero ---------- */
 .hero {
-  background: var(--zenith-blue);
+  background-color: rgba(7, 46, 89, 0.7); /* navy overlay with transparency */
   color: var(--white);
-  text-align: center;
   padding: 60px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
 }
 .hero h2 { margin-bottom: 10px; }
 .hero p  { margin-bottom: 30px; }
@@ -57,9 +77,17 @@ body {
 .form-row input   { flex: 1 1 30%; min-width: 200px; }
 
 .hero-form input,
-.hero-form textarea { padding: 10px; border: none; border-radius: 4px; font-size: 1em; }
+.hero-form textarea {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+}
 .hero-form input:focus,
-.hero-form textarea:focus { outline: none; border: 2px solid var(--zenith-orange); }
+.hero-form textarea:focus {
+  outline: none;
+  border: 2px solid var(--zenith-orange);
+}
 
 .button {
   background: var(--zenith-orange);
@@ -89,7 +117,12 @@ body {
   padding: 60px 20px;
 }
 .testimonials h2 { color: var(--zenith-blue); margin-bottom: 20px; }
-.testimonials blockquote { font-style: italic; max-width: 600px; margin: 20px auto; color: #555; }
+.testimonials blockquote {
+  font-style: italic;
+  max-width: 600px;
+  margin: 20px auto;
+  color: #555;
+}
 
 /* ---------- CTA Banner ---------- */
 .cta-banner {
@@ -108,15 +141,30 @@ body {
 }
 .service-areas h2,
 .service-areas h3 { color: var(--zenith-blue); }
-.service-areas ul { list-style: disc; padding-left: 40px; text-align: left; display: inline-block; }
-
-/* ---------- Responsive ---------- */
-@media (max-width: 768px) {
-  .form-row      { flex-direction: column; }
-  .nav-links     { flex-direction: column; }
-  .nav-links li  { width: 100%; }
-  .nav-links a   { display: block; width: 100%; text-align: center; }
+.service-areas ul {
+  list-style: disc;
+  padding-left: 40px;
+  text-align: left;
+  display: inline-block;
 }
+
+/* ---------- Disclaimer ---------- */
+.disclaimer {
+  font-size: 0.85em;
+  color: #ccc;
+  margin-top: 10px;
+  text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-style: italic;
+}
+.disclaimer a {
+  color: var(--zenith-orange);
+  text-decoration: underline;
+}
+
+/* ---------- Background Video ---------- */
 .background-video {
   position: fixed;
   top: 0;
@@ -128,24 +176,18 @@ body {
   opacity: 0.35;
   pointer-events: none;
 }
-.hero {
-  background-color: rgba(7, 46, 89, 0.7); /* navy overlay with transparency */
-  color: var(--white);
-  padding: 60px 20px;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-.disclaimer {
-  font-size: 0.9em;
-  color: #999;
-  margin-top: 10px;
-  text-align: center;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.disclaimer a {
-  color: var(--zenith-orange);
-  text-decoration: underline;
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .form-row      { flex-direction: column; }
+  .nav-links     { flex-direction: column; }
+  .nav-links li  { width: 100%; }
+  .nav-links a   { display: block; width: 100%; text-align: center; }
+  .branding {
+    flex-direction: column;
+  }
+  .branding-text {
+    font-size: 22px;
+    margin-top: 5px;
+  }
 }
