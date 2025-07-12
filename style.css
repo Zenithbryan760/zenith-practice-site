@@ -20,60 +20,44 @@ body {
 }
 
 /* ---------- Header ---------- */
+/* ---------- Header ---------- */
 .header {
   background: rgba(7, 46, 89, 0.9);
   color: var(--white);
-  padding: 10px 0;
-}
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-}
-.logo-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-}
-.logo {
-  height: 60px;
-  width: auto;
-}
-.license {
-  font-size: 14px;
-  color: var(--white);
-}
-.phone-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-}
-.phone-number {
-  font-size: 18px;
-  font-weight: bold;
-}
-.phone-number a {
-  color: var(--white);
-  text-decoration: none;
-}
-.call-button {
-  background-color: var(--zenith-orange);
-  color: var(--white);
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 14px;
-  text-decoration: none;
-  transition: background 0.3s ease;
-}
-.call-button:hover {
-  background-color: #e6871c;
+  padding: 6px 0 0;           /* slimmer top padding */
 }
 
+.header-inner {
+  display: flex;
+  justify-content: flex-start; /* A and B left-aligned */
+  align-items: center;         /* keep logo + phone on same baseline */
+  gap: 32px;                   /* tighter horizontal gap */
+  flex-wrap: wrap;
+}
+
+/* A: Logo + license */
+.logo-section { display:flex; flex-direction:column; align-items:center; }
+.logo         { height:56px; width:auto; }     /* slightly smaller logo */
+.license      { font-size:13px; margin-top:2px; }
+
+/* B: Phone + CTA */
+.phone-section{ display:flex; flex-direction:column; align-items:center; }
+.phone-number { font:700 17px/1 Arial, sans-serif; }
+.phone-number a { color:var(--white); text-decoration:none; }
+.call-button  { background:var(--zenith-orange); color:#fff;
+                padding:6px 14px; border-radius:4px; font-weight:bold;
+                font-size:14px; margin-top:4px; }
+
+/* C–J: Tabs */
+.nav-bar       { background:var(--zenith-blue); margin-top:4px; } /* closer to AB */
+.nav-links a   { padding:12px 18px; }
+
+/* ---------- Mobile tweak ---------- */
+@media (max-width:768px){
+  .header-inner { justify-content:center; gap:20px; }
+  .phone-number { font-size:18px; }
+  .nav-links a  { padding:12px 14px; }
+}
 /* ---------- Navigation ---------- */
 .nav-bar {
   background: var(--zenith-blue);
