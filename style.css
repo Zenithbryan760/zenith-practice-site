@@ -1,12 +1,12 @@
 /* ---------- Brand Colors ---------- */
 :root {
-  --zenith-blue: #072e59;
+  --zenith-blue:   #072e59;
   --zenith-orange: #f7941d;
-  --white: #ffffff;
-  --text-gray: #333333;
+  --white:         #ffffff;
+  --text-gray:     #333333;
 }
 
-/* ---------- Reset & Base ---------- */
+/* ---------- Base ---------- */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -16,103 +16,7 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* ---------- Header Layout ---------- */
-.header {
-  background-color: var(--zenith-blue);
-  color: var(--white);
-  padding: 10px 0 0;
-}
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding-bottom: 5px;
-}
-.logo-section, .phone-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.logo {
-  height: 60px;
-}
-.license {
-  font-size: 14px;
-  color: var(--white);
-}
-.phone-number {
-  font-size: 16px;
-  color: var(--white);
-  margin: 0 0 4px;
-}
-.phone-number a {
-  color: var(--white);
-  text-decoration: none;
-}
-.call-button {
-  background: var(--zenith-orange);
-  color: var(--white);
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 14px;
-  cursor: pointer;
-}
-.call-button:hover {
-  background: #e6871c;
-}
-
-/* ---------- Nav Bar ---------- */
-.nav-bar {
-  background-color: var(--zenith-blue);
-  display: flex;
-  justify-content: center;
-  padding: 0;
-}
-.nav-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 0;
-  margin: 0;
-}
-.nav-links li {
-  margin: 0;
-}
-.nav-links a {
-  display: block;
-  padding: 15px 20px;
-  color: var(--white);
-  text-decoration: none;
-  font-weight: bold;
-}
-.nav-links a:hover {
-  background-color: var(--zenith-orange);
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  background: var(--zenith-blue);
-  min-width: 180px;
-  z-index: 1000;
-  margin-top: 15px;
-}
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu li a {
-  padding: 10px 20px;
-  display: block;
-  color: var(--white);
-  white-space: nowrap;
+  padding: 20px;
 }
 
 /* ---------- Background Video ---------- */
@@ -124,19 +28,275 @@ body {
   min-height: 100vh;
   object-fit: cover;
   z-index: -1;
-  opacity: 0.3;
+  opacity: 0.35;
   pointer-events: none;
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- Header (A & B + C–J) ---------- */
+.header {
+  background: var(--zenith-blue);
+  color: var(--white);
+  padding: 0;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  flex-wrap: wrap;
+}
+
+.logo-block,
+.phone-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  max-height: 60px;
+  width: auto;
+}
+
+.license {
+  font-size: 14px;
+  color: var(--white);
+  margin-top: 4px;
+}
+
+.phone-img {
+  max-height: 28px;
+  margin-bottom: 5px;
+  filter: brightness(10); /* enhances white phone number visibility */
+}
+
+.call-button {
+  background-color: var(--zenith-orange);
+  color: var(--white);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+.call-button:hover {
+  background-color: #e6871c;
+}
+
+/* ---------- Navigation Tabs C–J ---------- */
+.nav-bar {
+  background: var(--zenith-blue);
+  text-align: center;
+  border-top: 1px solid #0c3a73;
+  border-bottom: 1px solid #0c3a73;
+}
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.nav-links li {
+  position: relative;
+}
+.nav-links a {
+  color: var(--white);
+  padding: 12px 18px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+}
+.nav-links a:hover {
+  background: var(--zenith-orange);
+  border-radius: 4px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--zenith-blue);
+  min-width: 180px;
+  z-index: 1000;
+}
+.dropdown-menu li a {
+  white-space: nowrap;
+  display: block;
+  padding: 10px 20px;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* ---------- Hero Section ---------- */
+.hero {
+  background-color: rgba(7, 46, 89, 0.7);
+  color: var(--white);
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.hero h2 {
+  margin-bottom: 10px;
+}
+.hero p {
+  margin-bottom: 30px;
+}
+
+.hero-form {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.form-row input {
+  flex: 1 1 30%;
+  min-width: 200px;
+}
+
+.hero-form input,
+.hero-form textarea {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+}
+.hero-form input:focus,
+.hero-form textarea:focus {
+  outline: none;
+  border: 2px solid var(--zenith-orange);
+}
+
+.button {
+  background: var(--zenith-orange);
+  color: var(--white);
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.button:hover {
+  background: #e6871c;
+}
+
+/* ---------- Disclaimer Below Form ---------- */
+.disclaimer {
+  font-size: 0.9em;
+  color: #ccc;
+  margin-top: 10px;
+  text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.disclaimer a {
+  color: var(--zenith-orange);
+  text-decoration: underline;
+}
+
+/* ---------- Trust Section ---------- */
+.trust {
+  background: #f9f9f9;
+  text-align: center;
+  padding: 60px 20px;
+}
+.trust h2 {
+  color: var(--zenith-blue);
+  margin-bottom: 20px;
+}
+.trust ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 2;
+}
+
+/* ---------- Testimonials ---------- */
+.testimonials {
+  background: #f7f7f7;
+  text-align: center;
+  padding: 60px 20px;
+}
+.testimonials h2 {
+  color: var(--zenith-blue);
+  margin-bottom: 20px;
+}
+.testimonials blockquote {
+  font-style: italic;
+  max-width: 600px;
+  margin: 20px auto;
+  color: #555;
+}
+
+/* ---------- CTA Banner ---------- */
+.cta-banner {
+  background: var(--zenith-blue);
+  color: var(--white);
+  text-align: center;
+  padding: 60px 20px;
+}
+.cta-banner .button {
+  margin-top: 20px;
+}
+
+/* ---------- Service Areas ---------- */
+.service-areas {
+  background: #f9f9f9;
+  text-align: center;
+  padding: 60px 20px;
+}
+.service-areas h2,
+.service-areas h3 {
+  color: var(--zenith-blue);
+}
+.service-areas ul {
+  list-style: disc;
+  padding-left: 40px;
+  text-align: left;
+  display: inline-block;
+}
+
+/* ---------- Responsive Design ---------- */
 @media (max-width: 768px) {
-  .header-inner {
+  .form-row {
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
   }
   .nav-links {
     flex-direction: column;
+  }
+  .header-top {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo-block,
+  .phone-block {
+    align-items: center;
     text-align: center;
+  }
+  .nav-links a {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .call-button {
+    font-size: 16px;
   }
 }
