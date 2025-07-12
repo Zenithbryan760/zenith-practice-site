@@ -19,59 +19,46 @@ body {
   padding: 20px;
 }
 
-/* ---------- Background Video ---------- */
-.background-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100vw;
-  min-height: 100vh;
-  object-fit: cover;
-  z-index: -1;
-  opacity: 0.35;
-  pointer-events: none;
-}
-
-/* ---------- Header (A & B + C–J) ---------- */
+/* ---------- Header ---------- */
 .header {
   background: rgba(7, 46, 89, 0.9);
   color: var(--white);
-  padding: 0;
+  padding: 10px 0;
 }
-
-.header-top {
+.header-inner {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 5px 30px 0;
   flex-wrap: wrap;
 }
-
-.logo-block,
-.phone-block {
+.logo-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 5px;
+  gap: 5px;
 }
-
 .logo {
-  max-height: 60px;
+  height: 60px;
   width: auto;
 }
-
 .license {
   font-size: 14px;
   color: var(--white);
-  margin-top: 4px;
 }
-
-.phone-img {
-  max-height: 28px;
-  margin-bottom: 5px;
-  filter: brightness(10);
+.phone-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
-
+.phone-number {
+  font-size: 18px;
+  font-weight: bold;
+}
+.phone-number a {
+  color: var(--white);
+  text-decoration: none;
+}
 .call-button {
   background-color: var(--zenith-orange);
   color: var(--white);
@@ -79,7 +66,6 @@ body {
   padding: 8px 16px;
   border-radius: 4px;
   font-weight: bold;
-  cursor: pointer;
   font-size: 14px;
   text-decoration: none;
   transition: background 0.3s ease;
@@ -88,38 +74,31 @@ body {
   background-color: #e6871c;
 }
 
-/* ---------- Navigation Tabs C–J ---------- */
+/* ---------- Navigation ---------- */
 .nav-bar {
-  background: rgba(7, 46, 89, 0.95);
+  background: var(--zenith-blue);
   text-align: center;
-  border-top: 1px solid #0c3a73;
-  border-bottom: 1px solid #0c3a73;
-  padding-bottom: 5px;
 }
 .nav-links {
   list-style: none;
   margin: 0;
-  padding: 10px 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
 }
 .nav-links li {
   position: relative;
 }
 .nav-links a {
   color: var(--white);
-  padding: 12px 18px;
+  padding: 15px 20px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 16px;
 }
 .nav-links a:hover {
   background: var(--zenith-orange);
-  border-radius: 4px;
 }
-
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -147,13 +126,8 @@ body {
   position: relative;
   z-index: 1;
 }
-.hero h2 {
-  margin-bottom: 10px;
-}
-.hero p {
-  margin-bottom: 30px;
-}
-
+.hero h2 { margin-bottom: 10px; }
+.hero p  { margin-bottom: 30px; }
 .hero-form {
   max-width: 700px;
   margin: 0 auto;
@@ -170,7 +144,6 @@ body {
   flex: 1 1 30%;
   min-width: 200px;
 }
-
 .hero-form input,
 .hero-form textarea {
   padding: 10px;
@@ -183,7 +156,6 @@ body {
   outline: none;
   border: 2px solid var(--zenith-orange);
 }
-
 .button {
   background: var(--zenith-orange);
   color: var(--white);
@@ -196,21 +168,6 @@ body {
 }
 .button:hover {
   background: #e6871c;
-}
-
-/* ---------- Disclaimer Below Form ---------- */
-.disclaimer {
-  font-size: 0.9em;
-  color: #ccc;
-  margin-top: 10px;
-  text-align: center;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.disclaimer a {
-  color: var(--zenith-orange);
-  text-decoration: underline;
 }
 
 /* ---------- Trust Section ---------- */
@@ -275,30 +232,44 @@ body {
   display: inline-block;
 }
 
-/* ---------- Responsive Design ---------- */
+/* ---------- Video Background ---------- */
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ---------- Disclaimer ---------- */
+.disclaimer {
+  font-size: 0.9em;
+  color: #999;
+  margin-top: 10px;
+  text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.disclaimer a {
+  color: var(--zenith-orange);
+  text-decoration: underline;
+}
+
+/* ---------- Responsive ---------- */
 @media (max-width: 768px) {
-  .form-row {
-    flex-direction: column;
-  }
-  .nav-links {
-    flex-direction: column;
-  }
-  .header-top {
+  .form-row { flex-direction: column; }
+  .nav-links { flex-direction: column; }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; width: 100%; text-align: center; }
+  .header-inner {
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
   }
-  .logo-block,
-  .phone-block {
-    align-items: center;
-    text-align: center;
-  }
-  .nav-links a {
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
-  .call-button {
-    font-size: 16px;
-  }
+  .phone-number { font-size: 20px; }
 }
