@@ -268,3 +268,27 @@ body {
   color: var(--zenith-orange);
   text-decoration: underline;
 }
+/* ---------- Logo & Header Layout ---------- */
+.header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  height: 80px;
+  max-width: 160px;
+}
+
+.header-text h1 {
+  font-size: 1.8em;
+  margin: 0;
+  color: var(--white);
+}
+
+.phone-img {
+  height: 24px;
+  margin-top: 5px;
+}
