@@ -1,193 +1,140 @@
-/* ---------- Brand Colors ---------- */
-:root {
-  --zenith-blue:   #072e59;
-  --zenith-orange: #f7941d;
-  --white:         #ffffff;
-  --text-gray:     #333333;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenith Roofing Services</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<video autoplay muted loop playsinline class="background-video">
+  <source src="roofing-bg.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
-/* ---------- Base ---------- */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: var(--white);
-  color: var(--text-gray);
-}
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
+<!-- ====== HEADER & NAV ====== -->
+<header class="header">
+  <div class="container">
+    <div class="branding-container">
+      <img src="zenith-logo-small.png" alt="Zenith Roofing Logo" class="branding-logo" />
+      <div class="branding-text">
+        <h1>Zenith Roofing Services, Inc.</h1>
+        <p class="branding-subtext">CA Lic. #1036112</p>
+        <a href="tel:8589006163" class="phone-image-link">
+          <img src="zenith-phone.png" alt="Call 858-900-6163" class="phone-image" />
+        </a>
+      </div>
+    </div>
+  </div>
 
-/* ---------- Navigation ---------- */
-.nav-bar      { background: var(--zenith-blue); text-align: center; }
-.nav-links    { list-style: none; margin: 0; padding: 0;
-                display: flex; justify-content: center; flex-wrap: wrap; }
-.nav-links li { position: relative; }
-.nav-links a  { color: var(--white); padding: 15px 20px; text-decoration: none; font-weight: bold; }
-.nav-links a:hover { background: var(--zenith-orange); }
+  <nav class="nav-bar container">
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li class="dropdown">
+        <a href="#">Services</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Shingle Roofing</a></li>
+          <li><a href="#">Tile Lift & Relay</a></li>
+          <li><a href="#">Torch-Down / Flat Roofs</a></li>
+          <li><a href="#">Silicone Coatings</a></li>
+          <li><a href="#">Gutters</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Projects / Gallery</a></li>
+      <li><a href="#">Reviews</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Glossary</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-.dropdown-menu     { display: none; position: absolute; top: 100%; left: 0;
-                     background: var(--zenith-blue); min-width: 180px; z-index: 1000; }
-.dropdown-menu li a{ white-space: nowrap; display: block; padding: 10px 20px; }
-.dropdown:hover .dropdown-menu { display: block; }
+<!-- ====== HERO + QUOTE FORM ====== -->
+<section class="hero">
+  <div class="container">
+    <h2>Dependable Roofing&nbsp;for Southern&nbsp;California Homes & Businesses</h2>
+    <p>Shingle • Tile • Flat Roofs • Repairs • Gutters</p>
 
-/* ---------- Header ---------- */
-.header {
-  background: var(--zenith-blue);
-  color: var(--white);
-  text-align: center;
-  padding: 30px 0;
-}
-.header .contact-info { margin-top: 6px; font-size: 14px; }
-.header .contact-info a { color: var(--zenith-orange); }
+    <form name="estimate" method="POST" data-netlify="true" class="hero-form">
+      <input type="hidden" name="form-name" value="estimate" />
 
-.branding {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 10px;
-}
-.branding-logo {
-  width: 60px;
-  height: auto;
-}
-.branding-text {
-  font-size: 28px;
-  font-weight: bold;
-  color: var(--white);
-  text-transform: uppercase;
-}
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="tel" name="phone" placeholder="Phone Number" required />
+        <input type="email" name="email" placeholder="Email" required />
+      </div>
 
-/* ---------- Hero ---------- */
-.hero {
-  background-color: rgba(7, 46, 89, 0.7); /* navy overlay with transparency */
-  color: var(--white);
-  padding: 60px 20px;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-.hero h2 { margin-bottom: 10px; }
-.hero p  { margin-bottom: 30px; }
+      <div class="form-row">
+        <input type="text" name="address" placeholder="Street Address" required />
+        <input type="text" name="city" placeholder="City" required />
+        <input type="text" name="state" value="CA" readonly />
+        <input type="text" name="zip" placeholder="Zip Code" required />
+      </div>
 
-.hero-form        { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
-.form-row         { display: flex; flex-wrap: wrap; gap: 15px; }
-.form-row input   { flex: 1 1 30%; min-width: 200px; }
+      <textarea name="message" placeholder="Tell us about your project…" rows="4" required></textarea>
+      <button type="submit" class="button">Request Free Estimate</button>
+    </form>
 
-.hero-form input,
-.hero-form textarea {
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  font-size: 1em;
-}
-.hero-form input:focus,
-.hero-form textarea:focus {
-  outline: none;
-  border: 2px solid var(--zenith-orange);
-}
+    <!-- DISCLAIMER UNDER FORM -->
+    <p class="disclaimer">
+      <em>
+        *Free estimates are not available for real estate transactions.
+        If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please refer to our
+        <a href="services.html#real-estate">Real Estate Services</a> section.
+      </em>
+    </p>
+  </div>
+</section>
 
-.button {
-  background: var(--zenith-orange);
-  color: var(--white);
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-.button:hover { background: #e6871c; }
+<!-- ====== TRUST / DIFFERENTIATORS ====== -->
+<section class="trust">
+  <div class="container">
+    <h2>Why Choose Zenith Roofing?</h2>
+    <ul>
+      <li>✅ Licensed & Insured – CA Lic. #1036112</li>
+      <li>✅ Local, Family-Owned Business</li>
+      <li>✅ 10+ Years of Roofing Experience</li>
+      <li>✅ High-Quality Materials & Warranties</li>
+      <li>✅ Excellent Customer Reviews</li>
+    </ul>
+  </div>
+</section>
 
-/* ---------- Trust Section ---------- */
-.trust {
-  background: #f9f9f9;
-  text-align: center;
-  padding: 60px 20px;
-}
-.trust h2 { color: var(--zenith-blue); margin-bottom: 20px; }
-.trust ul { list-style: none; padding: 0; margin: 0; line-height: 2; }
+<!-- ====== TESTIMONIALS ====== -->
+<section class="testimonials">
+  <div class="container">
+    <h2>What Our Clients Say</h2>
+    <blockquote>“Zenith did a fantastic job on our roof. Great communication and no surprises!” – Sarah R., Temecula</blockquote>
+    <blockquote>“Professional and honest. I’d hire them again in a heartbeat.” – Mark T., San Diego</blockquote>
+  </div>
+</section>
 
-/* ---------- Testimonials ---------- */
-.testimonials {
-  background: #f7f7f7;
-  text-align: center;
-  padding: 60px 20px;
-}
-.testimonials h2 { color: var(--zenith-blue); margin-bottom: 20px; }
-.testimonials blockquote {
-  font-style: italic;
-  max-width: 600px;
-  margin: 20px auto;
-  color: #555;
-}
+<!-- ====== CALL-TO-ACTION BANNER ====== -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Ready for a Roof You Can Trust?</h2>
+    <p>Contact Zenith Roofing Services today for a free, no-pressure estimate.</p>
+    <a href="tel:8589006163" class="button">Call 858-900-6163</a>
+  </div>
+</section>
 
-/* ---------- CTA Banner ---------- */
-.cta-banner {
-  background: var(--zenith-blue);
-  color: var(--white);
-  text-align: center;
-  padding: 60px 20px;
-}
-.cta-banner .button { margin-top: 20px; }
+<!-- ====== SERVICE AREAS / LOCAL SEO ====== -->
+<section class="service-areas">
+  <div class="container">
+    <h2>Serving San Diego, Temecula & Surrounding Areas</h2>
+    <h3>Local Expertise in San Diego & Temecula</h3>
+    <p><em>Escondido, Vista, Carlsbad, Oceanside, Encinitas, Fallbrook, Bonsall, Valley Center, Rancho Bernardo, Point Loma, La Jolla, Carmel Mountain, Scripps Ranch, Poway, Del Mar, Miramar, Mira Mesa, Clairemont, La Mesa, San Marcos, Fairbanks Ranch, Lake San Marcos, Rancho San Diego, Lemon Grove, Spring Valley, Bonita, Solana Beach, Santee, Imperial Beach, National City, El Cajon, Coronado</em></p>
+    <p><em>Temecula, Murrieta, Menifee, Wildomar, Lake Elsinore</em>&nbsp;and the surrounding Inland Empire.</p>
+    <h3>Expanded Coverage Throughout Southern California</h3>
+    <ul>
+      <li>Riverside County</li>
+      <li>Orange County</li>
+      <li>Los Angeles County</li>
+    </ul>
+    <p><strong>✅ Licensed & Insured&nbsp;&nbsp;✅ Local Experts&nbsp;&nbsp;✅ Satisfaction Guaranteed</strong></p>
+  </div>
+</section>
 
-/* ---------- Service Areas ---------- */
-.service-areas {
-  background: #f9f9f9;
-  text-align: center;
-  padding: 60px 20px;
-}
-.service-areas h2,
-.service-areas h3 { color: var(--zenith-blue); }
-.service-areas ul {
-  list-style: disc;
-  padding-left: 40px;
-  text-align: left;
-  display: inline-block;
-}
-
-/* ---------- Disclaimer ---------- */
-.disclaimer {
-  font-size: 0.85em;
-  color: #ccc;
-  margin-top: 10px;
-  text-align: center;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  font-style: italic;
-}
-.disclaimer a {
-  color: var(--zenith-orange);
-  text-decoration: underline;
-}
-
-/* ---------- Background Video ---------- */
-.background-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100vw;
-  min-height: 100vh;
-  object-fit: cover;
-  z-index: -1;
-  opacity: 0.35;
-  pointer-events: none;
-}
-
-/* ---------- Responsive ---------- */
-@media (max-width: 768px) {
-  .form-row      { flex-direction: column; }
-  .nav-links     { flex-direction: column; }
-  .nav-links li  { width: 100%; }
-  .nav-links a   { display: block; width: 100%; text-align: center; }
-  .branding {
-    flex-direction: column;
-  }
-  .branding-text {
-    font-size: 22px;
-    margin-top: 5px;
-  }
-}
+</body>
+</html>
