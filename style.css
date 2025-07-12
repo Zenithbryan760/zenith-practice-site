@@ -16,20 +16,66 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 20px;
+}
+
+/* ---------- Navigation ---------- */
+.nav-bar {
+  background: var(--zenith-blue);
+  padding: 0;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+.nav-links li {
+  position: relative;
+}
+.nav-links a {
+  display: block;
+  padding: 12px 18px;
+  color: var(--white);
+  text-decoration: none;
+  font-weight: bold;
+}
+.nav-links a:hover {
+  background: var(--zenith-orange);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--zenith-blue);
+  min-width: 180px;
+  z-index: 1000;
+}
+.dropdown-menu li a {
+  white-space: nowrap;
+  display: block;
+  padding: 10px 20px;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
 }
 
 /* ---------- Header ---------- */
 .header {
   background: var(--zenith-blue);
   color: var(--white);
-  padding: 10px 0;
+  padding-bottom: 10px;
 }
+
 .header-flex {
   display: flex;
   align-items: center;
   gap: 40px;
-  padding: 0 20px;
+  padding: 20px 20px 10px;
   flex-wrap: wrap;
 }
 .logo-block,
@@ -68,101 +114,6 @@ body {
   background-color: #e6871c;
 }
 
-/* ---------- Navigation ---------- */
-.nav-bar {
-  background: var(--zenith-blue);
-}
-.nav-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 0;
-  margin: 0;
-}
-.nav-links li {
-  position: relative;
-}
-.nav-links a {
-  display: block;
-  padding: 12px 18px;
-  color: var(--white);
-  text-decoration: none;
-  font-weight: bold;
-}
-.nav-links a:hover {
-  background: var(--zenith-orange);
-}
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--zenith-blue);
-  min-width: 180px;
-  z-index: 1000;
-}
-.dropdown-menu li a {
-  white-space: nowrap;
-  display: block;
-  padding: 10px 20px;
-}
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-/* ---------- Responsive Fix ---------- */
-@media (max-width: 768px) {
-  .header-flex {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-/* ---------- Navigation ---------- */
-.nav-bar {
-  background: var(--zenith-blue);
-  padding: 0;
-}
-.nav-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 0;
-  margin: 0;
-}
-.nav-links li {
-  position: relative;
-}
-.nav-links a {
-  display: block;
-  padding: 12px 18px;
-  color: var(--white);
-  text-decoration: none;
-  font-weight: bold;
-}
-.nav-links a:hover {
-  background: var(--zenith-orange);
-}
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--zenith-blue);
-  min-width: 180px;
-  z-index: 1000;
-}
-.dropdown-menu li a {
-  white-space: nowrap;
-  display: block;
-  padding: 10px 20px;
-}
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
 /* ---------- Hero ---------- */
 .hero {
   background-color: rgba(7, 46, 89, 0.7);
@@ -172,8 +123,12 @@ body {
   position: relative;
   z-index: 1;
 }
-.hero h2 { margin-bottom: 10px; }
-.hero p  { margin-bottom: 30px; }
+.hero h2 {
+  margin-bottom: 10px;
+}
+.hero p {
+  margin-bottom: 30px;
+}
 
 .hero-form {
   max-width: 700px;
@@ -191,6 +146,7 @@ body {
   flex: 1 1 30%;
   min-width: 200px;
 }
+
 .hero-form input,
 .hero-form textarea {
   padding: 10px;
@@ -203,6 +159,7 @@ body {
   outline: none;
   border: 2px solid var(--zenith-orange);
 }
+
 .button {
   background: var(--zenith-orange);
   color: var(--white);
@@ -223,7 +180,10 @@ body {
   text-align: center;
   padding: 60px 20px;
 }
-.trust h2 { color: var(--zenith-blue); margin-bottom: 20px; }
+.trust h2 {
+  color: var(--zenith-blue);
+  margin-bottom: 20px;
+}
 .trust ul {
   list-style: none;
   padding: 0;
@@ -237,7 +197,10 @@ body {
   text-align: center;
   padding: 60px 20px;
 }
-.testimonials h2 { color: var(--zenith-blue); margin-bottom: 20px; }
+.testimonials h2 {
+  color: var(--zenith-blue);
+  margin-bottom: 20px;
+}
 .testimonials blockquote {
   font-style: italic;
   max-width: 600px;
@@ -291,11 +254,6 @@ body {
   }
   .header-flex {
     flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-  .logo-block,
-  .phone-block {
     align-items: center;
   }
 }
