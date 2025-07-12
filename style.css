@@ -1,9 +1,9 @@
 /* ---------- Brand Colors ---------- */
 :root {
-  --zenith-blue: #072e59;
+  --zenith-blue:   #072e59;
   --zenith-orange: #f7941d;
-  --white: #ffffff;
-  --text-gray: #333333;
+  --white:         #ffffff;
+  --text-gray:     #333333;
 }
 
 /* ---------- Base ---------- */
@@ -13,110 +13,88 @@ body {
   background: var(--white);
   color: var(--text-gray);
 }
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
-}
-
-/* ---------- Header & Navigation ---------- */
-.header {
-  background: var(--zenith-blue);
-  padding: 10px 0;
-}
-
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
   padding: 0 20px;
 }
 
-.header-left {
+/* ---------- Header ---------- */
+.header {
+  background: var(--zenith-blue);
+  color: var(--white);
+  padding: 10px 0;
+}
+.header-flex {
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   gap: 40px;
+  padding: 0 20px;
+  flex-wrap: wrap;
 }
-
 .logo-block,
 .phone-block {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
-
 .logo {
-  max-height: 65px;
+  max-height: 60px;
   width: auto;
 }
-
 .license {
   font-size: 14px;
   color: var(--white);
   margin-top: 4px;
 }
-
 .phone-img {
   max-height: 28px;
-  filter: brightness(10);
-  margin-bottom: 4px;
+  filter: brightness(100);
+  margin-bottom: 5px;
 }
-
 .call-button {
   background-color: var(--zenith-orange);
   color: var(--white);
   border: none;
-  padding: 8px 16px;
+  padding: 6px 14px;
   border-radius: 4px;
   font-weight: bold;
   font-size: 14px;
   text-decoration: none;
+  cursor: pointer;
   transition: background 0.3s ease;
 }
-
 .call-button:hover {
   background-color: #e6871c;
 }
 
+/* ---------- Navigation ---------- */
 .nav-bar {
   background: var(--zenith-blue);
-  text-align: center;
+  padding: 0;
 }
-
-.nav-links-container {
-  display: flex;
-  justify-content: center;
-}
-
 .nav-links {
   list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  padding: 0;
+  margin: 0;
 }
-
 .nav-links li {
   position: relative;
 }
-
 .nav-links a {
+  display: block;
+  padding: 12px 18px;
   color: var(--white);
-  padding: 14px 20px;
   text-decoration: none;
   font-weight: bold;
-  display: inline-block;
 }
-
 .nav-links a:hover {
   background: var(--zenith-orange);
-  border-radius: 4px;
 }
-
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -125,14 +103,12 @@ body {
   background: var(--zenith-blue);
   min-width: 180px;
   z-index: 1000;
-  border-radius: 4px;
 }
-
 .dropdown-menu li a {
+  white-space: nowrap;
   display: block;
   padding: 10px 20px;
 }
-
 .dropdown:hover .dropdown-menu {
   display: block;
 }
@@ -146,14 +122,8 @@ body {
   position: relative;
   z-index: 1;
 }
-
-.hero h2 {
-  margin-bottom: 10px;
-}
-
-.hero p {
-  margin-bottom: 30px;
-}
+.hero h2 { margin-bottom: 10px; }
+.hero p  { margin-bottom: 30px; }
 
 .hero-form {
   max-width: 700px;
@@ -162,18 +132,15 @@ body {
   flex-direction: column;
   gap: 15px;
 }
-
 .form-row {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
 }
-
 .form-row input {
   flex: 1 1 30%;
   min-width: 200px;
 }
-
 .hero-form input,
 .hero-form textarea {
   padding: 10px;
@@ -181,13 +148,11 @@ body {
   border-radius: 4px;
   font-size: 1em;
 }
-
 .hero-form input:focus,
 .hero-form textarea:focus {
   outline: none;
   border: 2px solid var(--zenith-orange);
 }
-
 .button {
   background: var(--zenith-orange);
   color: var(--white);
@@ -198,7 +163,6 @@ body {
   cursor: pointer;
   transition: background 0.3s ease;
 }
-
 .button:hover {
   background: #e6871c;
 }
@@ -209,12 +173,7 @@ body {
   text-align: center;
   padding: 60px 20px;
 }
-
-.trust h2 {
-  color: var(--zenith-blue);
-  margin-bottom: 20px;
-}
-
+.trust h2 { color: var(--zenith-blue); margin-bottom: 20px; }
 .trust ul {
   list-style: none;
   padding: 0;
@@ -228,12 +187,7 @@ body {
   text-align: center;
   padding: 60px 20px;
 }
-
-.testimonials h2 {
-  color: var(--zenith-blue);
-  margin-bottom: 20px;
-}
-
+.testimonials h2 { color: var(--zenith-blue); margin-bottom: 20px; }
 .testimonials blockquote {
   font-style: italic;
   max-width: 600px;
@@ -248,7 +202,6 @@ body {
   text-align: center;
   padding: 60px 20px;
 }
-
 .cta-banner .button {
   margin-top: 20px;
 }
@@ -259,12 +212,10 @@ body {
   text-align: center;
   padding: 60px 20px;
 }
-
 .service-areas h2,
 .service-areas h3 {
   color: var(--zenith-blue);
 }
-
 .service-areas ul {
   list-style: disc;
   padding-left: 40px;
@@ -277,39 +228,28 @@ body {
   .form-row {
     flex-direction: column;
   }
-
   .nav-links {
     flex-direction: column;
-    gap: 0;
   }
-
   .nav-links li {
     width: 100%;
   }
-
   .nav-links a {
     display: block;
     width: 100%;
     text-align: center;
   }
-
-  .header-inner {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .header-left {
+  .header-flex {
     flex-direction: column;
     align-items: center;
     gap: 12px;
   }
-
-  .phone-img {
-    max-height: 24px;
+  .logo-block,
+  .phone-block {
+    align-items: center;
   }
 }
 
-/* ---------- Background Video ---------- */
 .background-video {
   position: fixed;
   top: 0;
@@ -322,17 +262,15 @@ body {
   pointer-events: none;
 }
 
-/* ---------- Disclaimer ---------- */
 .disclaimer {
   font-size: 0.9em;
-  color: #ccc;
+  color: #999;
   margin-top: 10px;
   text-align: center;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
 }
-
 .disclaimer a {
   color: var(--zenith-orange);
   text-decoration: underline;
