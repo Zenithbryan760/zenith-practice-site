@@ -27,7 +27,6 @@ body {
 }
 .header-flex {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   gap: 40px;
   padding: 0 20px;
@@ -37,7 +36,7 @@ body {
 .phone-block {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
 .logo {
   max-height: 60px;
@@ -49,9 +48,9 @@ body {
   margin-top: 4px;
 }
 .phone-img {
-  max-height: 28px;
+  max-height: 30px;
   filter: brightness(100);
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 .call-button {
   background-color: var(--zenith-orange);
@@ -67,6 +66,57 @@ body {
 }
 .call-button:hover {
   background-color: #e6871c;
+}
+
+/* ---------- Navigation ---------- */
+.nav-bar {
+  background: var(--zenith-blue);
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+.nav-links li {
+  position: relative;
+}
+.nav-links a {
+  display: block;
+  padding: 12px 18px;
+  color: var(--white);
+  text-decoration: none;
+  font-weight: bold;
+}
+.nav-links a:hover {
+  background: var(--zenith-orange);
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--zenith-blue);
+  min-width: 180px;
+  z-index: 1000;
+}
+.dropdown-menu li a {
+  white-space: nowrap;
+  display: block;
+  padding: 10px 20px;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* ---------- Responsive Fix ---------- */
+@media (max-width: 768px) {
+  .header-flex {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 /* ---------- Navigation ---------- */
