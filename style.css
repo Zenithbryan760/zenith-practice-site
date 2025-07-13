@@ -311,3 +311,79 @@ body {
     font-size: 18px;
   }
 }
+/* ------------ HAMBURGER ICON ------------ */
+.menu-toggle { display:none; }
+.menu-icon {
+  display:none;                /* hide on desktop */
+  cursor:pointer;
+  flex-direction:column;
+  gap:4px;
+}
+.menu-icon span {
+  width:24px; height:3px;
+  background:var(--white);
+  display:block;
+  transition:transform 0.3s ease;
+}
+
+/* cross animation when checked */
+.menu-toggle:checked + .menu-icon span:nth-child(1){
+  transform:translateY(7px) rotate(45deg);
+}
+.menu-toggle:checked + .menu-icon span:nth-child(2){
+  opacity:0;
+}
+.menu-toggle:checked + .menu-icon span:nth-child(3){
+  transform:translateY(-7px) rotate(-45deg);
+}
+
+/* ------------ MOBILE MENU ------------ */
+@media (max-width:900px){
+  .menu-icon { display:flex; }            /* show burger */
+  .center-tabs {                          /* hide tabs by default */
+    position:absolute;
+    top:66px; left:0; right:0;
+    background:var(--zenith-blue);
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.3s ease;
+  }
+  /* reveal nav when checkbox checked */
+  .menu-toggle:checked ~ .center-tabs {
+    max-height:400px;                     /* enough to show links */
+  }
+  .nav-links {
+    flex-direction:column;
+    align-items:center;
+    padding:20px 0;
+    gap:10px;
+  }
+
+  /* hide desktop call button / phone */
+  .phone-section { display:none; }
+
+  /* mobile CTA buttons */
+  .mobile-cta{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:10px 20px;
+    background:var(--zenith-blue);
+  }
+  .mobile-cta a{
+    flex:1;
+    text-align:center;
+    padding:10px;
+    border-radius:4px;
+    font-weight:bold;
+    text-decoration:none;
+    color:var(--white);
+  }
+  .cta-call  { background:var(--zenith-orange); }
+  .cta-quote { background:#0b437d; }      /* darker blue */
+}
+
+/* Hide mobile items on desktop */
+@media (min-width:901px){
+  .mobile-cta { display:none; }
+}
