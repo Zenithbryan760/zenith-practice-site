@@ -32,23 +32,24 @@
 </head>
 <body>
 
+<!-- Background Video -->
 <video autoplay muted loop playsinline class="background-video">
   <source src="roofing-bg.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
 </video>
 
+<!-- ====== HEADER ====== -->
 <header class="header">
   <div class="container header-inner">
+
     <!-- Left: Logo -->
     <div class="logo-section">
       <img src="zenith-logo.png" alt="Zenith Roofing Services Logo" class="logo" />
       <p class="license">Lic# 1036112</p>
     </div>
 
-    <!-- Mobile Hamburger -->
-    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
-
     <!-- Center: Navigation Tabs -->
-    <nav class="nav-bar" id="mobileMenu">
+    <nav class="nav-bar center-tabs">
       <ul class="nav-links">
         <li><a href="#">Home</a></li>
         <li><a href="#">Projects / Gallery</a></li>
@@ -61,40 +62,47 @@
       </ul>
     </nav>
 
-    <!-- Right: Phone Section -->
+    <!-- Right: Phone -->
     <div class="phone-section">
       <p class="phone-number">Call or Text: <a href="tel:8589006163">858-900-6163</a></p>
       <a href="tel:8589006163" class="call-button">Call Now</a>
     </div>
-  </div>
 
-  <!-- Mobile Only Buttons -->
-  <div class="mobile-buttons">
-    <a href="tel:8589006163" class="button">Call Now</a>
-    <button onclick="toggleForm()" class="button outline">Get a Quote</button>
   </div>
 </header>
 
-<!-- ====== Popout Quote Form ====== -->
-<div id="quoteForm" class="quote-form-container">
-  <form name="estimate" method="POST" data-netlify="true" class="quote-form">
-    <input type="hidden" name="form-name" value="estimate" />
-    <input type="text" name="name" placeholder="Full Name" required />
-    <input type="tel" name="phone" placeholder="Phone Number" required />
-    <input type="email" name="email" placeholder="Email" required />
-    <input type="text" name="address" placeholder="Street Address" required />
-    <input type="text" name="city" placeholder="City" required />
-    <input type="text" name="state" value="CA" readonly />
-    <input type="text" name="zip" placeholder="ZIP Code" required />
-    <textarea name="message" placeholder="Tell us about your project…" rows="4" required></textarea>
-    <button type="submit" class="button">Submit Request</button>
+<!-- ====== HERO SECTION ====== -->
+<section class="hero">
+  <div class="container">
+    <h2>Dependable Roofing for Southern California Homes & Businesses</h2>
+    <p>Shingle • Tile • Flat Roofs • Repairs • Gutters</p>
+
+    <form name="estimate" method="POST" data-netlify="true" class="hero-form">
+      <input type="hidden" name="form-name" value="estimate" />
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="tel" name="phone" placeholder="Phone Number" required />
+      </div>
+      <div class="form-row">
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="text" name="address" placeholder="Street Address" required />
+      </div>
+      <div class="form-row">
+        <input type="text" name="city" placeholder="City" required />
+        <input type="text" name="state" value="CA" readonly />
+        <input type="text" name="zip" placeholder="ZIP Code" required />
+      </div>
+      <textarea name="message" placeholder="Tell us about your project…" rows="4" required></textarea>
+      <button type="submit" class="button">Request Free Estimate</button>
+    </form>
+
     <p class="disclaimer">
-      *Free estimates are not available for real estate transactions.
-      See our <a href="#">Real Estate Services</a>.
+      <em>
+        *Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please refer to our <a href="#">Real Estate Services</a> section.
+      </em>
     </p>
-    <button type="button" class="close-form" onclick="toggleForm()">✕ Close</button>
-  </form>
-</div>
+  </div>
+</section>
 
 <!-- ====== TRUST SECTION ====== -->
 <section class="trust">
@@ -132,26 +140,19 @@
 <section class="service-areas">
   <div class="container">
     <h2>Serving San Diego, Temecula & Surrounding Areas</h2>
-    <p><em>Escondido, Vista, Carlsbad, Oceanside, Encinitas, Fallbrook, Bonsall, Valley Center, and more…</em></p>
-    <h3>Expanded Coverage</h3>
+    <h3>Local Expertise in San Diego & Temecula</h3>
+    <p><em>Escondido, Vista, Carlsbad, Oceanside, Encinitas, Fallbrook, Bonsall, Valley Center, Rancho Bernardo, and more.</em></p>
+    <p><em>Temecula, Murrieta, Menifee, Wildomar, Lake Elsinore</em> and the surrounding Inland Empire.</p>
+
+    <h3>Expanded Coverage Throughout Southern California</h3>
     <ul>
       <li>Riverside County</li>
       <li>Orange County</li>
       <li>Los Angeles County</li>
     </ul>
+    <p><strong>✅ Licensed & Insured&nbsp;&nbsp;✅ Local Experts&nbsp;&nbsp;✅ Satisfaction Guaranteed</strong></p>
   </div>
 </section>
-
-<!-- ====== JS for Menu & Form ====== -->
-<script>
-  function toggleMobileMenu() {
-    document.getElementById("mobileMenu").classList.toggle("show");
-  }
-
-  function toggleForm() {
-    document.getElementById("quoteForm").classList.toggle("show");
-  }
-</script>
 
 </body>
 </html>
