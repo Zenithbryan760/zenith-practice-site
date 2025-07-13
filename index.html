@@ -32,82 +32,126 @@
 </head>
 <body>
 
-  <!-- ===== Background Video ===== -->
-  <video autoplay muted loop playsinline class="background-video">
-    <source src="roofing-bg.mp4" type="video/mp4" />
-  </video>
+<video autoplay muted loop playsinline class="background-video">
+  <source src="roofing-bg.mp4" type="video/mp4" />
+</video>
 
-  <!-- ===== Header Section ===== -->
-  <header class="header">
-    <div class="container header-flex">
-
-      <!-- Logo + License -->
-      <div class="logo-section">
-        <img src="zenith-logo.png" alt="Zenith Roofing Services Logo" class="logo" />
-        <p class="license">Lic# 1036112</p>
-      </div>
-
-      <!-- Hamburger Toggle for Mobile -->
-      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-      <label for="menu-toggle" class="menu-icon">
-        <span></span><span></span><span></span>
-      </label>
-
-      <!-- Navigation Tabs -->
-      <nav class="nav-bar center-tabs">
-        <ul class="nav-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Projects / Gallery</a></li>
-          <li><a href="#">Reviews</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Glossary</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">YouTube</a></li>
-        </ul>
-      </nav>
-
-      <!-- Phone Section (Desktop Only) -->
-      <div class="phone-section">
-        <p class="phone-number">Call or Text: <a href="tel:8589006163">858-900-6163</a></p>
-        <a href="tel:8589006163" class="call-button">Call Now</a>
-      </div>
+<header class="header">
+  <div class="container header-inner">
+    <!-- Left: Logo -->
+    <div class="logo-section">
+      <img src="zenith-logo.png" alt="Zenith Roofing Services Logo" class="logo" />
+      <p class="license">Lic# 1036112</p>
     </div>
 
-    <!-- Mobile Call-to-Action Buttons -->
-    <div class="mobile-cta">
-      <a href="tel:8589006163" class="cta-call">Call Now</a>
-      <a href="#quote" class="cta-quote">Get a Quote</a>
+    <!-- Mobile Hamburger -->
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+
+    <!-- Center: Navigation Tabs -->
+    <nav class="nav-bar" id="mobileMenu">
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Projects / Gallery</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Glossary</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </nav>
+
+    <!-- Right: Phone Section -->
+    <div class="phone-section">
+      <p class="phone-number">Call or Text: <a href="tel:8589006163">858-900-6163</a></p>
+      <a href="tel:8589006163" class="call-button">Call Now</a>
     </div>
-  </header>
+  </div>
 
-  <!-- ===== Hero + Form ===== -->
-  <section class="hero" id="quote">
-    <h2>Dependable Roofing for Southern California Homes & Businesses</h2>
-    <p>Shingle • Tile • Flat Roofs • Repairs • Gutters</p>
+  <!-- Mobile Only Buttons -->
+  <div class="mobile-buttons">
+    <a href="tel:8589006163" class="button">Call Now</a>
+    <button onclick="toggleForm()" class="button outline">Get a Quote</button>
+  </div>
+</header>
 
-    <form class="hero-form">
-      <div class="form-row">
-        <input type="text" placeholder="Full Name" required />
-        <input type="tel" placeholder="Phone Number" required />
-      </div>
-      <div class="form-row">
-        <input type="email" placeholder="Email" required />
-        <input type="text" placeholder="Street Address" required />
-      </div>
-      <div class="form-row">
-        <input type="text" placeholder="City" required />
-        <input type="text" placeholder="CA" disabled />
-      </div>
-      <input type="text" placeholder="ZIP Code" required />
-      <textarea rows="4" placeholder="Tell us about your project…" required></textarea>
-      <button type="submit" class="button">Request Free Estimate</button>
-    </form>
-
+<!-- ====== Popout Quote Form ====== -->
+<div id="quoteForm" class="quote-form-container">
+  <form name="estimate" method="POST" data-netlify="true" class="quote-form">
+    <input type="hidden" name="form-name" value="estimate" />
+    <input type="text" name="name" placeholder="Full Name" required />
+    <input type="tel" name="phone" placeholder="Phone Number" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="text" name="address" placeholder="Street Address" required />
+    <input type="text" name="city" placeholder="City" required />
+    <input type="text" name="state" value="CA" readonly />
+    <input type="text" name="zip" placeholder="ZIP Code" required />
+    <textarea name="message" placeholder="Tell us about your project…" rows="4" required></textarea>
+    <button type="submit" class="button">Submit Request</button>
     <p class="disclaimer">
-      <em>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please refer to our <a href="#">Real Estate Services</a> section.</em>
+      *Free estimates are not available for real estate transactions.
+      See our <a href="#">Real Estate Services</a>.
     </p>
-  </section>
+    <button type="button" class="close-form" onclick="toggleForm()">✕ Close</button>
+  </form>
+</div>
+
+<!-- ====== TRUST SECTION ====== -->
+<section class="trust">
+  <div class="container">
+    <h2>Why Choose Zenith Roofing?</h2>
+    <ul>
+      <li>✅ Licensed & Insured – CA Lic. #1036112</li>
+      <li>✅ Local, Family-Owned Business</li>
+      <li>✅ 10+ Years of Roofing Experience</li>
+      <li>✅ High-Quality Materials & Warranties</li>
+      <li>✅ Excellent Customer Reviews</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====== TESTIMONIALS ====== -->
+<section class="testimonials">
+  <div class="container">
+    <h2>What Our Clients Say</h2>
+    <blockquote>“Zenith did a fantastic job on our roof. Great communication and no surprises!” – Sarah R., Temecula</blockquote>
+    <blockquote>“Professional and honest. I’d hire them again in a heartbeat.” – Mark T., San Diego</blockquote>
+  </div>
+</section>
+
+<!-- ====== CTA BANNER ====== -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Ready for a Roof You Can Trust?</h2>
+    <p>Contact Zenith Roofing Services today for a free, no-pressure estimate.</p>
+    <a href="tel:8589006163" class="button">Call 858-900-6163</a>
+  </div>
+</section>
+
+<!-- ====== SERVICE AREAS ====== -->
+<section class="service-areas">
+  <div class="container">
+    <h2>Serving San Diego, Temecula & Surrounding Areas</h2>
+    <p><em>Escondido, Vista, Carlsbad, Oceanside, Encinitas, Fallbrook, Bonsall, Valley Center, and more…</em></p>
+    <h3>Expanded Coverage</h3>
+    <ul>
+      <li>Riverside County</li>
+      <li>Orange County</li>
+      <li>Los Angeles County</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====== JS for Menu & Form ====== -->
+<script>
+  function toggleMobileMenu() {
+    document.getElementById("mobileMenu").classList.toggle("show");
+  }
+
+  function toggleForm() {
+    document.getElementById("quoteForm").classList.toggle("show");
+  }
+</script>
 
 </body>
 </html>
