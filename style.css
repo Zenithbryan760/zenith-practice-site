@@ -1,46 +1,37 @@
 /* ---------- Brand Colors ---------- */
 :root {
-  --zenith-blue: #072e59;
+  --zenith-blue:   #072e59;
   --zenith-orange: #f7941d;
-  --white: #ffffff;
-  --gray: #f9f9f9;
-  --text-gray: #333;
+  --white:         #ffffff;
+  --text-gray:     #333333;
 }
 
-/* ---------- Base Styles ---------- */
+/* ---------- Base ---------- */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, sans-serif;
   background: var(--white);
   color: var(--text-gray);
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 12px 20px;
+  box-sizing: border-box;
 }
 
-/* ---------- Header Layout ---------- */
+/* ---------- Header ---------- */
 .header {
-  background: rgba(7, 46, 89, 0.95);
+  background: rgba(7, 46, 89, 0.94);
   color: var(--white);
-  padding: 10px 0;
   position: relative;
   z-index: 10;
 }
-
-.header-inner {
+.header-flex {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 20px;
 }
 
 /* Logo Section */
@@ -48,93 +39,131 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 20px;
 }
 .logo {
-  height: 56px;
+  height: 54px;
   width: auto;
 }
 .license {
   font-size: 13px;
-  margin-top: 4px;
+  margin-top: 2px;
+  text-align: center;
+}
+
+/* Navigation Tabs */
+.nav-bar {
+  flex: 1;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 0;
+  margin: 0;
+}
+.nav-links li a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 12px 8px;
+  transition: background 0.3s ease;
+}
+.nav-links li a:hover {
+  background: var(--zenith-orange);
+  border-radius: 4px;
 }
 
 /* Phone Section */
 .phone-section {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .phone-number {
+  font-size: 16px;
   font-weight: bold;
-  font-size: 18px;
+}
+.phone-number a {
+  color: var(--white);
+  text-decoration: none;
 }
 .call-button {
-  display: inline-block;
-  margin-top: 5px;
-  padding: 6px 16px;
-  background-color: var(--zenith-orange);
+  background: var(--zenith-orange);
   color: var(--white);
+  padding: 8px 14px;
+  font-size: 14px;
   border: none;
   border-radius: 4px;
+  margin-top: 6px;
   font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.call-button:hover {
-  background-color: #e6871c;
-}
-
-/* ---------- Navigation Tabs ---------- */
-.nav-bar {
-  background-color: transparent;
-}
-.nav-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  gap: 8px;
-}
-.nav-links li a {
-  color: var(--white);
-  padding: 12px 18px;
-  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
   transition: background 0.3s ease;
 }
-.nav-links li a:hover {
-  background-color: var(--zenith-orange);
+.call-button:hover {
+  background: #e6871c;
+}
+
+/* ---------- Mobile Nav Toggle ---------- */
+.menu-toggle {
+  display: none;
+}
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 8px;
+}
+.menu-icon span {
+  height: 3px;
+  background: var(--white);
+  margin: 4px 0;
+  width: 24px;
+  border-radius: 2px;
+}
+
+/* ---------- Mobile CTA Buttons ---------- */
+.mobile-cta {
+  display: none;
+  justify-content: space-around;
+  padding: 12px 16px;
+  background: var(--zenith-blue);
+  border-top: 1px solid #fff2;
+}
+.mobile-cta a {
+  flex: 1;
+  margin: 0 6px;
+  text-align: center;
+  background: var(--zenith-orange);
+  color: #fff;
+  padding: 10px;
   border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.mobile-cta a:hover {
+  background: #e6871c;
 }
 
 /* ---------- Hero Section ---------- */
-.background-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -1;
-  opacity: 0.3;
-  pointer-events: none;
-}
-
 .hero {
-  background: rgba(7, 46, 89, 0.7);
+  background-color: rgba(7, 46, 89, 0.65);
   color: var(--white);
+  padding: 60px 20px;
   text-align: center;
-  padding: 80px 20px;
+  position: relative;
+  z-index: 1;
 }
-
 .hero h2 {
-  font-size: 28px;
   margin-bottom: 10px;
+  font-size: 1.8em;
 }
 .hero p {
-  font-size: 18px;
   margin-bottom: 30px;
 }
-
 .hero-form {
   max-width: 700px;
   margin: 0 auto;
@@ -142,29 +171,27 @@ a {
   flex-direction: column;
   gap: 15px;
 }
-
 .form-row {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
 }
 .form-row input {
-  flex: 1 1 45%;
+  flex: 1 1 30%;
   min-width: 200px;
 }
-
 .hero-form input,
 .hero-form textarea {
   padding: 10px;
-  border-radius: 4px;
   border: none;
-  font-size: 16px;
+  border-radius: 4px;
+  font-size: 1em;
 }
-.hero-form textarea {
-  resize: vertical;
-  min-height: 100px;
+.hero-form input:focus,
+.hero-form textarea:focus {
+  outline: none;
+  border: 2px solid var(--zenith-orange);
 }
-
 .button {
   background: var(--zenith-orange);
   color: var(--white);
@@ -173,124 +200,76 @@ a {
   border-radius: 4px;
   font-weight: bold;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 .button:hover {
   background: #e6871c;
 }
 
-/* Disclaimer */
+/* ---------- Background Video ---------- */
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ---------- Disclaimer ---------- */
 .disclaimer {
+  font-size: 0.9em;
   color: #ddd;
-  font-size: 0.85em;
+  margin-top: 10px;
+  text-align: center;
   max-width: 700px;
-  margin: 20px auto 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 .disclaimer a {
   color: var(--zenith-orange);
   text-decoration: underline;
 }
 
-/* ---------- Sections ---------- */
-.trust,
-.testimonials,
-.service-areas,
-.cta-banner {
-  padding: 60px 20px;
-  text-align: center;
-}
-.trust ul {
-  list-style: none;
-  padding: 0;
-  line-height: 2;
-}
-.testimonials blockquote {
-  font-style: italic;
-  max-width: 600px;
-  margin: 20px auto;
-  color: #555;
-}
-.service-areas ul {
-  list-style: disc;
-  text-align: left;
-  max-width: 600px;
-  margin: 20px auto;
-  padding-left: 20px;
-}
-.cta-banner {
-  background: var(--zenith-blue);
-  color: var(--white);
-}
-.cta-banner .button {
-  margin-top: 20px;
-}
-
-/* ---------- Mobile Navigation & Responsiveness ---------- */
-.menu-toggle {
-  display: none;
-  font-size: 26px;
-  cursor: pointer;
-}
-
-.mobile-buttons {
-  display: none;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.mobile-buttons .button {
-  flex: 1;
-  padding: 10px;
-  font-size: 16px;
-  text-align: center;
-}
-
+/* ---------- Responsive Styles ---------- */
 @media (max-width: 768px) {
-  .header-inner {
+  .header-flex {
     flex-direction: column;
     align-items: center;
-    gap: 10px;
   }
 
   .nav-bar {
-    display: none;
     width: 100%;
-  }
-
-  .nav-bar.show {
-    display: block;
   }
 
   .nav-links {
+    display: none;
     flex-direction: column;
     align-items: center;
-    gap: 0;
-  }
-
-  .nav-links li a {
-    display: block;
-    padding: 12px;
-    width: 100%;
-  }
-
-  .menu-toggle {
-    display: block;
-    color: var(--white);
+    gap: 10px;
     margin-top: 10px;
   }
 
-  .mobile-buttons {
+  .menu-icon {
     display: flex;
-    width: 100%;
-    padding: 0 20px;
+    position: absolute;
+    right: 20px;
+    top: 18px;
   }
 
-  .logo-section,
+  .menu-toggle:checked + .menu-icon + .nav-bar .nav-links {
+    display: flex;
+  }
+
   .phone-section {
-    align-items: center;
+    display: none;
   }
 
-  .hero {
-    padding: 40px 20px;
+  .mobile-cta {
+    display: flex;
   }
 }
+
