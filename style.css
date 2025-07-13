@@ -33,12 +33,36 @@ body {
 }
 
 /* ---------- Header ---------- */
-.header {
-  background: rgba(7, 46, 89, 0.92);
-  color: var(--white);
-  padding: 8px 0;
+/* ---------- Variables ---------- */
+:root {
+  --zenith-blue: #072e59;
+  --zenith-orange: #f7941d;
+  --white: #ffffff;
+  --text-gray: #333333;
 }
-.header-inner {
+
+/* ---------- Base ---------- */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--white);
+  color: var(--text-gray);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---------- Header ---------- */
+.header {
+  background-color: rgba(7, 46, 89, 0.95);
+  padding: 10px 0;
+  color: var(--white);
+}
+
+.header-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,40 +73,38 @@ body {
 .logo-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 .logo {
-  height: 56px;
-  width: auto;
+  height: 50px;
 }
 .license {
-  font-size: 13px;
-  margin-top: 2px;
+  font-size: 12px;
+  margin-top: 4px;
+  color: var(--white);
 }
 
 /* Center: Navigation */
-.nav-bar.center-tabs {
-  flex-grow: 1;
+.nav-bar {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 .nav-links {
   list-style: none;
+  display: flex;
+  gap: 20px;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
 }
-.nav-links li {
-  position: relative;
-}
-.nav-links a {
-  color: var(--white);
-  padding: 12px 18px;
+.nav-links li a {
   text-decoration: none;
+  color: var(--white);
   font-weight: bold;
-  transition: all 0.3s ease;
+  padding: 10px;
+  transition: background 0.3s ease;
 }
-.nav-links a:hover {
+.nav-links li a:hover {
   background: var(--zenith-orange);
   border-radius: 4px;
 }
@@ -91,28 +113,45 @@ body {
 .phone-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
+  text-align: right;
 }
 .phone-number {
-  font: 700 17px/1 Arial, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
 }
 .phone-number a {
   color: var(--white);
   text-decoration: none;
 }
 .call-button {
-  background: var(--zenith-orange);
-  color: #fff;
+  background-color: var(--zenith-orange);
+  color: var(--white);
   padding: 6px 14px;
+  margin-top: 6px;
+  border: none;
   border-radius: 4px;
   font-weight: bold;
-  font-size: 14px;
-  margin-top: 4px;
+  cursor: pointer;
   text-decoration: none;
-  transition: background 0.3s ease;
 }
-.call-button:hover {
-  background: #e6871c;
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .header-flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  .logo-section,
+  .phone-section {
+    align-items: center;
+    text-align: center;
+  }
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 /* ---------- Hero Section ---------- */
