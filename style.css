@@ -10,15 +10,12 @@
 *::before,
 *::after { box-sizing: border-box; }
 
-html,body {
+body {
   margin: 0;
-  padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
+  background: transparent;
   color: var(--text-gray);
-  background: var(--white);
-  scroll-behavior: smooth;
 }
-
 .container {
   width: min(90%, 1400px);
   margin-inline: auto;
@@ -28,12 +25,13 @@ html,body {
 /* =============  Background Video  ============= */
 .background-video {
   position: fixed;
-  inset: 0;
-  min-width: 100%;
-  min-height: 100%;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
-  opacity: .35;
-  z-index: -1;
+  z-index: -9999;
+  opacity: 0.35;
   pointer-events: none;
 }
 
