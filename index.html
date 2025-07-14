@@ -4,163 +4,265 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zenith Roofing Services</title>
+  <style>
+    :root {
+      --zenith-blue: #072e59;
+      --zenith-orange: #f7941d;
+      --white: #ffffff;
+      --text-gray: #333333;
+    }
 
-  <!-- Link to the external stylesheet -->
-  <link rel="stylesheet" href="style.css" />
+    * {
+      box-sizing: border-box;
+    }
 
-  <!-- SEO / Open-Graph metadata -->
-  <meta name="description" content="Zenith Roofing Services provides expert roofing solutions in San Diego and Temecula, including shingles, tile, torch-down, and silicone coatings. Licensed & insured.">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Zenith Roofing Services – San Diego & Temecula Roof Experts">
-  <meta property="og:description" content="Family-owned. Licensed & insured. Get a free estimate today!">
-  <meta property="og:image" content="https://zenithroofingservices.com/images/social-preview.jpg">
-  <meta property="og:url" content="https://zenithroofingservices.com">
-  <meta name="twitter:card" content="summary_large_image">
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);
+      line-height: 1.6;
+      background: var(--white);
+      color: var(--text-gray);
+    }
 
-  <!-- LocalBusiness schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "RoofingContractor",
-    "name": "Zenith Roofing Services, Inc.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "970 W Valley Pkwy #458",
-      "addressLocality": "Escondido",
-      "addressRegion": "CA",
-      "postalCode": "92025"
-    },
-    "telephone": "+1-858-900-6163",
-    "url": "https://www.zenithroofingservices.com",
-    "areaServed": ["San Diego", "Temecula", "Oceanside"]
-  }
-  </script>
+    .container {
+      max-width: 1140px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background: rgba(7, 46, 89, 0.92);
+      color: var(--white);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo {
+      height: 48px;
+      width: auto;
+    }
+
+    .license {
+      font-size: 0.8rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav li {
+      margin: 5px;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      padding: 10px 15px;
+      font-weight: bold;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background: var(--zenith-orange);
+    }
+
+    .phone-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .call-button {
+      background: var(--zenith-orange);
+      color: white;
+      padding: 6px 14px;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-top: 4px;
+      text-decoration: none;
+    }
+
+    .hero {
+      background: rgba(7, 46, 89, 0.78);
+      color: var(--white);
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .form-row input,
+    textarea {
+      flex: 1 1 200px;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .button {
+      background: var(--zenith-orange);
+      color: white;
+      padding: 12px;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .trust,
+    .testimonials,
+    .cta-banner,
+    .service-areas {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .trust, .service-areas {
+      background: #f9f9f9;
+    }
+
+    .testimonials {
+      background: #f7f7f7;
+    }
+
+    .cta-banner {
+      background: var(--zenith-blue);
+      color: white;
+    }
+
+    blockquote {
+      font-style: italic;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    @media (max-width: 768px) {
+      .header-inner,
+      .form-row {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<!-- ===== Background Video (optional for visual punch) ===== -->
-<video autoplay muted loop playsinline class="background-video">
-  <source src="roofing-bg.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
-
-<!-- ============ HEADER ============ -->
-<header class="header">
-  <div class="container header-inner">
-
-    <!-- Logo / License -->
-    <div class="logo-section">
-      <img src="zenith-logo.png" alt="Zenith Roofing Services Logo" class="logo" />
-      <p class="license">Lic # 1036112</p>
+  <header>
+    <div class="container header-inner">
+      <div class="logo-section">
+        <img src="zenith-logo.png" alt="Zenith Logo" class="logo">
+        <p class="license">Lic #1036112</p>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Reviews</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Glossary</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </nav>
+      <div class="phone-section">
+        <p>Call or Text: <a href="tel:8589006163">858-900-6163</a></p>
+        <a href="tel:8589006163" class="call-button">Call Now</a>
+      </div>
     </div>
+  </header>
 
-    <!-- Navigation -->
-    <nav class="nav-bar center-tabs">
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Projects / Gallery</a></li>
-        <li><a href="#">Reviews</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Glossary</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">YouTube</a></li>
+  <section class="hero">
+    <div class="container">
+      <h2>Dependable Roofing for Southern California</h2>
+      <p>Shingle • Tile • Flat Roofs • Repairs • Gutters</p>
+      <form name="estimate" method="POST" data-netlify="true" class="hero-form">
+        <input type="hidden" name="form-name" value="estimate">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Full Name" required>
+          <input type="tel" name="phone" placeholder="Phone Number" required>
+        </div>
+        <div class="form-row">
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="text" name="address" placeholder="Street Address" required>
+        </div>
+        <div class="form-row">
+          <input type="text" name="city" placeholder="City" required>
+          <input type="text" name="state" value="CA" readonly>
+          <input type="text" name="zip" placeholder="ZIP Code" required>
+        </div>
+        <textarea name="message" placeholder="Tell us about your project..." rows="4" required></textarea>
+        <button type="submit" class="button">Request Free Estimate</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="container">
+      <h2>Why Choose Zenith Roofing?</h2>
+      <ul>
+        <li>✅ Licensed & Insured – CA Lic. #1036112</li>
+        <li>✅ Family-Owned & Local</li>
+        <li>✅ 10+ Years of Experience</li>
+        <li>✅ High-Quality Materials & Warranties</li>
+        <li>✅ Excellent Reviews</li>
       </ul>
-    </nav>
-
-    <!-- Phone CTA -->
-    <div class="phone-section">
-      <p class="phone-number">Call or Text: <a href="tel:8589006163">858-900-6163</a></p>
-      <a href="tel:8589006163" class="call-button">Call Now</a>
     </div>
+  </section>
 
-  </div>
-</header>
+  <section class="testimonials">
+    <div class="container">
+      <h2>What Our Clients Say</h2>
+      <blockquote>“Zenith did a fantastic job on our roof. Great communication and no surprises!” – Sarah R.</blockquote>
+      <blockquote>“Professional and honest. I’d hire them again in a heartbeat.” – Mark T.</blockquote>
+    </div>
+  </section>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="container">
-    <h2>Dependable Roofing for Southern California Homes &amp; Businesses</h2>
-    <p>Shingle • Tile • Flat Roofs • Repairs • Gutters</p>
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Ready for a Roof You Can Trust?</h2>
+      <p>Contact Zenith Roofing Services today for a free, no-pressure estimate.</p>
+      <a href="tel:8589006163" class="button">Call 858-900-6163</a>
+    </div>
+  </section>
 
-    <form name="estimate" method="POST" data-netlify="true" class="hero-form">
-      <input type="hidden" name="form-name" value="estimate" />
-      <div class="form-row">
-        <input type="text"  name="name"    placeholder="Full Name"      required />
-        <input type="tel"   name="phone"   placeholder="Phone Number"   required />
-      </div>
-      <div class="form-row">
-        <input type="email" name="email"   placeholder="Email"          required />
-        <input type="text"  name="address" placeholder="Street Address" required />
-      </div>
-      <div class="form-row">
-        <input type="text"  name="city"    placeholder="City"           required />
-        <input type="text"  name="state"   value="CA" readonly />
-        <input type="text"  name="zip"     placeholder="ZIP Code"       required />
-      </div>
-      <textarea name="message" placeholder="Tell us about your project…" rows="4" required></textarea>
-      <button type="submit" class="button">Request Free Estimate</button>
-    </form>
-
-    <p class="disclaimer">
-      <em>
-        *Free estimates are not available for real-estate transactions. If you’re a real-estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="#">Real Estate Services</a> section.
-      </em>
-    </p>
-  </div>
-</section>
-
-<!-- ============ TRUST ============ -->
-<section class="trust">
-  <div class="container">
-    <h2>Why Choose Zenith Roofing?</h2>
-    <ul>
-      <li>✅ Licensed &amp; Insured – CA Lic. #1036112</li>
-      <li>✅ Local, Family-Owned Business</li>
-      <li>✅ 10+ Years of Roofing Experience</li>
-      <li>✅ High-Quality Materials &amp; Warranties</li>
-      <li>✅ Excellent Customer Reviews</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============ TESTIMONIALS ============ -->
-<section class="testimonials">
-  <div class="container">
-    <h2>What Our Clients Say</h2>
-    <blockquote>“Zenith did a fantastic job on our roof. Great communication and no surprises!” – Sarah R., Temecula</blockquote>
-    <blockquote>“Professional and honest. I’d hire them again in a heartbeat.” – Mark T., San Diego</blockquote>
-  </div>
-</section>
-
-<!-- ============ CTA BANNER ============ -->
-<section class="cta-banner">
-  <div class="container">
-    <h2>Ready for a Roof You Can Trust?</h2>
-    <p>Contact Zenith Roofing Services today for a free, no-pressure estimate.</p>
-    <a href="tel:8589006163" class="button">Call 858-900-6163</a>
-  </div>
-</section>
-
-<!-- ============ SERVICE AREAS ============ -->
-<section class="service-areas">
-  <div class="container">
-    <h2>Serving San Diego, Temecula &amp; Surrounding Areas</h2>
-
-    <h3>Local Expertise in San Diego &amp; Temecula</h3>
-    <p><em>Escondido, Vista, Carlsbad, Oceanside, Encinitas, Fallbrook, Bonsall, Valley Center, Rancho Bernardo, and more.</em></p>
-    <p><em>Temecula, Murrieta, Menifee, Wildomar, Lake Elsinore</em> and the surrounding Inland Empire.</p>
-
-    <h3>Expanded Coverage Throughout Southern California</h3>
-    <ul>
-      <li>Riverside County</li>
-      <li>Orange County</li>
-      <li>Los Angeles County</li>
-    </ul>
-
-    <p><strong>✅ Licensed &amp; Insured&nbsp;&nbsp; ✅ Local Experts&nbsp;&nbsp; ✅ Satisfaction Guaranteed</strong></p>
-  </div>
-</section>
-
+  <section class="service-areas">
+    <div class="container">
+      <h2>Service Areas</h2>
+      <p>San Diego, Temecula, Escondido, Oceanside, Vista, Carlsbad, Murrieta, Menifee, and more.</p>
+    </div>
+  </section>
 </body>
 </html>
