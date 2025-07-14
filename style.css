@@ -1,333 +1,235 @@
-/* ================= Zenith Roofing Services – Responsive Styles ================= */
-
-/* ---------- Brand Colors ---------- */
+/* =============  Brand Palette & Global ============= */
 :root {
-  --zenith-blue:   #072e59;
+  --zenith-blue: #072e59;
   --zenith-orange: #f7941d;
-  --white:         #ffffff;
-  --text-gray:     #333333;
+  --white: #ffffff;
+  --text-gray: #333;
 }
 
-/* ---------- Global Reset ---------- */
-* {
-  box-sizing: border-box;
-}
+*,
+*::before,
+*::after { box-sizing: border-box; }
 
-/* ---------- Base Styles ---------- */
-html, body {
+html,body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);
-  line-height: 1.6;
-  background: var(--white);
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
   color: var(--text-gray);
+  background: var(--white);
+  scroll-behavior: smooth;
 }
 
-/* ---------- Layout Utility ---------- */
 .container {
-  max-width: 100%;
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px;
+  width: min(90%, 1400px);
+  margin-inline: auto;
+  padding-block: 1.25rem;
 }
 
-@media (min-width: 768px) {
-  .container {
-    max-width: 1140px;
-  }
+/* =============  Background Video  ============= */
+.background-video {
+  position: fixed;
+  inset: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  opacity: .35;
+  z-index: -1;
+  pointer-events: none;
 }
 
-@media (min-width: 1920px) {
-  .container {
-    max-width: 1400px;
-  }
-}
-
-/* ==================================================================== */
-/*                              HEADER                                  */
-/* ==================================================================== */
-header {
-  background: rgba(7, 46, 89, 0.92);
-  color: var(--white);
-}
-
+/* =============  HEADER  ============= */
+.header { background: rgba(7,46,89,.92); color: var(--white); }
 .header-inner {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
+  gap: 1rem;
   flex-wrap: wrap;
+  padding-block: .5rem;
 }
 
-.logo-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+/* ----- Logo / license */
+.logo-section { text-align: center; }
+.logo { height: 3.5rem; width: auto; }
+.license { font-size: .8rem; margin-top: .2rem; color: var(--white); }
 
-.logo {
-  height: 56px;
-  width: auto;
-}
-
-.license {
-  font-size: 13px;
-}
-
-nav ul {
+/* ----- Navigation */
+.nav-bar { flex-grow: 1; }
+.nav-links {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
-
-nav li {
-  margin: 5px;
-}
-
-nav a {
+.nav-links li { position: relative; }
+.nav-links a {
+  display: block;
+  padding: .75rem 1.1rem;
   color: var(--white);
+  font-weight: 700;
   text-decoration: none;
-  padding: 12px 18px;
-  font-weight: bold;
-  border-radius: 4px;
-  transition: background 0.3s;
+  transition: background .25s ease;
 }
+.nav-links a:hover { background: var(--zenith-orange); border-radius: .25rem; }
 
-nav a:hover {
-  background: var(--zenith-orange);
-}
-
-.phone-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.phone-number {
-  font: 700 17px/1 Arial, sans-serif;
-}
-
-.phone-number a {
-  color: var(--white);
-  text-decoration: none;
-}
-
+/* ----- Phone section (desktop only) */
+.phone-section { text-align: center; }
+.phone-number { font-weight: 700; }
+.phone-number a { color: inherit; text-decoration: none; }
 .call-button {
+  display: inline-block;
+  margin-top: .25rem;
+  padding: .4rem .9rem;
   background: var(--zenith-orange);
-  color: white;
-  padding: 6px 14px;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  margin-top: 4px;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-.call-button:hover {
-  background: #e6871c;
-}
-
-/* ==================================================================== */
-/*                               HERO                                   */
-/* ==================================================================== */
-.hero {
-  background-color: rgba(7, 46, 89, 0.75);
   color: var(--white);
-  padding: 60px 20px;
+  font-weight: 700;
+  border-radius: .25rem;
+  text-decoration: none;
+  transition: background .25s ease;
+}
+.call-button:hover { background: #e6871c; }
+
+/* ----- Hamburger (hidden on ≥ 768 px) */
+.nav-toggle { display:none; }
+.hamburger {
+  display:none;
+  width: 2rem;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.hamburger span {
+  height: .2rem;
+  width: 100%;
+  background: var(--white);
+  border-radius: 3px;
+  transition: transform .3s ease, opacity .3s ease;
+}
+
+/* Toggle animation */
+.nav-toggle:checked + .hamburger span:nth-child(1) { transform: translateY(.45rem) rotate(45deg); }
+.nav-toggle:checked + .hamburger span:nth-child(2) { opacity: 0; }
+.nav-toggle:checked + .hamburger span:nth-child(3) { transform: translateY(-.45rem) rotate(-45deg); }
+
+/* Collapsed nav */
+@media (max-width: 768px) {
+  .hamburger { display:flex; }
+  .desktop-only { display:none; }
+
+  .nav-bar   { width: 100%; overflow: hidden; max-height: 0; transition: max-height .35s ease; }
+  .nav-links { flex-direction: column; }
+  .nav-links a { padding: .9rem 1rem; }
+
+  /* Expand when toggled */
+  .nav-toggle:checked ~ .nav-bar { max-height: 500px; }
+}
+
+/* Mobile quick-action buttons */
+.mobile-actions {
+  display:none;
+  gap: .5rem;
+  justify-content: center;
+  padding:.5rem 0;
+  background: var(--zenith-blue);
+}
+.mobile-actions .button { flex: 1 1 45%; }
+
+@media (max-width: 768px) {
+  .mobile-actions { display:flex; }
+}
+
+/* =============  Buttons (generic)  ============= */
+.button {
+  display: inline-block;
+  padding: .9rem 1.4rem;
+  background: var(--zenith-orange);
+  color: var(--white);
+  font-weight: 700;
+  border: none;
+  border-radius: .25rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .25s ease;
+}
+.button:hover     { background: #e6871c; }
+.button.secondary { background: var(--zenith-blue); }
+.button.secondary:hover { background: #05305f; }
+
+/* =============  HERO  ============= */
+.hero {
+  background: rgba(7,46,89,.75);
+  color: var(--white);
   text-align: center;
-  position: relative;
-  z-index: 1;
+  padding-block: clamp(3rem,7vw,6rem);
 }
-
-.hero h2 {
-  margin-bottom: 10px;
-}
-
-.hero p {
-  margin-bottom: 30px;
-}
+.hero h2 { font-size: clamp(1.6rem,4vw,2.6rem); margin:0 0 .6rem; }
+.hero p  { font-size: clamp(1rem,2.4vw,1.25rem); margin-bottom: 1.7rem; }
 
 .hero-form {
   max-width: 700px;
-  margin: 0 auto;
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1rem;
 }
-
 .form-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 1rem;
 }
-
-.form-row input {
-  flex: 1 1 30%;
-  min-width: 200px;
-}
-
+.form-row input { flex: 1 1 12rem; }
 .hero-form input,
 .hero-form textarea {
-  padding: 10px;
+  width: 100%;
+  padding: .65rem .8rem;
+  font-size: 1rem;
   border: none;
-  border-radius: 4px;
-  font-size: 1em;
+  border-radius: .25rem;
 }
-
 .hero-form input:focus,
-.hero-form textarea:focus {
-  outline: none;
-  border: 2px solid var(--zenith-orange);
-}
+.hero-form textarea:focus { outline: 2px solid var(--zenith-orange); }
 
-.button {
-  background: var(--zenith-orange);
-  color: var(--white);
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.button:hover {
-  background: #e6871c;
-}
-
-/* ==================================================================== */
-/*                          SECTION STYLES                              */
-/* ==================================================================== */
-.trust {
-  background: #f9f9f9;
+/* =============  TRUST / TESTIMONIALS / CTA / SERVICE  ============= */
+section.trust,
+section.testimonials,
+section.cta-banner,
+section.service-areas {
   text-align: center;
-  padding: 60px 20px;
+  padding-block: clamp(3rem,6vw,4.5rem);
 }
 
-.trust h2 {
-  color: var(--zenith-blue);
-  margin-bottom: 20px;
-}
+.trust h2,
+.testimonials h2,
+.service-areas h2,
+.service-areas h3 { color: var(--zenith-blue); }
 
-.trust ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  line-height: 2;
-}
-
-.testimonials {
-  background: #f7f7f7;
-  text-align: center;
-  padding: 60px 20px;
-}
-
-.testimonials h2 {
-  color: var(--zenith-blue);
-  margin-bottom: 20px;
-}
+.trust ul,
+.service-areas ul { list-style: none; padding: 0; margin: 0; line-height: 2; }
 
 .testimonials blockquote {
   font-style: italic;
   max-width: 600px;
-  margin: 20px auto;
+  margin: 1.25rem auto;
   color: #555;
 }
 
-.cta-banner {
-  background: var(--zenith-blue);
-  color: var(--white);
-  text-align: center;
-  padding: 60px 20px;
-}
-
-.cta-banner .button {
-  margin-top: 20px;
-}
-
-.service-areas {
-  background: #f9f9f9;
-  text-align: center;
-  padding: 60px 20px;
-}
-
-.service-areas h2,
-.service-areas h3 {
-  color: var(--zenith-blue);
-}
-
-.service-areas ul {
-  list-style: disc;
-  padding-left: 40px;
-  text-align: left;
-  display: inline-block;
-}
-
+/* =============  DISCLAIMER  ============= */
 .disclaimer {
-  font-size: 0.9em;
+  font-size: .85rem;
   color: #999;
-  margin-top: 10px;
-  text-align: center;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: .75rem;
 }
+.disclaimer a { color: var(--zenith-orange); }
 
-.disclaimer a {
-  color: var(--zenith-orange);
-  text-decoration: underline;
+/* =============  Large-Screen Tweaks  (≥ 1600 px)  ============= */
+@media (min-width: 1600px) {
+  .nav-links a { padding-inline: 1.5rem; font-size: 1.1rem; }
+  .hero h2      { font-size: 3rem; }
+  .hero p       { font-size: 1.5rem; }
+  section.trust,
+  section.testimonials,
+  section.cta-banner,
+  section.service-areas { padding-block: 6rem; }
 }
-
-/* ==================================================================== */
-/*                         RESPONSIVE TWEAKS                            */
-/* ==================================================================== */
-@media (max-width: 900px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav-links a {
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
-
-  .form-row {
-    flex-direction: column;
-  }
-
-  .phone-number {
-    font-size: 18px;
-  }
-}
-
-@media (min-width: 1920px) {
-  body {
-    font-size: 1.25rem;
-  }
-
-  .hero h2 {
-    font-size: 2.5rem;
-  }
-
-  .nav-links a {
-    font-size: 1.1rem;
-    padding: 14px 20px;
-  }
-
-  .hero-form input,
-  .hero-form textarea {
-    font-size: 1.1rem;
-  }
-}
-
