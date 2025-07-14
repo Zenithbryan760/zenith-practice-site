@@ -1,28 +1,28 @@
-/* =============  Brand Palette & Global ============= */
+/* ---------- Brand Colors ---------- */
 :root {
   --zenith-blue: #072e59;
   --zenith-orange: #f7941d;
   --white: #ffffff;
-  --text-gray: #333;
+  --text-gray: #333333;
 }
 
-*,
-*::before,
-*::after { box-sizing: border-box; }
-
+/* ---------- Base Styles ---------- */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: transparent;
   color: var(--text-gray);
 }
+html {
+  background: #072e59; /* fallback if video fails */
+}
 .container {
-  width: min(90%, 1400px);
-  margin-inline: auto;
-  padding-block: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-/* =============  Background Video  ============= */
+/* ---------- Background Video ---------- */
 .background-video {
   position: fixed;
   top: 0;
@@ -35,199 +35,77 @@ body {
   pointer-events: none;
 }
 
-/* =============  HEADER  ============= */
-.header { background: rgba(7,46,89,.92); color: var(--white); }
+/* ---------- Header ---------- */
+.header {
+  background: rgba(7, 46, 89, 0.92);
+  color: var(--white);
+  padding: 8px 0;
+}
 .header-inner {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  align-items: center;
   flex-wrap: wrap;
-  padding-block: .5rem;
 }
 
-/* ----- Logo / license */
-.logo-section { text-align: center; }
-.logo { height: 3.5rem; width: auto; }
-.license { font-size: .8rem; margin-top: .2rem; color: var(--white); }
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logo {
+  height: 56px;
+  width: auto;
+}
+.license {
+  font-size: 13px;
+  margin-top: 2px;
+}
 
-/* ----- Navigation */
-.nav-bar { flex-grow: 1; }
+.nav-bar.center-tabs {
+  flex-grow: 1;
+}
 .nav-links {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   margin: 0;
   padding: 0;
-}
-.nav-links li { position: relative; }
-.nav-links a {
-  display: block;
-  padding: .75rem 1.1rem;
-  color: var(--white);
-  font-weight: 700;
-  text-decoration: none;
-  transition: background .25s ease;
-}
-.nav-links a:hover { background: var(--zenith-orange); border-radius: .25rem; }
-
-/* ----- Phone section (desktop only) */
-.phone-section { text-align: center; }
-.phone-number { font-weight: 700; }
-.phone-number a { color: inherit; text-decoration: none; }
-.call-button {
-  display: inline-block;
-  margin-top: .25rem;
-  padding: .4rem .9rem;
-  background: var(--zenith-orange);
-  color: var(--white);
-  font-weight: 700;
-  border-radius: .25rem;
-  text-decoration: none;
-  transition: background .25s ease;
-}
-.call-button:hover { background: #e6871c; }
-
-/* ----- Hamburger (hidden on ≥ 768 px) */
-.nav-toggle { display:none; }
-.hamburger {
-  display:none;
-  width: 2rem;
-  cursor: pointer;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.hamburger span {
-  height: .2rem;
-  width: 100%;
-  background: var(--white);
-  border-radius: 3px;
-  transition: transform .3s ease, opacity .3s ease;
-}
-
-/* Toggle animation */
-.nav-toggle:checked + .hamburger span:nth-child(1) { transform: translateY(.45rem) rotate(45deg); }
-.nav-toggle:checked + .hamburger span:nth-child(2) { opacity: 0; }
-.nav-toggle:checked + .hamburger span:nth-child(3) { transform: translateY(-.45rem) rotate(-45deg); }
-
-/* Collapsed nav */
-@media (max-width: 768px) {
-  .hamburger { display:flex; }
-  .desktop-only { display:none; }
-
-  .nav-bar   { width: 100%; overflow: hidden; max-height: 0; transition: max-height .35s ease; }
-  .nav-links { flex-direction: column; }
-  .nav-links a { padding: .9rem 1rem; }
-
-  /* Expand when toggled */
-  .nav-toggle:checked ~ .nav-bar { max-height: 500px; }
-}
-
-/* Mobile quick-action buttons */
-.mobile-actions {
-  display:none;
-  gap: .5rem;
+  display: flex;
   justify-content: center;
-  padding:.5rem 0;
-  background: var(--zenith-blue);
+  flex-wrap: wrap;
 }
-.mobile-actions .button { flex: 1 1 45%; }
-
-@media (max-width: 768px) {
-  .mobile-actions { display:flex; }
+.nav-links li {
+  position: relative;
 }
-
-/* =============  Buttons (generic)  ============= */
-.button {
-  display: inline-block;
-  padding: .9rem 1.4rem;
-  background: var(--zenith-orange);
+.nav-links a {
   color: var(--white);
-  font-weight: 700;
-  border: none;
-  border-radius: .25rem;
+  padding: 12px 18px;
   text-decoration: none;
-  cursor: pointer;
-  transition: background .25s ease;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
-.button:hover     { background: #e6871c; }
-.button.secondary { background: var(--zenith-blue); }
-.button.secondary:hover { background: #05305f; }
-
-/* =============  HERO  ============= */
-.hero {
-  background: rgba(7,46,89,.75);
-  color: var(--white);
-  text-align: center;
-  padding-block: clamp(3rem,7vw,6rem);
+.nav-links a:hover {
+  background: var(--zenith-orange);
+  border-radius: 4px;
 }
-.hero h2 { font-size: clamp(1.6rem,4vw,2.6rem); margin:0 0 .6rem; }
-.hero p  { font-size: clamp(1rem,2.4vw,1.25rem); margin-bottom: 1.7rem; }
 
-.hero-form {
-  max-width: 700px;
-  margin-inline: auto;
+.phone-section {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  align-items: center;
 }
-.form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+.phone-number {
+  font: 700 17px/1 Arial, sans-serif;
 }
-.form-row input { flex: 1 1 12rem; }
-.hero-form input,
-.hero-form textarea {
-  width: 100%;
-  padding: .65rem .8rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: .25rem;
+.phone-number a {
+  color: var(--white);
+  text-decoration: none;
 }
-.hero-form input:focus,
-.hero-form textarea:focus { outline: 2px solid var(--zenith-orange); }
-
-/* =============  TRUST / TESTIMONIALS / CTA / SERVICE  ============= */
-section.trust,
-section.testimonials,
-section.cta-banner,
-section.service-areas {
-  text-align: center;
-  padding-block: clamp(3rem,6vw,4.5rem);
-}
-
-.trust h2,
-.testimonials h2,
-.service-areas h2,
-.service-areas h3 { color: var(--zenith-blue); }
-
-.trust ul,
-.service-areas ul { list-style: none; padding: 0; margin: 0; line-height: 2; }
-
-.testimonials blockquote {
-  font-style: italic;
-  max-width: 600px;
-  margin: 1.25rem auto;
-  color: #555;
-}
-
-/* =============  DISCLAIMER  ============= */
-.disclaimer {
-  font-size: .85rem;
-  color: #999;
-  margin-top: .75rem;
-}
-.disclaimer a { color: var(--zenith-orange); }
-
-/* =============  Large-Screen Tweaks  (≥ 1600 px)  ============= */
-@media (min-width: 1600px) {
-  .nav-links a { padding-inline: 1.5rem; font-size: 1.1rem; }
-  .hero h2      { font-size: 3rem; }
-  .hero p       { font-size: 1.5rem; }
-  section.trust,
-  section.testimonials,
-  section.cta-banner,
-  section.service-areas { padding-block: 6rem; }
-}
+.call-button {
+  background: var(--zenith-orange);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 4px;
+  text-decoration
