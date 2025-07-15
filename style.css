@@ -37,9 +37,11 @@ html {
 
 /* ---------- Header ---------- */
 .header {
-  background: rgba(7, 46, 89, 0.92);
+  background-color: var(--zenith-blue); /* Solid color */
   color: var(--white);
   padding: 8px 0;
+  position: relative;
+  z-index: 100;
 }
 .header-inner {
   display: flex;
