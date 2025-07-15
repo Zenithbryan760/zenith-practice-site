@@ -199,17 +199,24 @@ body {
   margin-bottom:30px;
 }
 .badge-row {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:20px;
-  align-items:center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 30px;
 }
+
 .badge {
-  height:60px;
-  object-fit:contain;
-  max-width:150px;
-  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.1));
+  height: 60px;
+  max-width: 150px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+  transition: transform 0.3s ease;
+}
+
+.badge:hover {
+  transform: scale(1.05);
 }
 
 /* ==========  TESTIMONIALS  ========== */
