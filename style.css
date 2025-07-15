@@ -188,16 +188,19 @@ body {
   text-align:center;
   padding:60px 20px;
 }
+
 .trusted-badges .section-title {
   color:var(--zenith-blue);
   margin-bottom:10px;
   font-size:2rem;
 }
+
 .trusted-badges .section-subtitle {
   color:#666;
   font-size:1.1rem;
   margin-bottom:30px;
 }
+
 .badge-row {
   display: flex;
   flex-wrap: wrap;
@@ -208,12 +211,8 @@ body {
 }
 
 .badge {
-  max-width: 150px;
   height: 60px;
-  margin: 10px;
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
+  max-width: 150px;
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
   transition: transform 0.3s ease;
@@ -223,24 +222,22 @@ body {
   transform: scale(1.05);
 }
 
+/* Add this Yelp badge cleanup here */
 .yelp-badge {
-  background: white;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  min-width: 120px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  text-align: center;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  min-width: auto;
+  height: auto;
+  display: inline-block;
+  font-size: 0;
 }
 
 .yelp-badge a {
-  color: var(--zenith-blue);
-  text-decoration: none;
-  font-weight: bold;
+  display: inline-block;
+  max-height: 60px;
+  line-height: 0;
 }
 
 /* ==========  TESTIMONIALS  ========== */
