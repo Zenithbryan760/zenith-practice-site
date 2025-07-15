@@ -99,6 +99,20 @@ body {
 .trust-list{list-style:none;padding:0;margin:0 auto;max-width:700px;text-align:left;}
 .trust-list li{font-size:1.1rem;margin-bottom:15px;display:flex;align-items:center;}
 .icon-check::before{content:'✔';color:var(--zenith-orange);font-weight:bold;margin-right:10px;font-size:1.2rem;}
+<!-- ====== CERTIFICATION BADGES ====== -->
+<section class="certifications">
+  <div class="container">
+    <h2>Certifications & Trusted Partners</h2>
+    <div class="badge-grid">
+      <div class="badge-item"><img src="images/badges/owens-corning-preferred.png" alt="Owens Corning Preferred Contractor" /></div>
+      <div class="badge-item"><img src="images/badges/google-guaranteed.png" alt="Google Guaranteed" /></div>
+      <div class="badge-item"><img src="images/badges/angi-certified.png" alt="Angi Certified Pro" /></div>
+      <div class="badge-item"><img src="images/badges/yelp-logo.png" alt="Yelp Verified" /></div>
+      <div class="badge-item"><img src="images/badges/guildquality.png" alt="GuildQuality Member" /></div>
+      <div class="badge-item"><img src="images/badges/directorii-badge.png" alt="Directorii Verified" /></div>
+    </div>
+  </div>
+</section>
 
 /* ==========  TESTIMONIALS  ========== */
 .testimonials{background:#f7f7f7;text-align:center;padding:60px 20px;}
