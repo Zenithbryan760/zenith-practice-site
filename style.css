@@ -185,11 +185,25 @@ html {
   color: var(--zenith-blue);
   margin-bottom: 20px;
 }
-.trust ul {
+.trust-list {
   list-style: none;
   padding: 0;
-  margin: 0;
-  line-height: 2;
+  margin: 0 auto;
+  max-width: 700px;
+  text-align: left;
+}
+.trust-list li {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+.icon-check::before {
+  content: "✔";
+  color: var(--zenith-orange);
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 1.2rem;
 }
 
 /* ---------- Testimonials ---------- */
