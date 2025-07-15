@@ -153,19 +153,25 @@ body {
 .disclaimer a{color:var(--zenith-orange);text-decoration:underline;}
 /* ---------- About Section ---------- */
 .about {
-  background: #ffffff;
+  background-color: rgba(255, 255, 255, 0.95); /* Light background to contrast with video */
   padding: 60px 20px;
-  color: var(--text-gray);
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
+
 .about h2 {
   color: var(--zenith-blue);
   margin-bottom: 20px;
+  font-size: 2rem;
 }
+
 .about p {
   max-width: 800px;
-  margin: 10px auto;
-  line-height: 1.6;
+  margin: 0 auto 15px auto;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  color: var(--text-gray);
 }
 /* ==========  MOBILE TWEAKS  ========== */
 @media (max-width:900px){
