@@ -240,7 +240,7 @@ input:focus, textarea:focus {
   height: 100%;             /* ✅ Take up full 60px */
   width: 100%;
 }
-/* ===== WHY CHOOSE US STYLES (IMPROVED) ===== */
+/* ===== WHY CHOOSE US STYLES ===== */
 .why-choose-wrapper {
   display: flex;
   flex-wrap: wrap;
