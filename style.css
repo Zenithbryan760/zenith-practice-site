@@ -240,6 +240,7 @@ input:focus, textarea:focus {
   height: 100%;             /* ✅ Take up full 60px */
   width: 100%;
 }
+/* ===== WHY CHOOSE US STYLES ===== */
 .why-choose-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -288,17 +289,21 @@ input:focus, textarea:focus {
   text-align: center;
 }
 
-.why-choose-image .van-image {
-  max-width: 100%;
-  width: 320px;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  display: inline-block;
+.why-choose-image .van-fit {
+  display: block;
   margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
 }
 
-/* Responsive: stack on smaller screens */
+.why-choose-image .van-fit:hover {
+  transform: scale(1.02);
+}
+
 @media (max-width: 900px) {
   .why-choose-wrapper {
     flex-direction: column;
@@ -316,22 +321,10 @@ input:focus, textarea:focus {
     text-align: center;
     justify-content: center;
   }
-.why-choose-image .van-image {
-  display: block;
-  margin: 0 auto;
-  max-width: 400px;
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
 }
 
-.why-choose-image .van-image:hover {
-  transform: scale(1.02);
-}
 @media (min-width: 1024px) {
-  .van-image {
+  .van-fit {
     max-width: 280px;
   }
 }
