@@ -240,38 +240,30 @@ input:focus, textarea:focus {
   height: 100%;             /* ✅ Take up full 60px */
   width: 100%;
 }
-.why-choose-photo {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 60px;
-}
-
-.why-choose-photo .container {
-  max-width: 1200px;
-  width: 100%;
-  text-align: center;
-}
-
-.van-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
 .why-choose-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   background-color: #f9f9f9;
   padding: 60px 20px;
   gap: 40px;
 }
 
+.why-choose-content,
+.why-choose-image {
+  flex: 1 1 45%;
+  max-width: 48%;
+}
+
 .why-choose-content {
-  flex: 1 1 400px;
   padding: 20px;
+  text-align: left;
+}
+
+.why-choose-content h2 {
+  margin-bottom: 20px;
+  color: var(--zenith-blue);
 }
 
 .why-choose-content .trust-list {
@@ -279,59 +271,54 @@ input:focus, textarea:focus {
   padding-left: 0;
 }
 
+.why-choose-content .trust-list li {
+  margin-bottom: 14px;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+}
+
 .why-choose-content .icon-check {
-  color: orange;
+  color: var(--zenith-orange);
+  font-weight: bold;
   margin-right: 10px;
 }
 
 .why-choose-image {
-  flex: 1 1 400px;
   text-align: center;
 }
 
-.van-image {
+.why-choose-image .van-image {
   max-width: 100%;
+  width: 320px;
   height: auto;
-  border-radius: 6px;
+  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  margin: 0 auto;
 }
+
+/* Responsive: stack on smaller screens */
 @media (max-width: 900px) {
   .why-choose-wrapper {
     flex-direction: column;
     text-align: center;
   }
 
-  .trust-list {
-    text-align: center;
-  }
-
   .why-choose-content,
   .why-choose-image {
     flex: 1 1 100%;
+    max-width: 100%;
     padding: 10px 0;
   }
-}
 
-.why-choose-content h2 {
-  margin-bottom: 20px;
-}
-.why-choose-image {
-  flex: 1 1 320px;
-  text-align: center;
-}
+  .why-choose-content .trust-list {
+    text-align: center;
+    justify-content: center;
+  }
 
-.why-choose-image .van-image {
-  max-width: 320px;
-  width: 80%;
-  height: auto;
-  display: inline-block;
-}
-img.van-image {
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  display: block;
-  margin: 0 auto 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  .why-choose-image .van-image {
+    width: 80%;
+    max-width: 320px;
+  }
 }
