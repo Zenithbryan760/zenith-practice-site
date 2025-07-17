@@ -317,10 +317,11 @@ input:focus, textarea:focus {
     justify-content: center;
   }
 
-  .why-choose-image .van-image {
-    width: 80%;
-    max-width: 320px;
-  }
+.why-choose-image .van-image {
+  width: 80%;
+  max-width: 320px;
+  height: auto;
+}
 }
 .why-choose-image {
   width: 100%;
