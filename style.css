@@ -218,18 +218,16 @@ input:focus, textarea:focus {
 }
 
 /* ========== MISC STYLES CLEANUP ========== */
-.yelp-badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;             /* ✅ Match other badge height */
-  max-width: 150px;         /* ✅ Match other badge width */
-  margin: 0;                /* ✅ Reset any vertical shift */
-  padding: 0;               /* ✅ Clean alignment */
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15)); /* ✅ match shadow */
+.badge {
+  height: 60px;
+  max-width: 150px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
   transition: transform 0.3s;
+  vertical-align: middle; /* ✅ Fixes alignment for SVGs like Yelp */
 }
-.yelp-badge:hover {
+
+.badge:hover {
   transform: scale(1.05);
 }
 
