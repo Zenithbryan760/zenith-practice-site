@@ -243,20 +243,20 @@ input:focus, textarea:focus {
 /* ===== WHY CHOOSE US STYLES ===== */
 .why-choose-wrapper {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #f9f9f9;
-  padding: 60px 20px;
   gap: 40px;
+  padding: 60px 20px;
+  background-color: #f9f9f9;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .why-choose-content {
-  flex: 1 1 50%;
-  text-align: left;
+  flex: 1 1 55%;
   padding: 20px;
+  text-align: left;
 }
 
 .why-choose-content h2 {
@@ -264,34 +264,34 @@ input:focus, textarea:focus {
   color: var(--zenith-blue);
 }
 
-.why-choose-content .trust-list {
+.trust-list {
   list-style: none;
-  padding-left: 0;
+  padding: 0;
+  margin: 0;
 }
 
-.why-choose-content .trust-list li {
+.trust-list li {
   margin-bottom: 14px;
   font-size: 1.05rem;
   display: flex;
   align-items: center;
 }
 
-.why-choose-content .icon-check {
+.icon-check {
   color: var(--zenith-orange);
   font-weight: bold;
   margin-right: 10px;
 }
 
 .why-choose-image {
-  flex: 1 1 45%;
+  flex: 1 1 40%;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .van-fit {
   width: 100%;
-  max-width: 300px;
+  max-width: 360px;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -302,7 +302,7 @@ input:focus, textarea:focus {
   transform: scale(1.02);
 }
 
-/* Responsive adjustments */
+/* Mobile Styles */
 @media (max-width: 900px) {
   .why-choose-wrapper {
     flex-direction: column;
@@ -313,12 +313,11 @@ input:focus, textarea:focus {
   .why-choose-image {
     flex: 1 1 100%;
     max-width: 100%;
-    padding: 10px 0;
   }
 
-  .why-choose-content .trust-list {
-    text-align: left;
-    padding-left: 20px;
+  .trust-list {
+    justify-content: center;
+    padding-left: 0;
   }
 
   .van-fit {
