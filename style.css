@@ -243,6 +243,8 @@ input:focus, textarea:focus {
 /* ===== MODERN WHY CHOOSE SECTION ===== */
 .why-choose-modern {
   background-color: #f9f9f9;
+  position: relative;
+  z-index: 2;
   padding: 80px 20px;
 }
 
@@ -254,6 +256,8 @@ input:focus, textarea:focus {
   gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
+  z-index: 3;
+  position: relative;
 }
 
 .why-choose-content {
