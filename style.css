@@ -240,55 +240,49 @@ input:focus, textarea:focus {
   height: 100%;             /* ✅ Take up full 60px */
   width: 100%;
 }
-/* ===== MODERN WHY CHOOSE SECTION ===== */
-.why-choose-modern {
-  background-color: #f9f9f9;
-  position: relative;
-  z-index: 2;
+/* ===== WHY CHOOSE SECTION ===== */
+.why-choose {
+  background: #f9f9f9;
   padding: 80px 20px;
 }
 
-.why-choose-inner {
+.why-choose-container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-  z-index: 3;
-  position: relative;
 }
 
-.why-choose-content {
+.why-choose-text {
   flex: 1 1 50%;
-  min-width: 300px;
 }
 
-.why-title {
-  font-size: 2.2rem;
+.why-choose-text h2 {
+  font-size: 2rem;
   color: #072e59;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
-.why-list {
+.why-choose-text ul {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
-.why-list li {
+.why-choose-text li {
   font-size: 1.1rem;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   color: #333;
   display: flex;
   align-items: center;
 }
 
-.checkmark {
+.why-choose-text li span {
   color: #f7941d;
-  margin-right: 12px;
   font-weight: bold;
+  margin-right: 10px;
   font-size: 1.3rem;
 }
 
@@ -296,47 +290,28 @@ input:focus, textarea:focus {
   flex: 1 1 45%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-width: 280px;
 }
 
 .why-choose-image img {
   width: 100%;
   max-width: 500px;
-  height: auto;
-  border-radius: 14px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 /* ===== Responsive Layout ===== */
 @media (max-width: 768px) {
-  .why-choose-inner {
-    flex-direction: column-reverse;
+  .why-choose-container {
+    flex-direction: column;
     text-align: center;
   }
 
-  .why-choose-content,
+  .why-choose-text,
   .why-choose-image {
     flex: 1 1 100%;
   }
 
-  .why-title {
-    font-size: 1.8rem;
-  }
-
-  .why-list li {
+  .why-choose-text li {
     justify-content: center;
   }
-}
-.video-hero {
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.background-video {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
 }
