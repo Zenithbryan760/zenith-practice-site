@@ -295,3 +295,23 @@ input:focus, textarea:focus {
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+@media (max-width: 900px) {
+  .why-choose-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .trust-list {
+    text-align: center;
+  }
+
+  .why-choose-content,
+  .why-choose-image {
+    flex: 1 1 100%;
+    padding: 10px 0;
+  }
+}
+
+.why-choose-content h2 {
+  margin-bottom: 20px;
+}
