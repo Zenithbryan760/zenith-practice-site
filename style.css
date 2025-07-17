@@ -218,24 +218,25 @@ input:focus, textarea:focus {
 }
 
 /* ========== MISC STYLES CLEANUP ========== */
-.badge-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  align-items: center;
-  margin-top: 20px;
-}
 .yelp-badge {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 100px;
-  height: auto;
-  margin: 10px 0;
+  height: 60px;             /* ✅ Match other badge height */
+  max-width: 150px;         /* ✅ Match other badge width */
+  margin: 0;                /* ✅ Reset any vertical shift */
+  padding: 0;               /* ✅ Clean alignment */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15)); /* ✅ match shadow */
+  transition: transform 0.3s;
 }
+.yelp-badge:hover {
+  transform: scale(1.05);
+}
+
 .yelp-badge > div {
-  max-width: 150px;
-  height: auto;
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;             /* ✅ Take up full 60px */
+  width: 100%;
 }
