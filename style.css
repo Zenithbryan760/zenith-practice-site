@@ -328,3 +328,15 @@ input:focus, textarea:focus {
     justify-content: center;
   }
 }
+.video-hero {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.background-video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
