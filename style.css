@@ -243,7 +243,7 @@ input:focus, textarea:focus {
 /* ===== WHY CHOOSE US STYLES ===== */
 .why-choose-wrapper {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap;  /* ✅ Correct spelling */
   align-items: center;
   justify-content: space-between;
   background-color: #f9f9f9;
