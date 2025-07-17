@@ -243,10 +243,10 @@ input:focus, textarea:focus {
 /* ===== WHY CHOOSE US STYLES ===== */
 .why-choose-wrapper {
   display: flex;
-  flex-wrap: wrap;  /* ✅ Correct spelling */
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  background-color: #f9f9f9;
+  background-color: #ffffff; /* clean white background for entire section */
   padding: 60px 20px;
   gap: 40px;
   max-width: 1200px;
@@ -256,6 +256,36 @@ input:focus, textarea:focus {
 .why-choose-text {
   flex: 1 1 50%;
   min-width: 300px;
+  background-color: rgba(255, 255, 255, 0.9); /* semi-transparent white */
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.why-choose-text h2.section-title {
+  font-size: 28px;
+  color: #072e59;
+  margin-bottom: 20px;
+}
+
+.trust-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.trust-list li {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333333;
+  display: flex;
+  align-items: center;
+}
+
+.trust-list li .icon-check {
+  color: #f7941d;
+  margin-right: 10px;
+  font-weight: bold;
 }
 
 .why-choose-image {
@@ -271,4 +301,27 @@ input:focus, textarea:focus {
   height: auto;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== RESPONSIVE STYLING ===== */
+@media (max-width: 768px) {
+  .why-choose-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .why-choose-text,
+  .why-choose-image {
+    flex: 1 1 100%;
+    padding: 20px;
+  }
+
+  .why-choose-text h2.section-title {
+    font-size: 24px;
+  }
+
+  .trust-list li {
+    font-size: 16px;
+    justify-content: center;
+  }
 }
