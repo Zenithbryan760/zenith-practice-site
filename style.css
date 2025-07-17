@@ -240,81 +240,87 @@ input:focus, textarea:focus {
   height: 100%;             /* ✅ Take up full 60px */
   width: 100%;
 }
-/* ===== WHY CHOOSE ZENITH STYLES ===== */
-.why-choose-wrapper {
+/* ===== MODERN WHY CHOOSE SECTION ===== */
+.why-choose-modern {
+  background-color: #f9f9f9;
+  padding: 80px 20px;
+}
+
+.why-choose-inner {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
-  background-color: #f9f9f9;
-  padding: 60px 20px;
+  justify-content: space-between;
   gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.why-choose-text {
+.why-choose-content {
   flex: 1 1 50%;
   min-width: 300px;
 }
 
-.why-choose-text h2.section-title {
-  font-size: 2rem;
+.why-title {
+  font-size: 2.2rem;
   color: #072e59;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
-.trust-list {
+.why-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.trust-list li {
+.why-list li {
   font-size: 1.1rem;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  color: #333;
   display: flex;
   align-items: center;
-  color: #333;
 }
 
-.icon-check {
+.checkmark {
   color: #f7941d;
+  margin-right: 12px;
   font-weight: bold;
-  margin-right: 10px;
+  font-size: 1.3rem;
 }
 
 .why-choose-image {
-  flex: 1 1 40%;
-  min-width: 280px;
+  flex: 1 1 45%;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 280px;
 }
 
 .why-choose-image img {
   width: 100%;
-  max-width: 450px;
+  max-width: 500px;
   height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
-/* ===== MOBILE FRIENDLY ===== */
+/* ===== Responsive Layout ===== */
 @media (max-width: 768px) {
-  .why-choose-wrapper {
-    flex-direction: column;
+  .why-choose-inner {
+    flex-direction: column-reverse;
     text-align: center;
-    padding: 40px 20px;
   }
 
-  .why-choose-text,
+  .why-choose-content,
   .why-choose-image {
     flex: 1 1 100%;
-    padding: 10px 0;
   }
 
-  .trust-list li {
+  .why-title {
+    font-size: 1.8rem;
+  }
+
+  .why-list li {
     justify-content: center;
   }
 }
