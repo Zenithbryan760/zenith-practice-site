@@ -330,3 +330,8 @@ input:focus, textarea:focus {
 .why-choose-image .van-image:hover {
   transform: scale(1.02);
 }
+@media (min-width: 1024px) {
+  .van-image {
+    max-width: 280px;
+  }
+}
