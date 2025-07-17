@@ -243,7 +243,7 @@ input:focus, textarea:focus {
 /* ===== WHY CHOOSE US STYLES ===== */
 .why-choose-wrapper {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
   padding: 60px 20px;
@@ -252,12 +252,20 @@ input:focus, textarea:focus {
   background-color: #f9f9f9;
   gap: 40px;
 }
-
+.why-choose-text,
+.why-choose-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .why-choose-text {
   flex: 1 1 55%;
   min-width: 300px;
 }
-
+.why-choose-wrapper {
+  height: 360px; /* or whatever matches your vision */
+  ...
+}
 .why-choose-text h2 {
   margin-bottom: 25px;
   color: var(--zenith-blue);
