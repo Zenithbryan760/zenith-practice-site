@@ -329,3 +329,11 @@ input:focus, textarea:focus {
   margin: 0 auto;
   padding: 20px 0;
 }
+/* Van image sizing */
+.van-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  padding: 20px 0;
+}
