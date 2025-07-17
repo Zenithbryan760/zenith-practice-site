@@ -240,13 +240,13 @@ input:focus, textarea:focus {
   height: 100%;             /* ✅ Take up full 60px */
   width: 100%;
 }
-/* ===== WHY CHOOSE US STYLES ===== */
+/* ===== WHY CHOOSE ZENITH STYLES ===== */
 .why-choose-wrapper {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
-  background-color: #ffffff; /* clean white background for entire section */
+  align-items: center;
+  background-color: #f9f9f9;
   padding: 60px 20px;
   gap: 40px;
   max-width: 1200px;
@@ -256,14 +256,10 @@ input:focus, textarea:focus {
 .why-choose-text {
   flex: 1 1 50%;
   min-width: 300px;
-  background-color: rgba(255, 255, 255, 0.9); /* semi-transparent white */
-  padding: 20px 30px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .why-choose-text h2.section-title {
-  font-size: 28px;
+  font-size: 2rem;
   color: #072e59;
   margin-bottom: 20px;
 }
@@ -275,17 +271,17 @@ input:focus, textarea:focus {
 }
 
 .trust-list li {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #333333;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
+  color: #333;
 }
 
-.trust-list li .icon-check {
+.icon-check {
   color: #f7941d;
-  margin-right: 10px;
   font-weight: bold;
+  margin-right: 10px;
 }
 
 .why-choose-image {
@@ -293,6 +289,7 @@ input:focus, textarea:focus {
   min-width: 280px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .why-choose-image img {
@@ -300,28 +297,24 @@ input:focus, textarea:focus {
   max-width: 450px;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* ===== RESPONSIVE STYLING ===== */
+/* ===== MOBILE FRIENDLY ===== */
 @media (max-width: 768px) {
   .why-choose-wrapper {
     flex-direction: column;
     text-align: center;
+    padding: 40px 20px;
   }
 
   .why-choose-text,
   .why-choose-image {
     flex: 1 1 100%;
-    padding: 20px;
-  }
-
-  .why-choose-text h2.section-title {
-    font-size: 24px;
+    padding: 10px 0;
   }
 
   .trust-list li {
-    font-size: 16px;
     justify-content: center;
   }
 }
