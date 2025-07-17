@@ -240,3 +240,22 @@ input:focus, textarea:focus {
   height: 100%;             /* ✅ Take up full 60px */
   width: 100%;
 }
+.why-choose-photo {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+
+.why-choose-photo .container {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
+.van-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
