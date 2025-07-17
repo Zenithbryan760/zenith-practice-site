@@ -259,3 +259,39 @@ input:focus, textarea:focus {
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+.why-choose-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #f9f9f9;
+  padding: 60px 20px;
+  gap: 40px;
+}
+
+.why-choose-content {
+  flex: 1 1 400px;
+  padding: 20px;
+}
+
+.why-choose-content .trust-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.why-choose-content .icon-check {
+  color: orange;
+  margin-right: 10px;
+}
+
+.why-choose-image {
+  flex: 1 1 400px;
+  text-align: center;
+}
+
+.van-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
