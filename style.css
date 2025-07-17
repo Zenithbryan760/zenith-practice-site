@@ -337,3 +337,8 @@ input:focus, textarea:focus {
   margin: 0 auto;
   padding: 20px 0;
 }
+.why-choose-image {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
