@@ -240,46 +240,51 @@ input:focus, textarea:focus {
   height: 100%;             /* ✅ Take up full 60px */
   width: 100%;
 }
-/* ===== WHY CHOOSE US STYLES ===== */
+/* ===== WHY CHOOSE US STYLES (IMPROVED) ===== */
 .why-choose-wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: 60px 20px;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  gap: 40px;
   background-color: #f9f9f9;
+  gap: 40px;
 }
 
 .why-choose-text {
-  flex: 1 1 50%;
+  flex: 1 1 55%;
   min-width: 300px;
 }
 
 .why-choose-text h2 {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   color: var(--zenith-blue);
-  font-size: 1.75rem;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 .trust-list {
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 
 .trust-list li {
   margin-bottom: 14px;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  color: var(--text-gray);
 }
 
 .icon-check {
   color: var(--zenith-orange);
-  font-weight: bold;
-  margin-right: 10px;
+  font-size: 1.2rem;
+  line-height: 1;
+  margin-right: 12px;
+  flex-shrink: 0;
 }
 
 .why-choose-image {
@@ -292,18 +297,19 @@ input:focus, textarea:focus {
 
 .why-choose-image img {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   height: auto;
   border-radius: 10px;
   object-fit: cover;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-/* === Mobile Responsive === */
+/* === Responsive Styling === */
 @media (max-width: 900px) {
   .why-choose-wrapper {
     flex-direction: column;
     text-align: center;
+    padding: 40px 20px;
   }
 
   .why-choose-text,
@@ -313,11 +319,12 @@ input:focus, textarea:focus {
   }
 
   .trust-list {
-    padding-left: 0;
     text-align: left;
+    padding-left: 0;
   }
 
   .why-choose-image img {
-    max-width: 80%;
+    max-width: 85%;
+    margin-top: 20px;
   }
 }
