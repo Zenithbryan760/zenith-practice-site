@@ -315,3 +315,14 @@ input:focus, textarea:focus {
 .why-choose-content h2 {
   margin-bottom: 20px;
 }
+.why-choose-image {
+  flex: 1 1 320px;
+  text-align: center;
+}
+
+.why-choose-image .van-image {
+  max-width: 320px;
+  width: 80%;
+  height: auto;
+  display: inline-block;
+}
