@@ -251,21 +251,22 @@ input:focus, textarea:focus {
   margin: 0 auto;
   background-color: #f9f9f9;
   gap: 40px;
+  height: 360px;
 }
+
 .why-choose-text,
 .why-choose-image {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 .why-choose-text {
   flex: 1 1 55%;
   min-width: 300px;
 }
-.why-choose-wrapper {
-  height: 360px; /* or whatever matches your vision */
-  ...
-}
+
 .why-choose-text h2 {
   margin-bottom: 25px;
   color: var(--zenith-blue);
@@ -298,41 +299,4 @@ input:focus, textarea:focus {
 .why-choose-image {
   flex: 1 1 40%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 280px;
-}
-
-.why-choose-image img {
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  border-radius: 10px;
-  object-fit: cover;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-}
-
-/* === Responsive Styling === */
-@media (max-width: 900px) {
-  .why-choose-wrapper {
-    flex-direction: column;
-    text-align: center;
-    padding: 40px 20px;
-  }
-
-  .why-choose-text,
-  .why-choose-image {
-    flex: 1 1 100%;
-    max-width: 100%;
-  }
-
-  .trust-list {
-    text-align: left;
-    padding-left: 0;
-  }
-
-  .why-choose-image img {
-    max-width: 85%;
-    margin-top: 20px;
-  }
-}
+  justify-content:
