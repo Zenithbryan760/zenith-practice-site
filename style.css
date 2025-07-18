@@ -240,3 +240,41 @@ input:focus, textarea:focus {
   height: 100%;             /* ✅ Take up full 60px */
   width: 100%;
 }
+/* ===== WHY CHOOSE US ===== */
+.why-choose-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.why-choose-text {
+  flex: 1 1 500px;
+}
+
+.why-choose-image {
+  flex: 1 1 400px;
+  text-align: center;
+}
+
+.why-choose-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional: Icon Check Style */
+.icon-check {
+  color: #f7941d;
+  margin-right: 10px;
+}
+
+/* Responsive tweak for mobile */
+@media (max-width: 768px) {
+  .why-choose-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+}
