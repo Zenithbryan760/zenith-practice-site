@@ -240,57 +240,75 @@ input:focus, textarea:focus {
   height: 100%;             /* ✅ Take up full 60px */
   width: 100%;
 }
-/* ===== WHY CHOOSE ZENITH SECTION ===== */
+/* ===== WHY CHOOSE US SECTION ===== */
 .why-choose-section {
-  background-color: #f7f7f7;
+  background-color: #f9f9f9;
   padding: 60px 20px;
 }
 
 .why-choose-container {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   max-width: 1200px;
   margin: 0 auto;
   gap: 40px;
 }
 
 .why-choose-text {
-  flex: 1 1 500px;
+  flex: 1 1 50%;
 }
 
-.why-choose-text .section-title {
+.section-title {
   font-size: 2rem;
+  color: #072e59; /* navy brand color */
   margin-bottom: 20px;
-  color: #072e59;
 }
 
 .trust-list {
   list-style: none;
-  padding-left: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .trust-list li {
   font-size: 1.1rem;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
 }
 
-.icon-check {
-  color: #f7941d;
+.checkmark {
+  color: #072e59;
+  font-weight: bold;
   margin-right: 10px;
+  font-size: 1.4rem;
+}
+
+.checkmark.orange {
+  color: #f7941d; /* branded orange for emphasis */
 }
 
 .why-choose-image {
-  flex: 1 1 400px;
+  flex: 1 1 40%;
   text-align: center;
 }
 
 .why-choose-image img {
   max-width: 100%;
   height: auto;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .why-choose-container {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .why-choose-text, .why-choose-image {
+    flex: 1 1 100%;
+  }
 }
