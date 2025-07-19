@@ -242,108 +242,55 @@ input:focus, textarea:focus {
 }
 /* ===== WHY CHOOSE ZENITH SECTION ===== */
 .why-choose-section {
-  background: linear-gradient(to right, #ffffff, #f7f7f7);
-  padding: 80px 20px;
+  background-color: #f7f7f7;
+  padding: 60px 20px;
 }
 
-.why-choose-wrapper {
+.why-choose-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
   gap: 40px;
 }
 
-.why-choose-content {
-  flex: 1 1 50%;
-  min-width: 300px;
+.why-choose-text {
+  flex: 1 1 500px;
 }
 
-.section-title {
+.why-choose-text .section-title {
   font-size: 2rem;
   margin-bottom: 20px;
   color: #072e59;
-  font-weight: 700;
 }
 
 .trust-list {
   list-style: none;
-  padding: 0;
+  padding-left: 0;
 }
 
 .trust-list li {
-  font-size: 1.125rem;
-  margin-bottom: 14px;
-  position: relative;
-  padding-left: 28px;
-  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .icon-check {
   color: #f7941d;
-  font-weight: bold;
-  position: absolute;
-  left: 0;
-  top: 0;
+  margin-right: 10px;
 }
 
-/* VAN IMAGE STYLING */
 .why-choose-image {
-  flex: 1 1 45%;
+  flex: 1 1 400px;
   text-align: center;
 }
 
 .why-choose-image img {
   max-width: 100%;
-  border-radius: 20px;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
-  transform: scale(1);
-  transition: transform 0.4s ease;
-}
-
-.why-choose-image img:hover {
-  transform: scale(1.03);
-}
-
-/* ENTRANCE ANIMATIONS */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 1s ease-out forwards;
-}
-
-.fade-in-right {
-  opacity: 0;
-  transform: translateX(40px);
-  animation: fadeInRight 1.2s ease-out forwards;
-  animation-delay: 0.2s;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInRight {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* MOBILE STACKING */
-@media (max-width: 768px) {
-  .why-choose-wrapper {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .why-choose-content,
-  .why-choose-image {
-    flex: 1 1 100%;
-  }
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
