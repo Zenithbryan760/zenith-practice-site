@@ -240,3 +240,21 @@ input:focus, textarea:focus {
   height: 100%;             /* ✅ Take up full 60px */
   width: 100%;
 }
+/* ===== WHY CHOOSE US ===== */
+.why-choose-section {
+  background-color: var(--white);
+  padding: 60px 20px;
+}
+
+.why-choose-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.why-choose-text {
+  flex: 1 1 50%;
+}
+
