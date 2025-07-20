@@ -1,265 +1,242 @@
-/* ========== ZENITH ROOFING STYLES (CUTTING-EDGE & ELEGANT) ========== */
-
-/* ===== CSS VARIABLES ===== */
+/* ========== ZENITH ROOFING STYLES (RESPONSIVE FIXES) ========== */
 :root {
   --zenith-blue: #072e59;
   --zenith-orange: #f7941d;
   --white: #ffffff;
+  --off-white: #fdfdfd;
   --light-gray: #f7f7f7;
-  --text-gray: #333;
-
-  --font-base: 'Inter', sans-serif;
-  --transition: 0.3s ease;
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --text-gray: #333333;
+  --hero-overlay: rgba(7,46,89,0.85);
 }
 
-/* ===== RESET & BASE ===== */
+/* ========== BASE ========== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
+html {
+  background: var(--zenith-blue);
+  scroll-behavior: smooth;
+}
 body {
-  font-family: var(--font-base);
+  font-family: 'Inter', Arial, sans-serif;
   color: var(--text-gray);
-  background: var(--light-gray);
+  background: transparent;
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
-
-img {
-  max-width: 100%;
-  display: block;
-  height: auto;
-}
-
 .container {
-  width: 90%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
 }
 
-/* ===== HEADER ===== */
+/* ========== BACKGROUND VIDEO ========== */
+.background-video {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -9999;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ========== HEADER ========== */
 .header {
-  background: var(--white);
-  padding: 15px 0;
-  box-shadow: var(--shadow-md);
+  background: var(--zenith-blue);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   position: relative;
-  z-index: 10;
+  z-index: 100;
 }
-
 .header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  gap: 12px;
 }
+.logo { height: 56px; width: auto; }
+.license { font-size: 0.8rem; text-align: center; }
 
-.logo {
-  height: 60px;
-}
-
-.nav-bar .nav-links {
-  display: flex;
-  gap: 20px;
+.nav-links {
   list-style: none;
+  display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
 }
-
-.nav-bar a {
-  color: var(--zenith-blue);
+.nav-links a {
+  color: var(--white);
+  padding: 10px 16px;
   font-weight: 600;
   text-decoration: none;
-  transition: color var(--transition);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+.nav-links a:hover {
+  background: var(--zenith-orange);
 }
 
-.nav-bar a:hover {
-  color: var(--zenith-orange);
-}
-
-/* ===== HERO VIDEO & LEAD ===== */
-.hero-wrapper {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.background-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-
-.hero-overlay {
-  background: rgba(7, 46, 89, 0.8);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding-top: 100px;
-  color: var(--white);
-}
-
-.hero-lead {
+.phone-section {
   text-align: center;
 }
-
-.hero-lead h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5em;
+.phone-number {
+  font-weight: 700;
+  font-size: 16px;
+}
+.phone-number a {
+  color: inherit;
+  text-decoration: none;
+}
+.call-button {
+  display: inline-block;
+  margin-top: 6px;
+  background: var(--zenith-orange);
   color: var(--white);
+  padding: 8px 20px;
+  font-weight: 700;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  font-size: 14px;
+}
+.call-button:hover {
+  background: #e6871c;
 }
 
-.hero-subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+/* ========== HERO ========== */
+.hero {
+  background: var(--hero-overlay);
+  color: var(--white);
+  text-align: center;
+  padding: 80px 20px 60px;
+}
+.hero h1, .hero h2 {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+.hero p {
+  font-weight: 500;
+  margin-bottom: 32px;
 }
 
-.lead-form-section {
-  margin-top: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
+.hero-form {
   max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.lead-form input,
-.lead-form textarea,
-.lead-form select {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 12px;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-}
-
-.lead-form .form-row {
+  margin: 0 auto 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 }
-
-.btn {
-  background-color: var(--zenith-orange);
-  color: var(--white);
-  border: none;
-  padding: 12px 24px;
-  font-size: 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color var(--transition);
-}
-
-.btn:hover {
-  background-color: #e57d09;
-}
-
-.form-disclaimer {
-  font-size: 0.8rem;
-  margin-top: 10px;
-  color: #eee;
-}
-
-/* ===== WHY CHOOSE US ===== */
-.why-choose-section {
-  background-color: var(--white);
-  padding: 60px 20px;
-}
-
-.why-choose-container {
+.form-row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
+  gap: 16px;
+}
+.form-row input {
+  flex: 1 1 300px;
+}
+input, textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+input:focus, textarea:focus {
+  outline: 2px solid var(--zenith-orange);
+}
+.button {
+  background: var(--zenith-orange);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  padding: 12px 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: fit-content;
+  margin: 0 auto;
+}
+.button:hover {
+  background: #e6871c;
 }
 
-.why-choose-text {
-  flex: 1 1 50%;
+/* ========== CTA BANNER ========== */
+.cta-banner {
+  background: var(--zenith-blue);
+  color: var(--white);
+  text-align: center;
+  padding: 60px 20px;
 }
-
-.section-title {
+.cta-banner h2 {
   font-size: 2rem;
-  color: var(--zenith-blue);
+  margin-bottom: 12px;
+}
+.cta-banner p {
+  font-size: 1.1rem;
   margin-bottom: 20px;
 }
 
-.trust-list {
-  list-style: none;
-  padding: 0;
-}
-
-.trust-list li {
-  margin-bottom: 12px;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-}
-
-.checkmark {
-  font-weight: bold;
-  margin-right: 10px;
-  color: var(--zenith-blue);
-  font-size: 1.4rem;
-}
-
-.checkmark.orange {
-  color: var(--zenith-orange);
-}
-
-.why-choose-image {
-  flex: 1 1 40%;
-  text-align: center;
-}
-
-.why-choose-image img {
-  border-radius: 12px;
-  box-shadow: var(--shadow-md);
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  background-color: var(--zenith-blue);
-  color: var(--white);
-  text-align: center;
-  padding: 30px 20px;
-}
-
-.footer a {
-  color: var(--zenith-orange);
-  text-decoration: underline;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .why-choose-container {
-    flex-direction: column;
-    text-align: center;
-  }
-  .lead-form .form-row {
-    flex-direction: column;
-  }
-  .hero-lead h1 {
-    font-size: 2rem;
-  }
-  .nav-bar .nav-links {
-    flex-direction: column;
-    gap: 10px;
-  }
+/* ========== RESPONSIVE FIXES ========== */
+@media (max-width: 1024px) {
   .header-inner {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+    align-items: center;
   }
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-row {
+    flex-direction: column;
+  }
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1, .hero h2 {
+    font-size: 1.8rem;
+  }
+  .cta-banner h2 {
+    font-size: 1.6rem;
+  }
+  .cta-banner p {
+    font-size: 1rem;
+  }
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+  .call-button {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+}
+
+/* ========== MISC STYLES CLEANUP ========== */
+.badge {
+  height: 60px;
+  max-width: 150px;
+  display: inline-block;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-top: 5px; /* ✅ Adjusts misaligned SVGs */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+  transition: transform 0.3s;
+}
+
+.badge:hover {
+  transform: scale(1.05);
+}
+
+.yelp-badge > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;             /* ✅ Take up full 60px */
+  width: 100%;
 }
