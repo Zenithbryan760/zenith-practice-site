@@ -438,3 +438,36 @@
     </div>
   </section>
 
+
+
+.why-choose-text {
+  flex: 1 1 50%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.trust-list li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+.trust-list .checkmark {
+  margin-right: 12px;  /* slightly larger gap */
+  font-size: 1.4rem;
+  color: var(--zenith-orange);
+}
+.why-choose-container {
+  position: relative;
+}
+.why-choose-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background-color: #e0e0e0;
+  transform: translateX(-20px); /* adjust to align with the gap */
+}
