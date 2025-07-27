@@ -471,3 +471,14 @@
 
 </body>
 </html>
+/* ===== TRUST SECTION STYLES ===== */
+.trust-section { … }
+.trust-container { … }
+/* etc… */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .trust-container { … }
+  .trust-text,
+  .trust-image { … }
+}
