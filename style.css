@@ -461,13 +461,4 @@
 .why-choose-container {
   position: relative;
 }
-.why-choose-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 1px;
-  background-color: #e0e0e0;
-  transform: translateX(-20px); /* adjust to align with the gap */
-}
+
