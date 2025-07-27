@@ -201,53 +201,50 @@
     .cta-banner h2 { font-size: 2rem; margin-bottom: 12px; }
     .cta-banner p  { font-size: 1.1rem; margin-bottom: 20px; }
 
-    /* ========== WHY HOMEOWNERS TRUST US (NEW SECTION) ========== */
-    .why-choose-section {
-      background-color: var(--light-gray); /* matches other gray sections */
-      padding: 60px 20px;
-    }
-    .why-choose-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 40px;
-    }
-    .why-choose-text { flex: 1 1 50%; }
-    .why-choose-image {
-      flex: 1 1 40%;
-      text-align: center;
-    }
-    .why-choose-image img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .trust-list { list-style: none; padding: 0; }
-    .trust-list li {
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-    }
-    .checkmark {
-      font-weight: bold;
-      margin-right: 10px;
-      color: var(--zenith-blue);
-      font-size: 1.4rem;
-    }
-    .checkmark.orange { color: var(--zenith-orange); }
-
-    /* Responsive tweaks for new section */
-    @media (max-width: 768px) {
-      .why-choose-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .why-choose-text, .why-choose-image {
-        flex: 1 1 100%;
-      }
+   /* ===== WHY HOMEOWNERS TRUST US ===== */
+.why-choose-section {
+  background-color: var(--light-gray);
+  padding: 60px 20px;
+}
+.why-choose-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+.why-choose-text { flex: 1 1 50%; }
+.why-choose-image { flex: 1 1 40%; text-align: center; }
+.why-choose-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.trust-list { list-style: none; padding: 0; }
+.trust-list li {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+/* make all checkmarks orange by default */
+.checkmark {
+  font-weight: bold;
+  margin-right: 10px;
+  color: var(--zenith-orange);
+  font-size: 1.4rem;
+}
+@media (max-width: 768px) {
+  .why-choose-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .why-choose-text,
+  .why-choose-image {
+    flex: 1 1 100%;
+  }
+}
 
     /* ========== RESPONSIVE FIXES ========== */
     @media (max-width: 1024px) {
