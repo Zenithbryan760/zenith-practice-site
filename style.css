@@ -466,8 +466,13 @@
   gap: 40px;
   padding: 40px 20px;
 }
+
+.why-choose-text,
 .why-choose-image {
   flex: 1 1 50%;
+}
+
+.why-choose-image {
   display: flex;
   justify-content: center;
 }
@@ -489,9 +494,5 @@
   .why-choose-image {
     flex: 1 1 100%;
     padding: 10px;
-  }
-
-  .trust-list li {
-    justify-content: center;
   }
 }
