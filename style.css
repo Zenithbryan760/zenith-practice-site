@@ -438,7 +438,7 @@
     </div>
   </section>
 
-
+  <!-- ===== Why Choose Styles ===== -->
 
 .why-choose-text {
   flex: 1 1 50%;
@@ -459,6 +459,39 @@
   color: var(--zenith-orange);
 }
 .why-choose-container {
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 40px 20px;
+}
+.why-choose-image {
+  flex: 1 1 50%;
+  display: flex;
+  justify-content: center;
 }
 
+.why-choose-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+  .why-choose-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .why-choose-text,
+  .why-choose-image {
+    flex: 1 1 100%;
+    padding: 10px;
+  }
+
+  .trust-list li {
+    justify-content: center;
+  }
+}
