@@ -137,8 +137,10 @@ body {
   background-color: #0b3c74; /* Slightly lighter than --zenith-blue */
   min-width: 220px;
   border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* upgraded shadow */
   z-index: 250;
+  padding: 10px 0;              /* added padding */
+  line-height: 1.5;             /* improved readability */
 }
 
 .submenu a {
@@ -146,11 +148,32 @@ body {
   color: var(--white);
   text-decoration: none;
   display: block;
+  font-weight: 500;
+  transition: background 0.3s ease, padding-left 0.2s ease;
 }
 
 .submenu a:hover {
   background-color: var(--zenith-orange);
+  color: #fff;
+  padding-left: 22px; /* subtle hover slide-in effect */
 }
+/* ===== Submenu Section Labels ===== */
+.submenu-label {
+  padding: 10px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ccc;
+  text-transform: uppercase;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: default;
+  pointer-events: none;
+}
+
+.submenu-label:first-child {
+  border-top: none;
+}
+
 
 /* ===== Submenu Arrow Indicators ===== */
 .dropdown-submenu > a::after {
