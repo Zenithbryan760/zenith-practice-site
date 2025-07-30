@@ -46,104 +46,80 @@
       pointer-events: none;
     }
 
-   /* ===== HEADER STYLING ===== */
+/* ========== HEADER ========== */
 .header {
-  background-color: var(--zenith-blue);
-  padding: 20px 0;
+  background: var(--zenith-blue);
   color: var(--white);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 100;
 }
-
-/* Flex container for all header sections */
 .header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
   flex-wrap: wrap;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  gap: 12px;
 }
-
-/* ===== Logo Section ===== */
-.logo-section {
-  flex: 1 1 200px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo-section img.logo {
+.logo {
   height: 56px;
   width: auto;
 }
-
 .license {
   font-size: 0.8rem;
+  text-align: center;
   color: var(--white);
-}
-
-/* ===== Navigation Bar ===== */
-.nav-bar {
-  flex: 2 1 600px;
-  display: flex;
-  justify-content: center;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
   padding: 0;
   margin: 0;
 }
-
-.nav-links li a {
+.nav-links a {
   color: var(--white);
+  padding: 10px 16px;
+  font-weight: 600;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease-in-out;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+.nav-links a:hover {
+  background: var(--zenith-orange);
 }
 
-.nav-links li a:hover {
-  color: var(--zenith-orange);
-}
-
-/* ===== Phone Section ===== */
 .phone-section {
-  flex: 1 1 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  text-align: right;
+  text-align: center;
 }
-
 .phone-number {
-  font-size: 0.9rem;
-  margin-bottom: 5px;
+  font-weight: 700;
+  font-size: 16px;
 }
-
 .phone-number a {
-  color: var(--white);
+  color: inherit;
   text-decoration: none;
 }
-
 .call-button {
-  background-color: var(--zenith-orange);
-  color: white;
-  padding: 6px 16px;
+  display: inline-block;
+  margin-top: 6px;
+  background: var(--zenith-orange);
+  color: var(--white);
+  padding: 8px 20px;
+  font-weight: 700;
   border-radius: 4px;
   text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.2s ease-in-out;
+  transition: background 0.3s ease;
+  font-size: 14px;
 }
-
 .call-button:hover {
-  background-color: #e67e00;
+  background: #e6871c;
 }
 
-/* ===== Mobile Responsive ===== */
+/* ========== MOBILE HEADER STACKING ========== */
 @media (max-width: 1024px) {
   .header-inner {
     flex-direction: column;
@@ -151,28 +127,17 @@
     text-align: center;
   }
 
-  .logo-section,
-  .nav-bar,
-  .phone-section {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  .phone-section {
-    margin-top: 10px;
-  }
-
   .nav-links {
+    justify-content: center;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 10px;
+    gap: 8px;
   }
 
-  .phone-number {
-    margin-bottom: 8px;
+  .phone-section {
+    margin-top: 10px;
   }
 }
+
 
 
     /* ========== HERO ========== */
