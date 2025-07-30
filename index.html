@@ -264,48 +264,38 @@
   <div class="container">
     <h2 class="section-title">What Our Clients Say</h2>
 
-    <!-- Swiper container -->
     <div class="swiper testimonial-swiper">
       <div class="swiper-wrapper">
-        <!-- Slide 1 -->
         <div class="swiper-slide">
           <div class="testimonial">
             <p>“Zenith did a fantastic job on our roof. Great communication and no surprises!”</p>
             <div class="testimonial-meta">
-              <strong>Sarah R.</strong> – Temecula<br />
-              ⭐⭐⭐⭐⭐
+              <strong>Sarah R.</strong> – Temecula<br /> ⭐⭐⭐⭐⭐
             </div>
           </div>
         </div>
-
-        <!-- Slide 2 -->
         <div class="swiper-slide">
           <div class="testimonial">
             <p>“Professional and honest. I’d hire them again in a heartbeat.”</p>
             <div class="testimonial-meta">
-              <strong>Mark T.</strong> – San Diego<br />
-              ⭐⭐⭐⭐⭐
+              <strong>Mark T.</strong> – San Diego<br /> ⭐⭐⭐⭐⭐
             </div>
           </div>
         </div>
-
-        <!-- Slide 3 -->
         <div class="swiper-slide">
           <div class="testimonial">
             <p>“Fast, friendly, and affordable. We love our new roof!”</p>
             <div class="testimonial-meta">
-              <strong>Lisa M.</strong> – Fallbrook<br />
-              ⭐⭐⭐⭐⭐
+              <strong>Lisa M.</strong> – Fallbrook<br /> ⭐⭐⭐⭐⭐
             </div>
           </div>
         </div>
-
         <!-- Add more slides as needed -->
       </div>
 
       <!-- Arrows -->
-      <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
 
     <a href="reviews.html" class="button" style="margin-top: 20px;">Read All Reviews</a>
@@ -376,7 +366,7 @@
 </section>
   
 <!-- ===== TESTIMONIALS Java Script ===== -->
-  <!-- Swiper JS -->
+ <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
 <!-- Swiper Init -->
@@ -388,25 +378,19 @@
       disableOnInteraction: false,
       pauseOnMouseEnter: true,
     },
-    slidesPerView: 3,
+    slidesPerView: 1,
     spaceBetween: 30,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
     breakpoints: {
-      0: {
-        slidesPerView: 1
-      },
-      768: {
-        slidesPerView: 2
-      },
-      1025: {  // <-- Make sure desktop kicks in above 1024
-        slidesPerView: 3
-      }
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 }
     }
   });
 </script>
+
 
   
 </body>
