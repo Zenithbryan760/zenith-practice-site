@@ -346,7 +346,16 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
 .swiper-button-prev::after {
   font-size: 20px;
 }
+/* CTA banner */
 
+.cta-banner {
+  background: var(--zenith-blue);
+  color: var(--white);
+  text-align: center;
+  padding: 60px 20px;
+}
+.cta-banner h2 { font-size: 2rem; margin-bottom: 12px; }
+.cta-banner p  { font-size: 1.1rem; margin-bottom: 20px; }
 /* ===== WHY HOMEOWNERS TRUST US ===== */
 .why-choose-section {
   background-color: var(--light-gray);
