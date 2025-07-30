@@ -436,3 +436,24 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
     flex: 1 1 100%;
   }
 }
+/* ✅ TEMP FIX: Force show Swiper arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 10 !important;
+  color: var(--zenith-orange); /* Use your brand color */
+  width: 32px;
+  height: 32px;
+}
+
+/* Optional: Add background circle for better visibility */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 18px !important;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
