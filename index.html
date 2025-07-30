@@ -76,52 +76,44 @@
       pointer-events: none;
     }
 
-    /* ----------  HEADER  ---------- */
-    .header {
-      background: var(--zenith-blue);
-      color: var(--white);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      position: relative;
-      z-index: 100;
-    }
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .logo { height: 56px; width: auto; }
-    .license { font-size: 0.8rem; text-align: center; }
+<header class="header">
+  <div class="container header-inner">
 
-    /* Nav */
-    .nav-links { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
-    .nav-links a {
-      color: var(--white);
-      padding: 10px 16px;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 4px;
-      transition: background 0.3s ease;
-    }
-    .nav-links a:hover { background: var(--zenith-orange); }
+    <div class="logo-section">
+      <img src="zenith-logo.png" alt="Zenith Roofing Services Logo" class="logo" />
+      <p class="license">Lic# 1036112</p>
+    </div>
 
-    /* Phone */
-    .phone-section { text-align: center; }
-    .phone-number { font-weight: 700; }
-    .phone-number a { color: inherit; text-decoration: none; }
-    .call-button {
-      display: inline-block;
-      margin-top: 4px;
-      background: var(--zenith-orange);
-      color: var(--white);
-      padding: 6px 16px;
-      font-weight: 700;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-    .call-button:hover { background: #e6871c; }
+    <nav class="nav-bar">
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Services</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Shingle Roofs</a></li>
+            <li><a href="#">Tile Roofs</a></li>
+            <li><a href="#">Torch Down</a></li>
+            <li><a href="#">Silicone / Coatings</a></li>
+            <li><a href="#">Gutters</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Glossary</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#" class="youtube-link">YouTube</a></li>
+      </ul>
+    </nav>
+
+    <div class="phone-section">
+      <p class="phone-number">Call or Text: <a href="tel:8589006163">858-900-6163</a></p>
+      <a href="tel:8589006163" class="call-button">Call Now</a>
+    </div>
+
+  </div>
+</header>
 
     /* ----------  HERO  ---------- */
     .hero {
@@ -240,45 +232,6 @@
     <source src="roofing-bg.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
-
-  <!-- ===== HEADER ===== -->
-<header class="header">
-  <div class="container header-flex">
-
-    <!-- ✅ Logo + License -->
-    <div class="logo-section">
-      <img src="zenith-logo.png" alt="Zenith Roofing Services Logo" class="logo" />
-      <p class="license">Lic# 1036112</p>
-    </div>
-
-    <!-- ✅ Navigation with Dropdown -->
-    <nav class="nav-bar">
-      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-      <label for="menu-toggle" class="menu-icon">
-        <span></span><span></span><span></span>
-      </label>
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li class="dropdown">
-          <a href="#">Services ▾</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Shingle Roofing</a></li>
-            <li><a href="#">Tile Lift & Lay</a></li>
-            <li><a href="#">Torch Down / Flat Roof</a></li>
-            <li><a href="#">Silicone Coatings</a></li>
-            <li><a href="#">Roof Repairs</a></li>
-            <li><a href="#">Gutter Installation</a></li>
-          </ul>
-        </li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#glossary">Glossary</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" class="youtube-link">YouTube</a></li>
-      </ul>
-    </nav>
 
     <!-- ✅ Phone Section -->
     <div class="phone-section">
