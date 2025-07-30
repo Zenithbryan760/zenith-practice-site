@@ -6,9 +6,8 @@
   --off-white:     #fdfdfd;
   --light-gray:    #f7f7f7;
   --text-gray:     #333333;
-  --hero-overlay:  rgba(7,46,89,0.85);
+  --hero-overlay:  rgba(7, 46, 89, 0.35); /* ⬅️ was 0.85 */
 }
-
 /* ========== BASE ========== */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { background: var(--zenith-blue); scroll-behavior: smooth; }
@@ -28,10 +27,9 @@ body {
   height: 100vh;
   object-fit: cover;
   z-index: -9999;
-  opacity: 0.35;
+  opacity: 0.6; /* ⬅️ increased from 0.35 */
   pointer-events: none;
 }
-
 /* ========== HEADER ========== */
 .header {
   background: var(--zenith-blue);
