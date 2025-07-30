@@ -297,7 +297,24 @@
     <a href="reviews.html" class="button" style="margin-top: 20px;">Read All Reviews</a>
   </div>
 </section>
+<!-- ===== TESTIMONIALS Java Script ===== -->
+  <!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
+<!-- Swiper Init -->
+<script>
+  const swiper = new Swiper('.testimonial-swiper', {
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
 
 
 <!-- ===== CTA BANNER ===== -->
