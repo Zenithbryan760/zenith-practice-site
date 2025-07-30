@@ -1,59 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- ===== META & SEO ===== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zenith Roofing Services – San Diego & Temecula Roof Experts</title>
-  <meta name="description" content="Zenith Roofing Services provides expert roofing solutions in San Diego and Temecula, including shingles, tile, torch‑down, and silicone coatings. Family‑owned, licensed & insured." />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Zenith Roofing Services – San Diego & Temecula Roof Experts" />
-  <meta property="og:description" content="Family‑owned. Licensed & insured. Get a free estimate today!" />
-  <meta property="og:image" content="https://zenithroofingservices.com/images/social-preview.jpg" />
-  <meta property="og:url" content="https://zenithroofingservices.com" />
-  <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- ===== STRUCTURED DATA ===== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "RoofingContractor",
-    "name": "Zenith Roofing Services, Inc.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "970 W Valley Pkwy #458",
-      "addressLocality": "Escondido",
-      "addressRegion": "CA",
-      "postalCode": "92025"
-    },
-    "telephone": "+1-858-900-6163",
-    "url": "https://www.zenithroofingservices.com",
-    "areaServed": ["San Diego", "Temecula", "Oceanside"]
-  }
-  </script>
-
-  <!-- ===== FONTS (optional) ===== -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
-<!-- Load external stylesheet -->
-<link rel="stylesheet" href="style.css">
-  
-  <!-- =====  INLINE CSS (copy‑paste friendly)  ===== -->
+  <!-- Inline CSS -->
   <style>
-    /* ----------  VARIABLES  ---------- */
+    /* ========== ZENITH ROOFING STYLES (RESPONSIVE FIXES) ========== */
     :root {
       --zenith-blue:   #072e59;
       --zenith-orange: #f7941d;
       --white:         #ffffff;
-      --light-gray:    #f7f7f7;
       --off-white:     #fdfdfd;
+      --light-gray:    #f7f7f7;
       --text-gray:     #333333;
       --hero-overlay:  rgba(7,46,89,0.85);
     }
 
-    /* ----------  BASE  ---------- */
+    /* ========== BASE ========== */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { background: var(--zenith-blue); scroll-behavior: smooth; }
     body {
@@ -64,7 +34,7 @@
     }
     .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
 
-    /* ----------  BACKGROUND VIDEO  ---------- */
+    /* ========== BACKGROUND VIDEO ========== */
     .background-video {
       position: fixed;
       inset: 0;
@@ -76,7 +46,7 @@
       pointer-events: none;
     }
 
-    /* ----------  HEADER  ---------- */
+    /* ========== HEADER ========== */
     .header {
       background: var(--zenith-blue);
       color: var(--white);
@@ -94,8 +64,13 @@
     .logo { height: 56px; width: auto; }
     .license { font-size: 0.8rem; text-align: center; }
 
-    /* Nav */
-    .nav-links { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px;
+    }
     .nav-links a {
       color: var(--white);
       padding: 10px 16px;
@@ -104,37 +79,43 @@
       border-radius: 4px;
       transition: background 0.3s ease;
     }
-    .nav-links a:hover { background: var(--zenith-orange); }
+    .nav-links a:hover {
+      background: var(--zenith-orange);
+    }
 
-    /* Phone */
     .phone-section { text-align: center; }
-    .phone-number { font-weight: 700; }
+    .phone-number { font-weight: 700; font-size: 16px; }
     .phone-number a { color: inherit; text-decoration: none; }
     .call-button {
       display: inline-block;
-      margin-top: 4px;
+      margin-top: 6px;
       background: var(--zenith-orange);
       color: var(--white);
-      padding: 6px 16px;
+      padding: 8px 20px;
       font-weight: 700;
       border-radius: 4px;
       text-decoration: none;
       transition: background 0.3s ease;
+      font-size: 14px;
     }
     .call-button:hover { background: #e6871c; }
 
-    /* ----------  HERO  ---------- */
+    /* ========== HERO ========== */
     .hero {
       background: var(--hero-overlay);
       color: var(--white);
       text-align: center;
       padding: 80px 20px 60px;
     }
-    .hero h1 { font-size: 2.4rem; margin-bottom: 12px; }
+    .hero h1, .hero h2 { font-size: 2.2rem; margin-bottom: 12px; }
     .hero p { font-weight: 500; margin-bottom: 32px; }
-
-    /* Form */
-    .hero-form { max-width: 700px; margin: 0 auto 12px; display: flex; flex-direction: column; gap: 16px; }
+    .hero-form {
+      max-width: 700px;
+      margin: 0 auto 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
     .form-row { display: flex; flex-wrap: wrap; gap: 16px; }
     .form-row input { flex: 1 1 300px; }
     input, textarea {
@@ -144,7 +125,9 @@
       border-radius: 4px;
       font-size: 1rem;
     }
-    input:focus, textarea:focus { outline: 2px solid var(--zenith-orange); }
+    input:focus, textarea:focus {
+      outline: 2px solid var(--zenith-orange);
+    }
     .button {
       background: var(--zenith-orange);
       color: var(--white);
@@ -154,6 +137,8 @@
       font-weight: 700;
       cursor: pointer;
       transition: background 0.3s ease;
+      width: fit-content;
+      margin: 0 auto;
     }
     .button:hover { background: #e6871c; }
 
@@ -161,59 +146,43 @@
     .disclaimer { font-size: 0.85rem; max-width: 700px; margin: 8px auto 0; color: #bbb; }
     .disclaimer a { color: var(--zenith-orange); text-decoration: underline; }
 
-    /* ----------  SECTIONS  ---------- */
+    /* ========== SECTIONS ========== */
     section { padding: 60px 20px; text-align: center; }
     .light-section { background: var(--off-white); }
-    .gray-section { background: var(--light-gray); }
+    .gray-section  { background: var(--light-gray); }
 
     h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20px; }
     .section-subtitle { font-size: 1.1rem; color: #666; margin-bottom: 30px; }
 
-    /* Trust list */
-    .trust-list { list-style: none; max-width: 700px; margin: 0 auto; text-align: left; }
-    .trust-list li { display: flex; align-items: center; margin-bottom: 14px; font-size: 1.05rem; }
-    .icon-check::before { content: "✔"; color: var(--zenith-orange); font-weight: bold; margin-right: 10px; }
-
-  /* Badge row */
-.badge-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center; /* ✅ Added this line */
-  gap: 24px;
-  margin-top: 24px;
-}
-
-.badge {
-  height: 60px;
-  max-width: 150px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
-  transition: transform 0.3s;
-}
-
-.badge:hover {
-  transform: scale(1.05);
-}
-
-/* ✅ Style for Yelp badge */
-.yelp-badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-  max-width: 150px;
-  padding: 5px 0;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
-}
-
-.yelp-badge:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s;
-}
+    /* Badge row */
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .badge {
+      height: 60px;
+      max-width: 150px;
+      display: inline-block;
+      object-fit: contain;
+      vertical-align: middle;
+      margin-top: 5px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+      transition: transform 0.3s;
+    }
+    .badge:hover { transform: scale(1.05); }
 
     /* Gallery */
-    .photo-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
     .photo-item { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
     .photo-item img { width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s; }
     .photo-item:hover img { transform: scale(1.04); }
@@ -223,13 +192,82 @@
     blockquote { font-style: italic; max-width: 600px; margin: 20px auto; color: #555; }
 
     /* CTA banner */
-    .cta-banner { background: var(--zenith-blue); color: var(--white); }
+    .cta-banner {
+      background: var(--zenith-blue);
+      color: var(--white);
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .cta-banner h2 { font-size: 2rem; margin-bottom: 12px; }
+    .cta-banner p  { font-size: 1.1rem; margin-bottom: 20px; }
 
-    /* Responsive tweaks */
-    @media (max-width: 900px) {
-      .header-inner { flex-direction: column; }
-      .nav-links { flex-direction: column; }
+   /* ===== WHY HOMEOWNERS TRUST US ===== */
+.why-choose-section {
+  background-color: var(--light-gray);
+  padding: 60px 20px;
+}
+.why-choose-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+.why-choose-text { flex: 1 1 50%; }
+.why-choose-image { flex: 1 1 40%; text-align: center; }
+.why-choose-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.trust-list { list-style: none; padding: 0; }
+.trust-list li {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+/* make all checkmarks orange by default */
+.checkmark {
+  font-weight: bold;
+  margin-right: 10px;
+  color: var(--zenith-orange);
+  font-size: 1.4rem;
+}
+@media (max-width: 768px) {
+  .why-choose-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .why-choose-text,
+  .why-choose-image {
+    flex: 1 1 100%;
+  }
+}
+
+    /* ========== RESPONSIVE FIXES ========== */
+    @media (max-width: 1024px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: center;
+      }
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+      }
       .form-row { flex-direction: column; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .hero h1, .hero h2 { font-size: 1.8rem; }
+      .cta-banner h2 { font-size: 1.6rem; }
+      .cta-banner p  { font-size: 1rem; }
+      .photo-grid { grid-template-columns: 1fr; }
+      .call-button {
+        font-size: 13px;
+        padding: 8px 16px;
+      }
     }
   </style>
 </head>
@@ -242,44 +280,30 @@
   </video>
 
   <!-- ===== HEADER ===== -->
-<header class="header">
-  <div class="container header-inner">
-
-    <div class="logo-section">
-      <img src="zenith-logo.png" alt="Zenith Roofing Services Logo" class="logo" />
-      <p class="license">Lic# 1036112</p>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo-section">
+        <img src="zenith-logo.png" alt="Zenith Roofing Services Logo" class="logo" />
+        <p class="license">Lic# 1036112</p>
+      </div>
+      <nav class="nav-bar">
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#gallery">Projects / Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#glossary">Glossary</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">YouTube</a></li>
+        </ul>
+      </nav>
+      <div class="phone-section">
+        <p class="phone-number">Call or Text: <a href="tel:8589006163">858‑900‑6163</a></p>
+        <a href="tel:8589006163" class="call-button">Call Now</a>
+      </div>
     </div>
-
-    <nav class="nav-bar">
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li class="dropdown">
-          <a href="#">Services</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Shingle Roofs</a></li>
-            <li><a href="#">Tile Roofs</a></li>
-            <li><a href="#">Torch Down</a></li>
-            <li><a href="#">Silicone / Coatings</a></li>
-            <li><a href="#">Gutters</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Gallery</a></li>
-        <li><a href="#">Reviews</a></li>
-        <li><a href="#">Glossary</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#" class="youtube-link">YouTube</a></li>
-      </ul>
-    </nav>
-
-    <div class="phone-section">
-      <p class="phone-number">Call or Text: <a href="tel:8589006163">858-900-6163</a></p>
-      <a href="tel:8589006163" class="call-button">Call Now</a>
-    </div>
-
-  </div>
-</header>
+  </header>
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="top">
@@ -318,66 +342,58 @@
     </div>
   </section>
 
-<!-- ===== WHY HOMEOWNERS TRUST US ===== -->
-<section class="why-choose-section gray-section">
-  <div class="container why-choose-container">
-    <div class="why-choose-text">
-     <h2 class="section-title">Why Home &amp; Business Owners Trust Zenith Roofing Services</h2>
+  <!-- ===== WHY HOMEOWNERS TRUST (NEW) ===== -->
+  <section class="why-choose-section gray-section">
+    <div class="container why-choose-container">
+      <div class="why-choose-text">
+        <h2 class="section-title">Why Homeowners Trust Zenith Roofing</h2>
 <ul class="trust-list">
-  <li><span class="checkmark orange">✓</span> Veteran roofers with 20–40 years of expertise</li>
-  <li><span class="checkmark orange">✓</span> Fully licensed &amp; insured – CA Lic. #1036112</li>
-  <li><span class="checkmark orange">✓</span> Premium materials with industry‑leading warranties</li>
-  <li><span class="checkmark orange">✓</span> Residential &amp; commercial roofing specialists</li>
-  <li><span class="checkmark orange">✓</span> Local, family‑owned service focused on honesty and reliability</li>
+  <li><span class="checkmark orange">✓</span> Local, Family‑Owned &amp; Operated</li>
+  <li><span class="checkmark orange">✓</span> 20–40 Years of Roofing Experience</li>
+  <li><span class="checkmark orange">✓</span> Licensed &amp; Insured – CA Lic. #1036112</li>
+  <li><span class="checkmark orange">✓</span> Premium Materials with Strong Warranties</li>
+  <li><span class="checkmark orange">✓</span> Rated 5 Stars in San Diego &amp; Temecula</li>
 </ul>
+      </div>
+      <div class="why-choose-image">
+        <img src="images/badges/zenith-van-optimized.jpg" alt="Zenith Roofing Van">
+      </div>
     </div>
-    <div class="why-choose-image">
-      <img src="images/badges/zenith-van-optimized.jpg" alt="Zenith Roofing van">
+  </section>
+
+  <!-- ===== TRUSTED BADGES ===== -->
+  <section class="light-section" id="badges">
+    <div class="container">
+      <h2 class="section-title">Industry Certifications & Trusted Partners</h2>
+      <div class="badge-row">
+        <a href="https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828" target="_blank" rel="noopener">
+          <img src="images/badges/owens-corning-preferred.png" alt="Owens Corning Preferred Contractor" class="badge" loading="lazy" />
+        </a>
+        <a href="https://share.google/5hObHe0NZpdu8wbaO" target="_blank" rel="noopener">
+          <img src="images/badges/google-guaranteed.png" alt="Google Guaranteed" class="badge" loading="lazy" />
+        </a>
+        <a href="https://www.angi.com/companylist/us/ca/escondido/zenith-roofing-services-inc-reviews-1.htm" target="_blank" rel="noopener">
+          <img src="images/badges/angi-certified.png" alt="Angi Certified Pro" class="badge" loading="lazy" />
+        </a>
+        <!-- Yelp Badge -->
+        <a href="https://www.yelp.com/biz/zenith-roofing-services-escondido" target="_blank" rel="noopener">
+          <img src="images/badges/yelp_logo.svg" alt="Yelp Zenith Roofing Services" class="badge" loading="lazy" />
+        </a>
+        <a href="https://www.guildquality.com/pro/zenith-roofing-services" target="_blank" rel="noopener">
+          <img src="images/badges/guildquality.png" alt="GuildQuality Member" class="badge" loading="lazy" />
+        </a>
+        <a href="https://directorii.com/us/ca/escondido/zenith-roofing-services-reviews-191/?country=us&state=ca&city=fallbrook&category=roofing" target="_blank" rel="noopener">
+          <img src="images/badges/directorii-badge.png" alt="Directorii Verified" class="badge" loading="lazy" />
+        </a>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- ====== TRUSTED BADGES ====== -->
-<section class="light-section" id="badges">
-  <div class="container">
-    <h2 class="section-title">Industry Certifications & Trusted Partners</h2>
-    <div class="badge-row">
-      <a href="https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828" target="_blank" rel="noopener">
-        <img src="images/badges/owens-corning-preferred.png" alt="Owens Corning Preferred Contractor" class="badge" loading="lazy" />
-      </a>
-      <a href="https://share.google/5hObHe0NZpdu8wbaO" target="_blank" rel="noopener">
-        <img src="images/badges/google-guaranteed.png" alt="Google Guaranteed" class="badge" loading="lazy" />
-      </a>
-      <a href="https://www.angi.com/companylist/us/ca/escondido/zenith-roofing-services-inc-reviews-1.htm" target="_blank" rel="noopener">
-        <img src="images/badges/angi-certified.png" alt="Angi Certified Pro" class="badge" loading="lazy" />
-      </a>
-
-      <!-- ✅ Yelp Badge Inserted Here -->
-<a href="https://www.yelp.com/biz/zenith-roofing-services-escondido"
-   target="_blank"
-   rel="noopener">
-  <img src="images/badges/yelp_logo.svg"
-       alt="Yelp Zenith Roofing Services"
-       class="badge"
-       loading="lazy" />
-</a>
-
-      <a href="https://www.guildquality.com/pro/zenith-roofing-services" target="_blank" rel="noopener">
-        <img src="images/badges/guildquality.png" alt="GuildQuality Member" class="badge" loading="lazy" />
-      </a>
-      <a href="https://directorii.com/us/ca/escondido/zenith-roofing-services-reviews-191/?country=us&state=ca&city=fallbrook&category=roofing" target="_blank" rel="noopener">
-        <img src="images/badges/directorii-badge.png" alt="Directorii Verified" class="badge" loading="lazy" />
-      </a>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- ===== PROJECT GALLERY ===== -->
   <section class="gray-section project-gallery" id="gallery">
     <div class="container">
       <h2 class="section-title">Our Recent Work</h2>
       <p class="section-subtitle">A look at some of our completed roofing projects across San Diego & Temecula.</p>
-
       <div class="photo-grid">
         <div class="photo-item"><img src="clay-tiles-solar-shingles.jpg" alt="Clay Tile Roof with Solar Panels in Escondido, CA" loading="lazy"><p class="caption">Clay Tile Roof with Solar – Escondido, CA</p></div>
         <div class="photo-item"><img src="modern-tile-roof.png" alt="Modern Tile Roof in San Diego, CA" loading="lazy"><p class="caption">Modern Tile Roof – San Diego, CA</p></div>
@@ -391,8 +407,8 @@
   <section class="light-section" id="reviews">
     <div class="container">
       <h2 class="section-title">What Our Clients Say</h2>
-      <blockquote>“Zenith did a fantastic job on our roof. Great communication and no surprises!” – Sarah R., Temecula</blockquote>
-      <blockquote>“Professional and honest. I’d hire them again in a heartbeat.” – Mark T., San Diego</blockquote>
+      <blockquote>“Zenith did a fantastic job on our roof. Great communication and no surprises!” – Sarah R., Temecula</blockquote>
+      <blockquote>“Professional and honest. I’d hire them again in a heartbeat.” – Mark T., San Diego</blockquote>
     </div>
   </section>
 
@@ -401,7 +417,7 @@
     <div class="container">
       <h2 class="section-title" style="color:#fff;">Ready for a Roof You Can Trust?</h2>
       <p>Contact Zenith Roofing Services today for a free, no‑pressure estimate.</p>
-      <a href="tel:8589006163" class="button">Call 858‑900‑6163</a>
+      <a href="tel:8589006163" class="button">Call 858‑900‑6163</a>
     </div>
   </section>
 
@@ -410,17 +426,16 @@
     <div class="container">
       <h2 class="section-title">Serving San Diego, Temecula & Surrounding Areas</h2>
       <h3>Local Expertise in San Diego & Temecula</h3>
-      <p><em>Escondido, Vista, Carlsbad, Oceanside, Encinitas, Fallbrook, Bonsall, Valley Center, Rancho Bernardo, and more.</em></p>
-      <p><em>Temecula, Murrieta, Menifee, Wildomar, Lake Elsinore</em> and the surrounding Inland Empire.</p>
+      <p><em>Escondido, Vista, Carlsbad, Oceanside, Encinitas, Fallbrook, Bonsall, Valley Center, Rancho Bernardo, and more.</em></p>
+      <p><em>Temecula, Murrieta, Menifee, Wildomar, Lake Elsinore</em> and the surrounding Inland Empire.</p>
       <h3>Expanded Coverage Throughout Southern California</h3>
       <ul style="text-align:left; display:inline-block; list-style: disc; padding-left: 40px;">
         <li>Riverside County</li>
         <li>Orange County</li>
         <li>Los Angeles County</li>
       </ul>
-      <p><strong>✅ Licensed & Insured   ✅ Local Experts   ✅ Satisfaction Guaranteed</strong></p>
+      <p><strong>✅ Licensed & Insured   ✅ Local Experts   ✅ Satisfaction Guaranteed</strong></p>
     </div>
   </section>
 
-</body>
-</html>
+  <!-- ===== Why Choose Styles ===== -->
