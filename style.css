@@ -440,3 +440,110 @@
 
   <!-- ===== Why Choose Styles ===== -->
 
+/* ========== UPDATED NAVIGATION STYLES ========== */
+.menu-icon {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  padding: 10px 14px;
+  font-weight: 600;
+  transition: background 0.3s;
+  border-radius: 4px;
+}
+
+.nav-links li a:hover {
+  background-color: var(--zenith-orange);
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: var(--zenith-blue);
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  z-index: 999;
+  border: 1px solid var(--zenith-orange);
+  border-radius: 4px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  border-bottom: 1px solid #1a3d69;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: #1a3d69;
+}
+
+/* Highlight YouTube in orange */
+.youtube-link {
+  color: var(--zenith-orange);
+  font-weight: bold;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--zenith-blue);
+    margin-top: 10px;
+  }
+
+  #menu-toggle:checked + .menu-icon + .nav-links {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropdown-menu {
+    position: static;
+    border: none;
+  }
+}
