@@ -298,6 +298,12 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
 .testimonial-swiper {
   margin-top: 30px;
   padding-bottom: 40px;
+  position: relative;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
 }
 
 .testimonial {
@@ -307,6 +313,7 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   text-align: left;
   height: 100%;
+  max-width: 360px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -324,11 +331,7 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   color: #777;
 }
 
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-}
-
+/* Swiper arrows */
 .swiper-button-next,
 .swiper-button-prev {
   color: var(--zenith-orange);
@@ -343,6 +346,7 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
 .swiper-button-prev::after {
   font-size: 20px;
 }
+
 
 /* ========== Call to action Banner ========== */
 .cta-banner {
