@@ -287,28 +287,44 @@
 }
 
     /* ========== RESPONSIVE FIXES ========== */
-    @media (max-width: 1024px) {
-      .header-inner {
-        flex-direction: column;
-        align-items: center;
-      }
-      .nav-links {
-        flex-direction: column;
-        align-items: center;
-      }
-      .form-row { flex-direction: column; }
-      .photo-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 768px) {
-      .hero h1, .hero h2 { font-size: 1.8rem; }
-      .cta-banner h2 { font-size: 1.6rem; }
-      .cta-banner p  { font-size: 1rem; }
-      .photo-grid { grid-template-columns: 1fr; }
-      .call-button {
-        font-size: 13px;
-        padding: 8px 16px;
-      }
-    }
+   /* ========== RESPONSIVE FIXES ========== */
+@media (max-width: 1024px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-row {
+    flex-direction: column;
+  }
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1,
+  .hero h2 {
+    font-size: 1.8rem;
+  }
+  .cta-banner h2 {
+    font-size: 1.6rem;
+  }
+  .cta-banner p {
+    font-size: 1rem;
+  }
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+  .call-button {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+}
+
   </style>
 </head>
 <body>
