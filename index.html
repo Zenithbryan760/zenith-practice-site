@@ -336,6 +336,7 @@
     <p>We provide roof reports, visual inspections, and verbal estimates for real estate transactions. Please contact us to schedule an appointment or learn more about what's included.</p>
   </div>
 </section>
+  
 <!-- ===== TESTIMONIALS Java Script ===== -->
   <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
@@ -345,8 +346,9 @@
   const swiper = new Swiper('.testimonial-swiper', {
     loop: true,
     autoplay: {
-      delay: 5000,
+      delay: 3000,
       disableOnInteraction: false,
+      pauseOnMouseEnter: true,
     },
     slidesPerView: 3,
     spaceBetween: 30,
@@ -355,15 +357,15 @@
       prevEl: '.swiper-button-prev',
     },
     breakpoints: {
-      // when window width is <= 768px (mobile)
+      // Mobile
       0: {
         slidesPerView: 1
       },
-      // when window width is <= 1024px (tablet)
+      // Tablet
       768: {
         slidesPerView: 2
       },
-      // when window width is > 1024px (desktop)
+      // Desktop
       1024: {
         slidesPerView: 3
       }
