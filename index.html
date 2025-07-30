@@ -348,11 +348,28 @@
       delay: 5000,
       disableOnInteraction: false,
     },
+    slidesPerView: 3,
+    spaceBetween: 30,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
+    breakpoints: {
+      // when window width is <= 768px (mobile)
+      0: {
+        slidesPerView: 1
+      },
+      // when window width is <= 1024px (tablet)
+      768: {
+        slidesPerView: 2
+      },
+      // when window width is > 1024px (desktop)
+      1024: {
+        slidesPerView: 3
+      }
+    }
   });
 </script>
+  
 </body>
 </html>
