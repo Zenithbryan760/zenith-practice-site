@@ -103,6 +103,7 @@ body {
 }
 .dropdown:hover .dropdown-menu {
   display: block;
+  animation: fadeIn 0.2s ease-in-out;
 }
 .dropdown-menu a {
   display: block;
@@ -122,11 +123,25 @@ body {
 }
 .dropdown-submenu:hover .submenu {
   display: block;
+  animation: slideLeft 0.3s ease-in-out;
 }
 .dropdown-submenu > a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.dropdown-submenu > a::after {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: 8px;
+  background: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 6l6 6-6 6"/></svg>') no-repeat center center;
+  background-size: contain;
+  transition: filter 0.3s ease;
+}
+.dropdown-submenu > a:hover::after {
+  filter: brightness(1.5) sepia(1) hue-rotate(-20deg) saturate(4);
 }
 
 /* Submenu Panel */
@@ -181,17 +196,16 @@ body {
   padding-top: 10px;
 }
 
-/* ===== Submenu Arrow Indicators ===== */
-.dropdown-submenu > a::after {
-  content: "▶";
-  margin-left: 8px;
-  font-size: 0.8em;
-  color: #bbb;
-  transition: color 0.3s ease;
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
-.dropdown-submenu > a:hover::after {
-  color: var(--zenith-orange);
+@keyframes slideLeft {
+  0% { opacity: 0; transform: translateX(10px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
+
 
 /* ========== HERO ========== */
 .hero {
