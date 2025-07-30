@@ -46,99 +46,59 @@
       pointer-events: none;
     }
 
-/* ========== HEADER ========== */
-.header {
-  background: var(--zenith-blue);
-  color: var(--white);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  position: relative;
-  z-index: 100;
-}
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.logo {
-  height: 56px;
-  width: auto;
-}
-.license {
-  font-size: 0.8rem;
-  text-align: center;
-  color: var(--white);
-}
+    /* ========== HEADER ========== */
+    .header {
+      background: var(--zenith-blue);
+      color: var(--white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 100;
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .logo { height: 56px; width: auto; }
+    .license { font-size: 0.8rem; text-align: center; }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 4px;
-  padding: 0;
-  margin: 0;
-}
-.nav-links a {
-  color: var(--white);
-  padding: 10px 16px;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background 0.3s ease;
-}
-.nav-links a:hover {
-  background: var(--zenith-orange);
-}
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px;
+    }
+    .nav-links a {
+      color: var(--white);
+      padding: 10px 16px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+    .nav-links a:hover {
+      background: var(--zenith-orange);
+    }
 
-.phone-section {
-  text-align: center;
-}
-.phone-number {
-  font-weight: 700;
-  font-size: 16px;
-}
-.phone-number a {
-  color: inherit;
-  text-decoration: none;
-}
-.call-button {
-  display: inline-block;
-  margin-top: 6px;
-  background: var(--zenith-orange);
-  color: var(--white);
-  padding: 8px 20px;
-  font-weight: 700;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: background 0.3s ease;
-  font-size: 14px;
-}
-.call-button:hover {
-  background: #e6871c;
-}
-
-/* ========== MOBILE HEADER STACKING ========== */
-@media (max-width: 1024px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .nav-links {
-    justify-content: center;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .phone-section {
-    margin-top: 10px;
-  }
-}
-
-
+    .phone-section { text-align: center; }
+    .phone-number { font-weight: 700; font-size: 16px; }
+    .phone-number a { color: inherit; text-decoration: none; }
+    .call-button {
+      display: inline-block;
+      margin-top: 6px;
+      background: var(--zenith-orange);
+      color: var(--white);
+      padding: 8px 20px;
+      font-weight: 700;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      font-size: 14px;
+    }
+    .call-button:hover { background: #e6871c; }
 
     /* ========== HERO ========== */
     .hero {
@@ -287,44 +247,28 @@
 }
 
     /* ========== RESPONSIVE FIXES ========== */
-   /* ========== RESPONSIVE FIXES ========== */
-@media (max-width: 1024px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: center;
-  }
-  .nav-links {
-    flex-direction: column;
-    align-items: center;
-  }
-  .form-row {
-    flex-direction: column;
-  }
-  .photo-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .hero h1,
-  .hero h2 {
-    font-size: 1.8rem;
-  }
-  .cta-banner h2 {
-    font-size: 1.6rem;
-  }
-  .cta-banner p {
-    font-size: 1rem;
-  }
-  .photo-grid {
-    grid-template-columns: 1fr;
-  }
-  .call-button {
-    font-size: 13px;
-    padding: 8px 16px;
-  }
-}
-
+    @media (max-width: 1024px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: center;
+      }
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      .form-row { flex-direction: column; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .hero h1, .hero h2 { font-size: 1.8rem; }
+      .cta-banner h2 { font-size: 1.6rem; }
+      .cta-banner p  { font-size: 1rem; }
+      .photo-grid { grid-template-columns: 1fr; }
+      .call-button {
+        font-size: 13px;
+        padding: 8px 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -334,6 +278,32 @@
     <source src="roofing-bg.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo-section">
+        <img src="zenith-logo.png" alt="Zenith Roofing Services Logo" class="logo" />
+        <p class="license">Lic# 1036112</p>
+      </div>
+      <nav class="nav-bar">
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#gallery">Projects / Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#glossary">Glossary</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">YouTube</a></li>
+        </ul>
+      </nav>
+      <div class="phone-section">
+        <p class="phone-number">Call or Text: <a href="tel:8589006163">858‑900‑6163</a></p>
+        <a href="tel:8589006163" class="call-button">Call Now</a>
+      </div>
+    </div>
+  </header>
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="top">
@@ -380,9 +350,9 @@
 <ul class="trust-list">
   <li><span class="checkmark orange">✓</span> Local, Family‑Owned &amp; Operated</li>
   <li><span class="checkmark orange">✓</span> 20–40 Years of Roofing Experience</li>
-  <li><span class="checkmark orange">✓</span> Licensed &amp; Insured – CA Lic. #1036112</li>
+  <li><span class="checkmark orange">✓</span> Licensed &amp; Insured – CA Lic. #1036112</li>
   <li><span class="checkmark orange">✓</span> Premium Materials with Strong Warranties</li>
-  <li><span class="checkmark orange">✓</span> Rated 5 Stars in San Diego &amp; Temecula</li>
+  <li><span class="checkmark orange">✓</span> Rated 5 Stars in San Diego &amp; Temecula</li>
 </ul>
       </div>
       <div class="why-choose-image">
@@ -437,8 +407,8 @@
   <section class="light-section" id="reviews">
     <div class="container">
       <h2 class="section-title">What Our Clients Say</h2>
-      <blockquote>“Zenith did a fantastic job on our roof. Great communication and no surprises!” – Sarah R., Temecula</blockquote>
-      <blockquote>“Professional and honest. I’d hire them again in a heartbeat.” – Mark T., San Diego</blockquote>
+      <blockquote>“Zenith did a fantastic job on our roof. Great communication and no surprises!” – Sarah R., Temecula</blockquote>
+      <blockquote>“Professional and honest. I’d hire them again in a heartbeat.” – Mark T., San Diego</blockquote>
     </div>
   </section>
 
@@ -447,7 +417,7 @@
     <div class="container">
       <h2 class="section-title" style="color:#fff;">Ready for a Roof You Can Trust?</h2>
       <p>Contact Zenith Roofing Services today for a free, no‑pressure estimate.</p>
-      <a href="tel:8589006163" class="button">Call 858‑900‑6163</a>
+      <a href="tel:8589006163" class="button">Call 858‑900‑6163</a>
     </div>
   </section>
 
@@ -456,15 +426,38 @@
     <div class="container">
       <h2 class="section-title">Serving San Diego, Temecula & Surrounding Areas</h2>
       <h3>Local Expertise in San Diego & Temecula</h3>
-      <p><em>Escondido, Vista, Carlsbad, Oceanside, Encinitas, Fallbrook, Bonsall, Valley Center, Rancho Bernardo, and more.</em></p>
-      <p><em>Temecula, Murrieta, Menifee, Wildomar, Lake Elsinore</em> and the surrounding Inland Empire.</p>
+      <p><em>Escondido, Vista, Carlsbad, Oceanside, Encinitas, Fallbrook, Bonsall, Valley Center, Rancho Bernardo, and more.</em></p>
+      <p><em>Temecula, Murrieta, Menifee, Wildomar, Lake Elsinore</em> and the surrounding Inland Empire.</p>
       <h3>Expanded Coverage Throughout Southern California</h3>
       <ul style="text-align:left; display:inline-block; list-style: disc; padding-left: 40px;">
         <li>Riverside County</li>
         <li>Orange County</li>
         <li>Los Angeles County</li>
       </ul>
-      <p><strong>✅ Licensed & Insured   ✅ Local Experts   ✅ Satisfaction Guaranteed</strong></p>
+      <p><strong>✅ Licensed & Insured   ✅ Local Experts   ✅ Satisfaction Guaranteed</strong></p>
     </div>
   </section>
 
+
+
+.why-choose-text {
+  flex: 1 1 50%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.trust-list li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+.trust-list .checkmark {
+  margin-right: 12px;  /* slightly larger gap */
+  font-size: 1.4rem;
+  color: var(--zenith-orange);
+}
+.why-choose-container {
+  position: relative;
+}
