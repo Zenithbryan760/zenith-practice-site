@@ -135,22 +135,26 @@ body {
   top: 0;
   left: 100%;
   background-color: #0b3c74; /* Slightly lighter than --zenith-blue */
-  min-width: 220px;
-  border-radius: 4px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* upgraded shadow */
+  min-width: 240px;
+  padding: 8px 0;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   z-index: 250;
-  padding: 10px 0;              /* added padding */
-  line-height: 1.5;             /* improved readability */
 }
 
 .submenu a {
-  padding: 10px 16px;
+  padding: 12px 20px;
   color: var(--white);
   text-decoration: none;
   display: block;
-  font-weight: 500;
+  font-size: 14px;
   transition: background 0.3s ease, padding-left 0.2s ease;
 }
+.submenu a:hover {
+  background-color: var(--zenith-orange);
+  padding-left: 24px;
+}
+
 
 .submenu a:hover {
   background-color: var(--zenith-orange);
@@ -160,15 +164,15 @@ body {
 /* ===== Submenu Section Labels ===== */
 .submenu-label {
   padding: 10px 16px;
-  font-size: 0.8rem;
-  font-weight: 600;
   color: #ccc;
+  font-size: 12px;
+  font-weight: bold;
   text-transform: uppercase;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  cursor: default;
+  background-color: #072e59;
+  border-bottom: 1px solid #1a4b82;
   pointer-events: none;
 }
+
 
 .submenu-label:first-child {
   border-top: none;
@@ -181,13 +185,32 @@ body {
   float: right;
   margin-left: 8px;
   font-size: 0.8em;
-  color: var(--white);
+  color: #bbb;
 }
-
 .dropdown-submenu > a:hover::after {
   color: var(--zenith-orange);
 }
+.submenu li:first-child.submenu-label {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.submenu-label + .submenu-label {
+  margin-top: 6px;
+  border-top: 1px solid #1a4b82;
+  padding-top: 10px;
+}
+/* ===== First Submenu Label Rounded Corners ===== */
+.submenu li:first-child.submenu-label {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
 
+/* ===== Spacing Between Submenu Sections ===== */
+.submenu-label + .submenu-label {
+  margin-top: 6px;
+  border-top: 1px solid #1a4b82;
+  padding-top: 10px;
+}
 
 /* ========== HERO ========== */
 .hero {
