@@ -190,6 +190,50 @@
     }
     .call-button:hover { background: #e6871c; }
 
+/* === HEADER LAYOUT FIXES === */
+.logo-section {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.nav-bar {
+  flex: 2 1 600px;
+  display: flex;
+  justify-content: center;
+}
+
+.phone-section {
+  flex: 1 1 200px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* Mobile stacking */
+@media (max-width: 1024px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo-section,
+  .nav-bar,
+  .phone-section {
+    text-align: center;
+    align-items: center;
+  }
+
+  .phone-section {
+    margin-top: 10px;
+  }
+}
+
+
     /* ========== HERO ========== */
     .hero {
       background: var(--hero-overlay);
