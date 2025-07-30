@@ -64,6 +64,17 @@
     .logo { height: 56px; width: auto; }
     .license { font-size: 0.8rem; text-align: center; }
 
+.menu-icon {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
+}
+
+#menu-toggle {
+  display: none;
+}
+
 .nav-links {
   display: flex;
   gap: 10px;
@@ -79,6 +90,10 @@
   font-weight: 600;
   transition: background 0.3s;
   border-radius: 4px;
+}
+
+.nav-links li a:hover {
+  background-color: var(--zenith-orange);
 }
 
 .nav-links li a:hover {
