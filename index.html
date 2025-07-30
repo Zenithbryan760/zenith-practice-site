@@ -289,7 +289,18 @@
           </div>
         </div>
 
-        <!-- Add more slides here -->
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <div class="testimonial">
+            <p>“Fast, friendly, and affordable. We love our new roof!”</p>
+            <div class="testimonial-meta">
+              <strong>Lisa M.</strong> – Fallbrook<br />
+              ⭐⭐⭐⭐⭐
+            </div>
+          </div>
+        </div>
+
+        <!-- Add more slides as needed -->
       </div>
 
       <!-- Arrows -->
@@ -300,6 +311,33 @@
     <a href="reviews.html" class="button" style="margin-top: 20px;">Read All Reviews</a>
   </div>
 </section>
+
+<!-- ===== SWIPER SCRIPTS ===== -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper('.testimonial-swiper', {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+    slidesPerView: 1,
+    spaceBetween: 30,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2
+      },
+      1024: {
+        slidesPerView: 3
+      }
+    }
+  });
+</script>
 
 <!-- ===== CTA BANNER ===== -->
 <section class="cta-banner" id="contact">
