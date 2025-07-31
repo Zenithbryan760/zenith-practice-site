@@ -416,7 +416,7 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
 
 /* ===== ORANGE CTA BUTTON & SPACING ===== */
 #testimonials .button {
-  display: inline-block;       /* ensure vertical margin applies */
+  display: inline-block;       /* allow margins & padding */
   background-color: var(--zenith-orange);
   color: #fff;
   padding: 0.75rem 1.5rem;
@@ -425,14 +425,14 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   text-decoration: none;
   transition: background-color 0.3s;
 
-  /* spacing tweaks */
-  margin-top: 5rem;            /* pushes button down */
+  margin-top: 5rem;            /* pushes it down */
   position: relative;
-  z-index: 20;                 /* stay above pagination/arrows */
+  z-index: 20;                 /* stays above the slider controls */
 }
 
 #testimonials .button:hover {
   background-color: var(--zenith-blue);
+}
 }
 /* ========== Call to action Banner ========== */
 .cta-banner {
