@@ -311,33 +311,37 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
             transform: scale(1);
             opacity: 1;
         }
-        .testimonial-card {
-            background: white;
-            border-radius: 16px;
-            padding: 32px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.5s ease;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+ .testimonial-card {
++   position: relative;        /* ← add this */
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
++   display: flex;             /* keep */
+    flex-direction: column;
+    transition: all 0.5s ease;
+    border: 1px solid rgba(0,0,0,0.05);
++   max-width: 400px;           /* ← constrain width */
++   margin: 0 auto;             /* ← center in slide */
+ }
         .swiper-slide-active .testimonial-card,
         .swiper-slide-next .testimonial-card,
         .swiper-slide-prev .testimonial-card {
             box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-        }
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: #f7941d;
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            transition: all 0.3s ease;
-            top: 45%;
-        }
+          
+ .swiper-button-next,
+ .swiper-button-prev {
++   position: absolute;       
++   top: 45%;               
+    color: #f7941d;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+ }
         .swiper-button-next:hover,
         .swiper-button-prev:hover {
             transform: scale(1.1);
