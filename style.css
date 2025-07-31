@@ -299,6 +299,7 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   margin-top: 30px;
   padding-bottom: 40px;
   position: relative;
+  overflow: visible;
 }
 
 .swiper-slide {
@@ -339,14 +340,16 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   height: 40px;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
+z-index: 20;
 }
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
   font-size: 20px;
 }
-
+.testimonial-swiper .swiper-wrapper {
+  display: flex;
+}
 
 /* ========== Call to action Banner ========== */
 .cta-banner {
