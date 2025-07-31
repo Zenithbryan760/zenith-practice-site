@@ -434,33 +434,44 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   background-color: var(--zenith-blue);
 }
 }
-/* ===== CTA BANNER (with blue overlay over video) ===== */
+/* ===== CTA BANNER VIDEO TINT ===== */
 .cta-banner {
-  position: relative;       /* create a positioning context */
-  color: var(--white);
-  text-align: center;
-  padding: 60px 20px;
-  overflow: hidden;         /* keep the overlay/video contained */
+  position: relative;        /* establish stacking context */
+  overflow: hidden;          /* keep overlay/video contained */
 }
 
-/* 1) The blue overlay */
+/* 1) Put your video behind everything */
+.cta-banner video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;                /* below the overlay */
+}
+
+/* 2) The blue overlay on top of the video */
 .cta-banner::before {
   content: "";
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
   background-color: var(--zenith-blue);
-  opacity: 0.85;            /* 85% opaque—tweak as you like */
-  z-index: 1;
+  opacity: 1;                /* 1 = fully solid; lower if you want a hint of video */
+  z-index: 1;                /* above the video but below your text */
 }
 
-/* 2) Ensure your text sits above the overlay */
+/* 3) Keep your text & button above the overlay */
 .cta-banner > * {
   position: relative;
   z-index: 2;
 }
 
-/* Your existing text styles */
+/* Your existing styles */
+.cta-banner {
+  color: var(--white);
+  text-align: center;
+  padding: 60px 20px;
+}
 .cta-banner h2 {
   font-size: 2rem;
   margin-bottom: 12px;
