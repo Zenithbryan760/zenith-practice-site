@@ -293,90 +293,61 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
 .photo-item img { width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s; }
 .photo-item:hover img { transform: scale(1.04); }
 .caption { padding: 10px; font-size: 0.95rem; }
-/* ========== TESTIMONIALS CAROUSEL ========== */
-        .swiper {
-            width: 100%;
-            height: 100%;
-            padding: 40px 0;
-            overflow: visible;
-        }
-        .swiper-slide {
-            transition: all 0.5s ease;
-            transform: scale(0.95);
-            opacity: 0.7;
-        }
-        .swiper-slide-active,
-        .swiper-slide-next,
-        .swiper-slide-prev {
-            transform: scale(1);
-            opacity: 1;
-        }
- .testimonial-card {
-+   position: relative;        /* ← add this */
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 
-+   display: flex;             /* keep */
-    flex-direction: column;
-    transition: all 0.5s ease;
-    border: 1px solid rgba(0,0,0,0.05);
-+   max-width: 400px;           /* ← constrain width */
-+   margin: 0 auto;             /* ← center in slide */
- }
-        .swiper-slide-active .testimonial-card,
-        .swiper-slide-next .testimonial-card,
-        .swiper-slide-prev .testimonial-card {
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-          
- .swiper-button-next,
- .swiper-button-prev {
-+   position: absolute;       
-+   top: 45%;               
-    color: #f7941d;
-    width: 50px;
-    height: 50px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    transition: all 0.3s ease;
- }
-        .swiper-button-next:hover,
-        .swiper-button-prev:hover {
-            transform: scale(1.1);
-            background: #f7941d;
-            color: white;
-        }
-        .swiper-button-next:after,
-        .swiper-button-prev:after {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .swiper-pagination-bullet {
-            width: 12px;
-            height: 12px;
-            background: rgba(0,0,0,0.2);
-            opacity: 1;
-        }
-        .swiper-pagination-bullet-active {
-            background: #f7941d;
-            transform: scale(1.3);
-        }
-        .quote-icon {
-            color: #f7941d;
-            opacity: 0.2;
-            font-size: 80px;
-            position: absolute;
-            top: 10px;
-            right: 30px;
-            font-family: Georgia, serif;
-            line-height: 1;
-        }
-        .stars {
-            color: #f8c537;
-            letter-spacing: 3px;
-        }
+/* ========== TESTIMONIALS CAROUSEL ========== */
+.testimonial-swiper {
+  margin-top: 30px;
+  padding-bottom: 40px;
+  position: relative;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.testimonial {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: left;
+  height: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.testimonial p {
+  font-size: 1rem;
+  font-style: italic;
+  color: #333;
+}
+
+.testimonial-meta {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* Swiper arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--zenith-orange);
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px;
+}
+
+
 /* ========== Call to action Banner ========== */
 .cta-banner {
   background: var(--zenith-blue);
