@@ -294,60 +294,58 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
 .photo-item:hover img { transform: scale(1.04); }
 .caption { padding: 10px; font-size: 0.95rem; }
 
-/* ================= TESTIMONIALS SECTION ================= */
-.testimonials-section {
+/* ========== TESTIMONIALS SECTION (BRANDED) ========== */
+#testimonials {
   position: relative;
-  z-index: 10;                   /* sit above your background video */
-  background-color: #fff;        /* solid white */
-  padding: 4rem 1rem;            /* generous vertical padding */
+  z-index: 10;
+  background-color: var(--off-white);
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   font-family: 'Inter', sans-serif;
 }
 
-/* Title styling */
-.testimonials-title {
-  display: inline-block;
-  position: relative;
-  color: var(--zenith-blue);
+/* ===== TYPOGRAPHY ===== */
+#testimonials h2 {
+  color: var(--zenith-blue);               /* navy */
   text-shadow: 1px 1px 4px rgba(0,0,0,0.15);
   font-size: 2.75rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+  display: inline-block;
+  position: relative;
 }
-.testimonials-title::after {
+#testimonials h2::after {
   content: '';
   position: absolute;
-  bottom: -0.75rem;
-  left: 50%;
+  bottom: -0.5rem;
+  left: 50%;                    /* center underline */
   transform: translateX(-50%);
-  width: 5rem;
+  width: 4rem;                  /* lengthened */
   height: 0.25rem;
   background-color: var(--zenith-orange);
   border-radius: 2px;
 }
 
-/* Sub-heading styling */
-.testimonials-subhead {
-  font-weight: 700;
+/* Subheading styling */
+#testimonials p.text-xl {
+  font-weight: 700;              /* full bold */
   font-size: 1.125rem;
   letter-spacing: 0.5px;
-  color: var(--zenith-blue);
-  margin: 0 auto 3rem;
-  max-width: 700px;
+  color: var(--zenith-blue);     /* navy */
+  margin-bottom: 3rem;           /* extra space */
 }
 
-/* Carousel container */
+/* ========== TESTIMONIALS CAROUSEL ========== */
 .testimonial-swiper {
-  position: relative;
-  margin: 2.5rem 0;
+  margin-top: 2rem;
   padding-bottom: 2.5rem;
+  position: relative;
 }
 
-/* Slide centering */
 .swiper-slide {
   display: flex;
   justify-content: center;
 }
 
-/* Card styling */
 .testimonial-card {
   background: #fff;
   border-radius: 12px;
@@ -357,35 +355,36 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
   max-width: 360px;
 }
 
-/* Quote icon and stars */
 .quote-icon {
   font-size: 2.5rem;
   color: var(--zenith-orange);
+  line-height: 1;
   margin-bottom: 0.5rem;
 }
+
 .stars {
   color: var(--zenith-orange);
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
-/* Text & meta */
 .testimonial-text {
   color: var(--text-gray);
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
+
 .testimonial-meta {
   color: var(--text-gray);
   font-size: 0.9rem;
   text-align: left;
 }
 
-/* Navigation arrows */
 .swiper-button-prev,
 .swiper-button-next {
   color: var(--zenith-blue);
@@ -401,7 +400,6 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   opacity: 1;
 }
 
-/* Pagination bullets */
 .swiper-pagination-bullet {
   background: var(--zenith-orange);
   opacity: 0.6;
@@ -410,9 +408,8 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   opacity: 1;
 }
 
-/* CTA button */
-.testimonials-cta {
-  display: inline-block;
+/* ===== ORANGE CTA BUTTON & SPACING ===== */
+#testimonials .button {
   background-color: var(--zenith-orange);
   color: #fff;
   padding: 0.75rem 1.5rem;
@@ -420,11 +417,11 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   font-weight: 500;
   text-decoration: none;
   transition: background-color 0.3s;
-  margin-top: 6rem;
+  margin-top: 5rem;              /* extra breathing room */
   position: relative;
-  z-index: 20;
+  z-index: 20;                   /* above pagination */
 }
-.testimonials-cta:hover {
+#testimonials .button:hover {
   background-color: var(--zenith-blue);
 }
 /* ========== Call to action Banner ========== */
