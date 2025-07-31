@@ -260,7 +260,7 @@
 </section>
 
 <!-- TESTIMONIALS -->
-<body class="bg-gray-50 min-h-screen">
+body class="bg-gray-50 min-h-screen">
     <section class="py-20 px-4">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold text-center text-blue-900 mb-6">Client Success Stories</h2>
@@ -357,6 +357,73 @@
             </div>
         </div>
     </section>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper('.testimonialSwiper', {
+                loop: true,
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+                centeredSlides: false,
+                spaceBetween: 30,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    dynamicBullets: true
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1,
+                        slidesPerGroup: 1
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        slidesPerGroup: 2
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        slidesPerGroup: 3
+                    }
+                },
+                on: {
+                    init: function() {
+                        this.slides.forEach(slide => {
+                            slide.style.transition = "all 0.5s ease";
+                        });
+                    },
+                    slideChangeTransitionStart: function() {
+                        this.slides.forEach(slide => {
+                            slide.style.opacity = "0.7";
+                            slide.style.transform = "scale(0.95)";
+                        });
+                    },
+                    slideChangeTransitionEnd: function() {
+                        const activeSlides = [
+                            this.slides[this.activeIndex],
+                            this.slides[this.activeIndex + 1],
+                            this.slides[this.activeIndex + 2]
+                        ].filter(slide => slide);
+                        
+                        activeSlides.forEach(slide => {
+                            slide.style.opacity = "1";
+                            slide.style.transform = "scale(1)";
+                        });
+                    }
+                }
+            });
+        });
+    </script>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
