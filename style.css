@@ -434,15 +434,41 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   background-color: var(--zenith-blue);
 }
 }
-/* ========== Call to action Banner ========== */
+/* ===== CTA BANNER (with blue overlay over video) ===== */
 .cta-banner {
-  background: var(--zenith-blue);
+  position: relative;       /* create a positioning context */
   color: var(--white);
   text-align: center;
   padding: 60px 20px;
+  overflow: hidden;         /* keep the overlay/video contained */
 }
-.cta-banner h2 { font-size: 2rem; margin-bottom: 12px; }
-.cta-banner p  { font-size: 1.1rem; margin-bottom: 20px; }
+
+/* 1) The blue overlay */
+.cta-banner::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: var(--zenith-blue);
+  opacity: 0.85;            /* 85% opaque—tweak as you like */
+  z-index: 1;
+}
+
+/* 2) Ensure your text sits above the overlay */
+.cta-banner > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Your existing text styles */
+.cta-banner h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+.cta-banner p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
 /* ===== WHY HOMEOWNERS TRUST US ===== */
 .why-choose-section {
   background-color: var(--light-gray);
