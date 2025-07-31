@@ -385,7 +385,6 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
 #testimonials .button:hover {
   background-color: var(--zenith-orange);
 }
-
 /* ========== TESTIMONIALS CAROUSEL ========== */
 .testimonial-swiper {
   margin-top: 30px;
@@ -439,6 +438,19 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   font-size: 20px;
 }
 
+/* ===== ORANGE CTA BUTTON ===== */
+#testimonials .button {
+  background-color: var(--zenith-orange);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+#testimonials .button:hover {
+  background-color: var(--zenith-blue);
+}
 
 /* ========== Call to action Banner ========== */
 .cta-banner {
