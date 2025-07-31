@@ -294,6 +294,13 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
 .photo-item:hover img { transform: scale(1.04); }
 .caption { padding: 10px; font-size: 0.95rem; }
 
+/* ========== TESTIMONIALS SECTION ========== */
+#testimonials {
+  position: relative;
+  z-index: 10;            /* above the video */
+  background-color: #fff; /* solid white */
+}
+
 /* ========== TESTIMONIALS CAROUSEL ========== */
 .testimonial-swiper {
   margin-top: 30px;
