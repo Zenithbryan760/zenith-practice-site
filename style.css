@@ -408,15 +408,8 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   opacity: 1;
 }
 
-/* ===== TESTIMONIAL SECTION SPACING ===== */
-#testimonials {
-  /* give extra breathing room under the cards */
-  padding-bottom: 6rem;  /* adjust up/down as needed */
-}
-
 /* ===== ORANGE CTA BUTTON & SPACING ===== */
 #testimonials .button {
-  display: inline-block;       /* allow margins & padding */
   background-color: var(--zenith-orange);
   color: #fff;
   padding: 0.75rem 1.5rem;
@@ -424,36 +417,42 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   font-weight: 500;
   text-decoration: none;
   transition: background-color 0.3s;
-
-  margin-top: 5rem;            /* pushes it down */
+  margin-top: 5rem;              /* extra breathing room */
   position: relative;
-  z-index: 20;                 /* stays above the slider controls */
+  z-index: 20;                   /* above pagination */
 }
-
 #testimonials .button:hover {
   background-color: var(--zenith-blue);
 }
-}
-/* ===== CTA BANNER VIDEO TINT ===== */
+
+/* ========== Call to action Banner ========== */
 .cta-banner {
-  position: relative !important;
-  overflow: hidden !important;
+  background: var(--zenith-blue);
+  color: var(--white);
+  text-align: center;
+  padding: 60px 20px;
 }
-
-.cta-banner::before {
-  content: "" !important;
-  position: absolute !important;
-  top: 0 !important; left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background-color: var(--zenith-blue) !important;
-  opacity: 1 !important;
-  z-index: 1 !important;
+.cta-banner h2 { font-size: 2rem; margin-bottom: 12px; }
+.cta-banner p  { font-size: 1.1rem; margin-bottom: 20px; }
+/* ===== WHY HOMEOWNERS TRUST US ===== */
+.why-choose-section {
+  background-color: var(--light-gray);
+  padding: 60px 20px;
 }
-
-.cta-banner > * {
-  position: relative !important;
-  z-index: 2 !important;
+.why-choose-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+}
+.why-choose-text {
+  flex: 1 1 50%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 .why-choose-image {
   flex: 1 1 40%;
