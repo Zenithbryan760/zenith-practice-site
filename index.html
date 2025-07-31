@@ -269,6 +269,7 @@
       Trusted by hundreds of homeowners and businesses across Southern California
     </p>
 
+
             <!-- Swiper container -->
             <div class="swiper testimonialSwiper">
                 <div class="swiper-wrapper">
@@ -355,7 +356,7 @@
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
                 
-      <!-- Pagination -->
+     <!-- Pagination -->
       <div class="swiper-pagination"></div>
       <!-- Navigation -->
       <div class="swiper-button-prev"></div>
@@ -364,37 +365,24 @@
   </div>
 </section>
 
-  <!-- Swiper JS + init (place just before </body>) -->
+<!-- Swiper JS + single init (just once at page bottom) -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    new Swiper('.testimonialSwiper', {
+  document.addEventListener('DOMContentLoaded', () => {
+    new Swiper('.testimonial-swiper', {
       loop: true,
       spaceBetween: 30,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        dynamicBullets: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
+      autoplay: { delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true },
+      pagination: { el: '.swiper-pagination', clickable: true, dynamicBullets: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
       breakpoints: {
-        320: { slidesPerView: 1, slidesPerGroup: 1 },
-        768: { slidesPerView: 2, slidesPerGroup: 2 },
-        1024: { slidesPerView: 3, slidesPerGroup: 3 },
+        320: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
       },
       on: {
         init() {
-          this.slides.forEach(s => {
-            s.style.transition = 'all 0.5s ease';
-          });
+          this.slides.forEach(s => (s.style.transition = 'all 0.5s ease'));
         },
         slideChangeTransitionStart() {
           this.slides.forEach(s => {
@@ -404,84 +392,17 @@
         },
         slideChangeTransitionEnd() {
           [0,1,2].forEach(i => {
-            const slide = this.slides[this.activeIndex + i];
-            if (slide) {
-              slide.style.opacity = '1';
-              slide.style.transform = 'scale(1)';
+            const s = this.slides[this.activeIndex + i];
+            if (s) {
+              s.style.opacity = '1';
+              s.style.transform = 'scale(1)';
             }
           });
-        },
-      },
+        }
+      }
     });
   });
 </script>
-
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const swiper = new Swiper('.testimonialSwiper', {
-                loop: true,
-                slidesPerView: 3,
-                slidesPerGroup: 3,
-                centeredSlides: false,
-                spaceBetween: 30,
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                    dynamicBullets: true
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                breakpoints: {
-                    320: {
-                        slidesPerView: 1,
-                        slidesPerGroup: 1
-                    },
-                    768: {
-                        slidesPerView: 2,
-                        slidesPerGroup: 2
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                        slidesPerGroup: 3
-                    }
-                },
-                on: {
-                    init: function() {
-                        this.slides.forEach(slide => {
-                            slide.style.transition = "all 0.5s ease";
-                        });
-                    },
-                    slideChangeTransitionStart: function() {
-                        this.slides.forEach(slide => {
-                            slide.style.opacity = "0.7";
-                            slide.style.transform = "scale(0.95)";
-                        });
-                    },
-                    slideChangeTransitionEnd: function() {
-                        const activeSlides = [
-                            this.slides[this.activeIndex],
-                            this.slides[this.activeIndex + 1],
-                            this.slides[this.activeIndex + 2]
-                        ].filter(slide => slide);
-                        
-                        activeSlides.forEach(slide => {
-                            slide.style.opacity = "1";
-                            slide.style.transform = "scale(1)";
-                        });
-                    }
-                }
-            });
-        });
-    </script>
 
 <!-- ===== CTA BANNER ===== -->
 <section class="cta-banner" id="contact">
