@@ -260,61 +260,264 @@
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="light-section" id="reviews">
-  <div class="container">
-    <h2 class="section-title">What Our Clients Say</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Testimonial Carousel</title>
+    <meta name="description" content="Smooth 3-item testimonial carousel with advanced animations">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <style>
+        .swiper {
+            width: 100%;
+            height: 100%;
+            padding: 40px 0;
+            overflow: visible;
+        }
+        .swiper-slide {
+            transition: all 0.5s ease;
+            transform: scale(0.95);
+            opacity: 0.7;
+        }
+        .swiper-slide-active,
+        .swiper-slide-next,
+        .swiper-slide-prev {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .testimonial-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.5s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .swiper-slide-active .testimonial-card,
+        .swiper-slide-next .testimonial-card,
+        .swiper-slide-prev .testimonial-card {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #f7941d;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            top: 45%;
+        }
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            transform: scale(1.1);
+            background: #f7941d;
+            color: white;
+        }
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: rgba(0,0,0,0.2);
+            opacity: 1;
+        }
+        .swiper-pagination-bullet-active {
+            background: #f7941d;
+            transform: scale(1.3);
+        }
+        .quote-icon {
+            color: #f7941d;
+            opacity: 0.2;
+            font-size: 80px;
+            position: absolute;
+            top: 10px;
+            right: 30px;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        .stars {
+            color: #f8c537;
+            letter-spacing: 3px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <section class="py-20 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center text-blue-900 mb-6">Client Success Stories</h2>
+            <p class="text-xl text-center text-gray-600 mb-16 max-w-3xl mx-auto">Trusted by hundreds of homeowners and businesses across Southern California</p>
 
-    <!-- ✅ REQUIRED: Swiper container -->
-    <div class="swiper testimonial-swiper">
-      <!-- ✅ REQUIRED: Swiper wrapper -->
-      <div class="swiper-wrapper">
-        <!-- Slide 1 -->
-        <div class="swiper-slide">
-          <div class="testimonial">
-            <p>“Zenith did a fantastic job on our roof. Great communication and no surprises!”</p>
-            <div class="testimonial-meta">
-              <strong>Sarah R.</strong> – Temecula<br />
-              ⭐⭐⭐⭐⭐
+            <!-- Swiper container -->
+            <div class="swiper testimonialSwiper">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="quote-icon">"</div>
+                            <div class="stars mb-4 text-2xl">★★★★★</div>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed">"The Zenith team replaced our entire roof in just two days with zero disruption to our business operations. Their attention to detail was exceptional."</p>
+                            <div class="mt-auto pt-4 border-t border-gray-100">
+                                <p class="font-bold text-blue-900 text-lg">Robert &amp; Maria Sanchez</p>
+                                <p class="text-gray-500">Commercial Property, Carlsbad</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="quote-icon">"</div>
+                            <div class="stars mb-4 text-2xl">★★★★★</div>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed">"After three other roofers failed to fix our persistent leak, Zenith identified and resolved the issue in one visit. Worth every penny!"</p>
+                            <div class="mt-auto pt-4 border-t border-gray-100">
+                                <p class="font-bold text-blue-900 text-lg">Jennifer K.</p>
+                                <p class="text-gray-500">Residential Home, La Jolla</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="quote-icon">"</div>
+                            <div class="stars mb-4 text-2xl">★★★★★</div>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed">"The silicone roof coating has already saved us thousands in energy costs. The installation crew was professional and meticulous."</p>
+                            <div class="mt-auto pt-4 border-t border-gray-100">
+                                <p class="font-bold text-blue-900 text-lg">Thompson Medical Center</p>
+                                <p class="text-gray-500">Healthcare Facility, San Diego</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="quote-icon">"</div>
+                            <div class="stars mb-4 text-2xl">★★★★★</div>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed">"Our HOA hired Zenith for a complex tile roof project across 12 buildings. They completed on time and under budget."</p>
+                            <div class="mt-auto pt-4 border-t border-gray-100">
+                                <p class="font-bold text-blue-900 text-lg">Oceanview Condo Association</p>
+                                <p class="text-gray-500">Multi-Unit Complex, Oceanside</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="quote-icon">"</div>
+                            <div class="stars mb-4 text-2xl">★★★★★</div>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed">"Zenith's roof inspection report helped us negotiate a better price on our home purchase. Their expertise was invaluable."</p>
+                            <div class="mt-auto pt-4 border-t border-gray-100">
+                                <p class="font-bold text-blue-900 text-lg">The Wilson Family</p>
+                                <p class="text-gray-500">Home Buyers, Temecula</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="quote-icon">"</div>
+                            <div class="stars mb-4 text-2xl">★★★★★</div>
+                            <p class="text-gray-700 mb-6 text-lg leading-relaxed">"The torch-down roof installation exceeded our expectations. Two years later, it still looks and performs like new."</p>
+                            <div class="mt-auto pt-4 border-t border-gray-100">
+                                <p class="font-bold text-blue-900 text-lg">Miguel's Auto Repair</p>
+                                <p class="text-gray-500">Commercial Building, Escondido</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                
+                <!-- Pagination dots -->
+                <div class="swiper-pagination"></div>
             </div>
-          </div>
         </div>
+    </section>
 
-        <!-- Slide 2 -->
-        <div class="swiper-slide">
-          <div class="testimonial">
-            <p>“Professional and honest. I’d hire them again in a heartbeat.”</p>
-            <div class="testimonial-meta">
-              <strong>Mark T.</strong> – San Diego<br />
-              ⭐⭐⭐⭐⭐
-            </div>
-          </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="swiper-slide">
-          <div class="testimonial">
-            <p>“Bryan and the Zenith team were quick, clean, and affordable. Highly recommend!”</p>
-            <div class="testimonial-meta">
-              <strong>Jessica L.</strong> – Escondido<br />
-              ⭐⭐⭐⭐⭐
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Optional: Navigation Arrows -->
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-    </div>
-    
-      <!-- 3) Pagination bullets: place this last inside .swiper -->
-      <div class="swiper-pagination"></div>
-    </div>
-    
-    <!-- Optional CTA -->
-    <a href="reviews.html" class="button" style="margin-top: 20px;">Read All Reviews</a>
-  </div>
-</section>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper('.testimonialSwiper', {
+                loop: true,
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+                centeredSlides: false,
+                spaceBetween: 30,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    dynamicBullets: true
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1,
+                        slidesPerGroup: 1
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        slidesPerGroup: 2
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        slidesPerGroup: 3
+                    }
+                },
+                on: {
+                    init: function() {
+                        this.slides.forEach(slide => {
+                            slide.style.transition = "all 0.5s ease";
+                        });
+                    },
+                    slideChangeTransitionStart: function() {
+                        this.slides.forEach(slide => {
+                            slide.style.opacity = "0.7";
+                            slide.style.transform = "scale(0.95)";
+                        });
+                    },
+                    slideChangeTransitionEnd: function() {
+                        const activeSlides = [
+                            this.slides[this.activeIndex],
+                            this.slides[this.activeIndex + 1],
+                            this.slides[this.activeIndex + 2]
+                        ].filter(slide => slide);
+                        
+                        activeSlides.forEach(slide => {
+                            slide.style.opacity = "1";
+                            slide.style.transform = "scale(1)";
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
 
 <!-- ===== CTA BANNER ===== -->
 <section class="cta-banner" id="contact">
