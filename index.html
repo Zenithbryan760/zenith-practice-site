@@ -363,13 +363,11 @@
       <div class="swiper-button-next"></div>
     </div>
 
-    <!-- ← CTA goes here, still inside the #testimonials section! -->
-    <div class="text-center read-all-reviews-container">
-      <a href="/reviews" class="button">
-        Read All Reviews
-      </a>
-    </div>
+    
+   <!-- Optional CTA -->
+    <a href="reviews.html" class="button mt-8">Read All Reviews</a>
   </div>
+</section>
 
  <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
@@ -473,3 +471,37 @@
     <p>We provide roof reports, visual inspections, and verbal estimates for real estate transactions. Please contact us to schedule an appointment or learn more about what's included.</p>
   </div>
 </section>
+
+
+ <!-- 1) Core Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <!-- 2) Then your init: -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const swiper = new Swiper('.testimonial-swiper', {
+        loop: true,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
+        slidesPerView: 1,
+        spaceBetween: 30,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          768:  { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        },
+      });
+    });
+  </script>
+</body>
+</html>
