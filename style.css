@@ -295,10 +295,97 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
 .caption { padding: 10px; font-size: 0.95rem; }
 
 /* ========== TESTIMONIALS SECTION ========== */
+/* ========== TESTIMONIALS SECTION (BRANDED) ========== */
 #testimonials {
   position: relative;
-  z-index: 10;            /* above the video */
-  background-color: #fff; /* solid white */
+  z-index: 10;
+  background-color: var(--off-white);  /* softer than pure white */
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Accent underline under the heading */
+#testimonials h2 {
+  position: relative;
+  display: inline-block;
+  color: var(--zenith-blue);
+}
+#testimonials h2::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 3rem;
+  height: 0.25rem;
+  background-color: var(--zenith-orange);
+  border-radius: 2px;
+}
+
+/* Carousel container tweaks */
+.testimonial-swiper {
+  margin-top: 2rem;
+  padding-bottom: 2.5rem;
+}
+
+/* Card styling */
+.testimonial-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 4px solid var(--zenith-orange);  /* brand accent */
+}
+
+/* Quote icon & stars */
+.quote-icon {
+  font-size: 3rem;
+  color: var(--zenith-orange);
+  line-height: 1;
+}
+.stars {
+  color: var(--zenith-orange);
+}
+
+/* Text & meta */
+.testimonial-card p {
+  color: var(--text-gray);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.testimonial-card .font-bold {
+  color: var(--zenith-blue);
+  margin-top: 1rem;
+}
+.testimonial-card .text-gray-500 {
+  color: #6b7280; /* keep a softer gray */
+}
+
+/* Swiper arrows in brand blue */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--zenith-blue);
+  width: 2.5rem;
+  height: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.8;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  opacity: 1;
+}
+
+/* Pagination bullets in orange */
+.swiper-pagination-bullet {
+  background: var(--zenith-orange);
+  opacity: 0.6;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
 }
 
 /* ========== TESTIMONIALS CAROUSEL ========== */
