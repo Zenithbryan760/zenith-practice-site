@@ -408,8 +408,15 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   opacity: 1;
 }
 
+/* ===== TESTIMONIAL SECTION SPACING ===== */
+#testimonials {
+  /* give extra breathing room under the cards */
+  padding-bottom: 6rem;  /* adjust up/down as needed */
+}
+
 /* ===== ORANGE CTA BUTTON & SPACING ===== */
 #testimonials .button {
+  display: inline-block;       /* ensure vertical margin applies */
   background-color: var(--zenith-orange);
   color: #fff;
   padding: 0.75rem 1.5rem;
@@ -417,10 +424,13 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   font-weight: 500;
   text-decoration: none;
   transition: background-color 0.3s;
-  margin-top: 5rem;              /* extra breathing room */
+
+  /* spacing tweaks */
+  margin-top: 5rem;            /* pushes button down */
   position: relative;
-  z-index: 20;                   /* above pagination */
+  z-index: 20;                 /* stay above pagination/arrows */
 }
+
 #testimonials .button:hover {
   background-color: var(--zenith-blue);
 }
