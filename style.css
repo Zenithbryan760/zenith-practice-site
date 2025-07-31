@@ -294,54 +294,138 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
 .photo-item:hover img { transform: scale(1.04); }
 .caption { padding: 10px; font-size: 0.95rem; }
 
-/* ===== TESTIMONIALS TYPOGRAPHY & CTA SPACING (FINAL TWEAKS) ===== */
-
-/* Main heading underline & styling */
-#testimonials h2 {
+/* ================= TESTIMONIALS SECTION ================= */
+.testimonials-section {
   position: relative;
+  z-index: 10;                   /* sit above your background video */
+  background-color: #fff;        /* solid white */
+  padding: 4rem 1rem;            /* generous vertical padding */
+  font-family: 'Inter', sans-serif;
+}
+
+/* Title styling */
+.testimonials-title {
   display: inline-block;
+  position: relative;
   color: var(--zenith-blue);
   text-shadow: 1px 1px 4px rgba(0,0,0,0.15);
   font-size: 2.75rem;
-  margin-bottom: 0.5rem;      /* extra space below title */
+  margin-bottom: 0.5rem;
 }
-#testimonials h2::after {
+.testimonials-title::after {
   content: '';
   position: absolute;
-  bottom: -0.75rem;           /* sit further under the heading */
+  bottom: -0.75rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 5rem;                /* longer accent bar */
+  width: 5rem;
   height: 0.25rem;
   background-color: var(--zenith-orange);
   border-radius: 2px;
 }
 
-/* Subheading styling */
-#testimonials p.text-xl {
-  position: relative;         /* isolate from h2 underline */
-  font-weight: 700;           /* full bold */
+/* Sub-heading styling */
+.testimonials-subhead {
+  font-weight: 700;
   font-size: 1.125rem;
   letter-spacing: 0.5px;
   color: var(--zenith-blue);
-  margin: 0 auto 3rem;        /* center & add bottom space */
+  margin: 0 auto 3rem;
   max-width: 700px;
-  text-align: center;
-}
-/* Ensure no stray underline on subheading */
-#testimonials p.text-xl::after {
-  content: none;
 }
 
-/* Carousel margin adjustments */
+/* Carousel container */
 .testimonial-swiper {
-  margin-top: 2.5rem;         /* push carousel below subheading */
+  position: relative;
+  margin: 2.5rem 0;
   padding-bottom: 2.5rem;
 }
 
-/* CTA button spacing */
-#testimonials .button {
-  margin-top: 6rem;           /* clear pagination bullets */
+/* Slide centering */
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+/* Card styling */
+.testimonial-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  border: 1px solid rgba(7,46,89,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 360px;
+}
+
+/* Quote icon and stars */
+.quote-icon {
+  font-size: 2.5rem;
+  color: var(--zenith-orange);
+  margin-bottom: 0.5rem;
+}
+.stars {
+  color: var(--zenith-orange);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Text & meta */
+.testimonial-text {
+  color: var(--text-gray);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.testimonial-meta {
+  color: var(--text-gray);
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+/* Navigation arrows */
+.swiper-button-prev,
+.swiper-button-next {
+  color: var(--zenith-blue);
+  width: 2.5rem;
+  height: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.8;
+  z-index: 10;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  opacity: 1;
+}
+
+/* Pagination bullets */
+.swiper-pagination-bullet {
+  background: var(--zenith-orange);
+  opacity: 0.6;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+/* CTA button */
+.testimonials-cta {
+  display: inline-block;
+  background-color: var(--zenith-orange);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  margin-top: 6rem;
+  position: relative;
+  z-index: 20;
+}
+.testimonials-cta:hover {
+  background-color: var(--zenith-blue);
 }
 /* ========== Call to action Banner ========== */
 .cta-banner {
