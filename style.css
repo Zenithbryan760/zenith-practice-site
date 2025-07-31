@@ -306,10 +306,10 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
 
 /* ===== TYPOGRAPHY ===== */
 #testimonials h2 {
-  color: var(--zenith-blue);               /* navy brand color */
+  color: var(--zenith-blue);               /* navy */
   text-shadow: 1px 1px 4px rgba(0,0,0,0.15);
-  font-size: 2.75rem;                      /* bump size a bit */
-  margin-bottom: 0.25rem;                  /* tighten under the underline */
+  font-size: 2.75rem;
+  margin-bottom: 0.25rem;
   display: inline-block;
   position: relative;
 }
@@ -317,18 +317,21 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   content: '';
   position: absolute;
   bottom: -0.5rem;
-  left: 0;
-  width: 3rem;
+  left: 50%;                    /* center underline */
+  transform: translateX(-50%);
+  width: 4rem;                  /* lengthened */
   height: 0.25rem;
   background-color: var(--zenith-orange);
   border-radius: 2px;
 }
 
+/* Subheading styling */
 #testimonials p.text-xl {
-  font-weight: 600;                        /* semi-bold */
-  font-size: 1.125rem;                     /* slightly larger */
-  letter-spacing: 0.5px;                   /* a bit of tracking */
-  margin-bottom: 2.5rem;                   /* more space before carousel */
+  font-weight: 700;              /* full bold */
+  font-size: 1.125rem;
+  letter-spacing: 0.5px;
+  color: var(--zenith-blue);     /* navy */
+  margin-bottom: 3rem;           /* extra space */
 }
 
 /* ========== TESTIMONIALS CAROUSEL ========== */
@@ -338,19 +341,17 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   position: relative;
 }
 
-/* Center slides */
 .swiper-slide {
   display: flex;
   justify-content: center;
 }
 
-/* Card styling with stronger outline/shadow */
 .testimonial-card {
   background: #fff;
   border-radius: 12px;
   padding: 1.75rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(7, 46, 89, 0.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  border: 1px solid rgba(7,46,89,0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -358,7 +359,6 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   max-width: 360px;
 }
 
-/* Quote icon */
 .quote-icon {
   font-size: 2.5rem;
   color: var(--zenith-orange);
@@ -366,14 +366,12 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   margin-bottom: 0.5rem;
 }
 
-/* Stars spacing */
 .stars {
   color: var(--zenith-orange);
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
-/* Testimonial text */
 .testimonial-text {
   color: var(--text-gray);
   font-size: 1rem;
@@ -381,14 +379,12 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   margin-bottom: 1.5rem;
 }
 
-/* Meta (name & location) */
 .testimonial-meta {
   color: var(--text-gray);
   font-size: 0.9rem;
   text-align: left;
 }
 
-/* Navigation arrows with hover effect */
 .swiper-button-prev,
 .swiper-button-next {
   color: var(--zenith-blue);
@@ -404,7 +400,6 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   opacity: 1;
 }
 
-/* Pagination bullets in brand orange */
 .swiper-pagination-bullet {
   background: var(--zenith-orange);
   opacity: 0.6;
@@ -422,7 +417,9 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
   font-weight: 500;
   text-decoration: none;
   transition: background-color 0.3s;
-  margin-top: 4rem;                        /* extra breathing room */
+  margin-top: 5rem;              /* extra breathing room */
+  position: relative;
+  z-index: 20;                   /* above pagination */
 }
 #testimonials .button:hover {
   background-color: var(--zenith-blue);
