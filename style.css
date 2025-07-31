@@ -436,69 +436,24 @@ h2.section-title { font-size: 2rem; color: var(--zenith-blue); margin-bottom: 20
 }
 /* ===== CTA BANNER VIDEO TINT ===== */
 .cta-banner {
-  position: relative;        /* establish stacking context */
-  overflow: hidden;          /* keep overlay/video contained */
+  position: relative !important;
+  overflow: hidden !important;
 }
 
-/* 1) Put your video behind everything */
-.cta-banner video {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  z-index: 0;                /* below the overlay */
-}
-
-/* 2) The blue overlay on top of the video */
 .cta-banner::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: var(--zenith-blue);
-  opacity: 1;                /* 1 = fully solid; lower if you want a hint of video */
-  z-index: 1;                /* above the video but below your text */
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important; left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: var(--zenith-blue) !important;
+  opacity: 1 !important;
+  z-index: 1 !important;
 }
 
-/* 3) Keep your text & button above the overlay */
 .cta-banner > * {
-  position: relative;
-  z-index: 2;
-}
-
-/* Your existing styles */
-.cta-banner {
-  color: var(--white);
-  text-align: center;
-  padding: 60px 20px;
-}
-.cta-banner h2 {
-  font-size: 2rem;
-  margin-bottom: 12px;
-}
-.cta-banner p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-}
-/* ===== WHY HOMEOWNERS TRUST US ===== */
-.why-choose-section {
-  background-color: var(--light-gray);
-  padding: 60px 20px;
-}
-.why-choose-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
-  position: relative;
-}
-.why-choose-text {
-  flex: 1 1 50%;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  position: relative !important;
+  z-index: 2 !important;
 }
 .why-choose-image {
   flex: 1 1 40%;
