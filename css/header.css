@@ -245,3 +245,11 @@ nav ul ul {
 *::before {
   border: 1px solid red;
 }
+/* === Fix rogue dot (bullet) next to phone section) === */
+.phone-section,
+.phone-section p,
+.phone-section a,
+.phone-section * {
+  list-style: none !important;
+  display: inline;        /* ensures no block dots from lists */
+}
