@@ -20,37 +20,48 @@ nav ul ul {
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
+
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
-  padding: 15px 20px;
+  /* tightened vertical padding */
+  padding: 10px 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* ── Tighter header & logo/license spacing ── */
-.header-inner {
-  /* shrink vertical padding for a more compact header */
-  padding: 10px 20px;
-}
-
+/* === Logo & License === */
 .logo-section {
-  /* reduce gap between logo and license */
-  gap: 4px;
+  display: flex;
+  /* default: stack logo above license on mobile */
+  flex-direction: column;
+  align-items: center;
+  gap: 4px; /* smaller gap under logo */
+  flex: 0 0 auto;
 }
 
-/* ── On tablet/desktop: put license text to the right of logo ── */
+.logo {
+  /* bigger logo for truck/shirt visibility */
+  height: 112px;
+  width: auto;
+}
+
+.license {
+  font-size: 0.8rem;
+  color: var(--white);
+  margin: 0;
+}
+
+/* move license beside logo on tablet/desktop */
 @media (min-width: 768px) {
   .logo-section {
     flex-direction: row;
     align-items: center;
-    gap: 12px;    /* space between icon and license */
+    gap: 12px;  /* space between logo & license */
   }
-
   .license {
-    /* slightly larger font now that it sits inline */
     font-size: 0.9rem;
   }
 }
@@ -62,10 +73,12 @@ nav ul ul {
   justify-content: center;
   position: relative;
 }
+
 .nav-links {
   display: flex;
   gap: 12px;
 }
+
 .nav-links li {
   position: relative;
 }
@@ -80,6 +93,7 @@ nav ul ul {
   transition: color 0.3s ease;
   -webkit-font-smoothing: antialiased;
 }
+
 .nav-links a::after {
   content: "";
   position: absolute;
@@ -91,15 +105,17 @@ nav ul ul {
   border-radius: 1px;
   transition: width 0.3s ease, left 0.3s ease;
 }
+
 .nav-links a:hover {
   color: var(--zenith-orange);
 }
+
 .nav-links a:hover::after {
   width: 80%;
   left: 10%;
 }
 
-/* === Dropdown Menu: fade, slide, spacing & style === */
+/* === Dropdown Menu === */
 .dropdown-menu {
   display: grid;
   grid-auto-rows: min-content;
@@ -120,6 +136,7 @@ nav ul ul {
     0 4px 12px rgba(0,0,0,0.15);
   z-index: 200;
 }
+
 .dropdown:hover .dropdown-menu {
   opacity: 1;
   visibility: visible;
@@ -127,7 +144,10 @@ nav ul ul {
 }
 
 /* === Submenu (fly-out) === */
-.dropdown-submenu { position: relative; }
+.dropdown-submenu {
+  position: relative;
+}
+
 .submenu {
   display: grid;
   grid-auto-rows: min-content;
@@ -148,6 +168,7 @@ nav ul ul {
     0 4px 12px rgba(0,0,0,0.15);
   z-index: 250;
 }
+
 .dropdown-submenu:hover .submenu {
   opacity: 1;
   visibility: visible;
@@ -165,6 +186,7 @@ nav ul ul {
   text-decoration: none;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
+
 .dropdown-menu a:hover,
 .submenu a:hover {
   background-color: rgba(247,148,29,0.1);
@@ -186,7 +208,6 @@ nav ul ul {
 /* ===================================================================
    Call/Text Section
    =================================================================== */
-/* you can keep the layout & look rules… */
 .phone-section {
   flex: 0 0 auto;
   display: flex;
@@ -202,6 +223,7 @@ nav ul ul {
   margin: 0;
   font-size: 0.9rem;
   font-weight: 600;
+  color: var(--white);
 }
 
 .phone-section a.call-button {
@@ -215,9 +237,8 @@ nav ul ul {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: inline-block;
 }
+
 .phone-section a.call-button:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
-
-/* …but you can remove everything that mentions ::marker, list-style, ::before/::after, etc. */
