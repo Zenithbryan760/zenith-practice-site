@@ -232,24 +232,13 @@ nav ul ul {
   transform: scale(1.05);
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
-/* ✅ Remove stray bullet and align phone section cleanly */
-.phone-section {
-  list-style: none;         /* just in case it inherits UL style */
-  text-align: center;       /* centers text inside */
-  margin-left: auto;        /* pushes it to far right */
+/* === Final fix for dot/marker showing up near phone text === */
+.phone-section p {
+  display: block;
+  list-style: none;
 }
-/* ✅ Force remove rogue bullet or dot */
-.phone-section::before {
-  content: none !important;
-}
-*::before {
-  border: 1px solid red;
-}
-/* === Fix rogue dot (bullet) next to phone section) === */
-.phone-section,
-.phone-section p,
-.phone-section a,
-.phone-section * {
-  list-style: none !important;
-  display: inline;        /* ensures no block dots from lists */
+
+.phone-section p::marker {
+  display: none;
+  content: none;
 }
