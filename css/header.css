@@ -2,7 +2,7 @@
    header.css — Header & Navigation styles
    =================================================================== */
 
-/* === Kill ALL list markers inside any nav === */
+/* === Reset all list markers inside any nav === */
 nav ul,
 nav ul ul {
   list-style: none;
@@ -10,7 +10,7 @@ nav ul ul {
   padding: 0;
 }
 
-/* === Container & Layout === */
+/* === Header container & layout === */
 .header {
   background: var(--zenith-blue);
   color: var(--white);
@@ -25,9 +25,7 @@ nav ul ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: nowrap;
-  /* tightened vertical padding */
-  padding: 10px 20px;
+  padding: 12px 24px;    /* comfortable padding top/bottom & left/right */
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -35,31 +33,29 @@ nav ul ul {
 /* === Logo & License === */
 .logo-section {
   display: flex;
-  /* default: stack logo above license on mobile */
-  flex-direction: column;
+  flex-direction: column;  /* stack on mobile */
   align-items: center;
-  gap: 4px; /* smaller gap under logo */
+  gap: 6px;                /* space between logo & license */
   flex: 0 0 auto;
 }
 
 .logo {
-  /* bigger logo for truck/shirt visibility */
-  height: 112px;
+  height: 80px;            /* slightly smaller for balance */
   width: auto;
 }
 
 .license {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--white);
   margin: 0;
 }
 
-/* move license beside logo on tablet/desktop */
+/* inline license on tablet/desktop */
 @media (min-width: 768px) {
   .logo-section {
     flex-direction: row;
     align-items: center;
-    gap: 12px;  /* space between logo & license */
+    gap: 10px;
   }
   .license {
     font-size: 0.9rem;
@@ -68,37 +64,35 @@ nav ul ul {
 
 /* === Navigation === */
 .nav-bar {
-  flex: 1 1 auto;
+  flex: 1;
   display: flex;
   justify-content: center;
-  position: relative;
 }
 
 .nav-links {
   display: flex;
-  gap: 12px;
+  gap: 16px;               /* modern, even spacing */
 }
 
 .nav-links li {
   position: relative;
 }
 
-/* — Animated Link & Underline — */
+/* animated underline on hover */
 .nav-links a {
   position: relative;
   color: var(--white);
-  padding: 10px 16px;
+  padding: 8px 12px;       /* a little tighter padding */
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s ease;
-  -webkit-font-smoothing: antialiased;
 }
 
 .nav-links a::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: 4px;
+  bottom: 2px;
   width: 0;
   height: 2px;
   background: var(--zenith-orange);
@@ -111,112 +105,17 @@ nav ul ul {
 }
 
 .nav-links a:hover::after {
-  width: 80%;
-  left: 10%;
+  width: 70%;
+  left: 15%;
 }
 
-/* === Dropdown Menu === */
-.dropdown-menu {
-  display: grid;
-  grid-auto-rows: min-content;
-  row-gap: 4px;
-  padding: 12px 0;
-  min-width: 220px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--zenith-blue);
-  border-radius: 8px;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.2),
-    0 4px 12px rgba(0,0,0,0.15);
-  z-index: 200;
-}
-
-.dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* === Submenu (fly-out) === */
-.dropdown-submenu {
-  position: relative;
-}
-
-.submenu {
-  display: grid;
-  grid-auto-rows: min-content;
-  row-gap: 4px;
-  padding: 12px 0;
-  min-width: 220px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background: var(--zenith-blue);
-  border-radius: 8px;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.2),
-    0 4px 12px rgba(0,0,0,0.15);
-  z-index: 250;
-}
-
-.dropdown-submenu:hover .submenu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
-}
-
-/* === Links inside menus === */
-.dropdown-menu a,
-.submenu a {
-  display: block;
-  padding: 12px 20px;
-  color: var(--white);
-  font-size: 0.95rem;
-  line-height: 1.4;
-  text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.dropdown-menu a:hover,
-.submenu a:hover {
-  background-color: rgba(247,148,29,0.1);
-  color: var(--zenith-orange);
-}
-
-/* === Section labels === */
-.submenu-label {
-  padding: 8px 20px;
-  margin: 8px 0 4px;
-  font-size: 0.75rem;
-  color: #ccc;
-  background: var(--zenith-blue);
-  text-transform: uppercase;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  pointer-events: none;
-}
-
-/* ===================================================================
-   Call/Text Section
-   =================================================================== */
+/* === Call/Text Section === */
 .phone-section {
-  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  text-align: center;
   margin: 0;
-  padding: 0;
 }
 
 .phone-section p {
@@ -229,7 +128,7 @@ nav ul ul {
 .phone-section a.call-button {
   background: var(--zenith-orange);
   color: var(--white);
-  padding: 8px 20px;
+  padding: 6px 18px;
   border-radius: 4px;
   font-weight: 700;
   text-decoration: none;
@@ -239,6 +138,32 @@ nav ul ul {
 }
 
 .phone-section a.call-button:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+/* === Hamburger toggle (mobile only) === */
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .nav-bar,
+  .phone-section {
+    display: none;         /* hide on mobile by default */
+  }
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .menu-toggle .bar {
+    width: 24px;
+    height: 3px;
+    background: var(--white);
+    border-radius: 2px;
+  }
 }
