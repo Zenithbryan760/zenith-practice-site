@@ -190,17 +190,9 @@ nav ul ul {
   padding: 0;
 }
 .phone-section p {
-  display: inline;          /* ✅ Changed from block */
-  list-style: none;         /* ✅ Explicitly remove list marker */
   margin: 0;
   font-size: 0.9rem;
   font-weight: 600;
-}
-.phone-section p::before,
-.phone-section p::after,
-.phone-section p::marker {
-  content: none !important; /* ✅ Remove all extra markers */
-  display: none !important;
 }
 .phone-section p a {
   position: relative;
