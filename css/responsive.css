@@ -1,1 +1,62 @@
+/* ===================================================================
+   responsive.css — Media queries & responsive overrides
+   =================================================================== */
+
+/* Tablet & small desktop: stack header elements, adjust grids */
+@media (max-width: 1024px) {
+  /* Header: stack logo, nav, and call button */
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Hero: tighten spacing and font-sizes */
+  .hero {
+    padding: 60px 20px;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1.125rem;
+  }
+
+  /* Form: one-column rows */
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+/* Mobile: full-width buttons, single-column galleries, smaller text */
+@media (max-width: 768px) {
+  /* Hero: even smaller headings */
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+
+  /* Buttons stretch full width */
+  .button,
+  .call-button {
+    width: 100%;
+    padding: 12px 0;
+  }
+
+  /* Gallery: single column photos */
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Badge row: tighter gap */
+  .badge-row {
+    gap: 16px;
+  }
+}
 
