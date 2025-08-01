@@ -232,3 +232,9 @@ nav ul ul {
   transform: scale(1.05);
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
+/* ✅ Remove stray bullet and align phone section cleanly */
+.phone-section {
+  list-style: none;         /* just in case it inherits UL style */
+  text-align: center;       /* centers text inside */
+  margin-left: auto;        /* pushes it to far right */
+}
