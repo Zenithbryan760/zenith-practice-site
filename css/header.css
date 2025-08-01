@@ -2,6 +2,7 @@
    header.css — Header & Navigation styles
    =================================================================== */
 
+/* === Container & Layout === */
 .header {
   background: var(--zenith-blue);
   color: var(--white);
@@ -15,27 +16,34 @@
 .header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-+  flex-wrap: nowrap;
+  justify-content: space-between; /* logo left, nav center, call right */
+  flex-wrap: nowrap;               /* keep all on one line */
   padding: 15px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Logo and license */
+/* === Logo & License === */
 .logo-section {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex: 0 0 auto;
 }
 .logo {
   height: 56px;
+  width: auto;
 }
 .license {
   font-size: 0.8rem;
   color: var(--white);
 }
 
-/* Navigation */
+/* === Navigation === */
 .nav-bar {
+  flex: 1 1 auto;          /* take up remaining space */
+  display: flex;
+  justify-content: center; /* center the nav-links within */
   position: relative;
 }
 .nav-links {
@@ -51,13 +59,14 @@
   padding: 10px 16px;
   font-weight: 600;
   border-radius: 4px;
+  text-decoration: none;
   transition: background 0.3s ease;
 }
 .nav-links a:hover {
   background: var(--zenith-orange);
 }
 
-/* Dropdown menus */
+/* === Dropdown Menu === */
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -73,7 +82,7 @@
   display: block;
 }
 
-/* Submenus */
+/* === Submenu (fly-out) === */
 .dropdown-submenu {
   position: relative;
 }
@@ -95,23 +104,25 @@
   display: block;
   color: var(--white);
   padding: 10px 16px;
+  text-decoration: none;
   transition: background 0.3s ease;
 }
 .submenu a:hover {
   background: var(--zenith-orange);
 }
 .submenu-label {
-  display: block;
   padding: 8px 16px;
   font-size: 0.75rem;
   color: #ccc;
   background: var(--zenith-blue);
   text-transform: uppercase;
   border-bottom: 1px solid rgba(255,255,255,0.2);
+  pointer-events: none;
 }
 
-/* Call/Text Button */
+/* === Call/Text Section === */
 .phone-section {
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,15 +131,17 @@
 .phone-section p {
   font-size: 0.9rem;
   font-weight: 500;
+  margin: 0;
 }
-.call-button {
+.phone-section a.call-button {
   background: var(--zenith-orange);
   color: var(--white);
   padding: 8px 20px;
   border-radius: 4px;
   font-weight: 700;
+  text-decoration: none;
   transition: background 0.3s ease;
 }
-.call-button:hover {
+.phone-section a.call-button:hover {
   background: #e6871c;
 }
