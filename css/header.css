@@ -1,1 +1,87 @@
+/* header.css — Header & Navigation */
+.header {
+  position: sticky;
+  top: 0;
+  background: var(--zenith-blue);
+  color: var(--white);
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 15px 0;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-section .logo {
+  height: 56px;
+}
+.license {
+  font-size: 0.8rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 12px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--white);
+  padding: 10px 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+.nav-links a:hover {
+  background: var(--zenith-orange);
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--zenith-blue);
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  min-width: 200px;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Call Section */
+.phone-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.phone-section p {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.call-button {
+  background: var(--zenith-orange);
+  color: var(--white);
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: background 0.3s;
+}
+.call-button:hover {
+  background: #e6871c;
+}
 
