@@ -1,43 +1,53 @@
-/* Header Container */
+/* ===================================================================
+   header.css — Header & Navigation styles
+   =================================================================== */
+
 .header {
+  background: var(--zenith-blue);
+  color: var(--white);
   position: sticky;
   top: 0;
-  background: var(--zenith-blue);
-  color: #fff;
+  width: 100%;
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
-/* Inner Flex Layout */
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 15px 0;
+  padding: 15px 20px;
 }
 
-/* Logo + License */
+/* Logo and license */
 .logo-section {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.logo-section .logo {
+.logo {
   height: 56px;
 }
 .license {
   font-size: 0.8rem;
+  color: var(--white);
 }
 
-/* Nav Links */
+/* Navigation */
+.nav-bar {
+  position: relative;
+}
 .nav-links {
   display: flex;
   gap: 12px;
   list-style: none;
 }
+.nav-links li {
+  position: relative;
+}
 .nav-links a {
-  color: #fff;
+  color: var(--white);
   padding: 10px 16px;
   font-weight: 600;
   border-radius: 4px;
@@ -47,14 +57,12 @@
   background: var(--zenith-orange);
 }
 
-/* Dropdown */
-.dropdown {
-  position: relative;
-}
+/* Dropdown menus */
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%; left: 0;
+  top: 100%;
+  left: 0;
   background: var(--zenith-blue);
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -69,22 +77,23 @@
 .dropdown-submenu {
   position: relative;
 }
-.dropdown-submenu:hover .submenu {
-  display: block;
-  top: 0; left: 100%;
-}
 .submenu {
   display: none;
   position: absolute;
+  top: 0;
+  left: 100%;
   background: var(--zenith-blue);
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   min-width: 200px;
   z-index: 250;
 }
+.dropdown-submenu:hover .submenu {
+  display: block;
+}
 .submenu a {
   display: block;
-  color: #fff;
+  color: var(--white);
   padding: 10px 16px;
   transition: background 0.3s ease;
 }
@@ -92,14 +101,16 @@
   background: var(--zenith-orange);
 }
 .submenu-label {
+  display: block;
   padding: 8px 16px;
   font-size: 0.75rem;
   color: #ccc;
   background: var(--zenith-blue);
-  cursor: default;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 
-/* Call Section */
+/* Call/Text Button */
 .phone-section {
   display: flex;
   flex-direction: column;
@@ -112,11 +123,11 @@
 }
 .call-button {
   background: var(--zenith-orange);
-  color: #fff;
+  color: var(--white);
   padding: 8px 20px;
   border-radius: 4px;
   font-weight: 700;
-  transition: background 0.3s;
+  transition: background 0.3s ease;
 }
 .call-button:hover {
   background: #e6871c;
