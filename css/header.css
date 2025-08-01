@@ -30,23 +30,29 @@ nav ul ul {
   margin: 0 auto;
 }
 
-/* === Logo & License === */
+/* ── Tighter header & logo/license spacing ── */
+.header-inner {
+  /* shrink vertical padding for a more compact header */
+  padding: 10px 20px;
+}
+
 .logo-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  flex: 0 0 auto;
+  /* reduce gap between logo and license */
+  gap: 4px;
 }
 
-.logo {
-  height: 112px;   /* ↑ increased from 56px */
-  width: auto;
-}
+/* ── On tablet/desktop: put license text to the right of logo ── */
+@media (min-width: 768px) {
+  .logo-section {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;    /* space between icon and license */
+  }
 
-.license {
-  font-size: 0.8rem;
-  color: var(--white);
+  .license {
+    /* slightly larger font now that it sits inline */
+    font-size: 0.9rem;
+  }
 }
 
 /* === Navigation === */
