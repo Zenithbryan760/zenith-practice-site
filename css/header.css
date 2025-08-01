@@ -38,10 +38,12 @@ nav ul ul {
   gap: 6px;
   flex: 0 0 auto;
 }
+
 .logo {
-  height: 56px;
+  height: 112px;   /* ↑ increased from 56px */
   width: auto;
 }
+
 .license {
   font-size: 0.8rem;
   color: var(--white);
