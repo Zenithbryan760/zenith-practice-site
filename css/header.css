@@ -26,8 +26,9 @@
 /* === Logo & License === */
 .logo-section {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column; /* stack vertically */
+  align-items: center;    /* center icon & text */
+  gap: 6px;               /* adjust spacing as needed */
   flex: 0 0 auto;
 }
 .logo {
