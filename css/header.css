@@ -40,7 +40,7 @@ nav ul ul {
 }
 
 .logo {
-  height: 80px;            /* slightly smaller for balance */
+  height: 80px;            /* logo height, adjust as needed */
   width: auto;
 }
 
@@ -50,7 +50,7 @@ nav ul ul {
   margin: 0;
 }
 
-/* inline license on tablet/desktop */
+/* inline license beside logo on tablet/desktop */
 @media (min-width: 768px) {
   .logo-section {
     flex-direction: row;
@@ -82,7 +82,7 @@ nav ul ul {
 .nav-links a {
   position: relative;
   color: var(--white);
-  padding: 8px 12px;       /* a little tighter padding */
+  padding: 8px 12px;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -90,80 +90,3 @@ nav ul ul {
 
 .nav-links a::after {
   content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 2px;
-  width: 0;
-  height: 2px;
-  background: var(--zenith-orange);
-  border-radius: 1px;
-  transition: width 0.3s ease, left 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: var(--zenith-orange);
-}
-
-.nav-links a:hover::after {
-  width: 70%;
-  left: 15%;
-}
-
-/* === Call/Text Section === */
-.phone-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  margin: 0;
-}
-
-.phone-section p {
-  margin: 0;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--white);
-}
-
-.phone-section a.call-button {
-  background: var(--zenith-orange);
-  color: var(--white);
-  padding: 6px 18px;
-  border-radius: 4px;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: inline-block;
-}
-
-.phone-section a.call-button:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-}
-
-/* === Hamburger toggle (mobile only) === */
-.menu-toggle {
-  display: none;
-}
-
-@media (max-width: 767px) {
-  .nav-bar,
-  .phone-section {
-    display: none;         /* hide on mobile by default */
-  }
-  .menu-toggle {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  .menu-toggle .bar {
-    width: 24px;
-    height: 3px;
-    background: var(--white);
-    border-radius: 2px;
-  }
-}
