@@ -2,6 +2,14 @@
    header.css — Header & Navigation styles
    =================================================================== */
 
+/* === Kill ALL list markers inside any nav === */
+nav ul,
+nav ul ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 /* === Container & Layout === */
 .header {
   background: var(--zenith-blue);
@@ -12,12 +20,11 @@
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
-
 .header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* logo left, nav center, call right */
-  flex-wrap: nowrap;               /* keep all on one line */
+  justify-content: space-between;
+  flex-wrap: nowrap;
   padding: 15px 20px;
   max-width: 1200px;
   margin: 0 auto;
@@ -26,9 +33,9 @@
 /* === Logo & License === */
 .logo-section {
   display: flex;
-  flex-direction: column; /* stack vertically */
-  align-items: center;    /* center icon & text */
-  gap: 6px;               /* adjust spacing as needed */
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
   flex: 0 0 auto;
 }
 .logo {
@@ -42,34 +49,29 @@
 
 /* === Navigation === */
 .nav-bar {
-  flex: 1 1 auto;              /* take up remaining space */
+  flex: 1 1 auto;
   display: flex;
-  justify-content: center;     /* center the nav-links within */
+  justify-content: center;
   position: relative;
 }
-
 .nav-links {
   display: flex;
   gap: 12px;
-  list-style: none;
 }
-
 .nav-links li {
   position: relative;
 }
 
 /* — Animated Link & Underline — */
 .nav-links a {
-  position: relative;            /* needed for the underline */
+  position: relative;
   color: var(--white);
   padding: 10px 16px;
   font-weight: 600;
   text-decoration: none;
-  transition: color 0.3s ease;   /* smooth color change */
+  transition: color 0.3s ease;
   -webkit-font-smoothing: antialiased;
 }
-
-/* underline pseudo-element */
 .nav-links a::after {
   content: "";
   position: absolute;
@@ -81,7 +83,6 @@
   border-radius: 1px;
   transition: width 0.3s ease, left 0.3s ease;
 }
-
 .nav-links a:hover {
   color: var(--zenith-orange);
 }
@@ -92,19 +93,15 @@
 
 /* === Dropdown Menu: fade, slide, spacing & style === */
 .dropdown-menu {
-  display: grid;                   /* enable gap control */
+  display: grid;
   grid-auto-rows: min-content;
-  row-gap: 4px;                    /* space between items */
-  padding: 12px 0;                 /* breathing room top/bottom */
-  min-width: 220px;                /* wider so text doesn’t wrap */
-  
-  /* fade & slide in */
+  row-gap: 4px;
+  padding: 12px 0;
+  min-width: 220px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-  
-  /* panel styling */
   position: absolute;
   top: 100%;
   left: 0;
@@ -121,22 +118,18 @@
   transform: translateY(0);
 }
 
-/* === Submenu (fly-out): fade, slide, spacing & style === */
-.dropdown-submenu {
-  position: relative;
-}
+/* === Submenu (fly-out) === */
+.dropdown-submenu { position: relative; }
 .submenu {
   display: grid;
   grid-auto-rows: min-content;
   row-gap: 4px;
   padding: 12px 0;
   min-width: 220px;
-  
   opacity: 0;
   visibility: hidden;
   transform: translateX(10px);
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-  
   position: absolute;
   top: 0;
   left: 100%;
@@ -153,11 +146,11 @@
   transform: translateX(0);
 }
 
-/* === Links inside both menus === */
+/* === Links inside menus === */
 .dropdown-menu a,
 .submenu a {
   display: block;
-  padding: 12px 20px;             /* larger tappable area */
+  padding: 12px 20px;
   color: var(--white);
   font-size: 0.95rem;
   line-height: 1.4;
@@ -166,14 +159,14 @@
 }
 .dropdown-menu a:hover,
 .submenu a:hover {
-  background-color: rgba(247,148,29,0.1); /* subtle orange tint */
+  background-color: rgba(247,148,29,0.1);
   color: var(--zenith-orange);
 }
 
-/* === Section labels inside submenus === */
+/* === Section labels === */
 .submenu-label {
   padding: 8px 20px;
-  margin: 8px 0 4px 0;            /* separate groups */
+  margin: 8px 0 4px;
   font-size: 0.75rem;
   color: #ccc;
   background: var(--zenith-blue);
@@ -182,48 +175,20 @@
   pointer-events: none;
 }
 
-/* 1. Ensure no list markers or extra padding/margin */
-.dropdown-menu,
-.dropdown-menu ul,
-.submenu,
-.submenu ul {
-  list-style: none;   /* remove bullets */
-  padding: 0;
-  margin: 0;
-}
-
-/* 2. Make each <li> a flex column so we can add a top border between items */
-.dropdown-menu li,
-.submenu li {
-  display: block;
-}
-
-/* 3. Add a subtle separator between each item */
-.dropdown-menu li + li,
-.submenu li + li {
-  border-top: 1px solid rgba(255,255,255,0.15);
-}
-
-/* 4. Give the links a bit of breathing room (you can adjust padding) */
-.dropdown-menu a,
-.submenu a {
-  padding: 12px 20px;  /* matches the hover-tint rules you added */
-}
-
-/* === Call/Text Section === */
+/* ===================================================================
+   Call/Text Section
+   =================================================================== */
 .phone-section {
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;      /* center contents vertically */
-  justify-content: center;  /* center contents horizontally */
+  align-items: center;
+  justify-content: center;
   gap: 6px;
-  text-align: center;       /* ensure the <p> text is centered */
-  margin: 0;                /* no extra margins */
+  text-align: center;
+  margin: 0;
   padding: 0;
 }
-
-/* style the phone line exactly like a nav-link underline */
 .phone-section p {
   margin: 0;
   font-size: 0.9rem;
@@ -252,8 +217,6 @@
   width: 80%;
   left: 10%;
 }
-
-/* Refined Call Now button */
 .phone-section a.call-button {
   background: var(--zenith-orange);
   color: var(--white);
