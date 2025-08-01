@@ -42,34 +42,60 @@
 
 /* === Navigation === */
 .nav-bar {
-  flex: 1 1 auto;          /* take up remaining space */
+  flex: 1 1 auto;              /* take up remaining space */
   display: flex;
-  justify-content: center; /* center the nav-links within */
+  justify-content: center;     /* center the nav-links within */
   position: relative;
 }
+
 .nav-links {
   display: flex;
   gap: 12px;
   list-style: none;
 }
+
 .nav-links li {
   position: relative;
 }
+
+/* — Animated Link & Underline — */
 .nav-links a {
+  position: relative;            /* needed for the underline */
   color: var(--white);
   padding: 10px 16px;
   font-weight: 600;
-  border-radius: 4px;
   text-decoration: none;
-  transition: background 0.3s ease;
-}
-.nav-links a:hover {
-  background: var(--zenith-orange);
+  transition: color 0.3s ease;   /* smooth color change */
+  -webkit-font-smoothing: antialiased;
 }
 
-/* === Dropdown Menu === */
+/* underline pseudo-element */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 0;
+  height: 2px;
+  background: var(--zenith-orange);
+  border-radius: 1px;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--zenith-orange);
+}
+.nav-links a:hover::after {
+  width: 80%;
+  left: 10%;
+}
+
+/* === Dropdown Menu: fade & slide === */
 .dropdown-menu {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
   position: absolute;
   top: 100%;
   left: 0;
@@ -79,16 +105,23 @@
   min-width: 200px;
   z-index: 200;
 }
+
 .dropdown:hover .dropdown-menu {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-/* === Submenu (fly-out) === */
+/* === Submenu (fly-out): fade & slide === */
 .dropdown-submenu {
   position: relative;
 }
+
 .submenu {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
   position: absolute;
   top: 0;
   left: 100%;
@@ -98,9 +131,13 @@
   min-width: 200px;
   z-index: 250;
 }
+
 .dropdown-submenu:hover .submenu {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
 }
+
 .submenu a {
   display: block;
   color: var(--white);
@@ -108,9 +145,11 @@
   text-decoration: none;
   transition: background 0.3s ease;
 }
+
 .submenu a:hover {
   background: var(--zenith-orange);
 }
+
 .submenu-label {
   padding: 8px 16px;
   font-size: 0.75rem;
@@ -120,6 +159,7 @@
   border-bottom: 1px solid rgba(255,255,255,0.2);
   pointer-events: none;
 }
+
 
 /* === Call/Text Section === */
 .phone-section {
