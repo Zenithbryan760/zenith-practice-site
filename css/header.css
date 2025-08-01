@@ -238,3 +238,7 @@ nav ul ul {
   text-align: center;       /* centers text inside */
   margin-left: auto;        /* pushes it to far right */
 }
+/* ✅ Force remove rogue bullet or dot */
+.phone-section::before {
+  content: none !important;
+}
