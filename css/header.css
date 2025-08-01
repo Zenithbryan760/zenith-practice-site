@@ -1,13 +1,14 @@
-/* header.css — Header & Navigation */
+/* Header Container */
 .header {
   position: sticky;
   top: 0;
   background: var(--zenith-blue);
-  color: var(--white);
+  color: #fff;
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
+/* Inner Flex Layout */
 .header-inner {
   display: flex;
   align-items: center;
@@ -16,6 +17,7 @@
   padding: 15px 0;
 }
 
+/* Logo + License */
 .logo-section {
   display: flex;
   align-items: center;
@@ -28,13 +30,14 @@
   font-size: 0.8rem;
 }
 
+/* Nav Links */
 .nav-links {
   display: flex;
   gap: 12px;
   list-style: none;
 }
 .nav-links a {
-  color: var(--white);
+  color: #fff;
   padding: 10px 16px;
   font-weight: 600;
   border-radius: 4px;
@@ -51,15 +54,49 @@
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: 100%; left: 0;
   background: var(--zenith-blue);
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   min-width: 200px;
+  z-index: 200;
 }
 .dropdown:hover .dropdown-menu {
   display: block;
+}
+
+/* Submenus */
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu:hover .submenu {
+  display: block;
+  top: 0; left: 100%;
+}
+.submenu {
+  display: none;
+  position: absolute;
+  background: var(--zenith-blue);
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  min-width: 200px;
+  z-index: 250;
+}
+.submenu a {
+  display: block;
+  color: #fff;
+  padding: 10px 16px;
+  transition: background 0.3s ease;
+}
+.submenu a:hover {
+  background: var(--zenith-orange);
+}
+.submenu-label {
+  padding: 8px 16px;
+  font-size: 0.75rem;
+  color: #ccc;
+  background: var(--zenith-blue);
+  cursor: default;
 }
 
 /* Call Section */
@@ -75,7 +112,7 @@
 }
 .call-button {
   background: var(--zenith-orange);
-  color: var(--white);
+  color: #fff;
   padding: 8px 20px;
   border-radius: 4px;
   font-weight: 700;
@@ -84,4 +121,3 @@
 .call-button:hover {
   background: #e6871c;
 }
-
