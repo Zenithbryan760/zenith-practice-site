@@ -38,12 +38,10 @@ nav ul ul {
   gap: 6px;
   flex: 0 0 auto;
 }
-
 .logo {
-  height: 112px;   /* ↑ increased from 56px */
+  height: 56px;
   width: auto;
 }
-
 .license {
   font-size: 0.8rem;
   color: var(--white);
@@ -180,24 +178,53 @@ nav ul ul {
 /* ===================================================================
    Call/Text Section
    =================================================================== */
-/* you can keep the layout & look rules… */
 .phone-section {
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   text-align: center;
   margin: 0;
   padding: 0;
 }
-
 .phone-section p {
+  display: inline;          /* ✅ Changed from block */
+  list-style: none;         /* ✅ Explicitly remove list marker */
   margin: 0;
   font-size: 0.9rem;
   font-weight: 600;
 }
-
+.phone-section p::before,
+.phone-section p::after,
+.phone-section p::marker {
+  content: none !important; /* ✅ Remove all extra markers */
+  display: none !important;
+}
+.phone-section p a {
+  position: relative;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.phone-section p a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--zenith-orange);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.phone-section p a:hover {
+  color: var(--zenith-orange);
+}
+.phone-section p a:hover::after {
+  width: 80%;
+  left: 10%;
+}
 .phone-section a.call-button {
   background: var(--zenith-orange);
   color: var(--white);
@@ -213,5 +240,13 @@ nav ul ul {
   transform: scale(1.05);
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
+/* === Final fix for dot/marker showing up near phone text === */
+.phone-section p {
+  display: block;
+  list-style: none;
+}
 
-/* …but you can remove everything that mentions ::marker, list-style, ::before/::after, etc. */
+.phone-section p::marker {
+  display: none;
+  content: none;
+}
