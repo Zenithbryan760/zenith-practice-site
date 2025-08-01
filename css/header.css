@@ -211,6 +211,24 @@
 }
 
 /* === Call/Text Section === */
+.phone-section {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* center contents vertically */
+  justify-content: center;  /* center contents horizontally */
+  gap: 6px;
+  text-align: center;       /* ensure the <p> text is centered */
+  margin: 0;                /* no extra margins */
+  padding: 0;
+}
+
+/* style the phone line exactly like a nav-link underline */
+.phone-section p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
 .phone-section p a {
   position: relative;
   color: var(--white);
@@ -222,16 +240,32 @@
   position: absolute;
   left: 50%;
   bottom: -2px;
-  width: 80%;              /* full target width */
+  width: 0;
   height: 2px;
   background: var(--zenith-orange);
-  transform: scaleX(0);    /* collapsed */
-  transform-origin: center center;
-  transition: transform 0.3s ease;
+  transition: width 0.3s ease, left 0.3s ease;
 }
 .phone-section p a:hover {
   color: var(--zenith-orange);
 }
 .phone-section p a:hover::after {
-  transform: scaleX(1);    /* expand to full width */
+  width: 80%;
+  left: 10%;
+}
+
+/* Refined Call Now button */
+.phone-section a.call-button {
+  background: var(--zenith-orange);
+  color: var(--white);
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+}
+.phone-section a.call-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
