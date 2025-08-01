@@ -182,6 +182,33 @@
   pointer-events: none;
 }
 
+/* 1. Ensure no list markers or extra padding/margin */
+.dropdown-menu,
+.dropdown-menu ul,
+.submenu,
+.submenu ul {
+  list-style: none;   /* remove bullets */
+  padding: 0;
+  margin: 0;
+}
+
+/* 2. Make each <li> a flex column so we can add a top border between items */
+.dropdown-menu li,
+.submenu li {
+  display: block;
+}
+
+/* 3. Add a subtle separator between each item */
+.dropdown-menu li + li,
+.submenu li + li {
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+/* 4. Give the links a bit of breathing room (you can adjust padding) */
+.dropdown-menu a,
+.submenu a {
+  padding: 12px 20px;  /* matches the hover-tint rules you added */
+}
 
 /* === Call/Text Section === */
 .phone-section {
