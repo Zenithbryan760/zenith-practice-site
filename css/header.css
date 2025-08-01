@@ -90,68 +90,90 @@
   left: 10%;
 }
 
-/* === Dropdown Menu: fade & slide === */
+/* === Dropdown Menu: fade, slide, spacing & style === */
 .dropdown-menu {
+  display: grid;                   /* enable gap control */
+  grid-auto-rows: min-content;
+  row-gap: 4px;                    /* space between items */
+  padding: 12px 0;                 /* breathing room top/bottom */
+  min-width: 220px;                /* wider so text doesn’t wrap */
+  
+  /* fade & slide in */
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  
+  /* panel styling */
   position: absolute;
   top: 100%;
   left: 0;
   background: var(--zenith-blue);
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  min-width: 200px;
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 12px rgba(0,0,0,0.15);
   z-index: 200;
 }
-
 .dropdown:hover .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-/* === Submenu (fly-out): fade & slide === */
+/* === Submenu (fly-out): fade, slide, spacing & style === */
 .dropdown-submenu {
   position: relative;
 }
-
 .submenu {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  padding: 12px 0;
+  min-width: 220px;
+  
   opacity: 0;
   visibility: hidden;
   transform: translateX(10px);
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  
   position: absolute;
   top: 0;
   left: 100%;
   background: var(--zenith-blue);
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  min-width: 200px;
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 12px rgba(0,0,0,0.15);
   z-index: 250;
 }
-
 .dropdown-submenu:hover .submenu {
   opacity: 1;
   visibility: visible;
   transform: translateX(0);
 }
 
+/* === Links inside both menus === */
+.dropdown-menu a,
 .submenu a {
   display: block;
+  padding: 12px 20px;             /* larger tappable area */
   color: var(--white);
-  padding: 10px 16px;
+  font-size: 0.95rem;
+  line-height: 1.4;
   text-decoration: none;
-  transition: background 0.3s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
-
+.dropdown-menu a:hover,
 .submenu a:hover {
-  background: var(--zenith-orange);
+  background-color: rgba(247,148,29,0.1); /* subtle orange tint */
+  color: var(--zenith-orange);
 }
 
+/* === Section labels inside submenus === */
 .submenu-label {
-  padding: 8px 16px;
+  padding: 8px 20px;
+  margin: 8px 0 4px 0;            /* separate groups */
   font-size: 0.75rem;
   color: #ccc;
   background: var(--zenith-blue);
