@@ -1,3 +1,337 @@
+Skip to content
+Chat history
+
+You said:
+my logo is not big enough for traffic. can you develope me a nave bar using the sam tabs and structure all the sam ebut make the logo biffer so that it is l=pleasant to the ey like if yu are then best web developer engineer making  it so that it is easy to naviagate structured professionally using this code as a stuctrue  /* ===================================================================
+   header.css — Header & Navigation styles
+   =================================================================== */
+
+/* === Kill ALL list markers inside any nav === */
+nav ul,
+nav ul ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Container & Layout === */
+.header {
+  background: var(--zenith-blue);
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  padding: 15px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* === Logo & License === */
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+.logo {
+  height: 56px;
+  width: auto;
+}
+.license {
+  font-size: 0.8rem;
+  color: var(--white);
+}
+
+/* === Navigation === */
+.nav-bar {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.nav-links {
+  display: flex;
+  gap: 12px;
+}
+.nav-links li {
+  position: relative;
+}
+
+/* — Animated Link & Underline — */
+.nav-links a {
+  position: relative;
+  color: var(--white);
+  padding: 10px 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 0;
+  height: 2px;
+  background: var(--zenith-orange);
+  border-radius: 1px;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-links a:hover {
+  color: var(--zenith-orange);
+}
+.nav-links a:hover::after {
+  width: 80%;
+  left: 10%;
+}
+
+/* === Dropdown Menu: fade, slide, spacing & style === */
+.dropdown-menu {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  padding: 12px 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--zenith-blue);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 12px rgba(0,0,0,0.15);
+  z-index: 200;
+}
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* === Submenu (fly-out) === */
+.dropdown-submenu { position: relative; }
+.submenu {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  padding: 12px 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: var(--zenith-blue);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 12px rgba(0,0,0,0.15);
+  z-index: 250;
+}
+.dropdown-submenu:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* === Links inside menus === */
+.dropdown-menu a,
+.submenu a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--white);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.dropdown-menu a:hover,
+.submenu a:hover {
+  background-color: rgba(247,148,29,0.1);
+  color: var(--zenith-orange);
+}
+
+/* === Section labels === */
+.submenu-label {
+  padding: 8px 20px;
+  margin: 8px 0 4px;
+  font-size: 0.75rem;
+  color: #ccc;
+  background: var(--zenith-blue);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  pointer-events: none;
+}
+
+/* ===================================================================
+   Call/Text Section
+   =================================================================== */
+.phone-section {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+.phone-section p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.phone-section p a {
+  position: relative;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.phone-section p a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--zenith-orange);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.phone-section p a:hover {
+  color: var(--zenith-orange);
+}
+.phone-section p a:hover::after {
+  width: 80%;
+  left: 10%;
+}
+.phone-section a.call-button {
+  background: var(--zenith-orange);
+  color: var(--white);
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+}
+.phone-section a.call-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+/* === Final fix for dot/marker showing up near phone text === */
+.phone-section p {
+  display: block;
+  list-style: none;
+}
+
+.phone-section p::marker {
+  display: none;
+  content: none;
+}
+ChatGPT said:
+
+Thought for 4 seconds
+I’ve drafted a fully responsive, professional navbar that preserves your existing tabs and structure while making the logo more prominent and the overall layout clearer and easier to navigate. You can reference the accompanying CSS in header.css—just drop it into your project alongside this HTML.
+
+Let me know if you’d like any further tweaks—spacing, colors, or breakpoint adjustments to fine-tune the look!
+
+You said:
+i do not want to touch the html code. i want to ficus on the sytle and make it so that it is uniform 
+ChatGPT said:
+
+Thought for a couple of seconds
+Here’s a pure-CSS tweak you can drop into header.css (or your main stylesheet) that makes the logo larger, evens out all the gaps, and keeps your existing HTML untouched:
+
+/* —— Logo Bigger & Consistent —— */
+.logo {
+  /* bump this up from 56px to something more prominent */
+  height: 80px;
+  width: auto;
+  /* ensure it stays centered in its flex column */
+  display: block;
+  margin: 0 auto;
+}
+
+/* —— Even Out Padding & Gaps —— */
+.header-inner {
+  padding: 20px 30px;    /* a bit more breathing room */
+  gap: 20px;             /* uniform horizontal gap between sections */
+}
+.nav-links {
+  gap: 24px;             /* consistent spacing between your nav items */
+}
+
+/* —— Center License Text Under Logo —— */
+.logo-section {
+  text-align: center;
+  gap: 4px;              /* tighten the gap under the logo */
+}
+
+/* —— Balanced Phone Section —— */
+.phone-section {
+  gap: 8px;              /* equal spacing above/below the number */
+}
+
+/* —— Nav Links Vertical Alignment —— */
+.nav-bar,
+.phone-section,
+.logo-section {
+  display: flex;
+  align-items: center;   /* ensure all three columns line up vertically */
+}
+
+/* —— Responsive Scale-Down —— */
+@media (max-width: 768px) {
+  .logo {
+    height: 64px;
+  }
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    padding: 15px;
+  }
+  .nav-links {
+    gap: 16px;
+  }
+}
+What this does:
+
+Logo jumps from 56 px up to 80 px tall (scales down at tablet sizes)
+
+Adds a uniform gap between your three header “columns” (logo, nav, phone)
+
+Tightens and evens out paddings so everything feels harmonious
+
+Keeps all vertical centering consistent via align-items: center
+
+Adds a simple media query so it doesn’t overwhelm on mobile
+
+Just paste that into your CSS below the existing rules, and your nav will immediately look more balanced and inviting—no HTML edits required!
+
+You said:
+please keep in mind tyhat i am a beginner so please post a cide that i can copy directly from this chat odeand place in my header.css cio
+ChatGPT said:
+Copy and paste all of the below into the bottom of your header.css file—no HTML changes needed:
+
 /* ===== Beginner-Friendly Navbar Tweaks ===== */
 
 /* 1) Make the logo more prominent */
@@ -56,3 +390,784 @@
     gap: 16px;          /* Tighter on small screens */
   }
 }
+How to use:
+
+Open your header.css.
+
+Scroll to the very bottom.
+
+Paste the entire block above.
+
+Save, and refresh your site—your navbar will now be uniform, with a bigger logo and even spacing!
+
+You said:
+Uploaded image
+this is how it looks
+ChatGPT said:
+
+Thought for a couple of seconds
+Paste the following entire block at the very bottom of your header.css file. It will:
+
+Remove all the bullets and left-indentation on every menu
+
+Force your main nav items into a horizontal flex layout
+
+Keep all sub-menus hidden until you hover
+
+Preserve your existing HTML — no edits needed
+
+/* ===== Fix Bullet Lists & Layout for Navbar ===== */
+
+/* 1) Globally strip bullets and padding from all nav ULs */
+nav ul,
+nav ul ul,
+.nav-links,
+.dropdown-menu,
+.submenu {
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2) Main nav as horizontal flex container */
+.nav-links {
+  display: flex;       /* horizontal row */
+  gap: 24px;           /* space between links */
+  align-items: center; /* vertical align */
+}
+
+/* 3) Hide all dropdown/submenu until hover */
+.dropdown-menu,
+.submenu {
+  display: none;       /* completely hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* 4) Reveal menus on hover exactly as before */
+.dropdown:hover > .dropdown-menu,
+.dropdown-submenu:hover > .submenu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0);
+}
+
+/* 5) Ensure menu links still stack inside their container */
+.dropdown-menu a,
+.submenu a {
+  display: block;
+  padding: 12px 20px;
+}
+
+/* 6) (Optional) Reset any leftover list-marker pseudo */
+.nav-links li::marker,
+.dropdown-menu li::marker,
+.submenu li::marker {
+  content: none;
+}
+
+/* ===== Keep your earlier “big-logo + spacing” tweaks here too ===== */
+.logo {
+  height: 80px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+.logo-section {
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+.phone-section {
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 7) Mobile tweak */
+@media (max-width: 768px) {
+  .logo { height: 64px; }
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px;
+    gap: 16px;
+  }
+  .nav-links { gap: 16px; }
+}
+How it works:
+
+The first block nukes all list-styles (bullets) on your nav menus.
+
+We then re-apply the flex layout to .nav-links so “Home Projects Services …” line up neatly.
+
+Dropdowns & submenus stay hidden (display: none) until you hover, exactly as you had before.
+
+Save header.css, refresh your page, and your nav will now render bullet-free, perfectly horizontal, with your bigger logo and even spacing—no HTML touched!
+
+You said:
+/* ===================================================================
+   header.css — Header & Navigation styles
+   =================================================================== */
+
+/* === Kill ALL list markers inside any nav === */
+nav ul,
+nav ul ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Container & Layout === */
+.header {
+  background: var(--zenith-blue);
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  padding: 15px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* === Logo & License === */
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+.logo {
+  height: 56px;
+  width: auto;
+}
+.license {
+  font-size: 0.8rem;
+  color: var(--white);
+}
+
+/* === Navigation === */
+.nav-bar {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.nav-links {
+  display: flex;
+  gap: 12px;
+}
+.nav-links li {
+  position: relative;
+}
+
+/* — Animated Link & Underline — */
+.nav-links a {
+  position: relative;
+  color: var(--white);
+  padding: 10px 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 0;
+  height: 2px;
+  background: var(--zenith-orange);
+  border-radius: 1px;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-links a:hover {
+  color: var(--zenith-orange);
+}
+.nav-links a:hover::after {
+  width: 80%;
+  left: 10%;
+}
+
+/* === Dropdown Menu: fade, slide, spacing & style === */
+.dropdown-menu {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  padding: 12px 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--zenith-blue);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 12px rgba(0,0,0,0.15);
+  z-index: 200;
+}
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* === Submenu (fly-out) === */
+.dropdown-submenu { position: relative; }
+.submenu {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  padding: 12px 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: var(--zenith-blue);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 12px rgba(0,0,0,0.15);
+  z-index: 250;
+}
+.dropdown-submenu:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* === Links inside menus === */
+.dropdown-menu a,
+.submenu a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--white);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.dropdown-menu a:hover,
+.submenu a:hover {
+  background-color: rgba(247,148,29,0.1);
+  color: var(--zenith-orange);
+}
+
+/* === Section labels === */
+.submenu-label {
+  padding: 8px 20px;
+  margin: 8px 0 4px;
+  font-size: 0.75rem;
+  color: #ccc;
+  background: var(--zenith-blue);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  pointer-events: none;
+}
+
+/* ===================================================================
+   Call/Text Section
+   =================================================================== */
+.phone-section {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+.phone-section p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.phone-section p a {
+  position: relative;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.phone-section p a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--zenith-orange);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.phone-section p a:hover {
+  color: var(--zenith-orange);
+}
+.phone-section p a:hover::after {
+  width: 80%;
+  left: 10%;
+}
+.phone-section a.call-button {
+  background: var(--zenith-orange);
+  color: var(--white);
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+}
+.phone-section a.call-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+/* === Final fix for dot/marker showing up near phone text === */
+.phone-section p {
+  display: block;
+  list-style: none;
+}
+
+.phone-section p::marker {
+  display: none;
+  content: none;
+}
+
+ChatGPT said:
+Add this entire block to the bottom of your existing header.css. It will:
+
+Strip out all leftover bullets
+
+Force your main links into a neat horizontal row
+
+Keep dropdowns hidden until hover
+
+Make the logo larger and center everything uniformly
+
+Apply a simple mobile wrap at 768px
+
+/* =====— NAVBAR CLEANUP & LOGO ENLARGEMENT —===== */
+
+/* 1) Remove any bullets or default list padding */
+nav ul,
+nav ul ul,
+.nav-links,
+.dropdown-menu,
+.submenu {
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2) Main nav as a single horizontal flex row */
+.nav-links {
+  display: flex;
+  gap: 24px;           /* consistent space between links */
+  align-items: center; /* vertical alignment */
+}
+
+/* 3) Hide dropdowns/submenus until hovered */
+.dropdown-menu,
+.submenu {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* 4) Reveal on hover exactly like before */
+.dropdown:hover > .dropdown-menu,
+.dropdown-submenu:hover > .submenu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* 5) Preserve block‐level stacking inside menus */
+.dropdown-menu a,
+.submenu a {
+  display: block;
+  padding: 12px 20px;
+}
+
+/* 6) Remove any stray list-marker pseudo‐elements */
+.nav-links li::marker,
+.dropdown-menu li::marker,
+.submenu li::marker {
+  content: none;
+}
+
+/* =====— BIGGER LOGO & EVEN SPACING —===== */
+.logo {
+  height: 80px;      /* jump from 56px → 80px */
+  width: auto;
+  display: block;
+  margin: 0 auto;    /* center under its container */
+}
+
+/* tighten up the three header “columns” */
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;  /* more breathing room */
+  gap: 20px;           /* uniform space between logo, nav, phone */
+  flex-wrap: nowrap;
+}
+
+/* ensure logo + license stay centered */
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+/* balance phone number and button */
+.phone-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* =====— MOBILE WRAP @ ≤768px —===== */
+@media (max-width: 768px) {
+  .logo {
+    height: 64px;    /* slightly smaller on phones */
+  }
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px;
+    gap: 16px;
+  }
+  .nav-links {
+    gap: 16px;       /* tighter on small screens */
+  }
+}
+How to apply:
+
+Open header.css in your editor.
+
+Scroll to the end.
+
+Paste the block above, then save.
+
+Refresh your site—your navbar will now be bullet-free, neatly horizontal, with a larger logo and uniform spacing (no HTML changes needed).
+
+You said:
+i am a beginner can you give me an uldated code including all changes you reccomended using my old code. paste it on this chat so i can copy and paste it in my header.css ]
+ChatGPT said:
+
+Thought for a couple of seconds
+/* ===================================================================
+   header.css — Header & Navigation styles (UPDATED for beginner)
+   =================================================================== */
+
+/* === Kill ALL list markers inside any nav === */
+nav ul,
+nav ul ul,
+.nav-links,
+.dropdown-menu,
+.submenu {
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Container & Layout === */
+.header {
+  background: var(--zenith-blue);
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.header-inner {
+  display: flex;
+  align-items: center;           /* vertical align */
+  justify-content: space-between;/* logo | nav | phone */
+  flex-wrap: nowrap;
+  padding: 20px 30px;            /* more breathing room */
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;                     /* uniform gap between sections */
+}
+
+/* === Logo & License === */
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;                      /* tighten gap under logo */
+  flex: 0 0 auto;
+  text-align: center;
+}
+.logo {
+  height: 80px;                  /* increased from 56px */
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+.license {
+  font-size: 0.8rem;
+  color: var(--white);
+}
+
+/* === Navigation === */
+.nav-bar {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.nav-links {
+  display: flex;                 /* horizontal row */
+  gap: 24px;                     /* increased from 12px */
+  align-items: center;
+}
+.nav-links li {
+  position: relative;
+}
+
+/* — Animated Link & Underline — */
+.nav-links a {
+  position: relative;
+  color: var(--white);
+  padding: 10px 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 0;
+  height: 2px;
+  background: var(--zenith-orange);
+  border-radius: 1px;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-links a:hover {
+  color: var(--zenith-orange);
+}
+.nav-links a:hover::after {
+  width: 80%;
+  left: 10%;
+}
+
+/* === Dropdown Menu: fade, slide, spacing & style === */
+.dropdown-menu {
+  display: none;                 /* hide until hover */
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  padding: 12px 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--zenith-blue);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 12px rgba(0,0,0,0.15);
+  z-index: 200;
+}
+.dropdown:hover > .dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* === Submenu (fly-out) === */
+.dropdown-submenu { position: relative; }
+.submenu {
+  display: none;                 /* hide until hover */
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  padding: 12px 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: var(--zenith-blue);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 12px rgba(0,0,0,0.15);
+  z-index: 250;
+}
+.dropdown-submenu:hover > .submenu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* === Links inside menus === */
+.dropdown-menu a,
+.submenu a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--white);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.dropdown-menu a:hover,
+.submenu a:hover {
+  background-color: rgba(247,148,29,0.1);
+  color: var(--zenith-orange);
+}
+
+/* === Section labels === */
+.submenu-label {
+  padding: 8px 20px;
+  margin: 8px 0 4px;
+  font-size: 0.75rem;
+  color: #ccc;
+  background: var(--zenith-blue);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  pointer-events: none;
+}
+
+/* ===================================================================
+   Call/Text Section
+   =================================================================== */
+.phone-section {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;                     /* increased from 6px */
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+.phone-section p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.phone-section p a {
+  position: relative;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.phone-section p a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--zenith-orange);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.phone-section p a:hover {
+  color: var(--zenith-orange);
+}
+.phone-section p a:hover::after {
+  width: 80%;
+  left: 10%;
+}
+.phone-section a.call-button {
+  background: var(--zenith-orange);
+  color: var(--white);
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+}
+.phone-section a.call-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+/* ===================================================================
+   Responsive Mobile Wrap
+   =================================================================== */
+@media (max-width: 768px) {
+  .logo {
+    height: 64px;              /* slightly smaller on phones */
+  }
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px;
+    gap: 16px;
+  }
+  .nav-links {
+    gap: 16px;                 /* tighter on small screens */
+  }
+}
+Steps to apply:
+
+Open your header.css.
+
+Replace its contents with the code above (or paste this entire block at the very top).
+
+Save the file and refresh your site.
+
+All the recommended adjustments—bigger logo, uniform gaps, bullet removal, hover-only dropdowns, and mobile tweaks—are now in place with no HTML edits required.
+
+
+
+
+No file chosenNo file chosen
+ChatGPT can make mistakes. Check important info.
