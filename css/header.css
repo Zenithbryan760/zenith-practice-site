@@ -1,16 +1,17 @@
 /* ===================================================================
-   header.css — Header & Navigation styles (Full Updated Version)
+   header.css — Header & Navigation styles (MODERN, UNIFORM, BEGINNER-FRIENDLY)
    =================================================================== */
 
-/* 1) Import a clean, professional font */
+/* 1) Base font & reset */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-/* 2) Apply base font to header/Nav */
-.header, .nav-links a, .dropdown-menu a, .submenu a, .license, .phone-section {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
   font-family: 'Inter', sans-serif;
 }
 
-/* 3) Remove all list markers & padding */
+/* 2) Remove all bullets & list indents */
 nav ul,
 nav ul ul,
 .nav-links,
@@ -21,7 +22,7 @@ nav ul ul,
   padding: 0;
 }
 
-/* 4) Header container */
+/* 3) Header container */
 .header {
   background: var(--zenith-blue);
   color: var(--white);
@@ -36,13 +37,13 @@ nav ul ul,
   align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
-  padding: 20px 30px;
+  padding: 20px 40px;   /* more vertical & horizontal breathing room */
   max-width: 1200px;
   margin: 0 auto;
-  gap: 24px;
+  gap: 32px;            /* space between logo, nav, phone */
 }
 
-/* 5) Logo & License */
+/* 4) Logo & license */
 .logo-section {
   display: flex;
   flex-direction: column;
@@ -51,10 +52,9 @@ nav ul ul,
   text-align: center;
 }
 .logo {
-  height: 100px;
+  height: 100px;        /* larger logo */
   width: auto;
   display: block;
-  margin: 0 auto;
 }
 .license {
   font-size: 0.9rem;
@@ -62,7 +62,7 @@ nav ul ul,
   font-weight: 500;
 }
 
-/* 6) Nav wrapper */
+/* 5) Primary nav wrapper */
 .nav-bar {
   flex: 1 1 auto;
   display: flex;
@@ -70,103 +70,103 @@ nav ul ul,
   position: relative;
 }
 
-/* 7) Main links as flex row */
+/* 6) Main nav links as flex row */
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 32px;            /* uniform space between tabs */
   align-items: center;
 }
 .nav-links li {
   position: relative;
 }
 
-/* 8) Style each link as an inline-flex block */
+/* 7) Tab styling & animated underline */
 .nav-links a {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 12px 20px;
+  padding: 12px 16px;   /* top/bottom & left/right */
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--white);
   text-decoration: none;
-  border-radius: 6px;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: color 0.3s ease;
 }
-
-/* 9) Hover effect covers full tab with slight highlight */
-.nav-links a:hover {
-  background: rgba(255,255,255,0.15);
-  color: var(--zenith-orange);
-}
-
-/* 10) Active/tab underline remains if you want it */
-/* .nav-links a.active::after {
-  content: '';
+.nav-links a::after {
+  content: "";
   position: absolute;
+  left: 50%;
   bottom: 4px;
-  left: 20%;
-  width: 60%;
+  width: 0;
   height: 2px;
   background: var(--zenith-orange);
   border-radius: 1px;
-} */
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-links a:hover {
+  color: var(--zenith-orange);
+}
+.nav-links a:hover::after {
+  width: 80%;
+  left: 10%;
+}
 
-/* 11) Dropdown menus hidden until hover */
+/* 8) Dropdown menu hidden by default */
 .dropdown-menu,
 .submenu {
-  display: none;
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  padding: 12px 0;
+  min-width: 220px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
   position: absolute;
-  top: 100%;
-  left: 0;
   background: var(--zenith-blue);
   border-radius: 8px;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.2),
     0 4px 12px rgba(0,0,0,0.15);
-  padding: 8px 0;
-  min-width: 220px;
   z-index: 200;
 }
-.dropdown:hover > .dropdown-menu,
-.dropdown-submenu:hover > .submenu {
-  display: block;
+.dropdown:hover > .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-/* 12) Fly-out submenu offset */
+/* 9) Fly-out submenu */
+.dropdown-submenu { position: relative; }
 .submenu {
   top: 0;
   left: 100%;
   transform: translateX(10px);
 }
 .dropdown-submenu:hover > .submenu {
+  opacity: 1;
+  visibility: visible;
   transform: translateX(0);
 }
 
-/* 13) Links inside dropdowns stack & highlight */
+/* 10) Links inside dropdowns */
 .dropdown-menu a,
 .submenu a {
   display: block;
   padding: 10px 20px;
   font-size: 1rem;
   color: var(--white);
-  transition: background 0.2s ease, color 0.2s ease;
-  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 .dropdown-menu a:hover,
 .submenu a:hover {
-  background: rgba(255,255,255,0.15);
+  background-color: rgba(255,255,255,0.1);
   color: var(--zenith-orange);
 }
 
-/* 14) Section labels styling */
+/* 11) Dropdown section labels */
 .submenu-label {
   padding: 6px 20px;
   margin: 6px 0 4px;
@@ -177,8 +177,9 @@ nav ul ul,
   pointer-events: none;
 }
 
-/* 15) Call/Text section */
+/* 12) Call/Text section */
 .phone-section {
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -186,10 +187,8 @@ nav ul ul,
   text-align: center;
 }
 .phone-section p {
-  margin: 0;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--white);
 }
 .phone-section p a {
   color: var(--white);
@@ -224,7 +223,7 @@ nav ul ul,
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
 
-/* 16) Responsive wrap at 768px */
+/* 13) Responsive mobile wrap */
 @media (max-width: 768px) {
   .logo {
     height: 80px;
@@ -232,14 +231,14 @@ nav ul ul,
   .header-inner {
     flex-wrap: wrap;
     justify-content: center;
-    padding: 15px;
+    padding: 15px 20px;
     gap: 16px;
   }
   .nav-links {
     gap: 20px;
   }
   .nav-links a {
-    padding: 10px 16px;
+    padding: 10px 14px;
     font-size: 1rem;
   }
 }
