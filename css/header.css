@@ -1,8 +1,8 @@
 /* ===================================================================
-   css/header.css — Cleaned & Unified Header Styles
+   css/header.css — Roofing Nav (Hover, Dropdown, Mobile Toggle)
    =================================================================== */
 
-/* 1) Base Reset & Font */
+/* 1) Reset & Font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 * {
   box-sizing: border-box;
@@ -11,28 +11,9 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* 2) Header Layout */
+/* 2) Header Base */
 .header {
-  background: var(--zenith-blue);
-  color: var(--white);
-  position: sticky;
-  top: 0;
-  width: /* ===================================================================
-   css/header.css — Sleek Roofing Nav Bar
-   =================================================================== */
-
-/* 1. Reset & Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-}
-
-/* 2. Header Layout */
-.header {
-  background: var(--zenith-blue, #072e59);
+  background: #072e59;
   position: sticky;
   top: 0;
   width: 100%;
@@ -48,22 +29,19 @@
   gap: 24px;
 }
 
-/* 3. Logo & License */
-.logo-section {
-  text-align: center;
-}
+/* 3) Logo & License */
 .logo {
   height: 80px;
-  width: auto;
   display: block;
   margin-bottom: 4px;
 }
 .license {
   font-size: 0.85rem;
   color: #fff;
+  text-align: center;
 }
 
-/* 4. Menu Toggle (Mobile) */
+/* 4) Mobile Toggle */
 .menu-toggle {
   display: none;
   font-size: 1.8rem;
@@ -73,8 +51,8 @@
   cursor: pointer;
 }
 
-/* 5. Nav Links */
-nav {
+/* 5) Navigation */
+.app-nav {
   flex: 1 1 auto;
 }
 .nav-links {
@@ -87,7 +65,6 @@ nav {
   position: relative;
 }
 .nav-links a {
-  position: relative;
   color: #fff;
   text-decoration: none;
   padding: 8px 0;
@@ -101,53 +78,63 @@ nav {
   bottom: -2px;
   width: 0;
   height: 2px;
-  background: var(--zenith-orange, #f7941d);
+  background: #f7941d;
   transition: width 0.3s ease, left 0.3s ease;
 }
 .nav-links a:hover {
-  color: var(--zenith-orange, #f7941d);
+  color: #f7941d;
 }
 .nav-links a:hover::after {
   width: 80%;
   left: 10%;
 }
 
-/* 6. Dropdown Menu */
-.dropdown-menu {
+/* 6) Dropdown Menus */
+.dropdown-menu,
+.submenu {
   position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--zenith-blue, #072e59);
+  background: #072e59;
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   list-style: none;
   padding: 8px 0;
   display: none;
 }
-.dropdown:hover .dropdown-menu {
+.dropdown:hover > .dropdown-menu {
   display: block;
 }
-.dropdown-menu li a {
+.dropdown-menu li {
+  position: relative;
+}
+.dropdown-menu a {
   display: block;
   padding: 8px 16px;
   color: #fff;
   white-space: nowrap;
+  transition: background 0.2s ease;
 }
-.dropdown-menu li a:hover {
+.dropdown-menu a:hover {
   background: rgba(255,255,255,0.1);
 }
 
-/* 7. Call/Text Section */
-.phone-section p {
-  color: #fff;
-  font-weight: 600;
+/* fly-out submenu */
+.dropdown-submenu:hover > .submenu {
+  display: block;
 }
+.submenu {
+  top: 0;
+  left: 100%;
+  transform: translateX(8px);
+}
+
+/* 7) Phone Section */
 .phone-section a {
   color: #fff;
   text-decoration: none;
+  font-weight: 600;
 }
 
-/* 8. Responsive: ≤768px */
+/* 8) Responsive @ ≤768px */
 @media (max-width: 768px) {
   .header-inner {
     flex-wrap: wrap;
@@ -161,7 +148,7 @@ nav {
     display: none;
     flex-direction: column;
     width: 100%;
-    background: var(--zenith-blue, #072e59);
+    background: #072e59;
     border-top: 1px solid rgba(255,255,255,0.2);
     margin-top: 8px;
     gap: 0;
@@ -177,190 +164,13 @@ nav {
     padding: 12px 0;
     font-size: 1rem;
   }
-  .dropdown-menu {
+  /* hide hover underline on mobile */
+  .nav-links a::after {
+    display: none;
+  }
+  .dropdown-menu,
+  .submenu {
     position: static;
     box-shadow: none;
-  }
-}
-100%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: 32px;
-}
-
-/* 3) Logo Section */
-.logo-section {
-  text-align: center;
-}
-.logo {
-  height: 100px;
-  width: auto;
-  display: block;
-  margin: 0 auto;
-}
-.license {
-  font-size: 0.9rem;
-  color: var(--white);
-}
-
-/* 4) Mobile Toggle */
-.menu-toggle {
-  display: none;
-  font-size: 1.8rem;
-  background: none;
-  border: none;
-  color: var(--white);
-  cursor: pointer;
-}
-
-/* 5) Navigation */
-.app-nav {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 32px;
-  align-items: center;
-}
-.nav-links li { position: relative; }
-.nav-links a {
-  position: relative;
-  padding: 12px 20px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--white);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: 4px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--zenith-orange);
-  transition: width 0.3s ease, left 0.3s ease;
-}
-.nav-links a:hover {
-  color: var(--zenith-orange);
-}
-.nav-links a:hover::after {
-  width: 80%;
-  left: 10%;
-}
-
-/* 6) Dropdowns */
-.dropdown-menu,
-.submenu {
-  display: none;
-  position: absolute;
-  background: var(--zenith-blue);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  padding: 8px 0;
-  min-width: 220px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-.dropdown:hover > .dropdown-menu,
-.dropdown-submenu:hover > .submenu {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-.submenu {
-  top: 0;
-  left: 100%;
-  transform: translateX(10px);
-}
-
-/* 7) Search & CTA */
-.search-container {
-  position: relative;
-  flex: 1 1 auto;
-  max-width: 200px;
-}
-.search-container input {
-  width: 100%;
-  padding: 8px 36px 8px 12px;
-  border: none;
-  border-radius: 4px;
-}
-.search-container svg {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  fill: #666;
-}
-.cta-button {
-  background: var(--zenith-orange);
-  color: var(--white);
-  padding: 10px 24px;
-  border-radius: 4px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.cta-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-}
-
-/* 8) Phone Section */
-.phone-section {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.phone-section a {
-  color: var(--white);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-/* 9) Responsive @ ≤768px */
-@media (max-width: 768px) {
-  .header-inner {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-    padding: 15px 20px;
-  }
-  .menu-toggle {
-    display: block;
-  }
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    border-top: 1px solid rgba(255,255,255,0.2);
-    margin-top: 8px;
-  }
-  .nav-links.open {
-    display: flex;
-  }
-  .search-container {
-    max-width: 100%;
-    margin: 8px 0;
-  }
-  .nav-links a {
-    padding: 10px 16px;
-    font-size: 1rem;
   }
 }
