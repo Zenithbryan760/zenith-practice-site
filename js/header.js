@@ -1,68 +1,24 @@
 /* ===================================================================
-   js/header.js — Navigation Interactivity
+   js/nav.js — Mobile Toggle & Simple Nav Behavior
    =================================================================== */
-
-/* -------------------------------------------------------------------
-   SECTION 1: DOMContentLoaded
-   Ensure all elements exist before we wire up event handlers.
-   ------------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.menu-toggle');
+  const links  = document.querySelector('.nav-links');
 
-  /* -----------------------------------------------------------------
-     SECTION 2: MOBILE MENU TOGGLE
-     Toggles the visibility of the nav-links on small screens.
-     ----------------------------------------------------------------- */
-  const toggleBtn = document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  if (toggleBtn && navLinks) {
-    toggleBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
+  if (toggle && links) {
+    toggle.addEventListener('click', () => {
+      links.classList.toggle('open');
     });
-  }
 
-  /* -----------------------------------------------------------------
-     SECTION 3: SEARCH NAVIGATION
-     Listens for Enter key in the search input and navigates
-     to the first matching link.
-     ----------------------------------------------------------------- */
-  const searchInput = document.querySelector('.search-container input');
-  const navItems = Array.from(document.querySelectorAll('.nav-links a'));
-  if (searchInput) {
-    searchInput.addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        const query = searchInput.value.trim().toLowerCase();
-        if (!query) return;
-
-        const match = navItems.find(a =>
-          a.textContent.toLowerCase().includes(query) ||
-          a.getAttribute('href').toLowerCase().includes(query)
-        );
-
-        if (match) {
-          window.location.href = match.href;
-        } else {
-          alert('No matching page found.');
-        }
+    // close menu when clicking outside
+    document.addEventListener('click', e => {
+      if (
+        !toggle.contains(e.target) &&
+        !links.contains(e.target) &&
+        links.classList.contains('open')
+      ) {
+        links.classList.remove('open');
       }
     });
   }
-
-  /* -----------------------------------------------------------------
-     SECTION 4: CLOSE MENU ON OUTSIDE CLICK (MOBILE)
-     Closes the menu if the user clicks outside of it.
-     ----------------------------------------------------------------- */
-  document.addEventListener('click', e => {
-    if (
-      toggleBtn &&
-      navLinks &&
-      !toggleBtn.contains(e.target) &&
-      !navLinks.contains(e.target) &&
-      navLinks.classList.contains('open')
-    ) {
-      navLinks.classList.remove('open');
-    }
-  });
-
-}); // end DOMContentLoaded
-
+});
