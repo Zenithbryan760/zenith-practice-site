@@ -20,36 +20,34 @@
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
-  <!-- ===== BACKGROUND VIDEO WITH TINT ===== -->
-  <div class="video-container">
-    <video class="background-video" autoplay muted loop playsinline>
-      <source src="roofing-bg.mp4" type="video/mp4" />
-      <!-- fallback text -->
-      Your browser doesn’t support video.
-    </video>
-    <div class="video-overlay"></div>
-  </div>
+<!-- ===== BACKGROUND VIDEO WITH TINT ===== -->
+<div class="video-container">
+  <video class="background-video" autoplay muted loop playsinline>
+    <source src="images/roofing-bg.mp4" type="video/mp4" />
+    Your browser doesn’t support video.
+  </video>
+  <div class="video-overlay"></div>
+</div>
 
- <!-- ===== Header + Navigation ===== -->
+<!-- ===== HEADER & NAVIGATION ===== -->
 <header class="header">
   <div class="header-inner">
 
     <!-- Logo & License -->
     <div class="logo-section">
-      <img
-        src="images/badges/logo-zenith-icon.png"
-        alt="Zenith Roofing Services logo"
-        class="logo"
-      >
+      <img src="images/badges/logo-zenith-icon.png"
+           alt="Zenith Roofing Services logo"
+           class="logo">
       <p class="license">Lic# 1036112</p>
     </div>
 
-    <!-- Mobile Toggle -->
-    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
 
-    <!-- Nav Links -->
-    <nav class="app-nav">
+    <!-- Primary Navigation -->
+    <nav class="nav">
       <ul class="nav-links">
+
         <li><a href="#home">Home</a></li>
         <li><a href="#gallery">Projects</a></li>
 
@@ -117,15 +115,13 @@
         <li><a href="#glossary">Glossary</a></li>
         <li><a href="#contact">Contact</a></li>
         <li>
-          <a
-            href="https://www.youtube.com/@ZenithRoofingServices"
-            target="_blank" rel="noopener"
-          >YouTube</a>
+          <a href="https://www.youtube.com/@ZenithRoofingServices"
+             target="_blank" rel="noopener">YouTube</a>
         </li>
       </ul>
     </nav>
 
-  <!-- Call/Text Section -->
+    <!-- Call/Text Section -->
     <div class="phone-section">
       <p>Call/Text: <a href="tel:8589006163">858-900-6163</a></p>
       <a href="tel:8589006163" class="call-button">Call Now</a>
@@ -134,6 +130,5 @@
   </div>
 </header>
 
-
-<!-- at the very end of body -->
+<!-- Include the mobile‐toggle script -->
 <script src="js/nav.js"></script>
