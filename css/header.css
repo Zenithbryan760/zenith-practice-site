@@ -1,12 +1,16 @@
 /* ===================================================================
-   css/header.css — Enhanced Dropdown & Sublabel Visibility
-   (All sections fully labeled for easy reference)
+   css/header.css — Header & Navigation Styles (Self-Contained)
    =================================================================== */
 
-/* -------------------------------------------------------------------
-   [1] BASE RESET & FONT IMPORT
-   ------------------------------------------------------------------- */
+/* =========================================================================
+   1) BASE RESET & FONT IMPORT
+   ========================================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+:root {
+  --blue: #072e59;
+  --orange: #f7941d;
+  --white: #fff;
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,160 +18,214 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* -------------------------------------------------------------------
-   [2] HEADER CONTAINER
-   ------------------------------------------------------------------- */
+/* =========================================================================
+   2) HEADER CONTAINER
+   ========================================================================= */
 .header {
-  background: var(--zenith-blue, #072e59);
-  position: sticky; top: 0; width: 100%; z-index: 100;
+  background: var(--blue);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 10;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 .header-inner {
-  max-width: 1200px; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 20px 30px; gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  gap: 24px;
 }
 
-/* -------------------------------------------------------------------
-   [3] LOGO & LICENSE
-   ------------------------------------------------------------------- */
-.logo-section { text-align: center; }
-.logo { height: 80px; display: block; margin-bottom: 4px; }
-.license { font-size: 0.85rem; color: #fff; }
+/* =========================================================================
+   3) LOGO & LICENSE
+   ========================================================================= */
+.logo-section {
+  text-align: center;
+}
+.logo {
+  height: 80px;
+  display: block;
+  margin-bottom: 4px;
+}
+.license {
+  color: var(--white);
+  font-size: 0.85rem;
+}
 
-/* -------------------------------------------------------------------
-   [4] MOBILE MENU TOGGLE
-   ------------------------------------------------------------------- */
+/* =========================================================================
+   4) MOBILE MENU TOGGLE
+   ========================================================================= */
 .menu-toggle {
-  display: none; font-size: 1.8rem; background: none; border: none;
-  color: #fff; cursor: pointer;
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
 }
 
-/* -------------------------------------------------------------------
-   [5] NAVIGATION LINKS
-   ------------------------------------------------------------------- */
-.app-nav { flex: 1 1 auto; }
-.nav-links {
-  list-style: none; display: flex; gap: 32px; align-items: center;
+/* =========================================================================
+   5) NAVIGATION LINKS
+   ========================================================================= */
+.nav {
+  flex: 1;
 }
-.nav-links li { position: relative; }
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.nav-links li {
+  position: relative;
+}
 .nav-links a {
-  position: relative; padding: 8px 0; font-size: 1rem; font-weight: 500;
-  color: #fff; text-decoration: none; transition: color 0.3s ease;
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+  position: relative;
 }
 .nav-links a::after {
-  content: ''; position: absolute; left: 50%; bottom: -2px;
-  width: 0; height: 3px; background: var(--zenith-orange, #f7941d);
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: var(--orange);
   transition: width 0.3s ease, left 0.3s ease;
 }
-.nav-links a:hover { color: var(--zenith-orange, #f7941d); }
-.nav-links a:hover::after { width: 80%; left: 10%; }
+.nav-links a:hover {
+  color: var(--orange);
+}
+.nav-links a:hover::after {
+  width: 80%;
+  left: 10%;
+}
 
-/* -------------------------------------------------------------------
-   [6] DROPDOWN & SUBMENU STYLES (IMPROVED READABILITY)
-   ------------------------------------------------------------------- */
-/* Dropdown container */
+/* =========================================================================
+   6) DROPDOWN & SUBMENU
+   ========================================================================= */
 .dropdown-menu,
 .submenu {
   position: absolute;
-  background: rgba(7, 46, 89, 0.95); /* darker for contrast */
+  background: var(--blue);
   border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   list-style: none;
-  padding: 4px 0;      /* tighter padding */
+  padding: 8px 0;
   display: none;
-  opacity: 0; visibility: hidden;
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  white-space: nowrap;
 }
-/* Show on hover */
-.dropdown:hover > .dropdown-menu,
-.dropdown-submenu:hover > .submenu {
-  display: block; opacity: 1; visibility: visible;
-  transform: translate(0);
-}
-
-/* Dropdown links */
-.dropdown-menu a,
-.submenu a {
+.dropdown:hover > .dropdown-menu {
   display: block;
-  padding: 10px 20px;  /* larger tap area */
-  font-size: 1rem;     /* easier reading */
-  color: #fff; 
+}
+.dropdown-menu li a,
+.submenu li a {
+  display: block;
+  padding: 8px 24px;
+  color: var(--white);
   text-decoration: none;
   transition: background 0.2s ease;
 }
-.dropdown-menu a:hover,
-.submenu a:hover {
-  background: rgba(247, 148, 29, 0.2); /* subtle orange tint */
-  color: #fff;
+.dropdown-menu li a:hover,
+.submenu li a:hover {
+  background: rgba(255,255,255,0.1);
 }
 
-/* -------------------------------------------------------------------
-   [6A] SUBLABEL SECTION LABELS (HIGHLIGHTED)
-   ------------------------------------------------------------------- */
-.submenu-label {
-  padding: 8px 20px;
-  margin: 6px 0 4px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--zenith-blue, #072e59);      /* brand color text */
-  background: var(--zenith-orange, #f7941d); /* orange highlight */
-  text-transform: uppercase;
-  border-radius: 4px;
+/* Fly-out submenu */
+.dropdown-submenu:hover > .submenu {
+  display: block;
 }
-
-/* Fly-out submenu positioning */
 .submenu {
-  top: 0; left: 100%;
+  top: 0;
+  left: 100%;
   transform: translateX(8px);
 }
 
-/* -------------------------------------------------------------------
-   [7] PHONE SECTION & CALL BUTTON
-   ------------------------------------------------------------------- */
+/* =========================================================================
+   7) CALL/TEXT SECTION
+   ========================================================================= */
 .phone-section {
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 .phone-section p {
-  margin: 0; font-size: 0.95rem; color: #fff; font-weight: 600;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0;
 }
-.phone-section p a { color: #fff; text-decoration: none; }
+.phone-section p a {
+  color: var(--white);
+  text-decoration: none;
+}
 .call-button {
-  background: var(--zenith-orange, #f7941d); color: #fff;
-  padding: 8px 20px; border-radius: 4px; font-weight: 700;
-  text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: var(--orange);
+  color: var(--white);
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .call-button:hover {
-  transform: scale(1.05); box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* -------------------------------------------------------------------
-   [8] RESPONSIVE BREAKPOINT (≤768px)
-   ------------------------------------------------------------------- */
+/* =========================================================================
+   8) RESPONSIVE BREAKPOINT (≤768px)
+   ========================================================================= */
 @media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
   .header-inner {
-    flex-wrap: wrap; justify-content: center;
-    padding: 15px 20px; gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px 20px;
+    gap: 16px;
   }
-  .menu-toggle { display: block; }
   .nav-links {
-    display: none; flex-direction: column; width: 100%;
-    background: var(--zenith-blue, #072e59);
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: var(--blue);
     border-top: 1px solid rgba(255,255,255,0.2);
-    margin-top: 8px; gap: 0;
+    margin-top: 8px;
   }
-  .nav-links.open { display: flex; }
-  .nav-links li { width: 100%; text-align: center; }
-  .nav-links a { padding: 12px 0; font-size: 1rem; }
-  .nav-links a::after { display: none; } /* no underline on mobile */
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+  .nav-links a {
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+  .nav-links a::after {
+    display: none;
+  }
   .dropdown-menu,
   .submenu {
-    position: static; box-shadow: none;
-    opacity: 1; visibility: visible; transform: none;
+    position: static;
+    box-shadow: none;
   }
   .phone-section {
-    flex-direction: row; justify-content: center;
+    flex-direction: row;
+    justify-content: center;
   }
-  .phone-section p { font-size: 1rem; }
+  .phone-section p {
+    font-size: 1rem;
+  }
 }
