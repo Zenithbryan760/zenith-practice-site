@@ -1,8 +1,16 @@
 /* ===================================================================
-   header.css — Header & Navigation styles (GRANDMA-APPROVED VERSION)
+   header.css — Header & Navigation styles (Full Updated Version)
    =================================================================== */
 
-/* === Kill ALL list markers inside any nav === */
+/* 1) Import a clean, professional font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* 2) Apply base font to header/Nav */
+.header, .nav-links a, .dropdown-menu a, .submenu a, .license, .phone-section {
+  font-family: 'Inter', sans-serif;
+}
+
+/* 3) Remove all list markers & padding */
 nav ul,
 nav ul ul,
 .nav-links,
@@ -13,7 +21,7 @@ nav ul ul,
   padding: 0;
 }
 
-/* === Container & Layout === */
+/* 4) Header container */
 .header {
   background: var(--zenith-blue);
   color: var(--white);
@@ -25,26 +33,25 @@ nav ul ul,
 }
 .header-inner {
   display: flex;
-  align-items: center;            /* vertical align */
-  justify-content: space-between; /* logo | nav | phone */
+  align-items: center;
+  justify-content: space-between;
   flex-wrap: nowrap;
-  padding: 20px 30px;             /* extra breathing room */
+  padding: 20px 30px;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 24px;                      /* uniform gap between sections */
+  gap: 24px;
 }
 
-/* === Logo & License === */
+/* 5) Logo & License */
 .logo-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;                       /* small gap below logo */
-  flex: 0 0 auto;
+  gap: 6px;
   text-align: center;
 }
 .logo {
-  height: 100px;                  /* enlarged logo for grandma */
+  height: 100px;
   width: auto;
   display: block;
   margin: 0 auto;
@@ -52,64 +59,66 @@ nav ul ul,
 .license {
   font-size: 0.9rem;
   color: var(--white);
+  font-weight: 500;
 }
 
-/* === Navigation === */
+/* 6) Nav wrapper */
 .nav-bar {
   flex: 1 1 auto;
   display: flex;
   justify-content: center;
   position: relative;
 }
+
+/* 7) Main links as flex row */
 .nav-links {
-  display: flex;                  /* horizontal row */
-  gap: 32px;                      /* wider spacing for big tabs */
+  display: flex;
+  gap: 32px;
   align-items: center;
 }
 .nav-links li {
   position: relative;
 }
 
-/* — Animated Link & Underline — */
+/* 8) Style each link as an inline-flex block */
 .nav-links a {
-  position: relative;
-  color: var(--white);
-  padding: 14px 20px;             /* bigger click area */
-  font-size: 1.1rem;              /* larger text for readability */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  font-size: 1.1rem;
   font-weight: 600;
+  color: var(--white);
   text-decoration: none;
-  transition: color 0.3s ease;
-  -webkit-font-smoothing: antialiased;
+  border-radius: 6px;
+  transition: background 0.3s ease, color 0.3s ease;
 }
-.nav-links a::after {
-  content: "";
+
+/* 9) Hover effect covers full tab with slight highlight */
+.nav-links a:hover {
+  background: rgba(255,255,255,0.15);
+  color: var(--zenith-orange);
+}
+
+/* 10) Active/tab underline remains if you want it */
+/* .nav-links a.active::after {
+  content: '';
   position: absolute;
-  left: 50%;
-  bottom: 6px;
-  width: 0;
+  bottom: 4px;
+  left: 20%;
+  width: 60%;
   height: 2px;
   background: var(--zenith-orange);
   border-radius: 1px;
-  transition: width 0.3s ease, left 0.3s ease;
-}
-.nav-links a:hover {
-  color: var(--zenith-orange);
-}
-.nav-links a:hover::after {
-  width: 80%;
-  left: 10%;
-}
+} */
 
-/* === Dropdown Menu: fade, slide, spacing & style === */
-.dropdown-menu {
-  display: none;                  /* hide until hover */
-  grid-auto-rows: min-content;
-  row-gap: 6px;                   /* slightly larger gap */
-  padding: 14px 0;                /* bigger padding */
-  min-width: 240px;
+/* 11) Dropdown menus hidden until hover */
+.dropdown-menu,
+.submenu {
+  display: none;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(12px);
+  transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
   position: absolute;
   top: 100%;
@@ -119,100 +128,76 @@ nav ul ul,
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.2),
     0 4px 12px rgba(0,0,0,0.15);
+  padding: 8px 0;
+  min-width: 220px;
   z-index: 200;
 }
-.dropdown:hover > .dropdown-menu {
+.dropdown:hover > .dropdown-menu,
+.dropdown-submenu:hover > .submenu {
   display: block;
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-/* === Submenu (fly-out) === */
-.dropdown-submenu { position: relative; }
+/* 12) Fly-out submenu offset */
 .submenu {
-  display: none;                  /* hide until hover */
-  grid-auto-rows: min-content;
-  row-gap: 6px;
-  padding: 14px 0;
-  min-width: 240px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(12px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-  position: absolute;
   top: 0;
   left: 100%;
-  background: var(--zenith-blue);
-  border-radius: 8px;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.2),
-    0 4px 12px rgba(0,0,0,0.15);
-  z-index: 250;
+  transform: translateX(10px);
 }
 .dropdown-submenu:hover > .submenu {
-  display: block;
-  opacity: 1;
-  visibility: visible;
   transform: translateX(0);
 }
 
-/* === Links inside menus === */
+/* 13) Links inside dropdowns stack & highlight */
 .dropdown-menu a,
 .submenu a {
   display: block;
-  padding: 14px 24px;            /* larger clickable area */
+  padding: 10px 20px;
+  font-size: 1rem;
   color: var(--white);
-  font-size: 1rem;                /* slightly bigger */
-  line-height: 1.4;
-  text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
+  border-radius: 4px;
 }
 .dropdown-menu a:hover,
 .submenu a:hover {
-  background-color: rgba(247,148,29,0.15);
+  background: rgba(255,255,255,0.15);
   color: var(--zenith-orange);
 }
 
-/* === Section labels === */
+/* 14) Section labels styling */
 .submenu-label {
-  padding: 8px 24px;
-  margin: 8px 0 4px;
+  padding: 6px 20px;
+  margin: 6px 0 4px;
   font-size: 0.8rem;
   color: #ccc;
-  background: var(--zenith-blue);
   text-transform: uppercase;
   border-bottom: 1px solid rgba(255,255,255,0.2);
   pointer-events: none;
 }
 
-/* ===================================================================
-   Call/Text Section
-   =================================================================== */
+/* 15) Call/Text section */
 .phone-section {
-  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 10px;                     /* a bit more breathing room */
+  gap: 10px;
   text-align: center;
-  margin: 0;
-  padding: 0;
 }
 .phone-section p {
   margin: 0;
-  font-size: 1rem;               /* larger for balance */
+  font-size: 1rem;
   font-weight: 600;
+  color: var(--white);
 }
 .phone-section p a {
-  position: relative;
   color: var(--white);
   text-decoration: none;
-  transition: color 0.3s ease;
+  position: relative;
 }
 .phone-section p a::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   bottom: -2px;
@@ -221,9 +206,6 @@ nav ul ul,
   background: var(--zenith-orange);
   transition: width 0.3s ease, left 0.3s ease;
 }
-.phone-section p a:hover {
-  color: var(--zenith-orange);
-}
 .phone-section p a:hover::after {
   width: 80%;
   left: 10%;
@@ -231,25 +213,21 @@ nav ul ul,
 .phone-section a.call-button {
   background: var(--zenith-orange);
   color: var(--white);
-  padding: 10px 24px;            /* larger button */
+  padding: 10px 24px;
   border-radius: 4px;
   font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: inline-block;
 }
 .phone-section a.call-button:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
 
-/* ===================================================================
-   Responsive Mobile Wrap
-   =================================================================== */
+/* 16) Responsive wrap at 768px */
 @media (max-width: 768px) {
   .logo {
-    height: 80px;               /* still big but fits mobile */
+    height: 80px;
   }
   .header-inner {
     flex-wrap: wrap;
@@ -258,10 +236,10 @@ nav ul ul,
     gap: 16px;
   }
   .nav-links {
-    gap: 20px;                  /* slightly tighter on mobile */
+    gap: 20px;
   }
   .nav-links a {
-    font-size: 1rem;            /* adjust for small screens */
-    padding: 12px 16px;
+    padding: 10px 16px;
+    font-size: 1rem;
   }
 }
