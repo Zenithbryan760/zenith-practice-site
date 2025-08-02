@@ -1,245 +1,138 @@
-/* ===================================================================
-   header.css — Header & Navigation styles
-   =================================================================== */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ===== META & SEO ===== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenith Roofing Services – San Diego & Temecula Roof Experts</title>
+  <!-- Your other meta tags… -->
 
-/* === Kill ALL list markers inside any nav === */
-nav ul,
-nav ul ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+  <!-- ===== GLOBAL CSS ===== -->
+  <link rel="stylesheet" href="css/base.css" />
 
-/* === Container & Layout === */
-.header {
-  background: var(--zenith-blue);
-  color: var(--white);
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-  padding: 15px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+  <!-- ===== HEADER CSS ===== -->
+  <link rel="stylesheet" href="css/header.css" />
+  
+  <!-- ===== HERO CSS ===== -->
+  <link rel="stylesheet" href="css/hero.css" />
 
-/* === Logo & License === */
-.logo-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  flex: 0 0 auto;
-}
-.logo {
-  height: 56px;
-  width: auto;
-}
-.license {
-  font-size: 0.8rem;
-  color: var(--white);
-}
+  <!-- ===== RESPONSIVE ===== -->
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <!-- ===== BACKGROUND VIDEO ===== -->
+  <video class="background-video" autoplay muted loop playsinline>
+    <source src="images/roofing-bg.mp4" type="video/mp4" />
+  </video>
 
-/* === Navigation === */
-.nav-bar {
-  flex: 1 1 auto;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-.nav-links {
-  display: flex;
-  gap: 12px;
-}
-.nav-links li {
-  position: relative;
-}
+  <!-- Header + Navigation -->
+<header class="header">
+  <div class="container header-inner">
 
-/* — Animated Link & Underline — */
-.nav-links a {
-  position: relative;
-  color: var(--white);
-  padding: 10px 16px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  -webkit-font-smoothing: antialiased;
-}
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 4px;
-  width: 0;
-  height: 2px;
-  background: var(--zenith-orange);
-  border-radius: 1px;
-  transition: width 0.3s ease, left 0.3s ease;
-}
-.nav-links a:hover {
-  color: var(--zenith-orange);
-}
-.nav-links a:hover::after {
-  width: 80%;
-  left: 10%;
-}
+    <!-- Logo + License -->
+    <div class="logo-section">
+      <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing Services logo" class="logo" />
+      <p class="license">Lic# 1036112</p>
+    </div>
 
-/* === Dropdown Menu: fade, slide, spacing & style === */
-.dropdown-menu {
-  display: grid;
-  grid-auto-rows: min-content;
-  row-gap: 4px;
-  padding: 12px 0;
-  min-width: 220px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--zenith-blue);
-  border-radius: 8px;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.2),
-    0 4px 12px rgba(0,0,0,0.15);
-  z-index: 200;
-}
-.dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
+    <!-- Main Navigation -->
+   <nav class="nav-bar">
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#gallery">Projects</a></li>
 
-/* === Submenu (fly-out) === */
-.dropdown-submenu { position: relative; }
-.submenu {
-  display: grid;
-  grid-auto-rows: min-content;
-  row-gap: 4px;
-  padding: 12px 0;
-  min-width: 220px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background: var(--zenith-blue);
-  border-radius: 8px;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.2),
-    0 4px 12px rgba(0,0,0,0.15);
-  z-index: 250;
-}
-.dropdown-submenu:hover .submenu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
-}
+    <!-- Services Dropdown -->
+    <li class="dropdown">
+      <a href="#">Services</a>
+      <ul class="dropdown-menu">
 
-/* === Links inside menus === */
-.dropdown-menu a,
-.submenu a {
-  display: block;
-  padding: 12px 20px;
-  color: var(--white);
-  font-size: 0.95rem;
-  line-height: 1.4;
-  text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-.dropdown-menu a:hover,
-.submenu a:hover {
-  background-color: rgba(247,148,29,0.1);
-  color: var(--zenith-orange);
-}
+        <!-- Residential -->
+        <li class="dropdown-submenu">
+          <a href="#">Residential Roofing</a>
+          <ul class="submenu">
+            <li class="submenu-label">Roof Systems</li>
+            <li><a href="#shingles">Asphalt Shingles</a></li>
+            <li><a href="#torch-down">Torch Down Systems</a></li>
+            <li><a href="#tile-roof">Clay &amp; Concrete Tile</a></li>
+            <li><a href="#tile-lift-lay">Tile Lift &amp; Reset</a></li>
+            <li><a href="#tpo">TPO Single-Ply</a></li>
+            <li><a href="#silicone">Silicone Coating Systems</a></li>
 
-/* === Section labels === */
-.submenu-label {
-  padding: 8px 20px;
-  margin: 8px 0 4px;
-  font-size: 0.75rem;
-  color: #ccc;
-  background: var(--zenith-blue);
-  text-transform: uppercase;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  pointer-events: none;
-}
+            <li class="submenu-label">Maintenance &amp; Extras</li>
+            <li><a href="#gutters">Seamless Gutters</a></li>
+            <li><a href="#repairs">Leak Repair &amp; Troubleshooting</a></li>
+            <li><a href="#maintenance">Preventive Maintenance</a></li>
+            <li><a href="#cleaning">Roof Washing &amp; Moss Removal</a></li>
+          </ul>
+        </li>
 
-/* ===================================================================
-   Call/Text Section
-   =================================================================== */
-.phone-section {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
-.phone-section p {
-  margin: 0;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-.phone-section p a {
-  position: relative;
-  color: var(--white);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-.phone-section p a::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -2px;
-  width: 0;
-  height: 2px;
-  background: var(--zenith-orange);
-  transition: width 0.3s ease, left 0.3s ease;
-}
-.phone-section p a:hover {
-  color: var(--zenith-orange);
-}
-.phone-section p a:hover::after {
-  width: 80%;
-  left: 10%;
-}
-.phone-section a.call-button {
-  background: var(--zenith-orange);
-  color: var(--white);
-  padding: 8px 20px;
-  border-radius: 4px;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: inline-block;
-}
-.phone-section a.call-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-}
-/* === Final fix for dot/marker showing up near phone text === */
-.phone-section p {
-  display: block;
-  list-style: none;
-}
+        <!-- Commercial -->
+        <li class="dropdown-submenu">
+          <a href="#">Commercial Roofing</a>
+          <ul class="submenu">
+            <li class="submenu-label">Roof Systems</li>
+            <li><a href="#tpo-commercial">TPO Roofing</a></li>
+            <li><a href="#shingles-commercial">Shingle Systems</a></li>
+            <li><a href="#tile-commercial">Tile Roofing</a></li>
+            <li><a href="#metal">Metal Roofing</a></li>
+            <li><a href="#pvc">PVC Membranes</a></li>
+            <li><a href="#torch-commercial">Torch Down Flat Roofs</a></li>
+            <li><a href="#silicone-commercial">Silicone Restoration Coatings</a></li>
 
-.phone-section p::marker {
-  display: none;
-  content: none;
-}
+            <li class="submenu-label">Maintenance &amp; Extras</li>
+            <li><a href="#gutters-commercial">Seamless Gutters</a></li>
+            <li><a href="#maintenance-commercial">Roof Asset Maintenance</a></li>
+            <li><a href="#cleaning-commercial">Debris Removal &amp; Cleaning</a></li>
+          </ul>
+        </li>
 
+        <!-- Real Estate -->
+        <li class="dropdown-submenu">
+          <a href="#">Real Estate Services</a>
+          <ul class="submenu">
+            <li><a href="#roof-reports">Certified Roof Reports</a></li>
+            <li><a href="#roof-estimates">Pre-Sale Roofing Estimates</a></li>
+            <li><a href="#inspections">Visual Roof Inspections</a></li>
+            <li><a href="#certifications">Roof Certifications</a></li>
+            <li><a href="#insurance-consulting">Insurance Consulting</a></li>
+            <li><a href="#verbal-opinions">Professional Verbal Opinions</a></li>
+            <li><a href="#satellite">Satellite Imagery Analysis</a></li>
+          </ul>
+        </li>
+
+        <!-- Pricing (new) -->
+<li><a href="pricing.html">Pricing</a></li>
+
+      </ul>
+    </li>
+
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#glossary">Glossary</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li>
+      <a href="https://www.youtube.com/@ZenithRoofingServices"
+         target="_blank" rel="noopener">
+        YouTube
+      </a>
+    </li>
+  </ul>
+</nav>
+    
+    <!-- Call/Text Button -->
+    <div class="phone-section">
+      <p>Call/Text: <a href="tel:8589006163">858-900-6163</a></p>
+      <a href="tel:8589006163" class="call-button">Call Now</a>
+    </div>
+
+  </div>
+</header>
+
+
+  <!-- Next: Hero Section… -->
+
+</body>
+</html>
+
+  <!-- Next: Hero Section… -->
