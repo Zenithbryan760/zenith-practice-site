@@ -1,14 +1,11 @@
 /* ===================================================================
-   header.css — Header & Navigation styles (UPDATED for beginner)
+   header.css — Header & Navigation styles
    =================================================================== */
 
 /* === Kill ALL list markers inside any nav === */
 nav ul,
-nav ul ul,
-.nav-links,
-.dropdown-menu,
-.submenu {
-  list-style: none !important;
+nav ul ul {
+  list-style: none;
   margin: 0;
   padding: 0;
 }
@@ -25,13 +22,12 @@ nav ul ul,
 }
 .header-inner {
   display: flex;
-  align-items: center;           /* vertical align */
-  justify-content: space-between;/* logo | nav | phone */
+  align-items: center;
+  justify-content: space-between;
   flex-wrap: nowrap;
-  padding: 20px 30px;            /* more breathing room */
+  padding: 15px 20px;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 20px;                     /* uniform gap between sections */
 }
 
 /* === Logo & License === */
@@ -39,15 +35,12 @@ nav ul ul,
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;                      /* tighten gap under logo */
+  gap: 6px;
   flex: 0 0 auto;
-  text-align: center;
 }
 .logo {
-  height: 80px;                  /* increased from 56px */
+  height: 56px;
   width: auto;
-  display: block;
-  margin: 0 auto;
 }
 .license {
   font-size: 0.8rem;
@@ -62,9 +55,8 @@ nav ul ul,
   position: relative;
 }
 .nav-links {
-  display: flex;                 /* horizontal row */
-  gap: 24px;                     /* increased from 12px */
-  align-items: center;
+  display: flex;
+  gap: 12px;
 }
 .nav-links li {
   position: relative;
@@ -101,7 +93,7 @@ nav ul ul,
 
 /* === Dropdown Menu: fade, slide, spacing & style === */
 .dropdown-menu {
-  display: none;                 /* hide until hover */
+  display: grid;
   grid-auto-rows: min-content;
   row-gap: 4px;
   padding: 12px 0;
@@ -120,8 +112,7 @@ nav ul ul,
     0 4px 12px rgba(0,0,0,0.15);
   z-index: 200;
 }
-.dropdown:hover > .dropdown-menu {
-  display: block;
+.dropdown:hover .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -130,7 +121,7 @@ nav ul ul,
 /* === Submenu (fly-out) === */
 .dropdown-submenu { position: relative; }
 .submenu {
-  display: none;                 /* hide until hover */
+  display: grid;
   grid-auto-rows: min-content;
   row-gap: 4px;
   padding: 12px 0;
@@ -149,8 +140,7 @@ nav ul ul,
     0 4px 12px rgba(0,0,0,0.15);
   z-index: 250;
 }
-.dropdown-submenu:hover > .submenu {
-  display: block;
+.dropdown-submenu:hover .submenu {
   opacity: 1;
   visibility: visible;
   transform: translateX(0);
@@ -194,7 +184,7 @@ nav ul ul,
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;                     /* increased from 6px */
+  gap: 6px;
   text-align: center;
   margin: 0;
   padding: 0;
@@ -242,21 +232,14 @@ nav ul ul,
   transform: scale(1.05);
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
-
-/* ===================================================================
-   Responsive Mobile Wrap
-   =================================================================== */
-@media (max-width: 768px) {
-  .logo {
-    height: 64px;              /* slightly smaller on phones */
-  }
-  .header-inner {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 15px;
-    gap: 16px;
-  }
-  .nav-links {
-    gap: 16px;                 /* tighter on small screens */
-  }
+/* === Final fix for dot/marker showing up near phone text === */
+.phone-section p {
+  display: block;
+  list-style: none;
 }
+
+.phone-section p::marker {
+  display: none;
+  content: none;
+}
+
