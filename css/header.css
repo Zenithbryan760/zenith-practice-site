@@ -1,9 +1,10 @@
 /* ===================================================================
-   css/header.css — Fully Labeled & Sectioned for Easy Reference
+   css/header.css — Tweaked Underline & Call Button Centering
+   (All sections labeled for easy reference)
    =================================================================== */
 
 /* -------------------------------------------------------------------
-   [SECTION 1] BASE RESET & FONT IMPORT
+   [1] BASE RESET & FONT IMPORT
    ------------------------------------------------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 * {
@@ -14,9 +15,7 @@
 }
 
 /* -------------------------------------------------------------------
-   [SECTION 2] HEADER CONTAINER
-   - .header: sticky top bar
-   - .header-inner: flex wrapper for logo, nav, phone
+   [2] HEADER CONTAINER
    ------------------------------------------------------------------- */
 .header {
   background: var(--zenith-blue, #072e59);
@@ -37,16 +36,13 @@
 }
 
 /* -------------------------------------------------------------------
-   [SECTION 3] LOGO & LICENSE
-   - .logo-section: text-align center container
-   - .logo: image sizing
-   - .license: text styling
+   [3] LOGO & LICENSE
    ------------------------------------------------------------------- */
 .logo-section {
   text-align: center;
 }
 .logo {
-  height: 80px;       /* larger, balanced size */
+  height: 80px;
   display: block;
   margin-bottom: 4px;
 }
@@ -56,12 +52,11 @@
 }
 
 /* -------------------------------------------------------------------
-   [SECTION 4] MOBILE MENU TOGGLE BUTTON
-   - .menu-toggle: hidden on desktop, shown on mobile
+   [4] MOBILE MENU TOGGLE
    ------------------------------------------------------------------- */
 .menu-toggle {
   display: none;
-  font-size: 1.8rem;  /* tap-friendly */
+  font-size: 1.8rem;
   background: none;
   border: none;
   color: #fff;
@@ -69,10 +64,7 @@
 }
 
 /* -------------------------------------------------------------------
-   [SECTION 5] NAVIGATION LINKS (DESKTOP + MOBILE)
-   - .app-nav: wrapper
-   - .nav-links: flex list of links
-   - .nav-links a: base link styling + hover underline
+   [5] NAVIGATION LINKS
    ------------------------------------------------------------------- */
 .app-nav {
   flex: 1 1 auto;
@@ -95,13 +87,19 @@
   text-decoration: none;
   transition: color 0.3s ease;
 }
+
+/* ===== ADJUSTED UNDERLINE =====
+   - thicker (3px)
+   - positioned flush under text
+   - same hover animation
+   ===== */
 .nav-links a::after {
   content: '';
   position: absolute;
   left: 50%;
-  bottom: -2px;
+  bottom: 0;              /* flush at element bottom */
   width: 0;
-  height: 2px;
+  height: 3px;            /* thicker underline */
   background: var(--zenith-orange, #f7941d);
   transition: width 0.3s ease, left 0.3s ease;
 }
@@ -114,9 +112,7 @@
 }
 
 /* -------------------------------------------------------------------
-   [SECTION 6] DROPDOWN & SUBMENU STYLES
-   - .dropdown-menu: top-level dropdown
-   - .submenu: fly-out submenu
+   [6] DROPDOWN & SUBMENU
    ------------------------------------------------------------------- */
 .dropdown-menu,
 .submenu {
@@ -150,8 +146,6 @@
 .dropdown-menu a:hover {
   background: rgba(255,255,255,0.1);
 }
-
-/* fly-out submenu positioning */
 .dropdown-submenu:hover > .submenu {
   display: block;
   opacity: 1;
@@ -165,14 +159,14 @@
 }
 
 /* -------------------------------------------------------------------
-   [SECTION 7] CALL/TEXT BUTTON
-   - .phone-section: flex container
-   - .call-button: styled button
+   [7] PHONE SECTION & CALL BUTTON
+   - centered vertically with nav
    ------------------------------------------------------------------- */
 .phone-section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;  /* vertical centering */
   gap: 8px;
 }
 .phone-section p {
@@ -195,16 +189,19 @@
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+/* ===== CALL BUTTON CENTERING TWEAK =====
+   - ensure button and phone align baseline
+   ===== */
+.call-button {
+  align-self: center;
+}
 .call-button:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 /* -------------------------------------------------------------------
-   [SECTION 8] RESPONSIVE BREAKPOINT (≤768px)
-   - Show menu toggle
-   - Collapse nav-links into vertical list
-   - Ensure dropdowns always visible under mobile
+   [8] RESPONSIVE BREAKPOINT (≤768px)
    ------------------------------------------------------------------- */
 @media (max-width: 768px) {
   .header-inner {
