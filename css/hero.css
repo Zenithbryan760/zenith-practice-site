@@ -1,103 +1,39 @@
-/* ==========================================================================
-   hero.css — Hero Section Styles
-   ========================================================================== */
+/* ===================================================================
+   css/hero.css — Hero Video & Tint Styles
+   =================================================================== */
+
 /* -------------------------------------------------------------------
-   [VIDEO-TINT] Fullscreen video + blue tint overlay
+   VIDEO CONTAINER (HTML only)
    ------------------------------------------------------------------- */
 .video-container {
-  position: fixed;         /* sit behind everything */
+  position: fixed;       /* behind everything */
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  z-index: -1;             /* behind header and content */
+  z-index: -1;           /* keep it behind header & content */
 }
+
+/* -------------------------------------------------------------------
+   BACKGROUND VIDEO FILL
+   ------------------------------------------------------------------- */
 .background-video {
   width: 100%;
   height: 100%;
-  object-fit: cover;       /* crop/scale to fill */
+  object-fit: cover;     /* scale & crop to cover */
   display: block;
 }
+
+/* -------------------------------------------------------------------
+   SEMI-OPAQUE BLUE OVERLAY
+   ------------------------------------------------------------------- */
 .video-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(7, 46, 89, 0.4); /* Zenith blue + 40% opacity */
-  pointer-events: none;    /* clicks pass through */
-}
-
-/* The semi-transparent dark overlay on the background video */
-.hero {
-  position: relative;
-  background: var(--hero-overlay);
-  color: var(--white);
-  text-align: center;
-  padding: 80px 20px 60px;
-}
-
-/* Main headline */
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-/* Sub-headline text */
-.hero p {
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
-}
-
-/* The form wrapper */
-.hero-form {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 24px;
-  border-radius: 8px;
-  max-width: 700px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* Each row of inputs wraps on narrow screens */
-.form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-/* Inputs and textarea styling */
-.hero-form input,
-.hero-form textarea {
-  flex: 1 1 300px;
-  padding: 12px 14px;
-  border: 1px solid var(--light-gray);
-  border-radius: 4px;
-  font-size: 1rem;
-}
-.hero-form input:focus,
-.hero-form textarea:focus {
-  outline: 2px solid var(--zenith-orange);
-}
-
-/* Submit button inherits .button from base.css */
-.hero-form .button {
-  align-self: center;
-  padding: 12px 32px;
-  font-size: 1rem;
-}
-
-/* Disclaimer text below the form */
-.disclaimer {
-  font-size: 0.85rem;
-  color: #bbb;
-  max-width: 700px;
-  margin: 8px auto 0;
-}
-.disclaimer a {
-  color: var(--zenith-orange);
-  text-decoration: underline;
+  background-color: rgba(7, 46, 89, 0.4); /* Zenith blue @ 40% opacity */
+  pointer-events: none;  /* allow clicks through to page */
 }
