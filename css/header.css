@@ -1,244 +1,58 @@
-/* ===================================================================
-   header.css — Header & Navigation styles
-   =================================================================== */
+/* ===== Beginner-Friendly Navbar Tweaks ===== */
 
-/* === Kill ALL list markers inside any nav === */
-nav ul,
-nav ul ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* 1) Make the logo more prominent */
+.logo {
+  height: 80px;      /* Bigger logo height */
+  width: auto;
+  display: block;
+  margin: 0 auto;    /* Center under its container */
 }
 
-/* === Container & Layout === */
-.header {
-  background: var(--zenith-blue);
-  color: var(--white);
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
+/* 2) Even out horizontal gaps between main header sections */
 .header-inner {
   display: flex;
-  align-items: center;
+  align-items: center;  /* Vertically center logo, nav, phone */
   justify-content: space-between;
   flex-wrap: nowrap;
-  padding: 15px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 20px 30px;   /* More breathing room */
+  gap: 20px;            /* Uniform gap between logo, nav, phone */
 }
 
-/* === Logo & License === */
+/* 3) Consistent spacing between nav links */
+.nav-links {
+  display: flex;
+  gap: 24px;            /* Space between each link */
+}
+
+/* 4) Center license text directly under the logo */
 .logo-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  flex: 0 0 auto;
-}
-.logo {
-  height: 56px;
-  width: auto;
-}
-.license {
-  font-size: 0.8rem;
-  color: var(--white);
+  gap: 4px;             /* Tight gap under logo */
+  text-align: center;
 }
 
-/* === Navigation === */
-.nav-bar {
-  flex: 1 1 auto;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-.nav-links {
-  display: flex;
-  gap: 12px;
-}
-.nav-links li {
-  position: relative;
-}
-
-/* — Animated Link & Underline — */
-.nav-links a {
-  position: relative;
-  color: var(--white);
-  padding: 10px 16px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  -webkit-font-smoothing: antialiased;
-}
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 4px;
-  width: 0;
-  height: 2px;
-  background: var(--zenith-orange);
-  border-radius: 1px;
-  transition: width 0.3s ease, left 0.3s ease;
-}
-.nav-links a:hover {
-  color: var(--zenith-orange);
-}
-.nav-links a:hover::after {
-  width: 80%;
-  left: 10%;
-}
-
-/* === Dropdown Menu: fade, slide, spacing & style === */
-.dropdown-menu {
-  display: grid;
-  grid-auto-rows: min-content;
-  row-gap: 4px;
-  padding: 12px 0;
-  min-width: 220px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--zenith-blue);
-  border-radius: 8px;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.2),
-    0 4px 12px rgba(0,0,0,0.15);
-  z-index: 200;
-}
-.dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* === Submenu (fly-out) === */
-.dropdown-submenu { position: relative; }
-.submenu {
-  display: grid;
-  grid-auto-rows: min-content;
-  row-gap: 4px;
-  padding: 12px 0;
-  min-width: 220px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background: var(--zenith-blue);
-  border-radius: 8px;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.2),
-    0 4px 12px rgba(0,0,0,0.15);
-  z-index: 250;
-}
-.dropdown-submenu:hover .submenu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
-}
-
-/* === Links inside menus === */
-.dropdown-menu a,
-.submenu a {
-  display: block;
-  padding: 12px 20px;
-  color: var(--white);
-  font-size: 0.95rem;
-  line-height: 1.4;
-  text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-.dropdown-menu a:hover,
-.submenu a:hover {
-  background-color: rgba(247,148,29,0.1);
-  color: var(--zenith-orange);
-}
-
-/* === Section labels === */
-.submenu-label {
-  padding: 8px 20px;
-  margin: 8px 0 4px;
-  font-size: 0.75rem;
-  color: #ccc;
-  background: var(--zenith-blue);
-  text-transform: uppercase;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  pointer-events: none;
-}
-
-/* ===================================================================
-   Call/Text Section
-   =================================================================== */
+/* 5) Balanced phone section spacing */
 .phone-section {
-  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
-.phone-section p {
-  margin: 0;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-.phone-section p a {
-  position: relative;
-  color: var(--white);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-.phone-section p a::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -2px;
-  width: 0;
-  height: 2px;
-  background: var(--zenith-orange);
-  transition: width 0.3s ease, left 0.3s ease;
-}
-.phone-section p a:hover {
-  color: var(--zenith-orange);
-}
-.phone-section p a:hover::after {
-  width: 80%;
-  left: 10%;
-}
-.phone-section a.call-button {
-  background: var(--zenith-orange);
-  color: var(--white);
-  padding: 8px 20px;
-  border-radius: 4px;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: inline-block;
-}
-.phone-section a.call-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-}
-/* === Final fix for dot/marker showing up near phone text === */
-.phone-section p {
-  display: block;
-  list-style: none;
+  gap: 8px;             /* Space between number and button */
 }
 
-.phone-section p::marker {
-  display: none;
-  content: none;
+/* 6) Mobile-friendly scale-down */
+@media (max-width: 768px) {
+  .logo {
+    height: 64px;       /* Slightly smaller on tablet/phone */
+  }
+  .header-inner {
+    flex-wrap: wrap;    
+    justify-content: center;
+    padding: 15px;
+    gap: 16px;
+  }
+  .nav-links {
+    gap: 16px;          /* Tighter on small screens */
+  }
 }
