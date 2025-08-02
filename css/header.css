@@ -1,7 +1,5 @@
 /* ===================================================================
-   Mobile-First Navigation Bar for Homeowners & Biz Owners
-   Reflecting Protection & Durability Brand Identity
-   (UPDATED with larger logo, bigger tabs, and mobile toggle)
+   css/header.css — Cleaned & Unified Header Styles
    =================================================================== */
 
 /* 1) Base Reset & Font */
@@ -13,156 +11,190 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* 2) Nav Container */
-.app-nav {
-  background: #072e59;            /* Zenith blue */
-  color: #fff;
+/* 2) Header Layout */
+.header {
+  background: var(--zenith-blue);
+  color: var(--white);
+  position: sticky;
+  top: 0;
   width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 30px;             /* extra breathing room */
-  position: relative;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  flex-wrap: nowrap;
-  gap: 32px;                      /* space between logo, nav, search, CTA */
+  padding: 20px 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 32px;
 }
 
-/* 3) Logo */
-.app-nav .logo {
-  height: 100px;                  /* enlarged logo */
+/* 3) Logo Section */
+.logo-section {
+  text-align: center;
+}
+.logo {
+  height: 100px;
   width: auto;
   display: block;
+  margin: 0 auto;
+}
+.license {
+  font-size: 0.9rem;
+  color: var(--white);
 }
 
-/* 4) Nav Links Wrapper */
-.app-nav .nav-links {
-  list-style: none;               /* remove bullets */
+/* 4) Mobile Toggle */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+}
+
+/* 5) Navigation */
+.app-nav {
+  flex: 1 1 auto;
   display: flex;
-  gap: 32px;                      /* wider spacing for big tabs */
+  align-items: center;
+  gap: 24px;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 32px;
   align-items: center;
 }
-.app-nav .nav-links li {
+.nav-links li { position: relative; }
+.nav-links a {
   position: relative;
-}
-.app-nav .nav-links a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 20px;             /* bigger click area */
-  font-size: 1.1rem;              /* larger text */
+  padding: 12px 20px;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--white);
   text-decoration: none;
   transition: color 0.3s ease;
-  border-radius: 4px;
 }
-/* Underline animation */
-.app-nav .nav-links a::after {
+.nav-links a::after {
   content: '';
   position: absolute;
-  left: 50%;
   bottom: 4px;
+  left: 50%;
   width: 0;
   height: 2px;
-  background: #f7941d;           /* Zenith orange */
-  border-radius: 1px;
+  background: var(--zenith-orange);
   transition: width 0.3s ease, left 0.3s ease;
 }
-.app-nav .nav-links a:hover {
-  color: #f7941d;
+.nav-links a:hover {
+  color: var(--zenith-orange);
 }
-.app-nav .nav-links a:hover::after {
+.nav-links a:hover::after {
   width: 80%;
   left: 10%;
 }
 
-/* 5) Search Bar */
-.app-nav .search-container {
+/* 6) Dropdowns */
+.dropdown-menu,
+.submenu {
+  display: none;
+  position: absolute;
+  background: var(--zenith-blue);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 8px 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.dropdown:hover > .dropdown-menu,
+.dropdown-submenu:hover > .submenu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.submenu {
+  top: 0;
+  left: 100%;
+  transform: translateX(10px);
+}
+
+/* 7) Search & CTA */
+.search-container {
   position: relative;
   flex: 1 1 auto;
   max-width: 200px;
-  margin: 0 12px;
 }
-.app-nav .search-container input {
+.search-container input {
   width: 100%;
-  padding: 8px 36px 8px 12px;    /* match tab sizing */
+  padding: 8px 36px 8px 12px;
   border: none;
   border-radius: 4px;
-  font-size: 1rem;
 }
-.app-nav .search-container svg {
+.search-container svg {
   position: absolute;
   right: 8px;
   top: 50%;
   transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
   fill: #666;
-  pointer-events: none;
 }
-
-/* 6) Call-to-Action Button */
-.app-nav .cta-button {
-  background: #f7941d;
-  color: #fff;
-  padding: 10px 24px;            /* larger button */
+.cta-button {
+  background: var(--zenith-orange);
+  color: var(--white);
+  padding: 10px 24px;
   border-radius: 4px;
-  font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.app-nav .cta-button:hover {
+.cta-button:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
 
-/* 7) Mobile Toggle */
-.app-nav .menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.8rem;              /* big enough to tap */
-  cursor: pointer;
+/* 8) Phone Section */
+.phone-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.phone-section a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
 }
 
-/* 8) Responsive Breakpoint */
+/* 9) Responsive @ ≤768px */
 @media (max-width: 768px) {
-  .app-nav {
+  .header-inner {
     flex-wrap: wrap;
-    padding: 15px 20px;
+    justify-content: center;
     gap: 16px;
+    padding: 15px 20px;
   }
-  /* hide links behind toggle */
-  .app-nav .nav-links {
-    display: none;
-    flex-direction: column;
-    background: #072e59;
-    width: 100%;
-    margin-top: 8px;
-    border-top: 1px solid rgba(255,255,255,0.2);
-    gap: 0;                        /* reset gap for stacking */
-  }
-  .app-nav .menu-toggle {
+  .menu-toggle {
     display: block;
   }
-  /* show when .open class added by JS */
-  .app-nav .nav-links.open {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 8px;
+  }
+  .nav-links.open {
     display: flex;
   }
-  /* shrink search on mobile */
-  .app-nav .search-container {
+  .search-container {
     max-width: 100%;
     margin: 8px 0;
   }
-  .app-nav .search-container input {
-    font-size: 0.95rem;
-    padding: 8px 12px;
-  }
-  /* adjust tab size on mobile */
-  .app-nav .nav-links a {
+  .nav-links a {
     padding: 10px 16px;
     font-size: 1rem;
   }
