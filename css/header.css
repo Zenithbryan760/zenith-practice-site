@@ -1,8 +1,10 @@
 /* ===================================================================
-   css/header.css — Roofing Nav (Hover, Dropdown, Mobile Toggle)
+   css/header.css — Fully Labeled & Sectioned for Easy Reference
    =================================================================== */
 
-/* 1) Reset & Font */
+/* -------------------------------------------------------------------
+   [SECTION 1] BASE RESET & FONT IMPORT
+   ------------------------------------------------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 * {
   box-sizing: border-box;
@@ -11,13 +13,18 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* 2) Header Base */
+/* -------------------------------------------------------------------
+   [SECTION 2] HEADER CONTAINER
+   - .header: sticky top bar
+   - .header-inner: flex wrapper for logo, nav, phone
+   ------------------------------------------------------------------- */
 .header {
-  background: #072e59;
+  background: var(--zenith-blue, #072e59);
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 .header-inner {
   max-width: 1200px;
@@ -29,29 +36,44 @@
   gap: 24px;
 }
 
-/* 3) Logo & License */
+/* -------------------------------------------------------------------
+   [SECTION 3] LOGO & LICENSE
+   - .logo-section: text-align center container
+   - .logo: image sizing
+   - .license: text styling
+   ------------------------------------------------------------------- */
+.logo-section {
+  text-align: center;
+}
 .logo {
-  height: 80px;
+  height: 80px;       /* larger, balanced size */
   display: block;
   margin-bottom: 4px;
 }
 .license {
   font-size: 0.85rem;
   color: #fff;
-  text-align: center;
 }
 
-/* 4) Mobile Toggle */
+/* -------------------------------------------------------------------
+   [SECTION 4] MOBILE MENU TOGGLE BUTTON
+   - .menu-toggle: hidden on desktop, shown on mobile
+   ------------------------------------------------------------------- */
 .menu-toggle {
   display: none;
-  font-size: 1.8rem;
+  font-size: 1.8rem;  /* tap-friendly */
   background: none;
   border: none;
   color: #fff;
   cursor: pointer;
 }
 
-/* 5) Navigation */
+/* -------------------------------------------------------------------
+   [SECTION 5] NAVIGATION LINKS (DESKTOP + MOBILE)
+   - .app-nav: wrapper
+   - .nav-links: flex list of links
+   - .nav-links a: base link styling + hover underline
+   ------------------------------------------------------------------- */
 .app-nav {
   flex: 1 1 auto;
 }
@@ -65,10 +87,12 @@
   position: relative;
 }
 .nav-links a {
+  position: relative;
+  padding: 8px 0;
+  font-size: 1rem;
+  font-weight: 500;
   color: #fff;
   text-decoration: none;
-  padding: 8px 0;
-  font-weight: 500;
   transition: color 0.3s ease;
 }
 .nav-links a::after {
@@ -78,30 +102,40 @@
   bottom: -2px;
   width: 0;
   height: 2px;
-  background: #f7941d;
+  background: var(--zenith-orange, #f7941d);
   transition: width 0.3s ease, left 0.3s ease;
 }
 .nav-links a:hover {
-  color: #f7941d;
+  color: var(--zenith-orange, #f7941d);
 }
 .nav-links a:hover::after {
   width: 80%;
   left: 10%;
 }
 
-/* 6) Dropdown Menus */
+/* -------------------------------------------------------------------
+   [SECTION 6] DROPDOWN & SUBMENU STYLES
+   - .dropdown-menu: top-level dropdown
+   - .submenu: fly-out submenu
+   ------------------------------------------------------------------- */
 .dropdown-menu,
 .submenu {
   position: absolute;
-  background: #072e59;
+  background: var(--zenith-blue, #072e59);
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   list-style: none;
   padding: 8px 0;
   display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
 .dropdown:hover > .dropdown-menu {
   display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 .dropdown-menu li {
   position: relative;
@@ -117,9 +151,12 @@
   background: rgba(255,255,255,0.1);
 }
 
-/* fly-out submenu */
+/* fly-out submenu positioning */
 .dropdown-submenu:hover > .submenu {
   display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
 }
 .submenu {
   top: 0;
@@ -127,17 +164,52 @@
   transform: translateX(8px);
 }
 
-/* 7) Phone Section */
-.phone-section a {
+/* -------------------------------------------------------------------
+   [SECTION 7] CALL/TEXT BUTTON
+   - .phone-section: flex container
+   - .call-button: styled button
+   ------------------------------------------------------------------- */
+.phone-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.phone-section p {
+  margin: 0;
+  font-size: 0.95rem;
   color: #fff;
-  text-decoration: none;
   font-weight: 600;
 }
+.phone-section p a {
+  color: #fff;
+  text-decoration: none;
+}
+.call-button {
+  display: inline-block;
+  background: var(--zenith-orange, #f7941d);
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.call-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 
-/* 8) Responsive @ ≤768px */
+/* -------------------------------------------------------------------
+   [SECTION 8] RESPONSIVE BREAKPOINT (≤768px)
+   - Show menu toggle
+   - Collapse nav-links into vertical list
+   - Ensure dropdowns always visible under mobile
+   ------------------------------------------------------------------- */
 @media (max-width: 768px) {
   .header-inner {
     flex-wrap: wrap;
+    justify-content: center;
     padding: 15px 20px;
     gap: 16px;
   }
@@ -148,7 +220,7 @@
     display: none;
     flex-direction: column;
     width: 100%;
-    background: #072e59;
+    background: var(--zenith-blue, #072e59);
     border-top: 1px solid rgba(255,255,255,0.2);
     margin-top: 8px;
     gap: 0;
@@ -164,13 +236,22 @@
     padding: 12px 0;
     font-size: 1rem;
   }
-  /* hide hover underline on mobile */
   .nav-links a::after {
-    display: none;
+    display: none;  /* hide underline on mobile */
   }
   .dropdown-menu,
   .submenu {
     position: static;
     box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .phone-section {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .phone-section p {
+    font-size: 1rem;
   }
 }
