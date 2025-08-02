@@ -1,47 +1,36 @@
 /* ===================================================================
-   css/header.css — Header & Navigation Styles (Self-Contained)
+   header.css — Header & Navigation styles
    =================================================================== */
 
-/* =========================================================================
-   1) BASE RESET & FONT IMPORT
-   ========================================================================= */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-:root {
-  --blue: #072e59;
-  --orange: #f7941d;
-  --white: #fff;
-}
-* {
-  box-sizing: border-box;
+/* === Kill ALL list markers inside any nav === */
+nav ul,
+nav ul ul {
+  list-style: none;
   margin: 0;
   padding: 0;
-  font-family: 'Inter', sans-serif;
 }
 
-/* =========================================================================
-   2) HEADER CONTAINER
-   ========================================================================= */
+/* === Container & Layout === */
 .header {
-  background: var(--blue);
+  background: var(--zenith-blue);
+  color: var(--white);
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 100;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 .header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 30px;
-  gap: 24px;
+  flex-wrap: nowrap;
+  padding: 15px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* =========================================================================
-   3) LOGO & LICENSE
-   ========================================================================= */
+/* === Logo & License === */
 .logo-section {
   text-align: center;
 }
@@ -55,177 +44,199 @@
   font-size: 0.85rem;
 }
 
-/* =========================================================================
-   4) MOBILE MENU TOGGLE
-   ========================================================================= */
-.menu-toggle {
-  display: none;
-  font-size: 1.8rem;
-  background: none;
-  border: none;
-  color: var(--white);
-  cursor: pointer;
-}
 
-/* =========================================================================
-   5) NAVIGATION LINKS
-   ========================================================================= */
-.nav {
-  flex: 1;
+/* === Navigation === */
+.nav-bar {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
 .nav-links {
-  list-style: none;
   display: flex;
-  gap: 32px;
-  align-items: center;
+  gap: 12px;
 }
 .nav-links li {
   position: relative;
 }
+
+/* — Animated Link & Underline — */
 .nav-links a {
-  color: var(--white);
-  text-decoration: none;
-  font-weight: 500;
-  padding: 8px 0;
-  transition: color 0.3s ease;
   position: relative;
+  color: var(--white);
+  padding: 10px 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
 }
 .nav-links a::after {
-  content: '';
+  content: "";
   position: absolute;
-  bottom: -2px;
   left: 50%;
+  bottom: 4px;
   width: 0;
-  height: 3px;
-  background: var(--orange);
+  height: 2px;
+  background: var(--zenith-orange);
+  border-radius: 1px;
   transition: width 0.3s ease, left 0.3s ease;
 }
 .nav-links a:hover {
-  color: var(--orange);
+  color: var(--zenith-orange);
 }
 .nav-links a:hover::after {
   width: 80%;
   left: 10%;
 }
 
-/* =========================================================================
-   6) DROPDOWN & SUBMENU
-   ========================================================================= */
-.dropdown-menu,
-.submenu {
+/* === Dropdown Menu: fade, slide, spacing & style === */
+.dropdown-menu {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  padding: 12px 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
   position: absolute;
-  background: var(--blue);
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  list-style: none;
-  padding: 8px 0;
-  display: none;
-  white-space: nowrap;
+  top: 100%;
+  left: 0;
+  background: var(--zenith-blue);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 12px rgba(0,0,0,0.15);
+  z-index: 200;
 }
-.dropdown:hover > .dropdown-menu {
-  display: block;
-}
-.dropdown-menu li a,
-.submenu li a {
-  display: block;
-  padding: 8px 24px;
-  color: var(--white);
-  text-decoration: none;
-  transition: background 0.2s ease;
-}
-.dropdown-menu li a:hover,
-.submenu li a:hover {
-  background: rgba(255,255,255,0.1);
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-/* Fly-out submenu */
-.dropdown-submenu:hover > .submenu {
-  display: block;
-}
+/* === Submenu (fly-out) === */
+.dropdown-submenu { position: relative; }
 .submenu {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  padding: 12px 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  position: absolute;
   top: 0;
   left: 100%;
-  transform: translateX(8px);
+  background: var(--zenith-blue);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 12px rgba(0,0,0,0.15);
+  z-index: 250;
+}
+.dropdown-submenu:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
 }
 
-/* =========================================================================
-   7) CALL/TEXT SECTION
-   ========================================================================= */
+/* === Links inside menus === */
+.dropdown-menu a,
+.submenu a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--white);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.dropdown-menu a:hover,
+.submenu a:hover {
+  background-color: rgba(247,148,29,0.1);
+  color: var(--zenith-orange);
+}
+
+/* === Section labels === */
+.submenu-label {
+  padding: 8px 20px;
+  margin: 8px 0 4px;
+  font-size: 0.75rem;
+  color: #ccc;
+  background: var(--zenith-blue);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  pointer-events: none;
+}
+
+/* ===================================================================
+   Call/Text Section
+   =================================================================== */
 .phone-section {
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 .phone-section p {
-  color: var(--white);
-  font-weight: 600;
-  font-size: 0.95rem;
   margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 .phone-section p a {
+  position: relative;
   color: var(--white);
   text-decoration: none;
+  transition: color 0.3s ease;
 }
-.call-button {
-  background: var(--orange);
+.phone-section p a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--zenith-orange);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.phone-section p a:hover {
+  color: var(--zenith-orange);
+}
+.phone-section p a:hover::after {
+  width: 80%;
+  left: 10%;
+}
+.phone-section a.call-button {
+  background: var(--zenith-orange);
   color: var(--white);
   padding: 8px 20px;
   border-radius: 4px;
   font-weight: 700;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.call-button:hover {
-  transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+}
+.phone-section a.call-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+/* === Final fix for dot/marker showing up near phone text === */
+.phone-section p {
+  display: block;
+  list-style: none;
 }
 
-/* =========================================================================
-   8) RESPONSIVE BREAKPOINT (≤768px)
-   ========================================================================= */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-  .header-inner {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 15px 20px;
-    gap: 16px;
-  }
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: var(--blue);
-    border-top: 1px solid rgba(255,255,255,0.2);
-    margin-top: 8px;
-  }
-  .nav-links.open {
-    display: flex;
-  }
-  .nav-links li {
-    width: 100%;
-    text-align: center;
-  }
-  .nav-links a {
-    padding: 12px 0;
-    font-size: 1rem;
-  }
-  .nav-links a::after {
-    display: none;
-  }
-  .dropdown-menu,
-  .submenu {
-    position: static;
-    box-shadow: none;
-  }
-  .phone-section {
-    flex-direction: row;
-    justify-content: center;
-  }
-  .phone-section p {
-    font-size: 1rem;
-  }
+.phone-section p::marker {
+  display: none;
+  content: none;
 }
