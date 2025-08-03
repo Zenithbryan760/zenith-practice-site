@@ -24,16 +24,18 @@
   <header class="header">
     <div class="header-inner">
 
-      <!-- ===== MOBILE NAV LAYOUT ===== -->
+      <!-- ===== MOBILE NAV LAYOUT (shown ≤768px by CSS) ===== -->
       <div class="mobile-header">
         <!-- 1) Hamburger -->
-        <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
 
         <!-- 2) Centered logo -->
         <div class="logo-section">
-          <img src="images/badges/logo-zenith-icon.png"
-               alt="Zenith Roofing logo"
-               class="logo">
+          <img
+            src="images/badges/logo-zenith-icon.png"
+            alt="Zenith Roofing logo"
+            class="logo"
+          />
         </div>
 
         <!-- 3) Phone icon -->
@@ -44,11 +46,13 @@
         </a>
       </div>
 
-      <!-- Logo & License -->
+      <!-- ===== DESKTOP HEADER PARTS (hidden on mobile by CSS) ===== -->
       <div class="logo-section">
-        <img src="images/badges/logo-zenith-icon.png"
-             alt="Zenith Roofing Services logo"
-             class="logo">
+        <img
+          src="images/badges/logo-zenith-icon.png"
+          alt="Zenith Roofing Services logo"
+          class="logo"
+        />
         <p class="license">Lic# 1036112</p>
       </div>
 
@@ -57,9 +61,12 @@
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
           <li><a href="#gallery">Projects</a></li>
+
+          <!-- Services Dropdown -->
           <li class="dropdown">
             <a href="#services">Services</a>
             <ul class="dropdown-menu">
+              <!-- Residential -->
               <li class="dropdown-submenu">
                 <a href="#residential">Residential Roofing</a>
                 <ul class="submenu">
@@ -77,6 +84,8 @@
                   <li><a href="#cleaning">Roof Washing &amp; Moss Removal</a></li>
                 </ul>
               </li>
+
+              <!-- Commercial -->
               <li class="dropdown-submenu">
                 <a href="#commercial">Commercial Roofing</a>
                 <ul class="submenu">
@@ -94,6 +103,8 @@
                   <li><a href="#cleaning-commercial">Debris Removal &amp; Cleaning</a></li>
                 </ul>
               </li>
+
+              <!-- Real Estate -->
               <li class="dropdown-submenu">
                 <a href="#real-estate">Real Estate Services</a>
                 <ul class="submenu">
@@ -106,19 +117,26 @@
                   <li><a href="#satellite">Satellite Imagery Analysis</a></li>
                 </ul>
               </li>
+
+              <!-- Pricing -->
               <li><a href="pricing.html">Pricing</a></li>
             </ul>
           </li>
+
           <li><a href="#reviews">Reviews</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#blog">Blog</a></li>
           <li><a href="#glossary">Glossary</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">YouTube</a></li>
+          <li>
+            <a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">
+              YouTube
+            </a>
+          </li>
         </ul>
       </nav>
 
-      <!-- Call/Text Section -->
+      <!-- Call/Text Section (desktop) -->
       <div class="phone-section">
         <p>Call/Text: <a href="tel:8589006163">858-900-6163</a></p>
         <a href="tel:8589006163" class="call-button">Call Now</a>
@@ -140,6 +158,7 @@
 
   <!-- ===== YOUR PAGE CONTENT STARTS HERE ===== -->
 
+  <!-- Toggle script -->
   <script src="js/header.js"></script>
 </body>
 </html>
