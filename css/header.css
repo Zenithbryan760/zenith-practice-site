@@ -1,5 +1,5 @@
 /* ===================================================================
-   css/header.css — Header & Navigation styles (with Mobile Toggle)
+   css/header.css — Complete Header & Navigation Styles
    =================================================================== */
 
 /* -------------------------------------------------------------------
@@ -7,10 +7,15 @@
    ------------------------------------------------------------------- */
 .menu-toggle {
   display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--white);
+  cursor: pointer;
 }
 
 /* -------------------------------------------------------------------
-   [1] Kill ALL list markers inside any nav
+   [1] RESET NAV LISTS
    ------------------------------------------------------------------- */
 nav ul,
 nav ul ul {
@@ -20,7 +25,7 @@ nav ul ul {
 }
 
 /* -------------------------------------------------------------------
-   [2] Container & Layout
+   [2] HEADER CONTAINER
    ------------------------------------------------------------------- */
 .header {
   background: var(--zenith-blue);
@@ -28,7 +33,7 @@ nav ul ul {
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 1000;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 .header-inner {
@@ -42,7 +47,7 @@ nav ul ul {
 }
 
 /* -------------------------------------------------------------------
-   [3] Logo & License
+   [3] LOGO & LICENSE
    ------------------------------------------------------------------- */
 .logo-section {
   text-align: center;
@@ -58,7 +63,7 @@ nav ul ul {
 }
 
 /* -------------------------------------------------------------------
-   [4] Navigation
+   [4] NAVIGATION & LINKS
    ------------------------------------------------------------------- */
 .nav-bar {
   flex: 1 1 auto;
@@ -74,7 +79,7 @@ nav ul ul {
   position: relative;
 }
 
-/* — Animated Link & Underline — */
+/* — Link underline animation — */
 .nav-links a {
   position: relative;
   color: var(--white);
@@ -82,7 +87,6 @@ nav ul ul {
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s ease;
-  -webkit-font-smoothing: antialiased;
 }
 .nav-links a::after {
   content: "";
@@ -104,7 +108,7 @@ nav ul ul {
 }
 
 /* -------------------------------------------------------------------
-   [5] Dropdown Menu: fade, slide, spacing & style
+   [5] DROPDOWN MENU
    ------------------------------------------------------------------- */
 .dropdown-menu {
   display: grid;
@@ -133,9 +137,11 @@ nav ul ul {
 }
 
 /* -------------------------------------------------------------------
-   [6] Submenu (fly-out)
+   [6] SUBMENU (FLY-OUT)
    ------------------------------------------------------------------- */
-.dropdown-submenu { position: relative; }
+.dropdown-submenu {
+  position: relative;
+}
 .submenu {
   display: grid;
   grid-auto-rows: min-content;
@@ -163,7 +169,7 @@ nav ul ul {
 }
 
 /* -------------------------------------------------------------------
-   [7] Links inside menus
+   [7] LINKS INSIDE MENUS
    ------------------------------------------------------------------- */
 .dropdown-menu a,
 .submenu a {
@@ -182,7 +188,7 @@ nav ul ul {
 }
 
 /* -------------------------------------------------------------------
-   [8] Section labels
+   [8] SUBMENU LABELS
    ------------------------------------------------------------------- */
 .submenu-label {
   padding: 8px 20px;
@@ -196,7 +202,7 @@ nav ul ul {
 }
 
 /* -------------------------------------------------------------------
-   [9] Call/Text Section
+   [9] CALL/TEXT SECTION
    ------------------------------------------------------------------- */
 .phone-section {
   flex: 0 0 auto;
@@ -206,8 +212,6 @@ nav ul ul {
   justify-content: center;
   gap: 6px;
   text-align: center;
-  margin: 0;
-  padding: 0;
 }
 .phone-section p {
   margin: 0;
@@ -252,32 +256,20 @@ nav ul ul {
   transform: scale(1.05);
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
-/* Final fix for dot/marker showing up near phone text */
-.phone-section p {
-  display: block;
-  list-style: none;
-}
-.phone-section p::marker {
-  display: none;
-  content: none;
-}
 
-/* ===================================================================
-   [10] MOBILE TOGGLE (≤768px)
-   Shows ☰ and collapses menu by default on mobile
-   =================================================================== */
+/* -------------------------------------------------------------------
+   [10] MOBILE RESPONSIVE (≤768px)
+   ------------------------------------------------------------------- */
 @media (max-width: 768px) {
-  /* show the hamburger toggle on mobile */
+  /* show hamburger */
   .menu-toggle {
     display: block;
-    background: none;
-    border: none;
-    font-size: 1.8rem;
-    color: var(--white);
-    cursor: pointer;
   }
 
-  /* hide nav-links by default */
+  /* collapse nav by default */
+  .nav-bar {
+    width: 100%;
+  }
   .nav-links {
     display: none;
     flex-direction: column;
@@ -287,9 +279,45 @@ nav ul ul {
     margin-top: 8px;
     gap: 0;
   }
-
-  /* when “open” is added via JS, show the menu */
-  .nav-links.open {
+  /* when toggled, show */
+  .nav-bar.open .nav-links {
     display: flex;
+  }
+
+  /* full-width links */
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+  .nav-links a {
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+  .nav-links a::after {
+    display: none;
+  }
+
+  /* ensure dropdowns stay visible */
+  .dropdown-menu,
+  .submenu {
+    position: static;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  /* stack header-inner items if needed */
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 16px;
+    gap: 12px;
+  }
+
+  /* arrange phone section inline */
+  .phone-section {
+    flex-direction: row;
+    justify-content: center;
   }
 }
