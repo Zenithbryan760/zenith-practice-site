@@ -9,7 +9,31 @@ document.addEventListener('DOMContentLoaded', () => {
   // Toggle mobile menu
   toggle.addEventListener('click', () => {
     links.classList.toggle('open');
+  });// js/header.js
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleButtons = document.querySelectorAll('.menu-toggle');
+  const navBar = document.querySelector('.nav-bar');
+
+  if (!toggleButtons.length || !navBar) return;
+
+  // Toggle menu on click
+  toggleButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      navBar.classList.toggle('open');
+    });
   });
+
+  // Close menu when clicking outside of nav or toggle
+  document.addEventListener('click', (e) => {
+    const clickedToggle = [...toggleButtons].some(btn => btn.contains(e.target));
+    const clickedNav = navBar.contains(e.target);
+
+    if (!clickedToggle && !clickedNav && navBar.classList.contains('open')) {
+      navBar.classList.remove('open');
+    }
+  });
+});
+
 
   // Close menu when clicking outside
   document.addEventListener('click', e => {
