@@ -321,3 +321,39 @@ nav ul ul {
     justify-content: center;
   }
 }
+/* -------------------------------------------------------------------
+   Mobile-first header toggle: Storm-style
+   ------------------------------------------------------------------- */
+.mobile-header {
+  display: none;           /* hide on desktop */
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+
+/* Only show on small screens */
+@media (max-width: 768px) {
+  /* Show our new mobile header */
+  .mobile-header {
+    display: flex;
+  }
+
+  /* Hide the desktop nav parts on mobile */
+  .logo-section:not(.mobile-header .logo-section),
+  .menu-toggle:not(.mobile-header .menu-toggle),
+  .nav-bar,
+  .phone-section {
+    display: none;
+  }
+
+  /* Toggle menu behavior */
+  .nav-bar.open {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--zenith-blue);
+  }
+}
