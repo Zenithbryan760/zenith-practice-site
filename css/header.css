@@ -3,17 +3,17 @@
    =================================================================== */
 
 /* -------------------------------------------------------------------
-   [0] MOBILE HEADER HIDDEN ON DESKTOP
+   [0] MOBILE HEADER (hidden on desktop by default)
    ------------------------------------------------------------------- */
 .mobile-header {
-  display: none;
+  display: none;               /* shown only ≤768px */
   width: 100%;
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
 }
 
-/* Optional round call icon for mobile header */
+/* Round call icon used in the mobile header */
 .mobile-call {
   display: inline-flex;
   align-items: center;
@@ -27,10 +27,10 @@
 .mobile-call svg { width: 20px; height: 20px; }
 
 /* -------------------------------------------------------------------
-   [1] MOBILE TOGGLE HIDDEN ON DESKTOP
+   [1] HAMBURGER TOGGLE (hidden on desktop by default)
    ------------------------------------------------------------------- */
 .menu-toggle {
-  display: none;
+  display: none;               /* shown only ≤768px */
   background: none;
   border: none;
   font-size: 1.8rem;
@@ -91,7 +91,7 @@ nav ul ul {
   flex: 1 1 auto;
   display: flex;
   justify-content: center;
-  position: relative; /* needed for mobile dropdown placement */
+  position: relative;          /* for mobile dropdown placement */
 }
 .nav-links {
   display: flex;
@@ -99,7 +99,7 @@ nav ul ul {
 }
 .nav-links li { position: relative; }
 
-/* — Link underline animation — */
+/* Animated underline on hover */
 .nav-links a {
   position: relative;
   color: var(--white);
@@ -107,6 +107,7 @@ nav ul ul {
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
 }
 .nav-links a::after {
   content: "";
@@ -123,7 +124,7 @@ nav ul ul {
 .nav-links a:hover::after { width: 80%; left: 10%; }
 
 /* -------------------------------------------------------------------
-   [6] DROPDOWN MENU
+   [6] DROPDOWN MENU (desktop hover)
    ------------------------------------------------------------------- */
 .dropdown-menu {
   display: grid;
@@ -152,7 +153,7 @@ nav ul ul {
 }
 
 /* -------------------------------------------------------------------
-   [7] SUBMENU (FLY-OUT)
+   [7] SUBMENU (fly-out on desktop)
    ------------------------------------------------------------------- */
 .dropdown-submenu { position: relative; }
 .submenu {
@@ -215,7 +216,7 @@ nav ul ul {
 }
 
 /* -------------------------------------------------------------------
-   [10] CALL/TEXT SECTION
+   [10] CALL/TEXT SECTION (desktop)
    ------------------------------------------------------------------- */
 .phone-section {
   flex: 0 0 auto;
@@ -266,22 +267,27 @@ nav ul ul {
 }
 
 /* ===================================================================
-   [11] MOBILE RESPONSIVE (≤768px) — collapse menu, open on .open
+   [11] MOBILE (≤768px) — show mobile header, collapse menu
    =================================================================== */
 @media (max-width: 768px) {
-  /* 11.1 Show the mobile header row */
+  /* Show the mobile header row */
   .mobile-header { display: flex; }
 
-  /* 11.2 Show hamburger on mobile */
-  .menu-toggle { display: block; }
+  /* Show hamburger only inside the mobile header */
+  .mobile-header .menu-toggle { display: block; }
+  /* If any stray toggle exists outside, hide it on phones */
+  .header-inner > .menu-toggle { display: none; }
 
-  /* 11.3 Keep nav-bar visible on mobile (do NOT hide it) */
-  .nav-bar {
-    width: 100%;
-    position: relative;
+  /* Hide desktop logo & desktop phone section on phones (avoid duplicates) */
+  .header-inner > .logo-section,
+  .header-inner > .phone-section {
+    display: none !important;
   }
 
-  /* 11.4 Hide links by default */
+  /* Keep nav-bar itself visible; collapse just the links */
+  .nav-bar { width: 100%; position: relative; }
+
+  /* Hide links by default on mobile */
   .nav-links {
     display: none;
     flex-direction: column;
@@ -292,7 +298,7 @@ nav ul ul {
     gap: 0;
   }
 
-  /* 11.5 When toggled (nav-bar.open), show links as a dropdown */
+  /* When toggled (nav-bar.open), show the links below header */
   .nav-bar.open .nav-links {
     display: flex;
     position: absolute;
@@ -302,12 +308,12 @@ nav ul ul {
     z-index: 999;
   }
 
-  /* 11.6 Full-width tap targets */
+  /* Full-width tap targets */
   .nav-links li { width: 100%; text-align: center; }
   .nav-links a { padding: 12px 0; font-size: 1rem; }
   .nav-links a::after { display: none; }
 
-  /* 11.7 Make dropdowns readable on mobile */
+  /* Make dropdowns readable on mobile (no layered hovers) */
   .dropdown-menu,
   .submenu {
     position: static;
@@ -317,16 +323,12 @@ nav ul ul {
     transform: none;
   }
 
-  /* 11.8 Layout tweaks */
+  /* Layout tweaks */
   .header { z-index: 1000; }
   .header-inner {
     flex-wrap: wrap;
     justify-content: center;
     padding: 10px 16px;
     gap: 12px;
-  }
-  .phone-section {
-    flex-direction: row;
-    justify-content: center;
   }
 }
