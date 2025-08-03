@@ -1,94 +1,53 @@
-/* ===================================================================
-   js/nav.js — Mobile Toggle for .nav-links
-   =================================================================== */
+// js/header.js
 document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.querySelector('.menu-toggle');
-  const links  = document.querySelector('.nav-links');
-  if (!toggle || !links) return;
-
-  // Toggle mobile menu
-  toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
-  });// js/header.js
-document.addEventListener('DOMContentLoaded', () => {
+  // We may have two toggle buttons (desktop + mobile)
   const toggleButtons = document.querySelectorAll('.menu-toggle');
   const navBar = document.querySelector('.nav-bar');
+  const navLinks = document.querySelector('.nav-links');
 
-  if (!toggleButtons.length || !navBar) return;
+  if (!toggleButtons.length || !navBar || !navLinks) return;
+
+  // Helper: set ARIA state for accessibility
+  const setAria = (expanded) => {
+    toggleButtons.forEach(btn => btn.setAttribute('aria-expanded', expanded ? 'true' : 'false'));
+  };
 
   // Toggle menu on click
   toggleButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      navBar.classList.toggle('open');
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation(); // don’t bubble to document
+      const isOpen = navBar.classList.toggle('open');
+      setAria(isOpen);
+    });
+
+    // Keyboard support (Enter/Space)
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        btn.click();
+      }
     });
   });
 
-  // Close menu when clicking outside of nav or toggle
+  // Close when clicking/tapping outside
   document.addEventListener('click', (e) => {
     const clickedToggle = [...toggleButtons].some(btn => btn.contains(e.target));
     const clickedNav = navBar.contains(e.target);
-
     if (!clickedToggle && !clickedNav && navBar.classList.contains('open')) {
       navBar.classList.remove('open');
+      setAria(false);
     }
   });
-});
 
-
-  // Close menu when clicking outside
-  document.addEventListener('click', e => {
-    if (
-      !toggle.contains(e.target) &&
-      !links.contains(e.target) &&
-      links.classList.contains('open')
-    ) {
-      links.classList.remove('open');
-    }
-  });
-   // js/header.js
-document.addEventListener('DOMContentLoaded', () => {
-  const toggleBtn = document.querySelector('.menu-toggle');
-  const navBar   = document.querySelector('.nav-bar');
-
-  if (!toggleBtn || !navBar) return;
-
-  // on ☰ click, flip the .open class on the nav-bar
-  toggleBtn.addEventListener('click', () => {
-    navBar.classList.toggle('open');
-  });
-
-  // optional: click outside to close
-  document.addEventListener('click', e => {
-    if (
-      !toggleBtn.contains(e.target) &&
-      !navBar.contains(e.target) &&
-      navBar.classList.contains('open')
-    ) {
+  // Close menu if window is resized larger than mobile breakpoint
+  let lastWidth = window.innerWidth;
+  window.addEventListener('resize', () => {
+    const now = window.innerWidth;
+    // If we cross from mobile to desktop, ensure menu is closed
+    if (now > 768 && lastWidth <= 768) {
       navBar.classList.remove('open');
+      setAria(false);
     }
-  });
-});
-});
-// js/header.js
-document.addEventListener('DOMContentLoaded', () => {
-  const toggleBtn = document.querySelector('.menu-toggle');
-  const navBar   = document.querySelector('.nav-bar');
-
-  if (!toggleBtn || !navBar) return;
-
-  // on ☰ click, flip the .open class on the nav-bar
-  toggleBtn.addEventListener('click', () => {
-    navBar.classList.toggle('open');
-  });
-
-  // optional: click outside to close
-  document.addEventListener('click', e => {
-    if (
-      !toggleBtn.contains(e.target) &&
-      !navBar.contains(e.target) &&
-      navBar.classList.contains('open')
-    ) {
-      navBar.classList.remove('open');
-    }
+    lastWidth = now;
   });
 });
