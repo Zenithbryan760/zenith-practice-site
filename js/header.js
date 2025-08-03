@@ -21,4 +21,50 @@ document.addEventListener('DOMContentLoaded', () => {
       links.classList.remove('open');
     }
   });
+   // js/header.js
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.querySelector('.menu-toggle');
+  const navBar   = document.querySelector('.nav-bar');
+
+  if (!toggleBtn || !navBar) return;
+
+  // on ☰ click, flip the .open class on the nav-bar
+  toggleBtn.addEventListener('click', () => {
+    navBar.classList.toggle('open');
+  });
+
+  // optional: click outside to close
+  document.addEventListener('click', e => {
+    if (
+      !toggleBtn.contains(e.target) &&
+      !navBar.contains(e.target) &&
+      navBar.classList.contains('open')
+    ) {
+      navBar.classList.remove('open');
+    }
+  });
+});
+});
+// js/header.js
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.querySelector('.menu-toggle');
+  const navBar   = document.querySelector('.nav-bar');
+
+  if (!toggleBtn || !navBar) return;
+
+  // on ☰ click, flip the .open class on the nav-bar
+  toggleBtn.addEventListener('click', () => {
+    navBar.classList.toggle('open');
+  });
+
+  // optional: click outside to close
+  document.addEventListener('click', e => {
+    if (
+      !toggleBtn.contains(e.target) &&
+      !navBar.contains(e.target) &&
+      navBar.classList.contains('open')
+    ) {
+      navBar.classList.remove('open');
+    }
+  });
 });
