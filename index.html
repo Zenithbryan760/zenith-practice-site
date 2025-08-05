@@ -1,271 +1,144 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- ===== META & SEO ===== -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zenith Roofing Services – San Diego & Temecula Roof Experts</title>
+<header class="header">
+  <div class="header-inner">
 
-  <!-- ===== GLOBAL CSS ===== -->
-  <link rel="stylesheet" href="css/base.css" />
-
-  <!-- ===== HEADER CSS ===== -->
-  <link rel="stylesheet" href="css/header.css" />
-  
-  <!-- ===== HERO CSS ===== -->
-  <link rel="stylesheet" href="css/hero.css" />
-
-  <!-- ===== RESPONSIVE CSS ===== -->
-  <link rel="stylesheet" href="css/responsive.css" />
-</head>
-<body>
-
-  <!-- ===== HEADER & NAVIGATION (ON TOP) ===== -->
-  <header class="header">
-    <div class="header-inner">
-
-   <!-- ===== MOBILE NAV LAYOUT (shown ≤768px by CSS) ===== -->
-  <div class="mobile-header">
-    <!-- 1) Hamburger -->
-    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-
-    <!-- 2) Centered logo -->
-    <div class="logo-section">
-      <img
-        src="images/badges/logo-zenith-icon.png"
-        alt="Zenith Roofing logo"
-        class="logo"
-      />
-    </div>
-
-    <!-- 3) Phone icon -->
-    <a href="tel:8589006163" class="mobile-call" aria-label="Call 858-900-6163">
-      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
-        <path fill="#fff" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.58.57 1 1 0 0 1 1 1v3.5a1 1 0 0 1-.91 1A19.7 19.7 0 0 1 4 4.91 1 1 0 0 1 5 4h3.5a1 1 0 0 1 1 1c0 1.23.2 2.43.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
-      </svg>
-    </a>
-  </div>
-
-  <!-- ===== MOBILE MENU PANEL ===== -->
-  <nav class="mobile-menu hidden bg-white shadow-md">
-    <ul class="p-4 space-y-2 text-gray-800">
-      <!-- Services Accordion -->
-      <li>
-        <button class="accordion-toggle w-full flex justify-between items-center py-2 font-semibold"
-                data-accordion-target="services-menu" aria-expanded="false">
-          Services <span class="arrow">▶</span>
-        </button>
-        <ul id="services-menu" class="hidden pl-4 space-y-1">
-          <!-- Residential Roofing -->
-          <li>
-            <button class="accordion-toggle w-full flex justify-between items-center py-1"
-                    data-accordion-target="residential-menu" aria-expanded="false">
-              Residential Roofing <span class="arrow">▶</span>
-            </button>
-            <ul id="residential-menu" class="hidden pl-4 space-y-1 text-sm">
-              <li class="font-semibold">Roof Systems</li>
-              <li><a href="#shingles">Asphalt Shingles</a></li>
-              <li><a href="#torch-down">Torch Down Systems</a></li>
-              <li><a href="#tile-roof">Clay &amp; Concrete Tile</a></li>
-              <li><a href="#tile-lift">Tile Lift &amp; Reset</a></li>
-              <li><a href="#tpo">TPO Single-Ply</a></li>
-              <li><a href="#silicone">Silicone Coating Systems</a></li>
-              <li class="mt-2 font-semibold">Maintenance &amp; Extras</li>
-              <li><a href="#gutters">Seamless Gutters</a></li>
-              <li><a href="#repairs">Leak Repair &amp; Troubleshooting</a></li>
-              <li><a href="#maintenance">Preventive Maintenance</a></li>
-              <li><a href="#cleaning">Roof Washing &amp; Moss Removal</a></li>
-            </ul>
-          </li>
-          <!-- Commercial Roofing -->
-          <li>
-            <button class="accordion-toggle w-full flex justify-between items-center py-1"
-                    data-accordion-target="commercial-menu" aria-expanded="false">
-              Commercial Roofing <span class="arrow">▶</span>
-            </button>
-            <ul id="commercial-menu" class="hidden pl-4 space-y-1 text-sm">
-              <li class="font-semibold">Roof Systems</li>
-              <li><a href="#tpo-commercial">TPO Roofing</a></li>
-              <li><a href="#shingles-commercial">Shingle Systems</a></li>
-              <li><a href="#tile-commercial">Tile Roofing</a></li>
-              <li><a href="#metal">Metal Roofing</a></li>
-              <li><a href="#pvc">PVC Membranes</a></li>
-              <li><a href="#torch-commercial">Torch Down Flat Roofs</a></li>
-              <li><a href="#silicone-commercial">Silicone Restoration Coatings</a></li>
-              <li class="mt-2 font-semibold">Maintenance &amp; Extras</li>
-              <li><a href="#gutters-commercial">Seamless Gutters</a></li>
-              <li><a href="#asset-maintenance">Roof Asset Maintenance</a></li>
-              <li><a href="#debris-cleaning">Debris Removal &amp; Cleaning</a></li>
-            </ul>
-          </li>
-          <!-- Real Estate Services -->
-          <li>
-            <button class="accordion-toggle w-full flex justify-between items-center py-1"
-                    data-accordion-target="realestate-menu" aria-expanded="false">
-              Real Estate Services <span class="arrow">▶</span>
-            </button>
-            <ul id="realestate-menu" class="hidden pl-4 space-y-1 text-sm">
-              <li><a href="#roof-reports">Certified Roof Reports</a></li>
-              <li><a href="#roof-estimates">Pre-Sale Roofing Estimates</a></li>
-              <li><a href="#inspections">Visual Roof Inspections</a></li>
-              <li><a href="#certifications">Roof Certifications</a></li>
-              <li><a href="#insurance-consulting">Insurance Consulting</a></li>
-              <li><a href="#verbal-opinions">Professional Verbal Opinions</a></li>
-              <li><a href="#satellite">Satellite Imagery Analysis</a></li>
-            </ul>
-          </li>
-          <!-- Pricing -->
-          <li><a href="pricing.html" class="block py-2">Pricing</a></li>
-        </ul>
-      </li>
-
-      <!-- other links -->
-      <li><a href="#home" class="block py-2">Home</a></li>
-      <li><a href="#gallery" class="block py-2">Projects</a></li>
-      <li><a href="#reviews" class="block py-2">Reviews</a></li>
-      <li><a href="#about" class="block py-2">About</a></li>
-      <li><a href="#blog" class="block py-2">Blog</a></li>
-      <li><a href="#glossary" class="block py-2">Glossary</a></li>
-      <li><a href="#contact" class="block py-2">Contact</a></li>
-      <li><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" class="block py-2">YouTube</a></li>
-    </ul>
-  </nav>
-
-  <!-- ===== DESKTOP HEADER PARTS (hidden on mobile by CSS) ===== -->
-  <div class="logo-section">
-    <!-- …rest of your desktop logo & nav… -->
-  </div>
-
-        <!-- 2) Centered logo -->
-        <div class="logo-section">
-          <img
-            src="images/badges/logo-zenith-icon.png"
-            alt="Zenith Roofing logo"
-            class="logo"
-          />
-        </div>
-
-        <!-- 3) Phone icon -->
-        <a href="tel:8589006163" class="mobile-call" aria-label="Call 858-900-6163">
-          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
-            <path fill="#fff" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.58.57 1 1 0 0 1 1 1v3.5a1 1 0 0 1-.91 1A19.7 19.7 0 0 1 4 4.91 1 1 0 0 1 5 4h3.5a1 1 0 0 1 1 1c0 1.23.2 2.43.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
-          </svg>
-        </a>
-      </div>
-
-      <!-- ===== DESKTOP HEADER PARTS (hidden on mobile by CSS) ===== -->
+    <!-- ===== MOBILE NAV (≤768px) ===== -->
+    <div class="mobile-header">
+      <!-- 1) Hamburger -->
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      <!-- 2) Logo -->
       <div class="logo-section">
-        <img
-          src="images/badges/logo-zenith-icon.png"
-          alt="Zenith Roofing Services logo"
-          class="logo"
-        />
-        <p class="license">Lic# 1036112</p>
+        <img src="images/badges/logo-zenith-icon.png"
+             alt="Zenith Roofing logo"
+             class="logo"/>
       </div>
-
-      <!-- Primary Navigation -->
-      <nav class="nav-bar">
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#gallery">Projects</a></li>
-
-          <!-- Services Dropdown -->
-          <li class="dropdown">
-            <a href="#services">Services</a>
-            <ul class="dropdown-menu">
-              <!-- Residential -->
-              <li class="dropdown-submenu">
-                <a href="#residential">Residential Roofing</a>
-                <ul class="submenu">
-                  <li class="submenu-label">Roof Systems</li>
-                  <li><a href="#shingles">Asphalt Shingles</a></li>
-                  <li><a href="#torch-down">Torch Down Systems</a></li>
-                  <li><a href="#tile-roof">Clay &amp; Concrete Tile</a></li>
-                  <li><a href="#tile-lift-lay">Tile Lift &amp; Reset</a></li>
-                  <li><a href="#tpo">TPO Single-Ply</a></li>
-                  <li><a href="#silicone">Silicone Coating Systems</a></li>
-                  <li class="submenu-label">Maintenance &amp; Extras</li>
-                  <li><a href="#gutters">Seamless Gutters</a></li>
-                  <li><a href="#repairs">Leak Repair &amp; Troubleshooting</a></li>
-                  <li><a href="#maintenance">Preventive Maintenance</a></li>
-                  <li><a href="#cleaning">Roof Washing &amp; Moss Removal</a></li>
-                </ul>
-              </li>
-
-              <!-- Commercial -->
-              <li class="dropdown-submenu">
-                <a href="#commercial">Commercial Roofing</a>
-                <ul class="submenu">
-                  <li class="submenu-label">Roof Systems</li>
-                  <li><a href="#tpo-commercial">TPO Roofing</a></li>
-                  <li><a href="#shingles-commercial">Shingle Systems</a></li>
-                  <li><a href="#tile-commercial">Tile Roofing</a></li>
-                  <li><a href="#metal">Metal Roofing</a></li>
-                  <li><a href="#pvc">PVC Membranes</a></li>
-                  <li><a href="#torch-commercial">Torch Down Flat Roofs</a></li>
-                  <li><a href="#silicone-commercial">Silicone Restoration Coatings</a></li>
-                  <li class="submenu-label">Maintenance &amp; Extras</li>
-                  <li><a href="#gutters-commercial">Seamless Gutters</a></li>
-                  <li><a href="#maintenance-commercial">Roof Asset Maintenance</a></li>
-                  <li><a href="#cleaning-commercial">Debris Removal &amp; Cleaning</a></li>
-                </ul>
-              </li>
-
-              <!-- Real Estate -->
-              <li class="dropdown-submenu">
-                <a href="#real-estate">Real Estate Services</a>
-                <ul class="submenu">
-                  <li><a href="#roof-reports">Certified Roof Reports</a></li>
-                  <li><a href="#roof-estimates">Pre-Sale Roofing Estimates</a></li>
-                  <li><a href="#inspections">Visual Roof Inspections</a></li>
-                  <li><a href="#certifications">Roof Certifications</a></li>
-                  <li><a href="#insurance-consulting">Insurance Consulting</a></li>
-                  <li><a href="#verbal-opinions">Professional Verbal Opinions</a></li>
-                  <li><a href="#satellite">Satellite Imagery Analysis</a></li>
-                </ul>
-              </li>
-
-              <!-- Pricing -->
-              <li><a href="pricing.html">Pricing</a></li>
-            </ul>
-          </li>
-
-          <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#glossary">Glossary</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li>
-            <a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">
-              YouTube
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-      <!-- Call/Text Section (desktop) -->
-      <div class="phone-section">
-        <p>Call/Text: <a href="tel:8589006163">858-900-6163</a></p>
-        <a href="tel:8589006163" class="call-button">Call Now</a>
-      </div>
-
+      <!-- 3) Call icon -->
+      <a href="tel:8589006163" class="mobile-call" aria-label="Call 858-900-6163">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
+          <path fill="#fff" d="M6.62 10.79…"/>
+        </svg>
+      </a>
     </div>
-  </header>
 
-  <!-- ===== HERO SECTION (VIDEO BELOW NAV) ===== -->
-  <section class="hero">
-    <div class="video-container">
-      <video class="background-video" autoplay muted loop playsinline>
-        <source src="roofing-bg.mp4" type="video/mp4" />
-        Your browser doesn’t support video.
-      </video>
-      <div class="video-overlay"></div>
+    <nav class="mobile-menu hidden bg-white shadow-md">
+      <ul class="p-4 space-y-2 text-gray-800">
+        <!-- Services Accordion -->
+        <li>
+          <button class="accordion-toggle w-full flex justify-between items-center py-2 font-semibold"
+                  data-accordion-target="services-menu" aria-expanded="false">
+            Services <span class="arrow">▶</span>
+          </button>
+          <ul id="services-menu" class="hidden pl-4 space-y-1">
+            <!-- Residential Roofing -->
+            <li>
+              <button class="accordion-toggle w-full flex justify-between items-center py-1"
+                      data-accordion-target="residential-menu" aria-expanded="false">
+                Residential Roofing <span class="arrow">▶</span>
+              </button>
+              <ul id="residential-menu" class="hidden pl-4 space-y-1 text-sm">
+                <li class="font-semibold">Roof Systems</li>
+                <li><a href="#shingles">Asphalt Shingles</a></li>
+                <li><a href="#torch-down">Torch Down Systems</a></li>
+                <li><a href="#tile-roof">Clay &amp; Concrete Tile</a></li>
+                <li><a href="#tile-lift">Tile Lift &amp; Reset</a></li>
+                <li><a href="#tpo">TPO Single-Ply</a></li>
+                <li><a href="#silicone">Silicone Coating Systems</a></li>
+                <li class="mt-2 font-semibold">Maintenance &amp; Extras</li>
+                <li><a href="#gutters">Seamless Gutters</a></li>
+                <li><a href="#repairs">Leak Repair &amp; Troubleshooting</a></li>
+                <li><a href="#maintenance">Preventive Maintenance</a></li>
+                <li><a href="#cleaning">Roof Washing &amp; Moss Removal</a></li>
+              </ul>
+            </li>
+            <!-- Commercial Roofing (similar structure) -->
+            <li>
+              <button class="accordion-toggle w-full flex justify-between items-center py-1"
+                      data-accordion-target="commercial-menu" aria-expanded="false">
+                Commercial Roofing <span class="arrow">▶</span>
+              </button>
+              <ul id="commercial-menu" class="hidden pl-4 space-y-1 text-sm">
+                <li class="font-semibold">Roof Systems</li>
+                <li><a href="#tpo-commercial">TPO Roofing</a></li>
+                <li><a href="#shingles-commercial">Shingle Systems</a></li>
+                <li><a href="#tile-commercial">Tile Roofing</a></li>
+                <li><a href="#metal">Metal Roofing</a></li>
+                <li><a href="#pvc">PVC Membranes</a></li>
+                <li><a href="#torch-commercial">Torch Down Flat Roofs</a></li>
+                <li><a href="#silicone-commercial">Silicone Restoration Coatings</a></li>
+                <li class="mt-2 font-semibold">Maintenance &amp; Extras</li>
+                <li><a href="#gutters-commercial">Seamless Gutters</a></li>
+                <li><a href="#asset-maintenance">Roof Asset Maintenance</a></li>
+                <li><a href="#debris-cleaning">Debris Removal &amp; Cleaning</a></li>
+              </ul>
+            </li>
+            <!-- Real Estate Services -->
+            <li>
+              <button class="accordion-toggle w-full flex justify-between items-center py-1"
+                      data-accordion-target="realestate-menu" aria-expanded="false">
+                Real Estate Services <span class="arrow">▶</span>
+              </button>
+              <ul id="realestate-menu" class="hidden pl-4 space-y-1 text-sm">
+                <li><a href="#roof-reports">Certified Roof Reports</a></li>
+                <li><a href="#roof-estimates">Pre-Sale Roofing Estimates</a></li>
+                <li><a href="#inspections">Visual Roof Inspections</a></li>
+                <li><a href="#certifications">Roof Certifications</a></li>
+                <li><a href="#insurance-consulting">Insurance Consulting</a></li>
+                <li><a href="#verbal-opinions">Professional Verbal Opinions</a></li>
+                <li><a href="#satellite">Satellite Imagery Analysis</a></li>
+              </ul>
+            </li>
+            <li><a href="pricing.html" class="block py-2">Pricing</a></li>
+          </ul>
+        </li>
+        <!-- Other mobile-only links -->
+        <li><a href="#home" class="block py-2">Home</a></li>
+        <li><a href="#gallery" class="block py-2">Projects</a></li>
+        <li><a href="#reviews" class="block py-2">Reviews</a></li>
+        <li><a href="#about" class="block py-2">About</a></li>
+        <li><a href="#blog" class="block py-2">Blog</a></li>
+        <li><a href="#glossary" class="block py-2">Glossary</a></li>
+        <li><a href="#contact" class="block py-2">Contact</a></li>
+        <li>
+          <a href="https://www.youtube.com/@ZenithRoofingServices"
+             target="_blank" class="block py-2">YouTube</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- ===== end mobile ===== -->
+
+    <!-- ===== DESKTOP NAV (≥769px) ===== -->
+    <div class="logo-section">
+      <img src="images/badges/logo-zenith-icon.png"
+           alt="Zenith Roofing Services logo"
+           class="logo"/>
+      <p class="license">Lic# 1036112</p>
     </div>
-  </section>
 
-  <!-- ===== YOUR PAGE CONTENT STARTS HERE ===== -->
+    <nav class="nav-bar">
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#gallery">Projects</a></li>
+        <li class="dropdown">
+          <a href="#services">Services</a>
+          <ul class="dropdown-menu">
+            <!-- your desktop dropdown markup here -->
+          </ul>
+        </li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#glossary">Glossary</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank">YouTube</a>
+        </li>
+      </ul>
+    </nav>
 
-  <!-- Toggle script -->
-  <script src="js/header.js"></script>
-</body>
-</html>
+    <div class="phone-section">
+      <p>Call/Text: <a href="tel:8589006163">858-900-6163</a></p>
+      <a href="tel:8589006163" class="call-button">Call Now</a>
+    </div>
+    <!-- ===== end desktop ===== -->
+
+  </div>
+</header>
