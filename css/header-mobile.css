@@ -68,48 +68,49 @@ li.open > .accordion-toggle .chevron {
    css/header-mobile.css — Off-canvas & Accordion (mobile only)
    ========================================================= */
 @media (max-width: 768px) {
-  /*–– Brand color variables ––*/
-  :root {
-    --nav-bg: var(--zenith-blue);
-    --nav-text: #fff;
-    --nav-accent: var(--zenith-orange);
-    --toggle-height: 3.5rem;
-  }
-
-  /*–– 1) Off-canvas drawer ––*/
-  .mobile-nav {
-    position: fixed;
-    top: 0; right: -100%;
-    width: 80%; max-width: 320px;
-    height: 100vh;
-    background: var(--nav-bg);
-    color: var(--nav-text);
-    overflow-y: auto;
-    transition: right 0.4s ease;
-    z-index: 2000;
-    padding-top: var(--toggle-height);
-    box-shadow: -4px 0 12px rgba(0,0,0,0.3);
-  }
-  .mobile-nav.open {
-    right: 0;
-  }
-
-  /*–– 2) Mobile header bar (hamburger, logo, call) ––*/
+  /* 2) Mobile header bar — more padding & larger icons */
   .mobile-header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: var(--toggle-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: var(--nav-bg);
-    padding: 0 1rem;
+    padding: 0 1.5rem;            /* more side padding */
+    height: 4rem;                 /* taller bar */
     border-bottom: 2px solid var(--nav-accent);
     z-index: 2001;
   }
-  .mobile-header .logo-section .logo {
-    height: 80px; /* match desktop */
+
+  .mobile-header .menu-toggle,
+  .mobile-header .mobile-call {
+    width: 3rem;                  /* larger tap target */
+    height: 3rem;
+    background: var(--nav-bg);
+    border: 2px solid var(--nav-accent);
+    border-radius: 50%;
+    color: var(--nav-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;            /* bigger icon */
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
   }
+  .mobile-header .menu-toggle:hover,
+  .mobile-header .mobile-call:hover {
+    background: var(--nav-accent);
+    color: var(--nav-bg);
+  }
+  .mobile-header .menu-toggle:active,
+  .mobile-header .mobile-call:active {
+    transform: scale(0.9);
+  }
+
+  /* Logo sizing & centering */
+  .mobile-header .logo-section .logo {
+    height: 2.5rem;               /* slightly larger logo */
+    margin: 0;                    /* no extra margins */
+  }
+}
   .mobile-header .menu-toggle,
   .mobile-header .mobile-call {
     width: 2.5rem; height: 2.5rem;
