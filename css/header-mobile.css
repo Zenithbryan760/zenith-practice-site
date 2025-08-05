@@ -200,9 +200,9 @@ li.open > .accordion-toggle .chevron {
   .mobile-header .menu-toggle:active {
     transform: scale(0.9);
   }
-  .mobile-header .logo-section .logo {
-    height: 2rem;
-  }
+.mobile-header .logo-section .logo {
+  height: 80px;
+}
   .mobile-header .mobile-call {
     font-size: 1.4rem;
   }
