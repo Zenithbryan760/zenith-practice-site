@@ -1,4 +1,6 @@
-/* Hide desktop anchors on mobile */
+/* css/header-mobile.css — Mobile submenu toggles */
+
+/* Hide desktop dropdown links on mobile */
 .nav-links .dropdown > a,
 .nav-links .dropdown-submenu > a {
   display: none;
@@ -10,7 +12,7 @@
   display: none;
 }
 
-/* Style & show the new buttons */
+/* Style & show the new toggle buttons */
 .submenu-toggle {
   display: flex;
   justify-content: space-between;
