@@ -275,12 +275,29 @@ nav ul ul {
    [11] MOBILE (≤768px) — show mobile header, collapse menu
    =================================================================== */
 @media (max-width: 768px) {
-  /* hide the desktop nav-bar completely on phones */
+  /* 1) Hide desktop nav-bar entirely on phones */
   .nav-bar {
     display: none !important;
   }
 
-  /* reveal mobile-only menu panel when JS removes .hidden */
+  /* 2) Show mobile header row and hamburger */
+  .mobile-header {
+    display: flex;
+  }
+  .mobile-header .menu-toggle {
+    display: block;
+  }
+  .header-inner > .menu-toggle {
+    display: none;
+  }
+
+  /* 3) Hide desktop logo & phone on mobile */
+  .header-inner > .logo-section,
+  .header-inner > .phone-section {
+    display: none !important;
+  }
+
+  /* 4) Reveal mobile-only menu panel */
   .mobile-menu {
     display: block;
   }
@@ -288,45 +305,27 @@ nav ul ul {
     display: none;
   }
 
-  /* Show the mobile header row */
-  .mobile-header { display: flex; }
+  /* 5) (Your accordion within .mobile-menu handles sub-levels) */
 
-  /* Show hamburger only inside the mobile header */
-  .mobile-header .menu-toggle { display: block; }
-  /* If any stray toggle exists outside, hide it on phones */
-  .header-inner > .menu-toggle { display: none; }
+  /* 6) Keep desktop .nav-links hidden (we’re not using it here) */
+  .nav-links {
+    display: none;
+  }
 
-  /* Hide desktop logo & desktop phone section on phones (avoid duplicates) */
-  .header-inner > .logo-section,
-  .header-inner > .phone-section {
+  /* 7) Clean up any leftover hover/dropdown styling */
+  .dropdown-menu,
+  .submenu {
     display: none !important;
   }
 
-  /* Hide desktop links by default on mobile */
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: var(--zenith-blue);
-    border-top: 1px solid rgba(255,255,255,0.2);
-    margin-top: 8px;
-    gap: 0;
+  /* 8) Layout tweaks to center and space things */
+  .header {
+    z-index: 1000;
   }
-
-  /* When toggled (nav-bar.open), show the links below header */
-  .nav-bar.open .nav-links {
-    display: flex;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    z-index: 999;
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 16px;
+    gap: 12px;
   }
-
-  /* Full-width tap targets */
-  .nav-links li { width: 100%; text-align: center; }
-  .nav-links a { padding: 12px 0; font-size: 1rem; }
-  .nav-links a::after { display: none; }
-
-  /* Make dropdowns readable on mobile (no layered hovers) */
-  .dropdown-menu,
+}
