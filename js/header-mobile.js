@@ -1,37 +1,33 @@
-@media (max-width: 768px) {
-  /* Hide desktop dropdown links */
-  .nav-links .dropdown > a,
-  .nav-links .dropdown-submenu > a {
-    display: none;
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileNav  = document.querySelector('.mobile-nav');
 
-  /* Hide the nested ULs until tapped */
-  .nav-links .dropdown-menu,
-  .nav-links .submenu {
-    display: none;
-  }
+  // 1) open/close off-canvas
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
 
-  /* Show your manual accordion buttons */
-  .submenu-toggle {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    background: none;
-    border: none;
-    padding: 0.75rem 1rem;
-    font: inherit;
-    text-align: left;
-    cursor: pointer;
-  }
+  // 2) accordion toggles
+  document.querySelectorAll('.accordion-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const li = btn.closest('li');
 
-  /* Reveal when you add .open to LI */
-  .nav-links li.open > .dropdown-menu,
-  .nav-links li.open > .submenu {
-    display: block;
-  }
+      // close siblings at this level
+      const siblings = Array.from(li.parentElement.children)
+        .filter(el => el !== li && el.classList.contains('open'));
+      siblings.forEach(sib => sib.classList.remove('open'));
 
-  /* Rotate chevron */
-  .nav-links li.open .chevron {
-    transform: rotate(90deg);
-  }
-}
+      // toggle this one
+      li.classList.toggle('open');
+    });
+  });
+
+  // 3) close if clicking outside
+  document.addEventListener('click', e => {
+    if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target)) {
+      mobileNav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
