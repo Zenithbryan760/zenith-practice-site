@@ -47,12 +47,7 @@ nav ul ul {
   margin: 0;
   padding: 0;
 }
-/* -------------------------------------------------------------------
-   [2a] MOBILE MENU PANEL (always hidden by default)
-   ------------------------------------------------------------------- */
-.mobile-menu {
-  display: none;
-}
+
 /* -------------------------------------------------------------------
    [3] HEADER CONTAINER
    ------------------------------------------------------------------- */
@@ -156,14 +151,6 @@ nav ul ul {
   visibility: visible;
   transform: translateY(0);
 }
-
-/* Now your mobile rules follow… */
-@media (max-width: 768px) {
-  /* mobile overrides here */
-  .nav-bar, .nav-bar .dropdown-menu, .nav-bar .submenu { display: none !important; }
-  /* …etc… */
-}
-
 
 /* -------------------------------------------------------------------
    [7] SUBMENU (fly-out on desktop)
@@ -283,50 +270,65 @@ nav ul ul {
    [11] MOBILE (≤768px) — show mobile header, collapse menu
    =================================================================== */
 @media (max-width: 768px) {
-  /* 1) Hide desktop nav-bar + its dropdowns on phones */
-  .nav-bar,
-  .nav-bar .dropdown-menu,
-  .nav-bar .submenu {
-    display: none !important;
-  }
+  /* Show the mobile header row */
+  .mobile-header { display: flex; }
 
-  /* 2) Show mobile header row and hamburger */
-  .mobile-header {
-    display: flex;
-  }
-  .mobile-header .menu-toggle {
-    display: block;
-  }
-  /* ensure any stray toggles in header-inner stay hidden */
-  .header-inner > .menu-toggle {
-    display: none;
-  }
+  /* Show hamburger only inside the mobile header */
+  .mobile-header .menu-toggle { display: block; }
+  /* If any stray toggle exists outside, hide it on phones */
+  .header-inner > .menu-toggle { display: none; }
 
-  /* 3) Hide desktop logo & phone on mobile */
+  /* Hide desktop logo & desktop phone section on phones (avoid duplicates) */
   .header-inner > .logo-section,
   .header-inner > .phone-section {
     display: none !important;
   }
 
-  /* 4) Reveal mobile‐only menu panel (toggled via .hidden class) */
-  .mobile-menu {
-    display: block;
-  }
-  .mobile-menu.hidden {
-    display: none;
-  }
+  /* Keep nav-bar itself visible; collapse just the links */
+  .nav-bar { width: 100%; position: relative; }
 
-  /* 5) We’re not using .nav-links here, so keep it hidden */
+  /* Hide links by default on mobile */
   .nav-links {
-    display: none !important;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: var(--zenith-blue);
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 8px;
+    gap: 0;
   }
 
-  /* 6) Layout tweaks to center and space things */
-  .header {
-    z-index: 1000;
+  /* When toggled (nav-bar.open), show the links below header */
+  .nav-bar.open .nav-links {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 999;
   }
+
+  /* Full-width tap targets */
+  .nav-links li { width: 100%; text-align: center; }
+  .nav-links a { padding: 12px 0; font-size: 1rem; }
+  .nav-links a::after { display: none; }
+
+  /* Make dropdowns readable on mobile (no layered hovers) */
+  .dropdown-menu,
+  .submenu {
+    position: static;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  /* Layout tweaks */
+  .header { z-index: 1000; }
   .header-inner {
     flex-wrap: wrap;
     justify-content: center;
     padding: 10px 16px;
-    gap: 12p
+    gap: 12px;
+  }
+}
