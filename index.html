@@ -22,30 +22,49 @@
 </head>
 <body>
 
-  <!-- ===== HEADER & NAVIGATION ===== -->
+    <!-- ===== HEADER & NAVIGATION (ON TOP) ===== -->
   <header class="header">
-
-    <!-- MOBILE HEADER (≤768px) -->
-    <div class="mobile-header">
-      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-      <div class="logo-section">
-        <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing logo" class="logo" />
-      </div>
-      <a href="tel:8589006163" class="mobile-call" aria-label="Call 858-900-6163">📞</a>
-    </div>
-
-    <!-- DESKTOP HEADER PARTS -->
     <div class="header-inner">
+
+      <!-- ===== MOBILE NAV LAYOUT (shown ≤768px by CSS) ===== -->
+      <div class="mobile-header">
+        <!-- 1) Hamburger -->
+        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+
+        <!-- 2) Centered logo -->
+        <div class="logo-section">
+          <img
+            src="images/badges/logo-zenith-icon.png"
+            alt="Zenith Roofing logo"
+            class="logo"
+          />
+        </div>
+
+        <!-- 3) Phone icon -->
+        <a href="tel:8589006163" class="mobile-call" aria-label="Call 858-900-6163">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
+            <path fill="#fff" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.58.57 1 1 0 0 1 1 1v3.5a1 1 0 0 1-.91 1A19.7 19.7 0 0 1 4 4.91 1 1 0 0 1 5 4h3.5a1 1 0 0 1 1 1c0 1.23.2 2.43.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- ===== DESKTOP HEADER PARTS (hidden on mobile by CSS) ===== -->
       <div class="logo-section">
-        <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing Services logo" class="logo" />
+        <img
+          src="images/badges/logo-zenith-icon.png"
+          alt="Zenith Roofing Services logo"
+          class="logo"
+        />
         <p class="license">Lic# 1036112</p>
       </div>
 
-      <!-- Primary Navigation (desktop dropdowns) -->
+      <!-- Primary Navigation -->
       <nav class="nav-bar">
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
           <li><a href="#gallery">Projects</a></li>
+
+          <!-- Services Dropdown -->
           <li class="dropdown">
             <a href="#services">Services</a>
             <ul class="dropdown-menu">
@@ -67,6 +86,7 @@
                   <li><a href="#cleaning">Roof Washing &amp; Moss Removal</a></li>
                 </ul>
               </li>
+
               <!-- Commercial -->
               <li class="dropdown-submenu">
                 <a href="#commercial">Commercial Roofing</a>
@@ -85,6 +105,7 @@
                   <li><a href="#cleaning-commercial">Debris Removal &amp; Cleaning</a></li>
                 </ul>
               </li>
+
               <!-- Real Estate -->
               <li class="dropdown-submenu">
                 <a href="#real-estate">Real Estate Services</a>
@@ -98,32 +119,42 @@
                   <li><a href="#satellite">Satellite Imagery Analysis</a></li>
                 </ul>
               </li>
+
               <!-- Pricing -->
               <li><a href="pricing.html">Pricing</a></li>
             </ul>
           </li>
+
           <li><a href="#reviews">Reviews</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#blog">Blog</a></li>
           <li><a href="#glossary">Glossary</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">YouTube</a></li>
+          <li>
+            <a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">
+              YouTube
+            </a>
+          </li>
         </ul>
       </nav>
 
-      <!-- Call/Text Section -->
+      <!-- Call/Text Section (desktop) -->
       <div class="phone-section">
         <p>Call/Text: <a href="tel:8589006163">858-900-6163</a></p>
         <a href="tel:8589006163" class="call-button">Call Now</a>
       </div>
-    </div>
 
-    <!-- OFF-CANVAS MOBILE NAV -->
+    </div>
+  </header>
+
+
+      <!-- OFF-CANVAS MOBILE NAV -->
     <nav class="mobile-nav">
       <ul class="mobile-links">
         <li>
           <button class="accordion-toggle">Services <span class="chevron">›</span></button>
           <ul class="submenu">
+            <!-- Residential Roofing -->
             <li>
               <button class="accordion-toggle">Residential Roofing <span class="chevron">›</span></button>
               <ul class="submenu">
@@ -150,6 +181,7 @@
               </ul>
             </li>
 
+            <!-- Commercial Roofing -->
             <li>
               <button class="accordion-toggle">Commercial Roofing <span class="chevron">›</span></button>
               <ul class="submenu">
@@ -176,6 +208,7 @@
               </ul>
             </li>
 
+            <!-- Real Estate Services -->
             <li>
               <button class="accordion-toggle">Real Estate Services <span class="chevron">›</span></button>
               <ul class="submenu">
@@ -186,15 +219,27 @@
                 <li><a href="#insurance-consulting">Insurance Consulting</a></li>
                 <li><a href="#verbal-opinions">Professional Verbal Opinions</a></li>
                 <li><a href="#satellite">Satellite Imagery Analysis</a></li>
-                                <li><a href="#satellite">Satellite Imagery Analysis</a></li>
               </ul>
             </li>
+
+            <!-- Pricing -->
             <li><a href="pricing.html">Pricing</a></li>
           </ul>
         </li>
+
+        <!-- Other top-level links -->
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#glossary">Glossary</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">
+            YouTube
+          </a>
+        </li>
       </ul>
     </nav>
-
   </header>
 
   <!-- ===== HERO SECTION ===== -->
