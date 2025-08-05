@@ -272,3 +272,56 @@ nav ul ul {
   }
   .nav-links { gap: 8px; font-size: 0.95rem; }
 }
+/* ===================================================================
+   [12] MOBILE (≤768px) — collapse into hamburger menu
+   =================================================================== */
+@media (max-width: 768px) {
+  .mobile-header       { display: flex; }
+  .mobile-header .menu-toggle { display: block; }
+  .header-inner > .menu-toggle { display: none; }
+
+  .header-inner > .logo-section,
+  .header-inner > .phone-section {
+    display: none !important;
+  }
+
+  .nav-bar { width: 100%; position: relative; }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: var(--zenith-blue);
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 8px;
+    gap: 0;
+  }
+  .nav-bar.open .nav-links {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+  }
+  .nav-links li { width: 100%; text-align: center; }
+  .nav-links a  { padding: 12px 0; font-size: 1rem; }
+  .nav-links a::after { display: none; }
+
+  /* keep dropdown containers visible; submenu toggles handle show/hide */
+  .dropdown-menu,
+  .submenu {
+    position: static;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .header { z-index: 1000; }
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 16px;
+    gap: 12px;
+  }
+}
