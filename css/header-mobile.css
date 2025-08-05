@@ -1,65 +1,143 @@
-/* off-canvas container, hidden by default */
-.mobile-nav {
-  position: fixed;
-  top: 0; right: -100%;
-  width: 80%;
-  height: 100%;
-  background: var(--zenith-blue);
-  color: var(--white);
-  overflow-y: auto;
-  transition: right 0.3s ease;
-  z-index: 2000;
-  padding: 1rem;
-}
+/* ================================================
+   css/header-mobile.css — Off-canvas & Accordion
+   Applies only on screens ≤768px
+   ================================================ */
+@media (max-width: 768px) {
+  :root {
+    --nav-bg: var(--zenith-blue);
+    --nav-text: #fff;
+    --nav-accent: var(--zenith-orange);
+    --toggle-height: 3.5rem;
+  }
 
-/* Slide in when open */
-.mobile-nav.open {
-  right: 0;
-}
+  /* 1) Off-canvas container (hidden off-screen by default) */
+  .mobile-nav {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--nav-bg);
+    color: var(--nav-text);
+    overflow-y: auto;
+    transition: right 0.4s cubic-bezier(0.2,0.8,0.2,1);
+    z-index: 2000;
+    padding: 1rem 0;
+    box-shadow: -4px 0 12px rgba(0,0,0,0.3);
+  }
+  .mobile-nav.open {
+    right: 0;
+  }
 
-/* Basic reset */
-.mobile-nav .submenu,
-.mobile-nav .mobile-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+  /* 2) Reset lists & add separators */
+  .mobile-links,
+  .mobile-links .submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .mobile-links > li {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
 
-/* Accordion buttons */
-.accordion-toggle {
-  background: none;
-  border: none;
-  color: var(--white);
-  font-size: 1rem;
-  width: 100%;
-  text-align: left;
-  padding: 0.75rem 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-}
+  /* 3) Accordion toggle buttons */
+  .accordion-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: var(--toggle-height);
+    padding: 0 1rem;
+    background: none;
+    border: none;
+    color: var(--nav-text);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  .accordion-toggle:hover {
+    background: rgba(255,255,255,0.1);
+  }
+  .accordion-toggle:active {
+    transform: scale(0.98);
+    background: rgba(255,255,255,0.15);
+  }
 
-/* Hide all submenus by default */
-.mobile-nav .submenu {
-  display: none;
-}
+  /* 4) Chevron rotation */
+  .accordion-toggle .chevron {
+    transition: transform 0.3s ease;
+  }
+  li.open > .accordion-toggle .chevron {
+    transform: rotate(90deg);
+  }
 
-/* Show when its parent <li> has .open */
-.mobile-nav li.open > .submenu {
-  display: block;
-}
+  /* 5) Submenu expand/collapse */
+  .submenu {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+    background: rgba(0,0,0,0.05);
+  }
+  li.open > .submenu {
+    max-height: 1000px; /* ample */
+  }
+  .submenu li {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .submenu li a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s ease;
+  }
+  .submenu li a:hover {
+    background: rgba(255,255,255,0.1);
+  }
 
-/* Indent nested levels */
-.mobile-nav .submenu .submenu {
-  padding-left: 1rem;
-}
+  /* 6) Top-level simple links (Home, Projects, etc.) */
+  .mobile-links > li > a {
+    display: block;
+    padding: 0 1rem;
+    line-height: var(--toggle-height);
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+  .mobile-links > li > a:hover {
+    background: rgba(255,255,255,0.1);
+  }
 
-/* Chevron transition */
-.chevron {
-  display: inline-block;
-  transition: transform 0.2s ease;
-}
-li.open > .accordion-toggle .chevron {
-  transform: rotate(90deg);
+  /* 7) Mobile-header styling */
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--nav-bg);
+    padding: 0 1rem;
+    height: var(--toggle-height);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 2001;
+  }
+  .mobile-header .menu-toggle {
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: var(--nav-text);
+    cursor: pointer;
+    transition: transform 0.1s ease;
+  }
+  .mobile-header .menu-toggle:active {
+    transform: scale(0.9);
+  }
+  .mobile-header .logo-section .logo {
+    height: 2rem;
+  }
+  .mobile-header .mobile-call {
+    font-size: 1.4rem;
+  }
 }
