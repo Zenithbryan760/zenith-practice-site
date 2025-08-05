@@ -18,7 +18,7 @@
   <!-- ===== RESPONSIVE CSS ===== -->
   <link rel="stylesheet" href="css/responsive.css" />
 
-  <!-- ===== MOBILE NAV OVERRIDES (loads last!) ===== -->
+  <!-- ===== MOBILE NAV OVERRIDES (load last) ===== -->
   <link rel="stylesheet" href="css/header-mobile.css" />
 </head>
 <body>
@@ -27,38 +27,47 @@
   <header class="header">
     <div class="header-inner">
 
-      <!-- ===== MOBILE HEADER (≤768px) ===== -->
+      <!-- ===== MOBILE NAV LAYOUT (shown ≤768px) ===== -->
       <div class="mobile-header">
         <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
         <div class="logo-section">
-          <img src="images/badges/logo-zenith-icon.png"
-               alt="Zenith Roofing logo"
-               class="logo" />
+          <img
+            src="images/badges/logo-zenith-icon.png"
+            alt="Zenith Roofing logo"
+            class="logo"
+          />
         </div>
         <a href="tel:8589006163" class="mobile-call" aria-label="Call 858-900-6163">
-          <!-- phone SVG -->
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
+            <path fill="#fff" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.58.57 1 1 0 0 1 1 1v3.5a1 1 0 0 1-.91 1A19.7 19.7 0 0 1 4 4.91 1 1 0 0 1 5 4h3.5a1 1 0 0 1 1 1c0 1.23.2 2.43.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
+          </svg>
         </a>
       </div>
 
       <!-- ===== DESKTOP HEADER PARTS (hidden on mobile) ===== -->
       <div class="logo-section">
-        <!-- desktop logo + license -->
+        <img
+          src="images/badges/logo-zenith-icon.png"
+          alt="Zenith Roofing Services logo"
+          class="logo"
+        />
+        <p class="license">Lic# 1036112</p>
       </div>
 
-      <!-- ===== PRIMARY NAV ===== -->
+      <!-- ===== PRIMARY NAVIGATION ===== -->
       <nav class="nav-bar">
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
           <li><a href="#gallery">Projects</a></li>
 
-          <!-- Services Accordion (mobile) / Dropdown (desktop) -->
+          <!-- Services: accordion on mobile, dropdown on desktop -->
           <li class="dropdown">
-            <!-- on mobile: this button toggles the 4 sections -->
+            <!-- Mobile toggle -->
             <button class="submenu-toggle">
               Services <span class="chevron">▸</span>
             </button>
             <ul class="dropdown-menu">
-              <!-- 1) Residential Roofing -->
+              <!-- Residential Roofing -->
               <li>
                 <button class="submenu-toggle">
                   Residential Roofing <span class="chevron">▸</span>
@@ -70,16 +79,17 @@
                   <li><a href="#tile-roof">Clay &amp; Concrete Tile</a></li>
                   <li><a href="#tile-lift-lay">Tile Lift &amp; Reset</a></li>
                   <li><a href="#tpo">TPO Single-Ply</a></li>
-                  <li><a href="#silicone">Silicone Coatings</a></li>
+                  <li><a href="#silicone">Silicone Coating Systems</a></li>
+
                   <li class="submenu-label">Maintenance &amp; Extras</li>
                   <li><a href="#gutters">Seamless Gutters</a></li>
-                  <li><a href="#repairs">Leak Repair</a></li>
+                  <li><a href="#repairs">Leak Repair &amp; Troubleshooting</a></li>
                   <li><a href="#maintenance">Preventive Maintenance</a></li>
                   <li><a href="#cleaning">Roof Washing &amp; Moss Removal</a></li>
                 </ul>
               </li>
 
-              <!-- 2) Commercial Roofing -->
+              <!-- Commercial Roofing -->
               <li>
                 <button class="submenu-toggle">
                   Commercial Roofing <span class="chevron">▸</span>
@@ -92,31 +102,32 @@
                   <li><a href="#metal">Metal Roofing</a></li>
                   <li><a href="#pvc">PVC Membranes</a></li>
                   <li><a href="#torch-commercial">Torch Down Flat Roofs</a></li>
-                  <li><a href="#silicone-commercial">Silicone Restorations</a></li>
+                  <li><a href="#silicone-commercial">Silicone Restoration Coatings</a></li>
+
                   <li class="submenu-label">Maintenance &amp; Extras</li>
                   <li><a href="#gutters-commercial">Seamless Gutters</a></li>
-                  <li><a href="#maintenance-commercial">Asset Maintenance</a></li>
-                  <li><a href="#cleaning-commercial">Debris Removal</a></li>
+                  <li><a href="#maintenance-commercial">Roof Asset Maintenance</a></li>
+                  <li><a href="#cleaning-commercial">Debris Removal &amp; Cleaning</a></li>
                 </ul>
               </li>
 
-              <!-- 3) Real Estate Services -->
+              <!-- Real Estate Services -->
               <li>
                 <button class="submenu-toggle">
                   Real Estate Services <span class="chevron">▸</span>
                 </button>
                 <ul class="submenu">
                   <li><a href="#roof-reports">Certified Roof Reports</a></li>
-                  <li><a href="#roof-estimates">Pre-Sale Estimates</a></li>
-                  <li><a href="#inspections">Visual Inspections</a></li>
+                  <li><a href="#roof-estimates">Pre-Sale Roofing Estimates</a></li>
+                  <li><a href="#inspections">Visual Roof Inspections</a></li>
                   <li><a href="#certifications">Roof Certifications</a></li>
                   <li><a href="#insurance-consulting">Insurance Consulting</a></li>
-                  <li><a href="#verbal-opinions">Verbal Opinions</a></li>
-                  <li><a href="#satellite">Satellite Analysis</a></li>
+                  <li><a href="#verbal-opinions">Professional Verbal Opinions</a></li>
+                  <li><a href="#satellite">Satellite Imagery Analysis</a></li>
                 </ul>
               </li>
 
-              <!-- 4) Pricing (simple link) -->
+              <!-- Pricing -->
               <li><a href="pricing.html">Pricing</a></li>
             </ul>
           </li>
@@ -126,27 +137,37 @@
           <li><a href="#blog">Blog</a></li>
           <li><a href="#glossary">Glossary</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="https://www.youtube.com/@ZenithRoofingServices"
-                 target="_blank"
-                 rel="noopener">
-            YouTube
-          </a></li>
+          <li>
+            <a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">
+              YouTube
+            </a>
+          </li>
         </ul>
       </nav>
 
       <!-- Call/Text Section (desktop) -->
       <div class="phone-section">
-        <!-- … -->
+        <p>Call/Text: <a href="tel:8589006163">858-900-6163</a></p>
+        <a href="tel:8589006163" class="call-button">Call Now</a>
       </div>
+
     </div>
   </header>
 
-  <!-- ===== HERO SECTION ===== -->
-  <section class="hero">…</section>
+  <!-- ===== HERO SECTION (VIDEO BELOW NAV) ===== -->
+  <section class="hero">
+    <div class="video-container">
+      <video class="background-video" autoplay muted loop playsinline>
+        <source src="roofing-bg.mp4" type="video/mp4" />
+        Your browser doesn’t support video.
+      </video>
+      <div class="video-overlay"></div>
+    </div>
+  </section>
 
   <!-- ===== YOUR PAGE CONTENT ===== -->
 
-  <!-- Desktop/mobile menu scripts -->
+  <!-- Toggle scripts -->
   <script src="js/header.js"></script>
   <script src="js/header-mobile.js"></script>
 </body>
