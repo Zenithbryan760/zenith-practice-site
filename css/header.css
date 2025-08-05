@@ -12,8 +12,6 @@
   justify-content: space-between;
   padding: 12px 16px;
 }
-
-/* Round call icon used in the mobile header */
 .mobile-call {
   display: inline-flex;
   align-items: center;
@@ -91,15 +89,13 @@ nav ul ul {
   flex: 1 1 auto;
   display: flex;
   justify-content: center;
-  position: relative;          /* for mobile dropdown placement */
+  position: relative;          /* for dropdown placement */
 }
 .nav-links {
   display: flex;
   gap: 12px;
 }
 .nav-links li { position: relative; }
-
-/* Animated underline on hover */
 .nav-links a {
   position: relative;
   color: var(--white);
@@ -266,28 +262,31 @@ nav ul ul {
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
 
+/* -------------------------------------------------------------------
+   [11] TABLET TWEAKS (769px–1024px)
+   ------------------------------------------------------------------- */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-links { gap: 8px; font-size: 0.95rem; }
+}
+
 /* ===================================================================
-   [11] MOBILE (≤768px) — show mobile header, collapse menu
+   [12] MOBILE (≤768px) — collapse into hamburger menu
    =================================================================== */
 @media (max-width: 768px) {
-  /* Show the mobile header row */
-  .mobile-header { display: flex; }
-
-  /* Show hamburger only inside the mobile header */
+  .mobile-header       { display: flex; }
   .mobile-header .menu-toggle { display: block; }
-  /* If any stray toggle exists outside, hide it on phones */
   .header-inner > .menu-toggle { display: none; }
 
-  /* Hide desktop logo & desktop phone section on phones (avoid duplicates) */
   .header-inner > .logo-section,
   .header-inner > .phone-section {
     display: none !important;
   }
 
-  /* Keep nav-bar itself visible; collapse just the links */
   .nav-bar { width: 100%; position: relative; }
-
-  /* Hide links by default on mobile */
   .nav-links {
     display: none;
     flex-direction: column;
@@ -297,8 +296,6 @@ nav ul ul {
     margin-top: 8px;
     gap: 0;
   }
-
-  /* When toggled (nav-bar.open), show the links below header */
   .nav-bar.open .nav-links {
     display: flex;
     position: absolute;
@@ -307,13 +304,11 @@ nav ul ul {
     width: 100%;
     z-index: 999;
   }
-
-  /* Full-width tap targets */
   .nav-links li { width: 100%; text-align: center; }
-  .nav-links a { padding: 12px 0; font-size: 1rem; }
+  .nav-links a  { padding: 12px 0; font-size: 1rem; }
   .nav-links a::after { display: none; }
 
-  /* Make dropdowns readable on mobile (no layered hovers) */
+  /* keep dropdown containers visible; submenu toggles handle show/hide */
   .dropdown-menu,
   .submenu {
     position: static;
@@ -323,7 +318,6 @@ nav ul ul {
     transform: none;
   }
 
-  /* Layout tweaks */
   .header { z-index: 1000; }
   .header-inner {
     flex-wrap: wrap;
