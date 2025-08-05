@@ -157,6 +157,14 @@ nav ul ul {
   transform: translateY(0);
 }
 
+/* Now your mobile rules follow… */
+@media (max-width: 768px) {
+  /* mobile overrides here */
+  .nav-bar, .nav-bar .dropdown-menu, .nav-bar .submenu { display: none !important; }
+  /* …etc… */
+}
+
+
 /* -------------------------------------------------------------------
    [7] SUBMENU (fly-out on desktop)
    ------------------------------------------------------------------- */
@@ -275,8 +283,10 @@ nav ul ul {
    [11] MOBILE (≤768px) — show mobile header, collapse menu
    =================================================================== */
 @media (max-width: 768px) {
-  /* 1) Hide desktop nav-bar entirely on phones */
-  .nav-bar {
+  /* 1) Hide desktop nav-bar + its dropdowns on phones */
+  .nav-bar,
+  .nav-bar .dropdown-menu,
+  .nav-bar .submenu {
     display: none !important;
   }
 
@@ -287,6 +297,7 @@ nav ul ul {
   .mobile-header .menu-toggle {
     display: block;
   }
+  /* ensure any stray toggles in header-inner stay hidden */
   .header-inner > .menu-toggle {
     display: none;
   }
@@ -297,7 +308,7 @@ nav ul ul {
     display: none !important;
   }
 
-  /* 4) Reveal mobile-only menu panel */
+  /* 4) Reveal mobile‐only menu panel (toggled via .hidden class) */
   .mobile-menu {
     display: block;
   }
@@ -305,20 +316,12 @@ nav ul ul {
     display: none;
   }
 
-  /* 5) (Your accordion within .mobile-menu handles sub-levels) */
-
-  /* 6) Keep desktop .nav-links hidden (we’re not using it here) */
+  /* 5) We’re not using .nav-links here, so keep it hidden */
   .nav-links {
-    display: none;
-  }
-
-  /* 7) Clean up any leftover hover/dropdown styling */
-  .dropdown-menu,
-  .submenu {
     display: none !important;
   }
 
-  /* 8) Layout tweaks to center and space things */
+  /* 6) Layout tweaks to center and space things */
   .header {
     z-index: 1000;
   }
@@ -326,6 +329,4 @@ nav ul ul {
     flex-wrap: wrap;
     justify-content: center;
     padding: 10px 16px;
-    gap: 12px;
-  }
-}
+    gap: 12p
