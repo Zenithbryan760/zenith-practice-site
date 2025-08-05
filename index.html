@@ -11,7 +11,7 @@
 
   <!-- ===== HEADER CSS ===== -->
   <link rel="stylesheet" href="css/header.css" />
-  <link rel="stylesheet" href="css/mobileheader.css">
+  <link rel="stylesheet" href="css/mobileheader.css" />
   
   <!-- ===== HERO CSS ===== -->
   <link rel="stylesheet" href="css/hero.css" />
@@ -23,37 +23,32 @@
 
   <!-- ===== HEADER & NAVIGATION (ON TOP) ===== -->
   <header class="header">
-    <div class="header-inner">
+    <!-- MOBILE HEADER (shown ≤768px via mobileheader.css) -->
+    <div class="mobile-header">
+      <!-- 1) Hamburger -->
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
 
-      <!-- ===== MOBILE NAV LAYOUT (shown ≤768px by CSS) ===== -->
-      <div class="mobile-header">
-        <!-- 1) Hamburger -->
-        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-
-        <!-- 2) Centered logo -->
-        <div class="logo-section">
-          <img
-            src="images/badges/logo-zenith-icon.png"
-            alt="Zenith Roofing logo"
-            class="logo"
-          />
-        </div>
-
-        <!-- 3) Phone icon -->
-        <a href="tel:8589006163" class="mobile-call" aria-label="Call 858-900-6163">
-          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
-            <path fill="#fff" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.58.57 1 1 0 0 1 1 1v3.5a1 1 0 0 1-.91 1A19.7 19.7 0 0 1 4 4.91 1 1 0 0 1 5 4h3.5a1 1 0 0 1 1 1c0 1.23.2 2.43.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
-          </svg>
-        </a>
+      <!-- 2) Centered logo -->
+      <div class="logo-section">
+        <img src="images/badges/logo-zenith-icon.png"
+             alt="Zenith Roofing logo"
+             class="logo" />
       </div>
 
-      <!-- ===== DESKTOP HEADER PARTS (hidden on mobile by CSS) ===== -->
+      <!-- 3) Phone icon -->
+      <a href="tel:8589006163" class="mobile-call" aria-label="Call 858-900-6163">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
+          <path fill="#fff" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.58.57 1 1 0 0 1 1 1v3.5a1 1 0 0 1-.91 1A19.7 19.7 0 0 1 4 4.91 1 1 0 0 1 5 4h3.5a1 1 0 0 1 1 1c0 1.23.2 2.43.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- DESKTOP HEADER PARTS (hidden ≤768px via mobileheader.css) -->
+    <div class="header-inner">
       <div class="logo-section">
-        <img
-          src="images/badges/logo-zenith-icon.png"
-          alt="Zenith Roofing Services logo"
-          class="logo"
-        />
+        <img src="images/badges/logo-zenith-icon.png"
+             alt="Zenith Roofing Services logo"
+             class="logo" />
         <p class="license">Lic# 1036112</p>
       </div>
 
@@ -130,9 +125,8 @@
           <li><a href="#glossary">Glossary</a></li>
           <li><a href="#contact">Contact</a></li>
           <li>
-            <a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">
-              YouTube
-            </a>
+            <a href="https://www.youtube.com/@ZenithRoofingServices"
+               target="_blank" rel="noopener">YouTube</a>
           </li>
         </ul>
       </nav>
@@ -142,7 +136,6 @@
         <p>Call/Text: <a href="tel:8589006163">858-900-6163</a></p>
         <a href="tel:8589006163" class="call-button">Call Now</a>
       </div>
-
     </div>
   </header>
 
@@ -160,6 +153,22 @@
   <!-- ===== YOUR PAGE CONTENT STARTS HERE ===== -->
 
   <!-- Toggle script -->
-  <script src="js/header.js"></script>
+  <script>
+    // Mobile menu open/close
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navBar     = document.querySelector('.nav-bar');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navBar.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Mobile submenu toggles
+    document.querySelectorAll('.submenu-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.parentElement.classList.toggle('open');
+      });
+    });
+  </script>
 </body>
 </html>
