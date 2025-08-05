@@ -275,30 +275,26 @@ nav ul ul {
 
   /* Show hamburger only inside the mobile header */
   .mobile-header .menu-toggle { display: block; }
-  /* If any stray toggle exists outside, hide it on phones */
-  .header-inner > .menu-toggle { display: none; }
+  .header-inner > .menu-toggle       { display: none; }
 
-  /* Hide desktop logo & desktop phone section on phones (avoid duplicates) */
+  /* Hide desktop logo & phone on mobile */
   .header-inner > .logo-section,
   .header-inner > .phone-section {
     display: none !important;
   }
 
-  /* Keep nav-bar itself visible; collapse just the links */
-  .nav-bar { width: 100%; position: relative; }
-
-  /* Hide links by default on mobile */
+  /* Collapse nav-links by default */
+  .nav-bar { position: relative; }
   .nav-links {
     display: none;
     flex-direction: column;
-    width: 100%;
     background: var(--zenith-blue);
     border-top: 1px solid rgba(255,255,255,0.2);
     margin-top: 8px;
     gap: 0;
   }
 
-  /* When toggled (nav-bar.open), show the links below header */
+  /* When open */
   .nav-bar.open .nav-links {
     display: flex;
     position: absolute;
@@ -308,12 +304,12 @@ nav ul ul {
     z-index: 999;
   }
 
-  /* Full-width tap targets */
-  .nav-links li { width: 100%; text-align: center; }
-  .nav-links a { padding: 12px 0; font-size: 1rem; }
+  /* Full-width items */
+  .nav-links li    { width: 100%; text-align: center; }
+  .nav-links a     { padding: 12px 0; font-size: 1rem; }
   .nav-links a::after { display: none; }
 
-  /* Make dropdowns readable on mobile (no layered hovers) */
+  /* Flatten desktop dropdowns */
   .dropdown-menu,
   .submenu {
     position: static;
@@ -331,4 +327,47 @@ nav ul ul {
     padding: 10px 16px;
     gap: 12px;
   }
-}
+
+  /* -------------------------------------------------------------------
+     [11a] MOBILE ACCORDION OVERRIDES
+  ------------------------------------------------------------------- */
+  /* Hide desktop dropdown blocks */
+  .dropdown-menu,
+  .submenu {
+    display: none !important;
+  }
+
+  /* Make parent links/buttons tappable and show arrows */
+  .nav-links li > a,
+  .nav-links li > button {
+    position: relative;
+    display: block;
+    padding: 12px 16px;
+    text-align: left;
+    background: var(--zenith-blue);
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .nav-links li > .arrow {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.2s ease;
+  }
+  /* Rotate when open */
+  .nav-links li.open > .arrow {
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  /* Indent nested lists */
+  .nav-links > li > ul               { padding-left: 1rem; }
+  .nav-links > li > ul > li > ul     { padding-left: 2rem; font-size: 0.9rem; }
+
+  /* Remove underline indicator on mobile */
+  .nav-links a::after {
+    display: none;
+  }
+} /* end of @media (max-width: 768px) */
