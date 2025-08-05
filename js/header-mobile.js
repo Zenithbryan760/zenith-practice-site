@@ -1,65 +1,33 @@
-/* off-canvas container, hidden by default */
-.mobile-nav {
-  position: fixed;
-  top: 0; right: -100%;
-  width: 80%;
-  height: 100%;
-  background: var(--zenith-blue);
-  color: var(--white);
-  overflow-y: auto;
-  transition: right 0.3s ease;
-  z-index: 2000;
-  padding: 1rem;
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileNav  = document.querySelector('.mobile-nav');
 
-/* Slide in when open */
-.mobile-nav.open {
-  right: 0;
-}
+  // 1) open/close off-canvas
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
 
-/* Basic reset */
-.mobile-nav .submenu,
-.mobile-nav .mobile-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+  // 2) accordion toggles
+  document.querySelectorAll('.accordion-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const li = btn.closest('li');
 
-/* Accordion buttons */
-.accordion-toggle {
-  background: none;
-  border: none;
-  color: var(--white);
-  font-size: 1rem;
-  width: 100%;
-  text-align: left;
-  padding: 0.75rem 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-}
+      // close siblings at this level
+      const siblings = Array.from(li.parentElement.children)
+        .filter(el => el !== li && el.classList.contains('open'));
+      siblings.forEach(sib => sib.classList.remove('open'));
 
-/* Hide all submenus by default */
-.mobile-nav .submenu {
-  display: none;
-}
+      // toggle this one
+      li.classList.toggle('open');
+    });
+  });
 
-/* Show when its parent <li> has .open */
-.mobile-nav li.open > .submenu {
-  display: block;
-}
-
-/* Indent nested levels */
-.mobile-nav .submenu .submenu {
-  padding-left: 1rem;
-}
-
-/* Chevron transition */
-.chevron {
-  display: inline-block;
-  transition: transform 0.2s ease;
-}
-li.open > .accordion-toggle .chevron {
-  transform: rotate(90deg);
-}
+  // 3) close if clicking outside
+  document.addEventListener('click', e => {
+    if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target)) {
+      mobileNav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
