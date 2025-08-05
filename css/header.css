@@ -47,7 +47,12 @@ nav ul ul {
   margin: 0;
   padding: 0;
 }
-
+/* -------------------------------------------------------------------
+   [2a] MOBILE MENU PANEL (always hidden by default)
+   ------------------------------------------------------------------- */
+.mobile-menu {
+  display: none;
+}
 /* -------------------------------------------------------------------
    [3] HEADER CONTAINER
    ------------------------------------------------------------------- */
@@ -270,6 +275,19 @@ nav ul ul {
    [11] MOBILE (≤768px) — show mobile header, collapse menu
    =================================================================== */
 @media (max-width: 768px) {
+  /* hide the desktop nav-bar completely on phones */
+  .nav-bar {
+    display: none !important;
+  }
+
+  /* reveal mobile-only menu panel when JS removes .hidden */
+  .mobile-menu {
+    display: block;
+  }
+  .mobile-menu.hidden {
+    display: none;
+  }
+
   /* Show the mobile header row */
   .mobile-header { display: flex; }
 
@@ -284,10 +302,7 @@ nav ul ul {
     display: none !important;
   }
 
-  /* Keep nav-bar itself visible; collapse just the links */
-  .nav-bar { width: 100%; position: relative; }
-
-  /* Hide links by default on mobile */
+  /* Hide desktop links by default on mobile */
   .nav-links {
     display: none;
     flex-direction: column;
@@ -315,20 +330,3 @@ nav ul ul {
 
   /* Make dropdowns readable on mobile (no layered hovers) */
   .dropdown-menu,
-  .submenu {
-    position: static;
-    box-shadow: none;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-  }
-
-  /* Layout tweaks */
-  .header { z-index: 1000; }
-  .header-inner {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 10px 16px;
-    gap: 12px;
-  }
-}
