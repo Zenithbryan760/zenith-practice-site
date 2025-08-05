@@ -1,7 +1,6 @@
-/* ================================================
-   css/header-mobile.css — Off-canvas & Accordion
-   Applies only on screens ≤768px
-   ================================================ */
+/* =========================================================
+   css/header-mobile.css — Off-canvas & Accordion (mobile only)
+   ========================================================= */
 @media (max-width: 768px) {
   :root {
     --nav-bg: var(--zenith-blue);
@@ -10,7 +9,7 @@
     --toggle-height: 3.5rem;
   }
 
-  /* 1) Off-canvas container (hidden off-screen by default) */
+  /* 1) Off-canvas container: hidden off to the right */
   .mobile-nav {
     position: fixed;
     top: 0; right: -100%;
@@ -25,11 +24,12 @@
     padding: 1rem 0;
     box-shadow: -4px 0 12px rgba(0,0,0,0.3);
   }
+  /* Slide in when open */
   .mobile-nav.open {
     right: 0;
   }
 
-  /* 2) Reset lists & add separators */
+  /* 2) Reset & separators */
   .mobile-links,
   .mobile-links .submenu {
     list-style: none;
@@ -64,7 +64,7 @@
     background: rgba(255,255,255,0.15);
   }
 
-  /* 4) Chevron rotation */
+  /* Chevron rotation */
   .accordion-toggle .chevron {
     transition: transform 0.3s ease;
   }
@@ -72,7 +72,7 @@
     transform: rotate(90deg);
   }
 
-  /* 5) Submenu expand/collapse */
+  /* 4) Submenu expand/collapse */
   .submenu {
     overflow: hidden;
     max-height: 0;
@@ -80,7 +80,7 @@
     background: rgba(0,0,0,0.05);
   }
   li.open > .submenu {
-    max-height: 1000px; /* ample */
+    max-height: 1000px; /* plenty of room */
   }
   .submenu li {
     border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -97,7 +97,7 @@
     background: rgba(255,255,255,0.1);
   }
 
-  /* 6) Top-level simple links (Home, Projects, etc.) */
+  /* 5) Top-level simple links (Home, Projects, etc.) */
   .mobile-links > li > a {
     display: block;
     padding: 0 1rem;
@@ -112,7 +112,7 @@
     background: rgba(255,255,255,0.1);
   }
 
-  /* 7) Mobile-header styling */
+  /* 6) Mobile header bar */
   .mobile-header {
     display: flex;
     align-items: center;
