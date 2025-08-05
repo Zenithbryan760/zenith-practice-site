@@ -1,50 +1,23 @@
 // js/header.js
 document.addEventListener('DOMContentLoaded', () => {
-  const toggleButtons = document.querySelectorAll('.menu-toggle');
-  const navBar        = document.querySelector('.nav-bar');
+  // Accordion submenu toggles
+  document.querySelectorAll('.submenu-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const li       = btn.closest('li');
+      const parentUl = li.parentElement;
 
-  if (!toggleButtons.length || !navBar) return;
+      // 1) Close any other open panel at this same level
+      parentUl.querySelectorAll(':scope > li.open').forEach(openLi => {
+        if (openLi !== li) {
+          openLi.classList.remove('open');
+          openLi.querySelectorAll('.submenu-toggle')
+                .forEach(b => b.setAttribute('aria-expanded', 'false'));
+        }
+      });
 
-  // Helper: set ARIA state for accessibility
-  const setAria = (expanded) => {
-    toggleButtons.forEach(btn =>
-      btn.setAttribute('aria-expanded', expanded ? 'true' : 'false')
-    );
-  };
-
-  // Toggle menu on click or keyboard
-  toggleButtons.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = navBar.classList.toggle('open');
-      setAria(isOpen);
+      // 2) Toggle this panel
+      const nowOpen = li.classList.toggle('open');
+      btn.setAttribute('aria-expanded', nowOpen);
     });
-    btn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        btn.click();
-      }
-    });
-  });
-
-  // Close when clicking/tapping outside the nav
-  document.addEventListener('click', (e) => {
-    const clickedToggle = [...toggleButtons].some(btn => btn.contains(e.target));
-    const clickedNav    = navBar.contains(e.target);
-    if (!clickedToggle && !clickedNav && navBar.classList.contains('open')) {
-      navBar.classList.remove('open');
-      setAria(false);
-    }
-  });
-
-  // Close if window is resized above 768px
-  let lastWidth = window.innerWidth;
-  window.addEventListener('resize', () => {
-    const now = window.innerWidth;
-    if (now > 768 && lastWidth <= 768) {
-      navBar.classList.remove('open');
-      setAria(false);
-    }
-    lastWidth = now;
   });
 });
