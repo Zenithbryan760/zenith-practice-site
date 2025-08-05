@@ -1,19 +1,17 @@
-/* css/header-mobile.css — Mobile submenu & toggle overrides */
 @media (max-width: 768px) {
-
-  /* Hide the desktop “Services” <a> links on mobile */
+  /* Hide desktop dropdown links */
   .nav-links .dropdown > a,
   .nav-links .dropdown-submenu > a {
     display: none;
   }
 
-  /* Hide all nested lists until the user taps */
+  /* Hide the nested ULs until tapped */
   .nav-links .dropdown-menu,
   .nav-links .submenu {
     display: none;
   }
 
-  /* Show the accordion buttons */
+  /* Show your manual accordion buttons */
   .submenu-toggle {
     display: flex;
     justify-content: space-between;
@@ -26,15 +24,14 @@
     cursor: pointer;
   }
 
-  /* Reveal when its <li> has .open */
+  /* Reveal when you add .open to LI */
   .nav-links li.open > .dropdown-menu,
   .nav-links li.open > .submenu {
     display: block;
   }
 
-  /* Rotate the chevron */
+  /* Rotate chevron */
   .nav-links li.open .chevron {
     transform: rotate(90deg);
   }
-
 }
