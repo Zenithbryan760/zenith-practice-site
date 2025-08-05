@@ -1,0 +1,38 @@
+/* header-mobile.css */
+
+/* Hide all nested menus by default on mobile */
+@media (max-width: 768px) {
+  .nav-links .dropdown-menu,
+  .nav-links .submenu {
+    display: none;
+  }
+
+  /* Show toggle buttons, hide desktop hover menus */
+  .nav-links .dropdown > a,
+  .nav-links .dropdown-submenu > a {
+    display: none;
+  }
+  .submenu-toggle {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1rem;
+    font: inherit;
+    text-align: left;
+  }
+  .chevron {
+    transition: transform 0.3s;
+  }
+
+  /* When its parent .open, reveal its ul */
+  .nav-links li.open > .dropdown-menu,
+  .nav-links li.open > .submenu {
+    display: block;
+  }
+  /* rotate arrow when open */
+  .nav-links li.open > .submenu-toggle .chevron {
+    transform: rotate(90deg);
+  }
+}
