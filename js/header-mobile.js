@@ -1,33 +1,38 @@
-// js/header-mobile.js
-document.addEventListener('DOMContentLoaded', () => {
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navBar     = document.querySelector('.nav-bar');
-  if (!menuToggle || !navBar) return;
+/* css/header-mobile.css — Mobile submenu & toggle overrides */
+@media (max-width: 768px) {
+  /* Hide desktop dropdown links on mobile */
+  .nav-links .dropdown > a,
+  .nav-links .dropdown-submenu > a {
+    display: none;
+  }
 
-  // 1) Hamburger open/close
-  menuToggle.addEventListener('click', () => {
-    const isOpen = navBar.classList.toggle('open');
-    menuToggle.setAttribute('aria-expanded', isOpen);
-  });
+  /* Hide all nested lists until toggled */
+  .nav-links .dropdown-menu,
+  .nav-links .submenu {
+    display: none;
+  }
 
-  // 2) Close when clicking outside
-  document.addEventListener('click', e => {
-    if (!navBar.contains(e.target) && !menuToggle.contains(e.target)) {
-      if (navBar.classList.contains('open')) {
-        navBar.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      }
-    }
-  });
+  /* Style & show the new toggle buttons */
+  .submenu-toggle {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0.75rem 1rem;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
 
-  // 3) Close if window is resized above mobile breakpoint
-  let lastWidth = window.innerWidth;
-  window.addEventListener('resize', () => {
-    if (lastWidth <= 768 && window.innerWidth > 768) {
-      navBar.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-    }
-    lastWidth = window.innerWidth;
-  });
-});
+  /* When its parent LI has .open, reveal the list */
+  .nav-links li.open > .dropdown-menu,
+  .nav-links li.open > .submenu {
+    display: block;
+  }
 
+  /* Rotate the chevron when open */
+  .nav-links li.open .chevron {
+    transform: rotate(90deg);
+  }
+}
