@@ -65,15 +65,18 @@ li.open > .accordion-toggle .chevron {
 }
 
 /* =========================================================
-   css/header-mobile.css — Off-canvas & Accordion (mobile only)
+   css/header-mobile.css — Optimized Off-canvas & Accordion (mobile only)
    ========================================================= */
 @media (max-width: 768px) {
-  /*–– Brand color variables ––*/
+  /*–– Brand variables ––*/
   :root {
     --nav-bg: var(--zenith-blue);
     --nav-text: #fff;
     --nav-accent: var(--zenith-orange);
-    --toggle-height: 3.5rem;
+    --header-height: 4.5rem;       /* header bar height */
+    --icon-size: 3.5rem;           /* hamburger & call button size */
+    --logo-height: 4rem;           /* logo height */
+    --gutter: 1.5rem;              /* side padding */
   }
 
   /*–– 1) Off-canvas drawer ––*/
@@ -87,7 +90,7 @@ li.open > .accordion-toggle .chevron {
     overflow-y: auto;
     transition: right 0.4s ease;
     z-index: 2000;
-    padding-top: var(--toggle-height);
+    padding-top: var(--header-height);
     box-shadow: -4px 0 12px rgba(0,0,0,0.3);
   }
   .mobile-nav.open {
@@ -98,27 +101,27 @@ li.open > .accordion-toggle .chevron {
   .mobile-header {
     position: fixed;
     top: 0; left: 0; right: 0;
-    height: 4.5rem;                        /* taller bar */
+    height: var(--header-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: var(--nav-bg);
-    padding: 0 1.5rem;                     /* more side padding */
+    padding: 0 var(--gutter);
     border-bottom: 2px solid var(--nav-accent);
     z-index: 2001;
   }
 
-  /* Bigger logo for stronger presence */
+  /*–– Logo ––*/
   .mobile-header .logo-section .logo {
-    height: 4rem;                          /* up from 3rem */
+    height: var(--logo-height);
     margin: 0;
   }
 
-  /* Larger, more spacious icon buttons */
+  /*–– Hamburger & Call Buttons ––*/
   .mobile-header .menu-toggle,
   .mobile-header .mobile-call {
-    width: 3.5rem;                         /* bigger tap target */
-    height: 3.5rem;
+    width: var(--icon-size);
+    height: var(--icon-size);
     background: var(--nav-bg);
     border: 2px solid var(--nav-accent);
     border-radius: 50%;
@@ -126,7 +129,7 @@ li.open > .accordion-toggle .chevron {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;                     /* larger icon */
+    font-size: 1.8rem;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.1s ease;
   }
@@ -135,9 +138,14 @@ li.open > .accordion-toggle .chevron {
     background: var(--nav-accent);
     color: var(--nav-bg);
   }
+  .mobile-header .menu-toggle:focus,
+  .mobile-header .mobile-call:focus {
+    outline: 2px solid var(--nav-accent);
+    outline-offset: 2px;
+  }
   .mobile-header .menu-toggle:active,
   .mobile-header .mobile-call:active {
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
 
   /*–– 3) Reset lists & separators ––*/
@@ -150,6 +158,9 @@ li.open > .accordion-toggle .chevron {
   .mobile-links > li {
     border-bottom: 1px solid rgba(255,255,255,0.2);
   }
+
+  /*–– 4) Accordion & submenu styles remain unchanged ––*/
+}
 
 
 
