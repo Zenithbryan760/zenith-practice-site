@@ -73,7 +73,7 @@ li.open > .accordion-toggle .chevron {
     --nav-bg: var(--zenith-blue);
     --nav-text: #fff;
     --nav-accent: var(--zenith-orange);
-    --toggle-height: 4rem;
+    --toggle-height: 7rem;
   }
 
   /*–– 1) Off-canvas drawer ––*/
