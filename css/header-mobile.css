@@ -94,29 +94,31 @@ li.open > .accordion-toggle .chevron {
     right: 0;
   }
 
-  /*–– 2) Mobile header bar — more room & polished icons ––*/
+   /*–– 2) Mobile header bar — extra room & larger logo ––*/
   .mobile-header {
     position: fixed;
     top: 0; left: 0; right: 0;
-    height: 4rem;                        /* taller bar */
+    height: 4.5rem;                      /* increased height */
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: var(--nav-bg);
-    padding: 0 1.5rem;                   /* more side padding */
+    padding: 0 1.5rem;                   /* plenty of side padding */
     border-bottom: 2px solid var(--nav-accent);
     z-index: 2001;
   }
 
+  /* Bigger logo for more presence */
   .mobile-header .logo-section .logo {
-    height: 2.5rem;                      /* slightly larger logo */
+    height: 3rem;                        /* up from 2.5rem */
     margin: 0;
   }
 
+  /* Larger, more spacious icon buttons */
   .mobile-header .menu-toggle,
   .mobile-header .mobile-call {
-    width: 3rem;                         /* larger tap target */
-    height: 3rem;
+    width: 3.5rem;                       /* increased tap target */
+    height: 3.5rem;
     background: var(--nav-bg);
     border: 2px solid var(--nav-accent);
     border-radius: 50%;
@@ -124,7 +126,7 @@ li.open > .accordion-toggle .chevron {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.6rem;                   /* bigger icon */
+    font-size: 1.8rem;                   /* slightly larger icon */
     cursor: pointer;
     transition: background 0.2s ease, transform 0.1s ease;
   }
@@ -148,6 +150,7 @@ li.open > .accordion-toggle .chevron {
   .mobile-links > li {
     border-bottom: 1px solid rgba(255,255,255,0.2);
   }
+
 
   /*–– 4) Top-level simple links (Home, Projects…) ––*/
   .mobile-links > li > a {
