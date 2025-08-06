@@ -233,6 +233,22 @@ li.open > .accordion-toggle .chevron {
   .mobile-nav .submenu .submenu {
     background: #d0e8ff;
   }
+  /*–– 6.2) MOBILE ACCORDION TEXT COLOR OVERRIDES ––*/
+/* Make the toggle labels orange */
+.mobile-nav .mobile-links > li > .accordion-toggle {
+  color: var(--zenith-orange);
+}
+
+/* Make all submenu link text orange */
+.mobile-nav .submenu li a {
+  color: var(--zenith-orange);
+}
+
+/* On hover, you can invert back to white if you like */
+.mobile-nav .mobile-links > li > .accordion-toggle:hover,
+.mobile-nav .submenu li a:hover {
+  color: var(--white);
+}
   /*–– 7) Submenu expand/collapse ––*/
   .submenu {
     overflow: hidden;
