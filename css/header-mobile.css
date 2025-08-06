@@ -65,19 +65,15 @@ li.open > .accordion-toggle .chevron {
 }
 
 /* =========================================================
-   css/header-mobile.css — Optimized Off-canvas & Accordion (mobile only)
+   css/header-mobile.css — Off-canvas & Accordion (mobile only)
    ========================================================= */
 @media (max-width: 768px) {
+  /*–– Brand color variables ––*/
   :root {
     --nav-bg: var(--zenith-blue);
     --nav-text: #fff;
     --nav-accent: var(--zenith-orange);
-    --header-height: 5rem;
-    --icon-size: 4rem;
-    --logo-height: 5rem;
-    --gutter: 1.5rem;
-    --li-padding: 0.75rem 1rem;
-    --li-border: 2px solid rgba(255,255,255,0.2);
+    --toggle-height: 3.5rem;
   }
 
   /*–– 1) Off-canvas drawer ––*/
@@ -91,69 +87,62 @@ li.open > .accordion-toggle .chevron {
     overflow-y: auto;
     transition: right 0.4s ease;
     z-index: 2000;
-    padding-top: var(--header-height);
+    padding-top: var(--toggle-height);
     box-shadow: -4px 0 12px rgba(0,0,0,0.3);
   }
   .mobile-nav.open {
     right: 0;
   }
 
-  /*–– 2) Mobile header bar — extra room & larger logo ––*/
+  /*–– 2) Mobile header bar (hamburger, logo, call) ––*/
   .mobile-header {
     position: fixed;
     top: 0; left: 0; right: 0;
-    height: var(--header-height);
+    height: var(--toggle-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: var(--nav-bg);
-    padding: 0 var(--gutter);
+    padding: 0 1rem;
     border-bottom: 2px solid var(--nav-accent);
     z-index: 2001;
   }
-
-
-  /*–– Logo ––*/
   .mobile-header .logo-section .logo {
-    height: var(--logo-height);
-    margin: 0;
+    height: 80px; /* match desktop */
   }
-
-  /*–– Hamburger & Call Buttons ––*/
   .mobile-header .menu-toggle,
   .mobile-header .mobile-call {
-    width: var(--icon-size);
-    height: var(--icon-size);
-    /* …other properties unchanged… */
+    width: 2.5rem; height: 2.5rem;
+    background: var(--nav-bg);
+    border: 2px solid var(--nav-accent);
+    border-radius: 50%;
+    color: var(--nav-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
   }
   .mobile-header .menu-toggle:hover,
   .mobile-header .mobile-call:hover {
     background: var(--nav-accent);
     color: var(--nav-bg);
   }
-  .mobile-header .menu-toggle:focus,
-  .mobile-header .mobile-call:focus {
-    outline: 2px solid var(--nav-accent);
-    outline-offset: 2px;
-  }
   .mobile-header .menu-toggle:active,
   .mobile-header .mobile-call:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
   }
 
-  /*–– 3) Reset lists & make separators thumb‐friendly ––*/
+  /*–– 3) Reset lists & separators ––*/
   .mobile-links,
   .mobile-links .submenu {
     list-style: none;
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
   }
   .mobile-links > li {
-    border-bottom: var(--li-border);
-    padding: var(--li-padding);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
   }
-}
-
 
   /*–– 4) Top-level simple links (Home, Projects…) ––*/
   .mobile-links > li > a {
