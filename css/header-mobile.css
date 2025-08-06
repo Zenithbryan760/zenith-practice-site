@@ -213,42 +213,41 @@ li.open > .accordion-toggle .chevron {
   li.open > .accordion-toggle .chevron {
     transform: rotate(90deg);
   }
-  /*–– 6.1) MOBILE ACCORDION COLOR OVERRIDES ––*/
-  /* Powder-blue backdrop for the Services toggle itself */
-  .mobile-nav .mobile-links > li > .accordion-toggle {
-    background: #e0f0ff;
-    color: var(--white);
-  }
-
-  /* Slightly deeper powder-blue for the Services submenu panel */
-  .mobile-nav .mobile-links > li > .submenu {
-    background: #d0e8ff;
-  }
-
-  /* Powder-blue backdrops for every nested toggle */
-  .mobile-nav .submenu .accordion-toggle {
-    background: #e0f0ff;
-  }
-  /* And the panels inside those nested toggles */
-  .mobile-nav .submenu .submenu {
-    background: #d0e8ff;
-  }
-  /*–– 6.2) MOBILE ACCORDION TEXT COLOR OVERRIDES ––*/
-/* Make the toggle labels orange */
+/*–– 6.1) MOBILE ACCORDION COLOR OVERRIDES ––*/
+/* Powder-blue backdrop for the Services toggle itself */
 .mobile-nav .mobile-links > li > .accordion-toggle {
-  color: var(--zenith-orange);
+  background: #e0f0ff;               /* light powder blue */
+  color: var(--zenith-blue);         /* dark navy text for readability */
 }
 
-/* Make all submenu link text orange */
+/* Slightly deeper powder-blue for the Services submenu panel */
+.mobile-nav .mobile-links > li > .submenu {
+  background: #d0e8ff;
+}
+
+/* Powder-blue backdrops for every nested toggle */
+.mobile-nav .submenu .accordion-toggle {
+  background: #e0f0ff;
+  color: var(--zenith-blue);
+}
+/* And the panels inside those nested toggles */
+.mobile-nav .submenu .submenu {
+  background: #d0e8ff;
+}
+
+/*–– 6.2) MOBILE ACCORDION TEXT COLOR OVERRIDES ––*/
+/* Make all submenu link text dark navy */
 .mobile-nav .submenu li a {
-  color: var(--zenith-orange);
+  color: var(--zenith-blue);
 }
 
-/* On hover, you can invert back to white if you like */
+/* Hover state: switch to your orange for clarity */
 .mobile-nav .mobile-links > li > .accordion-toggle:hover,
 .mobile-nav .submenu li a:hover {
-  color: var(--white);
+  color: var(--zenith-orange);
+  background: rgba(247,148,29,0.1);  /* soft orange highlight if desired */
 }
+
   /*–– 7) Submenu expand/collapse ––*/
   .submenu {
     overflow: hidden;
