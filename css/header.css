@@ -147,44 +147,7 @@ nav ul ul {
   visibility: visible;
   transform: translateY(0);
 }
-/* -------------------------------------------------------------------
-   [6.1] SIDE-ALIGNED TRIANGLE INDICATORS
-   ------------------------------------------------------------------- */
 
-/* 1) Reserve space on the right for all dropdown triggers */
-.nav-bar .dropdown > a,
-.nav-bar .dropdown-submenu > a {
-  position: relative;
-  padding-right: 1.8em;
-}
-
-/* 2) Draw the triangle with ::before */
-.nav-bar .dropdown > a::before,
-.nav-bar .dropdown-submenu > a::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 0.6em;
-  transform: translateY(-50%) rotate(0deg);
-  border-top: 0.25em solid transparent;
-  border-bottom: 0.25em solid transparent;
-  border-left: 0.4em solid var(--zenith-orange);
-  transition: transform 0.25s ease;
-  pointer-events: none;
-}
-
-/* 3) Rotate the arrow on open */
-.nav-bar .dropdown.open > a::before,
-.nav-bar .dropdown-submenu.open > a::before {
-  transform: translateY(-50%) rotate(90deg);
-}
-
-/* -------------------------------------------------------------------
-   Hide arrow on the top-level “Services” link only
-   ------------------------------------------------------------------- */
-.nav-bar .nav-links > li.dropdown > a::before {
-  display: none;
-}
 /* -------------------------------------------------------------------
    [7] SUBMENU (fly-out on desktop)
    ------------------------------------------------------------------- */
