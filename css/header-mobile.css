@@ -94,25 +94,29 @@ li.open > .accordion-toggle .chevron {
     right: 0;
   }
 
-  /*–– 2) Mobile header bar (hamburger, logo, call) ––*/
+  /*–– 2) Mobile header bar — more room & polished icons ––*/
   .mobile-header {
     position: fixed;
     top: 0; left: 0; right: 0;
-    height: var(--toggle-height);
+    height: 4rem;                        /* taller bar */
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: var(--nav-bg);
-    padding: 0 1rem;
+    padding: 0 1.5rem;                   /* more side padding */
     border-bottom: 2px solid var(--nav-accent);
     z-index: 2001;
   }
+
   .mobile-header .logo-section .logo {
-    height: 80px; /* match desktop */
+    height: 2.5rem;                      /* slightly larger logo */
+    margin: 0;
   }
+
   .mobile-header .menu-toggle,
   .mobile-header .mobile-call {
-    width: 2.5rem; height: 2.5rem;
+    width: 3rem;                         /* larger tap target */
+    height: 3rem;
     background: var(--nav-bg);
     border: 2px solid var(--nav-accent);
     border-radius: 50%;
@@ -120,7 +124,7 @@ li.open > .accordion-toggle .chevron {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.4rem;
+    font-size: 1.6rem;                   /* bigger icon */
     cursor: pointer;
     transition: background 0.2s ease, transform 0.1s ease;
   }
@@ -138,7 +142,8 @@ li.open > .accordion-toggle .chevron {
   .mobile-links,
   .mobile-links .submenu {
     list-style: none;
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
   }
   .mobile-links > li {
     border-bottom: 1px solid rgba(255,255,255,0.2);
