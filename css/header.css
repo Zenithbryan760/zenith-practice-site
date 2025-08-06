@@ -147,34 +147,37 @@ nav ul ul {
   visibility: visible;
   transform: translateY(0);
 }
-/* -------------------------------------------------------------------
-   [6.1] ARROW INDICATORS
-   ------------------------------------------------------------------- */
-/* top‐level “Services” arrow */
-.nav-bar .dropdown > a::after {
-  content: '›';
-  color: var(--zenith-orange);
-  margin-left: 0.4em;
-  font-size: 0.8em;
-  vertical-align: middle;
-  transition: transform 0.2s ease;
-}
-.nav-bar .dropdown.open > a::after {
-  transform: rotate(90deg);
+* ───────────────────────────────────────────────────────────────────
+   [6.1] SIDE-ALIGNED ARROW INDICATORS
+   ─────────────────────────────────────────────────────────────────── */
+
+/* 1) Give every dropdown toggle some extra right padding */
+.nav-bar .dropdown > a,
+.nav-bar .dropdown-submenu > a,
+.nav-bar .accordion-toggle {
+  position: relative;
+  padding-right: 1.6em;             /* room for the arrow */
 }
 
-/* second‐level submenu arrows */
+/* 2) Insert the arrow at the right edge, centered vertically */
+.nav-bar .dropdown > a::after,
 .nav-bar .dropdown-submenu > a::after,
-.nav-bar .dropdown-submenu > .accordion-toggle::after {
-  content: '›';
+.nav-bar .accordion-toggle::after {
+  content: '›';                     /* Single-angle arrow glyph */
+  position: absolute;
+  top: 50%;
+  right: 0.6em;                     /* adjust distance from edge */
+  transform: translateY(-50%) rotate(0deg);
   color: var(--zenith-orange);
-  margin-left: 0.3em;
-  font-size: 0.75em;
-  transition: transform 0.2s ease;
+  font-size: 0.85em;
+  transition: transform 0.3s ease;
 }
+
+/* 3) Rotate the arrow when its parent <li> has the .open class */
+.nav-bar .dropdown.open > a::after,
 .nav-bar .dropdown-submenu.open > a::after,
-.nav-bar .dropdown-submenu.open > .accordion-toggle::after {
-  transform: rotate(90deg);
+.nav-bar .accordion-toggle.open::after {
+  transform: translateY(-50%) rotate(90deg);
 }
 
 /* -------------------------------------------------------------------
