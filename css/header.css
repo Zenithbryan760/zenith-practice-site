@@ -149,33 +149,34 @@ nav ul ul {
 }
 /* -------------------------------------------------------------------
    [6.1] SIDE-ALIGNED TRIANGLE INDICATORS (dropdown only)
+   Use ::before instead of ::after so your underline (::after) stays pure.
    ------------------------------------------------------------------- */
 
-/* 1) Reserve space on the right for only the dropdown triggers */
+/* 1) Make room for the arrow on the right */
 .nav-bar .dropdown > a,
 .nav-bar .dropdown-submenu > a {
   position: relative;
   padding-right: 1.8em;            /* room for our triangle */
 }
 
-/* 2) Create a CSS triangle via borders */
-.nav-bar .dropdown > a::after,
-.nav-bar .dropdown-submenu > a::after {
+/* 2) Draw the triangle with ::before */
+.nav-bar .dropdown > a::before,
+.nav-bar .dropdown-submenu > a::before {
   content: "";
   position: absolute;
   top: 50%;
-  right: 0.6em;                    /* shift it in from the edge */
-  transform: translateY(-50%);
+  right: 0.6em;                    /* arrow’s distance from the text edge */
+  transform: translateY(-50%) rotate(0deg);
   border-top: 0.25em solid transparent;
   border-bottom: 0.25em solid transparent;
   border-left: 0.4em solid var(--zenith-orange);
   transition: transform 0.25s ease;
-  pointer-events: none;            /* let clicks through to the link */
+  pointer-events: none;
 }
 
-/* 3) Rotate the triangle when its section is open */
-.nav-bar .dropdown.open > a::after,
-.nav-bar .dropdown-submenu.open > a::after {
+/* 3) Rotate the arrow on open/hover (depending on your toggle logic) */
+.nav-bar .dropdown.open > a::before,
+.nav-bar .dropdown-submenu.open > a::before {
   transform: translateY(-50%) rotate(90deg);
 }
 /* -------------------------------------------------------------------
