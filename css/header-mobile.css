@@ -213,7 +213,26 @@ li.open > .accordion-toggle .chevron {
   li.open > .accordion-toggle .chevron {
     transform: rotate(90deg);
   }
+  /*–– 6.1) MOBILE ACCORDION COLOR OVERRIDES ––*/
+  /* Powder-blue backdrop for the Services toggle itself */
+  .mobile-nav .mobile-links > li > .accordion-toggle {
+    background: #e0f0ff;
+    color: var(--white);
+  }
 
+  /* Slightly deeper powder-blue for the Services submenu panel */
+  .mobile-nav .mobile-links > li > .submenu {
+    background: #d0e8ff;
+  }
+
+  /* Powder-blue backdrops for every nested toggle */
+  .mobile-nav .submenu .accordion-toggle {
+    background: #e0f0ff;
+  }
+  /* And the panels inside those nested toggles */
+  .mobile-nav .submenu .submenu {
+    background: #d0e8ff;
+  }
   /*–– 7) Submenu expand/collapse ––*/
   .submenu {
     overflow: hidden;
