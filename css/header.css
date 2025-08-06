@@ -148,36 +148,34 @@ nav ul ul {
   transform: translateY(0);
 }
 /* -------------------------------------------------------------------
-   [6.1] SIDE-ALIGNED TRIANGLE INDICATORS
+   [6.1] SIDE-ALIGNED TRIANGLE INDICATORS (dropdown only)
    ------------------------------------------------------------------- */
 
-/* 1) Ensure all toggles reserve space on the right */
+/* 1) Reserve space on the right for only the dropdown triggers */
 .nav-bar .dropdown > a,
-.nav-bar .dropdown-submenu > a,
-.nav-bar .accordion-toggle {
+.nav-bar .dropdown-submenu > a {
   position: relative;
-  padding-right: 1.6em;             /* room for triangle */
+  padding-right: 1.8em;            /* room for our triangle */
 }
 
-/* 2) Draw a right‐pointing triangle via borders */
+/* 2) Create a CSS triangle via borders */
 .nav-bar .dropdown > a::after,
-.nav-bar .dropdown-submenu > a::after,
-.nav-bar .accordion-toggle::after {
+.nav-bar .dropdown-submenu > a::after {
   content: "";
   position: absolute;
   top: 50%;
-  right: 0.6em;                     /* distance from link edge */
+  right: 0.6em;                    /* shift it in from the edge */
   transform: translateY(-50%);
-  border-top: 0.3em solid transparent;
-  border-bottom: 0.3em solid transparent;
+  border-top: 0.25em solid transparent;
+  border-bottom: 0.25em solid transparent;
   border-left: 0.4em solid var(--zenith-orange);
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease;
+  pointer-events: none;            /* let clicks through to the link */
 }
 
-/* 3) Rotate it downward when open */
+/* 3) Rotate the triangle when its section is open */
 .nav-bar .dropdown.open > a::after,
-.nav-bar .dropdown-submenu.open > a::after,
-.nav-bar .accordion-toggle.open::after {
+.nav-bar .dropdown-submenu.open > a::after {
   transform: translateY(-50%) rotate(90deg);
 }
 /* -------------------------------------------------------------------
