@@ -355,83 +355,99 @@
     <!-- … your existing header/nav code unchanged … -->
   </header>
 
-  <!-- ===== HERO SECTION (VIDEO + FREE ESTIMATE FORM) ===== -->
-  <section class="hero">
-    <!-- 1) Video background container -->
-    <div class="video-container">
-      <video
-        class="background-video"
-        autoplay
-        muted
-        loop
-        playsinline
-      >
-        <source src="roofing-bg.mp4" type="video/mp4" />
-        <!-- Fallback text if video not supported -->
-        Your browser doesn’t support video.
-      </video>
-      <!-- Overlay to darken/lighten the video for text readability -->
-      <div class="video-overlay"></div>
-    </div>
+<!-- ===== HERO SECTION (VIDEO + FREE ESTIMATE FORM) ===== -->
+<section class="hero" id="top">
+  <div class="container hero__inner">
+    <h1 class="hero__title">
+      Dependable Roofing for Southern California Homes & Businesses
+    </h1>
+    <p class="hero__subtitle">
+      Shingle • Tile • Flat Roofs • Repairs • Gutters
+    </p>
 
-    <!-- 2) Hero content wrapper -->
-    <div class="hero__content container">
-      <!-- 2a) Main headline -->
-      <h1 class="hero__title">
-        Ready for a New Roof?
-      </h1>
-      <!-- 2b) Sub-headline -->
-      <p class="hero__subtitle">
-        Get your free estimate in 30 seconds.
+    <form
+      name="estimate"
+      method="POST"
+      data-netlify="true"
+      class="hero-form"
+    >
+      <input type="hidden" name="form-name" value="estimate" />
+
+      <div class="hero-form__row">
+        <input
+          type="text"
+          name="name"
+          placeholder="Full Name"
+          required
+        />
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Phone Number"
+          required
+        />
+      </div>
+
+      <div class="hero-form__row">
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+        <input
+          type="text"
+          name="address"
+          placeholder="Street Address"
+          required
+        />
+      </div>
+
+      <div class="hero-form__row">
+        <input
+          type="text"
+          name="city"
+          placeholder="City"
+          required
+        />
+        <input
+          type="text"
+          name="state"
+          value="CA"
+          readonly
+        />
+        <input
+          type="text"
+          name="zip"
+          placeholder="ZIP Code"
+          required
+        />
+      </div>
+
+      <textarea
+        name="message"
+        placeholder="Tell us about your project…"
+        rows="4"
+        required
+      ></textarea>
+
+      <button type="submit" class="hero-form__button">
+        Request Free Estimate
+      </button>
+
+      <p class="hero-form__disclaimer">
+        <em>
+          *Free estimates are not available for real estate transactions.
+          If you're a real estate professional, buyer, or seller seeking a
+          roof report, visual inspection, or verbal estimate for a
+          transaction, please see our
+          <a href="#">Real Estate Services</a>.
+        </em>
       </p>
+    </form>
+  </div>
+</section>
 
-      <!-- 3) Free Estimate Form -->
-      <form id="free-estimate" class="estimate-form" novalidate>
-        <!-- Name field -->
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            placeholder="e.g. John Doe"
-          />
-        </div>
-
-        <!-- Email field -->
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            placeholder="e.g. john@domain.com"
-          />
-        </div>
-
-        <!-- Address field -->
-        <div class="form-group">
-          <label for="address">Property Address</label>
-          <input
-            type="text"
-            id="address"
-            name="address"
-            placeholder="e.g. 123 Main St, City"
-          />
-        </div>
-
-        <!-- Submit button -->
-        <button type="submit" class="btn btn--primary">
-          Get My Free Estimate
-        </button>
-
-        <!-- Inline status message (success/error) -->
-        <p class="form-status" aria-live="polite"></p>
-      </form>
-    </div>
-  </section>
 
   <!-- ===== MAIN CONTENT ===== -->
   <main>
