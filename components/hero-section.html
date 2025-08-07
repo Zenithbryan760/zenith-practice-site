@@ -211,28 +211,33 @@
         </div>
       </div>
 
-      <!-- 3i) REMINDER CHECKBOX -->
-      <!-- Full-width checkbox to schedule reminder -->
-      <div class="input-group full-width reminder-group">
-        <label>
-          <input
-            type="checkbox"
-            id="reminder"
-            name="reminder"
-          />
-          Schedule free inspection reminder?
-        </label>
+      <!-- ==== NEW: REMINDER + SUBMIT ROW ==== -->
+      <!-- Group the checkbox + button in one row to avoid overlap -->
+      <div class="hero-form__row hero-form__actions">
+        <!-- 1) Reminder checkbox -->
+        <div class="input-group reminder-group">
+          <label>
+            <input
+              type="checkbox"
+              id="reminder"
+              name="reminder"
+            />
+            Schedule free inspection reminder?
+          </label>
+        </div>
+
+        <!-- 2) Submit button -->
+        <button type="submit" class="hero-form__button">
+          Request Free Estimate
+        </button>
       </div>
 
-      <!-- 3j) SUBMIT BUTTON + DISCLAIMER -->
-      <!-- Button and small-print note -->
-      <button type="submit" class="hero-form__button">
-        Request Free Estimate
-      </button>
+      <!-- ==== NEW: DISCLAIMER (moves below actions) ==== -->
       <p class="hero-form__disclaimer">
         *Free estimates are not available for real estate transactions. If you’re a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our
         <a href="/real-estate">Real Estate Services</a>.
       </p>
+
     </form>
     <!-- === 3) ESTIMATE FORM END === -->
 
