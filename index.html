@@ -7,6 +7,12 @@
   <title>Zenith Roofing Services – San Diego & Temecula Roof Experts</title>
   <meta name="description" content="Expert residential & commercial roofing in North County San Diego & Temecula." />
 
+    <!-- ===== GOOGLE FONT ===== -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  
   <!-- ===== GLOBAL CSS ===== -->
   <link rel="stylesheet" href="css/base.css" />
 
@@ -326,78 +332,33 @@
   </ul>
 </nav>
 
-<!-- ===== HERO SECTION (VIDEO + FREE ESTIMATE FORM) ===== -->
-<section class="hero" id="top">
+  <!-- ===== 1) HERO PLACEHOLDER ===== -->
+  <!-- This empty <div> is where your Hero section (video + form) will appear. -->
+  <div id="hero-placeholder"></div>
 
-  <!-- 1) Video background container (this is the video you’re missing!) -->
-  <div class="video-container">
-    <video
-      class="background-video"
-      autoplay
-      muted
-      loop
-      playsinline
-    >
-      <source src="roofing-bg.mp4" type="video/mp4" />
-      Your browser doesn’t support video.
-    </video>
-    <!-- Optional overlay for better text contrast -->
-    <div class="video-overlay"></div>
-  </div>
 
-  <!-- 2) Hero content & form (as you already have it) -->
-  <div class="container hero__inner">
-    <h1 class="hero__title">
-      Dependable Roofing for Southern California Homes & Businesses
-    </h1>
-    <p class="hero__subtitle">
-      Shingle • Tile • Flat Roofs • Repairs • Gutters
-    </p>
 
-    <form
-      name="estimate"
-      method="POST"
-      data-netlify="true"
-      class="hero-form"
-    >
-      <input type="hidden" name="form-name" value="estimate" />
-
-      <div class="hero-form__row">
-        <input type="text" name="name" placeholder="Full Name" required />
-        <input type="tel" name="phone" placeholder="Phone Number" required />
-      </div>
-
-      <div class="hero-form__row">
-        <input type="email" name="email" placeholder="Email" required />
-        <input type="text" name="address" placeholder="Street Address" required />
-      </div>
-
-      <div class="hero-form__row">
-        <input type="text" name="city" placeholder="City" required />
-        <input type="text" name="state" value="CA" readonly />
-        <input type="text" name="zip" placeholder="ZIP Code" required />
-      </div>
-
-      <textarea
-        name="message"
-        placeholder="Tell us about your project…"
-        rows="4"
-        required
-      ></textarea>
-
-      <button type="submit" class="hero-form__button">
-        Request Free Estimate
-      </button>
-
-      <p class="hero-form__disclaimer">
-        <em>
-          *Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="#">Real Estate Services</a>.
-        </em>
-      </p>
-    </form>
-  </div>
-
-</section>
+  <!-- ===== 2) LOAD HERO COMPONENT ===== -->
+  <!-- This script fetches the separate file “components/hero-section.html” and -->
+  <!-- injects its contents into the #hero-placeholder above. -->
+  <script>
+    // 2a) Fetch the Hero component file
+    fetch('components/hero-section.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not OK');
+        return response.text();      // 2b) Convert response to text (HTML)
+      })
+      .then(html => {
+        // 2c) Insert the HTML into the placeholder DIV
+        document
+          .getElementById('hero-placeholder')
+          .innerHTML = html;
+      })
+      .catch(error => {
+        // 2d) Log any errors (e.g., file not found) to the console
+        console.error('❌ Failed to load Hero component:', error);
+      });
+  </script>
 
 
 
