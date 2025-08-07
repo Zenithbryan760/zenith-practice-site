@@ -78,6 +78,7 @@ li.open > .accordion-toggle .chevron {
 
   /*–– 1) Off-canvas drawer ––*/
   .mobile-nav {
+    display: block;             /* show on mobile */
     position: fixed;
     top: 0; right: -100%;
     width: 80%; max-width: 320px;
@@ -91,9 +92,10 @@ li.open > .accordion-toggle .chevron {
     box-shadow: -4px 0 12px rgba(0,0,0,0.3);
   }
   .mobile-nav.open {
+    display: block;             /* stay visible once opened */
     right: 0;
   }
-
+  
 /*–– 2) Mobile header bar (hamburger, logo, call) ––*/
 .mobile-header {
   position: fixed;
