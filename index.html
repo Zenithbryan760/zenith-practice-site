@@ -335,35 +335,27 @@
   </ul>
 </nav>
 
-  <!-- ===== 1) HERO PLACEHOLDER ===== -->
+   <!-- ===== 1) HERO PLACEHOLDER ===== -->
   <!-- This empty <div> is where your Hero section (video + form) will appear. -->
   <div id="hero-placeholder"></div>
 
-
-
   <!-- ===== 2) LOAD HERO COMPONENT ===== -->
-  <!-- This script fetches the separate file “components/hero-section.html” and -->
-  <!-- injects its contents into the #hero-placeholder above. -->
   <script>
-    // 2a) Fetch the Hero component file
+    // Fetch the Hero component and inject it into #hero-placeholder
     fetch('components/hero-section.html')
       .then(response => {
-        if (!response.ok) throw new Error('Network response was not OK');
-        return response.text();      // 2b) Convert response to text (HTML)
+        if (!response.ok) {
+          throw new Error('Failed to fetch hero component');
+        }
+        return response.text();
       })
       .then(html => {
-        // 2c) Insert the HTML into the placeholder DIV
-        document
-          .getElementById('hero-placeholder')
-          .innerHTML = html;
+        document.getElementById('hero-placeholder').innerHTML = html;
       })
       .catch(error => {
-        // 2d) Log any errors (e.g., file not found) to the console
-        console.error('❌ Failed to load Hero component:', error);
+        console.error('❌ Hero component load error:', error);
       });
   </script>
-
-
 
   <!-- ===== MAIN CONTENT ===== -->
   <main>
@@ -373,7 +365,5 @@
   <!-- ===== SCRIPTS ===== -->
   <script src="js/header-mobile.js"></script>
   <script src="js/header.js"></script>
-    <script src="js/lead-form.js" defer></script>
-  
 </body>
 </html>
