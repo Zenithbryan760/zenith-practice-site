@@ -67,7 +67,7 @@ li.open > .accordion-toggle .chevron {
 /* =========================================================
    css/header-mobile.css — Off-canvas & Accordion (mobile only)
    ========================================================= */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   /*–– Brand color variables ––*/
   :root {
     --nav-bg: var(--zenith-blue);
