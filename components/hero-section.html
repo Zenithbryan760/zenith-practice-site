@@ -1,45 +1,82 @@
+<!-- ====================================================
+     components/hero-section.html
+     Hero Video + Lead Capture Form
+     Beginner-friendly labels throughout
+     ==================================================== -->
 <section class="hero" id="top">
 
-  <!-- video + tint -->
+  <!-- === 1) VIDEO BACKGROUND + TINT === -->
+  <!-- Purpose: Shows looping video behind the white card -->
   <div class="video-container">
     <video
       class="background-video"
-      autoplay muted loop playsinline
+      autoplay
+      muted
+      loop
+      playsinline
       src="roofing-bg.mp4"
-      type="video/mp4">
+      type="video/mp4"
+    >
       Your browser doesn’t support video.
     </video>
   </div>
+  <!-- Semi-transparent navy overlay to darken the video for contrast -->
   <div class="video-overlay"></div>
 
-  <!-- card -->
+  <!-- === 2) HERO CONTENT CARD === -->
+  <!-- Purpose: White “card” over video that holds heading + form -->
   <div class="hero__card container">
 
-    <!-- SEO-optimized headline -->
+    <!-- 2a) MAIN HEADING (SEO-FRIENDLY) -->
+    <!-- Updated order: Escondido, San Diego County & Temecula -->
     <h1 class="hero__title">
-      Dependable Roofing in Temecula, Escondido &amp; San Diego County
+      Dependable Roofing in Escondido, San Diego County &amp; Temecula
     </h1>
+
+    <!-- 2b) SUBTITLE -->
     <p class="hero__subtitle">
-      Shingle • Tile • Flat Roofs • Repairs • Gutters
+      Shingle • Tile • Flat Roofing • Repairs • Gutters
     </p>
 
-    <!-- form -->
-    <form name="estimate" method="POST" data-netlify="true" class="hero-form" novalidate>
+    <!-- === 3) ESTIMATE FORM START === -->
+    <!-- Purpose: Collect visitor info and send to Netlify -->
+    <form
+      name="estimate"
+      method="POST"
+      data-netlify="true"
+      class="hero-form"
+      novalidate
+    >
+      <!-- Hidden field Netlify needs -->
       <input type="hidden" name="form-name" value="estimate" />
 
-      <!-- 1) First + Last Name -->
+      <!-- 3a) FIRST + LAST NAME ROW -->
+      <!-- Two inputs side-by-side: First Name & Last Name -->
       <div class="hero-form__row">
         <div class="input-group">
-          <input type="text" id="first-name" name="first-name" required placeholder=" " />
+          <input
+            type="text"
+            id="first-name"
+            name="first-name"
+            required
+            placeholder=" "
+          />
           <label for="first-name">First Name</label>
         </div>
         <div class="input-group">
-          <input type="text" id="last-name" name="last-name" required placeholder=" " />
+          <input
+            type="text"
+            id="last-name"
+            name="last-name"
+            required
+            placeholder=" "
+          />
           <label for="last-name">Last Name</label>
         </div>
       </div>
 
-      <!-- 2) Phone -->
+      <!-- 3b) PHONE ROW -->
+      <!-- Single input row for phone number -->
       <div class="hero-form__row">
         <div class="input-group phone-group">
           <input
@@ -47,17 +84,25 @@
             id="phone"
             name="phone"
             maxlength="14"
-            pattern="\\(\\d{3}\\) \\d{3}-\\d{4}"
+            pattern="\(\d{3}\) \d{3}-\d{4}"
             required
-            placeholder=" (123) 456-7890 " />
+            placeholder=" "
+          />
           <label for="phone">Phone Number</label>
         </div>
       </div>
 
-      <!-- 3) Email + Service -->
+      <!-- 3c) EMAIL + SERVICE ROW -->
+      <!-- Side-by-side: Email address and service dropdown -->
       <div class="hero-form__row">
         <div class="input-group">
-          <input type="email" id="email" name="email" required placeholder=" " />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder=" "
+          />
           <label for="email">Email Address</label>
         </div>
         <div class="input-group">
@@ -74,45 +119,85 @@
         </div>
       </div>
 
-      <!-- 4) Street Address -->
+      <!-- 3d) STREET ADDRESS ROW -->
+      <!-- Full-width street address -->
       <div class="hero-form__row">
         <div class="input-group full-width">
-          <input type="text" id="street" name="street" required placeholder=" " />
+          <input
+            type="text"
+            id="street"
+            name="street"
+            required
+            placeholder=" "
+          />
           <label for="street">Street Address</label>
         </div>
       </div>
 
-      <!-- 5) City + ZIP -->
+      <!-- 3e) CITY + ZIP ROW -->
+      <!-- Side-by-side: City and ZIP code -->
       <div class="hero-form__row">
         <div class="input-group">
-          <input type="text" id="city" name="city" required placeholder=" " />
+          <input
+            type="text"
+            id="city"
+            name="city"
+            required
+            placeholder=" "
+          />
           <label for="city">City</label>
         </div>
         <div class="input-group">
-          <input type="text" id="zip" name="zip" required placeholder=" " />
+          <input
+            type="text"
+            id="zip"
+            name="zip"
+            required
+            placeholder=" "
+          />
           <label for="zip">ZIP Code</label>
         </div>
       </div>
 
-      <!-- 6) Preferred Date -->
+      <!-- 3f) PREFERRED DATE ROW -->
+      <!-- Full-width date picker -->
       <div class="hero-form__row">
         <div class="input-group date-group">
-          <input type="date" id="date" name="date" placeholder=" " />
+          <input
+            type="date"
+            id="date"
+            name="date"
+            placeholder=" "
+          />
           <label for="date">Preferred Date</label>
         </div>
       </div>
 
-      <!-- 7) Details -->
+      <!-- 3g) PROJECT DETAILS -->
+      <!-- Full-width textarea for project description -->
       <div class="input-group full-width">
-        <textarea id="details" name="details" rows="3" placeholder=" "></textarea>
+        <textarea
+          id="details"
+          name="details"
+          rows="3"
+          placeholder=" "
+        ></textarea>
         <label for="details">Brief Project Details</label>
       </div>
 
-      <!-- 8) Photos + Referral -->
+      <!-- 3h) PHOTOS + REFERRAL ROW -->
+      <!-- Side-by-side: file upload and “How did you hear” -->
       <div class="hero-form__row">
         <div class="input-group">
-          <input type="file" id="photos" name="photos" multiple />
-          <label for="photos">Upload Photos <span class="optional">(optional)</span></label>
+          <input
+            type="file"
+            id="photos"
+            name="photos"
+            multiple
+          />
+          <label for="photos">
+            Upload Photos <span class="optional">(optional)</span>
+          </label>
         </div>
         <div class="input-group">
           <select id="referral" name="referral">
@@ -126,21 +211,33 @@
         </div>
       </div>
 
-      <!-- 9) Reminder -->
+      <!-- 3i) REMINDER CHECKBOX -->
+      <!-- Full-width checkbox to schedule reminder -->
       <div class="input-group full-width reminder-group">
         <label>
-          <input type="checkbox" id="reminder" name="reminder" />
+          <input
+            type="checkbox"
+            id="reminder"
+            name="reminder"
+          />
           Schedule free inspection reminder?
         </label>
       </div>
 
-      <!-- 10) Submit + Disclaimer -->
-      <button type="submit" class="hero-form__button">Request Free Estimate</button>
+      <!-- 3j) SUBMIT BUTTON + DISCLAIMER -->
+      <!-- Button and small-print note -->
+      <button type="submit" class="hero-form__button">
+        Request Free Estimate
+      </button>
       <p class="hero-form__disclaimer">
         *Free estimates are not available for real estate transactions. If you’re a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our
         <a href="/real-estate">Real Estate Services</a>.
       </p>
     </form>
+    <!-- === 3) ESTIMATE FORM END === -->
 
   </div>
+  <!-- === 2) HERO CONTENT CARD END === -->
+
 </section>
+<!-- === HERO SECTION END === -->
