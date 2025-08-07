@@ -78,6 +78,8 @@
   margin-bottom: 2rem;
 }
 
+/* ==== PASTE FORM STYLES START HERE ==== */
+
 /* 7) FORM GRID */
 .hero-form {
   display: grid;
@@ -92,7 +94,8 @@
   margin-top: 0.5rem;
 }
 .input-group input,
-.input-group textarea {
+.input-group textarea,
+.input-group select {
   width: 100%;
   padding: 1rem 0.75rem 0.25rem;
   border: 1px solid var(--input-border);
@@ -111,11 +114,14 @@
 .input-group input:focus + label,
 .input-group input:not(:placeholder-shown) + label,
 .input-group textarea:focus + label,
-.input-group textarea:not(:placeholder-shown) + label {
+.input-group textarea:not(:placeholder-shown) + label,
+.input-group select:focus + label,
+.input-group select:not(:placeholder-shown) + label {
   top: 0.2rem; font-size: 0.75rem; color: var(--input-focus);
 }
 .input-group input:focus,
-.input-group textarea:focus {
+.input-group textarea:focus,
+.input-group select:focus {
   outline: none;
   border-color: var(--input-focus);
   box-shadow: 0 0 0 3px rgba(247,148,29,0.25);
@@ -157,10 +163,12 @@
   color: var(--btn-hover);
 }
 
+/* ==== PASTE FORM STYLES END HERE ==== */
+
 /* 11) MOBILE */
 @media (max-width: 768px) {
-  .hero__card { padding: 2rem 1rem; transform: none; top: 0; }
+  .hero__card { /* … */ }
   .hero-form { grid-template-columns: 1fr; }
-  .hero__title { font-size: 2rem; }
-  .hero__subtitle { font-size: 1rem; }
+  .hero__title { /* … */ }
+  .hero__subtitle { /* … */ }
 }
