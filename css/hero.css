@@ -202,3 +202,90 @@
     font-size: 1rem;
   }
 }
+/* ===================================================================
+   [12] VIEWPORT-AWARE CARD & FORM ADJUSTMENTS
+   =================================================================== */
+
+/* 12.1) Prevent inner scrolling, cap height to viewport */
+.hero__card {
+  max-height: 100vh;            /* never taller than the screen */
+  overflow: hidden;             /* no inner scrollbars */
+}
+
+/* 12.2) Desktop (1200px+) — keep current spacing, but ensure it all fits */
+@media (min-width: 1200px) {
+  .hero__card {
+    padding: 3rem 2.5rem;
+  }
+  .hero-form {
+    gap: 1.5rem 2rem;
+  }
+  .hero-form__button {
+    padding: 1.25rem 0;
+  }
+}
+
+/* 12.3) Tablet (768px–1199px) — slightly tighten gutters & font-sizes */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .hero__card {
+    padding: 2rem 1.5rem;
+  }
+  .hero__title {
+    font-size: 2.25rem;
+  }
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+  .hero-form {
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 1rem 1.5rem;
+  }
+  .hero-form input,
+  .hero-form select,
+  .hero-form textarea {
+    font-size: 0.95rem;
+    padding: 0.85rem 0.5rem;
+    min-height: 44px;
+  }
+  .hero-form__button {
+    font-size: 1rem;
+    padding: 1rem 0;
+  }
+  .hero-form__disclaimer {
+    font-size: 0.9rem;
+  }
+}
+
+/* 12.4) Mobile (<768px) — single column, minimal gutters, full-width tap targets */
+@media (max-width: 767px) {
+  .hero__card {
+    padding: 1.5rem 1rem;
+    top: 0;
+    transform: none;
+  }
+  .hero__title {
+    font-size: 1.5rem;
+  }
+  .hero__subtitle {
+    font-size: 0.9rem;
+  }
+  .hero-form {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .hero-form input,
+  .hero-form select,
+  .hero-form textarea {
+    font-size: 1rem;
+    padding: 0.75rem 0.5rem;
+    min-height: 44px;           /* ensures tappable */
+  }
+  .hero-form__button {
+    font-size: 1rem;
+    padding: 0.75rem 0;
+  }
+  .hero-form__disclaimer {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+}
