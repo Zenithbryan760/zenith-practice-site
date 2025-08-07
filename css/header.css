@@ -299,18 +299,9 @@ nav ul ul {
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
 
-/* -------------------------------------------------------------------
-   [11] TABLET TWEAKS (769px–1024px)
-   ------------------------------------------------------------------- */
-@media (max-width: 1024px) and (min-width: 769px) {
-  .header-inner {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .nav-links { gap: 8px; font-size: 0.95rem; }
-}
+
 /* ===================================================================
-   [12] MOBILE (≤768px) — collapse into hamburger menu
+   [12] MOBILE (≤1024px) — collapse into hamburger menu
    =================================================================== */
 @media (max-width: 1024px) {
   .mobile-header       { display: flex; }
