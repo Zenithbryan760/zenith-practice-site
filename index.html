@@ -335,27 +335,20 @@
   </ul>
 </nav>
 
-   <!-- ===== 1) HERO PLACEHOLDER ===== -->
-  <!-- This empty <div> is where your Hero section (video + form) will appear. -->
-  <div id="hero-placeholder"></div>
+<!-- 1) HERO PLACEHOLDER -->
+<div id="hero-placeholder"></div>
 
-  <!-- ===== 2) LOAD HERO COMPONENT ===== -->
-  <script>
-    // Fetch the Hero component and inject it into #hero-placeholder
-    fetch('components/hero-section.html')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch hero component');
-        }
-        return response.text();
-      })
-      .then(html => {
-        document.getElementById('hero-placeholder').innerHTML = html;
-      })
-      .catch(error => {
-        console.error('❌ Hero component load error:', error);
-      });
-  </script>
+<!-- 2) LOAD HERO COMPONENT -->
+<script>
+  fetch('components/hero-section.html')
+    .then(r => {
+      if (!r.ok) throw new Error('Failed to load hero');
+      return r.text();
+    })
+    .then(html => document.getElementById('hero-placeholder').innerHTML = html)
+    .catch(console.error);
+</script>
+
 
   <!-- ===== MAIN CONTENT ===== -->
   <main>
