@@ -1,38 +1,32 @@
 <!-- components/hero-section.html -->
 <section class="hero" id="top">
 
-  <!-- 1) VIDEO BACKGROUND + TINT -->
+  <!-- VIDEO + TINT -->
   <div class="video-container">
     <video class="background-video" autoplay muted loop playsinline>
-      <!-- adjust path if you later move the MP4 -->
-      <source src="/roofing-bg.mp4" type="video/mp4" />
+      <source src="roofing-bg.mp4" type="video/mp4" />
       Your browser doesn’t support video.
     </video>
   </div>
   <div class="video-overlay"></div>
 
-  <!-- 2) HERO CONTENT CARD (white box over video) -->
+  <!-- HERO CARD + FORM -->
   <div class="hero__card container">
-
-    <!-- Main heading -->
     <h1 class="hero__title">
       Dependable Roofing for Southern California Homes & Businesses
     </h1>
-
-    <!-- Subtitle -->
     <p class="hero__subtitle">
       Shingle • Tile • Flat Roofs • Repairs • Gutters
     </p>
 
-    <!-- 3) ESTIMATE FORM -->
-    <form name="estimate" method="POST" data-netlify="true" class="hero-form" novalidate>
+    <form id="lead-form" name="estimate" method="POST" data-netlify="true" novalidate>
       <input type="hidden" name="form-name" value="estimate" />
 
-      <!-- Row 1: Name + Phone -->
+      <!-- Row 1: Full Name & Phone -->
       <div class="hero-form__row">
         <div class="input-group">
-          <input type="text" id="name" name="name" required placeholder=" " />
-          <label for="name">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required placeholder=" " />
+          <label for="fullName">Full Name</label>
         </div>
         <div class="input-group">
           <input type="tel" id="phone" name="phone" required placeholder=" " />
@@ -40,52 +34,77 @@
         </div>
       </div>
 
-      <!-- Row 2: Email + Address -->
+      <!-- Row 2: Email & Service Type -->
       <div class="hero-form__row">
         <div class="input-group">
           <input type="email" id="email" name="email" required placeholder=" " />
           <label for="email">Email Address</label>
         </div>
         <div class="input-group">
-          <input type="text" id="address" name="address" required placeholder=" " />
-          <label for="address">Street Address</label>
+          <select id="serviceType" name="serviceType" required>
+            <option value="" disabled selected hidden></option>
+            <option>Shingles</option>
+            <option>Tile</option>
+            <option>Flat Roofing</option>
+            <option>Gutters</option>
+            <option>Repairs</option>
+            <option>Other</option>
+          </select>
+          <label for="serviceType">Service Type</label>
         </div>
       </div>
 
-      <!-- Row 3: City + State + ZIP -->
+      <!-- Row 3: Project Address & Date -->
       <div class="hero-form__row">
         <div class="input-group">
-          <input type="text" id="city" name="city" required placeholder=" " />
-          <label for="city">City</label>
+          <input type="text" id="projectAddress" name="projectAddress" required placeholder=" " />
+          <label for="projectAddress">Project Address</label>
         </div>
         <div class="input-group">
-          <input type="text" id="state" name="state" value="CA" readonly placeholder=" " />
-          <label for="state">State</label>
-        </div>
-        <div class="input-group">
-          <input type="text" id="zip" name="zip" required placeholder=" " />
-          <label for="zip">ZIP Code</label>
+          <input type="date" id="preferredDate" name="preferredDate" placeholder=" " />
+          <label for="preferredDate">Preferred Date</label>
         </div>
       </div>
 
-      <!-- Full-width message -->
+      <!-- Row 4: Details -->
       <div class="input-group full-width">
-        <textarea id="message" name="message" rows="4" required placeholder=" "></textarea>
-        <label for="message">Tell us about your project…</label>
+        <textarea id="details" name="details" rows="4" placeholder=" "></textarea>
+        <label for="details">Brief Project Details</label>
       </div>
 
-      <!-- Submit button + disclaimer -->
+      <!-- Row 5: File Upload & Referral -->
+      <div class="hero-form__row">
+        <div class="input-group">
+          <input type="file" id="photos" name="photos" multiple />
+          <label for="photos">Upload Photos (optional)</label>
+        </div>
+        <div class="input-group">
+          <select id="referral" name="referral">
+            <option value="" disabled selected hidden></option>
+            <option>Google</option>
+            <option>Referral</option>
+            <option>Social Media</option>
+            <option>Other</option>
+          </select>
+          <label for="referral">How did you hear about us?</label>
+        </div>
+      </div>
+
+      <!-- Row 6: Honeypot & Checkbox -->
+      <input type="text" name="faxNumber" style="display:none" tabindex="-1" autocomplete="off" />
+      <div class="input-group full-width">
+        <label>
+          <input type="checkbox" id="reminder" name="reminder" />
+          Schedule free inspection reminder?
+        </label>
+      </div>
+
+      <!-- Submit + Thank You placeholder -->
       <button type="submit" class="hero-form__button">Request Free Estimate</button>
       <p class="hero-form__disclaimer">
-        <em>
-          *Free estimates are not available for real estate transactions.
-          If you’re a real estate professional, buyer, or seller seeking a
-          roof report, visual inspection, or verbal estimate for a
-          transaction, please see our
-          <a href="/real-estate">Real Estate Services</a>.
-        </em>
+        <em>*Free estimates are not available for real estate transactions. If you’re a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="/real-estate">Real Estate Services</a>.</em>
       </p>
+      <p id="form-status" aria-live="polite" class="form-status"></p>
     </form>
-
   </div>
 </section>
