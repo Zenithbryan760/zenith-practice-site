@@ -1,49 +1,50 @@
 /* ===================================================================
-   css/hero.css — Hero Section & Video Tint + Form Styles
+   css/hero.css — Hero Section & Estimate Form Styles
    =================================================================== */
 
 /* -------------------------------------------------------------------
-   1) Theme Variables
+   1) THEME VARIABLES
    ------------------------------------------------------------------- */
 :root {
-  --hero-bg-color: #072e59;         /* your brand navy */
-  --hero-text-color: #ffffff;
-  --form-bg: rgba(255,255,255,0.95);
-  --input-border: #ccc;
-  --input-focus: #f7941d;           /* your orange accent */
-  --btn-bg: #f7941d;
-  --btn-hover: #d77a18;
-  --font-family: 'Poppins', sans-serif;
+  /* Brand colors & fonts */
+  --hero-bg-color:       #072e59;            /* Navy */
+  --hero-text-color:     #ffffff;            /* White */
+  --form-bg:             rgba(255,255,255,0.95);
+  --input-border:        #ccc;               /* Light gray */
+  --input-focus:         #f7941d;            /* Orange accent */
+  --btn-bg:              #f7941d;            /* Button base */
+  --btn-hover:           #d77a18;            /* Button hover */
+  --font-family:         'Poppins', sans-serif;
 }
 
 /* -------------------------------------------------------------------
-   2) Base Hero (video + tint)
+   2) HERO CONTAINER (VIDEO + TINT + CARD)
    ------------------------------------------------------------------- */
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh;               /* full‐viewport hero */
+  height: 100vh;                              /* Full viewport height */
   overflow: hidden;
   font-family: var(--font-family);
-  color: var(--hero-text-color);
-  text-align: center;
-  padding: 0;                  /* reset any padding */
 }
 
+/* Video background container */
 .video-container {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
   overflow: hidden;
-  z-index: -1;                 /* behind hero content */
+  z-index: -1;                                /* Behind content */
 }
 
+/* Video element fitting */
 .background-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+/* Semi-transparent overlay */
 .video-overlay {
   position: absolute;
   top: 0; left: 0;
@@ -53,110 +54,137 @@
 }
 
 /* -------------------------------------------------------------------
-   3) Hero Inner Content (constrain width & spacing)
+   3) HERO CONTENT CARD (WHITE BOX OVER VIDEO)
    ------------------------------------------------------------------- */
-.hero__inner {
+.hero__card {
   position: relative;
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
   top: 50%;
   transform: translateY(-50%);
-  padding: 0 1rem;
+  background: var(--form-bg);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+  color: var(--hero-bg-color);                /* Text inside card */
+  text-align: center;
 }
 
 /* -------------------------------------------------------------------
-   4) Hero Headings
+   4) HERO HEADINGS
    ------------------------------------------------------------------- */
+/* Main title */
 .hero__title {
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
 }
 
+/* Subtitle */
 .hero__subtitle {
-  font-size: 1.25rem;
-  font-weight: 400;
+  font-size: 1.125rem;
   margin-bottom: 2rem;
 }
 
 /* -------------------------------------------------------------------
-   5) Estimate Form Layout
+   5) FORM GRID LAYOUT
    ------------------------------------------------------------------- */
 .hero-form {
-  background: var(--form-bg);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   display: grid;
-  gap: 1rem 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  margin: 0 auto 1rem;        /* center & space below */
-  max-width: 100%;
-}
-
-.hero-form__row {
-  display: contents;           /* let the form grid handle layout */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 /* -------------------------------------------------------------------
-   6) Inputs & Textarea
+   6) INPUT GROUP (FLOATING LABELS)
    ------------------------------------------------------------------- */
-.hero-form input,
-.hero-form textarea {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 2px solid var(--input-border);
-  border-radius: 8px;
-  font-family: var(--font-family);
-  font-size: 1rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+.input-group {
+  position: relative;
+  margin-top: 0.5rem;
 }
 
-.hero-form input:focus,
-.hero-form textarea:focus {
+/* Shared input & textarea styles */
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 1rem 0.75rem 0.25rem;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Floating labels */
+.input-group label {
+  position: absolute;
+  top: 1rem; left: 0.75rem;
+  font-size: 0.875rem;
+  color: #666;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+/* Move label when input has content or focus */
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group textarea:focus + label,
+.input-group textarea:not(:placeholder-shown) + label {
+  top: 0.2rem;
+  left: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--input-focus);
+}
+
+/* Focus state for inputs */
+.input-group input:focus,
+.input-group textarea:focus {
   outline: none;
   border-color: var(--input-focus);
-  box-shadow: 0 0 0 3px rgba(247,148,29,0.3);
+  box-shadow: 0 0 0 3px rgba(247,148,29,0.25);
 }
 
-.hero-form textarea {
-  resize: none;
-  grid-column: 1 / -1;         /* span full width */
+/* Full-width textarea */
+.input-group.full-width {
+  grid-column: 1 / -1;
 }
 
 /* -------------------------------------------------------------------
-   7) Submit Button
+   7) SUBMIT BUTTON
    ------------------------------------------------------------------- */
 .hero-form__button {
-  grid-column: 1 / -1;         /* full row */
-  padding: 0.875rem 2rem;
-  background: var(--btn-bg);
+  grid-column: 1 / -1;
+  padding: 1rem 0;
+  background: linear-gradient(90deg, var(--btn-bg), var(--btn-hover));
   border: none;
   border-radius: 8px;
   color: #fff;
   font-size: 1.125rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
+  transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
 .hero-form__button:hover {
-  background: var(--btn-hover);
-  transform: translateY(-2px) scale(1.02);
+  transform: translateY(-3px) scale(1.02);
+  opacity: 0.95;
 }
 
 .hero-form__button:active {
   transform: translateY(0) scale(0.98);
+  opacity: 1;
 }
 
 /* -------------------------------------------------------------------
-   8) Disclaimer Text
+   8) REAL ESTATE DISCLAIMER
    ------------------------------------------------------------------- */
 .hero-form__disclaimer {
-  font-size: 0.875rem;
-  color: #eee;
   grid-column: 1 / -1;
-  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #999;
+  margin-top: 0.75rem;
 }
 
 .hero-form__disclaimer a {
@@ -170,26 +198,22 @@
 }
 
 /* -------------------------------------------------------------------
-   9) Mobile Tweaks (if not in responsive.css)
+   9) MOBILE RESPONSIVENESS
    ------------------------------------------------------------------- */
 @media (max-width: 768px) {
-  .hero {
-    height: auto;             /* let content define height */
-    padding: 3rem 1rem;
-  }
-  .hero__inner {
-    top: 0;
+  .hero__card {
+    padding: 2rem 1rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     transform: none;
-    padding: 0;
+    top: 0;
+  }
+  .hero-form {
+    grid-template-columns: 1fr;              /* Stack all fields */
   }
   .hero__title {
     font-size: 2rem;
   }
   .hero__subtitle {
     font-size: 1rem;
-  }
-  .hero-form {
-    grid-template-columns: 1fr; /* stack fields */
-    padding: 1.5rem;
   }
 }
