@@ -4,18 +4,22 @@
   <!-- 1) VIDEO BACKGROUND + TINT -->
   <div class="video-container">
     <video class="background-video" autoplay muted loop playsinline>
-      <!-- adjust path if you move your MP4 -->
+      <!-- adjust path if you later move the MP4 -->
       <source src="/roofing-bg.mp4" type="video/mp4" />
       Your browser doesn’t support video.
     </video>
   </div>
   <div class="video-overlay"></div>
 
-  <!-- 2) HERO CONTENT CARD (with form) -->
+  <!-- 2) HERO CONTENT CARD (white box over video) -->
   <div class="hero__card container">
+
+    <!-- Main heading -->
     <h1 class="hero__title">
       Dependable Roofing for Southern California Homes & Businesses
     </h1>
+
+    <!-- Subtitle -->
     <p class="hero__subtitle">
       Shingle • Tile • Flat Roofs • Repairs • Gutters
     </p>
@@ -48,7 +52,7 @@
         </div>
       </div>
 
-      <!-- Row 3: City, State, ZIP -->
+      <!-- Row 3: City + State + ZIP -->
       <div class="hero-form__row">
         <div class="input-group">
           <input type="text" id="city" name="city" required placeholder=" " />
@@ -70,7 +74,7 @@
         <label for="message">Tell us about your project…</label>
       </div>
 
-      <!-- Submit + disclaimer -->
+      <!-- Submit button + disclaimer -->
       <button type="submit" class="hero-form__button">Request Free Estimate</button>
       <p class="hero-form__disclaimer">
         <em>
@@ -82,5 +86,6 @@
         </em>
       </p>
     </form>
+
   </div>
 </section>
