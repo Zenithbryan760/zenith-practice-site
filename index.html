@@ -7,22 +7,28 @@
   <title>Zenith Roofing Services – San Diego & Temecula Roof Experts</title>
   <meta name="description" content="Expert residential & commercial roofing in North County San Diego & Temecula." />
 
-  <!-- ===== GOOGLE FONT ===== -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-
-  <!-- ===== GLOBAL + HEADER STYLES ===== -->
+    <!-- ===== GOOGLE FONT ===== -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  
+  <!-- ===== GLOBAL CSS ===== -->
   <link rel="stylesheet" href="css/base.css" />
+
+  <!-- ===== HEADER CSS ===== -->
   <link rel="stylesheet" href="css/header.css" />
   <link rel="stylesheet" href="css/header-mobile.css" />
 
-  <!-- ===== RESPONSIVE UTILITY STYLES ===== -->
-  <link rel="stylesheet" href="css/responsive.css" />
-
-  <!-- ===== HERO-ONLY STYLES (LAST) ===== -->
+  <!-- ===== HERO CSS ===== -->
   <link rel="stylesheet" href="css/hero.css" />
+  
+    <!-- ===== LEAD-FORM CSS ===== -->
+  <link rel="stylesheet" href="css/lead-form.css" />
+
+  <!-- ===== RESPONSIVE CSS ===== -->
+  <link rel="stylesheet" href="css/responsive.css" />
 </head>
-
-
 <body>
 
     <!-- ===== HEADER & NAVIGATION (ON TOP) ===== -->
@@ -329,29 +335,36 @@
   </ul>
 </nav>
 
-<body>
-  <!-- … your header/nav … -->
-
-  <!-- ===== HERO PLACEHOLDER ===== -->
+   <!-- ===== 1) HERO PLACEHOLDER ===== -->
+  <!-- This empty <div> is where your Hero section (video + form) will appear. -->
   <div id="hero-placeholder"></div>
 
-  <!-- ===== FETCH HERO COMPONENT ===== -->
+  <!-- ===== 2) LOAD HERO COMPONENT ===== -->
   <script>
+    // Fetch the Hero component and inject it into #hero-placeholder
     fetch('components/hero-section.html')
-      .then(r => {
-        if (!r.ok) throw new Error('Failed to load hero-section.html');
-        return r.text();
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch hero component');
+        }
+        return response.text();
       })
       .then(html => {
         document.getElementById('hero-placeholder').innerHTML = html;
       })
-      .catch(err => console.error('❌ Hero load error:', err));
+      .catch(error => {
+        console.error('❌ Hero component load error:', error);
+      });
   </script>
 
-  <!-- ===== OTHER SCRIPTS ===== -->
-  <script src="js/header-mobile.js" defer></script>
-  <script src="js/header.js"       defer></script>
-  <script src="js/hero.js"         defer></script>
+  <!-- ===== MAIN CONTENT ===== -->
+  <main>
+    <!-- Your page content here -->
+  </main>
+
+  <!-- ===== SCRIPTS ===== -->
+<script src="js/header-mobile.js"></script>
+<script src="js/header.js"></script>
+<script src="js/hero.js" defer></script>
 </body>
 </html>
-
