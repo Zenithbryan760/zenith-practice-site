@@ -1,39 +1,54 @@
 /* ===================================================================
-   css/hero.css — Video Hero + Estimate Form Styles
+   css/hero.css — Video Hero + Lead-Capture Form Styles
    =================================================================== */
 
-/* 0) THEME VARIABLES */
+/* -------------------------------------------------------------------
+   0) THEME VARIABLES
+   -------------------------------------------------------------------
+   Defines brand colors, font stack and accents used throughout.
+*/
 :root {
-  --hero-bg-color:   #072e59;
-  --hero-text-color: #ffffff;
-  --form-bg:         rgba(255,255,255,0.95);
-  --input-border:    #ccc;
-  --input-focus:     #f7941d;
-  --btn-bg:          #f7941d;
-  --btn-hover:       #d77a18;
-  --font-family:     'Poppins', sans-serif;
+  --hero-bg-color:   #072e59;            /* Navy text color */
+  --hero-text-color: #ffffff;            /* White text color */
+  --form-bg:         rgba(255,255,255,0.95); /* Semi-transparent white for card */
+  --input-border:    #ccc;               /* Light gray border */
+  --input-focus:     #f7941d;            /* Orange accent on focus */
+  --btn-bg:          #f7941d;            /* Orange button base */
+  --btn-hover:       #d77a18;            /* Darker orange hover */
+  --font-family:     'Poppins', sans-serif; /* Brand font */
 }
 
-/* 1) HERO CONTAINER (video + tint) */
+/* -------------------------------------------------------------------
+   1) HERO CONTAINER (video + tint)
+   -------------------------------------------------------------------
+   Full-screen (desktop) or auto height (mobile) wrapper.
+*/
 .hero {
   position: relative;
   width: 100%;
-  /* 4) on mobile we'll switch this to auto */
-  height: 100vh;
+  height: 100vh;              /* Full viewport on desktop */
   overflow: hidden;
   font-family: var(--font-family);
 }
 
-/* 2) VIDEO WRAPPER */
+/* -------------------------------------------------------------------
+   2) VIDEO WRAPPER
+   -------------------------------------------------------------------
+   Positions video behind the content.
+*/
 .video-container {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
   overflow: hidden;
-  z-index: -1;
+  z-index: -1;                /* Behind everything */
 }
 
-/* 3) VIDEO ITSELF */
+/* -------------------------------------------------------------------
+   3) VIDEO ITSELF
+   -------------------------------------------------------------------
+   Centers & covers the container responsively.
+*/
 .background-video {
   position: absolute;
   top: 50%; left: 50%;
@@ -43,7 +58,11 @@
   object-fit: cover;
 }
 
-/* 4) TINT OVERLAY */
+/* -------------------------------------------------------------------
+   4) TINT OVERLAY
+   -------------------------------------------------------------------
+   Semi-transparent overlay for text readability.
+*/
 .video-overlay {
   position: absolute;
   top: 0; left: 0;
@@ -52,11 +71,14 @@
   pointer-events: none;
 }
 
-/* 5) HERO CONTENT CARD */
+/* -------------------------------------------------------------------
+   5) HERO CONTENT CARD
+   -------------------------------------------------------------------
+   White “card” containing heading + form, centered vertically.
+*/
 .hero__card {
   position: relative;
-  /* ↓ narrowed from 720px to 600px for better desktop proportions */
-  max-width: 600px;
+  max-width: 600px;           /* Narrower for desktop balance */
   margin: 0 auto;
   top: 50%;
   transform: translateY(-50%);
@@ -68,7 +90,11 @@
   text-align: center;
 }
 
-/* 6) HEADINGS */
+/* -------------------------------------------------------------------
+   6) HEADINGS
+   -------------------------------------------------------------------
+   Main title and subtitle inside the card.
+*/
 .hero__title {
   font-size: 2.75rem;
   font-weight: 700;
@@ -82,8 +108,11 @@
 
 /* ==== FORM STYLES START HERE ==== */
 
-/* 7) FORM GRID */
-/* ↑ bump min width from 220px to 260px so inputs don’t stretch too far on large screens */
+/* -------------------------------------------------------------------
+   7) FORM GRID LAYOUT
+   -------------------------------------------------------------------
+   Two-column on desktop/tablet, auto-fit responsively.
+*/
 .hero-form {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
@@ -91,14 +120,18 @@
   margin-bottom: 1rem;
 }
 
-/* 8) INPUT GROUP + FLOATING LABELS */
+/* -------------------------------------------------------------------
+   8) INPUT GROUP & FLOATING LABELS
+   -------------------------------------------------------------------
+   Wrapper for each input/select/textarea + floating label.
+*/
 .input-group {
   position: relative;
   margin-top: 0.5rem;
 }
 .input-group input,
-.input-group textarea,
-.input-group select {
+.input-group select,
+.input-group textarea {
   width: 100%;
   padding: 1rem 0.75rem 0.25rem;
   border: 1px solid var(--input-border);
@@ -110,36 +143,48 @@
 .input-group label {
   position: absolute;
   top: 1rem; left: 0.75rem;
-  font-size: 0.875rem; color: #666;
+  font-size: 0.875rem;
+  color: #666;
   pointer-events: none;
   transition: all .2s ease;
 }
+/* Move label up on focus or when user types */
 .input-group input:focus + label,
 .input-group input:not(:placeholder-shown) + label,
-.input-group textarea:focus + label,
-.input-group textarea:not(:placeholder-shown) + label,
 .input-group select:focus + label,
-.input-group select:not(:placeholder-shown) + label {
-  top: 0.2rem; font-size: 0.75rem; color: var(--input-focus);
+.input-group select:not(:placeholder-shown) + label,
+.input-group textarea:focus + label,
+.input-group textarea:not(:placeholder-shown) + label {
+  top: 0.2rem;
+  font-size: 0.75rem;
+  color: var(--input-focus);
 }
 .input-group input:focus,
-.input-group textarea:focus,
-.input-group select:focus {
+.input-group select:focus,
+.input-group textarea:focus {
   outline: none;
   border-color: var(--input-focus);
   box-shadow: 0 0 0 3px rgba(247,148,29,0.25);
 }
+/* Span full width for textarea or other full-width groups */
 .input-group.full-width {
   grid-column: 1 / -1;
 }
 
-/* 9) SUBMIT BUTTON */
+/* -------------------------------------------------------------------
+   9) SUBMIT BUTTON
+   -------------------------------------------------------------------
+   Full-row button with hover/active micro-interactions.
+*/
 .hero-form__button {
   grid-column: 1 / -1;
   padding: 1rem 0;
   background: linear-gradient(90deg, var(--btn-bg), var(--btn-hover));
-  border: none; border-radius: 8px;
-  color: #fff; font-size: 1.125rem; font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 700;
   cursor: pointer;
   transition: transform .15s ease, opacity .15s ease;
 }
@@ -152,14 +197,20 @@
   opacity: 1;
 }
 
-/* 10) DISCLAIMER */
+/* -------------------------------------------------------------------
+   10) REAL ESTATE DISCLAIMER
+   -------------------------------------------------------------------
+   Legal note with a lighter font.
+*/
 .hero-form__disclaimer {
   grid-column: 1 / -1;
-  font-size: 0.875rem; color: #999;
+  font-size: 0.875rem;
+  color: #999;
   margin-top: 0.75rem;
 }
 .hero-form__disclaimer a {
-  color: var(--btn-bg); text-decoration: underline;
+  color: var(--btn-bg);
+  text-decoration: underline;
   transition: color .2s ease;
 }
 .hero-form__disclaimer a:hover {
@@ -168,11 +219,14 @@
 
 /* ==== FORM STYLES END HERE ==== */
 
-/* 11) MOBILE TWEAKS */
+/* -------------------------------------------------------------------
+   11) MOBILE TWEAKS (<768px)
+   -------------------------------------------------------------------
+   Make everything tappable, stack fields, adjust font & padding.
+*/
 @media (max-width: 768px) {
-  /* let form flow naturally on phones */
   .hero {
-    height: auto;
+    height: auto;           /* Let content expand */
     padding-bottom: 2rem;
   }
   .hero__card {
@@ -180,14 +234,12 @@
     transform: none;
     top: 0;
   }
-  /* stack fields full-width */
   .hero-form {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Single-column */
   }
-  /* bigger, easier to tap inputs */
   .input-group input,
-  .input-group textarea,
-  .input-group select {
+  .input-group select,
+  .input-group textarea {
     padding: 1rem;
     font-size: 1.125rem;
   }
@@ -195,47 +247,34 @@
     padding: 1.25rem 0;
     font-size: 1.25rem;
   }
-  .hero__title {
-    font-size: 2rem;
-  }
-  .hero__subtitle {
-    font-size: 1rem;
-  }
+  .hero__title { font-size: 2rem; }
+  .hero__subtitle { font-size: 1rem; }
 }
-/* ===================================================================
-   [12] VIEWPORT-AWARE CARD & FORM ADJUSTMENTS
-   =================================================================== */
 
-/* 12.1) Prevent inner scrolling, cap height to viewport */
+/* -------------------------------------------------------------------
+   12) VIEWPORT-AWARE CARD & FORM ADJUSTMENTS
+   -------------------------------------------------------------------
+   Caps card height to viewport & tunes spacing per breakpoint.
+*/
+
+/* 12.1) Cap to viewport height, no inner scrollbars */
 .hero__card {
-  max-height: 100vh;            /* never taller than the screen */
-  overflow: hidden;             /* no inner scrollbars */
+  max-height: 100vh;
+  overflow: hidden;
 }
 
-/* 12.2) Desktop (1200px+) — keep current spacing, but ensure it all fits */
+/* 12.2) Desktop (≥1200px) */
 @media (min-width: 1200px) {
-  .hero__card {
-    padding: 3rem 2.5rem;
-  }
-  .hero-form {
-    gap: 1.5rem 2rem;
-  }
-  .hero-form__button {
-    padding: 1.25rem 0;
-  }
+  .hero__card { padding: 3rem 2.5rem; }
+  .hero-form { gap: 1.5rem 2rem; }
+  .hero-form__button { padding: 1.25rem 0; }
 }
 
-/* 12.3) Tablet (768px–1199px) — slightly tighten gutters & font-sizes */
+/* 12.3) Tablet (768px–1199px) */
 @media (min-width: 768px) and (max-width: 1199px) {
-  .hero__card {
-    padding: 2rem 1.5rem;
-  }
-  .hero__title {
-    font-size: 2.25rem;
-  }
-  .hero__subtitle {
-    font-size: 1rem;
-  }
+  .hero__card { padding: 2rem 1.5rem; }
+  .hero__title { font-size: 2.25rem; }
+  .hero__subtitle { font-size: 1rem; }
   .hero-form {
     grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
     gap: 1rem 1.5rem;
@@ -247,45 +286,81 @@
     padding: 0.85rem 0.5rem;
     min-height: 44px;
   }
-  .hero-form__button {
-    font-size: 1rem;
-    padding: 1rem 0;
-  }
-  .hero-form__disclaimer {
-    font-size: 0.9rem;
-  }
+  .hero-form__button { font-size: 1rem; padding: 1rem 0; }
+  .hero-form__disclaimer { font-size: 0.9rem; }
 }
 
-/* 12.4) Mobile (<768px) — single column, minimal gutters, full-width tap targets */
+/* 12.4) Small Mobile (<768px) */
 @media (max-width: 767px) {
-  .hero__card {
-    padding: 1.5rem 1rem;
-    top: 0;
-    transform: none;
-  }
-  .hero__title {
-    font-size: 1.5rem;
-  }
-  .hero__subtitle {
-    font-size: 0.9rem;
-  }
-  .hero-form {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-  }
+  .hero__card { padding: 1.5rem 1rem; top: 0; transform: none; }
+  .hero__title { font-size: 1.5rem; }
+  .hero__subtitle { font-size: 0.9rem; }
+  .hero-form { gap: 0.5rem; }
   .hero-form input,
   .hero-form select,
   .hero-form textarea {
     font-size: 1rem;
     padding: 0.75rem 0.5rem;
-    min-height: 44px;           /* ensures tappable */
+    min-height: 44px;
   }
-  .hero-form__button {
-    font-size: 1rem;
-    padding: 0.75rem 0;
-  }
-  .hero-form__disclaimer {
-    font-size: 0.875rem;
-    line-height: 1.4;
-  }
+  .hero-form__button { font-size: 1rem; padding: 0.75rem 0; }
+  .hero-form__disclaimer { font-size: 0.875rem; line-height: 1.4; }
+}
+
+/* -------------------------------------------------------------------
+   13) SHRINK & FIT OVERRIDES
+   -------------------------------------------------------------------
+   Final tweaks to ensure the form never overflows the viewport.
+   Paste this block **once** at the end of the file.
+*/
+  
+/* — shrink vertical gaps so form fits on-screen — */
+.hero-form {
+  gap: 1rem;                
+  margin-bottom: 0.5rem;
+}
+
+/* Cap card height (subtract header height) & allow Y-scroll if needed */
+.hero__card {
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  padding: 2rem 1.5rem;
+}
+
+/* Smaller inputs for phone & date (wrap those in .phone-group/.date-group) */
+.phone-group input,
+.date-group input {
+  height: 44px;            
+  padding: 0.5rem 0.75rem 0.25rem;
+}
+
+/* Slightly shorter textarea */
+.hero-form textarea {
+  min-height: 80px;
+}
+
+/* Tighten disclaimer */
+.hero-form__disclaimer {
+  font-size: 0.8rem;
+  line-height: 1.2;
+  margin-top: 0.5rem;
+}
+
+/* Smaller floating-label text */
+.input-group label {
+  font-size: 0.75rem;
+}
+
+/* Nudge card upward so nothing clips */
+.hero__card {
+  top: 40%;
+  transform: translateY(-40%);
+}
+
+/* Extra shrink on very small phones */
+@media (max-width: 768px) {
+  .hero-form { gap: 0.75rem; }
+  .hero__card { padding: 1.5rem 1rem; }
+  .hero__title { font-size: 1.8rem; }
+  .hero__subtitle { font-size: 1rem; }
 }
