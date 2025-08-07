@@ -59,4 +59,20 @@
     gap: 16px;
   }
 }
-
+/* ===================================================================
+   FORCE mobile layout ≤ 992px — hide the desktop nav-bar entirely
+   =================================================================== */
+@media (max-width: 992px) {
+  /* 1) Hide the entire desktop menu container */
+  .nav-bar {
+    display: none !important;
+  }
+  /* 2) Make sure your mobile header (hamburger+logo+call) shows */
+  .mobile-header {
+    display: flex !important;
+  }
+  /* 3) Make sure your off-canvas mobile nav is available */
+  .mobile-nav {
+    display: block !important;
+  }
+}
