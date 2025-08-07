@@ -268,3 +268,48 @@
   .hero__subtitle { font-size: 1rem; }
   .hero-form__disclaimer { font-size: 0.8rem; line-height: 1.2; }
 }
+/* ===================================================================
+   11) TWO-COLUMN PAIRS (DESKTOP/TABLET) + SINGLE COLUMN (MOBILE)
+   Makes the paired fields sit side-by-side on ≥768px and stack on phones.
+   Keep this block AT THE VERY END so it overrides anything above.
+   =================================================================== */
+
+/* Let row wrappers disappear so the inner .input-group items become
+   direct grid children (enables side-by-side pairs) */
+.hero-form__row { 
+  display: contents; 
+}
+
+/* Full-width helper still works (street address, textarea, etc.) */
+.input-group.full-width { 
+  grid-column: 1 / -1; 
+}
+
+/* Tablet/desktop: two equal columns for form pairs */
+@media (min-width: 768px) {
+  .hero-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;  /* two columns */
+    gap: 1rem 1.25rem;               /* vertical / horizontal gap */
+  }
+
+  /* Actions row: checkbox left, button right */
+  .hero-form__actions { display: contents; }
+  .hero-form__actions .reminder-group { 
+    grid-column: 1 / 2; 
+    align-self: center; 
+    text-align: left;
+  }
+  .hero-form__actions .hero-form__button { 
+    grid-column: 2 / 3; 
+    align-self: center; 
+  }
+}
+
+/* Phones: single column (keeps big tap targets) */
+@media (max-width: 767.98px) {
+  .hero-form {
+    grid-template-columns: 1fr; 
+    gap: 0.75rem;
+  }
+}
