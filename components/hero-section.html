@@ -1,1 +1,73 @@
+<!-- ===== HERO SECTION (VIDEO + FREE ESTIMATE FORM) ===== -->
+<section class="hero" id="top">
+
+  <!-- 1) Video background container (this is the video you’re missing!) -->
+  <div class="video-container">
+    <video
+      class="background-video"
+      autoplay
+      muted
+      loop
+      playsinline
+    >
+      <source src="roofing-bg.mp4" type="video/mp4" />
+      Your browser doesn’t support video.
+    </video>
+    <!-- Optional overlay for better text contrast -->
+    <div class="video-overlay"></div>
+  </div>
+
+  <!-- 2) Hero content & form (as you already have it) -->
+  <div class="container hero__inner">
+    <h1 class="hero__title">
+      Dependable Roofing for Southern California Homes & Businesses
+    </h1>
+    <p class="hero__subtitle">
+      Shingle • Tile • Flat Roofs • Repairs • Gutters
+    </p>
+
+    <form
+      name="estimate"
+      method="POST"
+      data-netlify="true"
+      class="hero-form"
+    >
+      <input type="hidden" name="form-name" value="estimate" />
+
+      <div class="hero-form__row">
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="tel" name="phone" placeholder="Phone Number" required />
+      </div>
+
+      <div class="hero-form__row">
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="text" name="address" placeholder="Street Address" required />
+      </div>
+
+      <div class="hero-form__row">
+        <input type="text" name="city" placeholder="City" required />
+        <input type="text" name="state" value="CA" readonly />
+        <input type="text" name="zip" placeholder="ZIP Code" required />
+      </div>
+
+      <textarea
+        name="message"
+        placeholder="Tell us about your project…"
+        rows="4"
+        required
+      ></textarea>
+
+      <button type="submit" class="hero-form__button">
+        Request Free Estimate
+      </button>
+
+      <p class="hero-form__disclaimer">
+        <em>
+          *Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="#">Real Estate Services</a>.
+        </em>
+      </p>
+    </form>
+  </div>
+
+</section>
 
