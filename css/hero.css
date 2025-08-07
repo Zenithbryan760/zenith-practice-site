@@ -1,70 +1,57 @@
 /* ===================================================================
-   css/hero.css — Hero Section & Estimate Form Styles
+   css/hero.css — Video Hero + Estimate Form Styles
    =================================================================== */
 
-/* -------------------------------------------------------------------
-   0) THEME VARIABLES
-   ------------------------------------------------------------------- */
+/* 0) THEME VARIABLES */
 :root {
-  --hero-bg-color:       #072e59;            /* Navy */
-  --hero-text-color:     #ffffff;            /* White */
-  --form-bg:             rgba(255,255,255,0.95);
-  --input-border:        #ccc;               /* Light gray */
-  --input-focus:         #f7941d;            /* Orange accent */
-  --btn-bg:              #f7941d;            /* Button base */
-  --btn-hover:           #d77a18;            /* Button hover */
-  --font-family:         'Poppins', sans-serif;
+  --hero-bg-color:   #072e59;
+  --hero-text-color: #ffffff;
+  --form-bg:         rgba(255,255,255,0.95);
+  --input-border:    #ccc;
+  --input-focus:     #f7941d;
+  --btn-bg:          #f7941d;
+  --btn-hover:       #d77a18;
+  --font-family:     'Poppins', sans-serif;
 }
 
-/* -------------------------------------------------------------------
-   1) HERO CONTAINER (VIDEO + TINT)
-   ------------------------------------------------------------------- */
+/* 1) HERO CONTAINER (video + tint) */
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh;               /* Full-viewport hero */
+  height: 100vh;
   overflow: hidden;
   font-family: var(--font-family);
 }
 
-/* -------------------------------------------------------------------
-   2) VIDEO BACKGROUND WRAPPER
-   ------------------------------------------------------------------- */
+/* 2) VIDEO WRAPPER */
 .video-container {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
   overflow: hidden;
-  z-index: -1;                 /* Push it behind the card */
+  z-index: -1;
 }
 
-/* -------------------------------------------------------------------
-   3) THE <video> ITSELF
-   ------------------------------------------------------------------- */
+/* 3) VIDEO ITSELF */
 .background-video {
   position: absolute;
   top: 50%; left: 50%;
-  width: auto;                 /* Keep natural aspect ratio */
-  height: 100%;
-  min-width: 100%;             /* Fill horizontally if needed */
+  width: auto; height: 100%;
+  min-width: 100%;
   transform: translate(-50%, -50%);
-  object-fit: cover;           /* Cover the entire container */
+  object-fit: cover;
 }
 
-/* -------------------------------------------------------------------
-   4) TINT OVERLAY
-   ------------------------------------------------------------------- */
+/* 4) TINT OVERLAY */
 .video-overlay {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background-color: rgba(7, 46, 89, 0.4);
+  background-color: rgba(7,46,89,0.4);
   pointer-events: none;
 }
 
-/* -------------------------------------------------------------------
-   5) HERO CONTENT CARD (WHITE BOX OVER VIDEO)
-   ------------------------------------------------------------------- */
+/* 5) HERO CONTENT CARD */
 .hero__card {
   position: relative;
   max-width: 720px;
@@ -75,13 +62,11 @@
   border-radius: 16px;
   padding: 2.5rem 2rem;
   box-shadow: 0 16px 48px rgba(0,0,0,0.2);
-  color: var(--hero-bg-color); /* Text inside card */
+  color: var(--hero-bg-color);
   text-align: center;
 }
 
-/* -------------------------------------------------------------------
-   6) HERO HEADINGS
-   ------------------------------------------------------------------- */
+/* 6) HEADINGS */
 .hero__title {
   font-size: 2.75rem;
   font-weight: 700;
@@ -93,56 +78,44 @@
   margin-bottom: 2rem;
 }
 
-/* -------------------------------------------------------------------
-   7) FORM GRID LAYOUT
-   ------------------------------------------------------------------- */
+/* 7) FORM GRID */
 .hero-form {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
   gap: 1.5rem;
   margin-bottom: 1rem;
 }
 
-/* -------------------------------------------------------------------
-   8) INPUT GROUP (FLOATING LABELS)
-   ------------------------------------------------------------------- */
+/* 8) INPUT GROUP + FLOATING LABELS */
 .input-group {
   position: relative;
   margin-top: 0.5rem;
 }
 .input-group input,
-.input-group textarea,
-.input-group select {
+.input-group textarea {
   width: 100%;
   padding: 1rem 0.75rem 0.25rem;
   border: 1px solid var(--input-border);
   border-radius: 8px;
   background: #fff;
   font-size: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color .2s, box-shadow .2s;
 }
 .input-group label {
   position: absolute;
   top: 1rem; left: 0.75rem;
-  font-size: 0.875rem;
-  color: #666;
+  font-size: 0.875rem; color: #666;
   pointer-events: none;
-  transition: all 0.2s ease;
+  transition: all .2s ease;
 }
 .input-group input:focus + label,
 .input-group input:not(:placeholder-shown) + label,
 .input-group textarea:focus + label,
-.input-group textarea:not(:placeholder-shown) + label,
-.input-group select:focus + label,
-.input-group select:not(:placeholder-shown) + label {
-  top: 0.2rem;
-  left: 0.75rem;
-  font-size: 0.75rem;
-  color: var(--input-focus);
+.input-group textarea:not(:placeholder-shown) + label {
+  top: 0.2rem; font-size: 0.75rem; color: var(--input-focus);
 }
 .input-group input:focus,
-.input-group textarea:focus,
-.input-group select:focus {
+.input-group textarea:focus {
   outline: none;
   border-color: var(--input-focus);
   box-shadow: 0 0 0 3px rgba(247,148,29,0.25);
@@ -151,20 +124,15 @@
   grid-column: 1 / -1;
 }
 
-/* -------------------------------------------------------------------
-   9) SUBMIT BUTTON
-   ------------------------------------------------------------------- */
+/* 9) SUBMIT BUTTON */
 .hero-form__button {
   grid-column: 1 / -1;
   padding: 1rem 0;
   background: linear-gradient(90deg, var(--btn-bg), var(--btn-hover));
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 1.125rem;
-  font-weight: 700;
+  border: none; border-radius: 8px;
+  color: #fff; font-size: 1.125rem; font-weight: 700;
   cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition: transform .15s ease, opacity .15s ease;
 }
 .hero-form__button:hover {
   transform: translateY(-3px) scale(1.02);
@@ -175,41 +143,24 @@
   opacity: 1;
 }
 
-/* -------------------------------------------------------------------
-   10) REAL ESTATE DISCLAIMER
-   ------------------------------------------------------------------- */
+/* 10) DISCLAIMER */
 .hero-form__disclaimer {
   grid-column: 1 / -1;
-  font-size: 0.875rem;
-  color: #999;
+  font-size: 0.875rem; color: #999;
   margin-top: 0.75rem;
 }
 .hero-form__disclaimer a {
-  color: var(--btn-bg);
-  text-decoration: underline;
-  transition: color 0.2s ease;
+  color: var(--btn-bg); text-decoration: underline;
+  transition: color .2s ease;
 }
 .hero-form__disclaimer a:hover {
   color: var(--btn-hover);
 }
 
-/* -------------------------------------------------------------------
-   11) MOBILE RESPONSIVENESS
-   ------------------------------------------------------------------- */
+/* 11) MOBILE */
 @media (max-width: 768px) {
-  .hero__card {
-    padding: 2rem 1rem;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-    transform: none;
-    top: 0;
-  }
-  .hero-form {
-    grid-template-columns: 1fr; /* Stack all fields */
-  }
-  .hero__title {
-    font-size: 2rem;
-  }
-  .hero__subtitle {
-    font-size: 1rem;
-  }
+  .hero__card { padding: 2rem 1rem; transform: none; top: 0; }
+  .hero-form { grid-template-columns: 1fr; }
+  .hero__title { font-size: 2rem; }
+  .hero__subtitle { font-size: 1rem; }
 }
