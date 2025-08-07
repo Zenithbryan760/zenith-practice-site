@@ -326,37 +326,26 @@
   </ul>
 </nav>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- ===== META & SEO ===== -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zenith Roofing Services – San Diego & Temecula Roof Experts</title>
-  <meta name="description" content="Expert residential & commercial roofing in North County San Diego & Temecula." />
-
-  <!-- ===== GLOBAL CSS ===== -->
-  <link rel="stylesheet" href="css/base.css" />
-
-  <!-- ===== HEADER CSS ===== -->
-  <link rel="stylesheet" href="css/header.css" />
-  <link rel="stylesheet" href="css/header-mobile.css" />
-
-  <!-- ===== HERO CSS ===== -->
-  <link rel="stylesheet" href="css/hero.css" />
-
-  <!-- ===== RESPONSIVE CSS ===== -->
-  <link rel="stylesheet" href="css/responsive.css" />
-</head>
-<body>
-
-  <!-- ===== HEADER & NAVIGATION (ON TOP) ===== -->
-  <header class="header">
-    <!-- … your existing header/nav code unchanged … -->
-  </header>
-
 <!-- ===== HERO SECTION (VIDEO + FREE ESTIMATE FORM) ===== -->
 <section class="hero" id="top">
+
+  <!-- 1) Video background container (this is the video you’re missing!) -->
+  <div class="video-container">
+    <video
+      class="background-video"
+      autoplay
+      muted
+      loop
+      playsinline
+    >
+      <source src="roofing-bg.mp4" type="video/mp4" />
+      Your browser doesn’t support video.
+    </video>
+    <!-- Optional overlay for better text contrast -->
+    <div class="video-overlay"></div>
+  </div>
+
+  <!-- 2) Hero content & form (as you already have it) -->
   <div class="container hero__inner">
     <h1 class="hero__title">
       Dependable Roofing for Southern California Homes & Businesses
@@ -374,54 +363,19 @@
       <input type="hidden" name="form-name" value="estimate" />
 
       <div class="hero-form__row">
-        <input
-          type="text"
-          name="name"
-          placeholder="Full Name"
-          required
-        />
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Phone Number"
-          required
-        />
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="tel" name="phone" placeholder="Phone Number" required />
       </div>
 
       <div class="hero-form__row">
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          required
-        />
-        <input
-          type="text"
-          name="address"
-          placeholder="Street Address"
-          required
-        />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="text" name="address" placeholder="Street Address" required />
       </div>
 
       <div class="hero-form__row">
-        <input
-          type="text"
-          name="city"
-          placeholder="City"
-          required
-        />
-        <input
-          type="text"
-          name="state"
-          value="CA"
-          readonly
-        />
-        <input
-          type="text"
-          name="zip"
-          placeholder="ZIP Code"
-          required
-        />
+        <input type="text" name="city" placeholder="City" required />
+        <input type="text" name="state" value="CA" readonly />
+        <input type="text" name="zip" placeholder="ZIP Code" required />
       </div>
 
       <textarea
@@ -437,16 +391,14 @@
 
       <p class="hero-form__disclaimer">
         <em>
-          *Free estimates are not available for real estate transactions.
-          If you're a real estate professional, buyer, or seller seeking a
-          roof report, visual inspection, or verbal estimate for a
-          transaction, please see our
-          <a href="#">Real Estate Services</a>.
+          *Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="#">Real Estate Services</a>.
         </em>
       </p>
     </form>
   </div>
+
 </section>
+
 
 
   <!-- ===== MAIN CONTENT ===== -->
