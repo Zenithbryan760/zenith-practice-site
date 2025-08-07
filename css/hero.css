@@ -1,45 +1,195 @@
 /* ===================================================================
-   css/hero.css — Hero Section & Video Tint
+   css/hero.css — Hero Section & Video Tint + Form Styles
    =================================================================== */
 
 /* -------------------------------------------------------------------
-   Wraps all hero content (video, headings, etc.)
+   1) Theme Variables
+   ------------------------------------------------------------------- */
+:root {
+  --hero-bg-color: #072e59;         /* your brand navy */
+  --hero-text-color: #ffffff;
+  --form-bg: rgba(255,255,255,0.95);
+  --input-border: #ccc;
+  --input-focus: #f7941d;           /* your orange accent */
+  --btn-bg: #f7941d;
+  --btn-hover: #d77a18;
+  --font-family: 'Poppins', sans-serif;
+}
+
+/* -------------------------------------------------------------------
+   2) Base Hero (video + tint)
    ------------------------------------------------------------------- */
 .hero {
   position: relative;
   width: 100%;
   height: 100vh;               /* full‐viewport hero */
   overflow: hidden;
+  font-family: var(--font-family);
+  color: var(--hero-text-color);
+  text-align: center;
+  padding: 0;                  /* reset any padding */
 }
 
-/* -------------------------------------------------------------------
-   Fullscreen video + tint overlay
-   ------------------------------------------------------------------- */
 .video-container {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   overflow: hidden;
   z-index: -1;                 /* behind hero content */
 }
+
 .background-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .video-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background-color: rgba(7, 46, 89, 0.4);
   pointer-events: none;
 }
 
 /* -------------------------------------------------------------------
-   Any hero text/buttons you’d style here, e.g.:
-   .hero h1 { color: #fff; ... }
+   3) Hero Inner Content (constrain width & spacing)
    ------------------------------------------------------------------- */
+.hero__inner {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 1rem;
+}
+
+/* -------------------------------------------------------------------
+   4) Hero Headings
+   ------------------------------------------------------------------- */
+.hero__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hero__subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+/* -------------------------------------------------------------------
+   5) Estimate Form Layout
+   ------------------------------------------------------------------- */
+.hero-form {
+  background: var(--form-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  display: grid;
+  gap: 1rem 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin: 0 auto 1rem;        /* center & space below */
+  max-width: 100%;
+}
+
+.hero-form__row {
+  display: contents;           /* let the form grid handle layout */
+}
+
+/* -------------------------------------------------------------------
+   6) Inputs & Textarea
+   ------------------------------------------------------------------- */
+.hero-form input,
+.hero-form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--input-border);
+  border-radius: 8px;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-form input:focus,
+.hero-form textarea:focus {
+  outline: none;
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 3px rgba(247,148,29,0.3);
+}
+
+.hero-form textarea {
+  resize: none;
+  grid-column: 1 / -1;         /* span full width */
+}
+
+/* -------------------------------------------------------------------
+   7) Submit Button
+   ------------------------------------------------------------------- */
+.hero-form__button {
+  grid-column: 1 / -1;         /* full row */
+  padding: 0.875rem 2rem;
+  background: var(--btn-bg);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.hero-form__button:hover {
+  background: var(--btn-hover);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.hero-form__button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* -------------------------------------------------------------------
+   8) Disclaimer Text
+   ------------------------------------------------------------------- */
+.hero-form__disclaimer {
+  font-size: 0.875rem;
+  color: #eee;
+  grid-column: 1 / -1;
+  margin-top: 0.5rem;
+}
+
+.hero-form__disclaimer a {
+  color: var(--btn-bg);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.hero-form__disclaimer a:hover {
+  color: var(--btn-hover);
+}
+
+/* -------------------------------------------------------------------
+   9) Mobile Tweaks (if not in responsive.css)
+   ------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;             /* let content define height */
+    padding: 3rem 1rem;
+  }
+  .hero__inner {
+    top: 0;
+    transform: none;
+    padding: 0;
+  }
+  .hero__title {
+    font-size: 2rem;
+  }
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+  .hero-form {
+    grid-template-columns: 1fr; /* stack fields */
+    padding: 1.5rem;
+  }
+}
