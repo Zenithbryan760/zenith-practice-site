@@ -338,16 +338,28 @@
 <!-- 1) HERO PLACEHOLDER -->
 <div id="hero-placeholder"></div>
 
-<!-- 2) LOAD HERO COMPONENT -->
+<!-- 2) LOAD HERO COMPONENT + hero.js -->
 <script>
   fetch('components/hero-section.html')
-    .then(r => {
-      if (!r.ok) throw new Error('Failed to load hero');
-      return r.text();
+    .then(response => {
+      if (!response.ok) throw new Error('Failed to load hero');
+      return response.text();
     })
-    .then(html => document.getElementById('hero-placeholder').innerHTML = html)
-    .catch(console.error);
+    .then(html => {
+      // Insert the hero HTML
+      document.getElementById('hero-placeholder').innerHTML = html;
+
+      // Now dynamically load your hero.js
+      const s = document.createElement('script');
+      s.src = 'js/hero.js';
+      s.defer = true;
+      document.body.appendChild(s);
+    })
+    .catch(err => {
+      console.error('❌ Hero load error:', err);
+    });
 </script>
+
 
 
   <!-- ===== MAIN CONTENT ===== -->
