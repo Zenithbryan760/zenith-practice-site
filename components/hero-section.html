@@ -1,73 +1,119 @@
-<!-- ===== HERO SECTION (VIDEO + FREE ESTIMATE FORM) ===== -->
 <section class="hero" id="top">
 
-  <!-- 1) Video background container (this is the video you’re missing!) -->
+  <!-- 1) VIDEO BACKGROUND + TINT -->
   <div class="video-container">
-    <video
-      class="background-video"
-      autoplay
-      muted
-      loop
-      playsinline
-    >
+    <!-- Fullscreen looping video -->
+    <video class="background-video" autoplay muted loop playsinline>
       <source src="roofing-bg.mp4" type="video/mp4" />
+      <!-- Fallback text -->
       Your browser doesn’t support video.
     </video>
-    <!-- Optional overlay for better text contrast -->
-    <div class="video-overlay"></div>
   </div>
+  <!-- Semi‐transparent overlay for better text contrast -->
+  <div class="video-overlay"></div>
 
-  <!-- 2) Hero content & form (as you already have it) -->
-  <div class="container hero__inner">
+
+  <!-- 2) HERO CONTENT CARD -->
+  <!-- Centers and styles the white “card” containing text + form -->
+  <div class="hero__card container">
+
+    <!-- 2a) MAIN HEADING -->
     <h1 class="hero__title">
       Dependable Roofing for Southern California Homes & Businesses
     </h1>
+
+    <!-- 2b) SUBTITLE -->
     <p class="hero__subtitle">
       Shingle • Tile • Flat Roofs • Repairs • Gutters
     </p>
 
+
+    <!-- 3) ESTIMATE FORM START -->
     <form
       name="estimate"
       method="POST"
       data-netlify="true"
       class="hero-form"
     >
+      <!-- hidden Netlify identifier -->
       <input type="hidden" name="form-name" value="estimate" />
 
+
+      <!-- 3a) ROW ONE: Name & Phone -->
       <div class="hero-form__row">
-        <input type="text" name="name" placeholder="Full Name" required />
-        <input type="tel" name="phone" placeholder="Phone Number" required />
+        <!-- Name input + floating label -->
+        <div class="input-group">
+          <input type="text" id="name" name="name" required />
+          <label for="name">Full Name</label>
+        </div>
+
+        <!-- Phone input + floating label -->
+        <div class="input-group">
+          <input type="tel" id="phone" name="phone" required />
+          <label for="phone">Phone Number</label>
+        </div>
       </div>
 
+
+      <!-- 3b) ROW TWO: Email & Address -->
       <div class="hero-form__row">
-        <input type="email" name="email" placeholder="Email" required />
-        <input type="text" name="address" placeholder="Street Address" required />
+        <div class="input-group">
+          <input type="email" id="email" name="email" required />
+          <label for="email">Email Address</label>
+        </div>
+        <div class="input-group">
+          <input type="text" id="address" name="address" required />
+          <label for="address">Street Address</label>
+        </div>
       </div>
 
+
+      <!-- 3c) ROW THREE: City, State, ZIP -->
       <div class="hero-form__row">
-        <input type="text" name="city" placeholder="City" required />
-        <input type="text" name="state" value="CA" readonly />
-        <input type="text" name="zip" placeholder="ZIP Code" required />
+        <div class="input-group">
+          <input type="text" id="city" name="city" required />
+          <label for="city">City</label>
+        </div>
+        <div class="input-group">
+          <input type="text" id="state" name="state" value="CA" readonly />
+          <label for="state">State</label>
+        </div>
+        <div class="input-group">
+          <input type="text" id="zip" name="zip" required />
+          <label for="zip">ZIP Code</label>
+        </div>
       </div>
 
-      <textarea
-        name="message"
-        placeholder="Tell us about your project…"
-        rows="4"
-        required
-      ></textarea>
 
+      <!-- 3d) FULL-WIDTH MESSAGE BOX -->
+      <div class="input-group full-width">
+        <textarea id="message" name="message" rows="4" required></textarea>
+        <label for="message">Tell us about your project…</label>
+      </div>
+
+
+      <!-- 3e) SUBMIT BUTTON -->
       <button type="submit" class="hero-form__button">
         Request Free Estimate
       </button>
 
+
+      <!-- 3f) REAL ESTATE DISCLAIMER -->
       <p class="hero-form__disclaimer">
         <em>
-          *Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="#">Real Estate Services</a>.
+          *Free estimates are not available for real estate transactions.
+          If you’re a real estate professional, buyer, or seller seeking a
+          roof report, visual inspection, or verbal estimate for a
+          transaction, please see our
+          <a href="/real-estate">Real Estate Services</a>.
         </em>
       </p>
+
     </form>
+    <!-- 3) ESTIMATE FORM END -->
+
   </div>
+  <!-- 2) HERO CONTENT CARD END -->
 
 </section>
-
+<!-- ===== HERO SECTION END ===== -->
