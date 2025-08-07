@@ -62,7 +62,7 @@
 /* ===================================================================
    FORCE mobile layout ≤ 992px — hide the desktop nav-bar entirely
    =================================================================== */
-@media (max-width: 992px) {
+@media (max-width: 1024px) {
   /* 1) Hide the entire desktop menu container */
   .nav-bar {
     display: none !important;
