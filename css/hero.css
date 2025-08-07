@@ -1,245 +1,204 @@
-<!-- ================================
-     HERO SECTION: Video + Lead Form
-     File: components/hero-section.html
-     ================================ -->
-<section class="hero" id="top">
+/* ===================================================================
+   css/hero.css — Video Hero + Estimate Form Styles
+   =================================================================== */
 
-  <!-- 1) VIDEO + TINT OVERLAY -->
-  <!-- Video plays behind the white card; overlay improves text contrast -->
-  <div class="video-container">
-    <video
-      class="background-video"
-      autoplay muted loop playsinline
-      src="roofing-bg.mp4"
-      type="video/mp4">
-      Your browser doesn’t support video.
-    </video>
-  </div>
-  <div class="video-overlay"></div>
+/* 0) THEME VARIABLES */
+:root {
+  --hero-bg-color:   #072e59;
+  --hero-text-color: #ffffff;
+  --form-bg:         rgba(255,255,255,0.95);
+  --input-border:    #ccc;
+  --input-focus:     #f7941d;
+  --btn-bg:          #f7941d;
+  --btn-hover:       #d77a18;
+  --font-family:     'Poppins', sans-serif;
+}
 
+/* 1) HERO CONTAINER (video + tint) */
+.hero {
+  position: relative;
+  width: 100%;
+  /* 4) on mobile we'll switch this to auto */
+  height: 100vh;
+  overflow: hidden;
+  font-family: var(--font-family);
+}
 
-  <!-- 2) CONTENT CARD: Heading + Form -->
-  <!-- Centers on screen; white background with slight transparency -->
-  <div class="hero__card container">
+/* 2) VIDEO WRAPPER */
+.video-container {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
 
-    <!-- 2a) MAIN HEADING -->
-    <h1 class="hero__title">
-      Dependable Roofing in Escondido, San Diego County &amp; Temecula
-    </h1>
+/* 3) VIDEO ITSELF */
+.background-video {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: auto; height: 100%;
+  min-width: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
 
-    <!-- 2b) SUBTITLE -->
-    <p class="hero__subtitle">
-      Shingle • Tile • Flat Roofs • Repairs • Gutters
-    </p>
+/* 4) TINT OVERLAY */
+.video-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(7,46,89,0.4);
+  pointer-events: none;
+}
 
+/* 5) HERO CONTENT CARD */
+.hero__card {
+  position: relative;
+  /* ↓ narrowed from 720px to 600px for better desktop proportions */
+  max-width: 600px;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--form-bg);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+  color: var(--hero-bg-color);
+  text-align: center;
+}
 
-    <!-- 3) ESTIMATE REQUEST FORM -->
-    <!-- Posts to Netlify; client-side validation via `novalidate` + JS -->
-    <form
-      name="estimate"
-      method="POST"
-      data-netlify="true"
-      class="hero-form"
-      novalidate
-    >
-      <!-- Hidden Netlify form-name -->
-      <input type="hidden" name="form-name" value="estimate" />
+/* 6) HEADINGS */
+.hero__title {
+  font-size: 2.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+.hero__subtitle {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+}
 
+/* ==== FORM STYLES START HERE ==== */
 
-      <!-- 3.1) NAME FIELDS (First + Last) -->
-      <div class="hero-form__row">
-        <div class="input-group">
-          <input
-            type="text"
-            id="first-name"
-            name="first-name"
-            required
-            placeholder=" "
-          />
-          <label for="first-name">First Name</label>
-        </div>
-        <div class="input-group">
-          <input
-            type="text"
-            id="last-name"
-            name="last-name"
-            required
-            placeholder=" "
-          />
-          <label for="last-name">Last Name</label>
-        </div>
-      </div>
+/* 7) FORM GRID */
+/* ↑ bump min width from 220px to 260px so inputs don’t stretch too far on large screens */
+.hero-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
 
+/* 8) INPUT GROUP + FLOATING LABELS */
+.input-group {
+  position: relative;
+  margin-top: 0.5rem;
+}
+.input-group input,
+.input-group textarea,
+.input-group select {
+  width: 100%;
+  padding: 1rem 0.75rem 0.25rem;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 1rem;
+  transition: border-color .2s, box-shadow .2s;
+}
+.input-group label {
+  position: absolute;
+  top: 1rem; left: 0.75rem;
+  font-size: 0.875rem; color: #666;
+  pointer-events: none;
+  transition: all .2s ease;
+}
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group textarea:focus + label,
+.input-group textarea:not(:placeholder-shown) + label,
+.input-group select:focus + label,
+.input-group select:not(:placeholder-shown) + label {
+  top: 0.2rem; font-size: 0.75rem; color: var(--input-focus);
+}
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 3px rgba(247,148,29,0.25);
+}
+.input-group.full-width {
+  grid-column: 1 / -1;
+}
 
-      <!-- 3.2) PHONE NUMBER -->
-      <div class="hero-form__row">
-        <div class="input-group phone-group">
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            maxlength="14"
-            pattern="\(\d{3}\) \d{3}-\d{4}"
-            required
-            placeholder=" "
-          />
-          <label for="phone">Phone Number</label>
-        </div>
-      </div>
+/* 9) SUBMIT BUTTON */
+.hero-form__button {
+  grid-column: 1 / -1;
+  padding: 1rem 0;
+  background: linear-gradient(90deg, var(--btn-bg), var(--btn-hover));
+  border: none; border-radius: 8px;
+  color: #fff; font-size: 1.125rem; font-weight: 700;
+  cursor: pointer;
+  transition: transform .15s ease, opacity .15s ease;
+}
+.hero-form__button:hover {
+  transform: translateY(-3px) scale(1.02);
+  opacity: 0.95;
+}
+.hero-form__button:active {
+  transform: translateY(0) scale(0.98);
+  opacity: 1;
+}
 
+/* 10) DISCLAIMER */
+.hero-form__disclaimer {
+  grid-column: 1 / -1;
+  font-size: 0.875rem; color: #999;
+  margin-top: 0.75rem;
+}
+.hero-form__disclaimer a {
+  color: var(--btn-bg); text-decoration: underline;
+  transition: color .2s ease;
+}
+.hero-form__disclaimer a:hover {
+  color: var(--btn-hover);
+}
 
-      <!-- 3.3) EMAIL + SERVICE TYPE -->
-      <div class="hero-form__row">
-        <div class="input-group">
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            placeholder=" "
-          />
-          <label for="email">Email Address</label>
-        </div>
-        <div class="input-group">
-          <select id="service" name="service" required>
-            <option value="" disabled selected hidden></option>
-            <option>Shingles</option>
-            <option>Tile</option>
-            <option>Flat Roofing</option>
-            <option>Gutters</option>
-            <option>Repairs</option>
-            <option>Other</option>
-          </select>
-          <label for="service">Service Type</label>
-        </div>
-      </div>
+/* ==== FORM STYLES END HERE ==== */
 
-
-      <!-- 3.4) STREET ADDRESS -->
-      <div class="hero-form__row">
-        <div class="input-group full-width">
-          <input
-            type="text"
-            id="street"
-            name="street"
-            required
-            placeholder=" "
-          />
-          <label for="street">Street Address</label>
-        </div>
-      </div>
-
-
-      <!-- 3.5) CITY + ZIP CODE -->
-      <div class="hero-form__row">
-        <div class="input-group">
-          <input
-            type="text"
-            id="city"
-            name="city"
-            required
-            placeholder=" "
-          />
-          <label for="city">City</label>
-        </div>
-        <div class="input-group">
-          <input
-            type="text"
-            id="zip"
-            name="zip"
-            required
-            placeholder=" "
-          />
-          <label for="zip">ZIP Code</label>
-        </div>
-      </div>
-
-
-      <!-- 3.6) PREFERRED DATE -->
-      <div class="hero-form__row">
-        <div class="input-group date-group">
-          <input
-            type="date"
-            id="date"
-            name="date"
-            placeholder=" "
-          />
-          <label for="date">Preferred Date</label>
-        </div>
-      </div>
-
-
-      <!-- 3.7) BRIEF PROJECT DETAILS -->
-      <div class="input-group full-width">
-        <textarea
-          id="details"
-          name="details"
-          rows="3"
-          placeholder=" "
-        ></textarea>
-        <label for="details">Brief Project Details</label>
-      </div>
-
-
-      <!-- 3.8) PHOTO UPLOAD (OPTIONAL) + REFERRAL SOURCE -->
-      <div class="hero-form__row">
-        <div class="input-group">
-          <input
-            type="file"
-            id="photos"
-            name="photos"
-            multiple
-          />
-          <label for="photos">
-            Upload Photos <span class="optional">(optional)</span>
-          </label>
-        </div>
-        <div class="input-group">
-          <select id="referral" name="referral">
-            <option value="" disabled selected hidden></option>
-            <option>Google</option>
-            <option>Referral</option>
-            <option>Social Media</option>
-            <option>Other</option>
-          </select>
-          <label for="referral">How did you hear about us?</label>
-        </div>
-      </div>
-
-
-      <!-- 3.9) REMINDER + SUBMIT BUTTON -->
-      <!-- Both in one row to prevent overlap & wasted space -->
-      <div class="hero-form__row hero-form__actions">
-        <!-- Reminder checkbox -->
-        <div class="input-group reminder-group">
-          <label>
-            <input
-              type="checkbox"
-              id="reminder"
-              name="reminder"
-            />
-            Schedule free inspection reminder?
-          </label>
-        </div>
-        <!-- Submit button -->
-        <button type="submit" class="hero-form__button">
-          Request Free Estimate
-        </button>
-      </div>
-
-
-      <!-- 3.10) LEGAL DISCLAIMER -->
-      <!-- Always visible below the actions row -->
-      <p class="hero-form__disclaimer">
-        *Free estimates are not available for real estate transactions. If you’re a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our
-        <a href="/real-estate">Real Estate Services</a>.
-      </p>
-
-    </form>
-    <!-- /END FORM -->
-
-  </div>
-  <!-- /END CARD -->
-
-</section>
-<!-- /END HERO SECTION -->
+/* 11) MOBILE TWEAKS */
+@media (max-width: 768px) {
+  /* let form flow naturally on phones */
+  .hero {
+    height: auto;
+    padding-bottom: 2rem;
+  }
+  .hero__card {
+    padding: 2rem 1rem;
+    transform: none;
+    top: 0;
+  }
+  /* stack fields full-width */
+  .hero-form {
+    grid-template-columns: 1fr;
+  }
+  /* bigger, easier to tap inputs */
+  .input-group input,
+  .input-group textarea,
+  .input-group select {
+    padding: 1rem;
+    font-size: 1.125rem;
+  }
+  .hero-form__button {
+    padding: 1.25rem 0;
+    font-size: 1.25rem;
+  }
+  .hero__title {
+    font-size: 2rem;
+  }
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+}
