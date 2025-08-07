@@ -326,17 +326,110 @@
   </ul>
 </nav>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ===== META & SEO ===== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenith Roofing Services – San Diego & Temecula Roof Experts</title>
+  <meta name="description" content="Expert residential & commercial roofing in North County San Diego & Temecula." />
 
+  <!-- ===== GLOBAL CSS ===== -->
+  <link rel="stylesheet" href="css/base.css" />
 
+  <!-- ===== HEADER CSS ===== -->
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/header-mobile.css" />
 
-  <!-- ===== HERO SECTION (VIDEO BELOW NAV) ===== -->
+  <!-- ===== HERO CSS ===== -->
+  <link rel="stylesheet" href="css/hero.css" />
+
+  <!-- ===== RESPONSIVE CSS ===== -->
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER & NAVIGATION (ON TOP) ===== -->
+  <header class="header">
+    <!-- … your existing header/nav code unchanged … -->
+  </header>
+
+  <!-- ===== HERO SECTION (VIDEO + FREE ESTIMATE FORM) ===== -->
   <section class="hero">
+    <!-- 1) Video background container -->
     <div class="video-container">
-      <video class="background-video" autoplay muted loop playsinline>
+      <video
+        class="background-video"
+        autoplay
+        muted
+        loop
+        playsinline
+      >
         <source src="roofing-bg.mp4" type="video/mp4" />
+        <!-- Fallback text if video not supported -->
         Your browser doesn’t support video.
       </video>
+      <!-- Overlay to darken/lighten the video for text readability -->
       <div class="video-overlay"></div>
+    </div>
+
+    <!-- 2) Hero content wrapper -->
+    <div class="hero__content container">
+      <!-- 2a) Main headline -->
+      <h1 class="hero__title">
+        Ready for a New Roof?
+      </h1>
+      <!-- 2b) Sub-headline -->
+      <p class="hero__subtitle">
+        Get your free estimate in 30 seconds.
+      </p>
+
+      <!-- 3) Free Estimate Form -->
+      <form id="free-estimate" class="estimate-form" novalidate>
+        <!-- Name field -->
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="e.g. John Doe"
+          />
+        </div>
+
+        <!-- Email field -->
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="e.g. john@domain.com"
+          />
+        </div>
+
+        <!-- Address field -->
+        <div class="form-group">
+          <label for="address">Property Address</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            placeholder="e.g. 123 Main St, City"
+          />
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn--primary">
+          Get My Free Estimate
+        </button>
+
+        <!-- Inline status message (success/error) -->
+        <p class="form-status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 
