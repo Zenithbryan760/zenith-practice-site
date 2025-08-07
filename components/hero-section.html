@@ -3,106 +3,63 @@
      Hero Video + Lead Capture Form
      Beginner-friendly labels throughout
      ==================================================== -->
+<!-- components/hero-section.html -->
 <section class="hero" id="top">
 
-  <!-- === 1) VIDEO BACKGROUND + TINT === -->
-  <!-- Purpose: Shows looping video behind the white card -->
+  <!-- 1) VIDEO BACKGROUND + TINT -->
   <div class="video-container">
-    <video
-      class="background-video"
-      autoplay
-      muted
-      loop
-      playsinline
-      src="roofing-bg.mp4"
-      type="video/mp4"
-    >
+    <video class="background-video" autoplay muted loop playsinline
+           src="roofing-bg.mp4" type="video/mp4">
       Your browser doesn’t support video.
     </video>
   </div>
-  <!-- Semi-transparent navy overlay to darken the video for contrast -->
   <div class="video-overlay"></div>
 
-  <!-- === 2) HERO CONTENT CARD === -->
-  <!-- Purpose: White “card” over video that holds heading + form -->
+  <!-- 2) HERO CONTENT CARD -->
   <div class="hero__card container">
-
-    <!-- 2a) MAIN HEADING (SEO-FRIENDLY) -->
-    <!-- Updated order: Escondido, San Diego County & Temecula -->
     <h1 class="hero__title">
       Dependable Roofing in Escondido, San Diego County &amp; Temecula
     </h1>
-
-    <!-- 2b) SUBTITLE -->
     <p class="hero__subtitle">
       Shingle • Tile • Flat Roofing • Repairs • Gutters
     </p>
 
-    <!-- === 3) ESTIMATE FORM START === -->
-    <!-- Purpose: Collect visitor info and send to Netlify -->
-    <form
-      name="estimate"
-      method="POST"
-      data-netlify="true"
-      class="hero-form"
-      novalidate
-    >
-      <!-- Hidden field Netlify needs -->
+    <!-- 3) ESTIMATE FORM -->
+    <form name="estimate" method="POST" data-netlify="true"
+          class="hero-form" novalidate>
       <input type="hidden" name="form-name" value="estimate" />
+      <!-- HONEYPOT to block bots -->
+      <input type="text" name="faxNumber" style="display:none" autocomplete="off" />
 
-      <!-- 3a) FIRST + LAST NAME ROW -->
-      <!-- Two inputs side-by-side: First Name & Last Name -->
+      <!-- 3a) First + Last Name -->
       <div class="hero-form__row">
         <div class="input-group">
-          <input
-            type="text"
-            id="first-name"
-            name="first-name"
-            required
-            placeholder=" "
-          />
+          <input type="text" id="first-name" name="first-name"
+                 required placeholder=" " />
           <label for="first-name">First Name</label>
         </div>
         <div class="input-group">
-          <input
-            type="text"
-            id="last-name"
-            name="last-name"
-            required
-            placeholder=" "
-          />
+          <input type="text" id="last-name" name="last-name"
+                 required placeholder=" " />
           <label for="last-name">Last Name</label>
         </div>
       </div>
 
-      <!-- 3b) PHONE ROW -->
-      <!-- Single input row for phone number -->
+      <!-- 3b) Phone -->
       <div class="hero-form__row">
         <div class="input-group phone-group">
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            maxlength="14"
-            pattern="\(\d{3}\) \d{3}-\d{4}"
-            required
-            placeholder=" "
-          />
+          <input type="tel" id="phone" name="phone" maxlength="14"
+                 pattern="\(\d{3}\) \d{3}-\d{4}"
+                 required placeholder=" " />
           <label for="phone">Phone Number</label>
         </div>
       </div>
 
-      <!-- 3c) EMAIL + SERVICE ROW -->
-      <!-- Side-by-side: Email address and service dropdown -->
+      <!-- 3c) Email + Service -->
       <div class="hero-form__row">
         <div class="input-group">
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            placeholder=" "
-          />
+          <input type="email" id="email" name="email"
+                 required placeholder=" " />
           <label for="email">Email Address</label>
         </div>
         <div class="input-group">
@@ -119,82 +76,44 @@
         </div>
       </div>
 
-      <!-- 3d) STREET ADDRESS ROW -->
-      <!-- Full-width street address -->
+      <!-- 3d) Address Fields -->
       <div class="hero-form__row">
         <div class="input-group full-width">
-          <input
-            type="text"
-            id="street"
-            name="street"
-            required
-            placeholder=" "
-          />
+          <input type="text" id="street" name="street"
+                 required placeholder=" " />
           <label for="street">Street Address</label>
         </div>
       </div>
-
-      <!-- 3e) CITY + ZIP ROW -->
-      <!-- Side-by-side: City and ZIP code -->
       <div class="hero-form__row">
         <div class="input-group">
-          <input
-            type="text"
-            id="city"
-            name="city"
-            required
-            placeholder=" "
-          />
+          <input type="text" id="city" name="city"
+                 required placeholder=" " />
           <label for="city">City</label>
         </div>
         <div class="input-group">
-          <input
-            type="text"
-            id="zip"
-            name="zip"
-            required
-            placeholder=" "
-          />
+          <input type="text" id="zip" name="zip"
+                 required placeholder=" " />
           <label for="zip">ZIP Code</label>
         </div>
       </div>
 
-      <!-- 3f) PREFERRED DATE ROW -->
-      <!-- Full-width date picker -->
+      <!-- 3e) Date & Details -->
       <div class="hero-form__row">
         <div class="input-group date-group">
-          <input
-            type="date"
-            id="date"
-            name="date"
-            placeholder=" "
-          />
+          <input type="date" id="date" name="date" placeholder=" " />
           <label for="date">Preferred Date</label>
         </div>
       </div>
-
-      <!-- 3g) PROJECT DETAILS -->
-      <!-- Full-width textarea for project description -->
       <div class="input-group full-width">
-        <textarea
-          id="details"
-          name="details"
-          rows="3"
-          placeholder=" "
-        ></textarea>
+        <textarea id="details" name="details" rows="3"
+                  placeholder=" "></textarea>
         <label for="details">Brief Project Details</label>
       </div>
 
-      <!-- 3h) PHOTOS + REFERRAL ROW -->
-      <!-- Side-by-side: file upload and “How did you hear” -->
+      <!-- 3f) Photos + Referral -->
       <div class="hero-form__row">
         <div class="input-group">
-          <input
-            type="file"
-            id="photos"
-            name="photos"
-            multiple
-          />
+          <input type="file" id="photos" name="photos" multiple />
           <label for="photos">
             Upload Photos <span class="optional">(optional)</span>
           </label>
@@ -211,22 +130,14 @@
         </div>
       </div>
 
-      <!-- ==== NEW: REMINDER + SUBMIT ROW ==== -->
-      <!-- Group the checkbox + button in one row to avoid overlap -->
+      <!-- 3g) Reminder + Submit -->
       <div class="hero-form__row hero-form__actions">
-        <!-- 1) Reminder checkbox -->
         <div class="input-group reminder-group">
           <label>
-            <input
-              type="checkbox"
-              id="reminder"
-              name="reminder"
-            />
+            <input type="checkbox" id="reminder" name="reminder" />
             Schedule free inspection reminder?
           </label>
         </div>
-
-        <!-- 2) Submit button -->
         <button type="submit" class="hero-form__button">
           Request Free Estimate
         </button>
