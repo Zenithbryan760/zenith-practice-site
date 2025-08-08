@@ -123,14 +123,16 @@
         <!-- [RECAPTCHA] Bot Protection -->
         <div data-netlify-recaptcha="true"></div>
 
-        <!-- [5] Actions -->
-        <div class="zenith-actions">
-          <div class="zenith-checkbox">
-            <input type="checkbox" id="reminder" name="reminder">
-            <label for="reminder">Schedule free inspection reminder?</label>
-          </div>
-          <button type="submit" class="zenith-submit">Request Free Estimate</button>
-        </div>
+<!-- [5] Actions (Replaced reminder with reCAPTCHA) -->
+<div class="zenith-actions">
+  <!-- Brand-styled robot check -->
+  <div class="zenith-recaptcha">
+    <span class="recaptcha-title">Verify you’re human</span>
+    <div data-netlify-recaptcha="true"></div>
+  </div>
+
+  <button type="submit" class="zenith-submit">Request Free Estimate</button>
+</div>
 
         <!-- [6] Disclaimer + Phone -->
         <div class="zenith-disclaimer">
