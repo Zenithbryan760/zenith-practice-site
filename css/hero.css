@@ -459,3 +459,21 @@ html { scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px
   .zenith-input-group select,
   .zenith-input-group textarea { min-height: 48px; }
 }
+/* === Center "Verify you’re human" above captcha & remove border === */
+.zenith-recaptcha {
+  flex-direction: column !important;   /* Stack title over captcha */
+  align-items: center !important;      /* Center horizontally */
+  justify-content: center !important;
+  gap: 0.5rem;
+  border: none !important;             /* Remove frame */
+  background: none !important;         /* Remove background */
+  box-shadow: none !important;         /* Remove drop shadow */
+  padding: 0 !important;                /* No padding */
+}
+
+.zenith-recaptcha .recaptcha-title {
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--zenith-navy);
+}
