@@ -1,349 +1,317 @@
-/* ===========================================================
-   ZENITH ROOFING — HERO SECTION (Scoped Styles)
-   Only affects elements within .hero container
-   =========================================================== */
+/* =============================================
+   ZENITH ROOFING FORM STYLES
+   ============================================= */
 
-/* -----------------------------------------------------------
-   0) SCOPED THEME VARIABLES
-   ----------------------------------------------------------- */
-.hero {
+/* Base Variables */
+:root {
   --zenith-navy: #072e59;
   --zenith-orange: #f7941d;
-  --zenith-orange-700: #d77a18;
-  --hero-overlay: rgba(7,46,89,0.40);
-  --shadow-sm: 0 4px 12px rgba(0,0,0,0.08);
-  --shadow-md: 0 16px 48px rgba(0,0,0,0.20);
-  --radius: 16px;
-  --radius-sm: 8px;
-  --transition: 0.25s ease;
+  --zenith-orange-dark: #d77a18;
+  --zenith-white: #ffffff;
+  --zenith-light-gray: #f5f7fb;
+  --zenith-border: #e0e3e7;
+  --zenith-text: #333333;
+  --zenith-text-light: #6b6b6b;
+  --zenith-radius: 8px;
+  --zenith-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  --zenith-transition: all 0.25s ease;
 }
 
-/* -----------------------------------------------------------
-   1) HERO CONTAINER (scoped to .hero only)
-   ----------------------------------------------------------- */
-.hero {
+/* Hero Container */
+.zenith-hero {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 1.5rem;
-  overflow: hidden;
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 
-               'Segoe UI', Roboto, Arial, sans-serif;
+  justify-content: center;
+  padding: 2rem;
+  background-color: var(--zenith-light-gray);
 }
 
-/* Video background */
-.hero .video-container {
+/* Video Background */
+.zenith-video-container {
   position: absolute;
-  inset: 0;
-  z-index: -2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
 }
 
-.hero .background-video {
+.zenith-background-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
-/* Overlay */
-.hero .video-overlay {
+.zenith-video-overlay {
   position: absolute;
-  inset: 0;
-  background: var(--hero-overlay);
-  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(7, 46, 89, 0.6);
+  z-index: 2;
 }
 
-/* -----------------------------------------------------------
-   2) CARD STYLES (scoped)
-   ----------------------------------------------------------- */
-.hero .hero__card {
+/* Content Card */
+.zenith-card {
+  position: relative;
+  z-index: 3;
   width: 100%;
   max-width: 900px;
-  margin: 0 auto;
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: saturate(120%) blur(2px);
-  border: 1px solid rgba(255,255,255,0.35);
-  box-shadow: var(--shadow-md);
-  border-radius: var(--radius);
+  background: var(--zenith-white);
+  border-radius: var(--zenith-radius);
+  box-shadow: var(--zenith-shadow);
   padding: 2.5rem;
-  color: var(--zenith-navy);
+  margin: 0 auto;
+}
+
+/* Header */
+.zenith-header {
   text-align: center;
+  margin-bottom: 2rem;
 }
 
-/* Typography */
-.hero .hero__title {
+.zenith-title {
+  color: var(--zenith-navy);
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: .2px;
-  line-height: 1.2;
-  color: var(--zenith-navy);
-  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
-  margin: 0 0 .35rem 0;
+  margin-bottom: 0.5rem;
 }
 
-.hero .hero__subtitle {
+.zenith-subtitle {
   color: var(--zenith-navy);
-  opacity: .85;
-  font-weight: 600;
-  letter-spacing: .6px;
-  font-size: clamp(1rem,1.4vw,1.125rem);
-  margin: 0 0 2rem 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
-/* -----------------------------------------------------------
-   3) FORM STYLES (scoped)
-   ----------------------------------------------------------- */
-.hero .hero-form {
+/* Form Grid */
+.zenith-form-grid {
   display: grid;
-  gap: 1.25rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
 
-.hero .hero-form__row { 
-  display: contents; 
-}
-
-.hero .input-group.full-width { 
-  grid-column: 1 / -1; 
-}
-
-/* Input fields */
-.hero .input-group {
+/* Input Groups */
+.zenith-input-group {
   position: relative;
+  margin-bottom: 0.5rem;
 }
 
-.hero .input-group input,
-.hero .input-group select,
-.hero .input-group textarea {
+.zenith-input-group.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Input Fields */
+.zenith-input-group input,
+.zenith-input-group select,
+.zenith-input-group textarea {
   width: 100%;
-  padding: 1rem 0.95rem;
-  border: 1px solid #e7e7e7;
-  border-radius: var(--radius-sm);
-  background: #ffffff;
-  color: #333333;
-  font-size: 1rem;
-  line-height: 1.25;
-  transition: border-color var(--transition), 
-              box-shadow var(--transition);
-  min-height: 44px;
+  padding: 1rem;
+  border: 1px solid var(--zenith-border);
+  border-radius: var(--zenith-radius);
+  background: var(--zenith-white);
+  font-size: 0.95rem;
+  transition: var(--zenith-transition);
 }
 
-/* Floating labels */
-.hero .input-group label {
+.zenith-input-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Floating Labels */
+.zenith-input-group label {
   position: absolute;
-  top: 50%;
-  left: 0.85rem;
-  transform: translateY(-50%);
-  padding: 0 .35rem;
-  background: #ffffff;
-  color: #666;
-  font-size: .9rem;
+  top: 1rem;
+  left: 1rem;
+  color: var(--zenith-text-light);
+  background: var(--zenith-white);
+  padding: 0 0.5rem;
+  font-size: 0.95rem;
+  transition: var(--zenith-transition);
   pointer-events: none;
-  transition: transform var(--transition), 
-              color var(--transition), 
-              font-size var(--transition), 
-              top var(--transition);
 }
 
-/* Focus states */
-.hero .input-group input:focus + label,
-.hero .input-group input:not(:placeholder-shown) + label,
-.hero .input-group select:focus + label,
-.hero .input-group select:not(:placeholder-shown) + label,
-.hero .input-group textarea:focus + label,
-.hero .input-group textarea:not(:placeholder-shown) + label {
-  top: 0;
-  transform: translateY(-50%) translateY(-.65rem);
-  font-size: .74rem;
+.zenith-input-group input:focus + label,
+.zenith-input-group input:not(:placeholder-shown) + label,
+.zenith-input-group select:focus + label,
+.zenith-input-group select:not(:placeholder-shown) + label,
+.zenith-input-group textarea:focus + label,
+.zenith-input-group textarea:not(:placeholder-shown) + label {
+  top: -0.5rem;
+  left: 0.8rem;
+  font-size: 0.75rem;
   color: var(--zenith-orange);
 }
 
-.hero .input-group input:focus,
-.hero .input-group select:focus,
-.hero .input-group textarea:focus {
+/* Focus States */
+.zenith-input-group input:focus,
+.zenith-input-group select:focus,
+.zenith-input-group textarea:focus {
   outline: none;
   border-color: var(--zenith-orange);
-  box-shadow: 0 0 0 3px rgba(247,148,29,0.18);
+  box-shadow: 0 0 0 3px rgba(247, 148, 29, 0.2);
 }
 
-/* Select dropdown */
-.hero .input-group select {
+/* Select Dropdown */
+.zenith-input-group select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23072e59' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23072e59' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right .85rem center;
+  background-position: right 1rem center;
   background-size: 1rem;
-  padding-right: 2.25rem;
 }
 
-/* File input */
-.hero .input-group input[type="file"] {
-  padding: .85rem;
+/* File Input */
+.zenith-input-group input[type="file"] {
+  padding: 0.8rem;
 }
 
-.hero .input-group input[type="file"]::file-selector-button {
+.zenith-input-group input[type="file"]::file-selector-button {
   border: none;
   background: var(--zenith-navy);
-  color: #fff;
-  padding: .55rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-right: .8rem;
-  transition: transform var(--transition), 
-              opacity var(--transition);
-  font-weight: 600;
+  color: var(--zenith-white);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin-right: 1rem;
+  transition: var(--zenith-transition);
 }
 
-.hero .input-group input[type="file"]::file-selector-button:hover {
-  transform: translateY(-1px);
-  opacity: .95;
+.zenith-input-group input[type="file"]::file-selector-button:hover {
+  background: var(--zenith-orange);
 }
 
-/* Textarea */
-.hero .input-group textarea { 
-  min-height: 96px; 
+.zenith-optional {
+  color: var(--zenith-text-light);
+  font-size: 0.8rem;
 }
 
-.hero .input-group .optional { 
-  color: #888; 
-  font-weight: 500; 
+/* Form Actions */
+.zenith-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
-/* -----------------------------------------------------------
-   4) FORM ACTIONS (scoped)
-   ----------------------------------------------------------- */
-.hero .hero-form__actions { 
-  display: contents; 
+.zenith-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.hero .reminder-group {
-  display: flex; 
-  align-items: center; 
-  gap: .6rem;
-  color: #333333;
-}
-
-.hero .reminder-group input[type="checkbox"] {
-  width: 1.1rem; 
+.zenith-checkbox input[type="checkbox"] {
+  width: 1.1rem;
   height: 1.1rem;
   accent-color: var(--zenith-orange);
-  cursor: pointer;
 }
 
-/* Button */
-.hero .hero-form__button {
+.zenith-checkbox label {
+  color: var(--zenith-text);
+  font-size: 0.9rem;
+  position: static;
+  background: none;
+  padding: 0;
+}
+
+/* Submit Button */
+.zenith-submit {
+  background: linear-gradient(to right, var(--zenith-orange), var(--zenith-orange-dark));
+  color: var(--zenith-white);
   border: none;
-  border-radius: var(--radius-sm);
-  padding: 1.05rem 1rem;
-  color: #fff;
-  cursor: pointer;
-  font-weight: 800;
-  letter-spacing: .4px;
+  padding: 1rem;
+  border-radius: var(--zenith-radius);
+  font-size: 1rem;
+  font-weight: 600;
   text-transform: uppercase;
-  background: linear-gradient(135deg, var(--zenith-orange), var(--zenith-orange-700));
-  box-shadow: 0 8px 20px rgba(247,148,29,.28);
-  transition: transform var(--transition), 
-              opacity var(--transition), 
-              box-shadow var(--transition);
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: var(--zenith-transition);
+  box-shadow: 0 4px 8px rgba(247, 148, 29, 0.3);
 }
 
-.hero .hero-form__button:hover {
+.zenith-submit:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(247,148,29,.34);
+  box-shadow: 0 6px 12px rgba(247, 148, 29, 0.4);
 }
 
-.hero .hero-form__button:active {
-  transform: translateY(0);
-}
-
-/* -----------------------------------------------------------
-   5) DISCLAIMER (scoped)
-   ----------------------------------------------------------- */
-.hero .hero-form__disclaimer {
+/* Disclaimer */
+.zenith-disclaimer {
   grid-column: 1 / -1;
-  margin-top: 1rem;
-  color: #6b6b6b;
-  font-size: .85rem;
-  line-height: 1.45;
-  text-align: left;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color: var(--zenith-text-light);
+  line-height: 1.5;
 }
 
-.hero .hero-form__disclaimer a {
+.zenith-disclaimer a {
   color: var(--zenith-orange);
+  text-decoration: none;
+}
+
+.zenith-disclaimer a:hover {
   text-decoration: underline;
 }
 
-/* -----------------------------------------------------------
-   6) RESPONSIVE ADJUSTMENTS
-   ----------------------------------------------------------- */
-/* Desktop (2 columns) */
+.zenith-contact {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.zenith-phone {
+  font-size: 1.1rem;
+  color: var(--zenith-navy);
+  font-weight: 600;
+}
+
+.zenith-phone strong {
+  color: var(--zenith-orange);
+}
+
+/* Honeypot */
+.zenith-honeypot {
+  position: absolute;
+  left: -9999px;
+}
+
+/* Responsive Adjustments */
 @media (min-width: 768px) {
-  .hero .hero-form {
+  .zenith-form-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 1rem 1.25rem;
+    gap: 1.5rem 1rem;
   }
   
-  .hero .hero-form__actions .reminder-group { 
-    grid-column: 1 / 2; 
-    align-self: center; 
-    justify-self: start; 
+  .zenith-actions {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
   
-  .hero .hero-form__actions .hero-form__button { 
-    grid-column: 2 / 3; 
-    align-self: center; 
-    justify-self: stretch; 
-  }
-  
-  /* Viewport fit guard */
-  .hero .hero__card {
-    max-height: calc(100vh - 80px);
-    overflow: auto;
+  .zenith-submit {
+    width: auto;
+    min-width: 250px;
   }
 }
 
-/* Mobile (1 column) */
-@media (max-width: 767.98px) {
-  .hero { 
-    padding: 1rem; 
-    min-height: auto; 
-  }
-  
-  .hero .hero__card { 
-    padding: 1.75rem; 
-  }
-  
-  .hero .hero-form { 
-    grid-template-columns: 1fr; 
-    gap: .9rem; 
-  }
-  
-  .hero .hero-form__button { 
-    width: 100%; 
-  }
-  
-  .hero .reminder-group { 
-    justify-content: flex-start; 
-  }
-}
-
-/* Small phones */
 @media (max-width: 480px) {
-  .hero .hero__card { 
-    border-radius: 12px; 
-    padding: 1.5rem; 
+  .zenith-hero {
+    padding: 1rem;
   }
   
-  .hero .hero__title { 
-    font-size: 1.6rem; 
+  .zenith-card {
+    padding: 1.5rem;
   }
   
-  .hero .hero__subtitle { 
-    font-size: .95rem; 
+  .zenith-title {
+    font-size: 1.6rem;
   }
   
-  .hero .input-group input,
-  .hero .input-group select,
-  .hero .input-group textarea { 
-    padding: .9rem .85rem; 
+  .zenith-subtitle {
+    font-size: 0.95rem;
   }
 }
