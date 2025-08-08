@@ -128,19 +128,18 @@
           </select>
         </div>
 
-        <!-- [5] ACTIONS (Google reCAPTCHA + submit) -->
-        <div class="zenith-actions">
-          <div class="zenith-recaptcha">
-            <span class="recaptcha-title">Verify you’re human</span>
-            <!-- ▼▼ Google reCAPTCHA v2 (site key provided by you) ▼▼ -->
-<div class="g-recaptcha" data-sitekey="6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI"></div>
+ <!-- [5] ACTIONS (Google reCAPTCHA + submit) -->
+      <div class="zenith-actions">
+        <div class="zenith-recaptcha">
+          <span class="recaptcha-title">Verify you’re human</span>
 
-<!-- TEMP: load reCAPTCHA right here to prove it works -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-            <!-- ▲▲ replaces Netlify <div data-netlify-recaptcha="true"></div> ▲▲ -->
-          </div>
-          <button type="submit" class="zenith-submit">Request Free Estimate</button>
+          <!-- [5.1] CAPTCHA CONTAINER (explicit render target) -->
+          <div id="estimate-recaptcha" class="g-recaptcha"></div>
+          <!-- NOTE: do NOT include data-netlify-recaptcha here; we’re using Google v2 explicitly -->
         </div>
+
+        <button type="submit" class="zenith-submit">Request Free Estimate</button>
+      </div>
 
         <!-- [6] DISCLAIMER + PHONE -->
         <div class="zenith-disclaimer">
