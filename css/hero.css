@@ -1,250 +1,489 @@
-/* =========================================================
+=========================================================
    HERO SECTION STYLES — Zenith Roofing
-========================================================= */
+   File: css/hero.css
+   Purpose: Video hero, luxury header, estimate form
+   ========================================================= */
 
-/* [1] HERO CONTAINER */
+/* ---------------------------------------------------------
+   [0] BRAND VARIABLES (edit these to change theme)
+   --------------------------------------------------------- */
+:root {
+  --zenith-navy: #072e59;
+  --zenith-orange: #f7941d;
+  --zenith-orange-dark: #d77a18;
+  --zenith-white: #ffffff;
+
+  --zenith-light-gray: #f5f7fb;
+  --zenith-border: #e0e3e7;
+  --zenith-text: #333333;
+  --zenith-text-light: #6b6b6b;
+
+  --zenith-radius: 6px;
+  --zenith-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  --zenith-transition: all 0.2s ease;
+
+  /* [10.0] Sticky header height used by iPhone fixes (tweak if needed) */
+  --nav-height: 76px;
+}
+
+/* Optional utility (for screen-readers only text) */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+/* ---------------------------------------------
+   [1] HERO WRAPPER + VIDEO BACKGROUND OVERLAY
+   --------------------------------------------- */
 .zenith-hero {
   position: relative;
+  min-height: 90vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 60px 20px;
-  min-height: 100vh;
-  background-color: var(--off-white);
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: var(--zenith-light-gray);
 }
-
-/* [1.1] VIDEO BACKGROUND */
 .zenith-video-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 0;
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1; overflow: hidden;
 }
-
-.zenith-background-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
+.zenith-background-video { width: 100%; height: 100%; object-fit: cover; }
 .zenith-video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(7, 46, 89, 0.6); /* navy overlay */
-  z-index: 1;
-}
-
-/* [2] WHITE CARD */
-.zenith-card {
-  position: relative;
+  position: absolute; inset: 0;
+  background-color: rgba(7, 46, 89, 0.6); /* Navy tint for readability */
   z-index: 2;
-  background: #fff;
-  border-radius: 12px;
-  padding: 30px;
-  max-width: 800px;
-  width: 100%;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* [2.5] LUXURY HEADER */
+/* -------------------------------
+   [2] WHITE CARD (content shell)
+   ------------------------------- */
+.zenith-card {
+  position: relative; z-index: 3;
+  width: 100%; max-width: 900px;
+  background: var(--zenith-white);
+  border-radius: var(--zenith-radius);
+  box-shadow: var(--zenith-shadow);
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+/* ================================================
+   [2.5] LUXURY FORM HEADER (No Badges)
+   ================================================= */
+.zenith-luxury-card {
+  background: var(--zenith-white);
+  border-radius: var(--zenith-radius);
+  box-shadow: var(--zenith-shadow);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+/* Header row */
 .zenith-luxury-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem; text-align: center; flex-wrap: wrap;
 }
-
+/* Logo frame (navy disc + subtle ring + halo) */
 .zenith-logo-frame {
-  flex-shrink: 0;
-  margin-right: 12px;
+  position: relative; flex-shrink: 0;
+  width: 96px; height: 96px; border-radius: 50%;
+  background: var(--zenith-navy);
+  display: grid; place-items: center;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.22);
+  isolation: isolate;
 }
-
+.zenith-logo-frame::before {
+  content: ""; position: absolute; inset: -8px; border-radius: 50%;
+  background:
+    radial-gradient(closest-side, rgba(255,255,255,0) 78%, rgba(255,255,255,0) 79%),
+    conic-gradient(var(--zenith-orange), #ffb25a, var(--zenith-orange));
+  mask: radial-gradient(closest-side, transparent 78%, black 79%);
+  opacity: 0.9;
+}
+.zenith-logo-frame::after {
+  content: ""; position: absolute; inset: -18px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(247,148,29,0.18), transparent 70%);
+  filter: blur(6px); z-index: -1;
+}
+/* Logo image */
 .zenith-luxury-logo {
-  height: 60px;
-  width: auto;
+  width: 64px; height: 64px; object-fit: contain;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.55));
 }
-
-.zenith-luxury-titles {
-  display: flex;
-  flex-direction: column;
-}
-
+/* Titles */
+.zenith-luxury-titles { display: flex; flex-direction: column; align-items: center; }
 .zenith-luxury-subtitle {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--zenith-navy);
+  font-size: 1.25rem; font-weight: 800; color: var(--zenith-navy);
+  margin: 0 0 0.15rem 0;
 }
-
 .zenith-luxury-locations {
-  font-size: 0.95rem;
-  color: var(--zenith-text-light);
+  font-size: 0.92rem; color: var(--zenith-text-light);
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem;
 }
+.luxury-divider { color: var(--zenith-orange); }
 
-.luxury-divider {
-  margin: 0 6px;
+/* ---------------------------------------------
+   [3] (legacy header styles kept for compatibility)
+   --------------------------------------------- */
+.zenith-header {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.75rem; text-align: center; margin-bottom: 1.5rem;
 }
+.zenith-logo-badge { display: none; } /* not used now */
+.zenith-logo { width: 84px; height: 84px; object-fit: contain; }
+.zenith-title   { color: var(--zenith-navy); font-size: 1.8rem; font-weight: 700; line-height: 1.2; margin: 0; }
+.zenith-subtitle{ color: var(--zenith-navy); font-size: 1rem;  font-weight: 500; letter-spacing: 0.5px; opacity: 0.9; margin: 0; }
 
-/* =========================================================
-   [3] FREE ESTIMATE - TEXT ONLY (Updated)
-========================================================= */
-.estimate-banner {
-  padding: 0;
-  margin: 0 0 12px;
-  border: none;
-  background: transparent;
-  box-shadow: none;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-
-.estimate-title {
-  margin: 0 0 4px;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--zenith-navy);
-}
-
-.estimate-subtitle {
-  margin: 0;
-  font-size: 0.95rem;
-  color: var(--zenith-text-light);
-}
-
-/* [4] FORM STYLES */
-.zenith-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.zenith-form-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-}
-
-.zenith-input-group {
-  position: relative;
-}
+/* ---------------------------------------------
+   [4] FORM GRID + INPUTS
+   --------------------------------------------- */
+.zenith-form-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+.zenith-input-group { position: relative; margin-bottom: 0.25rem; }
+.zenith-input-group.full-width { grid-column: 1 / -1; }
 
 .zenith-input-group input,
 .zenith-input-group select,
 .zenith-input-group textarea {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: #fff;
-  font-size: 0.95rem;
+  padding: 0.85rem;
+  border: 1px solid var(--zenith-border);
+  border-radius: var(--zenith-radius);
+  background: var(--zenith-white);
+  font-size: 0.9rem;
+  transition: var(--zenith-transition);
 }
 
+/* Floating labels for input/textarea only */
 .zenith-input-group label {
-  position: absolute;
-  top: -8px;
-  left: 12px;
-  background: #fff;
-  padding: 0 4px;
-  font-size: 0.8rem;
-  color: var(--zenith-navy);
+  position: absolute; top: 0.85rem; left: 0.85rem;
+  color: var(--zenith-text-light); background: var(--zenith-white);
+  padding: 0 0.5rem; font-size: 0.85rem; transition: var(--zenith-transition);
+  pointer-events: none;
+}
+.zenith-input-group textarea { min-height: 90px; resize: vertical; }
+.zenith-input-group input:focus + label,
+.zenith-input-group input:not(:placeholder-shown) + label,
+.zenith-input-group textarea:focus + label,
+.zenith-input-group textarea:not(:placeholder-shown) + label {
+  top: -0.4rem; left: 0.7rem; font-size: 0.7rem; color: var(--zenith-orange);
 }
 
-.full-width {
-  grid-column: 1 / -1;
+/* Static labels for selects & file input */
+.select-group label,
+.file-group   label {
+  position: static !important; display: block; margin-bottom: 0.35rem;
+  padding: 0; color: var(--zenith-text); font-size: 0.85rem; font-weight: 600;
+  pointer-events: auto;
 }
-
-.file-group input {
-  border: none;
-}
-
-.select-group select {
+.zenith-input-group select {
   appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23072e59' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 1rem center; background-size: 1rem;
 }
 
-/* [5] ACTIONS */
+/* [4.5] FILE UPLOAD — balanced button & text (no duplicates) */
+.file-group input[type="file"] {
+  display: flex; align-items: center; width: 100%;
+  padding: 0.8rem; border: 1px solid var(--zenith-border);
+  border-radius: var(--zenith-radius); background: var(--zenith-white);
+  font-size: 0.9rem; line-height: 1.4; cursor: pointer;
+}
+.file-group input[type="file"]::file-selector-button {
+  border: none; background: var(--zenith-navy); color: var(--zenith-white);
+  padding: 0.6rem 1rem; border-radius: 4px; margin-right: 1rem;
+  transition: var(--zenith-transition); font-weight: 600; font-size: 0.85rem; cursor: pointer;
+}
+.file-group input[type="file"]::file-selector-button:hover { background: var(--zenith-orange); }
+
+/* Focus ring */
+.zenith-input-group input:focus,
+.zenith-input-group select:focus,
+.zenith-input-group textarea:focus {
+  outline: none; border-color: var(--zenith-orange);
+  box-shadow: 0 0 0 3px rgba(247, 148, 29, 0.2);
+}
+
+/* -----------------------------------------
+   [5] ACTIONS (submit button + reCAPTCHA container)
+   ----------------------------------------- */
 .zenith-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
+  grid-column: 1 / -1;
+  display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.75rem;
 }
+.zenith-submit {
+  background: linear-gradient(to right, var(--zenith-orange), var(--zenith-orange-dark));
+  color: var(--zenith-white); border: none; padding: 0.9rem;
+  border-radius: var(--zenith-radius); font-size: 0.95rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer;
+  transition: var(--zenith-transition);
+  box-shadow: 0 4px 8px rgba(247, 148, 29, 0.3);
+}
+.zenith-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(247, 148, 29, 0.4); }
 
+/* ---------------------------------------------------------
+   [5.1] reCAPTCHA (Google v2) — centered & responsive
+   --------------------------------------------------------- */
 .zenith-recaptcha {
-  flex: 1 1 200px;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;        /* stack label above widget */
+  align-items: center;           /* center on all screens */
+  gap: 0.5rem;
+  margin: 1rem 0;                /* balanced space */
 }
 
 .recaptcha-title {
-  font-size: 0.9rem;
-  margin-bottom: 6px;
-  display: block;
-}
-
-.zenith-submit {
-  background: var(--zenith-orange);
-  color: #fff;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.zenith-submit:hover {
-  background: #e65c00;
-}
-
-/* [6] DISCLAIMER */
-.zenith-disclaimer {
-  font-size: 0.85rem;
-  color: var(--zenith-text-light);
-  margin-top: 16px;
-}
-
-.zenith-disclaimer a {
-  color: var(--zenith-orange);
-  text-decoration: underline;
-}
-
-.zenith-contact {
-  margin-top: 8px;
-}
-
-.zenith-phone {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--zenith-navy);
+  text-align: center;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .zenith-card {
-    padding: 20px;
+/* Default scale for the Google box */
+.g-recaptcha {
+  transform: scale(0.96);
+  transform-origin: center;
+}
+
+/* Phone: shrink slightly so it doesn't feel cramped */
+@media (max-width: 480px) {
+  .g-recaptcha {
+    transform: scale(0.88);
+    transform-origin: center;
+  }
+}
+
+/* ----------------------------
+   [6] DISCLAIMER + CONTACT
+   ---------------------------- */
+.zenith-disclaimer {
+  grid-column: 1 / -1;
+  margin-top: 1.5rem; font-size: 0.75rem; color: var(--zenith-text-light); line-height: 1.5;
+}
+.zenith-disclaimer a { color: var(--zenith-orange); text-decoration: none; }
+.zenith-disclaimer a:hover { text-decoration: underline; }
+.zenith-contact { margin-top: 1rem; text-align: center; }
+.zenith-phone { font-size: 1rem; color: var(--zenith-navy); font-weight: 600; }
+.zenith-phone strong { color: var(--zenith-orange); }
+
+/* ----------------------------
+   [7] RESPONSIVE ADJUSTMENTS
+   ---------------------------- */
+@media (min-width: 768px) {
+  .zenith-form-grid { grid-template-columns: 1fr 1fr; gap: 1rem 0.75rem; }
+  .zenith-actions { flex-direction: row; justify-content: space-between; align-items: center; }
+  .zenith-submit { width: auto; min-width: 220px; }
+}
+@media (max-width: 520px) {
+  .zenith-hero { padding: 1rem; min-height: auto; }
+  .zenith-card { padding: 1.1rem; }
+  .zenith-logo-frame { display: none; } /* hide big round logo on small phones */
+  .zenith-luxury-header { flex-direction: column; align-items: center; text-align: center; }
+  .zenith-title { font-size: 1.5rem; }
+  .zenith-subtitle { font-size: 0.95rem; }
+  .zenith-input-group input,
+  .zenith-input-group select,
+  .zenith-input-group textarea { padding: 0.8rem; }
+  .zenith-recaptcha { justify-content: center; flex-direction: column; align-items: center; gap: 0.35rem; }
+  .recaptcha-title { font-size: 0.88rem; }
+}
+
+/* =========================================================
+   [8] MOBILE FORM & HEADER ADJUSTMENTS (extra comfy)
+   ========================================================= */
+@media (max-width: 520px) {
+  /* add padding so sticky header doesn't cover the hero on iPhone */
+  .zenith-hero { padding-top: calc(1rem + env(safe-area-inset-top, 0px)); }
+  .zenith-card { margin-top: 0.35rem; padding: 1rem 1rem 1.2rem; }
+  .zenith-luxury-subtitle {
+    font-size: clamp(1rem, 3.8vw + 0.45rem, 1.18rem);
+    line-height: 1.28; margin-bottom: 0.15rem; padding: 0 0.25rem;
+  }
+  .zenith-luxury-locations { font-size: 0.9rem; gap: 0.35rem; opacity: 0.9; }
+  .zenith-input-group input,
+  .zenith-input-group select,
+  .zenith-input-group textarea { min-height: 46px; }
+  .zenith-input-group select { padding-right: 2.25rem; background-position: right 0.75rem center; }
+}
+
+/* =========================================================
+   [9] EXTRA SMALL SCREENS — ensure logo frame stays hidden
+   ========================================================= */
+@media (max-width: 420px) { .zenith-logo-frame { display: none !important; } }
+
+/* =========================================================
+   [10] iPHONE/STICKY-HEADER FIXES
+   ========================================================= */
+@media (max-width: 820px) {
+  .zenith-hero {
+    padding-top: calc(1.5rem + var(--nav-height) + env(safe-area-inset-top, 0px));
+  }
+  .zenith-card { margin-top: 0.25rem; }
+}
+html { scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px)); }
+#roofing-estimate { scroll-margin-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px)); }
+@supports (height: 100dvh) { .zenith-hero { min-height: 90dvh; } }
+
+/* =========================================================
+   [11] DESKTOP FIELD SIZE & SPACING (comfy)
+   ========================================================= */
+@media (min-width: 768px) {
+  .zenith-form-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem 1rem; }
+  .zenith-input-group input,
+  .zenith-input-group select,
+  .zenith-input-group textarea { min-height: 48px; }
+}
+/* =========================================================
+   [12] ACTION ROW POLISH — reCAPTCHA + Button
+   Goal: Clean alignment, consistent spacing, good mobile flow
+   ========================================================= */
+
+/* Desktop/tablet: put captcha and button on one line */
+.zenith-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;  /* captcha area grows, button stays snug */
+  align-items: center;              /* vertically centers both */
+  gap: 1rem;                        /* space between captcha and button */
+  margin-top: 1rem;                 /* a touch more breathing room above */
+}
+
+/* Keep the "Verify you’re human" text and box nicely aligned */
+.zenith-recaptcha {
+  display: flex;
+  align-items: center;              /* align title with captcha baseline */
+  gap: 0.75rem;
+  min-height: 78px;                 /* approx. default recaptcha height */
+}
+
+/* Make the title the same line height as inputs for rhythm */
+.recaptcha-title {
+  font-size: 0.95rem;
+  line-height: 1.2;
+  color: var(--zenith-navy);
+  font-weight: 700;
+  white-space: nowrap;
+  margin: 0;                        /* kill any stray margins */
+}
+
+/* Keep the captcha a hair smaller so it doesn’t overpower the button */
+.zenith-recaptcha .g-recaptcha {
+  transform: scale(0.96);
+  transform-origin: left center;
+}
+
+/* Button: a bit taller and balanced against the captcha height */
+.zenith-submit {
+  height: 48px;                     /* fixed height for visual balance */
+  padding: 0 1.25rem;               /* horizontal padding only */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* ---------- Mobile stacking & centering ---------- */
+@media (max-width: 640px) {
+  .zenith-actions {
+    grid-template-columns: 1fr;     /* stack vertically on small screens */
+    gap: 0.85rem;
   }
 
-  .zenith-luxury-header {
-    flex-direction: column;
-    align-items: center;
+  .zenith-recaptcha {
+    flex-direction: column;         /* title above captcha */
+    align-items: center;            /* centered */
+    justify-content: center;
+    min-height: 0;                  /* let it shrink on mobile */
     text-align: center;
   }
 
-  .zenith-logo-frame {
-    margin-right: 0;
-    margin-bottom: 8px;
+  .recaptcha-title {
+    white-space: normal;            /* allow wrapping on small screens */
+    font-size: 0.92rem;
   }
 
-  .zenith-actions {
-    flex-direction: column;
-    align-items: stretch;
+  .zenith-recaptcha .g-recaptcha {
+    transform: scale(0.94);         /* a tiny bit smaller on narrow screens */
+    transform-origin: center top;
   }
 
   .zenith-submit {
-    width: 100%;
+    width: 100%;                    /* full-width CTA on mobile */
+    height: 50px;
   }
+}
+
+/* Slightly denser layout on very wide screens so it feels tight, not floaty */
+@media (min-width: 1200px) {
+  .zenith-actions {
+    gap: 1.25rem;
+  }
+}
+/* =========================================================
+   [NEW] Free Estimate banner (scoped)
+   ========================================================= */
+.estimate-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  margin: 0 0 20px;                /* align with inputs (no side margin) */
+  border-radius: 8px;              /* match input radius */
+  border: 1px solid rgba(7,46,89,0.12);
+  background: #fff;                /* match card background */
+  box-shadow: 0 2px 6px rgba(7,46,89,0.06);
+}
+.estimate-icon {
+  flex: 0 0 auto;
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: grid; place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--zenith-orange), var(--zenith-navy));
+  box-shadow: 0 6px 14px rgba(7,46,89,0.18);
+}
+.estimate-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--zenith-navy);
+  letter-spacing: 0.2px;
+}
+.estimate-subtitle {
+  margin: 2px 0 0;
+  font-size: 0.95rem;
+  color: var(--zenith-text);
+}
+@media (max-width: 480px) {
+  .estimate-banner { padding: 12px 14px; gap: 10px; }
+  .estimate-icon   { width: 36px; height: 36px; border-radius: 9px; }
+  .estimate-title  { font-size: 1rem; }
+  .estimate-subtitle { font-size: 0.9rem; }
+}
+
+/* =========================================================
+   [TOUCH-UP] ReCAPTCHA wrapper branding ONLY (no layout change)
+   (Place AFTER your existing .zenith-recaptcha rules)
+   ========================================================= */
+.zenith-recaptcha {
+  padding: 8px 10px;                               /* subtle frame */
+  border: 1px solid rgba(7,46,89,0.12);
+  border-radius: 8px;
+  background: linear-gradient(0deg, rgba(255,255,255,0.7), rgba(255,255,255,0.7));
+  box-shadow: 0 2px 6px rgba(7,46,89,0.06);
+}
+.recaptcha-title { color: var(--zenith-navy); font-weight: 700; }
+/* Center align the Free Estimate banner */
+.estimate-banner {
+  justify-content: center; /* centers icon + text horizontally */
+  text-align: center;       /* centers text inside the text container */
+}
+
+.estimate-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* keeps title & subtitle centered under each other */
 }
