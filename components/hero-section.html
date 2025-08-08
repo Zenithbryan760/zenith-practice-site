@@ -23,50 +23,61 @@
   <!-- [2] CONTENT CARD -->
   <div class="zenith-card">
 
-    <!-- [2.5] LUXURY FORM HEADER + LOCATIONS + BADGES -->
-    <div class="zenith-luxury-card">
-      <!-- Brand Header -->
-      <div class="zenith-luxury-header">
-        <div class="zenith-logo-frame">
-          <!-- CORRECT PATH TO LOGO -->
-          <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-luxury-logo">
-        </div>
-        <div class="zenith-luxury-titles">
-          <h2 class="zenith-luxury-subtitle">Premium Roofing Solutions</h2>
-          <div class="zenith-luxury-locations">
-            <span>Escondido</span>
-            <span class="luxury-divider">•</span>
-            <span>San Diego</span>
-            <span class="luxury-divider">•</span>
-            <span>Temecula</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Service Badges -->
-      <div class="zenith-luxury-services">
-        <div class="luxury-service-badge">
-          <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
-          <span>Shingle</span>
-        </div>
-        <div class="luxury-service-badge">
-          <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
-          <span>Tile</span>
-        </div>
-        <div class="luxury-service-badge">
-          <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
-          <span>Flat Roofs</span>
-        </div>
-        <div class="luxury-service-badge">
-          <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
-          <span>Torch</span>
-        </div>
-        <div class="luxury-service-badge">
-          <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
-          <span>Gutters</span>
-        </div>
+  <!-- [2.5] LUXURY FORM HEADER + LOCATIONS + BADGES -->
+<div class="zenith-luxury-card">
+  <!-- Brand Header (centered, logo framed so white letters show) -->
+  <div class="zenith-luxury-header">
+    <div class="zenith-logo-frame">
+      <!-- Correct path to logo -->
+      <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-luxury-logo">
+    </div>
+    <div class="zenith-luxury-titles">
+      <!-- SEO-safe headline (no 'Premium') -->
+      <h2 class="zenith-luxury-subtitle">
+        Roofing Contractor in Escondido, San Diego &amp; Temecula
+      </h2>
+      <div class="zenith-luxury-locations">
+        <span>Escondido</span>
+        <span class="luxury-divider">•</span>
+        <span>San Diego</span>
+        <span class="luxury-divider">•</span>
+        <span>Temecula</span>
       </div>
     </div>
+  </div>
+
+  <!-- Service Badges (animated, non-interactive) -->
+  <div class="zenith-luxury-services" aria-hidden="true">
+    <div class="luxury-service-badge">
+      <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
+      <span>Shingle</span>
+    </div>
+    <div class="luxury-service-badge">
+      <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
+      <span>Tile</span>
+    </div>
+    <div class="luxury-service-badge">
+      <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
+      <span>Flat Roofs</span>
+    </div>
+    <div class="luxury-service-badge">
+      <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
+      <span>Torch</span>
+    </div>
+    <div class="luxury-service-badge">
+      <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
+      <span>TPO</span>
+    </div>
+    <div class="luxury-service-badge">
+      <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
+      <span>Roof Repairs</span>
+    </div>
+    <div class="luxury-service-badge">
+      <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
+      <span>Gutters</span>
+    </div>
+  </div>
+</div>
 
     <!-- [4] ESTIMATE FORM -->
     <form class="zenith-form" name="estimate" method="POST" data-netlify="true" novalidate>
