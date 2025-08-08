@@ -1,180 +1,126 @@
-/* ===========================================================
-   ZENITH ROOFING — HERO (Video + Lead Form)
-   Brand colors: Navy #072e59, Orange #f7941d
-   Desktop: two columns | Mobile: one column
-   =========================================================== */
+<!-- Hero Section -->
+<section class="zenith-hero" id="roofing-estimate">
+  <!-- Video Background -->
+  <div class="zenith-video-container">
+    <video class="zenith-background-video" autoplay muted loop playsinline poster="roofing-poster.jpg">
+      <source src="roofing-bg.mp4" type="video/mp4">
+      Your browser doesn't support HTML5 video.
+    </video>
+  </div>
+  <div class="zenith-video-overlay"></div>
 
-/* 0) THEME */
-:root{
-  --zenith-navy:#072e59;
-  --zenith-orange:#f7941d;
-  --zenith-orange-700:#d77a18;
-  --white:#fff;
-  --bg:#f5f7fb;
-  --border:#e0e3e7;
-  --text:#333;
-  --muted:#6b6b6b;
-  --radius:10px;
-  --radius-sm:8px;
-  --shadow:0 16px 48px rgba(0,0,0,.18);
-  --transition:.25s ease;
-}
+  <!-- Content Card -->
+  <div class="zenith-card">
+    <!-- Logo and Header -->
+    <div class="zenith-header">
+      <img src="logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-logo">
+      <div>
+        <h1 class="zenith-title">ZENITH</h1>
+        <p class="zenith-subtitle">Roofing Services</p>
+      </div>
+    </div>
 
-/* 1) PAGE BASE */
-.zenith-hero{
-  position:relative;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:1.5rem;
-  background:var(--bg);
-  overflow:hidden;
-  font-family:'Poppins', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif;
-}
+    <!-- Estimate Form -->
+    <form class="zenith-form" name="estimate" method="POST" data-netlify="true" novalidate>
+      <!-- Honeypot Field -->
+      <div class="zenith-honeypot">
+        <label>Don't fill this out if you're human: <input name="faxNumber" autocomplete="off"></label>
+      </div>
 
-/* 2) VIDEO LAYER */
-.zenith-video-container{ position:absolute; inset:0; z-index:1; overflow:hidden; }
-.zenith-background-video{ width:100%; height:100%; object-fit:cover; }
-.zenith-video-overlay{ position:absolute; inset:0; background:rgba(7,46,89,.45); z-index:2; }
+      <!-- Form Grid -->
+      <div class="zenith-form-grid">
+        <!-- Name -->
+        <div class="zenith-input-group">
+          <input type="text" id="first-name" name="first-name" required placeholder=" ">
+          <label for="first-name">First Name</label>
+        </div>
+        <div class="zenith-input-group">
+          <input type="text" id="last-name" name="last-name" required placeholder=" ">
+          <label for="last-name">Last Name</label>
+        </div>
 
-/* 3) WHITE CARD */
-.zenith-card{
-  position:relative; z-index:3;
-  width:100%; max-width:900px;
-  background:rgba(255,255,255,.97);
-  border:1px solid rgba(255,255,255,.55);
-  backdrop-filter:saturate(120%) blur(2px);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:2.25rem;
-  color:var(--zenith-navy);
-}
+        <!-- Contact -->
+        <div class="zenith-input-group">
+          <input type="tel" id="phone" name="phone" required placeholder=" " pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+          <label for="phone">Phone Number (123-456-7890)</label>
+        </div>
+        <div class="zenith-input-group">
+          <input type="email" id="email" name="email" required placeholder=" ">
+          <label for="email">Email Address</label>
+        </div>
 
-/* 4) BRAND HEADER */
-.zenith-header{ display:flex; align-items:center; gap:.9rem; margin-bottom:1.5rem; }
-.zenith-logo{ width:48px; height:48px; object-fit:contain; }
-.zenith-title{ margin:0; font-weight:800; letter-spacing:.2px; color:var(--zenith-navy); font-size:clamp(1.6rem, 2.4vw, 2rem); line-height:1.2; }
-.zenith-subtitle{ margin:0; color:var(--zenith-navy); opacity:.9; font-weight:600; font-size:clamp(.95rem,1.2vw,1.05rem); }
+        <!-- Service -->
+        <div class="zenith-input-group">
+          <select id="service" name="service" required>
+            <option value="" disabled selected hidden>Select Service</option>
+            <option value="Shingles">Shingles</option>
+            <option value="Tile">Tile</option>
+            <option value="Flat Roofing">Flat Roofing</option>
+            <option value="Gutters">Gutters</option>
+            <option value="Repairs">Repairs</option>
+          </select>
+          <label for="service">Service Type</label>
+        </div>
+        <div class="zenith-input-group">
+          <input type="date" id="date" name="date" placeholder=" " min="">
+          <label for="date">Preferred Date</label>
+        </div>
 
-/* 5) FORM GRID */
-.zenith-form{ width:100%; }
-.zenith-form-grid{ display:grid; grid-template-columns:1fr; gap:1rem; }
-.zenith-input-group{ position:relative; }
-.zenith-input-group.full-width{ grid-column:1 / -1; }
+        <!-- Address -->
+        <div class="zenith-input-group full-width">
+          <input type="text" id="street" name="street" required placeholder=" ">
+          <label for="street">Street Address</label>
+        </div>
 
-/* 6) FIELDS + FLOATING LABELS */
-.zenith-input-group input,
-.zenith-input-group select,
-.zenith-input-group textarea{
-  width:100%;
-  padding:1rem .95rem;
-  border:1px solid var(--border);
-  border-radius:var(--radius-sm);
-  background:var(--white);
-  color:var(--text);
-  font-size:1rem; line-height:1.25;
-  transition:border-color var(--transition), box-shadow var(--transition);
-  min-height:44px;
-}
+        <!-- Location -->
+        <div class="zenith-input-group">
+          <input type="text" id="city" name="city" required placeholder=" ">
+          <label for="city">City</label>
+        </div>
+        <div class="zenith-input-group">
+          <input type="text" id="zip" name="zip" required placeholder=" " pattern="\d{5}(-\d{4})?">
+          <label for="zip">ZIP Code</label>
+        </div>
 
-/* Non-floating variation (file input) */
-.zenith-input-group.no-float .zenith-static-label{
-  display:block; margin:0 0 .4rem 0; color:var(--muted); font-size:.9rem; font-weight:500;
-}
-.zenith-input-group.no-float label{ position:static; }
+        <!-- Project Info -->
+        <div class="zenith-input-group full-width">
+          <textarea id="details" name="details" rows="3" placeholder=" "></textarea>
+          <label for="details">Brief Project Details</label>
+        </div>
 
-/* Floating labels */
-.zenith-input-group label{
-  position:absolute; top:50%; left:.85rem; transform:translateY(-50%);
-  background:var(--white); padding:0 .35rem;
-  color:#666; font-size:.9rem; pointer-events:none;
-  transition:transform var(--transition), color var(--transition), font-size var(--transition), top var(--transition);
-}
+        <!-- Additional Info -->
+        <div class="zenith-input-group">
+          <input type="file" id="photos" name="photos" accept="image/*" multiple>
+          <label for="photos">Upload Photos <span class="zenith-optional">(optional)</span></label>
+        </div>
+        <div class="zenith-input-group">
+          <select id="referral" name="referral">
+            <option value="" disabled selected hidden>Select Option</option>
+            <option value="Google">Google</option>
+            <option value="Referral">Referral</option>
+            <option value="Social Media">Social Media</option>
+            <option value="Other">Other</option>
+          </select>
+          <label for="referral">How did you hear about us?</label>
+        </div>
 
-/* Inputs / textarea: move when focused or has text */
-.zenith-input-group input:focus + label,
-.zenith-input-group input:not(:placeholder-shown) + label,
-.zenith-input-group textarea:focus + label,
-.zenith-input-group textarea:not(:placeholder-shown) + label{
-  top:0; transform:translateY(-50%) translateY(-.7rem);
-  font-size:.74rem; color:var(--zenith-orange);
-}
+        <!-- Form Footer -->
+        <div class="zenith-actions">
+          <div class="zenith-checkbox">
+            <input type="checkbox" id="reminder" name="reminder">
+            <label for="reminder">Schedule free inspection reminder?</label>
+          </div>
+          <button type="submit" class="zenith-submit">Request Free Estimate</button>
+        </div>
 
-/* Selects: move when focused or valid (value picked) */
-.zenith-input-group select:focus + label,
-.zenith-input-group select:valid + label,
-.zenith-input-group.has-value label{
-  top:0; transform:translateY(-50%) translateY(-.7rem);
-  font-size:.74rem; color:var(--zenith-orange);
-}
-
-/* Focus ring */
-.zenith-input-group input:focus,
-.zenith-input-group select:focus,
-.zenith-input-group textarea:focus{
-  outline:none;
-  border-color:var(--zenith-orange);
-  box-shadow:0 0 0 3px rgba(247,148,29,.18);
-}
-
-/* Better select arrow */
-.zenith-input-group select{
-  appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23072e59' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat:no-repeat; background-position:right .8rem center; background-size:1rem;
-  padding-right:2.2rem;
-}
-
-/* File input button */
-.zenith-input-group input[type="file"]{ padding:.9rem; }
-.zenith-input-group input[type="file"]::file-selector-button{
-  border:none; color:#fff; background:var(--zenith-navy);
-  padding:.55rem 1rem; border-radius:6px; cursor:pointer; margin-right:.85rem;
-  transition:opacity var(--transition), transform var(--transition);
-  font-weight:600;
-}
-.zenith-input-group input[type="file"]::file-selector-button:hover{
-  opacity:.95; transform:translateY(-1px);
-}
-.zenith-optional{ color:#888; }
-
-/* 7) ACTIONS (checkbox + submit) */
-.zenith-actions{ display:flex; flex-direction:column; gap:.9rem; margin-top:.25rem; grid-column:1 / -1; }
-.zenith-checkbox{ display:flex; align-items:center; gap:.6rem; color:var(--text); }
-.zenith-checkbox input{ width:1.1rem; height:1.1rem; accent-color:var(--zenith-orange); }
-
-/* Primary button */
-.zenith-submit{
-  border:none; border-radius:var(--radius-sm);
-  background:linear-gradient(135deg, var(--zenith-orange), var(--zenith-orange-700));
-  color:#fff; font-weight:800; letter-spacing:.4px; text-transform:uppercase;
-  padding:1rem 1.1rem; cursor:pointer;
-  box-shadow:0 10px 22px rgba(247,148,29,.28);
-  transition:transform var(--transition), box-shadow var(--transition), opacity var(--transition);
-}
-.zenith-submit:hover{ transform:translateY(-2px); box-shadow:0 14px 26px rgba(247,148,29,.34); }
-
-/* 8) DISCLAIMER */
-.zenith-disclaimer{ grid-column:1 / -1; font-size:.88rem; color:var(--muted); line-height:1.5; }
-.zenith-disclaimer a{ color:var(--zenith-orange); text-decoration:underline; }
-.zenith-phone{ margin-top:.75rem; color:var(--zenith-navy); font-weight:700; }
-.zenith-phone strong{ color:var(--zenith-orange); }
-
-/* 9) HONEYPOT (visually hidden) */
-.zenith-honeypot{ position:absolute; left:-9999px; }
-
-/* RESPONSIVE: desktop gets 2 columns; actions align side-by-side */
-@media (min-width:768px){
-  .zenith-form-grid{ grid-template-columns:1fr 1fr; gap:1rem 1.1rem; }
-  .zenith-actions{ flex-direction:row; justify-content:space-between; align-items:center; }
-  .zenith-submit{ min-width:220px; }
-}
-
-/* Small phones: tighten a bit */
-@media (max-width:480px){
-  .zenith-card{ padding:1.5rem; border-radius:12px; }
-  .zenith-title{ font-size:1.45rem; }
-  .zenith-subtitle{ font-size:.95rem; }
-  .zenith-logo{ width:40px; height:40px; }
-}
+        <!-- Legal -->
+        <div class="zenith-disclaimer">
+          <p>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="/real-estate">Real Estate Services</a>.</p>
+          <div class="zenith-contact">
+            <p class="zenith-phone">CALL NOW: <strong>555-809-8183</strong></p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
