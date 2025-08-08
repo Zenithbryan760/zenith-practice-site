@@ -1,14 +1,13 @@
 <!-- =========================================================
      [HERO SECTION] Zenith Roofing — Video + Centered Logo + Form
      File: components/hero-section.html
-     HOW IT’S ORGANIZED (numbers match css comments):
+     Sections (match css):
        [1] Background Video + Overlay
        [2] White Card
        [3] Header (Logo Badge + Title + Subtitle)
        [4] Form Grid + Inputs
        [5] Actions (Checkbox + Submit)
        [6] Disclaimer + Phone
-       [7] Responsive handled in CSS
 ========================================================= -->
 
 <section class="zenith-hero" id="roofing-estimate">
@@ -26,23 +25,20 @@
 
     <!-- [3] HEADER: LOGO + TITLES (centered) -->
     <div class="zenith-header">
-      <!-- 3A) Logo badge for contrast on video -->
+      <!-- 3A) Logo badge (hidden on very small screens via CSS) -->
       <div class="zenith-logo-badge">
-        <!-- UPDATE path if your file lives elsewhere -->
-        <img src="logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-logo">
+        <!-- CORRECTED PATH -->
+        <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-logo">
       </div>
 
-      <!-- 3C) Company name lines (kept as you wanted) -->
+      <!-- 3C) Company name lines (your preferred text) -->
       <h1 class="zenith-title">ZENITH</h1>
       <p class="zenith-subtitle">Roofing Services</p>
     </div>
 
     <!-- [4] ESTIMATE FORM -->
     <form class="zenith-form" name="estimate" method="POST" data-netlify="true" novalidate>
-      <!-- Netlify honeypot (spam trap) -->
-      <div class="zenith-honeypot">
-        <label>Don't fill this out if you're human: <input name="faxNumber" autocomplete="off"></label>
-      </div>
+      <!-- NOTE: Honeypot removed per your request -->
 
       <!-- [4] FORM GRID -->
       <div class="zenith-form-grid">
@@ -59,7 +55,7 @@
 
         <!-- 4.2) CONTACT -->
         <div class="zenith-input-group">
-          <!-- Pattern allows 1234567890, 123-456-7890, 123 456 7890, 123.456.7890 -->
+          <!-- Accepts 1234567890, 123-456-7890, 123 456 7890, 123.456.7890 -->
           <input
             type="tel"
             id="phone"
@@ -77,7 +73,7 @@
           <label for="email">Email Address</label>
         </div>
 
-        <!-- 4.3) SERVICE (static label so it displays properly) -->
+        <!-- 4.3) SERVICE (static label for reliable display) -->
         <div class="zenith-input-group select-group">
           <label for="service">Service Type</label>
           <select id="service" name="service" required>
