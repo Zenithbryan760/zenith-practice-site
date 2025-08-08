@@ -1,5 +1,5 @@
 /* ===========================================================
-   ZENITH ROOFING - PREMIUM EXPERIENCE
+   ZENITH ROOFING - ULTIMATE PREMIUM EXPERIENCE
    =========================================================== */
 
 :root {
@@ -8,13 +8,13 @@
   --zenith-gold: #d4af37;
   --zenith-white: #ffffff;
   --zenith-light: #f8f9fa;
-  --zenith-dark: #1a1a1a;
-  --zenith-gray: #e8e8e8;
-  --zenith-shadow: 0 24px 48px rgba(0,0,0,0.12);
+  --zenith-dark: #212121;
+  --zenith-gray: #e0e0e0;
+  --zenith-shadow: 0 12px 24px rgba(7,46,89,0.15);
   --zenith-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* 1) LUXURY HERO CONTAINER */
+/* 1. HERO CONTAINER */
 .zenith-hero-luxury {
   position: relative;
   min-height: 100vh;
@@ -23,11 +23,11 @@
   justify-content: center;
   padding: 1rem;
   overflow: hidden;
-  font-family: 'Montserrat', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: linear-gradient(135deg, rgba(7,46,89,0.1) 0%, rgba(247,148,29,0.05) 100%);
+  font-family: 'Montserrat', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--zenith-navy);
 }
 
-/* 2) VIDEO BACKGROUND */
+/* 2. VIDEO BACKGROUND - PERFECT TINT */
 .zenith-video-container {
   position: absolute;
   top: 0;
@@ -42,7 +42,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.7);
+  filter: brightness(0.5);
 }
 
 .zenith-video-overlay {
@@ -51,72 +51,53 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(7,46,89,0.6) 0%, rgba(7,46,89,0.4) 100%);
+  background: linear-gradient(135deg, rgba(7,46,89,0.9) 0%, rgba(7,46,89,0.7) 100%);
   z-index: 2;
 }
 
-/* 3) LUXURY CARD */
+/* 3. LUXURY CARD - OPTIMAL SPACING */
 .zenith-luxury-card {
   position: relative;
   z-index: 3;
   width: 100%;
   max-width: 1000px;
-  background: rgba(255,255,255,0.98);
-  border-radius: 16px;
+  background: rgba(255,255,255,0.97);
+  border-radius: 12px;
   box-shadow: var(--zenith-shadow);
-  padding: 2.5rem;
+  padding: 2rem;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255,255,255,0.2);
   backdrop-filter: blur(8px);
   margin: 1rem;
 }
 
-/* 4) PREMIUM LOGO HEADER */
+/* 4. HEADER - CRISP & CLEAN */
 .zenith-luxury-header {
   text-align: center;
-  margin-bottom: 2rem;
-  position: relative;
+  margin-bottom: 1.5rem;
 }
 
 .zenith-logo-frame {
   display: inline-flex;
-  padding: 1.25rem;
+  padding: 1rem;
   background: var(--zenith-navy);
   border-radius: 50%;
-  box-shadow: 0 12px 24px rgba(7,46,89,0.2);
-  margin-bottom: 1.25rem;
-  position: relative;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  margin-bottom: 1rem;
   border: 2px solid var(--zenith-gold);
   transition: var(--zenith-transition);
 }
 
 .zenith-logo-frame:hover {
   transform: scale(1.05);
-  box-shadow: 0 16px 32px rgba(7,46,89,0.3);
-}
-
-.zenith-logo-frame::after {
-  content: '';
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  border: 2px solid rgba(255,255,255,0.2);
-  border-radius: 50%;
-  pointer-events: none;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.3);
 }
 
 .zenith-luxury-logo {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
-  transition: var(--zenith-transition);
-}
-
-.zenith-luxury-titles {
-  margin-top: 1rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
 .zenith-luxury-subtitle {
@@ -124,47 +105,43 @@
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: 0.5px;
-  margin-bottom: 0.75rem;
-  text-transform: uppercase;
+  margin-bottom: 0.5rem;
 }
 
 .zenith-luxury-locations {
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
 .zenith-luxury-locations span {
   color: var(--zenith-navy);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 0.5px;
 }
 
 .luxury-divider {
   color: var(--zenith-orange);
   font-weight: bold;
-  margin: 0 0.25rem;
 }
 
-/* 5) LUXURY SERVICES BADGES */
+/* 5. SERVICES - SATISFYING INTERACTION */
 .zenith-luxury-services {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .luxury-service-badge {
   display: flex;
   align-items: center;
   background: rgba(247,148,29,0.1);
-  border: 1px solid rgba(247,148,29,0.3);
+  border: 1px solid rgba(247,148,29,0.2);
   border-radius: 50px;
-  padding: 0.6rem 1.1rem;
+  padding: 0.5rem 1rem;
   transition: var(--zenith-transition);
   cursor: pointer;
 }
@@ -172,7 +149,7 @@
 .luxury-service-badge:hover {
   background: rgba(247,148,29,0.2);
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(247,148,29,0.15);
+  box-shadow: 0 4px 8px rgba(247,148,29,0.1);
 }
 
 .luxury-service-badge:active {
@@ -180,30 +157,19 @@
 }
 
 .luxury-badge-icon {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   margin-right: 0.5rem;
   fill: var(--zenith-orange);
-  opacity: 0.8;
-  transition: var(--zenith-transition);
-}
-
-.luxury-service-badge:hover .luxury-badge-icon {
-  transform: rotate(10deg);
 }
 
 .luxury-service-badge span {
   color: var(--zenith-navy);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  transition: var(--zenith-transition);
 }
 
-.luxury-service-badge:hover span {
-  color: var(--zenith-orange);
-}
-
-/* 6) LUXURY FORM STYLES */
+/* 6. FORM - TIGHT & INTUITIVE */
 .zenith-luxury-form {
   width: 100%;
 }
@@ -211,58 +177,39 @@
 .zenith-form-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .zenith-input-group {
   position: relative;
 }
 
-.zenith-input-group.full-width {
-  grid-column: 1 / -1;
-}
-
-/* Luxury Input Fields */
-.luxury-input {
+.luxury-input, .luxury-select, .luxury-textarea {
   width: 100%;
-  padding: 1.1rem 0 0.5rem 0;
+  padding: 1rem 0 0.5rem 0;
   border: none;
   border-bottom: 1px solid var(--zenith-gray);
   background: transparent;
   color: var(--zenith-dark);
-  font-size: 1rem;
+  font-size: 0.95rem;
   transition: var(--zenith-transition);
 }
 
-.luxury-input:focus {
+.luxury-input:focus, .luxury-select:focus, .luxury-textarea:focus {
   outline: none;
   border-bottom-color: var(--zenith-orange);
 }
 
-.luxury-input-underline {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--zenith-orange);
-  transition: var(--zenith-transition);
-}
-
-.luxury-input:focus ~ .luxury-input-underline {
-  width: 100%;
-}
-
 .luxury-label {
   position: absolute;
-  top: 1.1rem;
+  top: 1rem;
   left: 0;
   color: var(--zenith-navy);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
   pointer-events: none;
   transition: var(--zenith-transition);
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .luxury-input:focus ~ .luxury-label,
@@ -273,198 +220,33 @@
   color: var(--zenith-orange);
 }
 
-/* Luxury Select */
-.luxury-select {
-  width: 100%;
-  padding: 1.1rem 0 0.5rem 0;
-  border: none;
-  border-bottom: 1px solid var(--zenith-gray);
-  background: transparent;
-  color: var(--zenith-dark);
-  font-size: 1rem;
-  appearance: none;
-  transition: var(--zenith-transition);
-  cursor: pointer;
-}
-
-.luxury-select:focus {
-  outline: none;
-  border-bottom-color: var(--zenith-orange);
-}
-
-.luxury-select-arrow {
-  position: absolute;
-  right: 0;
-  bottom: 0.5rem;
-  width: 12px;
-  height: 12px;
-  border-right: 2px solid var(--zenith-navy);
-  border-bottom: 2px solid var(--zenith-navy);
-  transform: rotate(45deg);
-  pointer-events: none;
-  transition: var(--zenith-transition);
-}
-
-.luxury-select:focus ~ .luxury-select-arrow {
-  border-color: var(--zenith-orange);
-}
-
-/* Luxury Textarea */
-.luxury-textarea {
-  width: 100%;
-  padding: 1.1rem 0 0.5rem 0;
-  border: none;
-  border-bottom: 1px solid var(--zenith-gray);
-  background: transparent;
-  color: var(--zenith-dark);
-  font-size: 1rem;
-  min-height: 100px;
-  resize: none;
-  transition: var(--zenith-transition);
-}
-
-.luxury-textarea:focus {
-  outline: none;
-  border-bottom-color: var(--zenith-orange);
-}
-
-/* Luxury File Input */
-.luxury-file-container {
-  position: relative;
-  padding-top: 1.5rem;
-}
-
-.luxury-file-input {
-  position: absolute;
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  z-index: -1;
-}
-
-.luxury-file-label {
-  display: flex;
-  align-items: center;
-  color: var(--zenith-navy);
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--zenith-transition);
-}
-
-.luxury-file-label:hover {
-  color: var(--zenith-orange);
-}
-
-.luxury-upload-icon {
-  width: 16px;
-  height: 16px;
-  margin-right: 0.5rem;
-  fill: var(--zenith-orange);
-  transition: var(--zenith-transition);
-}
-
-.luxury-file-label:hover .luxury-upload-icon {
-  transform: translateY(-2px);
-}
-
-.luxury-file-label em {
-  font-style: normal;
-  font-size: 0.8rem;
-  opacity: 0.7;
-  margin-left: 0.25rem;
-}
-
-/* Luxury Checkbox */
-.luxury-checkbox-container {
-  display: flex;
-  align-items: center;
-}
-
-.luxury-checkbox {
-  position: absolute;
-  opacity: 0;
-}
-
-.luxury-checkbox-label {
-  display: flex;
-  align-items: center;
-  color: var(--zenith-navy);
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: var(--zenith-transition);
-}
-
-.luxury-checkbox-label:hover {
-  color: var(--zenith-orange);
-}
-
-.luxury-checkbox-custom {
-  display: inline-flex;
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--zenith-gray);
-  border-radius: 4px;
-  margin-right: 0.75rem;
-  position: relative;
-  transition: var(--zenith-transition);
-}
-
-.luxury-checkbox:checked ~ .luxury-checkbox-custom {
-  background: var(--zenith-orange);
-  border-color: var(--zenith-orange);
-}
-
-.luxury-checkbox-custom::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 6px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: translate(-50%, -60%) rotate(45deg);
-  opacity: 0;
-  transition: var(--zenith-transition);
-}
-
-.luxury-checkbox:checked ~ .luxury-checkbox-custom::after {
-  opacity: 1;
-}
-
-/* Luxury Submit Button */
+/* 7. SUBMIT BUTTON - PREMIUM FEEL */
 .zenith-luxury-submit {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   border: none;
   background: linear-gradient(135deg, var(--zenith-orange), var(--zenith-gold));
   color: white;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.5px;
-  text-transform: uppercase;
-  padding: 1.1rem 2rem;
+  padding: 1rem 1.5rem;
   border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0 8px 16px rgba(247,148,29,0.3);
+  box-shadow: 0 8px 16px rgba(247,148,29,0.2);
   transition: var(--zenith-transition);
-  overflow: hidden;
-  position: relative;
+  width: 100%;
 }
 
 .zenith-luxury-submit:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 24px rgba(247,148,29,0.4);
-  background: linear-gradient(135deg, var(--zenith-gold), var(--zenith-orange));
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(247,148,29,0.3);
 }
 
 .zenith-luxury-submit:active {
   transform: translateY(0);
-  box-shadow: 0 4px 8px rgba(247,148,29,0.3);
 }
 
 .luxury-arrow-icon {
@@ -476,163 +258,40 @@
 }
 
 .zenith-luxury-submit:hover .luxury-arrow-icon {
-  transform: translateX(4px);
+  transform: translateX(3px);
 }
 
-/* Luxury Disclaimer */
-.zenith-luxury-disclaimer {
-  font-size: 0.8rem;
-  color: var(--zenith-navy);
-  opacity: 0.7;
-  line-height: 1.6;
-  margin-top: 1.5rem;
-}
-
-.luxury-link {
-  color: var(--zenith-orange);
-  text-decoration: none;
-  font-weight: 500;
-  transition: var(--zenith-transition);
-}
-
-.luxury-link:hover {
-  text-decoration: underline;
-  color: var(--zenith-gold);
-}
-
-.luxury-contact-info {
-  display: flex;
-  align-items: center;
-  margin-top: 1rem;
-  color: var(--zenith-navy);
-  font-weight: 600;
-  transition: var(--zenith-transition);
-}
-
-.luxury-contact-info:hover {
-  color: var(--zenith-orange);
-}
-
-.luxury-phone-icon {
-  width: 16px;
-  height: 16px;
-  margin-right: 0.5rem;
-  fill: var(--zenith-orange);
-  transition: var(--zenith-transition);
-}
-
-.luxury-contact-info:hover .luxury-phone-icon {
-  fill: var(--zenith-gold);
-}
-
-.luxury-phone-number {
-  letter-spacing: 0.5px;
-}
-
-/* Success Message */
-.zenith-success-message {
-  display: none;
-  text-align: center;
-  padding: 2rem;
-  color: var(--zenith-navy);
-}
-
-.zenith-success-message h3 {
-  color: var(--zenith-orange);
-  margin-bottom: 1rem;
-}
-
-.zenith-success-icon {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 1rem;
-  fill: var(--zenith-orange);
-  animation: bounce 0.6s;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-  40% {transform: translateY(-20px);}
-  60% {transform: translateY(-10px);}
-}
-
-/* 7) FORM ACTIONS */
-.zenith-luxury-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  margin-top: 1rem;
-  grid-column: 1 / -1;
-}
-
-/* 8) RESPONSIVE ADJUSTMENTS */
+/* 8. RESPONSIVE PERFECTION */
 @media (min-width: 768px) {
-  .zenith-form-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+  .zenith-luxury-card {
+    padding: 2.5rem;
   }
   
-  .zenith-luxury-actions {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 0.5rem;
+  .zenith-form-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
   }
   
   .zenith-luxury-submit {
-    min-width: 240px;
+    width: auto;
+    min-width: 220px;
   }
   
   .zenith-luxury-subtitle {
     font-size: 1.4rem;
   }
-  
-  .zenith-luxury-locations span {
-    font-size: 1.2rem;
-  }
-  
-  .zenith-luxury-card {
-    padding: 3rem;
-  }
 }
 
 @media (max-width: 480px) {
-  .zenith-logo-frame {
-    padding: 1rem;
-  }
-  
-  .zenith-luxury-logo {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .zenith-luxury-subtitle {
-    font-size: 1.1rem;
-  }
-  
   .zenith-luxury-locations {
     flex-direction: column;
-    gap: 0.25rem;
   }
   
   .luxury-divider {
     display: none;
   }
   
-  .luxury-service-badge {
-    padding: 0.5rem 0.9rem;
-  }
-  
-  .luxury-service-badge span {
-    font-size: 0.8rem;
-  }
-  
   .zenith-luxury-submit {
-    width: 100%;
-    padding: 1rem;
-  }
-  
-  .zenith-luxury-actions {
-    gap: 1rem;
+    padding: 0.9rem 1.25rem;
   }
 }
