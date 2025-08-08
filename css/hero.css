@@ -1,5 +1,5 @@
 /* ===========================================================
-   ZENITH ROOFING - LUXURY EXPERIENCE
+   ZENITH ROOFING - PREMIUM EXPERIENCE
    =========================================================== */
 
 :root {
@@ -11,7 +11,7 @@
   --zenith-dark: #1a1a1a;
   --zenith-gray: #e8e8e8;
   --zenith-shadow: 0 24px 48px rgba(0,0,0,0.12);
-  --zenith-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --zenith-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* 1) LUXURY HERO CONTAINER */
@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 1rem;
   overflow: hidden;
   font-family: 'Montserrat', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: linear-gradient(135deg, rgba(7,46,89,0.1) 0%, rgba(247,148,29,0.05) 100%);
@@ -64,28 +64,35 @@
   background: rgba(255,255,255,0.98);
   border-radius: 16px;
   box-shadow: var(--zenith-shadow);
-  padding: 3rem;
+  padding: 2.5rem;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.3);
   backdrop-filter: blur(8px);
+  margin: 1rem;
 }
 
 /* 4) PREMIUM LOGO HEADER */
 .zenith-luxury-header {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   position: relative;
 }
 
 .zenith-logo-frame {
   display: inline-flex;
-  padding: 1.5rem;
+  padding: 1.25rem;
   background: var(--zenith-navy);
   border-radius: 50%;
   box-shadow: 0 12px 24px rgba(7,46,89,0.2);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   position: relative;
   border: 2px solid var(--zenith-gold);
+  transition: var(--zenith-transition);
+}
+
+.zenith-logo-frame:hover {
+  transform: scale(1.05);
+  box-shadow: 0 16px 32px rgba(7,46,89,0.3);
 }
 
 .zenith-logo-frame::after {
@@ -101,10 +108,11 @@
 }
 
 .zenith-luxury-logo {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+  transition: var(--zenith-transition);
 }
 
 .zenith-luxury-titles {
@@ -114,7 +122,7 @@
 .zenith-luxury-subtitle {
   color: var(--zenith-navy);
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.5px;
   margin-bottom: 0.75rem;
   text-transform: uppercase;
@@ -146,8 +154,8 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2.5rem;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
 }
 
 .luxury-service-badge {
@@ -156,8 +164,9 @@
   background: rgba(247,148,29,0.1);
   border: 1px solid rgba(247,148,29,0.3);
   border-radius: 50px;
-  padding: 0.75rem 1.25rem;
+  padding: 0.6rem 1.1rem;
   transition: var(--zenith-transition);
+  cursor: pointer;
 }
 
 .luxury-service-badge:hover {
@@ -166,18 +175,32 @@
   box-shadow: 0 6px 12px rgba(247,148,29,0.15);
 }
 
+.luxury-service-badge:active {
+  transform: translateY(0);
+}
+
 .luxury-badge-icon {
   width: 16px;
   height: 16px;
   margin-right: 0.5rem;
   fill: var(--zenith-orange);
   opacity: 0.8;
+  transition: var(--zenith-transition);
+}
+
+.luxury-service-badge:hover .luxury-badge-icon {
+  transform: rotate(10deg);
 }
 
 .luxury-service-badge span {
   color: var(--zenith-navy);
   font-size: 0.9rem;
   font-weight: 600;
+  transition: var(--zenith-transition);
+}
+
+.luxury-service-badge:hover span {
+  color: var(--zenith-orange);
 }
 
 /* 6) LUXURY FORM STYLES */
@@ -188,7 +211,7 @@
 .zenith-form-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .zenith-input-group {
@@ -202,7 +225,7 @@
 /* Luxury Input Fields */
 .luxury-input {
   width: 100%;
-  padding: 1.25rem 0 0.5rem 0;
+  padding: 1.1rem 0 0.5rem 0;
   border: none;
   border-bottom: 1px solid var(--zenith-gray);
   background: transparent;
@@ -232,10 +255,10 @@
 
 .luxury-label {
   position: absolute;
-  top: 1.25rem;
+  top: 1.1rem;
   left: 0;
   color: var(--zenith-navy);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 500;
   pointer-events: none;
   transition: var(--zenith-transition);
@@ -245,7 +268,7 @@
 .luxury-input:focus ~ .luxury-label,
 .luxury-input:not(:placeholder-shown) ~ .luxury-label {
   top: 0;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   opacity: 1;
   color: var(--zenith-orange);
 }
@@ -253,7 +276,7 @@
 /* Luxury Select */
 .luxury-select {
   width: 100%;
-  padding: 1.25rem 0 0.5rem 0;
+  padding: 1.1rem 0 0.5rem 0;
   border: none;
   border-bottom: 1px solid var(--zenith-gray);
   background: transparent;
@@ -261,6 +284,7 @@
   font-size: 1rem;
   appearance: none;
   transition: var(--zenith-transition);
+  cursor: pointer;
 }
 
 .luxury-select:focus {
@@ -288,13 +312,13 @@
 /* Luxury Textarea */
 .luxury-textarea {
   width: 100%;
-  padding: 1.25rem 0 0.5rem 0;
+  padding: 1.1rem 0 0.5rem 0;
   border: none;
   border-bottom: 1px solid var(--zenith-gray);
   background: transparent;
   color: var(--zenith-dark);
   font-size: 1rem;
-  min-height: 120px;
+  min-height: 100px;
   resize: none;
   transition: var(--zenith-transition);
 }
@@ -307,7 +331,7 @@
 /* Luxury File Input */
 .luxury-file-container {
   position: relative;
-  padding-top: 1.75rem;
+  padding-top: 1.5rem;
 }
 
 .luxury-file-input {
@@ -323,7 +347,7 @@
   display: flex;
   align-items: center;
   color: var(--zenith-navy);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
   transition: var(--zenith-transition);
@@ -334,15 +358,20 @@
 }
 
 .luxury-upload-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   margin-right: 0.5rem;
   fill: var(--zenith-orange);
+  transition: var(--zenith-transition);
+}
+
+.luxury-file-label:hover .luxury-upload-icon {
+  transform: translateY(-2px);
 }
 
 .luxury-file-label em {
   font-style: normal;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   opacity: 0.7;
   margin-left: 0.25rem;
 }
@@ -362,8 +391,13 @@
   display: flex;
   align-items: center;
   color: var(--zenith-navy);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   cursor: pointer;
+  transition: var(--zenith-transition);
+}
+
+.luxury-checkbox-label:hover {
+  color: var(--zenith-orange);
 }
 
 .luxury-checkbox-custom {
@@ -413,10 +447,10 @@
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  padding: 1.25rem 2rem;
+  padding: 1.1rem 2rem;
   border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0 12px 24px rgba(247,148,29,0.3);
+  box-shadow: 0 8px 16px rgba(247,148,29,0.3);
   transition: var(--zenith-transition);
   overflow: hidden;
   position: relative;
@@ -424,16 +458,18 @@
 
 .zenith-luxury-submit:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 32px rgba(247,148,29,0.4);
+  box-shadow: 0 12px 24px rgba(247,148,29,0.4);
+  background: linear-gradient(135deg, var(--zenith-gold), var(--zenith-orange));
 }
 
 .zenith-luxury-submit:active {
-  transform: translateY(-1px);
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(247,148,29,0.3);
 }
 
 .luxury-arrow-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   stroke: white;
   stroke-width: 2;
   transition: var(--zenith-transition);
@@ -445,11 +481,11 @@
 
 /* Luxury Disclaimer */
 .zenith-luxury-disclaimer {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--zenith-navy);
   opacity: 0.7;
   line-height: 1.6;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .luxury-link {
@@ -461,32 +497,70 @@
 
 .luxury-link:hover {
   text-decoration: underline;
+  color: var(--zenith-gold);
 }
 
 .luxury-contact-info {
   display: flex;
   align-items: center;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   color: var(--zenith-navy);
   font-weight: 600;
+  transition: var(--zenith-transition);
+}
+
+.luxury-contact-info:hover {
+  color: var(--zenith-orange);
 }
 
 .luxury-phone-icon {
-  width: 18px;
-  height: 18px;
-  margin-right: 0.75rem;
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
   fill: var(--zenith-orange);
+  transition: var(--zenith-transition);
+}
+
+.luxury-contact-info:hover .luxury-phone-icon {
+  fill: var(--zenith-gold);
 }
 
 .luxury-phone-number {
   letter-spacing: 0.5px;
 }
 
-/* 7) LUXURY FORM ACTIONS */
+/* Success Message */
+.zenith-success-message {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+  color: var(--zenith-navy);
+}
+
+.zenith-success-message h3 {
+  color: var(--zenith-orange);
+  margin-bottom: 1rem;
+}
+
+.zenith-success-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+  fill: var(--zenith-orange);
+  animation: bounce 0.6s;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-20px);}
+  60% {transform: translateY(-10px);}
+}
+
+/* 7) FORM ACTIONS */
 .zenith-luxury-actions {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
   margin-top: 1rem;
   grid-column: 1 / -1;
 }
@@ -495,60 +569,70 @@
 @media (min-width: 768px) {
   .zenith-form-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem 2rem;
+    gap: 1.5rem;
   }
   
   .zenith-luxury-actions {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-top: 0.5rem;
   }
   
   .zenith-luxury-submit {
-    min-width: 280px;
+    min-width: 240px;
   }
   
   .zenith-luxury-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
   
   .zenith-luxury-locations span {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
+  }
+  
+  .zenith-luxury-card {
+    padding: 3rem;
   }
 }
 
 @media (max-width: 480px) {
-  .zenith-hero-luxury {
+  .zenith-logo-frame {
     padding: 1rem;
   }
   
-  .zenith-luxury-card {
-    padding: 2rem;
-    border-radius: 12px;
-  }
-  
-  .zenith-logo-frame {
-    padding: 1.25rem;
-  }
-  
   .zenith-luxury-logo {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
   }
   
   .zenith-luxury-subtitle {
     font-size: 1.1rem;
   }
   
-  .zenith-luxury-locations span {
-    font-size: 1rem;
+  .zenith-luxury-locations {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .luxury-divider {
+    display: none;
   }
   
   .luxury-service-badge {
-    padding: 0.6rem 1rem;
+    padding: 0.5rem 0.9rem;
   }
   
   .luxury-service-badge span {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+  }
+  
+  .zenith-luxury-submit {
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .zenith-luxury-actions {
+    gap: 1rem;
   }
 }
