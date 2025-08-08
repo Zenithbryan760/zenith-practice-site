@@ -476,3 +476,14 @@ html { scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px
   box-shadow: 0 2px 6px rgba(7,46,89,0.06);
 }
 .recaptcha-title { color: var(--zenith-navy); font-weight: 700; }
+/* Center align the Free Estimate banner */
+.estimate-banner {
+  justify-content: center; /* centers icon + text horizontally */
+  text-align: center;       /* centers text inside the text container */
+}
+
+.estimate-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* keeps title & subtitle centered under each other */
+}
