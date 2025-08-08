@@ -1,10 +1,10 @@
 <!-- =========================================================
-     [HERO SECTION] Zenith Roofing — Video + Centered Logo + Form
+     [HERO SECTION] Zenith Roofing — Video + Luxury Header + Form
      File: components/hero-section.html
-     Sections (match css):
+     Sections:
        [1] Background Video + Overlay
        [2] White Card
-       [3] Header (Logo Badge + Title + Subtitle)
+       [2.5] Luxury Header + Service Badges (NEW)
        [4] Form Grid + Inputs
        [5] Actions (Checkbox + Submit)
        [6] Disclaimer + Phone
@@ -23,53 +23,58 @@
   <!-- [2] CONTENT CARD -->
   <div class="zenith-card">
 
-  <!-- Premium Form Card -->
-  <div class="zenith-luxury-card">
-    <!-- Brand Header -->
-    <div class="zenith-luxury-header">
-      <div class="zenith-logo-frame">
-        <img src="/images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-luxury-logo">
+    <!-- [2.5] LUXURY FORM HEADER + LOCATIONS + BADGES -->
+    <div class="zenith-luxury-card">
+      <!-- Brand Header -->
+      <div class="zenith-luxury-header">
+        <div class="zenith-logo-frame">
+          <!-- CORRECT PATH TO LOGO -->
+          <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-luxury-logo">
+        </div>
+        <div class="zenith-luxury-titles">
+          <h2 class="zenith-luxury-subtitle">Premium Roofing Solutions</h2>
+          <div class="zenith-luxury-locations">
+            <span>Escondido</span>
+            <span class="luxury-divider">•</span>
+            <span>San Diego</span>
+            <span class="luxury-divider">•</span>
+            <span>Temecula</span>
+          </div>
+        </div>
       </div>
-      <div class="zenith-luxury-titles">
-        <h2 class="zenith-luxury-subtitle">Premium Roofing Solutions</h2>
-        <div class="zenith-luxury-locations">
-          <span>Escondido</span>
-          <span class="luxury-divider">•</span>
-          <span>San Diego</span>
-          <span class="luxury-divider">•</span>
-          <span>Temecula</span>
+
+      <!-- Service Badges -->
+      <div class="zenith-luxury-services">
+        <div class="luxury-service-badge">
+          <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
+          <span>Shingle</span>
+        </div>
+        <div class="luxury-service-badge">
+          <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
+          <span>Tile</span>
+        </div>
+        <div class="luxury-service-badge">
+          <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
+          <span>Flat Roofs</span>
+        </div>
+        <div class="luxury-service-badge">
+          <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
+          <span>Torch</span>
+        </div>
+        <div class="luxury-service-badge">
+          <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
+          <span>Gutters</span>
         </div>
       </div>
     </div>
 
-    <!-- Service Badges -->
-    <div class="zenith-luxury-services">
-      <div class="luxury-service-badge">
-        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
-        <span>Shingle</span>
-      </div>
-      <div class="luxury-service-badge">
-        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
-        <span>Tile</span>
-      </div>
-      <div class="luxury-service-badge">
-        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
-        <span>Flat Roofs</span>
-      </div>
-      <div class="luxury-service-badge">
-        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
-        <span>Torch</span>
-      </div>
-      <div class="luxury-service-badge">
-        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
-        <span>Gutters</span>
-      </div>
-    </div>
+    <!-- [4] ESTIMATE FORM -->
+    <form class="zenith-form" name="estimate" method="POST" data-netlify="true" novalidate>
+      <!-- Honeypot removed per your request -->
 
       <!-- [4] FORM GRID -->
       <div class="zenith-form-grid">
-
-        <!-- 4.1) NAME -->
+        <!-- Name -->
         <div class="zenith-input-group">
           <input type="text" id="first-name" name="first-name" required placeholder=" ">
           <label for="first-name">First Name</label>
@@ -79,7 +84,7 @@
           <label for="last-name">Last Name</label>
         </div>
 
-        <!-- 4.2) CONTACT -->
+        <!-- Contact -->
         <div class="zenith-input-group">
           <!-- Accepts 1234567890, 123-456-7890, 123 456 7890, 123.456.7890 -->
           <input
@@ -93,13 +98,12 @@
             pattern="^\d{3}[-.\s]?\d{3}[-.\s]?\d{4}$">
           <label for="phone">Phone Number</label>
         </div>
-
         <div class="zenith-input-group">
           <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">
           <label for="email">Email Address</label>
         </div>
 
-        <!-- 4.3) SERVICE (static label for reliable display) -->
+        <!-- Service -->
         <div class="zenith-input-group select-group">
           <label for="service">Service Type</label>
           <select id="service" name="service" required>
@@ -111,20 +115,18 @@
             <option value="Repairs">Repairs</option>
           </select>
         </div>
-
-        <!-- 4.4) DATE (static label for consistent layout) -->
         <div class="zenith-input-group select-group">
           <label for="date">Preferred Date</label>
           <input type="date" id="date" name="date" placeholder=" " min="">
         </div>
 
-        <!-- 4.5) ADDRESS -->
+        <!-- Address -->
         <div class="zenith-input-group full-width">
           <input type="text" id="street" name="street" required placeholder=" ">
           <label for="street">Street Address</label>
         </div>
 
-        <!-- 4.6) CITY / ZIP -->
+        <!-- Location -->
         <div class="zenith-input-group">
           <input type="text" id="city" name="city" required placeholder=" ">
           <label for="city">City</label>
@@ -134,19 +136,19 @@
           <label for="zip">ZIP Code</label>
         </div>
 
-        <!-- 4.7) PROJECT DETAILS -->
+        <!-- Project Info -->
         <div class="zenith-input-group full-width">
           <textarea id="details" name="details" rows="3" placeholder=" "></textarea>
           <label for="details">Brief Project Details</label>
         </div>
 
-        <!-- 4.8) PHOTOS (file) — FIXED DISPLAY (uses .file-group) -->
+        <!-- Photos (file) — fixed display -->
         <div class="zenith-input-group file-group">
           <label for="photos">Upload Photos <span class="zenith-optional">(optional)</span></label>
           <input type="file" id="photos" name="photos" accept="image/*" multiple>
         </div>
 
-        <!-- 4.9) REFERRAL (static label) -->
+        <!-- Referral -->
         <div class="zenith-input-group select-group">
           <label for="referral">How did you hear about us?</label>
           <select id="referral" name="referral">
@@ -158,7 +160,7 @@
           </select>
         </div>
 
-        <!-- [5] ACTIONS -->
+        <!-- [5] Actions -->
         <div class="zenith-actions">
           <div class="zenith-checkbox">
             <input type="checkbox" id="reminder" name="reminder">
@@ -167,7 +169,7 @@
           <button type="submit" class="zenith-submit">Request Free Estimate</button>
         </div>
 
-        <!-- [6] DISCLAIMER + PHONE -->
+        <!-- [6] Disclaimer + Phone -->
         <div class="zenith-disclaimer">
           <p>
             *Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our
