@@ -1,63 +1,52 @@
-<!-- ====================================================
-     components/hero-section.html
-     Enhanced Hero Video + Lead Capture Form
-     ==================================================== -->
-<section class="hero" id="top">
-
-  <!-- 1) VIDEO BACKGROUND + TINT -->
-  <div class="video-container">
-    <video class="background-video" autoplay muted loop playsinline
-           poster="roofing-poster.jpg" src="roofing-bg.mp4" type="video/mp4">
+<!-- Hero Section -->
+<section class="zenith-hero" id="roofing-estimate">
+  <!-- Video Background -->
+  <div class="zenith-video-container">
+    <video class="zenith-background-video" autoplay muted loop playsinline poster="roofing-poster.jpg">
+      <source src="roofing-bg.mp4" type="video/mp4">
       Your browser doesn't support HTML5 video.
     </video>
   </div>
-  <div class="video-overlay"></div>
+  <div class="zenith-video-overlay"></div>
 
-  <!-- 2) HERO CONTENT CARD -->
-  <div class="hero__card container">
-    <h1 class="hero__title">
-      <span class="zenith-logo">ZENITH</span>
-      Roofing Services
-    </h1>
-    <p class="hero__subtitle">
-      Shingle • Tile • Flat Roofing • Repairs • Gutters
-    </p>
+  <!-- Content Card -->
+  <div class="zenith-card">
+    <div class="zenith-header">
+      <h1 class="zenith-title">ZENITH ROOFING SERVICES</h1>
+      <p class="zenith-subtitle">Shingle • Tile • Flat Roofing • Repairs • Gutters</p>
+    </div>
 
-    <!-- 3) ESTIMATE FORM -->
-    <form name="estimate" method="POST" data-netlify="true" class="hero-form" novalidate netlify-honeypot="faxNumber">
-      <input type="hidden" name="form-name" value="estimate">
-      <p class="hidden">
+    <!-- Estimate Form -->
+    <form class="zenith-form" name="estimate" method="POST" data-netlify="true" novalidate>
+      <!-- Honeypot Field -->
+      <div class="zenith-honeypot">
         <label>Don't fill this out if you're human: <input name="faxNumber" autocomplete="off"></label>
-      </p>
+      </div>
 
-      <!-- Row 1: First + Last -->
-      <div class="hero-form__row">
-        <div class="input-group">
+      <!-- Form Rows -->
+      <div class="zenith-form-grid">
+        <!-- Name Row -->
+        <div class="zenith-input-group">
           <input type="text" id="first-name" name="first-name" required placeholder=" ">
           <label for="first-name">First Name</label>
         </div>
-        <div class="input-group">
+        <div class="zenith-input-group">
           <input type="text" id="last-name" name="last-name" required placeholder=" ">
           <label for="last-name">Last Name</label>
         </div>
-      </div>
 
-      <!-- Row 2: Phone + Email -->
-      <div class="hero-form__row">
-        <div class="input-group phone-group">
-          <input type="tel" id="phone" name="phone" required placeholder=" " 
-                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+        <!-- Contact Row -->
+        <div class="zenith-input-group">
+          <input type="tel" id="phone" name="phone" required placeholder=" " pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
           <label for="phone">Phone Number (123-456-7890)</label>
         </div>
-        <div class="input-group">
+        <div class="zenith-input-group">
           <input type="email" id="email" name="email" required placeholder=" ">
           <label for="email">Email Address</label>
         </div>
-      </div>
 
-      <!-- Row 3: Service + Date -->
-      <div class="hero-form__row">
-        <div class="input-group">
+        <!-- Service Row -->
+        <div class="zenith-input-group">
           <select id="service" name="service" required>
             <option value="" disabled selected hidden>Select Service</option>
             <option value="Shingles">Shingles</option>
@@ -65,49 +54,42 @@
             <option value="Flat Roofing">Flat Roofing</option>
             <option value="Gutters">Gutters</option>
             <option value="Repairs">Repairs</option>
-            <option value="Other">Other</option>
           </select>
           <label for="service">Service Type</label>
         </div>
-        <div class="input-group date-group">
+        <div class="zenith-input-group">
           <input type="date" id="date" name="date" placeholder=" " min="">
           <label for="date">Preferred Date</label>
         </div>
-      </div>
 
-      <!-- Row 4: Street Address -->
-      <div class="hero-form__row">
-        <div class="input-group full-width">
+        <!-- Address Row -->
+        <div class="zenith-input-group full-width">
           <input type="text" id="street" name="street" required placeholder=" ">
           <label for="street">Street Address</label>
         </div>
-      </div>
 
-      <!-- Row 5: City + ZIP -->
-      <div class="hero-form__row">
-        <div class="input-group">
+        <!-- City/ZIP Row -->
+        <div class="zenith-input-group">
           <input type="text" id="city" name="city" required placeholder=" ">
           <label for="city">City</label>
         </div>
-        <div class="input-group">
+        <div class="zenith-input-group">
           <input type="text" id="zip" name="zip" required placeholder=" " pattern="\d{5}(-\d{4})?">
           <label for="zip">ZIP Code</label>
         </div>
-      </div>
 
-      <!-- Row 6: Project Details -->
-      <div class="input-group full-width">
-        <textarea id="details" name="details" rows="3" placeholder=" "></textarea>
-        <label for="details">Brief Project Details</label>
-      </div>
-
-      <!-- Row 7: Photos + Referral -->
-      <div class="hero-form__row">
-        <div class="input-group">
-          <input type="file" id="photos" name="photos" accept="image/*" multiple>
-          <label for="photos">Upload Photos <span class="optional">(optional)</span></label>
+        <!-- Project Details -->
+        <div class="zenith-input-group full-width">
+          <textarea id="details" name="details" rows="3" placeholder=" "></textarea>
+          <label for="details">Brief Project Details</label>
         </div>
-        <div class="input-group">
+
+        <!-- Upload/Referral -->
+        <div class="zenith-input-group">
+          <input type="file" id="photos" name="photos" accept="image/*" multiple>
+          <label for="photos">Upload Photos <span class="zenith-optional">(optional)</span></label>
+        </div>
+        <div class="zenith-input-group">
           <select id="referral" name="referral">
             <option value="" disabled selected hidden>Select Option</option>
             <option value="Google">Google</option>
@@ -117,24 +99,24 @@
           </select>
           <label for="referral">How did you hear about us?</label>
         </div>
-      </div>
 
-      <!-- Row 8: Actions -->
-      <div class="hero-form__actions">
-        <div class="input-group reminder-group">
-          <input type="checkbox" id="reminder" name="reminder">
-          <label for="reminder">Schedule free inspection reminder?</label>
+        <!-- Form Actions -->
+        <div class="zenith-actions">
+          <div class="zenith-checkbox">
+            <input type="checkbox" id="reminder" name="reminder">
+            <label for="reminder">Schedule free inspection reminder?</label>
+          </div>
+          <button type="submit" class="zenith-submit">Request Free Estimate</button>
         </div>
-        <button type="submit" class="hero-form__button">
-          Request Free Estimate
-        </button>
-      </div>
 
-      <!-- Disclaimer -->
-      <p class="hero-form__disclaimer">
-        *Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our
-        <a href="/real-estate">Real Estate Services</a>.
-      </p>
+        <!-- Disclaimer -->
+        <div class="zenith-disclaimer">
+          <p>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="/real-estate">Real Estate Services</a>.</p>
+          <div class="zenith-contact">
+            <p class="zenith-phone">CALL NOW: <strong>555-809-8183</strong></p>
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 </section>
