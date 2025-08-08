@@ -67,11 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-// ---- 6) reCAPTCHA explicit render (always shows the checkbox) ----
-// Google calls this after their script finishes loading (?onload=recaptchaOnload)
-window.recaptchaOnload = function () {
-  const el = document.getElementById('estimate-recaptcha');
-  if (el && window.grecaptcha && typeof grecaptcha.render === 'function') {
+// ---- 6) Google reCAPTCHA explicit render helpers ----
+// Renders the checkbox IF the hero has been injected and the Google API is ready.
+window.renderHeroRecaptchaIfReady = function () {
+  var el = document.getElementById('estimate-recaptcha');
+  if (!el) return; // hero not injected yet
+
+  if (window.grecaptcha && typeof grecaptcha.render === 'function') {
     if (!el.getAttribute('data-rendered')) { // avoid duplicate renders
       grecaptcha.render(el, {
         sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI'
@@ -79,4 +81,9 @@ window.recaptchaOnload = function () {
       el.setAttribute('data-rendered', 'true');
     }
   }
+};
+
+// Google calls this after their script finishes loading (?onload=recaptchaOnload)
+window.recaptchaOnload = function () {
+  window.renderHeroRecaptchaIfReady();
 };
