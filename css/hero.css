@@ -574,3 +574,22 @@ html {
     background-position: right 0.75rem center;
   }
 }
+/* =========================================================
+   [11] NEW FORM FIELD SIZE & SPACING FIXES
+   Purpose: Makes all fields visible on desktop without scrolling
+   ========================================================= */
+@media (min-width: 768px) {
+  .zenith-form-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1rem; /* bigger gap */
+  }
+
+  .zenith-input-group input,
+  .zenith-input-group select,
+  .zenith-input-group textarea {
+    min-height: 48px; /* taller fields for comfort */
+  }
+}
+3. Save and refresh your site — since this is at the bottom, these rules will override anything above without touching your labeled sections.
+
+If you want, I can now give you the exact desktop + mobile fix for 
