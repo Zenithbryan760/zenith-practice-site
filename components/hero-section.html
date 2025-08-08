@@ -13,12 +13,10 @@
   <div class="zenith-card">
     <!-- Logo and Header -->
     <div class="zenith-header">
-      <div class="zenith-logo-container">
-        <img src="logo-zenith-icon.png" alt="Zenith Roofing Logo" class="zenith-logo">
-        <div class="zenith-logo-text">
-          <h1 class="zenith-title">ZENITH</h1>
-          <p class="zenith-subtitle">Roofing Services</p>
-        </div>
+      <img src="logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-logo">
+      <div>
+        <h1 class="zenith-title">ZENITH</h1>
+        <p class="zenith-subtitle">Roofing Services</p>
       </div>
     </div>
 
@@ -29,9 +27,9 @@
         <label>Don't fill this out if you're human: <input name="faxNumber" autocomplete="off"></label>
       </div>
 
-      <!-- Form Rows -->
+      <!-- Form Grid -->
       <div class="zenith-form-grid">
-        <!-- Name Row -->
+        <!-- Name -->
         <div class="zenith-input-group">
           <input type="text" id="first-name" name="first-name" required placeholder=" ">
           <label for="first-name">First Name</label>
@@ -41,7 +39,7 @@
           <label for="last-name">Last Name</label>
         </div>
 
-        <!-- Contact Row -->
+        <!-- Contact -->
         <div class="zenith-input-group">
           <input type="tel" id="phone" name="phone" required placeholder=" " pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
           <label for="phone">Phone Number (123-456-7890)</label>
@@ -51,7 +49,7 @@
           <label for="email">Email Address</label>
         </div>
 
-        <!-- Service Row -->
+        <!-- Service -->
         <div class="zenith-input-group">
           <select id="service" name="service" required>
             <option value="" disabled selected hidden>Select Service</option>
@@ -68,13 +66,13 @@
           <label for="date">Preferred Date</label>
         </div>
 
-        <!-- Address Row -->
+        <!-- Address -->
         <div class="zenith-input-group full-width">
           <input type="text" id="street" name="street" required placeholder=" ">
           <label for="street">Street Address</label>
         </div>
 
-        <!-- City/ZIP Row -->
+        <!-- Location -->
         <div class="zenith-input-group">
           <input type="text" id="city" name="city" required placeholder=" ">
           <label for="city">City</label>
@@ -84,13 +82,13 @@
           <label for="zip">ZIP Code</label>
         </div>
 
-        <!-- Project Details -->
+        <!-- Project Info -->
         <div class="zenith-input-group full-width">
           <textarea id="details" name="details" rows="3" placeholder=" "></textarea>
           <label for="details">Brief Project Details</label>
         </div>
 
-        <!-- Upload/Referral -->
+        <!-- Additional Info -->
         <div class="zenith-input-group">
           <input type="file" id="photos" name="photos" accept="image/*" multiple>
           <label for="photos">Upload Photos <span class="zenith-optional">(optional)</span></label>
@@ -106,7 +104,7 @@
           <label for="referral">How did you hear about us?</label>
         </div>
 
-        <!-- Form Actions -->
+        <!-- Form Footer -->
         <div class="zenith-actions">
           <div class="zenith-checkbox">
             <input type="checkbox" id="reminder" name="reminder">
@@ -115,7 +113,7 @@
           <button type="submit" class="zenith-submit">Request Free Estimate</button>
         </div>
 
-        <!-- Disclaimer -->
+        <!-- Legal -->
         <div class="zenith-disclaimer">
           <p>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="/real-estate">Real Estate Services</a>.</p>
           <div class="zenith-contact">
