@@ -1,180 +1,316 @@
 /* ===========================================================
    ZENITH ROOFING — HERO (Video + Lead Form)
-   Brand colors: Navy #072e59, Orange #f7941d
-   Desktop: two columns | Mobile: one column
+   Brand: Navy #072e59, Orange #f7941d, White, Soft Gray
+   Desktop: two-column pairs   |   Mobile: single column
+   Accessibility: 44px tap targets, AA contrast, focus rings
    =========================================================== */
 
-/* 0) THEME */
+/* -----------------------------------------------------------
+   0) THEME VARIABLES (all brand colors live here)
+   ----------------------------------------------------------- */
 :root{
-  --zenith-navy:#072e59;
-  --zenith-orange:#f7941d;
-  --zenith-orange-700:#d77a18;
-  --white:#fff;
-  --bg:#f5f7fb;
-  --border:#e0e3e7;
-  --text:#333;
-  --muted:#6b6b6b;
-  --radius:10px;
-  --radius-sm:8px;
-  --shadow:0 16px 48px rgba(0,0,0,.18);
-  --transition:.25s ease;
+  --zenith-navy:   #072e59;     /* primary text + accent backgrounds */
+  --zenith-orange: #f7941d;     /* focus, buttons, micro-interactions */
+  --zenith-orange-700: #d77a18; /* button hover, darker accent */
+  --off-white:     #ffffff;     /* card + inputs */
+  --light-gray:    #e7e7e7;     /* input borders, dividers */
+  --text-gray:     #333333;     /* body text on white */
+  --hero-overlay:  rgba(7,46,89,0.40);  /* navy tint over video */
+  --shadow-sm:     0 4px 12px rgba(0,0,0,0.08);
+  --shadow-md:     0 16px 48px rgba(0,0,0,0.20);
+  --radius:        16px;
+  --radius-sm:     8px;
+  --transition:    0.25s ease;
+  --font:          'Poppins', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* 1) PAGE BASE */
-.zenith-hero{
+/* -----------------------------------------------------------
+   1) GLOBAL BASELINE (simple reset + font)
+   ----------------------------------------------------------- */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:var(--font);
+  color:var(--text-gray);
+  background:#f5f7fb;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* -----------------------------------------------------------
+   2) HERO WRAPPER (video behind, card centered)
+   ----------------------------------------------------------- */
+.hero{
   position:relative;
-  min-height:100vh;
+  min-height:100vh;        /* desktop: fill screen */
   display:flex;
   align-items:center;
-  justify-content:center;
   padding:1.5rem;
-  background:var(--bg);
   overflow:hidden;
-  font-family:'Poppins', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* 2) VIDEO LAYER */
-.zenith-video-container{ position:absolute; inset:0; z-index:1; overflow:hidden; }
-.zenith-background-video{ width:100%; height:100%; object-fit:cover; }
-.zenith-video-overlay{ position:absolute; inset:0; background:rgba(7,46,89,.45); z-index:2; }
-
-/* 3) WHITE CARD */
-.zenith-card{
-  position:relative; z-index:3;
-  width:100%; max-width:900px;
-  background:rgba(255,255,255,.97);
-  border:1px solid rgba(255,255,255,.55);
-  backdrop-filter:saturate(120%) blur(2px);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:2.25rem;
-  color:var(--zenith-navy);
+/* Video sits behind everything */
+.video-container{
+  position:absolute; inset:0;
+  z-index:-2;
+}
+.background-video{
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position:center;
 }
 
-/* 4) BRAND HEADER */
-.zenith-header{ display:flex; align-items:center; gap:.9rem; margin-bottom:1.5rem; }
-.zenith-logo{ width:48px; height:48px; object-fit:contain; }
-.zenith-title{ margin:0; font-weight:800; letter-spacing:.2px; color:var(--zenith-navy); font-size:clamp(1.6rem, 2.4vw, 2rem); line-height:1.2; }
-.zenith-subtitle{ margin:0; color:var(--zenith-navy); opacity:.9; font-weight:600; font-size:clamp(.95rem,1.2vw,1.05rem); }
+/* Navy tint for readability on top of video */
+.video-overlay{
+  position:absolute; inset:0;
+  background:var(--hero-overlay);
+  z-index:-1;
+}
 
-/* 5) FORM GRID */
-.zenith-form{ width:100%; }
-.zenith-form-grid{ display:grid; grid-template-columns:1fr; gap:1rem; }
-.zenith-input-group{ position:relative; }
-.zenith-input-group.full-width{ grid-column:1 / -1; }
-
-/* 6) FIELDS + FLOATING LABELS */
-.zenith-input-group input,
-.zenith-input-group select,
-.zenith-input-group textarea{
+/* -----------------------------------------------------------
+   3) CONTENT CARD (headline + lead form)
+   ----------------------------------------------------------- */
+.hero__card{
   width:100%;
-  padding:1rem .95rem;
-  border:1px solid var(--border);
-  border-radius:var(--radius-sm);
-  background:var(--white);
-  color:var(--text);
-  font-size:1rem; line-height:1.25;
-  transition:border-color var(--transition), box-shadow var(--transition);
-  min-height:44px;
+  max-width:900px;         /* roomy on desktop */
+  margin:0 auto;
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:saturate(120%) blur(2px); /* subtle luxury */
+  border:1px solid rgba(255,255,255,0.35);
+  box-shadow:var(--shadow-md);
+  border-radius:var(--radius);
+  padding:2.5rem;
+  color:var(--zenith-navy);
+  text-align:center;
 }
 
-/* Non-floating variation (file input) */
-.zenith-input-group.no-float .zenith-static-label{
-  display:block; margin:0 0 .4rem 0; color:var(--muted); font-size:.9rem; font-weight:500;
+/* -----------------------------------------------------------
+   4) TYPOGRAPHY (headline + subline)
+   ----------------------------------------------------------- */
+.hero__title{
+  font-weight:700;
+  letter-spacing:.2px;
+  line-height:1.2;
+  color:var(--zenith-navy);
+  font-size:clamp(1.9rem, 3.2vw, 2.6rem);
+  margin:0 0 .35rem 0;
 }
-.zenith-input-group.no-float label{ position:static; }
+.hero__subtitle{
+  color:var(--zenith-navy);
+  opacity:.85;
+  font-weight:600;
+  letter-spacing:.6px;
+  text-transform:none;
+  font-size:clamp(1rem,1.4vw,1.125rem);
+  margin:0 0 2rem 0;
+}
+
+/* -----------------------------------------------------------
+   5) FORM LAYOUT (grid with responsive pairs)
+   IMPORTANT: we use .hero-form__row {display:contents}
+   so inner .input-group items can become grid children.
+   ----------------------------------------------------------- */
+.hero-form{
+  display:grid;
+  gap:1.25rem;
+}
+
+/* Row wrappers “disappear” so their children align to columns */
+.hero-form__row{ display:contents; }
+
+/* Full-width groups (street address, textarea, etc.) */
+.input-group.full-width{ grid-column:1 / -1; }
+
+/* -----------------------------------------------------------
+   6) INPUTS + FLOATING LABELS (accessible + branded)
+   ----------------------------------------------------------- */
+.input-group{ position:relative; }
+
+/* Base fields */
+.input-group input,
+.input-group select,
+.input-group textarea{
+  width:100%;
+  padding:1rem 0.95rem 1rem 0.95rem;
+  border:1px solid var(--light-gray);
+  border-radius:var(--radius-sm);
+  background:var(--off-white);
+  color:var(--text-gray);
+  font-size:1rem;
+  line-height:1.25;
+  transition:border-color var(--transition), box-shadow var(--transition);
+  min-height:44px; /* tap target */
+}
 
 /* Floating labels */
-.zenith-input-group label{
-  position:absolute; top:50%; left:.85rem; transform:translateY(-50%);
-  background:var(--white); padding:0 .35rem;
-  color:#666; font-size:.9rem; pointer-events:none;
+.input-group label{
+  position:absolute;
+  top:50%;
+  left:0.85rem;
+  transform:translateY(-50%);
+  padding:0 .35rem;
+  background:var(--off-white);
+  color:#666;
+  font-size:.9rem;
+  pointer-events:none;
   transition:transform var(--transition), color var(--transition), font-size var(--transition), top var(--transition);
 }
 
-/* Inputs / textarea: move when focused or has text */
-.zenith-input-group input:focus + label,
-.zenith-input-group input:not(:placeholder-shown) + label,
-.zenith-input-group textarea:focus + label,
-.zenith-input-group textarea:not(:placeholder-shown) + label{
-  top:0; transform:translateY(-50%) translateY(-.7rem);
-  font-size:.74rem; color:var(--zenith-orange);
-}
-
-/* Selects: move when focused or valid (value picked) */
-.zenith-input-group select:focus + label,
-.zenith-input-group select:valid + label,
-.zenith-input-group.has-value label{
-  top:0; transform:translateY(-50%) translateY(-.7rem);
-  font-size:.74rem; color:var(--zenith-orange);
+/* When focused or has value → shrink/raise label */
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group select:focus + label,
+.input-group select:not(:placeholder-shown) + label,
+.input-group textarea:focus + label,
+.input-group textarea:not(:placeholder-shown) + label{
+  top:0;
+  transform:translateY(-50%) translateY(-.65rem);
+  font-size:.74rem;
+  color:var(--zenith-orange);
 }
 
 /* Focus ring */
-.zenith-input-group input:focus,
-.zenith-input-group select:focus,
-.zenith-input-group textarea:focus{
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus{
   outline:none;
   border-color:var(--zenith-orange);
-  box-shadow:0 0 0 3px rgba(247,148,29,.18);
+  box-shadow:0 0 0 3px rgba(247,148,29,0.18);
 }
 
-/* Better select arrow */
-.zenith-input-group select{
+/* Nicer select arrow */
+.input-group select{
   appearance:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23072e59' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat:no-repeat; background-position:right .8rem center; background-size:1rem;
-  padding-right:2.2rem;
+  background-repeat:no-repeat;
+  background-position:right .85rem center;
+  background-size:1rem;
+  padding-right:2.25rem;
 }
 
-/* File input button */
-.zenith-input-group input[type="file"]{ padding:.9rem; }
-.zenith-input-group input[type="file"]::file-selector-button{
-  border:none; color:#fff; background:var(--zenith-navy);
-  padding:.55rem 1rem; border-radius:6px; cursor:pointer; margin-right:.85rem;
-  transition:opacity var(--transition), transform var(--transition);
+/* File input */
+.input-group input[type="file"]{
+  padding:.85rem;
+}
+.input-group input[type="file"]::file-selector-button{
+  border:none;
+  background:var(--zenith-navy);
+  color:#fff;
+  padding:.55rem 1rem;
+  border-radius:6px;
+  cursor:pointer;
+  margin-right:.8rem;
+  transition:transform var(--transition), opacity var(--transition);
   font-weight:600;
 }
-.zenith-input-group input[type="file"]::file-selector-button:hover{
-  opacity:.95; transform:translateY(-1px);
+.input-group input[type="file"]::file-selector-button:hover{
+  transform:translateY(-1px);
+  opacity:.95;
 }
-.zenith-optional{ color:#888; }
 
-/* 7) ACTIONS (checkbox + submit) */
-.zenith-actions{ display:flex; flex-direction:column; gap:.9rem; margin-top:.25rem; grid-column:1 / -1; }
-.zenith-checkbox{ display:flex; align-items:center; gap:.6rem; color:var(--text); }
-.zenith-checkbox input{ width:1.1rem; height:1.1rem; accent-color:var(--zenith-orange); }
+/* Textarea height */
+.input-group textarea{ min-height:96px; }
+
+/* Optional text */
+.input-group .optional{ color:#888; font-weight:500; }
+
+/* -----------------------------------------------------------
+   7) ACTIONS (checkbox + button on same row desktop)
+   ----------------------------------------------------------- */
+.hero-form__actions{ display:contents; } /* allows grid placement */
+
+.reminder-group{
+  display:flex; align-items:center; gap:.6rem;
+  color:var(--text-gray);
+}
+.reminder-group input[type="checkbox"]{
+  width:1.1rem; height:1.1rem;
+  accent-color:var(--zenith-orange);
+  cursor:pointer;
+}
 
 /* Primary button */
-.zenith-submit{
-  border:none; border-radius:var(--radius-sm);
+.hero-form__button{
+  border:none;
+  border-radius:var(--radius-sm);
+  padding:1.05rem 1rem;
+  color:#fff;
+  cursor:pointer;
+  font-weight:800;
+  letter-spacing:.4px;
+  text-transform:uppercase;
   background:linear-gradient(135deg, var(--zenith-orange), var(--zenith-orange-700));
-  color:#fff; font-weight:800; letter-spacing:.4px; text-transform:uppercase;
-  padding:1rem 1.1rem; cursor:pointer;
-  box-shadow:0 10px 22px rgba(247,148,29,.28);
-  transition:transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+  box-shadow:0 8px 20px rgba(247,148,29,.28);
+  transition:transform var(--transition), opacity var(--transition), box-shadow var(--transition);
 }
-.zenith-submit:hover{ transform:translateY(-2px); box-shadow:0 14px 26px rgba(247,148,29,.34); }
+.hero-form__button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 24px rgba(247,148,29,.34);
+}
+.hero-form__button:active{
+  transform:translateY(0);
+}
 
-/* 8) DISCLAIMER */
-.zenith-disclaimer{ grid-column:1 / -1; font-size:.88rem; color:var(--muted); line-height:1.5; }
-.zenith-disclaimer a{ color:var(--zenith-orange); text-decoration:underline; }
-.zenith-phone{ margin-top:.75rem; color:var(--zenith-navy); font-weight:700; }
-.zenith-phone strong{ color:var(--zenith-orange); }
+/* -----------------------------------------------------------
+   8) DISCLAIMER (fine print)
+   ----------------------------------------------------------- */
+.hero-form__disclaimer{
+  grid-column:1 / -1;
+  margin-top:1rem;
+  color:#6b6b6b;
+  font-size:.85rem;
+  line-height:1.45;
+  text-align:left;
+}
+.hero-form__disclaimer a{
+  color:var(--zenith-orange);
+  text-decoration:underline;
+}
 
-/* 9) HONEYPOT (visually hidden) */
-.zenith-honeypot{ position:absolute; left:-9999px; }
-
-/* RESPONSIVE: desktop gets 2 columns; actions align side-by-side */
+/* -----------------------------------------------------------
+   9) RESPONSIVE GRID BEHAVIOR (pairs on ≥768px)
+   ----------------------------------------------------------- */
+/* Tablet & Desktop: 2 columns */
 @media (min-width:768px){
-  .zenith-form-grid{ grid-template-columns:1fr 1fr; gap:1rem 1.1rem; }
-  .zenith-actions{ flex-direction:row; justify-content:space-between; align-items:center; }
-  .zenith-submit{ min-width:220px; }
+  .hero-form{
+    grid-template-columns:1fr 1fr;  /* two equal columns */
+    gap:1rem 1.25rem;               /* row / column gap */
+  }
+  /* Place actions in last row as two columns:
+     - checkbox left
+     - button right */
+  .hero-form__actions .reminder-group{ grid-column:1 / 2; align-self:center; justify-self:start; }
+  .hero-form__actions .hero-form__button{ grid-column:2 / 3; align-self:center; justify-self:stretch; }
 }
 
-/* Small phones: tighten a bit */
+/* Phones: single column */
+@media (max-width:767.98px){
+  .hero{ padding:1rem; min-height:auto; }
+  .hero__card{ padding:1.75rem; }
+  .hero-form{ grid-template-columns:1fr; gap:.9rem; }
+  .hero-form__button{ width:100%; }
+  .reminder-group{ justify-content:flex-start; }
+}
+
+/* Small phones: slightly tighter */
 @media (max-width:480px){
-  .zenith-card{ padding:1.5rem; border-radius:12px; }
-  .zenith-title{ font-size:1.45rem; }
-  .zenith-subtitle{ font-size:.95rem; }
-  .zenith-logo{ width:40px; height:40px; }
+  .hero__card{ border-radius:12px; padding:1.5rem; }
+  .hero__title{ font-size:1.6rem; }
+  .hero__subtitle{ font-size:.95rem; }
+  .input-group input,
+  .input-group select,
+  .input-group textarea{ padding:.9rem .85rem; }
+}
+
+/* -----------------------------------------------------------
+   10) VIEWPORT FIT GUARD (prevents clipping under header)
+   If your fixed header is tall, cap hero card height and allow
+   smooth scroll inside (keeps the submit button visible).
+   ----------------------------------------------------------- */
+@media (min-width:768px){
+  .hero__card{
+    max-height:calc(100vh - 80px); /* 80px ≈ your header; tweak if needed */
+    overflow:auto;
+  }
 }
