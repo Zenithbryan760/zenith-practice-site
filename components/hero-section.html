@@ -128,11 +128,13 @@
           </select>
         </div>
 
-        <!-- [5] ACTIONS (reCAPTCHA + submit) -->
+        <!-- [5] ACTIONS (Google reCAPTCHA + submit) -->
         <div class="zenith-actions">
           <div class="zenith-recaptcha">
             <span class="recaptcha-title">Verify you’re human</span>
-            <div data-netlify-recaptcha="true"></div>
+            <!-- ▼▼ Google reCAPTCHA v2 (site key provided by you) ▼▼ -->
+            <div class="g-recaptcha" data-sitekey="6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI"></div>
+            <!-- ▲▲ replaces Netlify <div data-netlify-recaptcha="true"></div> ▲▲ -->
           </div>
           <button type="submit" class="zenith-submit">Request Free Estimate</button>
         </div>
