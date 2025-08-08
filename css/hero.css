@@ -337,3 +337,88 @@ html { scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px
   .zenith-input-group select,
   .zenith-input-group textarea { min-height: 48px; }
 }
+/* =========================================================
+   [12] ACTION ROW POLISH — reCAPTCHA + Button
+   Goal: Clean alignment, consistent spacing, good mobile flow
+   ========================================================= */
+
+/* Desktop/tablet: put captcha and button on one line */
+.zenith-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;  /* captcha area grows, button stays snug */
+  align-items: center;              /* vertically centers both */
+  gap: 1rem;                        /* space between captcha and button */
+  margin-top: 1rem;                 /* a touch more breathing room above */
+}
+
+/* Keep the "Verify you’re human" text and box nicely aligned */
+.zenith-recaptcha {
+  display: flex;
+  align-items: center;              /* align title with captcha baseline */
+  gap: 0.75rem;
+  min-height: 78px;                 /* approx. default recaptcha height */
+}
+
+/* Make the title the same line height as inputs for rhythm */
+.recaptcha-title {
+  font-size: 0.95rem;
+  line-height: 1.2;
+  color: var(--zenith-navy);
+  font-weight: 700;
+  white-space: nowrap;
+  margin: 0;                        /* kill any stray margins */
+}
+
+/* Keep the captcha a hair smaller so it doesn’t overpower the button */
+.zenith-recaptcha .g-recaptcha {
+  transform: scale(0.96);
+  transform-origin: left center;
+}
+
+/* Button: a bit taller and balanced against the captcha height */
+.zenith-submit {
+  height: 48px;                     /* fixed height for visual balance */
+  padding: 0 1.25rem;               /* horizontal padding only */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* ---------- Mobile stacking & centering ---------- */
+@media (max-width: 640px) {
+  .zenith-actions {
+    grid-template-columns: 1fr;     /* stack vertically on small screens */
+    gap: 0.85rem;
+  }
+
+  .zenith-recaptcha {
+    flex-direction: column;         /* title above captcha */
+    align-items: center;            /* centered */
+    justify-content: center;
+    min-height: 0;                  /* let it shrink on mobile */
+    text-align: center;
+  }
+
+  .recaptcha-title {
+    white-space: normal;            /* allow wrapping on small screens */
+    font-size: 0.92rem;
+  }
+
+  .zenith-recaptcha .g-recaptcha {
+    transform: scale(0.94);         /* a tiny bit smaller on narrow screens */
+    transform-origin: center top;
+  }
+
+  .zenith-submit {
+    width: 100%;                    /* full-width CTA on mobile */
+    height: 50px;
+  }
+}
+
+/* Slightly denser layout on very wide screens so it feels tight, not floaty */
+@media (min-width: 1200px) {
+  .zenith-actions {
+    gap: 1.25rem;
+  }
+}
