@@ -1,72 +1,45 @@
 <!-- =========================================================
-     HERO SECTION (Video + Centered Logo + SEO Headline + Form)
+     HERO SECTION
+     Video background + centered logo + SEO headline + form
      File: components/hero-section.html
-     How it works:
-       1) Background video sits behind everything.
-       2) White card holds logo, SEO headline, and the form.
-       3) Logo centered with branded ring for stronger branding.
-     ========================================================= -->
+========================================================= -->
 
 <section class="zenith-hero" id="roofing-estimate">
-  <!-- [1] VIDEO BACKGROUND -->
+  <!-- Background video -->
   <div class="zenith-video-container" aria-hidden="true">
     <video class="zenith-background-video" autoplay muted loop playsinline poster="roofing-poster.jpg">
       <source src="roofing-bg.mp4" type="video/mp4" />
-      <!-- Fallback text -->
       Your browser doesn't support HTML5 video.
     </video>
   </div>
   <div class="zenith-video-overlay" aria-hidden="true"></div>
 
-  <!-- [2] CONTENT CARD -->
+  <!-- Card -->
   <div class="zenith-card">
-    <!-- [2A] LOGO + SEO HEADLINE (Centered) -->
+    <!-- Header with logo and text -->
     <header class="zenith-header">
-      <!-- Centered logo with branded ring -->
-      <div class="zenith-logo-badge" aria-hidden="true">
-        <!-- IMPORTANT: your logo path -->
-        <img
-          src="images/badges/logo-zenith-icon.png"
-          alt="Zenith Roofing Services logo"
-          class="zenith-logo"
-          loading="eager"
-          decoding="async"
-        />
+      <div class="zenith-logo-badge">
+        <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing Services logo" class="zenith-logo" loading="eager" decoding="async" />
       </div>
-
-      <!-- SEO-friendly headline + supporting copy -->
-      <h1 class="zenith-title">
-        Premium Roofing Services in Escondido, San Diego &amp; Temecula
-      </h1>
-      <p class="zenith-subtitle">
-        Repairs • Replacements • Shingles • Tile • Flat Roofing • Gutters
-      </p>
+      <h1 class="zenith-title">Premium Roofing Services in Escondido, San Diego &amp; Temecula</h1>
+      <p class="zenith-subtitle">Repairs • Replacements • Shingles • Tile • Flat Roofing • Gutters</p>
       <span class="zenith-areas">Serving North County San Diego &amp; Temecula</span>
     </header>
 
-    <!-- [2B] ESTIMATE FORM (Netlify-ready) -->
-    <form
-      class="zenith-form"
-      name="estimate"
-      method="POST"
-      data-netlify="true"
-      netlify
-      novalidate
-      aria-label="Request a free roofing estimate"
-    >
-      <!-- Netlify form name -->
+    <!-- Estimate form -->
+    <form class="zenith-form" name="estimate" method="POST" data-netlify="true" netlify novalidate>
       <input type="hidden" name="form-name" value="estimate" />
 
-      <!-- Honeypot (spam trap) -->
+      <!-- Honeypot -->
       <div class="zenith-honeypot">
         <label>Don't fill this out if you're human:
           <input name="faxNumber" autocomplete="off" />
         </label>
       </div>
 
-      <!-- GRID: form fields -->
+      <!-- Grid -->
       <div class="zenith-form-grid">
-        <!-- Name -->
+        <!-- First & last name -->
         <div class="zenith-input-group">
           <input type="text" id="first-name" name="first-name" required placeholder=" " autocomplete="given-name" />
           <label for="first-name">First Name</label>
@@ -76,19 +49,9 @@
           <label for="last-name">Last Name</label>
         </div>
 
-        <!-- Contact -->
+        <!-- Phone & email -->
         <div class="zenith-input-group">
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            required
-            placeholder=" "
-            inputmode="tel"
-            autocomplete="tel"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            aria-describedby="phone-format"
-          />
+          <input type="tel" id="phone" name="phone" required placeholder=" " inputmode="tel" autocomplete="tel" pattern="^\d{3}[-.\s]?\d{3}[-.\s]?\d{4}$" />
           <label for="phone">Phone Number</label>
         </div>
         <div class="zenith-input-group">
@@ -97,7 +60,7 @@
         </div>
         <small id="phone-format" class="visually-hidden">Use 123-456-7890 format.</small>
 
-        <!-- Service (select uses static label for best UX) -->
+        <!-- Service & date -->
         <div class="zenith-input-group select-group">
           <label for="service">Service Type</label>
           <select id="service" name="service" required>
@@ -109,8 +72,6 @@
             <option value="Repairs">Repairs</option>
           </select>
         </div>
-
-        <!-- Preferred Date -->
         <div class="zenith-input-group select-group">
           <label for="date">Preferred Date</label>
           <input type="date" id="date" name="date" min="" />
@@ -130,18 +91,17 @@
           <label for="zip">ZIP Code</label>
         </div>
 
-        <!-- Project Details -->
+        <!-- Project details -->
         <div class="zenith-input-group full-width">
           <textarea id="details" name="details" rows="3" placeholder=" "></textarea>
           <label for="details">Brief Project Details</label>
         </div>
 
-        <!-- Photos + Referral -->
+        <!-- Photos & referral -->
         <div class="zenith-input-group select-group">
           <label for="photos">Upload Photos <span class="zenith-optional">(optional)</span></label>
           <input type="file" id="photos" name="photos" accept="image/*" multiple />
         </div>
-
         <div class="zenith-input-group select-group">
           <label for="referral">How did you hear about us?</label>
           <select id="referral" name="referral">
@@ -162,7 +122,7 @@
           <button type="submit" class="zenith-submit">Request Free Estimate</button>
         </div>
 
-        <!-- Disclaimer + Phone -->
+        <!-- Disclaimer -->
         <div class="zenith-disclaimer full-width">
           <p>
             *Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our
