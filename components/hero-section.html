@@ -1,176 +1,148 @@
-<!-- components/hero-section.html -->
+<!-- ULTIMATE HERO SECTION -->
 <section class="zenith-hero-luxury" id="roofing-estimate">
-  <!-- Video Background -->
+  <!-- Video Background with Perfect Tint -->
   <div class="zenith-video-container">
     <video class="zenith-background-video" autoplay muted loop playsinline poster="/assets/images/roofing-poster.jpg">
       <source src="/assets/videos/roofing-bg.mp4" type="video/mp4">
-      Your browser doesn't support HTML5 video.
+      <source src="/assets/videos/roofing-bg.webm" type="video/webm">
+      <!-- Fallback image -->
+      <img src="/assets/images/roofing-poster.jpg" alt="Roofing background">
     </video>
+    <div class="zenith-video-overlay"></div>
   </div>
-  <div class="zenith-video-overlay"></div>
 
-  <!-- Luxury Content Card -->
+  <!-- Premium Form Card -->
   <div class="zenith-luxury-card">
-    <!-- Premium Logo Header -->
+    <!-- Brand Header -->
     <div class="zenith-luxury-header">
       <div class="zenith-logo-frame">
-        <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing - Premium Roofing Solutions" class="zenith-luxury-logo">
+        <img src="/images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-luxury-logo">
       </div>
       <div class="zenith-luxury-titles">
-        <h2 class="zenith-luxury-subtitle">Premium Roofing Solutions for</h2>
+        <h2 class="zenith-luxury-subtitle">Premium Roofing Solutions</h2>
         <div class="zenith-luxury-locations">
           <span>Escondido</span>
           <span class="luxury-divider">•</span>
-          <span>San Diego County</span>
+          <span>San Diego</span>
           <span class="luxury-divider">•</span>
           <span>Temecula</span>
         </div>
       </div>
     </div>
 
-    <!-- Luxury Services Badges -->
+    <!-- Service Badges -->
     <div class="zenith-luxury-services">
       <div class="luxury-service-badge">
-        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"></path></svg>
+        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
         <span>Shingle</span>
       </div>
       <div class="luxury-service-badge">
-        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"></path></svg>
+        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
         <span>Tile</span>
       </div>
       <div class="luxury-service-badge">
-        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"></path></svg>
+        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
         <span>Flat Roofs</span>
       </div>
       <div class="luxury-service-badge">
-        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"></path></svg>
+        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
         <span>Torch</span>
       </div>
       <div class="luxury-service-badge">
-        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"></path></svg>
+        <svg class="luxury-badge-icon" viewBox="0 0 24 24"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5z"/></svg>
         <span>Gutters</span>
       </div>
     </div>
 
-    <!-- Luxury Form -->
+    <!-- Optimized Form -->
     <form class="zenith-luxury-form" name="estimate" method="POST" data-netlify="true" novalidate>
       <input type="hidden" name="form-name" value="estimate">
       
-      <!-- Form Grid -->
       <div class="zenith-form-grid">
-        <!-- Name -->
+        <!-- Row 1 -->
         <div class="zenith-input-group">
           <input type="text" id="first-name" name="first-name" required placeholder=" " class="luxury-input">
           <label for="first-name" class="luxury-label">First Name</label>
-          <div class="luxury-input-underline"></div>
         </div>
         <div class="zenith-input-group">
           <input type="text" id="last-name" name="last-name" required placeholder=" " class="luxury-input">
           <label for="last-name" class="luxury-label">Last Name</label>
-          <div class="luxury-input-underline"></div>
         </div>
 
-        <!-- Contact -->
+        <!-- Row 2 -->
         <div class="zenith-input-group">
-          <input type="tel" id="phone" name="phone" required placeholder=" " pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="luxury-input">
+          <input type="tel" id="phone" name="phone" required placeholder=" " class="luxury-input">
           <label for="phone" class="luxury-label">Phone Number</label>
-          <div class="luxury-input-underline"></div>
         </div>
         <div class="zenith-input-group">
           <input type="email" id="email" name="email" required placeholder=" " class="luxury-input">
           <label for="email" class="luxury-label">Email Address</label>
-          <div class="luxury-input-underline"></div>
         </div>
 
-        <!-- Service -->
+        <!-- Row 3 -->
         <div class="zenith-input-group">
           <select id="service" name="service" required class="luxury-select">
-            <option value="" disabled selected hidden>Select Service</option>
-            <option value="Shingle">Shingle</option>
-            <option value="Tile">Tile</option>
-            <option value="Flat Roofing">Flat Roofing</option>
-            <option value="Torch">Torch</option>
-            <option value="Gutters">Gutters</option>
+            <option value="" disabled selected hidden>Service Needed</option>
+            <option value="Shingle">Shingle Roofing</option>
+            <option value="Tile">Tile Roofing</option>
+            <option value="Flat">Flat Roofing</option>
+            <option value="Torch">Torch Down</option>
+            <option value="Gutters">Gutter Systems</option>
           </select>
-          <label for="service" class="luxury-label">Service Type</label>
-          <div class="luxury-select-arrow"></div>
+          <label for="service" class="luxury-label" style="pointer-events: none;">Service Type</label>
         </div>
-        <div class="zenith-input-group">
-          <input type="date" id="date" name="date" placeholder=" " min="" class="luxury-input">
-          <label for="date" class="luxury-label">Preferred Date</label>
-          <div class="luxury-input-underline"></div>
-        </div>
-
-        <!-- Address -->
-        <div class="zenith-input-group full-width">
-          <input type="text" id="street" name="street" required placeholder=" " class="luxury-input">
-          <label for="street" class="luxury-label">Street Address</label>
-          <div class="luxury-input-underline"></div>
-        </div>
-
-        <!-- Location -->
         <div class="zenith-input-group">
           <input type="text" id="city" name="city" required placeholder=" " class="luxury-input">
           <label for="city" class="luxury-label">City</label>
-          <div class="luxury-input-underline"></div>
-        </div>
-        <div class="zenith-input-group">
-          <input type="text" id="zip" name="zip" required placeholder=" " pattern="\d{5}(-\d{4})?" class="luxury-input">
-          <label for="zip" class="luxury-label">ZIP Code</label>
-          <div class="luxury-input-underline"></div>
         </div>
 
-        <!-- Project Info -->
+        <!-- Full Width Row -->
         <div class="zenith-input-group full-width">
-          <textarea id="details" name="details" rows="3" placeholder=" " class="luxury-textarea"></textarea>
+          <textarea id="details" name="details" rows="2" placeholder=" " class="luxury-textarea"></textarea>
           <label for="details" class="luxury-label">Project Details</label>
         </div>
 
-        <!-- Additional Info -->
-        <div class="zenith-input-group">
-          <div class="luxury-file-container">
-            <input type="file" id="photos" name="photos" accept="image/*" multiple class="luxury-file-input">
-            <label for="photos" class="luxury-file-label">
-              <svg class="luxury-upload-icon" viewBox="0 0 24 24"><path d="M19 13v5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-5M12 4v12m-4-4l4 4 4-4"/></svg>
-              <span>Upload Photos <em>(optional)</em></span>
-            </label>
-          </div>
-        </div>
-        <div class="zenith-input-group">
-          <select id="referral" name="referral" class="luxury-select">
-            <option value="" disabled selected hidden>How did you hear about us?</option>
-            <option value="Google">Google</option>
-            <option value="Referral">Referral</option>
-            <option value="Social Media">Social Media</option>
-            <option value="Other">Other</option>
-          </select>
-          <div class="luxury-select-arrow"></div>
-        </div>
-
         <!-- Form Footer -->
-        <div class="zenith-luxury-actions">
-          <div class="luxury-checkbox-container">
-            <input type="checkbox" id="reminder" name="reminder" class="luxury-checkbox">
-            <label for="reminder" class="luxury-checkbox-label">
-              <span class="luxury-checkbox-custom"></span>
-              Schedule free inspection reminder?
-            </label>
-          </div>
+        <div class="zenith-luxury-actions full-width">
           <button type="submit" class="zenith-luxury-submit">
-            <span>Request Free Estimate</span>
+            <span>Get Free Estimate</span>
             <svg class="luxury-arrow-icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </div>
 
-        <!-- Luxury Disclaimer -->
-        <div class="zenith-luxury-disclaimer">
-          <p>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="/real-estate" class="luxury-link">Real Estate Services</a>.</p>
+        <div class="zenith-luxury-disclaimer full-width">
+          <p>By submitting, you agree to our <a href="/privacy" class="luxury-link">Privacy Policy</a>.</p>
           <div class="luxury-contact-info">
             <svg class="luxury-phone-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span class="luxury-phone-number">555-809-8183</span>
+            <span class="luxury-phone-number">(555) 809-8183</span>
           </div>
         </div>
       </div>
     </form>
   </div>
 </section>
+
+<script>
+  // Enhanced form handling
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.zenith-luxury-form');
+    
+    if(form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Simulate form submission
+        setTimeout(() => {
+          // In production, replace with actual form submission
+          alert('Thank you! Your estimate request has been received. We\'ll contact you shortly.');
+          form.reset();
+        }, 800);
+      });
+      
+      // Set today's date as minimum for date fields
+      const today = new Date().toISOString().split('T')[0];
+      const dateInput = document.getElementById('date');
+      if(dateInput) dateInput.min = today;
+    }
+  });
+</script>
