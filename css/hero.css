@@ -397,6 +397,44 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(247, 148, 29, 0.4);
 }
+/* ---------------------------------------------------------
+   [5.1] reCAPTCHA (replaces reminder checkbox)
+   --------------------------------------------------------- */
+.zenith-recaptcha {
+  grid-column: 1 / -1;           /* span full grid width */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: flex-start;   /* aligns with labels on desktop */
+  margin: 0.25rem 0 0.5rem;
+}
+
+.recaptcha-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--zenith-navy);
+  white-space: nowrap;
+}
+
+/* Tone down widget size a touch and keep it aligned */
+.zenith-recaptcha [data-netlify-recaptcha],
+.zenith-recaptcha > div {
+  transform: scale(0.96);
+  transform-origin: left center;
+}
+
+/* Mobile: center the captcha under the button area */
+@media (max-width: 520px) {
+  .zenith-recaptcha {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .recaptcha-title {
+    font-size: 0.88rem;
+  }
+}
 
 /* ----------------------------
    [6] DISCLAIMER + CONTACT
