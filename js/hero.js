@@ -1,70 +1,69 @@
-// ===================================================================
-// js/hero.js — Hero Section scripts
-// ===================================================================
+// ====================================================================
+// js/hero.js — Zenith Hero helpers
+// - Phone auto-format (US)
+// - Date min = today
+// - Floating label fix for <select> (when optional)
+// - Honeypot spam guard
+// ====================================================================
 
-// Wait until all HTML is loaded before running any code
 document.addEventListener('DOMContentLoaded', () => {
-
-  // ---- 1) PHONE AUTO-FORMAT (US) ----
-  // Grabs the <input id="phone"> in your hero form and formats as (###) ###-####
+  // ---- 1) PHONE AUTO-FORMAT → (123) 456-7890 ----
   const phone = document.getElementById('phone');
   if (phone) {
-    phone.addEventListener('input', e => {
-      // 1a) Strip out non-digits, cap at 10 digits
-      let digits = e.target.value.replace(/\D/g, '').slice(0, 10);
-      const parts = [];
-
-      // 1b) Area code (first 3 digits)
-      if (digits.length > 3) {
-        parts.push('(' + digits.slice(0, 3) + ')');
-        digits = digits.slice(3);
-      } else {
-        parts.push(digits);
-        digits = '';
-      }
-
-      // 1c) Next three digits
-      if (digits.length > 3) {
-        parts.push(' ' + digits.slice(0, 3) + '-');
-        digits = digits.slice(3);
-      } else if (digits.length > 0) {
-        parts.push(' ' + digits);
-        digits = '';
-      }
-
-      // 1d) Any remaining digits
-      if (digits.length) parts.push(digits);
-
-      // 1e) Join and set formatted value
-      e.target.value = parts.join('');
+    phone.addEventListener('input', (e) => {
+      let v = e.target.value.replace(/\D/g, '').slice(0, 10);
+      let out = '';
+      if (v.length > 0) out = '(' + v.slice(0, 3);
+      if (v.length >= 4) out += ') ' + v.slice(3, 6);
+      if (v.length >= 7) out += '-' + v.slice(6);
+      e.target.value = out;
     });
   }
 
+  // ---- 2) DATE MIN (prevent past dates) ----
+  const date = document.getElementById('date');
+  if (date) {
+    const today = new Date();
+    const iso = today.toISOString().slice(0, 10);
+    date.min = iso;
+  }
 
-  // ---- 2) (OPTIONAL) ADDRESS AUTOCOMPLETE ----
-  // If you load the Google Places library, this hooks your "street" field.
+  // ---- 3) OPTIONAL: Google Places Autocomplete on "street" ----
+  // Load this script in your HTML if you want it:
   // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&libraries=places"></script>
   if (window.google && google.maps && google.maps.places) {
-    const streetInput = document.getElementById('street');
-    new google.maps.places.Autocomplete(streetInput, {
-      types: ['address'],
-      componentRestrictions: { country: 'us' }
-    });
+    const street = document.getElementById('street');
+    if (street) {
+      new google.maps.places.Autocomplete(street, {
+        types: ['address'],
+        componentRestrictions: { country: 'us' },
+      });
+    }
   }
 
+  // ---- 4) FLOATING LABEL FIX FOR <select> ----
+  // If a select is not required (e.g., referral), we add/remove a class
+  // on its parent so the label can float when a value is chosen.
+  document.querySelectorAll('.zenith-input-group select').forEach((sel) => {
+    const parent = sel.closest('.zenith-input-group');
+    const toggle = () => {
+      if (sel.value && sel.value !== '') parent.classList.add('has-value');
+      else parent.classList.remove('has-value');
+    };
+    sel.addEventListener('change', toggle);
+    toggle(); // initialize on load
+  });
 
-  // ---- 3) SIMPLE HONEYPOT SPAM BLOCKER ----
-  // If a hidden field (e.g. <input name="faxNumber">) is filled, we assume bot
-  const form = document.querySelector('.hero-form');
+  // ---- 5) HONEYPOT SPAM GUARD (Netlify) ----
+  // If the hidden "faxNumber" has any value, block submission.
+  const form = document.querySelector('.zenith-form');
   if (form) {
-    form.addEventListener('submit', e => {
-      const fax = form.querySelector('input[name="faxNumber"]');
-      if (fax && fax.value) {
-        // Bot detected—stop submission
-        return e.preventDefault();
+    form.addEventListener('submit', (e) => {
+      const trap = form.querySelector('input[name="faxNumber"]');
+      if (trap && trap.value) {
+        e.preventDefault(); // suspected bot
       }
-      // Let HTML5 validation run, then submit normally to Netlify
+      // Otherwise, let HTML5 validation + Netlify handle submission
     });
   }
-
 });
