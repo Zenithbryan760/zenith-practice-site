@@ -1,9 +1,16 @@
 <!-- =========================================================
-     HERO SECTION — Zenith Roofing
-     File: hero-section.html
+     [HERO SECTION] Zenith Roofing — Video + Luxury Header + Form
+     File: components/hero-section.html
+     Sections:
+       [1] Background Video + Overlay
+       [2] White Card
+       [2.5] Luxury Header (no badges)
+       [4] Form Grid + Inputs
+       [5] Actions (reCAPTCHA + Submit)
+       [6] Disclaimer + Phone
 ========================================================= -->
-<section class="zenith-hero" id="roofing-estimate">
 
+<section class="zenith-hero" id="roofing-estimate">
   <!-- [1] VIDEO BACKGROUND -->
   <div class="zenith-video-container">
     <video class="zenith-background-video" autoplay muted loop playsinline poster="roofing-poster.jpg">
@@ -16,16 +23,15 @@
   <!-- [2] CONTENT CARD -->
   <div class="zenith-card">
 
-    <!-- [2.5] LOGO + TITLES (No badges for clean look) -->
+    <!-- [2.5] LOGO + TITLES -->
     <div class="zenith-luxury-card">
       <div class="zenith-luxury-header">
         <div class="zenith-logo-frame">
+          <!-- Correct path to your logo -->
           <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-luxury-logo">
         </div>
         <div class="zenith-luxury-titles">
-          <h2 class="zenith-luxury-subtitle">
-            Roofing Contractor in Escondido, San Diego &amp; Temecula
-          </h2>
+          <h2 class="zenith-luxury-subtitle">Roofing Contractor in Escondido, San Diego &amp; Temecula</h2>
           <div class="zenith-luxury-locations">
             <span>Escondido</span>
             <span class="luxury-divider">•</span>
@@ -37,12 +43,13 @@
       </div>
     </div>
 
-    <!-- [4] ESTIMATE FORM -->
-    <form class="zenith-form" name="estimate" method="POST" data-netlify="true" netlify-recaptcha="true" novalidate>
+    <!-- [4] ESTIMATE FORM (Netlify) -->
+    <form class="zenith-form" name="estimate" method="POST" data-netlify="true" novalidate>
+      <!-- Helps Netlify detect your form reliably -->
+      <input type="hidden" name="form-name" value="estimate">
 
       <!-- [4] FORM GRID -->
       <div class="zenith-form-grid">
-
         <!-- Name -->
         <div class="zenith-input-group">
           <input type="text" id="first-name" name="first-name" required placeholder=" ">
@@ -55,11 +62,12 @@
 
         <!-- Contact -->
         <div class="zenith-input-group">
-          <input type="tel" id="phone" name="phone" required placeholder=" " pattern="^\d{3}[-.\s]?\d{3}[-.\s]?\d{4}$">
+          <input type="tel" id="phone" name="phone" required placeholder=" " inputmode="tel" autocomplete="tel"
+                 pattern="^\d{3}[-.\s]?\d{3}[-.\s]?\d{4}$">
           <label for="phone">Phone Number</label>
         </div>
         <div class="zenith-input-group">
-          <input type="email" id="email" name="email" required placeholder=" ">
+          <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">
           <label for="email">Email Address</label>
         </div>
 
@@ -120,31 +128,22 @@
           </select>
         </div>
 
-        <!-- [RECAPTCHA] Bot Protection -->
-        <div data-netlify-recaptcha="true"></div>
+        <!-- [5] ACTIONS (reCAPTCHA + submit) -->
+        <div class="zenith-actions">
+          <div class="zenith-recaptcha">
+            <span class="recaptcha-title">Verify you’re human</span>
+            <div data-netlify-recaptcha="true"></div>
+          </div>
+          <button type="submit" class="zenith-submit">Request Free Estimate</button>
+        </div>
 
-<!-- [5] Actions (Replaced reminder with reCAPTCHA) -->
-<div class="zenith-actions">
-  <!-- Brand-styled robot check -->
-  <div class="zenith-recaptcha">
-    <span class="recaptcha-title">Verify you’re human</span>
-    <div data-netlify-recaptcha="true"></div>
-  </div>
-
-  <button type="submit" class="zenith-submit">Request Free Estimate</button>
-</div>
-
-        <!-- [6] Disclaimer + Phone -->
+        <!-- [6] DISCLAIMER + PHONE -->
         <div class="zenith-disclaimer">
-          <p>
-            *Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our
-            <a href="/real-estate">Real Estate Services</a>.
-          </p>
+          <p>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="/real-estate">Real Estate Services</a>.</p>
           <div class="zenith-contact">
             <p class="zenith-phone">CALL NOW: <strong>858-900-6163</strong></p>
           </div>
         </div>
-
       </div>
     </form>
   </div>
