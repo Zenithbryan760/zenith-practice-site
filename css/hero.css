@@ -74,11 +74,11 @@
   margin: 0 auto;
 }
 
-/* -----------------------------------------------------------
-   [2.5] LUXURY FORM HEADER & SERVICE BADGES (your new top)
-   ----------------------------------------------------------- */
+/* ================================================
+   [2.5] LUXURY FORM HEADER & BADGES (fits your theme)
+   ================================================= */
 
-/* Container that sits at top of the form */
+/* Card wrapper */
 .zenith-luxury-card {
   background: var(--zenith-white);
   border-radius: var(--zenith-radius);
@@ -87,36 +87,57 @@
   margin-bottom: 1.25rem;
 }
 
-/* Brand header row */
+/* Header row */
 .zenith-luxury-header {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 0.75rem;
+  justify-content: center;   /* centered overall */
+  text-align: center;
 }
 
-/* Round logo frame (hides on small screens) */
+/* Logo frame: navy disk + subtle glow so white letters show */
 .zenith-logo-frame {
+  position: relative;
   flex-shrink: 0;
-  background: var(--zenith-light-gray);
+  width: 96px; height: 96px;
   border-radius: 50%;
-  padding: 0.55rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.07);
+  background: var(--zenith-navy);
+  display: grid; place-items: center;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.22);
+  isolation: isolate;
 }
-.zenith-luxury-logo {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
+.zenith-logo-frame::before {
+  content: "";
+  position: absolute; inset: -8px;
+  border-radius: 50%;
+  background:
+    radial-gradient(closest-side, rgba(255,255,255,0) 78%, rgba(255,255,255,0) 79%),
+    conic-gradient(var(--zenith-orange), #ffb25a, var(--zenith-orange));
+  mask: radial-gradient(closest-side, transparent 78%, black 79%);
+  opacity: 0.9;
+}
+.zenith-logo-frame::after {
+  content: "";
+  position: absolute; inset: -18px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(247,148,29,0.18), transparent 70%);
+  filter: blur(6px);
+  z-index: -1;
 }
 
-/* Titles block */
-.zenith-luxury-titles { display: flex; flex-direction: column; }
+/* Logo image: add drop-shadow so white letters pop even if PNG is white */
+.zenith-luxury-logo {
+  width: 64px; height: 64px; object-fit: contain;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.55));
+}
+
+/* Titles */
+.zenith-luxury-titles { display: flex; flex-direction: column; align-items: center; }
 .zenith-luxury-subtitle {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--zenith-navy);
   margin: 0 0 0.15rem 0;
 }
@@ -130,31 +151,40 @@
 }
 .luxury-divider { color: var(--zenith-orange); }
 
-/* Service badges row */
+/* Service badges: animated but non-interactive */
 .zenith-luxury-services {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  justify-content: center;
+  pointer-events: none;   /* prevent clicks */
+  user-select: none;      /* not selectable */
 }
 .luxury-service-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+  display: inline-flex; align-items: center; gap: 0.4rem;
   background: var(--zenith-light-gray);
   color: var(--zenith-navy);
-  padding: 0.4rem 0.75rem;
+  padding: 0.42rem 0.8rem;
   border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: background 0.2s ease, color 0.2s ease;
+  font-size: 0.85rem; font-weight: 600;
+  animation: floaty 3.6s ease-in-out infinite;
+  will-change: transform;
+  cursor: default;        /* not clickable */
 }
-.luxury-service-badge:hover {
-  background: var(--zenith-orange);
-  color: var(--zenith-white);
+.luxury-service-badge:nth-child(odd) { animation-duration: 3.2s; }
+.luxury-service-badge:nth-child(3n)   { animation-duration: 3.9s; }
+
+.luxury-badge-icon { width: 16px; height: 16px; fill: currentColor; }
+
+/* Gentle up/down bob */
+@keyframes floaty {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
 }
-.luxury-badge-icon {
-  width: 16px; height: 16px;
-  fill: currentColor;
+
+/* Mobile: center everything + hide the logo frame if space is tight */
+@media (max-width: 520px) {
+  .zenith-luxury-header { flex-direction: column; }
+  .zenith-logo-frame { display: none; }    /* hides logo on small screens */
 }
 
 /* -------------------------------------------------
