@@ -313,6 +313,51 @@
   border-color: var(--zenith-orange);
   box-shadow: 0 0 0 3px rgba(247, 148, 29, 0.2);
 }
+/* ==============================================
+   [4.5] FILE UPLOAD — balanced button & text
+   ============================================== */
+.file-group input[type="file"] {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--zenith-border);
+  border-radius: var(--zenith-radius);
+  background: var(--zenith-white);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+/* Make the button uniform height */
+.file-group input[type="file"]::file-selector-button {
+  border: none;
+  background: var(--zenith-navy);
+  color: var(--zenith-white);
+  padding: 0.6rem 1rem;         /* balanced height/width */
+  border-radius: 4px;
+  margin-right: 1rem;           /* space between button & text */
+  transition: var(--zenith-transition);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* Hover effect for desktop */
+.file-group input[type="file"]::file-selector-button:hover {
+  background: var(--zenith-orange);
+}
+
+/* iOS & small mobile fix — text wraps cleanly */
+@media (max-width: 480px) {
+  .file-group input[type="file"] {
+    font-size: 0.85rem;
+  }
+  .file-group input[type="file"]::file-selector-button {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8rem;
+  }
+}
 
 /* -----------------------------------------
    [5] ACTIONS (checkbox + submit button)
