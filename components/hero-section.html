@@ -20,40 +20,28 @@
   </div>
   <div class="zenith-video-overlay"></div>
 
-  <!-- [2.5] LOGO + TITLES -->
-  <div class="zenith-luxury-card">
-    <div class="zenith-luxury-header">
-      <div class="zenith-logo-frame">
-        <!-- Correct path to your logo -->
-        <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-luxury-logo">
-      </div>
-      <div class="zenith-luxury-titles">
-        <h2 class="zenith-luxury-subtitle">Roofing Contractor in Escondido, San Diego &amp; Temecula</h2>
-        <div class="zenith-luxury-locations">
-          <span>Escondido</span>
-          <span class="luxury-divider">•</span>
-          <span>San Diego</span>
-          <span class="luxury-divider">•</span>
-          <span>Temecula</span>
+  <!-- [2] CONTENT CARD -->
+  <div class="zenith-card">
+
+    <!-- [2.5] LOGO + TITLES -->
+    <div class="zenith-luxury-card">
+      <div class="zenith-luxury-header">
+        <div class="zenith-logo-frame">
+          <!-- Correct path to your logo -->
+          <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-luxury-logo">
+        </div>
+        <div class="zenith-luxury-titles">
+          <h2 class="zenith-luxury-subtitle">Roofing Contractor in Escondido, San Diego &amp; Temecula</h2>
+          <div class="zenith-luxury-locations">
+            <span>Escondido</span>
+            <span class="luxury-divider">•</span>
+            <span>San Diego</span>
+            <span class="luxury-divider">•</span>
+            <span>Temecula</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- [3] FREE ESTIMATE BANNER -->
-  <div class="estimate-banner" role="note" aria-label="Free estimate notice">
-    <div class="estimate-icon" aria-hidden="true">
-      <!-- Checkmark icon -->
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" focusable="false" aria-hidden="true">
-        <path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"></path>
-      </svg>
-    </div>
-    <div class="estimate-text">
-      <h3 class="estimate-title">Free Estimate</h3>
-      <p class="estimate-subtitle">We proudly offer free roofing estimates to homeowners and business owners.</p>
-    </div>
-  </div>
-
 
     <!-- [4] ESTIMATE FORM (Netlify) -->
     <form class="zenith-form" name="estimate" method="POST" data-netlify="true" novalidate>
@@ -140,18 +128,19 @@
           </select>
         </div>
 
- <!-- [5] ACTIONS (Google reCAPTCHA + submit) -->
-      <div class="zenith-actions">
-        <div class="zenith-recaptcha">
-          <span class="recaptcha-title">Verify you’re human</span>
+        <!-- [5] ACTIONS (Google reCAPTCHA + submit) -->
+        <div class="zenith-actions">
+          <div class="zenith-recaptcha">
+            <span class="recaptcha-title">Verify you’re human</span>
+            <!-- ▼▼ Google reCAPTCHA v2 (site key provided by you) ▼▼ -->
+<div class="g-recaptcha" data-sitekey="6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI"></div>
 
-          <!-- [5.1] CAPTCHA CONTAINER (explicit render target) -->
-          <div id="estimate-recaptcha" class="g-recaptcha"></div>
-          <!-- NOTE: do NOT include data-netlify-recaptcha here; we’re using Google v2 explicitly -->
+<!-- TEMP: load reCAPTCHA right here to prove it works -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+            <!-- ▲▲ replaces Netlify <div data-netlify-recaptcha="true"></div> ▲▲ -->
+          </div>
+          <button type="submit" class="zenith-submit">Request Free Estimate</button>
         </div>
-
-        <button type="submit" class="zenith-submit">Request Free Estimate</button>
-      </div>
 
         <!-- [6] DISCLAIMER + PHONE -->
         <div class="zenith-disclaimer">
