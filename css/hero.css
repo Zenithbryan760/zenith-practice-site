@@ -1,23 +1,29 @@
-/* =============================================
-   ZENITH ROOFING FORM STYLES - OPTIMIZED VERSION
-   ============================================= */
+/* =========================================================
+   HERO SECTION STYLES — Zenith Roofing
+   File: css/hero.css
+   Purpose: Video hero, centered logo, SEO header, estimate form
+   ========================================================= */
 
-/* Base Variables - Updated for tighter design */
+/* ---------------------------------------------------------
+   [0] BRAND VARIABLES (edit here to change colors/radius/etc.)
+   --------------------------------------------------------- */
 :root {
   --zenith-navy: #072e59;
   --zenith-orange: #f7941d;
   --zenith-orange-dark: #d77a18;
   --zenith-white: #ffffff;
+
   --zenith-light-gray: #f5f7fb;
   --zenith-border: #e0e3e7;
   --zenith-text: #333333;
   --zenith-text-light: #6b6b6b;
-  --zenith-radius: 6px; /* Tighter radius to match navbar */
-  --zenith-shadow: 0 2px 8px rgba(0,0,0,0.1); /* More subtle shadow */
-  --zenith-transition: all 0.2s ease; /* Faster transition */
+
+  --zenith-radius: 6px;                  /* matches navbar feel */
+  --zenith-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  --zenith-transition: all 0.2s ease;    /* fast + subtle */
 }
 
-/* Small utility for hidden helper text if needed */
+/* Utility: hide visually but keep for screen readers */
 .visually-hidden {
   position: absolute !important;
   width: 1px; height: 1px;
@@ -26,83 +32,75 @@
   white-space: nowrap; border: 0;
 }
 
-/* Hero Container - More compact */
+/* ---------------------------------------------
+   [1] HERO WRAPPER + VIDEO BACKGROUND OVERLAY
+   --------------------------------------------- */
 .zenith-hero {
   position: relative;
-  min-height: 90vh; /* Reduced from 100vh */
+  min-height: 90vh;                      /* compact hero */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem; /* Reduced padding */
+  padding: 1.5rem;
   background-color: var(--zenith-light-gray);
 }
 
-/* Video Background - Unchanged */
 .zenith-video-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  overflow: hidden;
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1; overflow: hidden;
 }
 .zenith-background-video {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
 }
 .zenith-video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(7, 46, 89, 0.6);
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(7, 46, 89, 0.6);  /* navy tint for readability */
   z-index: 2;
 }
 
-/* Content Card - Tighter padding */
+/* -------------------------------
+   [2] WHITE CARD (content shell)
+   ------------------------------- */
 .zenith-card {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  max-width: 900px;
+  position: relative; z-index: 3;
+  width: 100%; max-width: 900px;
   background: var(--zenith-white);
   border-radius: var(--zenith-radius);
   box-shadow: var(--zenith-shadow);
-  padding: 2rem; /* Reduced from 2.5rem */
+  padding: 2rem;
   margin: 0 auto;
 }
 
-/* ========= HEADER / LOGO AREA (updated & centered) ========= */
+/* -------------------------------------------------
+   [3] HEADER: CENTERED LOGO + TITLE + SUBTITLE
+   ------------------------------------------------- */
 .zenith-header {
-  /* was: text-align:left; row layout */
+  /* CHANGED from row/left to centered column */
   display: flex;
-  flex-direction: column;      /* stack logo and text */
-  align-items: center;         /* center horizontally */
+  flex-direction: column;                /* stack vertically */
+  align-items: center;                   /* center horizontally */
   justify-content: center;
-  gap: 0.75rem;
-  text-align: center;          /* center text */
+  gap: 0.75rem;                          /* even spacing */
+  text-align: center;
   margin-bottom: 1.5rem;
 }
 
-/* Navy disk + gradient ring + soft glow behind logo */
+/* 3A) Navy disk with soft orange gradient ring + glow */
 .zenith-logo-badge {
   position: relative;
-  display: grid;
-  place-items: center;
-  width: 120px;
-  height: 120px;
+  display: grid; place-items: center;
+  width: 120px; height: 120px;
   border-radius: 50%;
-  background: var(--zenith-navy);                /* solid navy disk */
+  background: var(--zenith-navy);        /* solid navy disk */
   box-shadow: 0 8px 18px rgba(0,0,0,0.25);
-  isolation: isolate;
+  isolation: isolate;                    /* keep glow under control */
 }
 .zenith-logo-badge::before {
   content: "";
-  position: absolute;
-  inset: -10px;                                    /* ring thickness */
+  position: absolute; inset: -10px;      /* ring thickness */
   border-radius: 50%;
   background:
     radial-gradient(closest-side, rgba(255,255,255,0) 78%, rgba(255,255,255,0) 79%),
@@ -117,107 +115,97 @@
 }
 .zenith-logo-badge::after {
   content: "";
-  position: absolute;
-  inset: -22px;                                    /* soft glow */
+  position: absolute; inset: -22px;      /* soft outer glow */
   border-radius: 50%;
   background: radial-gradient(closest-side, rgba(247,148,29,0.22), transparent 70%);
   filter: blur(6px);
   z-index: -1;
 }
 
-/* Logo image inside the badge */
+/* 3B) Logo inside badge */
 .zenith-logo {
-  width: 84px;     /* bigger so it reads over video */
-  height: 84px;
+  width: 84px; height: 84px;
   object-fit: contain;
 }
 
-/* Title & Subtitle under the logo */
+/* 3C) Title + subtitle under logo */
 .zenith-title {
   color: var(--zenith-navy);
-  font-size: 1.8rem; /* Slightly smaller */
+  font-size: 1.8rem;
   font-weight: 700;
-  margin: 0;         /* tighter spacing */
   line-height: 1.2;
+  margin: 0;
 }
 .zenith-subtitle {
   color: var(--zenith-navy);
-  font-size: 1rem; /* Slightly smaller */
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.5px;
   opacity: 0.9;
   margin: 0;
 }
 
-/* Form Grid - Tighter spacing */
+/* ---------------------------------------------
+   [4] FORM GRID + INPUTS (existing structure)
+   --------------------------------------------- */
 .zenith-form-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.75rem; /* Reduced from 1rem */
+  gap: 0.75rem;                          /* compact rhythm */
 }
 
-/* Input Groups - More compact */
 .zenith-input-group {
   position: relative;
-  margin-bottom: 0.25rem; /* Reduced from 0.5rem */
+  margin-bottom: 0.25rem;
 }
-.zenith-input-group.full-width {
-  grid-column: 1 / -1;
-}
+.zenith-input-group.full-width { grid-column: 1 / -1; }
 
-/* Input Fields - More compact */
 .zenith-input-group input,
 .zenith-input-group select,
 .zenith-input-group textarea {
   width: 100%;
-  padding: 0.85rem; /* Reduced from 1rem */
+  padding: 0.85rem;
   border: 1px solid var(--zenith-border);
   border-radius: var(--zenith-radius);
   background: var(--zenith-white);
-  font-size: 0.9rem; /* Slightly smaller */
+  font-size: 0.9rem;
   transition: var(--zenith-transition);
 }
 
-.zenith-input-group textarea {
-  min-height: 90px; /* Slightly reduced */
-  resize: vertical;
-}
-
-/* Floating Labels - Adjusted for compact size */
+/* 4A) Floating labels for inputs/textarea only */
 .zenith-input-group label {
   position: absolute;
-  top: 0.85rem; /* Adjusted */
-  left: 0.85rem; /* Adjusted */
+  top: 0.85rem; left: 0.85rem;
   color: var(--zenith-text-light);
   background: var(--zenith-white);
   padding: 0 0.5rem;
-  font-size: 0.85rem; /* Slightly smaller */
+  font-size: 0.85rem;
   transition: var(--zenith-transition);
-  pointer-events: none; /* ensure label doesn't block typing */
+  pointer-events: none;                  /* IMPORTANT: don’t block typing */
 }
+.zenith-input-group textarea { min-height: 90px; resize: vertical; }
 
 .zenith-input-group input:focus + label,
 .zenith-input-group input:not(:placeholder-shown) + label,
-.zenith-input-group select:focus + label,
-.zenith-input-group select:not(:placeholder-shown) + label,
 .zenith-input-group textarea:focus + label,
 .zenith-input-group textarea:not(:placeholder-shown) + label {
-  top: -0.4rem; /* Adjusted */
-  left: 0.7rem; /* Adjusted */
-  font-size: 0.7rem; /* Slightly smaller */
+  top: -0.4rem; left: 0.7rem;
+  font-size: 0.7rem;
   color: var(--zenith-orange);
 }
 
-/* Focus States - Unchanged */
-.zenith-input-group input:focus,
-.zenith-input-group select:focus,
-.zenith-input-group textarea:focus {
-  outline: none;
-  border-color: var(--zenith-orange);
-  box-shadow: 0 0 0 3px rgba(247, 148, 29, 0.2);
+/* 4B) Selects + File need STATIC labels (no float) so they display right */
+.select-group label,
+.file-group label {
+  position: static !important;
+  display: block;
+  margin-bottom: 0.35rem;
+  padding: 0;
+  color: var(--zenith-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  pointer-events: auto;
 }
-
-/* Select Dropdown - Unchanged */
 .zenith-input-group select {
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23072e59' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
@@ -226,63 +214,69 @@
   background-size: 1rem;
 }
 
-/* File Input - Unchanged */
-.zenith-input-group input[type="file"] {
+/* 4C) File input: make it display properly on all browsers */
+.file-group input[type="file"] {
+  display: block;                        /* fixes “not showing” layout */
+  width: 100%;
   padding: 0.8rem;
+  border: 1px solid var(--zenith-border);
+  border-radius: var(--zenith-radius);
+  background: var(--zenith-white);
 }
-.zenith-input-group input[type="file"]::file-selector-button {
+.file-group input[type="file"]::file-selector-button {
   border: none;
   background: var(--zenith-navy);
   color: var(--zenith-white);
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  margin-right: 1rem;
+  margin-right: 0.75rem;
   transition: var(--zenith-transition);
+  cursor: pointer;
 }
-.zenith-input-group input[type="file"]::file-selector-button:hover {
+.file-group input[type="file"]::file-selector-button:hover {
   background: var(--zenith-orange);
 }
 
-.zenith-optional {
-  color: var(--zenith-text-light);
-  font-size: 0.8rem;
+/* 4D) Focus ring */
+.zenith-input-group input:focus,
+.zenith-input-group select:focus,
+.zenith-input-group textarea:focus {
+  outline: none;
+  border-color: var(--zenith-orange);
+  box-shadow: 0 0 0 3px rgba(247, 148, 29, 0.2);
 }
 
-/* Form Actions - More compact */
+/* -----------------------------------------
+   [5] ACTIONS (checkbox + submit button)
+   ----------------------------------------- */
 .zenith-actions {
   grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem; /* Reduced from 1rem */
-  margin-top: 0.75rem; /* Reduced from 1rem */
+  gap: 0.75rem;
+  margin-top: 0.75rem;
 }
-
 .zenith-checkbox {
-  display: flex;
-  align-items: center;
+  display: flex; align-items: center;
   gap: 0.5rem;
 }
 .zenith-checkbox input[type="checkbox"] {
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1.1rem; height: 1.1rem;
   accent-color: var(--zenith-orange);
 }
 .zenith-checkbox label {
   color: var(--zenith-text);
-  font-size: 0.85rem; /* Slightly smaller */
-  position: static;
-  background: none;
-  padding: 0;
+  font-size: 0.85rem;
+  position: static; background: none; padding: 0;
 }
 
-/* Submit Button - More compact */
 .zenith-submit {
   background: linear-gradient(to right, var(--zenith-orange), var(--zenith-orange-dark));
   color: var(--zenith-white);
   border: none;
-  padding: 0.9rem; /* Reduced from 1rem */
+  padding: 0.9rem;
   border-radius: var(--zenith-radius);
-  font-size: 0.95rem; /* Slightly smaller */
+  font-size: 0.95rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -295,11 +289,13 @@
   box-shadow: 0 6px 12px rgba(247, 148, 29, 0.4);
 }
 
-/* Disclaimer - More compact */
+/* ----------------------------
+   [6] DISCLAIMER + CONTACT
+   ---------------------------- */
 .zenith-disclaimer {
   grid-column: 1 / -1;
-  margin-top: 1.5rem; /* Reduced from 2rem */
-  font-size: 0.75rem; /* Slightly smaller */
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
   color: var(--zenith-text-light);
   line-height: 1.5;
 }
@@ -307,78 +303,43 @@
   color: var(--zenith-orange);
   text-decoration: none;
 }
-.zenith-disclaimer a:hover {
-  text-decoration: underline;
-}
+.zenith-disclaimer a:hover { text-decoration: underline; }
 
-.zenith-contact {
-  margin-top: 1rem; /* Reduced from 1.5rem */
-  text-align: center;
-}
-.zenith-phone {
-  font-size: 1rem; /* Slightly smaller */
-  color: var(--zenith-navy);
-  font-weight: 600;
-}
-.zenith-phone strong {
-  color: var(--zenith-orange);
-}
+.zenith-contact { margin-top: 1rem; text-align: center; }
+.zenith-phone { font-size: 1rem; color: var(--zenith-navy); font-weight: 600; }
+.zenith-phone strong { color: var(--zenith-orange); }
 
-/* Honeypot - Unchanged */
-.zenith-honeypot {
-  position: absolute;
-  left: -9999px;
-}
-
-/* Responsive Adjustments - Updated */
+/* ----------------------------
+   [7] RESPONSIVE ADJUSTMENTS
+   ---------------------------- */
 @media (min-width: 768px) {
   .zenith-form-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 1rem 0.75rem; /* Tighter column gap */
+    gap: 1rem 0.75rem;
   }
-  
   .zenith-actions {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
-  
   .zenith-submit {
-    width: auto;
-    min-width: 220px; /* Slightly reduced */
+    width: auto; min-width: 220px;
   }
-
-  .zenith-header {
-    margin-bottom: 1.75rem;
-  }
+  .zenith-header { margin-bottom: 1.75rem; }
 }
 
 @media (max-width: 480px) {
-  .zenith-hero {
-    padding: 1rem;
-    min-height: auto;
-  }
-  
-  .zenith-card {
-    padding: 1.25rem; /* More compact */
-  }
-  
-  .zenith-title {
-    font-size: 1.5rem; /* Adjusted */
-  }
-  
-  .zenith-subtitle {
-    font-size: 0.9rem; /* Adjusted */
-  }
+  .zenith-hero { padding: 1rem; min-height: auto; }
+  .zenith-card { padding: 1.25rem; }
 
-  .zenith-logo {
-    width: 72px;   /* scales down logo nicely */
-    height: 72px;
-  }
+  /* Slightly smaller logo on small screens */
+  .zenith-logo { width: 72px; height: 72px; }
+  .zenith-title { font-size: 1.5rem; }
+  .zenith-subtitle { font-size: 0.9rem; }
 
   .zenith-input-group input,
   .zenith-input-group select,
   .zenith-input-group textarea {
-    padding: 0.75rem; /* More compact */
+    padding: 0.75rem;
   }
 }
