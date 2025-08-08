@@ -487,3 +487,172 @@ html { scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px
   flex-direction: column;
   align-items: center; /* keeps title & subtitle centered under each other */
 }
+/* =========================================================
+   HERO SECTION STYLES (Full Code with Updated Free Estimate)
+   ========================================================= */
+
+/* ===== Video Background ===== */
+.zenith-hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.zenith-video-container {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.zenith-background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.zenith-video-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+/* ===== Content Card ===== */
+.zenith-card {
+  position: relative;
+  z-index: 2;
+  background: #fff; /* Keeps white background */
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 800px;
+  width: 100%;
+  margin: 40px auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ===== Luxury Card Header ===== */
+.zenith-luxury-card {
+  margin-bottom: 20px;
+}
+
+.zenith-luxury-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+}
+
+.zenith-logo-frame {
+  flex-shrink: 0;
+}
+
+.zenith-luxury-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.zenith-luxury-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.zenith-luxury-subtitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--zenith-navy);
+  margin: 0;
+}
+
+.zenith-luxury-locations {
+  font-size: 0.9rem;
+  color: var(--zenith-text-light);
+}
+
+.luxury-divider {
+  margin: 0 6px;
+}
+
+/* ===== Free Estimate (Updated Text-Only Version) ===== */
+.estimate-banner {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.estimate-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--zenith-navy);
+}
+
+.estimate-subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--zenith-text-light);
+}
+
+.estimate-icon {
+  display: none !important; /* Ensure no checkmark appears */
+}
+
+/* ===== Form Fields ===== */
+.zenith-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.zenith-form input,
+.zenith-form select,
+.zenith-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+/* ===== Actions Section ===== */
+.zenith-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.zenith-submit {
+  background: var(--zenith-orange);
+  color: #fff;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.zenith-submit:hover {
+  background: #e76b00;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .zenith-luxury-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .zenith-luxury-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .zenith-form {
+    flex-direction: column;
+  }
+}
