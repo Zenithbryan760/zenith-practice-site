@@ -333,10 +333,7 @@
   </ul>
 </nav>
 
-<body>
-  <!-- … your header/nav … -->
-
-  <!-- ===== HERO PLACEHOLDER ===== -->
+ <!-- ===== HERO PLACEHOLDER ===== -->
   <div id="hero-placeholder"></div>
 
   <!-- ===== FETCH HERO COMPONENT ===== -->
@@ -348,6 +345,12 @@
       })
       .then(html => {
         document.getElementById('hero-placeholder').innerHTML = html;
+
+        // IMPORTANT: after we inject the hero markup,
+        // try to render the captcha if the Google script is already loaded.
+        if (window.renderHeroRecaptchaIfReady) {
+          window.renderHeroRecaptchaIfReady();
+        }
       })
       .catch(err => console.error('❌ Hero load error:', err));
   </script>
