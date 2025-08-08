@@ -422,3 +422,57 @@ html { scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px
     gap: 1.25rem;
   }
 }
+/* =========================================================
+   [NEW] Free Estimate banner (scoped)
+   ========================================================= */
+.estimate-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  margin: 0 0 20px;                /* align with inputs (no side margin) */
+  border-radius: 8px;              /* match input radius */
+  border: 1px solid rgba(7,46,89,0.12);
+  background: #fff;                /* match card background */
+  box-shadow: 0 2px 6px rgba(7,46,89,0.06);
+}
+.estimate-icon {
+  flex: 0 0 auto;
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: grid; place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--zenith-orange), var(--zenith-navy));
+  box-shadow: 0 6px 14px rgba(7,46,89,0.18);
+}
+.estimate-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--zenith-navy);
+  letter-spacing: 0.2px;
+}
+.estimate-subtitle {
+  margin: 2px 0 0;
+  font-size: 0.95rem;
+  color: var(--zenith-text);
+}
+@media (max-width: 480px) {
+  .estimate-banner { padding: 12px 14px; gap: 10px; }
+  .estimate-icon   { width: 36px; height: 36px; border-radius: 9px; }
+  .estimate-title  { font-size: 1rem; }
+  .estimate-subtitle { font-size: 0.9rem; }
+}
+
+/* =========================================================
+   [TOUCH-UP] ReCAPTCHA wrapper branding ONLY (no layout change)
+   (Place AFTER your existing .zenith-recaptcha rules)
+   ========================================================= */
+.zenith-recaptcha {
+  padding: 8px 10px;                               /* subtle frame */
+  border: 1px solid rgba(7,46,89,0.12);
+  border-radius: 8px;
+  background: linear-gradient(0deg, rgba(255,255,255,0.7), rgba(255,255,255,0.7));
+  box-shadow: 0 2px 6px rgba(7,46,89,0.06);
+}
+.recaptcha-title { color: var(--zenith-navy); font-weight: 700; }
