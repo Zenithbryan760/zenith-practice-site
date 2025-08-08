@@ -46,7 +46,8 @@
 </div>
 
     <!-- [4] ESTIMATE FORM -->
-    <form class="zenith-form" name="estimate" method="POST" data-netlify="true" novalidate>
+<form class="zenith-form" name="estimate" method="POST" data-netlify="true" data-netlify-recaptcha="true" novalidate>
+
       <!-- Honeypot removed per your request -->
 
       <!-- [4] FORM GRID -->
@@ -137,14 +138,18 @@
           </select>
         </div>
 
-        <!-- [5] Actions -->
-        <div class="zenith-actions">
-          <div class="zenith-checkbox">
-            <input type="checkbox" id="reminder" name="reminder">
-            <label for="reminder">Schedule free inspection reminder?</label>
-          </div>
-          <button type="submit" class="zenith-submit">Request Free Estimate</button>
-        </div>
+<!-- [5] Actions -->
+<div class="zenith-actions">
+  <div class="zenith-checkbox">
+    <input type="checkbox" id="reminder" name="reminder">
+    <label for="reminder">Schedule free inspection reminder?</label>
+  </div>
+
+  <!-- Netlify reCAPTCHA -->
+  <div data-netlify-recaptcha="true"></div>
+
+  <button type="submit" class="zenith-submit">Request Free Estimate</button>
+</div>
 
         <!-- [6] Disclaimer + Phone -->
         <div class="zenith-disclaimer">
