@@ -1,9 +1,9 @@
-<!-- Hero Section -->
+<!-- components/hero-section.html -->
 <section class="zenith-hero" id="roofing-estimate">
   <!-- Video Background -->
   <div class="zenith-video-container">
-    <video class="zenith-background-video" autoplay muted loop playsinline poster="roofing-poster.jpg">
-      <source src="roofing-bg.mp4" type="video/mp4">
+    <video class="zenith-background-video" autoplay muted loop playsinline poster="/assets/images/roofing-poster.jpg">
+      <source src="/assets/videos/roofing-bg.mp4" type="video/mp4">
       Your browser doesn't support HTML5 video.
     </video>
   </div>
@@ -11,11 +11,18 @@
 
   <!-- Content Card -->
   <div class="zenith-card">
-    <!-- Logo and Header -->
+    <!-- Logo and Location Header -->
     <div class="zenith-header">
       <div class="zenith-logo-container">
-        <img src="logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-logo">
-        <h1 class="zenith-title">ZENITH</h1>
+        <div class="zenith-logo-bg">
+          <img src="/assets/images/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-logo">
+        </div>
+        <h2 class="zenith-location-title">Dependable Roofing Services in</h2>
+        <div class="zenith-locations">
+          <span>Escondido</span>
+          <span>San Diego County</span>
+          <span>Temecula</span>
+        </div>
         <div class="zenith-services">
           <span>Shingle</span>
           <span>Tile</span>
@@ -28,11 +35,8 @@
 
     <!-- Estimate Form -->
     <form class="zenith-form" name="estimate" method="POST" data-netlify="true" novalidate>
-      <!-- Honeypot Field -->
-      <div class="zenith-honeypot">
-        <label>Don't fill this out if you're human: <input name="faxNumber" autocomplete="off"></label>
-      </div>
-
+      <input type="hidden" name="form-name" value="estimate">
+      
       <!-- Form Grid -->
       <div class="zenith-form-grid">
         <!-- Name -->
@@ -59,9 +63,10 @@
         <div class="zenith-input-group">
           <select id="service" name="service" required>
             <option value="" disabled selected hidden>Select Service</option>
-            <option value="Shingles">Shingles</option>
+            <option value="Shingle">Shingle</option>
             <option value="Tile">Tile</option>
             <option value="Flat Roofing">Flat Roofing</option>
+            <option value="Torch">Torch</option>
             <option value="Gutters">Gutters</option>
             <option value="Repairs">Repairs</option>
           </select>
