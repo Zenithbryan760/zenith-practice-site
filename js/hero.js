@@ -1,9 +1,11 @@
 // ====================================================================
-// js/hero.js — Zenith Hero helpers
-// - Phone auto-format (US)
-// - Date min = today
-// - Floating label fix for <select> (when optional)
-// - Honeypot spam guard
+// js/hero.js — Zenith Hero helpers (DROP-IN REPLACEMENT)
+// - Phone auto-format (US)          -> (123) 456-7890
+// - Date min = today                -> prevent past dates
+// - Floating label fix for <select> -> has-value class
+// - reCAPTCHA explicit render       -> stores widget id
+// - ONE submit handler (waits for injected hero form)
+// - Maps hyphenated names -> camelCase for Netlify Function
 // ====================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,8 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---- 3) OPTIONAL: Google Places Autocomplete on "street" ----
-  // Load this script in your HTML if you want it:
-  // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&libraries=places"></script>
   if (window.google && google.maps && google.maps.places) {
     const street = document.getElementById('street');
     if (street) {
@@ -42,8 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---- 4) FLOATING LABEL FIX FOR <select> ----
-  // If a select is not required (e.g., referral), we add/remove a class
-  // on its parent so the label can float when a value is chosen.
   document.querySelectorAll('.zenith-input-group select').forEach((sel) => {
     const parent = sel.closest('.zenith-input-group');
     const toggle = () => {
@@ -51,57 +49,113 @@ document.addEventListener('DOMContentLoaded', () => {
       else parent.classList.remove('has-value');
     };
     sel.addEventListener('change', toggle);
-    toggle(); // initialize on load
+    toggle();
   });
 
-// ---- 6) Google reCAPTCHA explicit render helpers ----
-// Renders the checkbox IF the hero has been injected and the Google API is ready.
-window.renderHeroRecaptchaIfReady = function () {
-  var el = document.getElementById('estimate-recaptcha');
-  if (!el) return; // hero not injected yet
+  // ---- 5) reCAPTCHA explicit render helpers ----
+  window.renderHeroRecaptchaIfReady = function () {
+    var el = document.getElementById('estimate-recaptcha');
+    if (!el) return; // hero not injected yet
 
-  if (window.grecaptcha && typeof grecaptcha.render === 'function') {
-    if (!el.getAttribute('data-rendered')) { // avoid duplicate renders
-      grecaptcha.render(el, {
-        sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI'
-      });
-      el.setAttribute('data-rendered', 'true');
+    if (window.grecaptcha && typeof grecaptcha.render === 'function') {
+      if (!el.getAttribute('data-rendered')) {
+        // store widget id so we can read/reset later
+        window.__zenithRecaptchaWidgetId = grecaptcha.render(el, {
+          sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI'
+        });
+        el.setAttribute('data-rendered', 'true');
+      }
     }
-  }
-};
+  };
+  // Called by Google script (?onload=recaptchaOnload)
+  window.recaptchaOnload = function () {
+    window.renderHeroRecaptchaIfReady();
+  };
 
-// Google calls this after their script finishes loading (?onload=recaptchaOnload)
-window.recaptchaOnload = function () {
-  window.renderHeroRecaptchaIfReady();
-};
+  // ---- 6) Bind ONE submit handler (waits for injected form) ----
+  let bound = false;
+  const tryBind = () => {
+    if (bound) return true;
+    const form = document.getElementById('estimate-form');
+    if (!form) return false;
 
+    // avoid double-binding if this runs again
+    if (form.dataset.bound === 'true') return true;
+    form.dataset.bound = 'true';
+    bound = true;
 
-  // ---- 3) Estimate from API ----
-  
-document.getElementById("estimate-form").addEventListener("submit", async function (e) {
-  e.preventDefault();
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
 
-  const formData = new FormData(this);
-  const data = Object.fromEntries(formData.entries());
+      // read form fields (hyphenated names)
+      const fd = new FormData(form);
+      const phoneRaw = String(fd.get('phone') || '');
+      const phoneDigits = phoneRaw.replace(/\D/g, '');
 
-  try {
-    const response = await fetch("/.netlify/functions/jn-create-lead", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
+      // get reCAPTCHA token if present
+      let recaptcha = '';
+      try {
+        if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) {
+          recaptcha = grecaptcha.getResponse(window.__zenithRecaptchaWidgetId);
+        }
+      } catch (_) {}
+
+      // map to camelCase expected by your Netlify Function
+      const body = {
+        firstName: fd.get('first-name') || '',
+        lastName:  fd.get('last-name')  || '',
+        phone:     phoneDigits,
+        email:     fd.get('email')      || '',
+        service:   fd.get('service')    || '',
+        date:      fd.get('date')       || '',
+        street:    fd.get('street')     || '',
+        city:      fd.get('city')       || '',
+        zip:       fd.get('zip')        || '',
+        details:   fd.get('details')    || '',
+        referral:  fd.get('referral')   || '',
+        page:      location.pathname + location.hash,
+        recaptcha
+      };
+
+      // UI state
+      const btn = form.querySelector('button[type="submit"]');
+      const oldText = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+      try {
+        const res = await fetch('/.netlify/functions/jn-create-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || !json.ok) throw new Error(json.error || 'Submit failed');
+
+        alert('Thanks! We’ll be in touch shortly.');
+        form.reset();
+        if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) {
+          grecaptcha.reset(window.__zenithRecaptchaWidgetId);
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Sorry, something went wrong. Please call 858-900-6163 or try again.');
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = oldText; }
+      }
     });
 
-    const result = await response.json();
-    if (response.ok) {
-      alert("Form submitted successfully!");
-      this.reset();
-    } else {
-      alert("Error: " + (result.error || "Something went wrong"));
-    }
-  } catch (err) {
-    console.error(err);
-    alert("Network error, please try again.");
+    // render captcha if Google script already loaded
+    window.renderHeroRecaptchaIfReady();
+    return true;
+  };
+
+  // Try immediately, then poll briefly (hero injected async)
+  if (!tryBind()) {
+    const int = setInterval(() => {
+      if (tryBind()) clearInterval(int);
+    }, 150);
+    // safety stop after 10s
+    setTimeout(() => clearInterval(int), 10000);
   }
 });
