@@ -12,7 +12,26 @@
   <!-- [GLOBAL] Google reCAPTCHA v2 script (explicit render) -->
 <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
 
+  <!-- [GLOBAL] Google reCAPTCHA v2 script (explicit render) -->
+  <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
 
+  <script>
+    // Called by Google's script onload=recaptchaOnload
+    function recaptchaOnload() {
+      // When the hero is injected, render the widget
+      window.renderHeroRecaptchaIfReady = function () {
+        const el = document.getElementById("estimate-recaptcha");
+        if (!el || !window.grecaptcha || window.__zenithRecaptchaWidgetId != null) return;
+        window.__zenithRecaptchaWidgetId = grecaptcha.render(el, {
+          sitekey: "me3gu39yuc6hg1u8" // <-- your site key here
+        });
+      };
+      // If the hero is already in the DOM, render right now
+      if (window.renderHeroRecaptchaIfReady) window.renderHeroRecaptchaIfReady();
+    }
+  </script>
+
+  
   <!-- ===== GLOBAL + HEADER STYLES ===== -->
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/header.css" />
