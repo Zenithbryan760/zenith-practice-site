@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
       try {
-        const res = await fetch('/.netlify/functions/jn-create-lead', {
+        const res = await fetch('https://fastidious-frangollo-1dc40a.netlify.app/.netlify/functions/jn-create-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body)
