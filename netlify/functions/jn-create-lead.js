@@ -1,7 +1,22 @@
 // netlify/functions/jn-create-lead.js
+
+// --- CORS (so you can call this from any domain) ---
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization"
+};
+
 exports.handler = async (event) => {
+  // Preflight for browsers
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 204, headers: CORS_HEADERS, body: "" };
+  }
+
   try {
-    if (event.httpMethod !== "POST") return respond(405, { error: "Method not allowed" });
+    if (event.httpMethod !== "POST") {
+      return respond(405, { error: "Method not allowed" });
+    }
 
     const apiKey  = process.env.JN_API_KEY;
     const baseUrl = (process.env.JN_BASE_URL || "https://app.jobnimbus.com/api1/").replace(/\/+$/, "") + "/";
@@ -11,6 +26,12 @@ exports.handler = async (event) => {
     let data = {};
     try { data = JSON.parse(event.body || "{}"); }
     catch { return respond(400, { error: "Invalid JSON body" }); }
+
+    // Allow hyphenated fallbacks
+    data.firstName = data.firstName || data["first-name"] || "";
+    data.lastName  = data.lastName  || data["last-name"]  || "";
+    data.street    = data.street    || data["street"]     || "";
+    data.zip       = data.zip       || data["zip"]        || "";
 
     const required = ["firstName", "lastName", "phone", "email"];
     const missing = required.filter(k => !String(data[k] || "").trim());
@@ -40,7 +61,9 @@ exports.handler = async (event) => {
     });
 
     const text = await upstream.text();
-    if (!upstream.ok) return respond(502, { error: "JobNimbus error", status: upstream.status, body: text.slice(0, 1000) });
+    if (!upstream.ok) {
+      return respond(502, { error: "JobNimbus error", status: upstream.status, body: text.slice(0, 1000) });
+    }
 
     let contact; try { contact = JSON.parse(text); } catch { contact = { raw: text.slice(0, 1000) }; }
     return respond(200, { ok: true, contact });
@@ -50,5 +73,13 @@ exports.handler = async (event) => {
 };
 
 function respond(statusCode, body) {
-  return { statusCode, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" }, body: JSON.stringify(body) };
+  return {
+    statusCode,
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store",
+      ...CORS_HEADERS
+    },
+    body: JSON.stringify(body)
+  };
 }
