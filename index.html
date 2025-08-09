@@ -359,5 +359,73 @@
   <script src="js/header-mobile.js" defer></script>
   <script src="js/header.js"       defer></script>
   <script src="js/hero.js"         defer></script>
+<!-- ===== FORM SUBMISSION HANDLER ===== -->
+  <script>
+    (function () {
+      // Wait until the hero markup is injected
+      document.addEventListener("DOMContentLoaded", function () {
+        // Because the hero is fetched dynamically, wait a bit for it to appear
+        const waitForForm = setInterval(() => {
+          const form = document.getElementById("estimate-form");
+          const btn  = form?.querySelector('button[type="submit"]');
+          if (!form || !btn) return;
+
+          clearInterval(waitForForm);
+
+          form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            let captchaToken = "";
+            try {
+              if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) {
+                captchaToken = grecaptcha.getResponse(window.__zenithRecaptchaWidgetId);
+              }
+            } catch(_) {}
+
+            const fd = new FormData(form);
+            const body = {
+              firstName: fd.get("first-name") || "",
+              lastName:  fd.get("last-name")  || "",
+              phone:     fd.get("phone")      || "",
+              email:     fd.get("email")      || "",
+              service:   fd.get("service")    || "",
+              date:      fd.get("date")       || "",
+              street:    fd.get("street")     || "",
+              city:      fd.get("city")       || "",
+              zip:       fd.get("zip")        || "",
+              details:   fd.get("details")    || "",
+              referral:  fd.get("referral")   || "",
+              page:      location.pathname + location.hash,
+              recaptcha: captchaToken
+            };
+
+            const old = btn.textContent;
+            btn.disabled = true; btn.textContent = "Sending…";
+
+            try {
+              const res  = await fetch("/.netlify/functions/jn-create-lead", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+              });
+              const json = await res.json().catch(() => ({}));
+              if (!res.ok || !json.ok) throw new Error(json.error || "Submit failed");
+
+              alert("Thanks! We’ll be in touch shortly.");
+              form.reset();
+              if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) {
+                grecaptcha.reset(window.__zenithRecaptchaWidgetId);
+              }
+            } catch (err) {
+              console.error(err);
+              alert("Sorry, something went wrong. Please call 858-900-6163 or try again.");
+            } finally {
+              btn.disabled = false; btn.textContent = old;
+            }
+          });
+        }, 150);
+      });
+    })();
+  </script>
 </body>
 </html>
