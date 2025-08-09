@@ -54,19 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle(); // initialize on load
   });
 
-  // ---- 5) HONEYPOT SPAM GUARD (Netlify) ----
-  // If the hidden "faxNumber" has any value, block submission.
-  const form = document.querySelector('.zenith-form');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      const trap = form.querySelector('input[name="faxNumber"]');
-      if (trap && trap.value) {
-        e.preventDefault(); // suspected bot
-      }
-      // Otherwise, let HTML5 validation + Netlify handle submission
-    });
-  }
-});
 // ---- 6) Google reCAPTCHA explicit render helpers ----
 // Renders the checkbox IF the hero has been injected and the Google API is ready.
 window.renderHeroRecaptchaIfReady = function () {
