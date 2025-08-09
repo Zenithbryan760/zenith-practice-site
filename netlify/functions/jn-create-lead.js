@@ -54,16 +54,32 @@ exports.handler = async (event) => {
       ].filter(Boolean).join("\n")
     };
 
-    const upstream = await fetch(baseUrl + "contacts", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
-      body: JSON.stringify(payload),
-    });
+async function postToJN(url, headers) {
+  const res = await fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  });
+  const text = await res.text();
+  return { res, text };
+}
 
-    const text = await upstream.text();
-    if (!upstream.ok) {
-      return respond(502, { error: "JobNimbus error", status: upstream.status, body: text.slice(0, 1000) });
-    }
+const url = baseUrl + "contacts";
+
+// Try 1: Bearer
+let headers = { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` };
+let { res, text } = await postToJN(url, headers);
+
+// If Unauthorized, Try 2: x-api-key
+if (res.status === 401) {
+  headers = { "Content-Type": "application/json", "x-api-key": apiKey };
+  ({ res, text } = await postToJN(url, headers));
+}
+
+if (!res.ok) {
+  return respond(502, { error: "JobNimbus error", status: res.status, body: text.slice(0, 1000) });
+}
+
 
     let contact; try { contact = JSON.parse(text); } catch { contact = { raw: text.slice(0, 1000) }; }
     return respond(200, { ok: true, contact });
