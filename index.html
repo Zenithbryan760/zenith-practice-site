@@ -9,10 +9,8 @@
 
   <!-- ===== GOOGLE FONT ===== -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-
-  <div class="g-recaptcha" data-sitekey="6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI"></div>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+  <!-- [GLOBAL] Google reCAPTCHA v2 script (explicit render) -->
+<script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
   <script>
     // Called by Google's script onload=recaptchaOnload
     function recaptchaOnload() {
