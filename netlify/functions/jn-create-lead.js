@@ -18,7 +18,14 @@ exports.handler = async (event) => {
       return respond(405, { error: "Method not allowed" });
     }
 
-    const apiKey  = process.env.JN_API_KEY;
+  const apiKey  = process.env.JN_API_KEY;
+
+// --- TEMP DEBUG: Check if API Key is being read ---
+if (apiKey) {
+  console.log("[DEBUG] API Key starts with:", apiKey.substring(0, 4) + "****");
+} else {
+  console.log("[DEBUG] No API Key found in environment variables.");
+}
     const baseUrl = (process.env.JN_BASE_URL || "https://app.jobnimbus.com/api1/").replace(/\/+$/, "") + "/";
     const leadSource = process.env.JN_LEAD_SOURCE || "Website Free Estimate";
     if (!apiKey) return respond(500, { error: "Missing JN_API_KEY env var" });
