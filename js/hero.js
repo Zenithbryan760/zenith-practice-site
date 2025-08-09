@@ -117,13 +117,20 @@ document.addEventListener('DOMContentLoaded', () => {
         recaptcha
       };
 
+      // -------- Choose the correct function URL ----------
+      // Works on Netlify (production/preview), localhost, and non-Netlify hosting.
+      const FN_URL = (location.hostname.endsWith('.netlify.app') || location.hostname === 'localhost')
+        ? '/.netlify/functions/jn-create-lead'
+        : 'https://fastidious-frangollo-1dc40a.netlify.app/.netlify/functions/jn-create-lead';
+      // ---------------------------------------------------
+
       // UI state
       const btn = form.querySelector('button[type="submit"]');
       const oldText = btn ? btn.textContent : '';
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
       try {
-        const res = await fetch('https://fastidious-frangollo-1dc40a.netlify.app/.netlify/functions/jn-create-lead', {
+        const res = await fetch(FN_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body)
