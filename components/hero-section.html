@@ -49,7 +49,7 @@
 </div>
 
     <!-- [4] ESTIMATE FORM (Netlify) -->
-    <form class="zenith-form" name="estimate" method="POST" data-netlify="true" novalidate>
+<form id="estimate-form" class="zenith-form" novalidate>
       <!-- Helps Netlify detect your form reliably -->
       <input type="hidden" name="form-name" value="estimate">
 
@@ -134,17 +134,13 @@
         </div>
 
  <!-- [5] ACTIONS (Google reCAPTCHA + submit) -->
-      <div class="zenith-actions">
-        <div class="zenith-recaptcha">
-          <span class="recaptcha-title">Verify you’re human</span>
-
-          <!-- [5.1] CAPTCHA CONTAINER (explicit render target) -->
-          <div id="estimate-recaptcha" class="g-recaptcha"></div>
-          <!-- NOTE: do NOT include data-netlify-recaptcha here; we’re using Google v2 explicitly -->
-        </div>
-
-        <button type="submit" class="zenith-submit">Request Free Estimate</button>
-      </div>
+  <div class="zenith-actions">
+    <div class="zenith-recaptcha">
+      <span class="recaptcha-title">Verify you’re human</span>
+      <div id="estimate-recaptcha" class="g-recaptcha"></div>
+    </div>
+    <button type="submit" class="zenith-submit">Request Free Estimate</button>
+  </div>
 
         <!-- [6] DISCLAIMER + PHONE -->
         <div class="zenith-disclaimer">
