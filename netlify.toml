@@ -1,3 +1,9 @@
 [build]
   functions = "netlify/functions"
-  publish = "."   # change only if you have a build step with another output folder
+  publish = "."   # keep this unless you have a separate build output folder
+
+# optional: pretty path for the function
+[[redirects]]
+  from = "/api/jn-create-lead"
+  to = "/.netlify/functions/jn-create-lead"
+  status = 200
