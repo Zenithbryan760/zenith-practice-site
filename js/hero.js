@@ -74,3 +74,30 @@ window.renderHeroRecaptchaIfReady = function () {
 window.recaptchaOnload = function () {
   window.renderHeroRecaptchaIfReady();
 };
+document.getElementById("estimate-form").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
+
+  try {
+    const response = await fetch("/.netlify/functions/jn-create-lead", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      alert("Form submitted successfully!");
+      this.reset();
+    } else {
+      alert("Error: " + (result.error || "Something went wrong"));
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Network error, please try again.");
+  }
+});
