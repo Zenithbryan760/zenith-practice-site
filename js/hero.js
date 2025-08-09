@@ -74,6 +74,10 @@ window.renderHeroRecaptchaIfReady = function () {
 window.recaptchaOnload = function () {
   window.renderHeroRecaptchaIfReady();
 };
+
+
+  // ---- 3) Estimate from API ----
+  
 document.getElementById("estimate-form").addEventListener("submit", async function (e) {
   e.preventDefault();
 
