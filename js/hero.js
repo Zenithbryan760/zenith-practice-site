@@ -1,8 +1,9 @@
 // ====================================================================
 // js/hero.js — ZAPIER-ONLY VERSION (no Netlify)
 // - Phone auto-format
-// - Date min = today
+// - Date min = today + show day-of-week label
 // - Floating label fix for <select>
+// - ZIP → City (state fixed to CA)
 // - reCAPTCHA explicit render (token sent as a field)
 // - ONE submit handler
 // - Sends FormData (incl. files) directly to Zapier Webhook
@@ -22,11 +23,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2) DATE MIN (prevent past dates)
-  const date = document.getElementById('date');
-  if (date) {
+  // 2) DATE MIN (prevent past dates) + DOW label
+  const dateEl = document.getElementById('date');
+  const dateDOW = document.getElementById('date-dow');
+  if (dateEl) {
     const today = new Date().toISOString().slice(0, 10);
-    date.min = today;
+    dateEl.min = today;
+
+    if (dateDOW) {
+      dateDOW.classList.remove('visually-hidden');
+      const setDOW = () => {
+        const v = dateEl.value;
+        if (!v) { dateDOW.textContent = ''; return; }
+        const d = new Date(v + 'T00:00:00'); // avoid tz shift
+        const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        dateDOW.textContent = `(${days[d.getUTCDay()]})`;
+      };
+      dateEl.addEventListener('change', setDOW);
+      setDOW();
+    }
   }
 
   // 3) OPTIONAL: Google Places Autocomplete on "street"
@@ -48,7 +63,39 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle();
   });
 
-  // 5) reCAPTCHA explicit render helpers
+  // 5) ZIP → City (keep state fixed to CA)
+  const zipEl = document.getElementById('zip');
+  const cityEl = document.getElementById('city');
+  const stateEl = document.getElementById('state');
+  if (stateEl) stateEl.value = 'CA'; // force CA always
+
+  if (zipEl && cityEl) {
+    let zipTimer = null;
+    const lookupZip = async (zip) => {
+      if (!/^\d{5}$/.test(zip)) return;
+      try {
+        const r = await fetch(`https://api.zippopotam.us/us/${zip}`);
+        if (!r.ok) return;
+        const data = await r.json();
+        const place = data.places && data.places[0];
+        if (place) {
+          cityEl.value = place['place name'] || cityEl.value;
+        }
+        // stateEl intentionally left "CA"
+      } catch(_) {}
+    };
+    zipEl.addEventListener('input', () => {
+      clearTimeout(zipTimer);
+      const val = zipEl.value.replace(/\D/g, '').slice(0,5);
+      zipTimer = setTimeout(() => lookupZip(val), 300);
+    });
+    zipEl.addEventListener('blur', () => {
+      const val = zipEl.value.replace(/\D/g, '').slice(0,5);
+      lookupZip(val);
+    });
+  }
+
+  // 6) reCAPTCHA explicit render helpers
   window.renderHeroRecaptchaIfReady = function () {
     const el = document.getElementById('estimate-recaptcha');
     if (!el) return;
@@ -63,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   window.recaptchaOnload = function () { window.renderHeroRecaptchaIfReady(); };
 
-  // 6) Bind ONE submit handler (waits for injected form)
+  // 7) Bind ONE submit handler (works after hero injected)
   let bound = false;
   const tryBind = () => {
     if (bound) return true;
@@ -79,14 +126,17 @@ document.addEventListener('DOMContentLoaded', () => {
       // Build FormData (includes files automatically)
       const fd = new FormData(form);
 
-      // Normalize phone to digits (keep validation simple)
+      // Normalize phone to digits
       const phoneRaw = String(fd.get('phone') || '');
       fd.set('phone', phoneRaw.replace(/\D/g, ''));
+
+      // Ensure state stays CA
+      if (stateEl) fd.set('state', 'CA');
 
       // Add page context
       fd.append('page', location.pathname + location.hash);
 
-      // Add reCAPTCHA token if present (Zapier will just receive it)
+      // Add reCAPTCHA token if present
       try {
         if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) {
           const token = grecaptcha.getResponse(window.__zenithRecaptchaWidgetId);
@@ -94,14 +144,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } catch (_) {}
 
-      // Honeypot (if you added <input name="company" style="display:none">)
+      // Honeypot (if filled, treat as success and stop)
       if ((fd.get('company') || '').trim() !== '') {
         alert('Thanks! We’ll be in touch shortly.');
         form.reset();
         return;
       }
 
-      // 👉 ZAPIER WEBHOOK (replace with your real Catch Hook URL)
+      // 👉 Zapier Catch Hook URL — replace with your real URL
       const ZAP_URL = 'https://hooks.zapier.com/hooks/catch/xxxx/yyyy';
 
       // UI state
