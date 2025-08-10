@@ -38,115 +38,120 @@
     </div>
 
     <!-- [4] FORM (Zapier + file uploads) -->
-<form id="estimate-form" class="zenith-form" name="estimate"
-      method="POST" enctype="multipart/form-data" novalidate>
-  <!-- Honeypot (spam trap) -->
-  <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
+    <form id="estimate-form" class="zenith-form" name="estimate"
+          method="POST" enctype="multipart/form-data" novalidate>
+      <!-- Honeypot (spam trap) -->
+      <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
 
-  <div class="zenith-form-grid">
-    <!-- Name -->
-    <div class="zenith-input-group">
-      <input type="text" id="first-name" name="first-name" required placeholder=" ">
-      <label for="first-name">First Name</label>
-    </div>
-    <div class="zenith-input-group">
-      <input type="text" id="last-name" name="last-name" required placeholder=" ">
-      <label for="last-name">Last Name</label>
-    </div>
+      <div class="zenith-form-grid">
+        <!-- Name -->
+        <div class="zenith-input-group">
+          <input type="text" id="first-name" name="first-name" required placeholder=" ">
+          <label for="first-name">First Name</label>
+        </div>
+        <div class="zenith-input-group">
+          <input type="text" id="last-name" name="last-name" required placeholder=" ">
+          <label for="last-name">Last Name</label>
+        </div>
 
-    <!-- Contact -->
-    <div class="zenith-input-group">
-      <input type="tel" id="phone" name="phone" required placeholder=" "
-             inputmode="tel" autocomplete="tel"
-             pattern="^(\(\d{3}\)\s?\d{3}-\d{4}|\d{3}[-.\s]?\d{3}[-.\s]?\d{4})$">
-      <label for="phone">Phone Number</label>
-    </div>
-    <div class="zenith-input-group">
-      <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">
-      <label for="email">Email Address</label>
-    </div>
+        <!-- Contact -->
+        <div class="zenith-input-group">
+          <input type="tel" id="phone" name="phone" required placeholder=" "
+                 inputmode="tel" autocomplete="tel"
+                 pattern="^(\(\d{3}\)\s?\d{3}-\d{4}|\d{3}[-.\s]?\d{3}[-.\s]?\d{4})$">
+          <label for="phone">Phone Number</label>
+        </div>
+        <div class="zenith-input-group">
+          <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">
+          <label for="email">Email Address</label>
+        </div>
 
-    <!-- Service -->
-    <div class="zenith-input-group select-group">
-      <label for="service">Service Type</label>
-      <select id="service" name="service" required>
-        <option value="" disabled selected hidden>Select Service</option>
-        <option value="Shingles">Shingles</option>
-        <option value="Tile">Tile</option>
-        <option value="Flat Roofing">Flat Roofing</option>
-        <option value="Gutters">Gutters</option>
-        <option value="Repairs">Repairs</option>
-      </select>
-    </div>
+        <!-- Service -->
+        <div class="zenith-input-group select-group">
+          <label for="service">Service Type</label>
+          <select id="service" name="service" required>
+            <option value="" disabled selected hidden>Select Service</option>
+            <option value="Shingles">Shingles</option>
+            <option value="Tile">Tile</option>
+            <option value="Flat Roofing">Flat Roofing</option>
+            <option value="Metal Roofing">Metal Roofing</option>
+            <option value="Roof Maintenance">Roof Maintenance</option>
+            <option value="Gutters">Gutters</option>
+            <option value="Repairs">Repairs</option>
+          </select>
+        </div>
 
-    <!-- Preferred Completion Date -->
-    <div class="zenith-input-group select-group">
-      <label for="date">Preferred Project Completion Date</label>
-      <input type="date" id="date" name="preferred-completion-date" placeholder=" ">
-      <small id="date-dow" class="visually-hidden"></small>
-    </div>
+        <!-- Preferred Completion Date -->
+        <div class="zenith-input-group select-group">
+          <label for="date">Preferred Project Completion Date</label>
+          <input type="date" id="date" name="preferred-completion-date" placeholder=" ">
+          <small id="date-dow" class="visually-hidden"></small>
+        </div>
 
-    <!-- Address -->
-    <div class="zenith-input-group full-width">
-      <input type="text" id="street" name="street" required placeholder=" ">
-      <label for="street">Street Address</label>
-    </div>
+        <!-- Address -->
+        <div class="zenith-input-group full-width">
+          <input type="text" id="street" name="street" required placeholder=" ">
+          <label for="street">Street Address</label>
+        </div>
 
-    <!-- City / State / ZIP -->
-    <div class="zenith-input-group">
-      <input type="text" id="city" name="city" required placeholder=" ">
-      <label for="city">City</label>
-    </div>
-    <div class="zenith-input-group">
-      <input type="text" id="state" name="state" value="CA" readonly>
-      <label for="state">State</label>
-    </div>
-    <div class="zenith-input-group">
-      <input type="text" id="zip" name="zip" required placeholder=" " pattern="\d{5}(-\d{4})?">
-      <label for="zip">ZIP Code</label>
-    </div>
+        <!-- City / State / ZIP (one row on desktop) -->
+        <div class="zenith-inline-3">
+          <div class="zenith-input-group">
+            <input type="text" id="city" name="city" required placeholder=" ">
+            <label for="city">City</label>
+          </div>
+          <div class="zenith-input-group">
+            <input type="text" id="state" name="state" value="CA" readonly>
+            <label for="state">State</label>
+          </div>
+          <div class="zenith-input-group">
+            <input type="text" id="zip" name="zip" required placeholder=" " pattern="\d{5}(-\d{4})?">
+            <label for="zip">ZIP Code</label>
+          </div>
+        </div>
 
-    <!-- Project Info -->
-    <div class="zenith-input-group full-width">
-      <textarea id="details" name="details" rows="3" placeholder=" "></textarea>
-      <label for="details">Brief Project Details</label>
-    </div>
+        <!-- Project Info -->
+        <div class="zenith-input-group full-width">
+          <textarea id="details" name="details" rows="3" placeholder=" "></textarea>
+          <label for="details">Brief Project Details</label>
+        </div>
 
-    <!-- Photos -->
-    <div class="zenith-input-group file-group">
-      <label for="photos">Upload Photos <span class="zenith-optional">(optional)</span></label>
-      <input type="file" id="photos" name="photos[]" accept="image/*" multiple>
-    </div>
+        <!-- Photos (multi-file) -->
+        <div class="zenith-input-group file-group">
+          <label for="photos">Upload Photos <span class="zenith-optional">(optional)</span></label>
+          <input type="file" id="photos" name="photos[]" accept="image/*" multiple>
+        </div>
 
-    <!-- Referral -->
-    <div class="zenith-input-group select-group">
-      <label for="referral">How did you hear about us?</label>
-      <select id="referral" name="referral">
-        <option value="" disabled selected hidden>Select Option</option>
-        <option>Google</option>
-        <option>Referral</option>
-        <option>Social Media</option>
-        <option>Other</option>
-      </select>
-    </div>
+        <!-- Referral -->
+        <div class="zenith-input-group select-group">
+          <label for="referral">How did you hear about us?</label>
+          <select id="referral" name="referral">
+            <option value="" disabled selected hidden>Select Option</option>
+            <option>Google</option>
+            <option>Angi</option>
+            <option>Referral</option>
+            <option>Social Media</option>
+            <option>Other</option>
+          </select>
+        </div>
 
-    <!-- [5] ACTIONS -->
-    <div class="zenith-actions">
-      <div class="zenith-recaptcha">
-        <span class="recaptcha-title">Verify you’re human</span>
-        <div id="estimate-recaptcha" class="g-recaptcha"></div>
+        <!-- [5] ACTIONS -->
+        <div class="zenith-actions">
+          <div class="zenith-recaptcha">
+            <span class="recaptcha-title">Verify you’re human</span>
+            <div id="estimate-recaptcha" class="g-recaptcha"></div>
+          </div>
+          <button type="submit" class="zenith-submit">Request Free Estimate</button>
+        </div>
+
+        <!-- [6] Disclaimer -->
+        <div class="zenith-disclaimer">
+          <p>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="/real-estate">Real Estate Services</a>.</p>
+          <div class="zenith-contact">
+            <p class="zenith-phone">CALL NOW: <strong>858-900-6163</strong></p>
+          </div>
+        </div>
       </div>
-      <button type="submit" class="zenith-submit">Request Free Estimate</button>
-    </div>
-
-    <!-- [6] Disclaimer -->
-    <div class="zenith-disclaimer">
-      <p>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="/real-estate">Real Estate Services</a>.</p>
-      <div class="zenith-contact">
-        <p class="zenith-phone">CALL NOW: <strong>858-900-6163</strong></p>
-      </div>
-    </div>
-  </div>
-</form>
+    </form>
   </div>
 </section>
