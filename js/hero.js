@@ -270,3 +270,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+// Show invalid styling only after a user interacts with a field
+(function(){
+  const fields = document.querySelectorAll(
+    '#estimate-form input, #estimate-form select, #estimate-form textarea'
+  );
+  fields.forEach(el => {
+    const mark = () => el.classList.add('touched');
+    el.addEventListener('blur', mark);
+    el.addEventListener('change', mark);
+  });
+  const phoneHint = document.getElementById('phone-hint');
+  if (phoneHint) phoneHint.textContent = 'Format: (619) 758-5227';
+})();
