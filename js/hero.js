@@ -1,16 +1,16 @@
 // ====================================================================
-// js/hero.js — ZAPIER-ONLY VERSION (no Netlify)
+// js/hero.js — Zapier-only (no Netlify)
 // - Phone auto-format
-// - Date min = today + show day-of-week label
+// - Date min = today + day-of-week label
 // - Floating label fix for <select>
-// - ZIP → City (state fixed to CA)
-// - reCAPTCHA explicit render (token sent as a field)
+// - ZIP → City (State locked to CA)
+// - reCAPTCHA explicit render (token appended to form)
 // - ONE submit handler
 // - Sends FormData (incl. files) directly to Zapier Webhook
 // ====================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1) PHONE AUTO-FORMAT → (123) 456-7890
+  // 1) Phone auto-format: (123) 456-7890
   const phone = document.getElementById('phone');
   if (phone) {
     phone.addEventListener('input', (e) => {
@@ -23,13 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2) DATE MIN (prevent past dates) + DOW label
+  // 2) Date min = today + show DOW under picker
   const dateEl = document.getElementById('date');
   const dateDOW = document.getElementById('date-dow');
   if (dateEl) {
-    const today = new Date().toISOString().slice(0, 10);
-    dateEl.min = today;
-
+    dateEl.min = new Date().toISOString().slice(0, 10);
     if (dateDOW) {
       dateDOW.classList.remove('visually-hidden');
       const setDOW = () => {
@@ -44,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 3) OPTIONAL: Google Places Autocomplete on "street"
+  // 3) Optional Google Places autocomplete on "street"
   if (window.google && google.maps && google.maps.places) {
     const street = document.getElementById('street');
     if (street) {
@@ -55,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 4) FLOATING LABEL FIX FOR <select>
+  // 4) Floating label fix for <select>
   document.querySelectorAll('.zenith-input-group select').forEach((sel) => {
     const parent = sel.closest('.zenith-input-group');
     const toggle = () => (sel.value ? parent.classList.add('has-value') : parent.classList.remove('has-value'));
@@ -63,11 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle();
   });
 
-  // 5) ZIP → City (keep state fixed to CA)
+  // 5) ZIP → City (State locked to CA)
   const zipEl = document.getElementById('zip');
   const cityEl = document.getElementById('city');
   const stateEl = document.getElementById('state');
-  if (stateEl) stateEl.value = 'CA'; // force CA always
+  if (stateEl) stateEl.value = 'CA';
 
   if (zipEl && cityEl) {
     let zipTimer = null;
@@ -78,10 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!r.ok) return;
         const data = await r.json();
         const place = data.places && data.places[0];
-        if (place) {
-          cityEl.value = place['place name'] || cityEl.value;
-        }
-        // stateEl intentionally left "CA"
+        if (place) cityEl.value = place['place name'] || cityEl.value;
       } catch(_) {}
     };
     zipEl.addEventListener('input', () => {
@@ -95,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6) reCAPTCHA explicit render helpers
+  // 6) reCAPTCHA explicit render
   window.renderHeroRecaptchaIfReady = function () {
     const el = document.getElementById('estimate-recaptcha');
     if (!el) return;
@@ -110,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   window.recaptchaOnload = function () { window.renderHeroRecaptchaIfReady(); };
 
-  // 7) Bind ONE submit handler (works after hero injected)
+  // 7) Bind submit handler
   let bound = false;
   const tryBind = () => {
     if (bound) return true;
@@ -130,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const phoneRaw = String(fd.get('phone') || '');
       fd.set('phone', phoneRaw.replace(/\D/g, ''));
 
-      // Ensure state stays CA
+      // Ensure CA stays set
       if (stateEl) fd.set('state', 'CA');
 
       // Add page context
@@ -144,14 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } catch (_) {}
 
-      // Honeypot (if filled, treat as success and stop)
+      // Honeypot: if filled, silently "succeed"
       if ((fd.get('company') || '').trim() !== '') {
         alert('Thanks! We’ll be in touch shortly.');
         form.reset();
         return;
       }
 
-      // 👉 Zapier Catch Hook URL — replace with your real URL
+      // 👉 Zapier Catch Hook URL — REPLACE THIS
       const ZAP_URL = 'https://hooks.zapier.com/hooks/catch/xxxx/yyyy';
 
       // UI state
@@ -160,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
       try {
-        // IMPORTANT: do NOT set Content-Type; browser sets multipart boundary
+        // Do NOT set Content-Type; browser sets multipart boundary
         const res = await fetch(ZAP_URL, { method: 'POST', body: fd });
         if (!res.ok) throw new Error('Submit failed');
 
