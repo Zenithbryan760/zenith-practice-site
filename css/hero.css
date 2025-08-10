@@ -2,9 +2,10 @@
    HERO SECTION STYLES — Zenith Roofing (Professional Redesign)
    ========================================================= */
 
-/* ---------- [0] Theme Tokens (brand colors, radii, etc.) ---------- */
+/* ---------- [0] Theme Tokens ---------- */
 :root {
   --zenith-navy: #072e59;
+  --zenith-navy-dark: #061f3d;      /* added: darker hover */
   --zenith-orange: #f7941d;
   --zenith-orange-dark: #d77a18;
   --zenith-white: #ffffff;
@@ -18,9 +19,7 @@
   --nav-height: 76px;
 }
 
-/* ========================================================
-   [1] Video Background (fills hero, dark overlay for contrast)
-   ======================================================== */
+/* ===================== [1] Video Background ===================== */
 .zenith-hero {
   position: relative;
   min-height: 90vh;
@@ -35,9 +34,7 @@
 .zenith-background-video { width: 100%; height: 100%; object-fit: cover; }
 .zenith-video-overlay { position: absolute; inset: 0; background: rgba(7,46,89,0.6); z-index: 2; }
 
-/* ========================================================
-   [2] Card Shell (white panel over video)
-   ======================================================== */
+/* ========================= [2] Card Shell ========================= */
 .zenith-card {
   position: relative; z-index: 3;
   width: 100%; max-width: 960px;
@@ -48,20 +45,11 @@
   margin: 0 auto;
 }
 
-/* ---------- [2.5] Logo + Title area (orange ring) ---------- */
+/* ---------- [2.5] Logo + Title with Orange Ring ---------- */
 .zenith-luxury-card { background: var(--zenith-white); border-radius: var(--zenith-radius); box-shadow: var(--zenith-shadow); padding: 1.5rem; margin-bottom: 1.5rem; }
 .zenith-luxury-header { display: flex; align-items: center; justify-content: center; gap: 1.25rem; text-align: center; flex-wrap: wrap; }
-.zenith-logo-frame {
-  position: relative; flex-shrink: 0; width: 100px; height: 100px; border-radius: 50%;
-  background: var(--zenith-navy); display: grid; place-items: center; box-shadow: 0 10px 22px rgba(0,0,0,0.22); isolation: isolate;
-}
-.zenith-logo-frame::before {
-  content: ""; position: absolute; inset: -8px; border-radius: 50%;
-  background:
-    radial-gradient(closest-side, rgba(255,255,255,0) 78%, rgba(255,255,255,0) 79%),
-    conic-gradient(var(--zenith-orange), #ffb25a, var(--zenith-orange));
-  mask: radial-gradient(closest-side, transparent 78%, black 79%); opacity: 0.9;
-}
+.zenith-logo-frame { position: relative; flex-shrink: 0; width: 100px; height: 100px; border-radius: 50%; background: var(--zenith-navy); display: grid; place-items: center; box-shadow: 0 10px 22px rgba(0,0,0,0.22); isolation: isolate; }
+.zenith-logo-frame::before { content: ""; position: absolute; inset: -8px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,0) 78%, rgba(255,255,255,0) 79%), conic-gradient(var(--zenith-orange), #ffb25a, var(--zenith-orange)); mask: radial-gradient(closest-side, transparent 78%, black 79%); opacity: .9; }
 .zenith-logo-frame::after { content: ""; position: absolute; inset: -18px; border-radius: 50%; background: radial-gradient(closest-side, rgba(247,148,29,0.18), transparent 70%); filter: blur(6px); z-index: -1; }
 .zenith-luxury-logo { width: 64px; height: 64px; object-fit: contain; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.55)); }
 .zenith-luxury-titles { display: flex; flex-direction: column; align-items: center; }
@@ -69,23 +57,19 @@
 .zenith-luxury-locations { font-size: .95rem; color: var(--zenith-text-light); display: flex; align-items: center; flex-wrap: wrap; gap: .4rem; }
 .luxury-divider { color: var(--zenith-orange); }
 
-/* ========================================================
-   [3] Form Heading (title + subtitle)
-   ======================================================== */
+/* ======================== [3] Form Heading ======================== */
 .estimate-heading { margin: 0 0 1.5rem 0; text-align: center; }
-.estimate-title { margin: 0; font-size: 1.4rem; font-weight: 800; color: var(--zenith-navy); letter-spacing: 0.2px; }
+.estimate-title { margin: 0; font-size: 1.4rem; font-weight: 800; color: var(--zenith-navy); letter-spacing: .2px; }
 .estimate-subtitle { margin: .5rem 0 0; font-size: 1rem; color: var(--zenith-text); opacity: .9; }
 
-/* ========================================================
-   [4] Form Layout + Field Styles
-   ======================================================== */
+/* =================== [4] Form Layout + Fields ==================== */
 
-/* 4A) Base grid + box sizing */
+/* 4A) Grid + box sizing */
 .zenith-form * { box-sizing: border-box; }
 .zenith-form { width: 100%; }
 .zenith-form-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
 
-/* 4B) Input groups + floating labels */
+/* 4B) Input group + floating labels (default) */
 .zenith-input-group { position: relative; }
 .zenith-input-group.full-width { grid-column: 1 / -1; }
 
@@ -93,7 +77,7 @@
 .zenith-input-group select,
 .zenith-input-group textarea {
   width: 100%;
-  height: 52px;                    /* uniform height */
+  height: 52px;
   padding: 12px 14px;
   border: 1px solid var(--zenith-border);
   border-radius: var(--zenith-radius);
@@ -101,6 +85,7 @@
   font-size: 1rem;
   transition: var(--zenith-transition);
   font-family: inherit;
+  color: var(--zenith-text);
 }
 .zenith-input-group textarea { min-height: 120px; height: auto; padding: 12px 14px; line-height: 1.5; resize: vertical; }
 
@@ -116,24 +101,39 @@
   top: -8px; left: 10px; font-size: .75rem; color: var(--zenith-orange); background: var(--zenith-white); padding: 0 .3rem;
 }
 
-/* 4C) Static labels for selects + file */
-.select-group label, .file-group label { position: static !important; display: block; margin: 0 0 .5rem; padding: 0; color: var(--zenith-text); font-size: .9rem; font-weight: 700; pointer-events: auto; }
+/* 4C) Static labels (NO float) — used for City/State/ZIP, selects, files */
+.static-label label,
+.select-group label,
+.file-group label {
+  position: static !important;
+  display: block;
+  margin: 0 0 .5rem;
+  padding: 0;
+  color: var(--zenith-text);
+  font-size: .9rem;
+  font-weight: 700;
+  pointer-events: auto;
+}
 
-/* 4D) Select (custom arrow) */
+/* 4D) Select styling */
 .zenith-input-group select {
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23072e59' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 12px center; background-size: 1rem; padding-right: 36px; cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 1rem;
+  padding-right: 36px;
+  cursor: pointer;
 }
 
-/* 4E) Tiny hints */
+/* 4E) Hints */
 .zenith-optional, #phone-hint { display: block; margin-top: .4rem; font-size: .8rem; color: var(--zenith-text-light); }
 
-/* 4F) Address row helpers (keep ZIP from “popping”) */
+/* 4F) Address helpers */
 .zenith-input-group.state-field input { text-transform: uppercase; letter-spacing: .06em; text-align: center; }
 .zenith-input-group.zip-field   input { text-align: center; }
 
-/* 4G) File input (custom button + live filename) */
+/* 4G) File upload (navy hover — no orange) */
 .file-group .file-input-wrapper { position: relative; display: flex; align-items: center; }
 .file-group input[type="file"] { position: absolute; opacity: 0; width: 0.1px; height: 0.1px; overflow: hidden; z-index: -1; }
 .file-group .custom-file-upload {
@@ -142,20 +142,21 @@
   background: var(--zenith-navy); color: #fff; font-weight: 600; font-size: .9rem; cursor: pointer;
   transition: var(--zenith-transition); border: none;
 }
-.file-group .custom-file-upload:hover { background: var(--zenith-orange); }
+.file-group .custom-file-upload:hover,
+.file-group .custom-file-upload:focus { background: var(--zenith-navy-dark); }
 .file-group .file-name { margin-left: 1rem; font-size: .9rem; color: var(--zenith-text-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* 4H) Focus + invalid */
 .zenith-input-group input:focus,
 .zenith-input-group select:focus,
 .zenith-input-group textarea:focus { outline: none; border-color: var(--zenith-orange); box-shadow: 0 0 0 3px rgba(247,148,29,0.15); }
+
+/* Only show red if user touched the field */
 .zenith-input-group input.touched:invalid,
 .zenith-input-group select.touched:invalid,
 .zenith-input-group textarea.touched:invalid { border-color: #e96565; box-shadow: 0 0 0 3px rgba(233,101,101,0.12); }
 
-/* ========================================================
-   [5] Actions (reCAPTCHA + Submit)
-   ======================================================== */
+/* ============================ [5] Actions ============================ */
 .zenith-actions { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr; align-items: center; gap: 1.25rem; margin-top: 1.5rem; }
 .zenith-submit {
   background: linear-gradient(to right, var(--zenith-orange), var(--zenith-orange-dark));
@@ -171,9 +172,7 @@
 .recaptcha-title { font-size: .95rem; line-height: 1.2; color: var(--zenith-navy); font-weight: 700; margin: 0; text-align: center; }
 .g-recaptcha { transform: scale(.96); transform-origin: center; }
 
-/* ========================================================
-   [6] Disclaimer & Phone
-   ======================================================== */
+/* ===================== [6] Disclaimer & Phone] ===================== */
 .zenith-disclaimer { grid-column: 1 / -1; margin-top: 1.5rem; font-size: .8rem; color: var(--zenith-text-light); line-height: 1.6; }
 .zenith-disclaimer a { color: var(--zenith-orange); text-decoration: none; font-weight: 600; }
 .zenith-disclaimer a:hover { text-decoration: underline; }
@@ -181,24 +180,24 @@
 .zenith-phone { font-size: 1rem; color: var(--zenith-navy); font-weight: 700; }
 .zenith-phone strong { color: var(--zenith-orange); }
 
-/* ================== RESPONSIVE ================== */
-
-/* [R1] Tablet+: two columns + stable address widths */
+/* ============================ [R1] Tablet+ =========================== */
 @media (min-width: 768px) {
   .zenith-form-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem 1.25rem; }
   .zenith-actions { grid-template-columns: 1fr auto; align-items: center; gap: 1.5rem; }
   .zenith-submit { width: auto; min-width: 240px; }
 
-  /* Address row (City 48% / State 20% / ZIP 30% + 2% gutter) */
-  .zenith-input-group.city-field, .zenith-input-group.state-field, .zenith-input-group.zip-field { display: inline-block; vertical-align: top; }
+  /* City 48% / State 20% / ZIP 30% + 2% gutter — keeps ZIP from popping */
+  .zenith-input-group.city-field,
+  .zenith-input-group.state-field,
+  .zenith-input-group.zip-field { display: inline-block; vertical-align: top; }
   .zenith-input-group.city-field  { width: 48%; }
   .zenith-input-group.state-field { width: 20%; }
   .zenith-input-group.zip-field   { width: 30%; margin-left: 2%; }
 }
 
-/* [R2] Desktop+: precise 12-col grid placement */
+/* =========================== [R2] Desktop+] ========================== */
 @media (min-width: 900px) {
-  .zenith-form-grid { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: 1.25rem; row-gap: 1.5rem; }
+  .zenith-form-grid { grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: 1.25rem; row-gap: 1.5rem; }
 
   /* Row 1 */
   .zenith-input-group:has(#first-name) { grid-column: 1 / span 6; }
@@ -230,7 +229,7 @@
   .zenith-recaptcha, .zenith-actions { grid-column: 1 / -1; }
 }
 
-/* [R3] Small Mobile tweaks */
+/* ========================= [R3] Small Mobile] ======================== */
 @media (max-width: 520px) {
   .zenith-hero { padding: 1.5rem 1rem; }
   .zenith-card { padding: 1.5rem; }
