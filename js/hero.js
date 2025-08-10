@@ -121,9 +121,43 @@ document.addEventListener('DOMContentLoaded', () => {
       // Build FormData (includes files automatically)
       const fd = new FormData(form);
 
-      // Normalize phone to digits
-      const phoneRaw = String(fd.get('phone') || '');
-      fd.set('phone', phoneRaw.replace(/\D/g, ''));
+// Phone auto-format with caret preservation: (123) 456-7890
+const phone = document.getElementById('phone');
+if (phone) {
+  const formatPhone = (digits) => {
+    const v = digits.slice(0, 10);
+    if (v.length <= 3) return v;
+    if (v.length <= 6) return `(${v.slice(0,3)}) ${v.slice(3)}`;
+    return `(${v.slice(0,3)}) ${v.slice(3,6)}-${v.slice(6)}`;
+  };
+
+  const setFormatted = () => {
+    const start = phone.selectionStart;
+    const end = phone.selectionEnd;
+
+    const rawBefore = phone.value;
+    const digits = rawBefore.replace(/\D/g, '');
+    const formatted = formatPhone(digits);
+
+    // Rough caret mapping: count digits before caret in old, place after same count in new
+    const digitsBeforeCaret = rawBefore.slice(0, start).replace(/\D/g, '').length;
+    let caret = 0, digitCount = 0;
+    for (let i = 0; i < formatted.length; i++) {
+      if (/\d/.test(formatted[i])) digitCount++;
+      if (digitCount === digitsBeforeCaret) { caret = i + 1; break; }
+    }
+    phone.value = formatted;
+    requestAnimationFrame(() => phone.setSelectionRange(caret, caret));
+  };
+
+  phone.addEventListener('input', setFormatted);
+  phone.addEventListener('blur', () => {
+    // Optional: if fewer than 10 digits, leave as-is; pattern will handle validity
+    const digits = phone.value.replace(/\D/g, '');
+    phone.value = formatPhone(digits);
+  });
+}
+
 
       // Ensure CA stays set
       if (stateEl) fd.set('state', 'CA');
