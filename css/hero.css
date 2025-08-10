@@ -248,3 +248,26 @@ html{scroll-padding-top:calc(var(--nav-height) + env(safe-area-inset-top,0px))}
   text-transform: uppercase;
   letter-spacing: .06em;
 }
+/* === PATCH: Make State & ZIP use static labels (cleaner than floating for small fields) === */
+.zenith-input-group.state-field label,
+.zenith-input-group.zip-field label {
+  position: static !important;
+  display: block;
+  margin-bottom: 0.5rem;
+  padding: 0;
+  color: var(--zenith-text);
+  font-weight: 700;
+  font-size: 0.9rem;
+  pointer-events: auto;
+}
+
+/* Keep inputs tidy + centered, readable width for CA */
+.zenith-input-group.state-field input {
+  min-width: 110px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.zenith-input-group.zip-field input {
+  text-align: center;
+}
