@@ -68,7 +68,7 @@
             autocomplete="tel"
             aria-describedby="phone-hint">
           <label for="phone">Phone Number</label>
-          <small id="phone-hint" class="zenith-optional">Format: (619) 758-5227</small>
+          <small id="phone-hint" class="zenith-optional">Example: 858-900-6163</small>
         </div>
         <div class="zenith-input-group">
           <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">
@@ -119,7 +119,11 @@
         <!-- Upload & Referral Section -->
         <div class="zenith-input-group file-group">
           <label for="photos">Upload Photos <span class="zenith-optional">(optional)</span></label>
-          <input type="file" id="photos" name="photos[]" accept="image/*" multiple>
+          <div class="file-input-wrapper">
+            <input type="file" id="photos" name="photos[]" accept="image/*" multiple>
+            <label for="photos" class="custom-file-upload">Choose Files</label>
+            <span class="file-name">No files selected</span>
+          </div>
         </div>
         <div class="zenith-input-group select-group">
           <label for="referral">How did you hear about us?</label>
