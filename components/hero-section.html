@@ -58,4 +58,65 @@
 
         <!-- Project Address -->
         <div class="zenith-form-group">
-          <label for="address">Project Address
+          <label for="address">Project Address*</label>
+          <input type="text" id="address" name="address" placeholder="123 Main St" required />
+        </div>
+
+        <!-- City -->
+        <div class="zenith-form-group city-field">
+          <label for="city">City*</label>
+          <input type="text" id="city" name="city" placeholder="City" required />
+        </div>
+
+        <!-- State -->
+        <div class="zenith-form-group state-field">
+          <label for="state">State*</label>
+          <input type="text" id="state" name="state" value="CA" required />
+        </div>
+
+        <!-- ZIP -->
+        <div class="zenith-form-group zip-field">
+          <label for="zip">ZIP Code*</label>
+          <input type="text" id="zip" name="zip" placeholder="92025" required />
+        </div>
+
+        <!-- Preferred Completion Date -->
+        <div class="zenith-form-group">
+          <label for="completionDate">Preferred Project Completion Date</label>
+          <input type="date" id="completionDate" name="completionDate" />
+        </div>
+
+        <!-- Brief Details -->
+        <div class="zenith-form-group full-width">
+          <label for="details">Brief Project Details</label>
+          <textarea id="details" name="details" placeholder="Tell us a bit about your project..." rows="3"></textarea>
+        </div>
+
+        <!-- How Did You Hear About Us -->
+        <div class="zenith-form-group full-width">
+          <label for="referral">How did you hear about us?</label>
+          <select id="referral" name="referral">
+            <option value="">-- Select an option --</option>
+            <option value="google">Google Search</option>
+            <option value="yelp">Yelp</option>
+            <option value="angi">Angi</option>
+            <option value="facebook">Facebook</option>
+            <option value="instagram">Instagram</option>
+            <option value="referral">Referral</option>
+            <option value="repeat-customer">Repeat Customer</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="zenith-actions">
+        <div class="zenith-recaptcha">
+          <span class="recaptcha-title">Verify you’re human</span>
+          <div id="estimate-recaptcha" class="g-recaptcha"></div>
+        </div>
+        <button type="submit" class="zenith-submit">Request Free Estimate</button>
+      </div>
+    </form>
+  </div>
+</section>
