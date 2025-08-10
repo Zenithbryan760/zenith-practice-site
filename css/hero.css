@@ -1,273 +1,116 @@
-/* =========================================================
-   HERO SECTION STYLES — Zenith Roofing (Professional Redesign)
-   ========================================================= */
+<!-- [4] ESTIMATE FORM -->
+<form id="estimate-form" class="zenith-form" name="estimate" method="POST" enctype="multipart/form-data" novalidate>
+  <!-- Honeypot -->
+  <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
+  <!-- Hidden Display Name -->
+  <input type="hidden" id="display-name" name="display-name" />
 
-/* ---------- [0] Theme Tokens ---------- */
-:root{
-  --zenith-navy:#072e59;
-  --zenith-navy-dark:#061f3d;
-  --zenith-orange:#f7941d;
-  --zenith-orange-dark:#d77a18;
-  --zenith-white:#ffffff;
-  --zenith-light-gray:#f5f7fb;
-  --zenith-border:#e0e3e7;
-  --zenith-text:#333333;
-  --zenith-text-light:#6b6b6b;
-  --zenith-radius:10px;
-  --zenith-shadow:0 10px 30px rgba(0,0,0,.08);
-  --zenith-transition:all .2s ease;
-  --nav-height:76px;
-}
+  <div class="zenith-form-grid">
+    <!-- Names -->
+    <div class="zenith-input-group">
+      <input type="text" id="first-name" name="first-name" required placeholder=" " />
+      <label for="first-name">First Name</label>
+    </div>
+    <div class="zenith-input-group">
+      <input type="text" id="last-name" name="last-name" required placeholder=" " />
+      <label for="last-name">Last Name</label>
+    </div>
 
-/* ===================== [1] Video Background ===================== */
-.zenith-hero{position:relative;min-height:90vh;display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem;background:var(--zenith-light-gray);overflow:hidden}
-.zenith-video-container{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:hidden}
-.zenith-background-video{width:100%;height:100%;object-fit:cover}
-.zenith-video-overlay{position:absolute;inset:0;background:rgba(7,46,89,.6);z-index:2}
+    <!-- Contact -->
+    <div class="zenith-input-group">
+      <input type="tel" id="phone" name="phone" required placeholder=" " inputmode="tel" autocomplete="tel" aria-describedby="phone-hint" />
+      <label for="phone">Phone Number</label>
+      <small id="phone-hint" class="zenith-optional">Example: 858-900-6163</small>
+    </div>
+    <div class="zenith-input-group">
+      <input type="email" id="email" name="email" required placeholder=" " autocomplete="email" />
+      <label for="email">Email Address</label>
+    </div>
 
-/* ========================= [2] Card Shell ========================= */
-.zenith-card{position:relative;z-index:3;width:100%;max-width:960px;background:var(--zenith-white);border-radius:var(--zenith-radius);box-shadow:var(--zenith-shadow);padding:2.5rem;margin:0 auto}
+    <!-- Service (FLOATING SELECT) -->
+    <div class="floating-select">
+      <select id="service" name="service" required>
+        <option value="" selected hidden>Select Service</option>
+        <option value="Roof Replacement">Roof Replacement</option>
+        <option value="Roof Repair">Roof Repair</option>
+        <option value="Gutters">Gutters</option>
+        <option value="Roofing Maintenance">Roofing Maintenance</option>
+        <option value="Commercial Roofing">Commercial Roofing</option>
+        <option value="Residential Roofing">Residential Roofing</option>
+        <option value="Other">Other</option>
+      </select>
+      <label for="service">Service Type</label>
+    </div>
 
-/* ---------- [2.5] Logo + Title with Orange Ring ---------- */
-.zenith-luxury-card{background:var(--zenith-white);border-radius:var(--zenith-radius);box-shadow:var(--zenith-shadow);padding:1.5rem;margin-bottom:1.5rem}
-.zenith-luxury-header{display:flex;align-items:center;justify-content:center;gap:1.25rem;text-align:center;flex-wrap:wrap}
-.zenith-logo-frame{position:relative;flex-shrink:0;width:100px;height:100px;border-radius:50%;background:var(--zenith-navy);display:grid;place-items:center;box-shadow:0 10px 22px rgba(0,0,0,.22);isolation:isolate}
-.zenith-logo-frame::before{content:"";position:absolute;inset:-8px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,0) 78%,rgba(255,255,255,0) 79%),conic-gradient(var(--zenith-orange),#ffb25a,var(--zenith-orange));mask:radial-gradient(closest-side,transparent 78%,#000 79%);opacity:.9}
-.zenith-logo-frame::after{content:"";position:absolute;inset:-18px;border-radius:50%;background:radial-gradient(closest-side,rgba(247,148,29,.18),transparent 70%);filter:blur(6px);z-index:-1}
-.zenith-luxury-logo{width:64px;height:64px;object-fit:contain;filter:drop-shadow(0 1px 1px rgba(0,0,0,.55))}
-.zenith-luxury-titles{display:flex;flex-direction:column;align-items:center}
-.zenith-luxury-subtitle{font-size:1.3rem;font-weight:800;color:var(--zenith-navy);margin:0 0 .25rem 0;line-height:1.3}
-.zenith-luxury-locations{font-size:.95rem;color:var(--zenith-text-light);display:flex;align-items:center;flex-wrap:wrap;gap:.4rem}
-.luxury-divider{color:var(--zenith-orange)}
+    <!-- Street -->
+    <div class="zenith-input-group full-width">
+      <input type="text" id="street" name="street" required placeholder=" " autocomplete="address-line1" />
+      <label for="street">Street Address</label>
+    </div>
 
-/* ======================== [3] Form Heading ======================== */
-.estimate-heading{margin:0 0 1.5rem 0;text-align:center}
-.estimate-title{margin:0;font-size:1.4rem;font-weight:800;color:var(--zenith-navy);letter-spacing:.2px}
-.estimate-subtitle{margin:.5rem 0 0;font-size:1rem;color:var(--zenith-text);opacity:.9}
+    <!-- City / State / ZIP -->
+    <div class="zenith-input-group city-field">
+      <label for="city">City</label>
+      <input type="text" id="city" name="city" required placeholder=" " autocomplete="address-level2" />
+    </div>
+    <div class="zenith-input-group state-field">
+      <label for="state">State</label>
+      <input type="text" id="state" name="state" required placeholder=" " maxlength="2" inputmode="text" autocapitalize="characters" autocomplete="address-level1" value="CA" />
+    </div>
+    <div class="zenith-input-group zip-field">
+      <label for="zip">ZIP Code</label>
+      <input type="text" id="zip" name="zip" required placeholder=" " pattern="\d{5}(-\d{4})?" inputmode="numeric" autocomplete="postal-code" />
+    </div>
 
-/* =================== [4] Form Layout + Fields ==================== */
+    <!-- Details -->
+    <div class="zenith-input-group full-width">
+      <textarea id="details" name="details" rows="4" placeholder=" "></textarea>
+      <label for="details">Project Details (describe your roofing needs)</label>
+    </div>
 
-/* 4A) Grid + box sizing */
-.zenith-form *{box-sizing:border-box}
-.zenith-form{width:100%}
-.zenith-form-grid{display:grid;grid-template-columns:1fr;gap:1.25rem}
+    <!-- Upload + Referral -->
+    <div class="zenith-input-group file-group full-width">
+      <label for="photos">Upload Photos <span class="zenith-optional">(optional)</span></label>
+      <div class="file-input-wrapper">
+        <input type="file" id="photos" name="photos[]" accept="image/*" multiple />
+        <label for="photos" class="custom-file-upload">Choose Files</label>
+        <span class="file-name">No files selected</span>
+      </div>
+    </div>
 
-/* 4B) Generic field + floating label */
-.zenith-input-group{position:relative}
-.zenith-input-group.full-width{grid-column:1 / -1}
+    <div class="floating-select">
+      <select id="referral" name="referral">
+        <option value="" selected hidden>Select Option</option>
+        <option value="Google Search">Google Search</option>
+        <option value="Google Ads">Google Ads</option>
+        <option value="Yelp">Yelp</option>
+        <option value="Angi">Angi</option>
+        <option value="Referral">Referral</option>
+        <option value="Repeat Customer">Repeat Customer</option>
+        <option value="YouTube">YouTube</option>
+        <option value="Other">Other</option>
+      </select>
+      <label for="referral">How did you hear about us?</label>
+    </div>
 
-.zenith-input-group input,
-.zenith-input-group select,
-.zenith-input-group textarea{
-  width:100% !important;             /* force full width (beats any global CSS) */
-  height:52px;
-  padding:12px 14px;
-  border:1px solid var(--zenith-border);
-  border-radius:var(--zenith-radius);
-  background:#fff;
-  font-size:1rem;
-  color:var(--zenith-text);
-  transition:var(--zenith-transition);
-  font-family:inherit;
-}
-.zenith-input-group textarea{min-height:120px;height:auto;padding:12px 14px;line-height:1.5;resize:vertical}
+    <!-- Actions -->
+    <div class="zenith-actions">
+      <div class="zenith-recaptcha">
+        <span class="recaptcha-title">Security Verification</span>
+        <div id="estimate-recaptcha" class="g-recaptcha"></div>
+      </div>
+      <button type="submit" class="zenith-submit">
+        <span class="submit-text">Request Free Estimate</span>
+        <span class="submit-icon">→</span>
+      </button>
+    </div>
 
-.zenith-input-group label{
-  position:absolute;top:12px;left:14px;
-  color:var(--zenith-text-light);background:#fff;padding:0 .5rem;
-  font-size:.9rem;transition:var(--zenith-transition);pointer-events:none;border-radius:4px
-}
-.zenith-input-group input:focus + label,
-.zenith-input-group input:not(:placeholder-shown) + label,
-.zenith-input-group textarea:focus + label,
-.zenith-input-group textarea:not(:placeholder-shown) + label{
-  top:-8px;left:10px;font-size:.75rem;color:var(--zenith-orange);background:#fff;padding:0 .3rem
-}
-
-/* 4C) Floating SELECT (same look as inputs) */
-.floating-select{position:relative}
-.floating-select select{
-  appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23072e59' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 12px center;background-size:1rem;padding-right:36px;cursor:pointer
-}
-/* label appears AFTER the select for floating; we float on focus or when .has-value is present */
-.floating-select label{
-  position:absolute;top:12px;left:14px;background:#fff;padding:0 .5rem;border-radius:4px;
-  color:var(--zenith-text-light);font-size:.9rem;transition:var(--zenith-transition);pointer-events:none
-}
-.floating-select select:focus + label,
-.floating-select.has-value label{
-  top:-8px;left:10px;font-size:.75rem;color:var(--zenith-orange);padding:0 .3rem
-}
-
-/* 4D) Address helpers (make State readable + fixed widths) */
-.zenith-input-group.state-field input{
-  text-transform:uppercase;letter-spacing:.06em;text-align:center;
-  min-width:110px;                          /* <- prevents tiny pill */
-}
-.zenith-input-group.zip-field input{ text-align:center; }
-
-/* 4E) Hints */
-.zenith-optional,#phone-hint{display:block;margin-top:.4rem;font-size:.8rem;color:var(--zenith-text-light)}
-
-/* 4F) File upload (solid navy even at rest) */
-.file-group .file-input-wrapper{position:relative;display:flex;align-items:center}
-.file-group input[type="file"]{position:absolute;opacity:0;width:.1px;height:.1px;overflow:hidden;z-index:-1}
-.zenith-form .file-group .custom-file-upload{
-  display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 16px;
-  border-radius:10px;background:var(--zenith-navy);color:#fff;font-weight:600;font-size:.9rem;
-  cursor:pointer;transition:var(--zenith-transition);border:1px solid var(--zenith-border)
-}
-.zenith-form .file-group .custom-file-upload:hover,
-.zenith-form .file-group .custom-file-upload:focus{background:var(--zenith-navy-dark)}
-.file-group .file-name{margin-left:1rem;font-size:.9rem;color:var(--zenith-text-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-/* 4G) Focus + invalid (only after touch) */
-.zenith-input-group input:focus,
-.zenith-input-group select:focus,
-.zenith-input-group textarea:focus{outline:none;border-color:var(--zenith-orange);box-shadow:0 0 0 3px rgba(247,148,29,.15)}
-.zenith-input-group input.touched:invalid,
-.zenith-input-group select.touched:invalid,
-.zenith-input-group textarea.touched:invalid{border-color:#e96565;box-shadow:0 0 0 3px rgba(233,101,101,.12)}
-
-/* ============================ [5] Actions ============================ */
-.zenith-actions{grid-column:1/-1;display:grid;grid-template-columns:1fr;align-items:center;gap:1.25rem;margin-top:1.5rem}
-.zenith-submit{background:linear-gradient(to right,var(--zenith-orange),var(--zenith-orange-dark));color:#fff;border:none;height:56px;padding:0 2rem;border-radius:var(--zenith-radius);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;cursor:pointer;transition:var(--zenith-transition);box-shadow:0 6px 12px rgba(247,148,29,.35);display:flex;align-items:center;justify-content:center;gap:.75rem}
-.zenith-submit:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(247,148,29,.45)}
-.zenith-submit .submit-icon{font-weight:bold;transition:transform .2s ease}
-.zenith-submit:hover .submit-icon{transform:translateX(3px)}
-
-.zenith-recaptcha{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;gap:.5rem;margin:.5rem 0}
-.recaptcha-title{font-size:.95rem;line-height:1.2;color:var(--zenith-navy);font-weight:700;margin:0;text-align:center}
-.g-recaptcha{transform:scale(.96);transform-origin:center}
-
-/* ===================== [6] Disclaimer & Phone] ===================== */
-.zenith-disclaimer{grid-column:1/-1;margin-top:1.5rem;font-size:.8rem;color:var(--zenith-text-light);line-height:1.6}
-.zenith-disclaimer a{color:var(--zenith-orange);text-decoration:none;font-weight:600}
-.zenith-disclaimer a:hover{text-decoration:underline}
-.zenith-contact{margin-top:1rem;text-align:center}
-.zenith-phone{font-size:1rem;color:var(--zenith-navy);font-weight:700}
-.zenith-phone strong{color:var(--zenith-orange)}
-
-/* ============================ [R1] Tablet+ =========================== */
-@media (min-width:768px){
-  .zenith-form-grid{grid-template-columns:1fr 1fr;gap:1.5rem 1.25rem}
-  .zenith-actions{grid-template-columns:1fr auto;align-items:center;gap:1.5rem}
-  .zenith-submit{width:auto;min-width:240px}
-
-  /* City 48% / State 20% / ZIP 30% (no popping) */
-  .zenith-input-group.city-field,
-  .zenith-input-group.state-field,
-  .zenith-input-group.zip-field{display:inline-block;vertical-align:top}
-  .zenith-input-group.city-field{width:48%}
-  .zenith-input-group.state-field{width:20%}
-  .zenith-input-group.zip-field{width:30%;margin-left:2%}
-}
-
-/* =========================== [R2] Desktop+] ========================== */
-@media (min-width:900px){
-  .zenith-form-grid{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:1.25rem;row-gap:1.5rem}
-  .zenith-input-group:has(#first-name){grid-column:1/span 6}
-  .zenith-input-group:has(#last-name){grid-column:7/span 6}
-  .zenith-input-group:has(#phone){grid-column:1/span 6}
-  .zenith-input-group:has(#email){grid-column:7/span 6}
-  .floating-select:has(#service){grid-column:1/-1}
-  .zenith-input-group:has(#street){grid-column:1/-1}
-  .zenith-input-group.city-field{grid-column:1/span 6}
-  .zenith-input-group.state-field{grid-column:7/span 2}
-  .zenith-input-group.zip-field{grid-column:9/span 4}
-  .zenith-input-group:has(#details){grid-column:1/-1}
-  .file-group{grid-column:1/span 6;align-self:end}
-  .floating-select:has(#referral){grid-column:7/span 6;align-self:end}
-  .zenith-recaptcha,.zenith-actions{grid-column:1/-1}
-}
-
-/* ========================= [R3] Small Mobile] ======================== */
-@media (max-width:520px){
-  .zenith-hero{padding:1.5rem 1rem}
-  .zenith-card{padding:1.5rem}
-  .zenith-logo-frame{width:80px;height:80px}
-  .zenith-luxury-subtitle{font-size:1.1rem;line-height:1.3}
-  .g-recaptcha{transform:scale(.92)}
-}
-
-/* [R4] Safe areas + sticky header compensation */
-@media (max-width:820px){.zenith-hero{padding-top:calc(1.5rem + var(--nav-height) + env(safe-area-inset-top,0px))}}
-html{scroll-padding-top:calc(var(--nav-height) + env(safe-area-inset-top,0px))}
-#roofing-estimate{scroll-margin-top:calc(var(--nav-height) + env(safe-area-inset-top,0px))}
-@supports (height:100dvh){.zenith-hero{min-height:90dvh}}
-/* =========================
-   PATCH A — Uniform selects
-   Force 100% width/height and matching styles no matter the wrapper
-   ========================= */
-.zenith-form select {
-  width: 100% !important;
-  height: 52px !important;
-  padding: 12px 14px !important;
-  border: 1px solid var(--zenith-border) !important;
-  border-radius: var(--zenith-radius) !important;
-  background-color: #fff !important;
-  font-size: 1rem !important;
-  line-height: 1.2 !important;
-  box-sizing: border-box;
-  appearance: none;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23072e59' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 1rem;
-  padding-right: 36px !important;
-}
-
-/* =========================
-   PATCH B — Floating label for selects
-   Works whether you used .floating-select or keep .select-group
-   ========================= */
-.floating-select { position: relative; }
-.floating-select label {
-  position: absolute;
-  top: 12px; left: 14px;
-  background: #fff; padding: 0 .5rem; border-radius: 4px;
-  color: var(--zenith-text-light); font-size: .9rem;
-  transition: var(--zenith-transition); pointer-events: none;
-}
-.floating-select select:focus + label,
-.floating-select.has-value label {
-  top: -8px; left: 10px; font-size: .75rem;
-  color: var(--zenith-orange); padding: 0 .3rem;
-}
-
-/* =========================
-   PATCH C — State visibility + reasonable width
-   (keeps it readable and centered)
-   ========================= */
-.zenith-input-group.state-field input {
-  min-width: 110px;          /* prevents the “tiny pill” look */
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-}
-/* === PATCH: Make State & ZIP use static labels (cleaner than floating for small fields) === */
-.zenith-input-group.state-field label,
-.zenith-input-group.zip-field label {
-  position: static !important;
-  display: block;
-  margin-bottom: 0.5rem;
-  padding: 0;
-  color: var(--zenith-text);
-  font-weight: 700;
-  font-size: 0.9rem;
-  pointer-events: auto;
-}
-
-/* Keep inputs tidy + centered, readable width for CA */
-.zenith-input-group.state-field input {
-  min-width: 110px;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-}
-.zenith-input-group.zip-field input {
-  text-align: center;
-}
+    <!-- Disclaimer -->
+    <div class="zenith-disclaimer">
+      <p>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="/real-estate">Real Estate Services</a>.</p>
+      <div class="zenith-contact">
+        <p class="zenith-phone">Prefer to call? <strong>858-900-6163</strong></p>
+      </div>
+    </div>
+  </div>
+</form>
