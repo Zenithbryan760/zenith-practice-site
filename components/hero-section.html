@@ -10,51 +10,51 @@
        [6] Disclaimer + Phone
 ========================================================= -->
 
+<!-- =========================================================
+ [HERO SECTION] Zenith Roofing — Video + Luxury Header + Form
+========================================================= -->
 <section class="zenith-hero" id="roofing-estimate">
-  <!-- [1] VIDEO BACKGROUND -->
+  <!-- [1] Background video -->
   <div class="zenith-video-container">
-    <video class="zenith-background-video" autoplay muted loop playsinline poster="roofing-poster.jpg">
+    <video class="zenith-background-video" autoplay muted loop playsinline>
       <source src="roofing-bg.mp4" type="video/mp4">
       Your browser doesn't support HTML5 video.
     </video>
   </div>
   <div class="zenith-video-overlay"></div>
 
-  <!-- [2] CONTENT CARD -->
+  <!-- [2] White card -->
   <div class="zenith-card">
 
-    <!-- [2.5] LOGO + TITLES -->
+    <!-- [2.5] Logo + titles -->
     <div class="zenith-luxury-card">
       <div class="zenith-luxury-header">
         <div class="zenith-logo-frame">
-          <!-- Correct path to your logo -->
           <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-luxury-logo">
         </div>
         <div class="zenith-luxury-titles">
           <h2 class="zenith-luxury-subtitle">Roofing Contractor in Escondido, San Diego &amp; Temecula</h2>
           <div class="zenith-luxury-locations">
-            <span>Escondido</span>
-            <span class="luxury-divider">•</span>
-            <span>San Diego</span>
-            <span class="luxury-divider">•</span>
+            <span>Escondido</span><span class="luxury-divider">•</span>
+            <span>San Diego</span><span class="luxury-divider">•</span>
             <span>Temecula</span>
           </div>
         </div>
       </div>
     </div>
-<!-- [3] FREE ESTIMATE HEADING -->
-<div class="estimate-heading">
-  <h3 class="estimate-title">Free Estimate</h3>
-  <p class="estimate-subtitle">We proudly offer free roofing estimates to homeowners and business owners.</p>
-</div>
 
-    <!-- [4] ESTIMATE FORM (Netlify) -->
-<form id="estimate-form" class="zenith-form" name="estimate" method="POST" novalidate>
+    <!-- [3] Heading -->
+    <div class="estimate-heading">
+      <h3 class="estimate-title">Free Estimate</h3>
+      <p class="estimate-subtitle">We proudly offer free roofing estimates to homeowners and business owners.</p>
+    </div>
 
-      <!-- Helps Netlify detect your form reliably -->
-      <input type="hidden" name="form-name" value="estimate">
+    <!-- [4] FORM (Zapier + file uploads) -->
+    <form id="estimate-form" class="zenith-form" name="estimate"
+          method="POST" enctype="multipart/form-data" novalidate>
+      <!-- Honeypot (spam trap) -->
+      <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
 
-      <!-- [4] FORM GRID -->
       <div class="zenith-form-grid">
         <!-- Name -->
         <div class="zenith-input-group">
@@ -68,8 +68,9 @@
 
         <!-- Contact -->
         <div class="zenith-input-group">
-          <input type="tel" id="phone" name="phone" required placeholder=" " inputmode="tel" autocomplete="tel"
-                 pattern="^\d{3}[-.\s]?\d{3}[-.\s]?\d{4}$">
+          <input type="tel" id="phone" name="phone" required placeholder=" "
+                 inputmode="tel" autocomplete="tel"
+                 pattern="^(\(\d{3}\)\s?\d{3}-\d{4}|\d{3}[-.\s]?\d{3}[-.\s]?\d{4})$">
           <label for="phone">Phone Number</label>
         </div>
         <div class="zenith-input-group">
@@ -89,9 +90,22 @@
             <option value="Repairs">Repairs</option>
           </select>
         </div>
+
+        <!-- Preferred Day -->
+        <div class="zenith-input-group select-group">
+          <label for="preferred-day">Preferred Day</label>
+          <select id="preferred-day" name="preferred-day">
+            <option value="" selected>Any day</option>
+            <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+            <option>Thursday</option><option>Friday</option><option>Saturday</option>
+          </select>
+        </div>
+
+        <!-- Preferred Date -->
         <div class="zenith-input-group select-group">
           <label for="date">Preferred Date</label>
           <input type="date" id="date" name="date" placeholder=" ">
+          <small id="date-dow" class="visually-hidden"></small>
         </div>
 
         <!-- Address -->
@@ -100,7 +114,7 @@
           <label for="street">Street Address</label>
         </div>
 
-        <!-- Location -->
+        <!-- City/ZIP (auto city/state from ZIP) -->
         <div class="zenith-input-group">
           <input type="text" id="city" name="city" required placeholder=" ">
           <label for="city">City</label>
@@ -109,6 +123,7 @@
           <input type="text" id="zip" name="zip" required placeholder=" " pattern="\d{5}(-\d{4})?">
           <label for="zip">ZIP Code</label>
         </div>
+        <input type="hidden" id="state" name="state" />
 
         <!-- Project Info -->
         <div class="zenith-input-group full-width">
@@ -116,10 +131,10 @@
           <label for="details">Brief Project Details</label>
         </div>
 
-        <!-- Photos -->
+        <!-- Photos (multi-file) -->
         <div class="zenith-input-group file-group">
           <label for="photos">Upload Photos <span class="zenith-optional">(optional)</span></label>
-          <input type="file" id="photos" name="photos" accept="image/*" multiple>
+          <input type="file" id="photos" name="photos[]" accept="image/*" multiple>
         </div>
 
         <!-- Referral -->
@@ -127,23 +142,23 @@
           <label for="referral">How did you hear about us?</label>
           <select id="referral" name="referral">
             <option value="" disabled selected hidden>Select Option</option>
-            <option value="Google">Google</option>
-            <option value="Referral">Referral</option>
-            <option value="Social Media">Social Media</option>
-            <option value="Other">Other</option>
+            <option>Google</option>
+            <option>Referral</option>
+            <option>Social Media</option>
+            <option>Other</option>
           </select>
         </div>
 
- <!-- [5] ACTIONS (Google reCAPTCHA + submit) -->
-  <div class="zenith-actions">
-    <div class="zenith-recaptcha">
-      <span class="recaptcha-title">Verify you’re human</span>
-      <div id="estimate-recaptcha" class="g-recaptcha"></div>
-    </div>
-    <button type="submit" class="zenith-submit">Request Free Estimate</button>
-  </div>
+        <!-- [5] Actions -->
+        <div class="zenith-actions">
+          <div class="zenith-recaptcha">
+            <span class="recaptcha-title">Verify you’re human</span>
+            <div id="estimate-recaptcha" class="g-recaptcha"></div>
+          </div>
+          <button type="submit" class="zenith-submit">Request Free Estimate</button>
+        </div>
 
-        <!-- [6] DISCLAIMER + PHONE -->
+        <!-- [6] Disclaimer + Phone -->
         <div class="zenith-disclaimer">
           <p>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="/real-estate">Real Estate Services</a>.</p>
           <div class="zenith-contact">
