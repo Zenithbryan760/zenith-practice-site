@@ -67,7 +67,7 @@
           <label for="email">Email Address</label>
         </div>
 
-        <!-- Service -->
+        <!-- Service (static label) -->
         <div class="zenith-input-group select-group">
           <label for="service">Service Type</label>
           <select id="service" name="service" required>
@@ -88,19 +88,19 @@
           <label for="street">Street Address</label>
         </div>
 
-        <!-- City / State / ZIP -->
-        <div class="zenith-input-group city-field">
-          <input type="text" id="city" name="city" required placeholder=" " autocomplete="address-level2" />
+        <!-- City / State / ZIP (STATIC LABELS for perfect clarity) -->
+        <div class="zenith-input-group city-field static-label">
           <label for="city">City</label>
+          <input type="text" id="city" name="city" required autocomplete="address-level2" />
         </div>
-        <div class="zenith-input-group state-field">
-          <!-- maxlength + uppercase UX hints; JS will enforce -->
-          <input type="text" id="state" name="state" required placeholder=" " maxlength="2" inputmode="text" autocapitalize="characters" autocomplete="address-level1" />
+        <div class="zenith-input-group state-field static-label">
           <label for="state">State</label>
+          <!-- default value shown immediately -->
+          <input type="text" id="state" name="state" required maxlength="2" inputmode="text" autocapitalize="characters" autocomplete="address-level1" value="CA" />
         </div>
-        <div class="zenith-input-group zip-field">
-          <input type="text" id="zip" name="zip" required placeholder=" " pattern="\d{5}(-\d{4})?" inputmode="numeric" autocomplete="postal-code" />
+        <div class="zenith-input-group zip-field static-label">
           <label for="zip">ZIP Code</label>
+          <input type="text" id="zip" name="zip" required pattern="\d{5}(-\d{4})?" inputmode="numeric" autocomplete="postal-code" />
         </div>
 
         <!-- Details -->
