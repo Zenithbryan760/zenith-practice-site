@@ -1,15 +1,15 @@
 // ====================================================================
-// js/hero.js — Zenith Hero helpers (ZAPIER VERSION)
-// - Phone auto-format (US)          -> (123) 456-7890
-// - Date min = today                -> prevent past dates
-// - Floating label fix for <select> -> has-value class
-// - reCAPTCHA explicit render       -> stores widget id (token is sent, Zapier won't verify)
-// - ONE submit handler (waits for injected hero form)
-// - Sends JSON directly to Zapier Webhook (no Netlify function)
+// js/hero.js — ZAPIER-ONLY VERSION (no Netlify)
+// - Phone auto-format
+// - Date min = today
+// - Floating label fix for <select>
+// - reCAPTCHA explicit render (token sent as a field)
+// - ONE submit handler
+// - Sends FormData (incl. files) directly to Zapier Webhook
 // ====================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ---- 1) PHONE AUTO-FORMAT → (123) 456-7890 ----
+  // 1) PHONE AUTO-FORMAT → (123) 456-7890
   const phone = document.getElementById('phone');
   if (phone) {
     phone.addEventListener('input', (e) => {
@@ -22,15 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---- 2) DATE MIN (prevent past dates) ----
+  // 2) DATE MIN (prevent past dates)
   const date = document.getElementById('date');
   if (date) {
-    const today = new Date();
-    const iso = today.toISOString().slice(0, 10);
-    date.min = iso;
+    const today = new Date().toISOString().slice(0, 10);
+    date.min = today;
   }
 
-  // ---- 3) OPTIONAL: Google Places Autocomplete on "street" ----
+  // 3) OPTIONAL: Google Places Autocomplete on "street"
   if (window.google && google.maps && google.maps.places) {
     const street = document.getElementById('street');
     if (street) {
@@ -41,25 +40,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ---- 4) FLOATING LABEL FIX FOR <select> ----
+  // 4) FLOATING LABEL FIX FOR <select>
   document.querySelectorAll('.zenith-input-group select').forEach((sel) => {
     const parent = sel.closest('.zenith-input-group');
-    const toggle = () => {
-      if (sel.value && sel.value !== '') parent.classList.add('has-value');
-      else parent.classList.remove('has-value');
-    };
+    const toggle = () => (sel.value ? parent.classList.add('has-value') : parent.classList.remove('has-value'));
     sel.addEventListener('change', toggle);
     toggle();
   });
 
-  // ---- 5) reCAPTCHA explicit render helpers ----
+  // 5) reCAPTCHA explicit render helpers
   window.renderHeroRecaptchaIfReady = function () {
-    var el = document.getElementById('estimate-recaptcha');
-    if (!el) return; // hero not injected yet
-
+    const el = document.getElementById('estimate-recaptcha');
+    if (!el) return;
     if (window.grecaptcha && typeof grecaptcha.render === 'function') {
       if (!el.getAttribute('data-rendered')) {
-        // store widget id so we can read/reset later
         window.__zenithRecaptchaWidgetId = grecaptcha.render(el, {
           sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI'
         });
@@ -67,59 +61,48 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   };
-  // Called by Google script (?onload=recaptchaOnload)
-  window.recaptchaOnload = function () {
-    window.renderHeroRecaptchaIfReady();
-  };
+  window.recaptchaOnload = function () { window.renderHeroRecaptchaIfReady(); };
 
-  // ---- 6) Bind ONE submit handler (waits for injected form) ----
+  // 6) Bind ONE submit handler (waits for injected form)
   let bound = false;
   const tryBind = () => {
     if (bound) return true;
     const form = document.getElementById('estimate-form');
     if (!form) return false;
-
-    // avoid double-binding if this runs again
     if (form.dataset.bound === 'true') return true;
     form.dataset.bound = 'true';
     bound = true;
 
-    form.addEventListener('submit', async function (e) {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // read form fields (hyphenated names)
+      // Build FormData (includes files automatically)
       const fd = new FormData(form);
-      const phoneRaw = String(fd.get('phone') || '');
-      const phoneDigits = phoneRaw.replace(/\D/g, '');
 
-      // get reCAPTCHA token if present (Zapier will just receive it as data)
-      let recaptcha = '';
+      // Normalize phone to digits (keep validation simple)
+      const phoneRaw = String(fd.get('phone') || '');
+      fd.set('phone', phoneRaw.replace(/\D/g, ''));
+
+      // Add page context
+      fd.append('page', location.pathname + location.hash);
+
+      // Add reCAPTCHA token if present (Zapier will just receive it)
       try {
         if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) {
-          recaptcha = grecaptcha.getResponse(window.__zenithRecaptchaWidgetId);
+          const token = grecaptcha.getResponse(window.__zenithRecaptchaWidgetId);
+          fd.append('recaptcha', token || '');
         }
       } catch (_) {}
 
-      // Build payload for Zapier
-      const payload = {
-        firstName: fd.get('first-name') || '',
-        lastName:  fd.get('last-name')  || '',
-        phone:     phoneDigits,
-        email:     fd.get('email')      || '',
-        service:   fd.get('service')    || '',
-        date:      fd.get('date')       || '',
-        street:    fd.get('street')     || '',
-        city:      fd.get('city')       || '',
-        zip:       fd.get('zip')        || '',
-        details:   fd.get('details')    || '',
-        referral:  fd.get('referral')   || '',
-        page:      location.pathname + location.hash,
-        recaptcha
-      };
+      // Honeypot (if you added <input name="company" style="display:none">)
+      if ((fd.get('company') || '').trim() !== '') {
+        alert('Thanks! We’ll be in touch shortly.');
+        form.reset();
+        return;
+      }
 
-      // ------ ZAPIER WEBHOOK (replace with your real Catch Hook URL) ------
-      const ZAP_URL = "https://hooks.zapier.com/hooks/catch/xxxx/yyyy";
-      // --------------------------------------------------------------------
+      // 👉 ZAPIER WEBHOOK (replace with your real Catch Hook URL)
+      const ZAP_URL = 'https://hooks.zapier.com/hooks/catch/xxxx/yyyy';
 
       // UI state
       const btn = form.querySelector('button[type="submit"]');
@@ -127,15 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
       try {
-        const res = await fetch(ZAP_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        // Zapier returns 200 with some JSON text; we don't rely on exact shape
-        const ok = res.ok;
-        if (!ok) throw new Error('Submit failed');
+        // IMPORTANT: do NOT set Content-Type; browser sets multipart boundary
+        const res = await fetch(ZAP_URL, { method: 'POST', body: fd });
+        if (!res.ok) throw new Error('Submit failed');
 
         alert('Thanks! We’ll be in touch shortly.');
         form.reset();
@@ -150,17 +127,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // render captcha if Google script already loaded
     window.renderHeroRecaptchaIfReady();
     return true;
   };
 
-  // Try immediately, then poll briefly (hero injected async)
   if (!tryBind()) {
-    const int = setInterval(() => {
-      if (tryBind()) clearInterval(int);
-    }, 150);
-    // safety stop after 10s
+    const int = setInterval(() => { if (tryBind()) clearInterval(int); }, 150);
     setTimeout(() => clearInterval(int), 10000);
   }
 });
