@@ -549,3 +549,98 @@ html { scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px
 .zenith-recaptcha{ margin-top: 4px; }
 .zenith-actions{   margin-top: 18px; }
 .zenith-submit{    height:52px; border-radius:10px; }
+/* =========================================================
+   ULTRA-CLEAN LAYOUT (12-COLUMN DESKTOP GRID)
+   Paste at END of hero.css
+   ========================================================= */
+
+/* Desktop+ use a precise 12-col grid for perfect alignment */
+@media (min-width: 900px){
+  .zenith-form-grid{
+    display:grid;
+    grid-template-columns: repeat(12, minmax(0,1fr));
+    column-gap: 16px;
+    row-gap: 18px;
+  }
+
+  /* Reset group margins – rely on grid gaps */
+  .zenith-input-group{ margin:0; }
+
+  /* ---------- Row 1: First / Last (6 / 6) ---------- */
+  .zenith-input-group:has(#first-name){ grid-column: 1 / span 6; }
+  .zenith-input-group:has(#last-name) { grid-column: 7 / span 6; }
+
+  /* ---------- Row 2: Phone / Email (6 / 6) ---------- */
+  .zenith-input-group:has(#phone) { grid-column: 1 / span 6; }
+  .zenith-input-group:has(#email) { grid-column: 7 / span 6; }
+
+  /* ---------- Row 3: Service Type (full width) ---------- */
+  .select-group:has(#service){ grid-column: 1 / -1; }
+
+  /* ---------- Row 4: Street (full width) ---------- */
+  .zenith-input-group:has(#street){ grid-column: 1 / -1; }
+
+  /* ---------- Row 5: City / State / ZIP (6 / 2 / 4) ---------- */
+  .zenith-input-group.city-field  { grid-column: 1 / span 6; }
+  .zenith-input-group.state-field { grid-column: 7 / span 2; }
+  .zenith-input-group.zip-field   { grid-column: 9 / span 4; }
+
+  /* ---------- Row 6: Details (full width) ---------- */
+  .zenith-input-group:has(#details){ grid-column: 1 / -1; }
+
+  /* ---------- Row 7: Upload Photos / Referral (6 / 6) ---------- */
+  .file-group{ grid-column: 1 / span 6; align-self: end; }
+  .select-group:has(#referral){ grid-column: 7 / span 6; align-self: end; }
+
+  /* ---------- Row 8+: Captcha + Submit (full width) ---------- */
+  .zenith-recaptcha{ grid-column: 1 / -1; }
+  .zenith-actions{   grid-column: 1 / -1; }
+}
+
+/* Uniform control height + padding (keeps your look) */
+.zenith-input-group input,
+.zenith-input-group select,
+.zenith-input-group textarea{
+  min-height: 52px;
+  padding: 0.95rem 1rem;
+  border-radius: 10px;
+}
+
+/* Float labels: crisp positions */
+.zenith-input-group label{ top:.95rem; left:1rem; }
+.zenith-input-group input:focus + label,
+.zenith-input-group input:not(:placeholder-shown) + label,
+.zenith-input-group textarea:focus + label,
+.zenith-input-group textarea:not(:placeholder-shown) + label{
+  top:-0.60rem; left:.85rem; font-size:.72rem;
+}
+
+/* Selects match input height; arrow centered */
+.zenith-input-group select{
+  line-height: 52px;
+  padding-top:0; padding-bottom:0;
+  background-position: right 14px center;
+  background-size: 16px;
+}
+
+/* Phone hint tidy */
+#phone-hint{ margin-top:6px; font-size:12px; color:#8a8f98; padding-left:1rem; }
+
+/* Readonly state looks like a field */
+#state[readonly]{
+  background:#f9fafb; color:#333; cursor:not-allowed;
+  min-height:52px; display:inline-flex; align-items:center;
+}
+
+/* Errors only after touch (works with the JS I gave you) */
+.zenith-input-group input:invalid,
+.zenith-input-group select:invalid,
+.zenith-input-group textarea:invalid{
+  border-color: var(--zenith-border);
+}
+.zenith-input-group input.touched:invalid,
+.zenith-input-group select.touched:invalid,
+.zenith-input-group textarea.touched:invalid{
+  border-color:#e96565;
+  box-shadow:0 0 0 3px rgba(233,101,101,.12);
+}
