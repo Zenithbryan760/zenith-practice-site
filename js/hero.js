@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     enablePlacesAutocomplete();
     wireTouchedUx();
     fixCopy();
+    setupFileUpload();
 
     form.addEventListener("submit", onSubmit);
     window.renderHeroRecaptchaIfReady();
@@ -208,7 +209,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // Tiny copy fix for phone hint
   function fixCopy() {
     const phoneHint = document.getElementById("phone-hint");
-    if (phoneHint) phoneHint.textContent = "Format: (619) 758-5227";
+    if (phoneHint) phoneHint.textContent = "Example: 858-900-6163";
+  }
+
+  // File upload handling
+  function setupFileUpload() {
+    const fileInput = document.getElementById('photos');
+    if (!fileInput) return;
+    
+    fileInput.addEventListener('change', function(e) {
+      const fileNameDisplay = document.querySelector('.file-name');
+      if (fileNameDisplay) {
+        fileNameDisplay.textContent = e.target.files.length > 0 
+          ? `${e.target.files.length} file${e.target.files.length > 1 ? 's' : ''} selected`
+          : 'No files selected';
+      }
+    });
   }
 
   // Submit → Zapier (FormData)
@@ -262,6 +278,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) {
         grecaptcha.reset(window.__zenithRecaptchaWidgetId);
       }
+      // Reset file display name
+      const fileNameDisplay = document.querySelector('.file-name');
+      if (fileNameDisplay) fileNameDisplay.textContent = 'No files selected';
     } catch (err) {
       console.error(err);
       showErrorMessage();
