@@ -5,7 +5,7 @@
   <!-- [1] VIDEO BACKGROUND -->
   <div class="zenith-video-container">
     <video class="zenith-background-video" autoplay muted loop playsinline poster="roofing-poster.jpg">
-      <source src="roofing-bg.mp4" type="video/mp4">
+      <source src="roofing-bg.mp4" type="video/mp4" />
       Your browser doesn't support HTML5 video.
     </video>
   </div>
@@ -14,11 +14,11 @@
   <!-- [2] CONTENT CARD -->
   <div class="zenith-card">
 
-    <!-- [2.5] LOGO + TITLES (orange ring kept) -->
+    <!-- [2.5] LOGO + TITLES -->
     <div class="zenith-luxury-card">
       <div class="zenith-luxury-header">
         <div class="zenith-logo-frame">
-          <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-luxury-logo">
+          <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-luxury-logo" />
         </div>
         <div class="zenith-luxury-titles">
           <h2 class="zenith-luxury-subtitle">Roofing Contractor in Escondido, San Diego &amp; Temecula</h2>
@@ -46,36 +46,28 @@
       <input type="hidden" id="display-name" name="display-name" />
 
       <div class="zenith-form-grid">
-        <!-- Name Section -->
+        <!-- Names -->
         <div class="zenith-input-group">
-          <input type="text" id="first-name" name="first-name" required placeholder=" ">
+          <input type="text" id="first-name" name="first-name" required placeholder=" " />
           <label for="first-name">First Name</label>
         </div>
         <div class="zenith-input-group">
-          <input type="text" id="last-name" name="last-name" required placeholder=" ">
+          <input type="text" id="last-name" name="last-name" required placeholder=" " />
           <label for="last-name">Last Name</label>
         </div>
 
-        <!-- Contact Section -->
+        <!-- Contact -->
         <div class="zenith-input-group">
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            required
-            placeholder=" "
-            inputmode="tel"
-            autocomplete="tel"
-            aria-describedby="phone-hint">
+          <input type="tel" id="phone" name="phone" required placeholder=" " inputmode="tel" autocomplete="tel" aria-describedby="phone-hint" />
           <label for="phone">Phone Number</label>
           <small id="phone-hint" class="zenith-optional">Example: 858-900-6163</small>
         </div>
         <div class="zenith-input-group">
-          <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">
+          <input type="email" id="email" name="email" required placeholder=" " autocomplete="email" />
           <label for="email">Email Address</label>
         </div>
 
-        <!-- Service Section -->
+        <!-- Service -->
         <div class="zenith-input-group select-group">
           <label for="service">Service Type</label>
           <select id="service" name="service" required>
@@ -90,37 +82,38 @@
           </select>
         </div>
 
-        <!-- Address Section -->
+        <!-- Street -->
         <div class="zenith-input-group full-width">
-          <input type="text" id="street" name="street" required placeholder=" " autocomplete="address-line1">
+          <input type="text" id="street" name="street" required placeholder=" " autocomplete="address-line1" />
           <label for="street">Street Address</label>
         </div>
 
-        <!-- Location Section -->
+        <!-- City / State / ZIP -->
         <div class="zenith-input-group city-field">
-          <input type="text" id="city" name="city" required placeholder=" " autocomplete="address-level2">
+          <input type="text" id="city" name="city" required placeholder=" " autocomplete="address-level2" />
           <label for="city">City</label>
         </div>
         <div class="zenith-input-group state-field">
-          <input type="text" id="state" name="state" required placeholder=" " autocomplete="address-level1">
+          <!-- maxlength + uppercase UX hints; JS will enforce -->
+          <input type="text" id="state" name="state" required placeholder=" " maxlength="2" inputmode="text" autocapitalize="characters" autocomplete="address-level1" />
           <label for="state">State</label>
         </div>
         <div class="zenith-input-group zip-field">
-          <input type="text" id="zip" name="zip" required placeholder=" " pattern="\d{5}(-\d{4})?" inputmode="numeric" autocomplete="postal-code">
+          <input type="text" id="zip" name="zip" required placeholder=" " pattern="\d{5}(-\d{4})?" inputmode="numeric" autocomplete="postal-code" />
           <label for="zip">ZIP Code</label>
         </div>
 
-        <!-- Project Details -->
+        <!-- Details -->
         <div class="zenith-input-group full-width">
           <textarea id="details" name="details" rows="4" placeholder=" "></textarea>
           <label for="details">Project Details (describe your roofing needs)</label>
         </div>
 
-        <!-- Upload & Referral Section -->
+        <!-- Upload + Referral -->
         <div class="zenith-input-group file-group">
           <label for="photos">Upload Photos <span class="zenith-optional">(optional)</span></label>
           <div class="file-input-wrapper">
-            <input type="file" id="photos" name="photos[]" accept="image/*" multiple>
+            <input type="file" id="photos" name="photos[]" accept="image/*" multiple />
             <label for="photos" class="custom-file-upload">Choose Files</label>
             <span class="file-name">No files selected</span>
           </div>
@@ -140,7 +133,7 @@
           </select>
         </div>
 
-        <!-- [5] FORM ACTIONS -->
+        <!-- Actions -->
         <div class="zenith-actions">
           <div class="zenith-recaptcha">
             <span class="recaptcha-title">Security Verification</span>
@@ -152,7 +145,7 @@
           </button>
         </div>
 
-        <!-- [6] DISCLAIMER -->
+        <!-- Disclaimer -->
         <div class="zenith-disclaimer">
           <p>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="/real-estate">Real Estate Services</a>.</p>
           <div class="zenith-contact">
