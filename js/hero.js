@@ -5,11 +5,11 @@
 // 👉 REPLACE with your Zapier Catch Hook URL
 const ZAP_URL = "https://hooks.zapier.com/hooks/catch/xxxx/yyyy";
 
-// Your public reCAPTCHA site key
+// reCAPTCHA site key
 const RECAPTCHA_SITE_KEY = "6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Bind once form is present (handles delayed injects)
+  // Bind once form is present
   let bound = false;
   const tryBind = () => {
     if (bound) return true;
@@ -44,11 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
     ensureDisplayNameField(form);
     wireDisplayNameAutoFill();
     phoneMask();
-    stateMask();               // uppercase + max 2 + default CA
-    zipToCityAndState();       // ZIP → City/State (won’t override valid 2-letter state)
+    stateMask();                 // uppercase + max 2 + default CA
+    zipToCityAndState();         // ZIP → City/State (won’t override valid typed state)
     enablePlacesAutocomplete();
     wireTouchedUx();
     setupFileUpload();
+    floatSelectsOnValue();       // make selects float like inputs
     fixCopy();
 
     form.addEventListener("submit", onSubmit);
@@ -134,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const stateEl = document.getElementById("state");
     if (!stateEl) return;
 
-    if (!stateEl.value) stateEl.value = "CA";  // show immediately
+    if (!stateEl.value) stateEl.value = "CA";   // show immediately
 
     stateEl.addEventListener("input", () => {
       stateEl.value = stateEl.value.replace(/[^a-z]/gi, "").toUpperCase().slice(0, 2);
@@ -163,8 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await r.json();
         const place = data.places && data.places[0];
         if (place) {
-          if (!cityEl.value)  cityEl.value  = place["place name"] || cityEl.value;
-          // only set if not a valid 2-letter value
+          if (!cityEl.value) cityEl.value = place["place name"] || cityEl.value;
           if (!(stateEl.value && stateEl.value.length === 2)) {
             stateEl.value = (place["state abbreviation"] || "CA").toUpperCase().slice(0, 2);
           }
@@ -183,6 +183,19 @@ document.addEventListener("DOMContentLoaded", () => {
     zipEl.addEventListener("blur", () => {
       const val = zipEl.value.replace(/\D/g, "").slice(0, 5);
       lookupZip(val);
+    });
+  }
+
+  // Floating SELECTS: add/remove .has-value so label floats like inputs
+  function floatSelectsOnValue() {
+    document.querySelectorAll(".floating-select select").forEach((sel) => {
+      const wrap = sel.parentElement;
+      const set = () => {
+        if (sel.value && sel.value !== "") wrap.classList.add("has-value");
+        else wrap.classList.remove("has-value");
+      };
+      sel.addEventListener("change", set);
+      set(); // initial
     });
   }
 
@@ -209,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // File upload display text
+  // File upload label
   function setupFileUpload() {
     const fileInput = document.getElementById("photos");
     if (!fileInput) return;
@@ -278,14 +291,13 @@ document.addEventListener("DOMContentLoaded", () => {
       showSuccessMessage();
       form.reset();
 
-      // reset reCAPTCHA + file label + default CA
-      if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) {
-        grecaptcha.reset(window.__zenithRecaptchaWidgetId);
-      }
+      // Reset UI bits
+      if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) grecaptcha.reset(window.__zenithRecaptchaWidgetId);
       const label = document.querySelector(".file-name");
       if (label) label.textContent = "No files selected";
       const stateEl = document.getElementById("state");
       if (stateEl) stateEl.value = "CA";
+      floatSelectsOnValue();
     } catch (err) {
       console.error(err);
       showErrorMessage();
@@ -294,10 +306,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function showSuccessMessage() {
-    alert("Thank you! Your estimate request has been received. We'll contact you within 24 hours.");
-  }
-  function showErrorMessage() {
-    alert("Sorry, something went wrong. Please call 858-900-6163 or try again.");
-  }
+  function showSuccessMessage(){ alert("Thank you! Your estimate request has been received. We'll contact you within 24 hours."); }
+  function showErrorMessage(){ alert("Sorry, something went wrong. Please call 858-900-6163 or try again."); }
 });
