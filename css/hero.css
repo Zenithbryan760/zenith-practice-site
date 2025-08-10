@@ -271,35 +271,43 @@
   color: var(--zenith-text-light);
 }
 
-/* File input */
+/* File input - Updated for better button interaction */
+.file-group .file-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .file-group input[type="file"] {
-  display: flex; 
-  align-items: center; 
-  width: 100%; 
-  padding: 0.9rem;
-  border: 1px solid var(--zenith-border); 
-  border-radius: var(--zenith-radius);
-  background: var(--zenith-white); 
-  font-size: 0.95rem; 
-  line-height: 1.4; 
-  cursor: pointer;
+  position: absolute;
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  overflow: hidden;
+  z-index: -1;
 }
 
-.file-group input[type="file"]::file-selector-button {
-  border: none; 
-  background: var(--zenith-navy); 
-  color: var(--zenith-white);
-  padding: 0.6rem 1rem; 
-  border-radius: 6px; 
-  margin-right: 1rem;
-  transition: var(--zenith-transition); 
-  font-weight: 700; 
-  font-size: 0.85rem; 
+.file-group .custom-file-upload {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: var(--zenith-navy);
+  color: white;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
   cursor: pointer;
+  transition: var(--zenith-transition);
+  border: none;
 }
 
-.file-group input[type="file"]::file-selector-button:hover { 
-  background: var(--zenith-orange); 
+.file-group .custom-file-upload:hover {
+  background: var(--zenith-orange);
+}
+
+.file-group .file-name {
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  color: var(--zenith-text-light);
 }
 
 /* Focus states */
@@ -447,7 +455,7 @@
     min-width: 240px; 
   }
   
-  /* Address row */
+  /* Address row - Improved ZIP code alignment */
   .zenith-input-group.city-field,
   .zenith-input-group.state-field,
   .zenith-input-group.zip-field { 
@@ -455,9 +463,9 @@
     vertical-align: top; 
   }
   
-  .zenith-input-group.city-field  { width: 50%; }
+  .zenith-input-group.city-field  { width: 48%; }
   .zenith-input-group.state-field { width: 20%; }
-  .zenith-input-group.zip-field   { width: 30%; }
+  .zenith-input-group.zip-field   { width: 30%; margin-left: 2%; }
 }
 
 /* Desktop+: 12-column grid for perfect alignment */
@@ -519,6 +527,14 @@
   .zenith-input-group select, 
   .zenith-input-group textarea { 
     padding: 0.9rem; 
+  }
+  
+  /* Address fields stack on mobile */
+  .zenith-input-group.city-field,
+  .zenith-input-group.state-field,
+  .zenith-input-group.zip-field {
+    width: 100%;
+    margin-left: 0;
   }
   
   .g-recaptcha { transform: scale(0.92); }
