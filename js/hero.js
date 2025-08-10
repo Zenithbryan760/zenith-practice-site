@@ -1,11 +1,5 @@
 // ====================================================================
-// js/hero.js — Zapier-only (cleaned, original styling preserved)
-// - Phone mask: (123) 456-7890 x1234  (caret-safe)
-// - ZIP → City + State (defaults to CA if lookup fails)
-// - Display Name = First + Last (hidden field; auto-created if missing)
-// - reCAPTCHA v2 explicit render (token appended)
-// - Sends FormData (incl. files) to Zapier
-// - Shows invalid styling only after field is touched
+// js/hero.js — Professional Form Handling for Zenith Roofing
 // ====================================================================
 
 // 👉 REPLACE with your Zapier Catch Hook URL
@@ -30,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     init(form);
     return true;
   };
+  
   if (!tryBind()) {
     const int = setInterval(() => { if (tryBind()) clearInterval(int); }, 150);
     setTimeout(() => clearInterval(int), 10000);
@@ -50,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   };
+  
   window.recaptchaOnload = function () { window.renderHeroRecaptchaIfReady(); };
 
   // ------------------------------------------------------------
@@ -177,6 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const val = zipEl.value.replace(/\D/g, "").slice(0, 5);
       zipTimer = setTimeout(() => lookupZip(val), 300);
     });
+    
     zipEl.addEventListener("blur", () => {
       const val = zipEl.value.replace(/\D/g, "").slice(0, 5);
       lookupZip(val);
@@ -236,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Honeypot
     if ((fd.get("company") || "").toString().trim() !== "") {
-      alert("Thanks! We’ll be in touch shortly.");
+      showSuccessMessage();
       form.reset();
       return;
     }
@@ -251,35 +248,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const btn = form.querySelector('button[type="submit"]');
     const oldText = btn ? btn.textContent : "";
-    if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+    if (btn) { 
+      btn.disabled = true; 
+      btn.innerHTML = '<span class="submit-text">Sending...</span>';
+    }
 
     try {
       const res = await fetch(ZAP_URL, { method: "POST", body: fd });
       if (!res.ok) throw new Error("Submit failed");
 
-      alert("Thanks! We’ll be in touch shortly.");
+      showSuccessMessage();
       form.reset();
       if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) {
         grecaptcha.reset(window.__zenithRecaptchaWidgetId);
       }
     } catch (err) {
       console.error(err);
-      alert("Sorry, something went wrong. Please call 858-900-6163 or try again.");
+      showErrorMessage();
     } finally {
-      if (btn) { btn.disabled = false; btn.textContent = oldText; }
+      if (btn) { 
+        btn.disabled = false; 
+        btn.innerHTML = '<span class="submit-text">Request Free Estimate</span><span class="submit-icon">→</span>';
+      }
     }
   }
+
+  function showSuccessMessage() {
+    alert("Thank you! Your estimate request has been received. We'll contact you within 24 hours.");
+  }
+
+  function showErrorMessage() {
+    alert("Sorry, something went wrong. Please call 858-900-6163 or try again.");
+  }
 });
-// Show invalid styling only after a user interacts with a field
-(function(){
-  const fields = document.querySelectorAll(
-    '#estimate-form input, #estimate-form select, #estimate-form textarea'
-  );
-  fields.forEach(el => {
-    const mark = () => el.classList.add('touched');
-    el.addEventListener('blur', mark);
-    el.addEventListener('change', mark);
-  });
-  const phoneHint = document.getElementById('phone-hint');
-  if (phoneHint) phoneHint.textContent = 'Format: (619) 758-5227';
-})();
