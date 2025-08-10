@@ -509,3 +509,28 @@ html { scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px
 /* (Optional) You currently have two .zenith-recaptcha style blocks.
    The one below with !important already overrides the earlier framed one.
    If you want fewer rules, you can delete the earlier framed version. */
+/* ===== [PATCH] Inline City / State / ZIP sizing + full-width row ===== */
+.zenith-inline-3 {
+  display: grid;
+  grid-template-columns: 60% 20% 20%;   /* City / State / ZIP = 60/20/20 */
+  gap: 0.75rem;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .zenith-inline-3 { grid-template-columns: 1fr; } /* stack on mobile */
+}
+
+/* Make spacing tighter and uniform across the grid */
+.zenith-input-group { margin-bottom: 0; }
+.zenith-form-grid { gap: 0.9rem; }
+@media (min-width: 768px) {
+  .zenith-form-grid { gap: 1rem 0.85rem; }
+}
+
+/* Readonly state visual */
+#state[readonly] {
+  background-color: #f9fafb;
+  color: #333;
+  cursor: not-allowed;
+}
