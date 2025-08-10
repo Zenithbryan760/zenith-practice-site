@@ -434,3 +434,118 @@ html { scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px
 /* Submit + reCAPTCHA spacing */
 .zenith-recaptcha { margin-top: 4px; }
 .zenith-actions   { margin-top: 18px; }
+/* =========================================================
+   FINAL POLISH — layout/spacing/alignment (safe overrides)
+   Paste at END of css/hero.css
+   ========================================================= */
+
+/* Card: center + breathing room */
+.zenith-card{
+  max-width: 960px;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 2.2vw + 1rem, 2.25rem);
+}
+
+/* Headings: tighter, centered rhythm */
+.estimate-heading{ margin: 6px 0 18px; }
+.estimate-title{ letter-spacing:.2px; }
+.estimate-subtitle{ opacity:.95; }
+
+/* Grid: one source of truth for vertical rhythm */
+.zenith-form-grid{ gap: 16px 12px; }
+@media (min-width: 768px){ .zenith-form-grid{ gap: 20px 16px; } }
+.zenith-input-group{ margin:0; } /* use grid gap only */
+
+/* Inputs/selects/textarea: uniform height + padding */
+.zenith-input-group input,
+.zenith-input-group select,
+.zenith-input-group textarea{
+  min-height: 52px;
+  padding: 0.95rem 1rem;
+  border-radius: 10px;
+}
+
+/* Floating label positions (no crowding) */
+.zenith-input-group label{ top:.95rem; left:1rem; }
+.zenith-input-group input:focus + label,
+.zenith-input-group input:not(:placeholder-shown) + label,
+.zenith-input-group textarea:focus + label,
+.zenith-input-group textarea:not(:placeholder-shown) + label{
+  top:-0.60rem; left:.85rem; font-size:.72rem;
+}
+
+/* Selects: match input height & arrow position */
+.select-group label{
+  margin-bottom: 6px;
+  font-weight: 700;
+  color: var(--zenith-navy);
+}
+.zenith-input-group select{
+  line-height: 52px;            /* vertically centers text */
+  padding-top:0; padding-bottom:0;
+  background-position: right 14px center;
+  background-size: 16px;
+}
+
+/* Phone hint: clean, aligned */
+#phone-hint{
+  margin-top: 6px;
+  font-size: 12px;
+  color: #8a8f98;
+  padding-left: 1rem;           /* align with field text */
+}
+
+/* Service Type row: keep full width, add top spacing so it reads as a section */
+.select-group:has(#service){
+  grid-column: 1 / -1;
+  margin-top: 6px;
+}
+
+/* Address row: 50 / 20 / 30 perfect line-up on tablet+ */
+@media (min-width: 768px){
+  .zenith-input-group.city-field,
+  .zenith-input-group.state-field,
+  .zenith-input-group.zip-field{
+    display:inline-block; vertical-align:top;
+  }
+  .zenith-input-group.city-field{  width:50%; }
+  .zenith-input-group.state-field{ width:20%; }
+  .zenith-input-group.zip-field{   width:30%; }
+  /* ensure identical heights */
+  .zenith-input-group.city-field input,
+  .zenith-input-group.state-field input,
+  .zenith-input-group.zip-field input{ min-height:52px; }
+}
+
+/* Readonly state: same look/height as inputs */
+#state[readonly]{
+  background:#f9fafb;
+  color:#333;
+  cursor:not-allowed;
+  min-height:52px;
+  display:inline-flex; align-items:center;
+}
+
+/* Upload + Referral row baseline alignment on desktop */
+@media (min-width: 768px){
+  .file-group,
+  .select-group:has(#referral){ align-self:end; }
+}
+
+/* Error UX: neutral until user touches a field */
+.zenith-input-group input:invalid,
+.zenith-input-group select:invalid,
+.zenith-input-group textarea:invalid{
+  border-color: var(--zenith-border);
+}
+.zenith-input-group input.touched:invalid,
+.zenith-input-group select.touched:invalid,
+.zenith-input-group textarea.touched:invalid{
+  border-color:#e96565;
+  box-shadow:0 0 0 3px rgba(233,101,101,.12);
+}
+
+/* Button + captcha spacing */
+.zenith-recaptcha{ margin-top: 4px; }
+.zenith-actions{   margin-top: 18px; }
+.zenith-submit{    height:52px; border-radius:10px; }
