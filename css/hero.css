@@ -362,3 +362,75 @@ html { scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px
   .zenith-input-group textarea { min-height: 48px; }
   .g-recaptcha { transform: scale(0.92); }
 }
+/* ======== FINAL POLISH (errors, hints, select, spacing) ======== */
+
+/* Start neutral: no red borders on page load */
+.zenith-input-group input:invalid,
+.zenith-input-group select:invalid,
+.zenith-input-group textarea:invalid {
+  border-color: var(--zenith-border);         /* neutral until touched */
+}
+
+/* After user interacts, show invalid clearly */
+.zenith-input-group input.touched:invalid,
+.zenith-input-group select.touched:invalid,
+.zenith-input-group textarea.touched:invalid {
+  border-color: #e96565;
+  box-shadow: 0 0 0 3px rgba(233,101,101,0.12);
+}
+
+/* Phone hint: lighter, tighter, left-aligned under the phone field */
+#phone-hint {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #8a8f98;
+}
+
+/* Service Type block: tighten label + select alignment */
+.select-group label {
+  margin-bottom: 6px;
+  font-weight: 700;
+  color: var(--zenith-navy);
+}
+
+/* Make selects same height as inputs and arrow perfectly centered */
+.zenith-input-group select {
+  min-height: 52px;
+  line-height: 52px;
+  padding-top: 0; padding-bottom: 0;
+  background-position: right 14px center;  /* arrow position */
+  background-size: 16px;
+}
+
+/* City / State / ZIP row: identical heights + perfect row rhythm */
+.zenith-input-group.city-field  input,
+.zenith-input-group.state-field input,
+.zenith-input-group.zip-field   input {
+  min-height: 52px;
+}
+
+/* If the State is readonly (like “CA”), still match look & height */
+#state[readonly] {
+  background-color: #f9fafb;
+  color: #333;
+  cursor: not-allowed;
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Upload & Referral row sits on the same baseline on desktop */
+@media (min-width: 768px){
+  .file-group,
+  .select-group:has(#referral) { 
+    align-self: end;
+  }
+}
+
+/* Slightly increase vertical rhythm across rows */
+.zenith-form-grid { gap: 16px 12px; }
+@media (min-width: 768px){ .zenith-form-grid { gap: 20px 14px; } }
+
+/* Submit + reCAPTCHA spacing */
+.zenith-recaptcha { margin-top: 4px; }
+.zenith-actions   { margin-top: 18px; }
