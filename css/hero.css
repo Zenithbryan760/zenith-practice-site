@@ -197,3 +197,54 @@
 html{scroll-padding-top:calc(var(--nav-height) + env(safe-area-inset-top,0px))}
 #roofing-estimate{scroll-margin-top:calc(var(--nav-height) + env(safe-area-inset-top,0px))}
 @supports (height:100dvh){.zenith-hero{min-height:90dvh}}
+/* =========================
+   PATCH A — Uniform selects
+   Force 100% width/height and matching styles no matter the wrapper
+   ========================= */
+.zenith-form select {
+  width: 100% !important;
+  height: 52px !important;
+  padding: 12px 14px !important;
+  border: 1px solid var(--zenith-border) !important;
+  border-radius: var(--zenith-radius) !important;
+  background-color: #fff !important;
+  font-size: 1rem !important;
+  line-height: 1.2 !important;
+  box-sizing: border-box;
+  appearance: none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23072e59' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 1rem;
+  padding-right: 36px !important;
+}
+
+/* =========================
+   PATCH B — Floating label for selects
+   Works whether you used .floating-select or keep .select-group
+   ========================= */
+.floating-select { position: relative; }
+.floating-select label {
+  position: absolute;
+  top: 12px; left: 14px;
+  background: #fff; padding: 0 .5rem; border-radius: 4px;
+  color: var(--zenith-text-light); font-size: .9rem;
+  transition: var(--zenith-transition); pointer-events: none;
+}
+.floating-select select:focus + label,
+.floating-select.has-value label {
+  top: -8px; left: 10px; font-size: .75rem;
+  color: var(--zenith-orange); padding: 0 .3rem;
+}
+
+/* =========================
+   PATCH C — State visibility + reasonable width
+   (keeps it readable and centered)
+   ========================= */
+.zenith-input-group.state-field input {
+  min-width: 110px;          /* prevents the “tiny pill” look */
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
