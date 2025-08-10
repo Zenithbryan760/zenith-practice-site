@@ -1,16 +1,4 @@
 <!-- =========================================================
-     [HERO SECTION] Zenith Roofing — Video + Luxury Header + Form
-     File: components/hero-section.html
-     Sections:
-       [1] Background Video + Overlay
-       [2] White Card
-       [2.5] Luxury Header (no badges)
-       [4] Form Grid + Inputs
-       [5] Actions (reCAPTCHA + Submit)
-       [6] Disclaimer + Phone
-========================================================= -->
-
-<!-- =========================================================
  [HERO SECTION] Zenith Roofing — Video + Luxury Header + Form
 ========================================================= -->
 <section class="zenith-hero" id="roofing-estimate">
@@ -91,17 +79,7 @@
           </select>
         </div>
 
-        <!-- Preferred Day -->
-        <div class="zenith-input-group select-group">
-          <label for="preferred-day">Preferred Day</label>
-          <select id="preferred-day" name="preferred-day">
-            <option value="" selected>Any day</option>
-            <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
-            <option>Thursday</option><option>Friday</option><option>Saturday</option>
-          </select>
-        </div>
-
-        <!-- Preferred Date -->
+        <!-- Preferred Date (optional) -->
         <div class="zenith-input-group select-group">
           <label for="date">Preferred Date</label>
           <input type="date" id="date" name="date" placeholder=" ">
@@ -114,7 +92,7 @@
           <label for="street">Street Address</label>
         </div>
 
-        <!-- City/ZIP (auto city/state from ZIP) -->
+        <!-- City/ZIP (ZIP → City, state fixed to CA) -->
         <div class="zenith-input-group">
           <input type="text" id="city" name="city" required placeholder=" ">
           <label for="city">City</label>
@@ -123,7 +101,8 @@
           <input type="text" id="zip" name="zip" required placeholder=" " pattern="\d{5}(-\d{4})?">
           <label for="zip">ZIP Code</label>
         </div>
-        <input type="hidden" id="state" name="state" />
+        <!-- Always send CA -->
+        <input type="hidden" id="state" name="state" value="CA">
 
         <!-- Project Info -->
         <div class="zenith-input-group full-width">
@@ -149,7 +128,7 @@
           </select>
         </div>
 
-        <!-- [5] Actions -->
+        <!-- [5] ACTIONS (Google reCAPTCHA + submit) -->
         <div class="zenith-actions">
           <div class="zenith-recaptcha">
             <span class="recaptcha-title">Verify you’re human</span>
