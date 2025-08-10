@@ -311,3 +311,48 @@
 html{ scroll-padding-top:calc(var(--nav-height) + env(safe-area-inset-top, 0px)); }
 #roofing-estimate{ scroll-margin-top:calc(var(--nav-height) + env(safe-area-inset-top, 0px)); }
 @supports (height:100dvh){ .zenith-hero{ min-height:90dvh; } }
+/* ===== PATCH: fix floating <select> overlap + file row ===== */
+
+/* 1) Make floating select labels sit above the placeholder */
+.floating-select label{
+  z-index: 2;                          /* keep label above select text */
+  background: var(--zenith-white);
+}
+
+/* When the placeholder option (value="") is selected, hide its text so
+   ONLY the label is visible — prevents "Service Type e" overlap. */
+.floating-select select option[value=""] { color: transparent; }
+
+/* Float the label when a real option is chosen OR when focused */
+.floating-select:has(select:focus) label,
+.floating-select:has(select option:checked:not([value=""])) label{
+  top: -0.55rem; left: 0.65rem; font-size: 0.7rem; color: var(--zenith-orange);
+}
+
+/* 2) File input — hard-hide the native control and align the row */
+.file-input-wrapper{
+  display: flex; align-items: center; gap: .8rem; flex-wrap: wrap;
+}
+
+/* Hard hide native input so only the custom button shows */
+.file-input-wrapper input[type="file"]{
+  position: absolute !important;
+  width: 0 !important; height: 0 !important;
+  opacity: 0 !important; pointer-events: none !important;
+  margin: 0 !important; padding: 0 !important; border: 0 !important;
+}
+
+/* Custom button + filename look */
+.custom-file-upload{
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: .75rem 1.1rem; border-radius: 6px; cursor: pointer;
+  background: var(--zenith-navy); color: var(--zenith-white);
+  font-weight: 700; font-size: .92rem; letter-spacing: .2px;
+  box-shadow: 0 4px 10px rgba(7,46,89,.18);
+}
+.custom-file-upload:hover{ background: var(--zenith-orange); }
+
+.file-name{
+  font-size: .92rem; color: var(--zenith-text-light);
+  min-height: 1.25rem; display: inline-flex; align-items: center;
+}
