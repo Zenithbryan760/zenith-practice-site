@@ -9,9 +9,7 @@ const ZAP_URL = "https://hooks.zapier.com/hooks/catch/xxxx/yyyy";
 const RECAPTCHA_SITE_KEY = "6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ------------------------------------------------------------
-  // Bind once the form exists (handles delayed injects)
-  // ------------------------------------------------------------
+  // Bind once form is present (handles delayed injects)
   let bound = false;
   const tryBind = () => {
     if (bound) return true;
@@ -20,19 +18,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (form.dataset.bound === "true") return true;
     form.dataset.bound = "true";
     bound = true;
-
     init(form);
     return true;
   };
-
   if (!tryBind()) {
     const int = setInterval(() => { if (tryBind()) clearInterval(int); }, 150);
     setTimeout(() => clearInterval(int), 10000);
   }
 
-  // ------------------------------------------------------------
   // reCAPTCHA explicit render
-  // ------------------------------------------------------------
   window.renderHeroRecaptchaIfReady = function () {
     const el = document.getElementById("estimate-recaptcha");
     if (!el) return;
@@ -43,18 +37,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   };
-
   window.recaptchaOnload = function () { window.renderHeroRecaptchaIfReady(); };
 
-  // ------------------------------------------------------------
-  // Init once
-  // ------------------------------------------------------------
+  // Init
   function init(form) {
     ensureDisplayNameField(form);
     wireDisplayNameAutoFill();
     phoneMask();
-    stateMask();               // NEW: uppercase + 2-char cap
-    zipToCityAndState();       // ZIP → city, state (doesn't fight manual CA)
+    stateMask();               // uppercase + max 2 + default CA
+    zipToCityAndState();       // ZIP → City/State (won’t override valid 2-letter state)
     enablePlacesAutocomplete();
     wireTouchedUx();
     setupFileUpload();
@@ -93,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     update();
   }
 
-  // Phone mask (accepts extension with x)
+  // Phone mask (allows extension with x)
   function phoneMask() {
     const el = document.getElementById("phone");
     if (!el) return;
@@ -138,16 +129,14 @@ document.addEventListener("DOMContentLoaded", () => {
     el.addEventListener("blur", () => { el.value = formatPhone(el.value); });
   }
 
-  // NEW: State mask (default CA, uppercase, limit 2)
+  // State mask: default CA, uppercase, max 2
   function stateMask() {
     const stateEl = document.getElementById("state");
     if (!stateEl) return;
 
-    // default to CA if empty on load
-    if (!stateEl.value) stateEl.value = "CA";
+    if (!stateEl.value) stateEl.value = "CA";  // show immediately
 
     stateEl.addEventListener("input", () => {
-      // keep only letters, uppercase, max 2
       stateEl.value = stateEl.value.replace(/[^a-z]/gi, "").toUpperCase().slice(0, 2);
     });
 
@@ -156,14 +145,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ZIP → City + State (keeps CA if you've already set it)
+  // ZIP → City + State (doesn't override a valid typed state)
   function zipToCityAndState() {
     const zipEl = document.getElementById("zip");
     const cityEl = document.getElementById("city");
     const stateEl = document.getElementById("state");
     if (!(zipEl && cityEl && stateEl)) return;
 
-    if (!stateEl.value) stateEl.value = "CA"; // default
+    if (!stateEl.value) stateEl.value = "CA";
 
     let zipTimer = null;
     const lookupZip = async (zip) => {
@@ -174,8 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await r.json();
         const place = data.places && data.places[0];
         if (place) {
-          if (!cityEl.value) cityEl.value = place["place name"] || cityEl.value;
-          // only set state if user hasn't typed a 2-letter code yet
+          if (!cityEl.value)  cityEl.value  = place["place name"] || cityEl.value;
+          // only set if not a valid 2-letter value
           if (!(stateEl.value && stateEl.value.length === 2)) {
             stateEl.value = (place["state abbreviation"] || "CA").toUpperCase().slice(0, 2);
           }
@@ -197,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Google Places Autocomplete for Street (if loaded)
+  // Google Places Autocomplete (optional if script loaded)
   function enablePlacesAutocomplete() {
     if (window.google && google.maps && google.maps.places) {
       const street = document.getElementById("street");
@@ -210,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Show invalid borders only after user interacts
+  // Only show red borders after user interacts
   function wireTouchedUx() {
     const fields = document.querySelectorAll("#estimate-form input, #estimate-form select, #estimate-form textarea");
     fields.forEach((el) => {
@@ -220,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // File upload text (shows filenames or count)
+  // File upload display text
   function setupFileUpload() {
     const fileInput = document.getElementById("photos");
     if (!fileInput) return;
@@ -232,27 +221,26 @@ document.addEventListener("DOMContentLoaded", () => {
       const files = Array.from(e.target.files || []);
       if (!files.length) { label.textContent = "No files selected"; return; }
 
-      // show up to 3 names, then a +N more
       const names = files.map(f => f.name);
       const shown = names.slice(0, 3).join(", ");
       label.textContent = names.length > 3 ? `${shown} (+${names.length - 3} more)` : shown;
     });
   }
 
-  // Copy tweak for phone hint (kept for clarity)
+  // Copy tweak
   function fixCopy() {
     const phoneHint = document.getElementById("phone-hint");
     if (phoneHint) phoneHint.textContent = "Example: 858-900-6163";
   }
 
-  // Submit → Zapier (FormData)
+  // Submit → Zapier
   async function onSubmit(e) {
     e.preventDefault();
     const form = e.currentTarget;
 
     const fd = new FormData(form);
 
-    // extra: raw phone digits
+    // raw phone digits
     const phoneRaw = String(fd.get("phone") || "");
     fd.set("phone_digits", phoneRaw.replace(/\D/g, ""));
 
@@ -272,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // page + reCAPTCHA token
+    // page + reCAPTCHA
     fd.append("page", location.pathname + location.hash);
     try {
       if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) {
@@ -289,12 +277,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       showSuccessMessage();
       form.reset();
+
+      // reset reCAPTCHA + file label + default CA
       if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) {
         grecaptcha.reset(window.__zenithRecaptchaWidgetId);
       }
       const label = document.querySelector(".file-name");
       if (label) label.textContent = "No files selected";
-      // restore CA after reset for smoother UX
       const stateEl = document.getElementById("state");
       if (stateEl) stateEl.value = "CA";
     } catch (err) {
