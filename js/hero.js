@@ -330,3 +330,13 @@ function showSuccessMessage() {
 function showErrorMessage() {
   alert("Sorry, something went wrong. Please call 858-900-6163 or try again.");
 }
+<script>
+document.addEventListener("change", (e) => {
+  if (e.target && e.target.id === "photos") {
+    const out = document.querySelector(".file-name");
+    if (!out) return;
+    const names = Array.from(e.target.files || []).map(f => f.name);
+    out.textContent = names.length ? names.join(", ") : "No files selected";
+  }
+});
+</script>
