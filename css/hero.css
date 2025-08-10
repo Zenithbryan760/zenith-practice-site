@@ -1,30 +1,8 @@
 /* =========================================================
-   HERO SECTION STYLES — Zenith Roofing
-   File: css/hero.css
-   Purpose: Video hero, luxury header, estimate form
-   ---------------------------------------------------------
-   TABLE OF CONTENTS
-   [0] Brand Variables & Utilities
-   [1] Background Video + Overlay
-   [2] White Card (Content Shell)
-   [2.5] Luxury Header (Logo + Titles)
-   [3] Free Estimate Heading (text-only)
-   [4] Form Grid + Inputs
-       [4.1] Floating Labels
-       [4.2] Select + File Input
-       [4.3] Focus Ring
-   [5] Actions Row (reCAPTCHA + Submit)
-       [5.1] reCAPTCHA Box (size/branding)
-   [6] Disclaimer + Phone
-   [7] Responsive Adjustments (tablet/phone)
-   [10] iPhone / Sticky Header Offsets
-   [11] Desktop Field Size & Spacing
+   HERO SECTION STYLES — Zenith Roofing (Zapier version)
    ========================================================= */
 
-
-/* ---------------------------------------------------------
-   [0] Brand Variables & Utilities
-   --------------------------------------------------------- */
+/* ---------- Theme ---------- */
 :root {
   --zenith-navy: #072e59;
   --zenith-orange: #f7941d;
@@ -39,12 +17,9 @@
   --zenith-radius: 8px;
   --zenith-shadow: 0 10px 30px rgba(0,0,0,0.08);
   --zenith-transition: all 0.2s ease;
-
-  /* Used for scroll-padding and iPhone sticky header math */
-  --nav-height: 76px;
 }
 
-/* Screen-reader only helper */
+/* Screen-reader helper */
 .visually-hidden {
   position: absolute !important;
   width: 1px; height: 1px;
@@ -53,10 +28,7 @@
   white-space: nowrap; border: 0;
 }
 
-
-/* ---------------------------------------------------------
-   [1] Background Video + Overlay
-   --------------------------------------------------------- */
+/* ---------- Section & Video BG ---------- */
 .zenith-hero {
   position: relative;
   min-height: 90vh;
@@ -81,14 +53,11 @@
 
 .zenith-video-overlay {
   position: absolute; inset: 0;
-  background: rgba(7,46,89,0.6); /* navy tint for readability */
+  background: rgba(7,46,89,0.6);
   z-index: 2;
 }
 
-
-/* ---------------------------------------------------------
-   [2] White Card (Content Shell)
-   --------------------------------------------------------- */
+/* ---------- Card ---------- */
 .zenith-card {
   position: relative; z-index: 3;
   width: 100%; max-width: 900px;
@@ -99,109 +68,71 @@
   margin: 0 auto;
 }
 
-
-/* ---------------------------------------------------------
-   [2.5] Luxury Header (Logo + Titles)
-   --------------------------------------------------------- */
-.zenith-luxury-card {
-  background: var(--zenith-white);
-  border-radius: var(--zenith-radius);
-  box-shadow: var(--zenith-shadow);
-  padding: 1.25rem;
-  margin-bottom: 1.25rem;
+/* ---------- Header inside card ---------- */
+.zenith-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
-
-.zenith-luxury-header {
-  display: flex; align-items: center; justify-content: center;
-  gap: 1rem; text-align: center; flex-wrap: wrap;
-}
-
-.zenith-logo-frame {
-  position: relative; flex-shrink: 0;
-  width: 96px; height: 96px; border-radius: 50%;
-  background: var(--zenith-navy);
-  display: grid; place-items: center;
-  box-shadow: 0 10px 22px rgba(0,0,0,0.22);
-  isolation: isolate;
-}
-.zenith-logo-frame::before {
-  content: ""; position: absolute; inset: -8px; border-radius: 50%;
-  background:
-    radial-gradient(closest-side, rgba(255,255,255,0) 78%, rgba(255,255,255,0) 79%),
-    conic-gradient(var(--zenith-orange), #ffb25a, var(--zenith-orange));
-  mask: radial-gradient(closest-side, transparent 78%, black 79%);
-  opacity: 0.9;
-}
-.zenith-logo-frame::after {
-  content: ""; position: absolute; inset: -18px; border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(247,148,29,0.18), transparent 70%);
-  filter: blur(6px); z-index: -1;
-}
-
-.zenith-luxury-logo {
+.zenith-logo {
   width: 64px; height: 64px; object-fit: contain;
-  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.55));
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.35));
 }
-
-.zenith-luxury-titles {
-  display: flex; flex-direction: column; align-items: center;
-}
-
-.zenith-luxury-subtitle {
-  font-size: 1.25rem; font-weight: 800; color: var(--zenith-navy);
-  margin: 0 0 0.15rem 0;
-}
-
-.zenith-luxury-locations {
-  font-size: 0.92rem; color: var(--zenith-text-light);
-  display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem;
-}
-.luxury-divider { color: var(--zenith-orange); }
-
-
-/* ---------------------------------------------------------
-   [3] Free Estimate Heading (text-only)
-   --------------------------------------------------------- */
-.estimate-heading {
-  margin: 0 0 1rem 0;
-  text-align: center;
-}
-.estimate-title {
+.zenith-title {
   margin: 0;
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: var(--zenith-navy);
-  letter-spacing: 0.2px;
 }
-.estimate-subtitle {
-  margin: 0.25rem 0 0;
+.zenith-subtitle {
+  margin: 0.2rem 0 0;
   font-size: 0.95rem;
-  color: var(--zenith-text);
+  color: var(--zenith-text-light);
 }
 
+/* ---------- Form grid ---------- */
+#estimate-form { width: 100%; }
 
-/* ---------------------------------------------------------
-   [4] Form Grid + Inputs
-   --------------------------------------------------------- */
-.zenith-form { width: 100%; }
-
-.zenith-form-grid {
+.zenith-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.75rem;
+  grid-template-columns: 1fr;          /* mobile: 1 column */
+  gap: 0.9rem;                          /* even spacing */
 }
 
-.zenith-input-group {
-  position: relative;
-  margin-bottom: 0.25rem;
-}
-.zenith-input-group.full-width {
-  grid-column: 1 / -1;
+/* Desktop: 10-column system for precise spans
+   - Most fields span 5 cols (so: 2 columns total)
+   - City/State/ZIP span 5 cols on the same row: 50/20/30 */
+@media (min-width: 768px) {
+  .zenith-grid {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 1rem 0.85rem;
+  }
+  .zenith-form-group { grid-column: span 5; } /* default: two columns */
+  .zenith-form-group.full-width { grid-column: 1 / -1; } /* full width rows */
+
+  /* City / State / ZIP row */
+  .zenith-form-group.city-field  { grid-column: span 5; } /* ~50% */
+  .zenith-form-group.state-field { grid-column: span 2; } /* ~20% */
+  .zenith-form-group.zip-field   { grid-column: span 3; } /* ~30% */
 }
 
-.zenith-input-group input,
-.zenith-input-group select,
-.zenith-input-group textarea {
+/* ---------- Form controls ---------- */
+.zenith-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.zenith-form-group label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--zenith-navy);
+  margin-bottom: 0.35rem;
+}
+
+.zenith-form-group input,
+.zenith-form-group select,
+.zenith-form-group textarea {
   width: 100%;
   padding: 0.85rem;
   border: 1px solid var(--zenith-border);
@@ -209,41 +140,23 @@
   background: var(--zenith-white);
   font-size: 0.95rem;
   transition: var(--zenith-transition);
+  box-sizing: border-box;
 }
 
-.zenith-input-group textarea {
+.zenith-form-group textarea {
   min-height: 90px;
   resize: vertical;
 }
 
-/* ----- [4.1] Floating Labels (input + textarea) ----- */
-.zenith-input-group label {
-  position: absolute; top: 0.85rem; left: 0.85rem;
-  color: var(--zenith-text-light); background: var(--zenith-white);
-  padding: 0 0.5rem; font-size: 0.85rem; transition: var(--zenith-transition);
-  pointer-events: none;
-}
-.zenith-input-group input:focus + label,
-.zenith-input-group input:not(:placeholder-shown) + label,
-.zenith-input-group textarea:focus + label,
-.zenith-input-group textarea:not(:placeholder-shown) + label {
-  top: -0.45rem; left: 0.7rem; font-size: 0.7rem; color: var(--zenith-orange);
+.zenith-form-group input:focus,
+.zenith-form-group select:focus,
+.zenith-form-group textarea:focus {
+  outline: none; border-color: var(--zenith-orange);
+  box-shadow: 0 0 0 3px rgba(247,148,29,0.2);
 }
 
-/* ----- [4.2] Select + File Input (static labels) ----- */
-.select-group label,
-.file-group label {
-  position: static !important;
-  display: block;
-  margin-bottom: 0.35rem;
-  padding: 0;
-  color: var(--zenith-text);
-  font-size: 0.85rem;
-  font-weight: 700;
-  pointer-events: auto;
-}
-
-.zenith-input-group select {
+/* Select arrow */
+.zenith-form-group select {
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23072e59' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -252,51 +165,48 @@
   padding-right: 2.5rem;
 }
 
-.file-group input[type="file"] {
-  display: flex; align-items: center; width: 100%;
-  padding: 0.8rem;
-  border: 1px solid var(--zenith-border);
-  border-radius: var(--zenith-radius);
-  background: var(--zenith-white);
-  font-size: 0.9rem;
-  line-height: 1.4;
-  cursor: pointer;
-}
-.file-group input[type="file"]::file-selector-button {
-  border: none; background: var(--zenith-navy); color: var(--zenith-white);
-  padding: 0.6rem 1rem; border-radius: 6px; margin-right: 1rem;
-  transition: var(--zenith-transition); font-weight: 700; font-size: 0.85rem; cursor: pointer;
-}
-.file-group input[type="file"]::file-selector-button:hover {
-  background: var(--zenith-orange);
+/* Readonly state (CA) visual */
+#state[readonly] {
+  background-color: #f9fafb;
+  color: #333;
+  cursor: not-allowed;
 }
 
-/* ----- [4.3] Focus Ring ----- */
-.zenith-input-group input:focus,
-.zenith-input-group select:focus,
-.zenith-input-group textarea:focus {
-  outline: none; border-color: var(--zenith-orange);
-  box-shadow: 0 0 0 3px rgba(247,148,29,0.2);
-}
-
-
-/* ---------------------------------------------------------
-   [5] Actions Row (reCAPTCHA + Submit)
-   --------------------------------------------------------- */
+/* ---------- Actions (captcha + submit) ---------- */
 .zenith-actions {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 1fr;      /* stacks on mobile by default */
-  align-items: center;
-  gap: 0.85rem;
   margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr; /* stack on mobile */
+  gap: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .zenith-actions {
+    grid-template-columns: 1fr auto; /* captcha + button in a row */
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+/* reCAPTCHA box (clean, minimal) */
+.zenith-recaptcha {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.recaptcha-title {
+  font-size: 0.9rem;
+  color: var(--zenith-navy);
+  font-weight: 700;
+  margin: 0;
 }
 
 .zenith-submit {
   background: linear-gradient(to right, var(--zenith-orange), var(--zenith-orange-dark));
   color: var(--zenith-white);
   border: none;
-  height: 50px;
+  height: 48px;
   padding: 0 1.25rem;
   border-radius: var(--zenith-radius);
   font-size: 0.95rem; font-weight: 700;
@@ -310,227 +220,14 @@
   box-shadow: 0 8px 16px rgba(247,148,29,0.45);
 }
 
-
-/* ---------------------------------------------------------
-   [5.1] reCAPTCHA Box (size/branding)
-   --------------------------------------------------------- */
-.zenith-recaptcha {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;           /* label above widget on mobile */
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0.25rem 0 0.5rem;
-
-  /* light branded frame around captcha */
-  padding: 8px 10px;
-  border: 1px solid rgba(7,46,89,0.12);
-  border-radius: 8px;
-  background: linear-gradient(0deg, rgba(255,255,255,0.7), rgba(255,255,255,0.7));
-  box-shadow: 0 2px 6px rgba(7,46,89,0.06);
-}
-
-.recaptcha-title {
-  font-size: 0.95rem;
-  line-height: 1.2;
-  color: var(--zenith-navy);
-  font-weight: 700;
-  margin: 0;
-  text-align: center;
-}
-
-/* Default scale */
-.g-recaptcha {
-  transform: scale(0.96);
-  transform-origin: center;
-}
-
-
-/* ---------------------------------------------------------
-   [6] Disclaimer + Phone
-   --------------------------------------------------------- */
-.zenith-disclaimer {
-  grid-column: 1 / -1;
-  margin-top: 1.25rem;
-  font-size: 0.78rem;
-  color: var(--zenith-text-light);
-  line-height: 1.55;
-}
-.zenith-disclaimer a { color: var(--zenith-orange); text-decoration: none; }
-.zenith-disclaimer a:hover { text-decoration: underline; }
-
-.zenith-contact { margin-top: 0.75rem; text-align: center; }
-.zenith-phone { font-size: 1rem; color: var(--zenith-navy); font-weight: 700; }
-.zenith-phone strong { color: var(--zenith-orange); }
-
-
-/* ---------------------------------------------------------
-   [7] Responsive Adjustments (tablet/phone)
-   --------------------------------------------------------- */
-
-/* Phone tweaks */
+/* ---------- Small screens ---------- */
 @media (max-width: 520px) {
   .zenith-hero { padding: 1rem; min-height: auto; }
   .zenith-card { padding: 1.05rem; }
-
-  /* Hide the big round logo on very small phones */
-  .zenith-logo-frame { display: none; }
-
-  .zenith-luxury-header { flex-direction: column; text-align: center; }
-  .zenith-luxury-subtitle {
-    font-size: clamp(1rem, 3.8vw + 0.45rem, 1.18rem);
-    line-height: 1.28; margin-bottom: 0.15rem; padding: 0 0.25rem;
-  }
-  .zenith-luxury-locations { font-size: 0.9rem; gap: 0.35rem; opacity: 0.9; }
-
-  .zenith-input-group input,
-  .zenith-input-group select,
-  .zenith-input-group textarea { padding: 0.8rem; min-height: 46px; }
-
-  .recaptcha-title { font-size: 0.9rem; }
-  .g-recaptcha {
-    transform: scale(0.9);
-    transform-origin: center;
-  }
+  .zenith-logo { width: 56px; height: 56px; }
 }
-
-/* Stack form fields -> 2 columns on tablet+ */
-@media (min-width: 768px) {
-  .zenith-form-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem 0.75rem;
-  }
-
-  /* Put captcha and button on one row on tablet+ */
-  .zenith-actions {
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .zenith-recaptcha {
-    flex-direction: row;           /* label + captcha side-by-side */
-    align-items: center;
-    min-height: 78px;              /* approx default captcha height */
-  }
-
-  .zenith-submit {
-    width: auto; min-width: 220px; height: 48px;
-  }
-}
-
-/* Slightly denser action-row spacing on wide screens */
-@media (min-width: 1200px) {
-  .zenith-actions { gap: 1.25rem; }
-}
-
-/* Extra small devices: ensure logo frame hidden */
-@media (max-width: 420px) {
-  .zenith-logo-frame { display: none !important; }
-}
-
-
-/* ---------------------------------------------------------
-   [10] iPhone / Sticky Header Offsets
-   --------------------------------------------------------- */
-@media (max-width: 820px) {
-  .zenith-hero {
-    padding-top: calc(1.5rem + var(--nav-height) + env(safe-area-inset-top, 0px));
-  }
-  .zenith-card { margin-top: 0.25rem; }
-}
-
-/* Smooth in-page anchor scrolling offset for sticky header */
-html { scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px)); }
-#roofing-estimate { scroll-margin-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px)); }
 
 /* Use dynamic viewport units when supported */
 @supports (height: 100dvh) {
   .zenith-hero { min-height: 90dvh; }
-}
-
-
-/* ---------------------------------------------------------
-   [11] Desktop Field Size & Spacing
-   --------------------------------------------------------- */
-@media (min-width: 768px) {
-  .zenith-form-grid { gap: 1.25rem 1rem; }
-  .zenith-input-group input,
-  .zenith-input-group select,
-  .zenith-input-group textarea { min-height: 48px; }
-}
-/* === Center "Verify you’re human" above captcha & remove border === */
-.zenith-recaptcha {
-  flex-direction: column !important;   /* Stack title over captcha */
-  align-items: center !important;      /* Center horizontally */
-  justify-content: center !important;
-  gap: 0.5rem;
-  border: none !important;             /* Remove frame */
-  background: none !important;         /* Remove background */
-  box-shadow: none !important;         /* Remove drop shadow */
-  padding: 0 !important;                /* No padding */
-}
-
-.zenith-recaptcha .recaptcha-title {
-  text-align: center;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--zenith-navy);
-}
-/* ===== [PATCH] Form layout + spacing (append at end) ===== */
-
-/* Make the form spacing a touch tighter and uniform */
-.zenith-input-group { margin-bottom: 0; }
-.zenith-form-grid { gap: 0.9rem; }              /* overrides earlier gap */
-@media (min-width: 768px) {
-  .zenith-form-grid { gap: 1rem 0.85rem; }      /* two-col uniform gap */
-}
-
-/* City / State / ZIP inline row (used by <div class="zenith-inline-3">) */
-.zenith-inline-3 {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1.2fr;         /* City wider, State/ZIP compact */
-  gap: 0.75rem;
-}
-@media (max-width: 767px) {
-  .zenith-inline-3 { grid-template-columns: 1fr; }  /* stack on mobile */
-}
-
-/* Readonly State (CA) should look active but not editable */
-#state[readonly] {
-  background-color: #f9fafb;
-  color: #333;
-  cursor: not-allowed;
-}
-
-/* Bring the actions (captcha + button) a bit closer to fields */
-.zenith-actions { margin-top: 0.75rem; }
-
-/* (Optional) You currently have two .zenith-recaptcha style blocks.
-   The one below with !important already overrides the earlier framed one.
-   If you want fewer rules, you can delete the earlier framed version. */
-/* ===== [PATCH] Inline City / State / ZIP sizing + full-width row ===== */
-.zenith-inline-3 {
-  display: grid;
-  grid-template-columns: 60% 20% 20%;   /* City / State / ZIP = 60/20/20 */
-  gap: 0.75rem;
-  width: 100%;
-}
-
-@media (max-width: 767px) {
-  .zenith-inline-3 { grid-template-columns: 1fr; } /* stack on mobile */
-}
-
-/* Make spacing tighter and uniform across the grid */
-.zenith-input-group { margin-bottom: 0; }
-.zenith-form-grid { gap: 0.9rem; }
-@media (min-width: 768px) {
-  .zenith-form-grid { gap: 1rem 0.85rem; }
-}
-
-/* Readonly state visual */
-#state[readonly] {
-  background-color: #f9fafb;
-  color: #333;
-  cursor: not-allowed;
 }
