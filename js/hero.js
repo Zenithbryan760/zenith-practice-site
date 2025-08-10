@@ -1,11 +1,11 @@
 // ====================================================================
-// js/hero.js — Zenith Hero helpers (DROP-IN REPLACEMENT)
+// js/hero.js — Zenith Hero helpers (ZAPIER VERSION)
 // - Phone auto-format (US)          -> (123) 456-7890
 // - Date min = today                -> prevent past dates
 // - Floating label fix for <select> -> has-value class
-// - reCAPTCHA explicit render       -> stores widget id
+// - reCAPTCHA explicit render       -> stores widget id (token is sent, Zapier won't verify)
 // - ONE submit handler (waits for injected hero form)
-// - Maps hyphenated names -> camelCase for Netlify Function
+// - Sends JSON directly to Zapier Webhook (no Netlify function)
 // ====================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const phoneRaw = String(fd.get('phone') || '');
       const phoneDigits = phoneRaw.replace(/\D/g, '');
 
-      // get reCAPTCHA token if present
+      // get reCAPTCHA token if present (Zapier will just receive it as data)
       let recaptcha = '';
       try {
         if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) {
@@ -100,8 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } catch (_) {}
 
-      // map to camelCase expected by your Netlify Function
-      const body = {
+      // Build payload for Zapier
+      const payload = {
         firstName: fd.get('first-name') || '',
         lastName:  fd.get('last-name')  || '',
         phone:     phoneDigits,
@@ -117,12 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
         recaptcha
       };
 
-      // -------- Choose the correct function URL ----------
-      // Works on Netlify (production/preview), localhost, and non-Netlify hosting.
-      const FN_URL = (location.hostname.endsWith('.netlify.app') || location.hostname === 'localhost')
-        ? '/.netlify/functions/jn-create-lead'
-        : 'https://fastidious-frangollo-1dc40a.netlify.app/.netlify/functions/jn-create-lead';
-      // ---------------------------------------------------
+      // ------ ZAPIER WEBHOOK (replace with your real Catch Hook URL) ------
+      const ZAP_URL = "https://hooks.zapier.com/hooks/catch/xxxx/yyyy";
+      // --------------------------------------------------------------------
 
       // UI state
       const btn = form.querySelector('button[type="submit"]');
@@ -130,14 +127,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
       try {
-        const res = await fetch(FN_URL, {
+        const res = await fetch(ZAP_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body)
+          body: JSON.stringify(payload)
         });
 
-        const json = await res.json().catch(() => ({}));
-        if (!res.ok || !json.ok) throw new Error(json.error || 'Submit failed');
+        // Zapier returns 200 with some JSON text; we don't rely on exact shape
+        const ok = res.ok;
+        if (!ok) throw new Error('Submit failed');
 
         alert('Thanks! We’ll be in touch shortly.');
         form.reset();
