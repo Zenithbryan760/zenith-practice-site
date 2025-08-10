@@ -1,5 +1,5 @@
 <!-- =========================================================
- [HERO SECTION] Zenith Roofing — Video + Luxury Header + Form
+ [HERO SECTION] Zenith Roofing — Premium Form Design
 ========================================================= -->
 <section class="zenith-hero" id="roofing-estimate">
   <!-- [1] VIDEO BACKGROUND -->
@@ -31,10 +31,10 @@
       </div>
     </div>
 
-    <!-- [3] FREE ESTIMATE HEADING -->
+    <!-- [3] FORM HEADER -->
     <div class="estimate-heading">
-      <h3 class="estimate-title">Free Estimate</h3>
-      <p class="estimate-subtitle">We proudly offer free roofing estimates to homeowners and business owners.</p>
+      <h3 class="estimate-title">Free Roofing Estimate</h3>
+      <p class="estimate-subtitle">Complete the form below and we'll contact you within 24 hours</p>
     </div>
 
     <!-- [4] ESTIMATE FORM -->
@@ -46,7 +46,7 @@
       <input type="hidden" id="display-name" name="display-name" />
 
       <div class="zenith-form-grid">
-        <!-- Name -->
+        <!-- Name Section -->
         <div class="zenith-input-group">
           <input type="text" id="first-name" name="first-name" required placeholder=" ">
           <label for="first-name">First Name</label>
@@ -56,7 +56,7 @@
           <label for="last-name">Last Name</label>
         </div>
 
-        <!-- Contact -->
+        <!-- Contact Section -->
         <div class="zenith-input-group">
           <input
             type="tel"
@@ -68,14 +68,14 @@
             autocomplete="tel"
             aria-describedby="phone-hint">
           <label for="phone">Phone Number</label>
-          <small id="phone-hint" class="zenith-optional">Formats like (619) 758-5227</small>
+          <small id="phone-hint" class="zenith-optional">Format: (619) 758-5227</small>
         </div>
         <div class="zenith-input-group">
           <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">
           <label for="email">Email Address</label>
         </div>
 
-        <!-- Service (kept) -->
+        <!-- Service Section -->
         <div class="zenith-input-group select-group">
           <label for="service">Service Type</label>
           <select id="service" name="service" required>
@@ -90,13 +90,13 @@
           </select>
         </div>
 
-        <!-- Address -->
+        <!-- Address Section -->
         <div class="zenith-input-group full-width">
           <input type="text" id="street" name="street" required placeholder=" " autocomplete="address-line1">
           <label for="street">Street Address</label>
         </div>
 
-        <!-- City / State / ZIP -->
+        <!-- Location Section -->
         <div class="zenith-input-group city-field">
           <input type="text" id="city" name="city" required placeholder=" " autocomplete="address-level2">
           <label for="city">City</label>
@@ -110,19 +110,17 @@
           <label for="zip">ZIP Code</label>
         </div>
 
-        <!-- Project Info (Brief Description) -->
+        <!-- Project Details -->
         <div class="zenith-input-group full-width">
-          <textarea id="details" name="details" rows="3" placeholder=" "></textarea>
-          <label for="details">Brief Description (issue, timing, etc.)</label>
+          <textarea id="details" name="details" rows="4" placeholder=" "></textarea>
+          <label for="details">Project Details (describe your roofing needs)</label>
         </div>
 
-        <!-- Photos (kept, optional) -->
+        <!-- Upload & Referral Section -->
         <div class="zenith-input-group file-group">
           <label for="photos">Upload Photos <span class="zenith-optional">(optional)</span></label>
           <input type="file" id="photos" name="photos[]" accept="image/*" multiple>
         </div>
-
-        <!-- Lead Source (How did you hear about us?) -->
         <div class="zenith-input-group select-group">
           <label for="referral">How did you hear about us?</label>
           <select id="referral" name="referral">
@@ -138,20 +136,23 @@
           </select>
         </div>
 
-        <!-- [5] ACTIONS -->
+        <!-- [5] FORM ACTIONS -->
         <div class="zenith-actions">
           <div class="zenith-recaptcha">
-            <span class="recaptcha-title">Verify you’re human</span>
+            <span class="recaptcha-title">Security Verification</span>
             <div id="estimate-recaptcha" class="g-recaptcha"></div>
           </div>
-          <button type="submit" class="zenith-submit">Request Free Estimate</button>
+          <button type="submit" class="zenith-submit">
+            <span class="submit-text">Request Free Estimate</span>
+            <span class="submit-icon">→</span>
+          </button>
         </div>
 
         <!-- [6] DISCLAIMER -->
         <div class="zenith-disclaimer">
           <p>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our <a href="/real-estate">Real Estate Services</a>.</p>
           <div class="zenith-contact">
-            <p class="zenith-phone">CALL NOW: <strong>858-900-6163</strong></p>
+            <p class="zenith-phone">Prefer to call? <strong>858-900-6163</strong></p>
           </div>
         </div>
       </div>
