@@ -274,3 +274,91 @@ html { scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px
 #state[readonly] {
   background-color: #f9fafb; color: #333; cursor: not-allowed;
 }
+/* =========================================================
+   [PRO POLISH OVERRIDES] — place at END of hero.css
+   Purpose: cleaner spacing, consistent heights, tidy rows
+   ========================================================= */
+
+/* Card breathing room */
+.zenith-card { padding: clamp(1.1rem, 2.2vw + 1rem, 2.25rem); }
+
+/* Global form rhythm */
+.zenith-form-grid { gap: 1rem; }
+@media (min-width: 768px){ .zenith-form-grid { gap: 1.25rem 1rem; } }
+.zenith-input-group { margin-bottom: 0; } /* rely on grid gap, not margins */
+
+/* Consistent field height + padding */
+.zenith-input-group input,
+.zenith-input-group select,
+.zenith-input-group textarea {
+  min-height: 52px;
+  padding: 0.95rem 1rem;
+  border-radius: 10px;
+}
+
+/* Floating label snap (a little higher so it doesn't crowd) */
+.zenith-input-group label {
+  top: 0.9rem;
+}
+.zenith-input-group input:focus + label,
+.zenith-input-group input:not(:placeholder-shown) + label,
+.zenith-input-group textarea:focus + label,
+.zenith-input-group textarea:not(:placeholder-shown) + label {
+  top: -0.55rem;
+  left: 0.75rem;
+}
+
+/* Select + file labels: slightly stronger spacing */
+.select-group label,
+.file-group label { margin-bottom: 0.45rem; }
+
+/* Phone hint spacing + tone */
+#phone-hint,
+.zenith-optional { margin-top: 0.4rem; color: #8a8f98; }
+
+/* Address row: lock City/State/ZIP to a crisp 50 / 20 / 30 on tablet+ */
+@media (min-width: 768px){
+  .zenith-input-group.city-field,
+  .zenith-input-group.state-field,
+  .zenith-input-group.zip-field {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .zenith-input-group.city-field  { width: 50%; }
+  .zenith-input-group.state-field { width: 20%; }
+  .zenith-input-group.zip-field   { width: 30%; }
+}
+
+/* reCAPTCHA + button spacing */
+.zenith-recaptcha { margin-top: 0.25rem; }
+.zenith-actions   { margin-top: 1.25rem; }
+.zenith-submit    { height: 52px; border-radius: 10px; }
+
+/* Make the two small blocks (“Upload Photos” + “How did you hear”)
+   line up nicer when side-by-side on wider screens */
+@media (min-width: 768px){
+  .file-group,
+  #referral { align-self: end; }
+}
+
+/* Subtle hover/focus lift (keeps your colors) */
+.zenith-input-group input:hover,
+.zenith-input-group select:hover,
+.zenith-input-group textarea:hover {
+  border-color: #d5dae3;
+}
+.zenith-input-group input:focus,
+.zenith-input-group select:focus,
+.zenith-input-group textarea:focus {
+  border-color: var(--zenith-orange);
+  box-shadow: 0 0 0 3px rgba(247,148,29,0.18);
+}
+
+/* Tighten small screens a hair so the card feels balanced */
+@media (max-width: 520px){
+  .estimate-heading { margin-bottom: 0.75rem; }
+  .zenith-input-group input,
+  .zenith-input-group select,
+  .zenith-input-group textarea { min-height: 48px; }
+  .g-recaptcha { transform: scale(0.92); }
+}
