@@ -39,10 +39,9 @@
 
     <!-- [4] ESTIMATE FORM -->
     <form id="estimate-form" class="zenith-form" name="estimate" method="POST" enctype="multipart/form-data" novalidate>
-      <!-- Honeypot (spam trap) -->
+      <!-- Honeypot -->
       <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
-
-      <!-- Hidden Display Name (auto = First + Last) -->
+      <!-- Hidden Display Name -->
       <input type="hidden" id="display-name" name="display-name" />
 
       <div class="zenith-form-grid">
@@ -67,11 +66,10 @@
           <label for="email">Email Address</label>
         </div>
 
-        <!-- Service (static label) -->
-        <div class="zenith-input-group select-group">
-          <label for="service">Service Type</label>
+        <!-- Service (FLOATING SELECT) -->
+        <div class="floating-select">
           <select id="service" name="service" required>
-            <option value="" disabled selected hidden>Select Service</option>
+            <option value="" selected hidden>Select Service</option>
             <option value="Roof Replacement">Roof Replacement</option>
             <option value="Roof Repair">Roof Repair</option>
             <option value="Gutters">Gutters</option>
@@ -80,6 +78,7 @@
             <option value="Residential Roofing">Residential Roofing</option>
             <option value="Other">Other</option>
           </select>
+          <label for="service">Service Type</label>
         </div>
 
         <!-- Street -->
@@ -88,19 +87,18 @@
           <label for="street">Street Address</label>
         </div>
 
-        <!-- City / State / ZIP (STATIC LABELS for perfect clarity) -->
-        <div class="zenith-input-group city-field static-label">
+        <!-- City / State / ZIP (FLOATING like the others) -->
+        <div class="zenith-input-group city-field">
+          <input type="text" id="city" name="city" required placeholder=" " autocomplete="address-level2" />
           <label for="city">City</label>
-          <input type="text" id="city" name="city" required autocomplete="address-level2" />
         </div>
-        <div class="zenith-input-group state-field static-label">
+        <div class="zenith-input-group state-field">
+          <input type="text" id="state" name="state" required placeholder=" " maxlength="2" inputmode="text" autocapitalize="characters" autocomplete="address-level1" value="CA" />
           <label for="state">State</label>
-          <!-- default value shown immediately -->
-          <input type="text" id="state" name="state" required maxlength="2" inputmode="text" autocapitalize="characters" autocomplete="address-level1" value="CA" />
         </div>
-        <div class="zenith-input-group zip-field static-label">
+        <div class="zenith-input-group zip-field">
+          <input type="text" id="zip" name="zip" required placeholder=" " pattern="\d{5}(-\d{4})?" inputmode="numeric" autocomplete="postal-code" />
           <label for="zip">ZIP Code</label>
-          <input type="text" id="zip" name="zip" required pattern="\d{5}(-\d{4})?" inputmode="numeric" autocomplete="postal-code" />
         </div>
 
         <!-- Details -->
@@ -118,10 +116,10 @@
             <span class="file-name">No files selected</span>
           </div>
         </div>
-        <div class="zenith-input-group select-group">
-          <label for="referral">How did you hear about us?</label>
+
+        <div class="floating-select">
           <select id="referral" name="referral">
-            <option value="" disabled selected hidden>Select Option</option>
+            <option value="" selected hidden>Select Option</option>
             <option value="Google Search">Google Search</option>
             <option value="Google Ads">Google Ads</option>
             <option value="Yelp">Yelp</option>
@@ -131,6 +129,7 @@
             <option value="YouTube">YouTube</option>
             <option value="Other">Other</option>
           </select>
+          <label for="referral">How did you hear about us?</label>
         </div>
 
         <!-- Actions -->
