@@ -152,3 +152,11 @@ input:invalid:focus, select:invalid:focus, textarea:invalid:focus{
   .zenith-card{ padding:1.25rem; }
   .zenith-logo{ width:78px; }
 }
+/* Hide logo on mobile */
+@media (max-width: 768px) {
+  .zenith-logo-frame,
+  .logo-backdrop,
+  .zenith-logo {
+    display: none !important;
+  }
+}
