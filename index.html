@@ -317,23 +317,7 @@
       })
       .catch(err => console.error('❌ Hero load error:', err));
   </script>
-  
-  <!-- ===== FETCH HERO COMPONENT ===== -->
-  <script>
-    fetch('components/hero-section.html')
-      .then(r => {
-        if (!r.ok) throw new Error('Failed to load hero-section.html');
-        return r.text();
-      })
-      .then(html => {
-        document.getElementById('hero-placeholder').innerHTML = html;
-        // After injection, try to render captcha (works whether API loaded before/after)
-        if (window.renderHeroRecaptchaIfReady) {
-          window.renderHeroRecaptchaIfReady();
-        }
-      })
-      .catch(err => console.error('❌ Hero load error:', err));
-  </script>
+
 
   <!-- ===== OTHER SCRIPTS ===== -->
   <script src="js/header-mobile.js" defer></script>
