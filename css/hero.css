@@ -61,17 +61,20 @@
   border-radius: 50%;
   z-index: 0;
 
-  /* Vibrant fade-out background */
+  /* Brand navy fade-out background */
   background: radial-gradient(circle at center,
-    rgba(255,255,255,0.95) 0%,   /* bright center for contrast */
-    rgba(255,255,255,0.75) 40%,  /* soft fade */
-    rgba(255,255,255,0) 100%     /* fully transparent edges */
+    rgba(7, 46, 89, 0.95) 0%,   /* Zenith navy at center */
+    rgba(7, 46, 89, 0.8) 40%,   /* soft fade */
+    rgba(7, 46, 89, 0) 100%     /* transparent edges */
   );
 
-  /* Soft shadow for separation */
+  /* Thin orange accent ring */
+  border: 3px solid #f7941d;
+
+  /* Soft shadow to lift it from the background */
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 
-  /* Slight blur to blend into video smoothly */
+  /* Blur the background video behind it for clarity */
   backdrop-filter: blur(2px);
 }
 
