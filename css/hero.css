@@ -16,29 +16,26 @@
   --shadow-sm:0 4px 14px rgba(2,14,32,.10);
 }
 
-/* ========== BASE ========== */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { background: var(--zenith-blue); scroll-behavior: smooth; }
-body {
-  font-family: 'Inter', Arial, sans-serif;
-  color: var(--text-gray);
-  background: transparent;
-  line-height: 1.6;
-}
-.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-
-/* ========== BACKGROUND VIDEO ========== */
+/* ========== BACKGROUND VIDEO STYLING ========== */
 .background-video {
   position: fixed;
-  inset: 0;
+  top: 0; left: 0;
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  z-index: -9999;
-  opacity: 0.6; /* ⬅️ increased from 0.35 */
-  pointer-events: none;
+  z-index: -9999; /* ensures it's behind all content */
+  opacity: 0.6;   /* adjust for brightness */
+  pointer-events: none; /* prevent interaction blocking */
 }
 
+/* Optional: Navy overlay tint on top of video */
+.background-video::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 46, 89, 0.5); /* navy blue tint */
+  z-index: -9998; /* just above video */
+}
 
 /* ===== Card ===== */
 .zenith-card{
