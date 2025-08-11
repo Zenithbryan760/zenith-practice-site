@@ -1,10 +1,10 @@
 // netlify/functions/jn-create-lead.js
-// Uses Node 18+ global fetch on Netlify; no extra packages needed.
+// Creates a JobNimbus contact from your website form.
 
-const allowedOrigin = "*"; // Later, replace with your domain for stricter CORS.
+const allowedOrigin = "*"; // Replace with your domain later for stricter CORS
 
 exports.handler = async (event) => {
-  // CORS preflight
+  // Handle CORS preflight
   if (event.httpMethod === "OPTIONS") {
     return {
       statusCode: 200,
@@ -24,22 +24,17 @@ exports.handler = async (event) => {
   try {
     const data = JSON.parse(event.body || "{}");
 
-    // Set these in Netlify → Site settings → Environment variables
-    const JN_API_KEY = process.env.JN_API_KEY; // Your JobNimbus API key
-    const JN_CONTACT_ENDPOINT = process.env.JN_CONTACT_ENDPOINT; 
-    // Example: https://<YOUR_JOBNIMBUS_DOMAIN>/api1/contacts
-    // Use the exact Create Contact endpoint from JobNimbus docs
+    const JN_API_KEY = process.env.JN_API_KEY;
+    const JN_CONTACT_ENDPOINT = process.env.JN_CONTACT_ENDPOINT;
 
     if (!JN_API_KEY || !JN_CONTACT_ENDPOINT) {
       return {
         statusCode: 500,
         headers: { "Access-Control-Allow-Origin": allowedOrigin },
-        body: JSON.stringify({ error: "Server not configured (missing env vars)" })
+        body: JSON.stringify({ error: "Missing environment variables" })
       };
     }
 
-    // Map your form fields → JobNimbus payload
-    // Adjust keys to match your JobNimbus account’s fields as needed.
     const payload = {
       firstName: data.first_name || "",
       lastName:  data.last_name  || "",
@@ -63,11 +58,13 @@ exports.handler = async (event) => {
     });
 
     const body = await res.text();
+
     return {
       statusCode: res.status,
       headers: { "Access-Control-Allow-Origin": allowedOrigin },
       body
     };
+
   } catch (err) {
     return {
       statusCode: 500,
@@ -76,4 +73,3 @@ exports.handler = async (event) => {
     };
   }
 };
-
