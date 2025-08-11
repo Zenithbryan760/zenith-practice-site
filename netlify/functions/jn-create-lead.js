@@ -1,8 +1,5 @@
 // netlify/functions/jn-create-lead.js
-// Creates a JobNimbus contact from your website form.
-// Reads secrets from Netlify env vars: JN_API_KEY, JN_CONTACT_ENDPOINT
-
-const allowedOrigin = "*"; // (optional) replace with your domain later for stricter CORS
+const allowedOrigin = "*";
 
 exports.handler = async (event) => {
   // CORS preflight
@@ -24,9 +21,10 @@ exports.handler = async (event) => {
 
   try {
     const data = JSON.parse(event.body || "{}");
+    const qs = event.queryStringParameters || {};
 
     const JN_API_KEY = process.env.JN_API_KEY;
-    const JN_CONTACT_ENDPOINT = process.env.JN_CONTACT_ENDPOINT; // e.g. https://app.jobnimbus.com/api1/contacts
+    const JN_CONTACT_ENDPOINT = process.env.JN_CONTACT_ENDPOINT; // https://app.jobnimbus.com/api1/contacts
     if (!JN_API_KEY || !JN_CONTACT_ENDPOINT) {
       return {
         statusCode: 500,
@@ -35,33 +33,41 @@ exports.handler = async (event) => {
       };
     }
 
-    // Normalize inputs
     const first = (data.first_name || "").trim();
     const last  = (data.last_name  || "").trim();
     const email = (data.email      || "").trim();
     const phone = (data.phone      || "").trim();
 
-    // Build payload expected by JobNimbus API
+    // Build the payload for JobNimbus
     const payload = {
-      // ✅ Required by API (they don't auto-generate on API calls)
+      // Include both snake_case and camelCase to satisfy different parsers
       display_name: [first, last].filter(Boolean).join(" ").trim() || email || phone || "Website Lead",
+      displayName:  [first, last].filter(Boolean).join(" ").trim() || email || phone || "Website Lead",
 
-      // Common fields (these names are accepted by JN)
       firstName: first,
       lastName:  last,
       email,
       phone,
       address: `${data.street_address || ""}, ${data.city || ""}, ${data.state || ""} ${data.zip || ""}`.trim(),
       description: data.description || "",
-
-      // Example custom fields bucket (adjust keys if your JN account uses different custom field names)
       customFields: {
         serviceType:    data.service_type    || "",
         referralSource: data.referral_source || ""
-      }
+      },
+
+      // tiny marker so we can confirm we’re on the newest deploy
+      _version: "jn-create-lead:2025-08-11-1"
     };
 
-    // Send to JobNimbus
+    // 🔎 Debug mode: return the payload instead of calling JobNimbus
+    if (qs.debug === "1") {
+      return {
+        statusCode: 200,
+        headers: { "Access-Control-Allow-Origin": allowedOrigin },
+        body: JSON.stringify(payload, null, 2)
+      };
+    }
+
     const res = await fetch(JN_CONTACT_ENDPOINT, {
       method: "POST",
       headers: {
@@ -71,7 +77,7 @@ exports.handler = async (event) => {
       body: JSON.stringify(payload)
     });
 
-    const body = await res.text(); // keep raw for easier debugging
+    const body = await res.text();
     return {
       statusCode: res.status,
       headers: { "Access-Control-Allow-Origin": allowedOrigin },
