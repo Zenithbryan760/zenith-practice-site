@@ -191,17 +191,24 @@ input:invalid:focus, select:invalid:focus, textarea:invalid:focus{
     }
   }
 }
-/* When header is collapsed (hamburger visible), hide hero logo */
+/* When header is collapsed (hamburger visible), hide hero logo & backdrop */
 .nav-collapsed .zenith-hero .zenith-header .zenith-logo-container,
 .nav-collapsed .zenith-hero .zenith-header .zenith-logo,
 .nav-collapsed .zenith-hero .zenith-header .logo-backdrop {
   display: none !important;
-  visibility: hidden !important;
 }
 
-/* And keep the hero offset below the fixed bar */
+/* Also keep the hero below the fixed header, across all narrow viewports */
 .nav-collapsed .zenith-hero {
-  --collapsed-header-height: 80px; /* adjust if needed */
-  padding-top: calc(var(--collapsed-header-height) + 12px);
-  min-height: calc(100svh - var(--collapsed-header-height));
+  padding-top: calc(var(--header-h, 80px) + 12px);
+  /* Use the modern mobile-safe viewport unit so it fills nicely */
+  min-height: calc(100svh - var(--header-h, 80px));
+}
+
+/* Make sure the video covers the full hero area */
+.nav-collapsed .zenith-background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
