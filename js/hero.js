@@ -18,4 +18,3 @@ document.getElementById('zip').addEventListener('blur', function() {
   }
 });
 </script>
-
