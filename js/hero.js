@@ -1,7 +1,7 @@
-// js/hero.js — lightweight helpers (no reCAPTCHA render logic here)
+// js/hero.js — lightweight helpers (ZIP -> City + submit guard)
 
-// ZIP -> City (US) using Zippopotam.us
 document.addEventListener('DOMContentLoaded', function () {
+  // ZIP -> City (US) using Zippopotam.us
   var zipInput = document.getElementById('zip');
   var cityInput = document.getElementById('city');
 
@@ -15,14 +15,12 @@ document.addEventListener('DOMContentLoaded', function () {
             var place = data.places && data.places[0];
             cityInput.value = place ? place['place name'] : '';
           })
-          .catch(function () {
-            cityInput.value = '';
-          });
+          .catch(function () { cityInput.value = ''; });
       }
     });
   }
 
-  // Optional: guard to prevent submit without captcha token (client-side UX)
+  // Optional: client-side guard to ensure captcha solved before submit
   var form = document.getElementById('estimate-form');
   if (form) {
     form.addEventListener('submit', function (e) {
