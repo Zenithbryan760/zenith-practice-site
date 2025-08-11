@@ -1,198 +1,4 @@
-/* =========================================================
-   HERO SECTION STYLES — Zenith Roofing (hero.css)
-   Matches hero-section.html exactly
-   ========================================================= */
-
-/* ---------------------------------------------------------
-   [0] BRAND TOKENS
-   --------------------------------------------------------- */
-:root{
-  --zenith-navy:#072e59;
-  --zenith-orange:#f7941d;
-  --zenith-orange-dark:#d77a18;
-  --zenith-white:#ffffff;
-
-  --zenith-light-gray:#f5f7fb;
-  --zenith-border:#e3e7ed;
-  --zenith-text:#1d2430;
-  --zenith-muted:#6b7280;
-
-  --radius:12px;
-  --radius-sm:8px;
-  --shadow:0 12px 30px rgba(0,0,0,.12);
-  --focus:0 0 0 3px rgba(247,148,29,.25);
-
-  --gap:16px;
-  --gap-lg:24px;
-  --speed:.2s;
-}
-
-/* ---------------------------------------------------------
-   [1] SECTION + VIDEO
-   --------------------------------------------------------- */
-.zenith-hero{
-  position:relative;
-  isolation:isolate;
-  min-height:740px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:64px 16px;
-  background:#0d2746; /* safe bg behind video */
-  color:var(--zenith-white);
-}
-
-.zenith-video-container{
-  position:absolute; inset:0;
-  z-index:-2; overflow:hidden;
-}
-.zenith-background-video{
-  width:100%; height:100%; object-fit:cover;
-  filter:brightness(.6) contrast(1.05);
-}
-.zenith-video-overlay{
-  position:absolute; inset:0; z-index:-1;
-  background:
-    linear-gradient(180deg, rgba(7,46,89,.70) 0%, rgba(7,46,89,.55) 40%, rgba(7,46,89,.70) 100%);
-}
-
-/* ---------------------------------------------------------
-   [2] CARD CONTAINER
-   --------------------------------------------------------- */
-.zenith-card{
-  width:100%;
-  max-width:980px;
-  background:var(--zenith-white);
-  color:var(--zenith-text);
-  border-radius:20px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  backdrop-filter:saturate(120%);
-}
-
-/* ---------------------------------------------------------
-   [2.5] LUXURY HEADER (logo with orange ring)
-   --------------------------------------------------------- */
-.zenith-luxury-card{padding:24px 24px 0 24px}
-.zenith-luxury-header{
-  display:flex; gap:16px; align-items:center;
-}
-.zenith-logo-frame{
-  width:72px; height:72px; flex:0 0 72px;
-  display:grid; place-items:center;
-  border-radius:50%;
-  background:
-    radial-gradient(closest-side, #fff 75%, transparent 76%) padding-box,
-    conic-gradient(from 0deg, var(--zenith-orange), var(--zenith-orange)) border-box;
-  border:3px solid transparent;
-  box-shadow:0 6px 16px rgba(247,148,29,.35);
-}
-.zenith-luxury-logo{
-  width:44px; height:44px; object-fit:contain; display:block;
-}
-.zenith-luxury-titles{line-height:1.2}
-.zenith-luxury-subtitle{
-  margin:0; font-weight:700; font-size:1.05rem; color:var(--zenith-navy);
-}
-.zenith-luxury-locations{
-  margin-top:4px; font-size:.93rem; color:var(--zenith-muted);
-}
-.luxury-divider{opacity:.5; margin:0 .5ch}
-
-/* ---------------------------------------------------------
-   [3] FORM HEADER
-   --------------------------------------------------------- */
-.estimate-heading{
-  padding:8px 24px 0 24px;
-}
-.estimate-title{
-  margin:.25rem 0 0 0; font-size:1.6rem; color:var(--zenith-navy); font-weight:800;
-}
-.estimate-subtitle{
-  margin:.35rem 0 0 0; color:var(--zenith-muted); font-size:.98rem;
-}
-
-/* ---------------------------------------------------------
-   [4] FORM GRID
-   --------------------------------------------------------- */
-.zenith-form{padding:20px 24px 28px 24px}
-.zenith-form-grid{
-  display:grid; gap:var(--gap);
-  grid-template-columns:1fr 1fr;
-  margin-top:16px;
-}
-
-/* Utility spans */
-.full-width{grid-column:1 / -1}
-
-/* ---------------------------------------------------------
-   [4.1] INPUT GROUPS (floating labels)
-   --------------------------------------------------------- */
-.zenith-input-group{
-  position:relative;
-  background:var(--zenith-light-gray);
-  border:1px solid var(--zenith-border);
-  border-radius:var(--radius-sm);
-  padding:12px 12px 6px 12px;
-  transition:border-color var(--speed), background var(--speed), box-shadow var(--speed);
-}
-.zenith-input-group:focus-within{
-  border-color:var(--zenith-orange);
-  box-shadow:var(--focus);
-  background:#fff;
-}
-
-.zenith-input-group input,
-.zenith-input-group textarea{
-  width:100%; border:0; outline:0; background:transparent;
-  font:inherit; color:var(--zenith-text);
-  padding:16px 4px 6px 4px; /* leave space for label */
-}
-.zenith-input-group textarea{resize:vertical; min-height:108px}
-
-.zenith-input-group label{
-  position:absolute; left:12px; top:14px;
-  font-size:.95rem; color:var(--zenith-muted);
-  pointer-events:none; transition:transform var(--speed), font-size var(--speed), top var(--speed), opacity var(--speed);
-  background:transparent;
-}
-
-/* Float when filled or focused */
-.zenith-input-group input:not(:placeholder-shown) + label,
-.zenith-input-group textarea:not(:placeholder-shown) + label,
-.zenith-input-group:focus-within label{
-  top:6px; transform:translateY(-60%);
-  font-size:.78rem; opacity:.95;
-}
-
-/* ---------------------------------------------------------
-   [4.2] SELECT FIELDS (no floating to avoid overlap)
-   --------------------------------------------------------- */
-.select-group{
-  display:flex; flex-direction:column; gap:8px;
-  background:transparent; padding:0; border:0;
-}
-.select-group label{
-  position:static; transform:none; font-size:.9rem; color:var(--zenith-navy); opacity:1;
-}
-.select-group select{
-  width:100%;
-  appearance:none; -webkit-appearance:none;
-  border:1px solid var(--zenith-border);
-  border-radius:var(--radius-sm);
-  padding:14px 40px 14px 12px;
-  background:
-    linear-gradient(#fff,#fff) padding-box,
-    linear-gradient(135deg, transparent 0 55%, rgba(0,0,0,.12) 55% 56%, transparent 56% 100%) border-box;
-  background-color:#fff;
-  font:inherit; color:var(--zenith-text);
-  transition:border-color var(--speed), box-shadow var(--speed);
-}
-.select-group select:focus{
-  border-color:var(--zenith-orange); box-shadow:var(--focus); outline:0;
-}
-/* custom caret */
-.select-group select{
+@@ -196,117 +196,115 @@
   background-image:
     linear-gradient(#fff,#fff),
     url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7l5 6 5-6' fill='none' stroke='%231a2740' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
@@ -224,13 +30,30 @@
 .file-input-wrapper input[type="file"]{
   /* hide native but keep it accessible for SR/keyboard */
   position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+.file-group input[type="file"]{
+  display:block;
+  width:100%;
+  padding:12px 14px;
+  font-size:.9rem;
+  color:var(--zenith-navy);
+  border:1px dashed var(--zenith-border);
+  border-radius:var(--radius-sm);
+  background:var(--zenith-light-gray);
 }
 .custom-file-upload{
   display:inline-flex; align-items:center; justify-content:center;
+.file-group input[type="file"]::file-selector-button{
+  margin-right:12px;
   padding:12px 16px;
   background:var(--zenith-navy); color:#fff;
   border-radius:999px; border:1px solid rgba(255,255,255,.08);
   font-weight:600; cursor:pointer; user-select:none;
+  border:0;
+  border-radius:999px;
+  background:var(--zenith-navy);
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
   transition:transform var(--speed), background var(--speed);
 }
 .custom-file-upload:hover{background:#0a396e}
@@ -244,6 +67,9 @@
   border-radius:999px; color:var(--zenith-muted);
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
+.file-group input[type="file"]::file-selector-button:hover{background:#0a396e}
+.file-group input[type="file"]::file-selector-button:active{transform:translateY(1px)}
+.file-group input[type="file"]::file-selector-button:focus-visible{outline:none; box-shadow:var(--focus)}
 
 /* ---------------------------------------------------------
    [5] ACTIONS: reCAPTCHA + SUBMIT
@@ -290,6 +116,7 @@
 .zenith-disclaimer a{color:var(--zenith-orange); text-decoration:none}
 .zenith-disclaimer a:hover{text-decoration:underline}
 .zenith-contact{margin-top:6px}
+.zenith-phone{font-weight:700; color:var(--zenith-navy); text-transform:uppercase}
 .zenith-phone strong{color:var(--zenith-navy)}
 
 /* ---------------------------------------------------------
@@ -310,3 +137,155 @@
   .zenith-logo-frame{width:64px; height:64px}
   .zenith-luxury-logo{width:40px; height:40px}
 }
+js/hero.js
++7
+-28
+
+// ====================================================================
+// js/hero.js — Form polish, file UX, basic validation, reCAPTCHA hook
+// ====================================================================
+
+// 👉 put your real site key here (v2 checkbox)
+const RECAPTCHA_SITE_KEY = "6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI"; // replace if different
+
+(function () {
+  let recaptchaWidgetId = null;
+  const state = { bound: false };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("estimate-form");
+    if (!form || state.bound) return;
+    state.bound = true;
+
+    const first = document.getElementById("first-name");
+    const last = document.getElementById("last-name");
+    const display = document.getElementById("display-name");
+    const phone = document.getElementById("phone");
+    const zip = document.getElementById("zip");
+    const fileInput = document.getElementById("photos");
+    const fileName = form.querySelector(".file-name");
+    const fileButton = form.querySelector(".custom-file-upload");
+
+    // ---------- Build display-name automatically ----------
+    const updateDisplayName = () => {
+      const f = (first?.value || "").trim();
+      const l = (last?.value || "").trim();
+      display && (display.value = [f, l].filter(Boolean).join(" "));
+    };
+    first && first.addEventListener("input", updateDisplayName);
+    last && last.addEventListener("input", updateDisplayName);
+
+    // ---------- Phone formatter (858-900-6163) ----------
+    if (phone) {
+      phone.addEventListener("input", () => {
+        const digits = phone.value.replace(/\D/g, "").slice(0, 10);
+        const parts = [];
+        if (digits.length > 0) parts.push(digits.slice(0, 3));
+        if (digits.length > 3) parts.push(digits.slice(3, 6));
+        if (digits.length > 6) parts.push(digits.slice(6, 10));
+        phone.value = parts.join("-");
+      });
+    }
+
+    // ---------- ZIP numeric guard ----------
+    if (zip) {
+      zip.addEventListener("input", () => {
+        const cleaned = zip.value.replace(/[^\d-]/g, "").slice(0, 10);
+        zip.value = cleaned;
+      });
+    }
+
+    // ---------- File input UX ----------
+    if (fileInput && fileName && fileButton) {
+      fileButton.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          fileInput.click();
+        }
+      });
+
+      fileInput.addEventListener("change", () => {
+        if (!fileInput.files || fileInput.files.length === 0) {
+          fileName.textContent = "No files selected";
+          return;
+        }
+        const names = Array.from(fileInput.files).map(f => f.name);
+        // If many files, show count + first file
+        fileName.textContent = names.length > 3
+          ? `${names.length} files selected (${names[0]} …)`
+          : names.join(", ");
+      });
+    }
+
+    // ---------- Client-side validation helper ----------
+    const requireFields = [
+      "#first-name", "#last-name", "#phone", "#email",
+      "#service", "#street", "#city", "#state", "#zip"
+    ];
+    const markError = (el, hasError) => {
+      const group = el.closest(".zenith-input-group, .select-group");
+      if (!group) return;
+      if (hasError) group.classList.add("has-error");
+      else group.classList.remove("has-error");
+    };
+
+    form.addEventListener("submit", (e) => {
+      // don’t block native form post if all good
+      let hasAnyError = false;
+      requireFields.forEach(sel => {
+        const el = form.querySelector(sel);
+        if (!el) return;
+        const val = (el.value || "").trim();
+        const missing = val.length === 0 || (el.id === "service" && !el.value);
+        markError(el, missing);
+        hasAnyError ||= missing;
+      });
+
+@@ -113,40 +89,43 @@ const RECAPTCHA_SITE_KEY = "6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI"; // replac
+          hasAnyError = true;
+          alert("Please complete the security verification.");
+        }
+      }
+
+      if (hasAnyError) {
+        e.preventDefault();
+        // scroll to first error
+        const firstErr = form.querySelector(".has-error");
+        if (firstErr) {
+          firstErr.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        return;
+      }
+
+      // Optional: add a light disabled state
+      const submitBtn = form.querySelector(".zenith-submit");
+      if (submitBtn) {
+        submitBtn.setAttribute("disabled", "true");
+        submitBtn.style.filter = "saturate(.9) brightness(.95)";
+      }
+    });
+  });
+
+  // ---------- reCAPTCHA explicit render hook ----------
+  // Keep this exactly named to match your <script … onload=recaptchaOnload>
+  window.recaptchaOnload = function () {
+  function renderHeroRecaptchaIfReady() {
+    try {
+      const target = document.getElementById("estimate-recaptcha");
+      if (!target || typeof grecaptcha === "undefined") return;
+      if (!target || typeof grecaptcha === "undefined" || recaptchaWidgetId !== null) return;
+      recaptchaWidgetId = grecaptcha.render(target, {
+        sitekey: RECAPTCHA_SITE_KEY,
+        theme: "light",
+        size: "normal"
+      });
+    } catch (_) {
+      // silently ignore
+    }
+  };
+  }
+
+  window.renderHeroRecaptchaIfReady = renderHeroRecaptchaIfReady;
+  // Keep this exactly named to match your <script … onload=recaptchaOnload>
+  window.recaptchaOnload = renderHeroRecaptchaIfReady;
+})();
