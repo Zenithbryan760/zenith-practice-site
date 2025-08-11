@@ -1,227 +1,157 @@
 /* =========================================================
-   Zenith Roofing — Free Estimate Form Styles (Optimized)
+   Zenith Roofing — Hero / Free Estimate (Polished)
+   Keeps your HTML structure; visual upgrades only.
    ======================================================== */
 
-/* Base & Layout Styles */
-.zenith-hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  color: #333;
-  font-family: 'Arial', sans-serif;
-  overflow: hidden;
+/* Brand & tokens */
+:root{
+  --zenith-navy: #072e59;
+  --zenith-navy-2:#0b3a6f;
+  --zenith-orange:#f7941d;
+  --zenith-text:#1e293b;
+  --zenith-muted:#64748b;
+  --zenith-border:#e2e8f0;
+  --radius:10px;
+  --shadow-lg:0 14px 40px rgba(2,14,32,.18);
+  --shadow-sm:0 4px 14px rgba(2,14,32,.10);
 }
 
+/* Base & Layout */
+.zenith-hero{
+  position:relative; min-height:100vh;
+  display:flex; align-items:center; justify-content:center;
+  padding: clamp(1.25rem, 2vw, 2rem);
+  color:var(--zenith-text);
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  overflow:hidden;
+}
+
+/* Video background + brand tint */
 .zenith-video-container,
 .zenith-background-video,
-.zenith-video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.zenith-video-overlay{position:absolute; inset:0;}
+.zenith-video-container{z-index:-1;}
+.zenith-background-video{object-fit:cover;}
+.zenith-video-overlay{
+  /* brand navy tint with slight gradient for depth */
+  background:
+    linear-gradient(180deg, rgba(7,46,89,.78) 0%, rgba(7,46,89,.72) 50%, rgba(7,46,89,.65) 100%);
+  mix-blend-mode:multiply;
 }
 
-.zenith-video-container { z-index: -1; }
-.zenith-video-overlay { background-color: rgba(0, 0, 128, 0.7); }
-.zenith-background-video { object-fit: cover; }
-
-/* Card & Header Styles */
-.zenith-card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  max-width: 900px;
-  padding: 2.5rem;
-  margin: 2rem;
-  position: relative;
+/* Card */
+.zenith-card{
+  background:#fff; border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  width:100%; max-width: 920px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-.zenith-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
+/* Header */
+.zenith-header{ text-align:center; margin-bottom:1.75rem; }
+.zenith-logo-container{ position:relative; display:inline-block; margin-bottom:.75rem; }
+.zenith-logo{ position:relative; width:86px; height:auto; z-index:1; }
 
-.zenith-logo-container {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 1rem;
-}
-
-.logo-backdrop {
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
-  border-radius: 50%;
-  z-index: 0;
-
-  /* Navy to black gradient fade */
-  background: radial-gradient(circle at center,
-    rgba(0,0,0,0.95) 0%,      /* black center for max contrast */
-    rgba(7, 46, 89, 0.95) 60%, /* Zenith navy mid-ring */
-    rgba(7, 46, 89, 0) 100%   /* transparent edges */
-  );
-
-  /* Thin orange border */
-  border: 3px solid #f7941d;
-
-  /* Shadow for separation */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-
-  /* Blur background behind logo for extra clarity */
+/* Modern, readable logo backdrop (navy-to-black fade + orange ring) */
+.logo-backdrop{
+  position:absolute; inset:-18px; z-index:0; border-radius:50%;
+  background: radial-gradient(circle at 50% 50%,
+              rgba(0,0,0,.96) 0%,
+              rgba(7,46,89,.95) 58%,
+              rgba(7,46,89,0) 100%);
+  border: 3px solid var(--zenith-orange);
+  box-shadow: 0 6px 18px rgba(0,0,0,.28);
   backdrop-filter: blur(2px);
 }
 
-.zenith-logo {
-  position: relative;
-  width: 80px;
-  height: auto;
-  z-index: 1;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+/* Titles */
+.zenith-header-text h1{
+  margin:.25rem 0 0;
+  font-weight:800; letter-spacing:.3px;
+  color:var(--zenith-navy);
+  font-size: clamp(1.6rem, 3.2vw, 2rem);
+  text-transform:uppercase;
+}
+.zenith-header-text h2{
+  margin:.2rem 0 .35rem;
+  font-weight:700; color:var(--zenith-navy);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+.service-area{
+  color:var(--zenith-muted);
+  font-size: clamp(.92rem, 2vw, 1rem);
 }
 
-.zenith-header-text h1 {
-  color: #1a365d;
-  font-size: 2rem;
-  margin: 0.5rem 0 0;
-  font-weight: 700;
-  text-transform: uppercase;
+/* Form grid */
+.form-row{ display:flex; flex-wrap:wrap; gap:1.25rem; margin-bottom:1.25rem; }
+.form-group{ flex:1; display:flex; flex-direction:column; gap:.45rem; min-width:0; }
+.form-col-6{ flex:0 0 calc(50% - .625rem); }
+.form-col-4{ flex:0 0 calc(33.333% - .84rem); }
+
+/* Labels & inputs */
+label{ font-weight:600; font-size:.92rem; color:#334155; }
+
+input, select, textarea{
+  width:100%; font-size:1rem;
+  border:1px solid var(--zenith-border); border-radius:10px;
+  padding:.9rem .95rem;
+  background:#fff; color:#0f172a;
+  transition: box-shadow .15s ease, border-color .15s ease, transform .05s ease;
+  box-shadow: var(--shadow-sm);
 }
 
-.zenith-header-text h2 {
-  color: #1a365d;
-  font-size: 1.5rem;
-  margin: 0.25rem 0;
-  font-weight: 600;
+input::placeholder{ color:#94a3b8; }
+
+input:focus, select:focus, textarea:focus{
+  outline:none;
+  border-color: var(--zenith-navy);
+  box-shadow: 0 0 0 3px rgba(7,46,89,.15), var(--shadow-sm);
 }
 
-.service-area {
-  color: #4a5568;
-  margin: 0.5rem 0 0;
-  font-size: 1.1rem;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+/* File input nicer spacing */
+input[type="file"]{ padding:.55rem .75rem; box-shadow:none; }
+
+/* Validation look (matches brand) */
+input:invalid, select:invalid, textarea:invalid{
+  border-color:#ef4444;
+}
+input:invalid:focus, select:invalid:focus, textarea:invalid:focus{
+  box-shadow:0 0 0 3px rgba(239,68,68,.15);
 }
 
-/* Form Structure */
-.form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+/* Button */
+.zenith-btn{
+  background: var(--zenith-navy); color:#fff; border:none;
+  padding:1rem 1.25rem; font-size:1rem; font-weight:700; width:100%;
+  border-radius:12px; cursor:pointer;
+  transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+  box-shadow: var(--shadow-sm);
 }
+.zenith-btn:hover{ background: var(--zenith-navy-2); box-shadow:0 10px 24px rgba(7,46,89,.25); transform: translateY(-1px); }
+.zenith-btn:active{ transform: translateY(0); box-shadow: var(--shadow-sm); }
+.zenith-btn:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:2px; }
 
-.form-group {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  min-width: 0;
+/* reCAPTCHA centered & spaced */
+.recaptcha-container{
+  display:flex; justify-content:center; align-items:center; width:100%;
+  margin:.35rem 0 .35rem;
 }
+#recaptcha-slot{ display:block; min-width:304px; min-height:78px; }
 
-/* Column Widths */
-.form-col-6 { flex: 0 0 calc(50% - 0.75rem); }
-.form-col-4 { flex: 0 0 calc(33.333% - 1rem); }
-
-/* Form Elements */
-label {
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: #2d3748;
+/* Disclaimer + brand link */
+.form-disclaimer{
+  font-size:.85rem; color:#6b7280;
+  margin-top:1rem; text-align:center; line-height:1.5;
 }
+.form-disclaimer a{ color:var(--zenith-navy); text-decoration:underline; }
+.form-disclaimer a:hover{ color:var(--zenith-orange); }
 
-input,
-select,
-textarea {
-  padding: 0.75rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
-  font-size: 1rem;
-  width: 100%;
-  transition: border-color 0.2s;
+/* Responsive */
+@media (max-width: 900px){
+  .zenith-card{ padding:1.75rem; }
 }
-
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border-color: #3182ce;
-  box-shadow: 0 0 0 1px #3182ce;
-}
-
-input[type="file"] { padding: 0.5rem; }
-textarea { 
-  resize: vertical;
-  min-height: 100px;
-}
-
-/* Validation States */
-input:invalid,
-select:invalid,
-textarea:invalid {
-  border-color: #e53e3e;
-}
-
-input:invalid:focus,
-select:invalid:focus,
-textarea:invalid:focus {
-  box-shadow: 0 0 0 1px #e53e3e;
-}
-
-/* Button & Components */
-.zenith-btn {
-  background-color: #1a365d;
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  width: 100%;
-}
-
-.zenith-btn:hover { background-color: #2c5282; }
-
-/* reCAPTCHA container & slot (centered nicely) */
-.recaptcha-container {
-  display: flex;
-  justify-content: center;  /* horizontal center */
-  align-items: center;      /* vertical center if taller row */
-  width: 100%;
-  margin-top: 0.5rem;       /* small space above */
-  margin-bottom: 0.5rem;    /* small space below */
-}
-
-#recaptcha-slot {
-  display: block;
-  min-width: 304px;   /* Google default width */
-  min-height: 78px;   /* Google default height */
-}
-
-/* Disclaimer */
-.form-disclaimer {
-  font-size: 0.8rem;
-  color: #718096;
-  margin-top: 1.5rem;
-  text-align: center;
-  line-height: 1.5;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .form-col-6,
-  .form-col-4 { flex: 0 0 100%; }
-  
-  .zenith-card {
-    padding: 1.5rem;
-    margin: 1rem;
-  }
+@media (max-width: 768px){
+  .form-col-6, .form-col-4{ flex:0 0 100%; }
+  .zenith-card{ padding:1.25rem; }
+  .zenith-logo{ width:78px; }
 }
