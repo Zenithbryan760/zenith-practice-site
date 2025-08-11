@@ -16,50 +16,43 @@
   --shadow-sm:0 4px 14px rgba(2,14,32,.10);
 }
 
-/* Let the background video show page-wide */
-html, body { background: transparent; }
-
-/* Ensure content paints above the video */
-header, main, footer, .zenith-hero, .header, .page, .container {
-  position: relative;
-  z-index: 1;
-}
-
 /* ===== Base & Layout ===== */
 .zenith-hero{
-  position:relative; min-height:100vh;
+  position:relative;                 /* contains the video */
+  min-height:100vh;
   display:flex; align-items:center; justify-content:center;
   padding:clamp(1.25rem, 2vw, 2rem);
   color:var(--zenith-text);
   font-family:'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  overflow:hidden;
+  overflow:hidden;                   /* clip the background video to hero */
+  z-index: 0;                        /* base layer */
 }
 
-/* ===== BACKGROUND VIDEO GLOBAL STYLES ===== */
+/* ===== HERO-ONLY BACKGROUND VIDEO ===== */
 .zenith-video-container{
-  position:fixed;       /* stays put while scrolling */
-  top:0; left:0;
-  width:100%; height:100%;
+  position:absolute;                 /* lives inside the hero only */
+  inset:0;
   overflow:hidden;
-  z-index:0;            /* behind content, above page paint */
+  z-index:0;                         /* behind hero content */
 }
 .zenith-background-video{
   position:absolute;
-  top:0; left:0;
+  inset:0;
   width:100%; height:100%;
-  object-fit:cover;     /* fills screen without stretching */
+  object-fit:cover;                  /* fill hero without stretching */
   object-position:center;
 }
 .zenith-video-overlay{
   position:absolute;
-  top:0; left:0;
-  width:100%; height:100%;
+  inset:0;
   background-color:rgba(7,46,89,0.78); /* Zenith navy tint */
-  pointer-events:none;  /* clicks pass through */
+  pointer-events:none;               /* clicks pass through */
 }
 
 /* ===== Card ===== */
 .zenith-card{
+  position:relative;                 /* ensure above video */
+  z-index:1;
   background:#fff; border-radius:var(--radius);
   box-shadow:var(--shadow-lg);
   width:100%; max-width:920px;
