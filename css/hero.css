@@ -1,5 +1,5 @@
 /* =========================================================
-   Zenith Roofing — Free Estimate Form Styles
+   Zenith Roofing — Free Estimate Form Styles (Row Version)
    ======================================================== */
 
 /* Base Styles */
@@ -74,33 +74,32 @@
   font-size: 0.9rem;
 }
 
-/* Form Grid Layout */
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* Form Row Layout */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
-.form-col {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.form-row-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-
-/* Form Elements */
 .form-group {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  min-width: 0; /* Prevent overflow */
 }
 
+/* Column Widths */
+.form-col-6 {
+  flex: 0 0 calc(50% - 0.75rem); /* Half width minus half gap */
+}
+
+.form-col-4 {
+  flex: 0 0 calc(33.333% - 1rem); /* Third width minus two-thirds gap */
+}
+
+/* Form Elements */
 label {
   font-weight: 600;
   font-size: 0.9rem;
@@ -112,6 +111,7 @@ input, select, textarea {
   border: 1px solid #e2e8f0;
   border-radius: 4px;
   font-size: 1rem;
+  width: 100%;
   transition: border-color 0.2s;
 }
 
@@ -142,7 +142,6 @@ textarea {
   cursor: pointer;
   transition: background-color 0.2s;
   width: 100%;
-  margin-top: 1rem;
 }
 
 .zenith-btn:hover {
@@ -160,19 +159,25 @@ textarea {
 
 /* reCAPTCHA Container */
 .recaptcha-container {
-  margin: 1.5rem 0;
   display: flex;
   justify-content: center;
+  width: 100%;
+}
+
+/* Form Validation */
+input:invalid, select:invalid, textarea:invalid {
+  border-color: #e53e3e;
+}
+
+input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
+  box-shadow: 0 0 0 1px #e53e3e;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .form-row-2 {
-    grid-template-columns: 1fr;
+  .form-col-6, 
+  .form-col-4 {
+    flex: 0 0 100%;
   }
   
   .zenith-card {
@@ -184,13 +189,4 @@ textarea {
     flex-direction: column;
     text-align: center;
   }
-}
-
-/* Form Validation */
-input:invalid, select:invalid, textarea:invalid {
-  border-color: #e53e3e;
-}
-
-input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
-  box-shadow: 0 0 0 1px #e53e3e;
 }
