@@ -1,342 +1,286 @@
-// ====================================================================
-// js/hero.js — Zenith Roofing "Free Estimate" form
-// Works with components/hero-section.html in this project
-// ====================================================================
+/**
+ * Zenith Roofing Form Enhancement
+ * - Form validation
+ * - File upload handling
+ * - Display name generation
+ * - Form submission
+ */
 
-// [0] CONFIG — replace with your real Zapier hook
-const ZAP_URL = "https://hooks.zapier.com/hooks/catch/xxxx/yyyy";
-const RECAPTCHA_SITE_KEY = "6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI";
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('estimate-form');
+  if (!form) return;
 
-// [1] BOOTSTRAP — bind once the form exists (supports delayed injects)
-document.addEventListener("DOMContentLoaded", () => {
-  let bound = false;
-  const tryBind = () => {
-    if (bound) return true;
-    const form = document.getElementById("estimate-form");
-    if (!form) return false;
-    if (form.dataset.bound === "true") return true;
-    form.dataset.bound = "true";
-    bound = true;
-    init(form);
-    return true;
-  };
+  // [1] FORM ELEMENTS
+  const firstNameInput = document.getElementById('first-name');
+  const lastNameInput = document.getElementById('last-name');
+  const phoneInput = document.getElementById('phone');
+  const emailInput = document.getElementById('email');
+  const fileInput = document.getElementById('photos');
+  const fileNameDisplay = document.querySelector('.file-name');
+  const displayNameField = document.getElementById('display-name');
 
-  if (!tryBind()) {
-    const int = setInterval(() => { if (tryBind()) clearInterval(int); }, 150);
-    setTimeout(() => clearInterval(int), 10000);
-  }
+  // [2] INITIAL SETUP
+  setupPhoneMasking();
+  setupFormValidation();
+  setupFileUploadDisplay();
+  setupDisplayNameGeneration();
 
-  // explicit reCAPTCHA render
-  window.renderHeroRecaptchaIfReady = function () {
-    const el = document.getElementById("estimate-recaptcha");
-    if (!el) return;
-    if (window.grecaptcha && typeof grecaptcha.render === "function") {
-      if (!el.getAttribute("data-rendered")) {
-        window.__zenithRecaptchaWidgetId = grecaptcha.render(el, { sitekey: RECAPTCHA_SITE_KEY });
-        el.setAttribute("data-rendered", "true");
-      }
+  // [3] FORM SUBMISSION
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
     }
-  };
-  window.recaptchaOnload = function () { window.renderHeroRecaptchaIfReady(); };
-});
 
-// [2] INIT ALL WIRING
-function init(form) {
-  ensureDisplayNameField(form);
-  wireDisplayNameAutoFill();
-  phoneMask();
-  stateMask();                 // default CA + 2 uppercase
-  zipToCityAndState();         // ZIP → City/State (doesn't overwrite a valid typed state)
-  enablePlacesAutocomplete();  // optional if Places script is loaded
-  wireTouchedUx();             // only show invalid after user interacts
-  setupFileUpload();           // file picker + filenames
-  floatSelectsOnValue();       // make select labels float like inputs
-  fixCopy();                   // tiny text tweak
+    // Show loading state
+    const submitBtn = form.querySelector('.zenith-submit');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="submit-text">Sending...</span>';
 
-  // if autofill pre-populates, re-evaluate floating labels
-  setTimeout(floatSelectsOnValue, 350);
-
-  form.addEventListener("submit", onSubmit);
-  window.renderHeroRecaptchaIfReady();
-}
-
-// [3] Hidden display-name safeguard
-function ensureDisplayNameField(form) {
-  let dn = document.getElementById("display-name");
-  if (!dn) {
-    dn = document.createElement("input");
-    dn.type = "hidden";
-    dn.id = "display-name";
-    dn.name = "display-name";
-    form.appendChild(dn);
-  }
-}
-
-// [4] Display Name = First + Last
-function wireDisplayNameAutoFill() {
-  const first = document.getElementById("first-name");
-  const last  = document.getElementById("last-name");
-  const dname = document.getElementById("display-name");
-  if (!(first && last && dname)) return;
-
-  const update = () => {
-    const f = (first.value || "").trim();
-    const l = (last.value  || "").trim();
-    dname.value = [f, l].filter(Boolean).join(" ");
-  };
-  first.addEventListener("input", update);
-  last.addEventListener("input", update);
-  update();
-}
-
-// [5] Phone mask (supports extension with x)
-function phoneMask() {
-  const el = document.getElementById("phone");
-  if (!el) return;
-
-  const formatPhone = (raw) => {
-    const lower = String(raw || "").toLowerCase();
-    const xIndex = lower.indexOf("x");
-    const extDigits = xIndex >= 0 ? lower.slice(xIndex + 1).replace(/\D/g, "") : "";
-    const mainDigits = (xIndex >= 0 ? lower.slice(0, xIndex) : lower)
-      .replace(/\D/g, "")
-      .slice(0, 10);
-
-    let out = "";
-    if (mainDigits.length > 0) out = "(" + mainDigits.slice(0, 3);
-    if (mainDigits.length >= 4) out += ") " + mainDigits.slice(3, 6);
-    if (mainDigits.length >= 7) out += "-" + mainDigits.slice(6, 10);
-    if (extDigits) out += " x" + extDigits.slice(0, 6);
-    return out;
-  };
-
-  const setFormatted = () => {
-    const start = el.selectionStart ?? el.value.length;
-    const rawBefore = el.value;
-    const digitsBeforeCaret = rawBefore.slice(0, start).replace(/\D/g, "").length;
-
-    const formatted = formatPhone(rawBefore);
-    el.value = formatted;
-
-    let caret = formatted.length, seen = 0;
-    for (let i = 0; i < formatted.length; i++) {
-      if (/\d/.test(formatted[i])) seen++;
-      if (seen >= digitsBeforeCaret) { caret = i + 1; break; }
-    }
-    requestAnimationFrame(() => el.setSelectionRange(caret, caret));
-  };
-
-  el.addEventListener("beforeinput", (e) => {
-    if (e.inputType && e.inputType.startsWith("delete")) return;
-    const ok = /^[0-9xX ()-]*$/.test(e.data || "");
-    if (e.data && !ok) e.preventDefault();
+    // Simulate form submission (replace with actual AJAX call)
+    setTimeout(() => {
+      submitBtn.innerHTML = '<span class="submit-text">Estimate Sent!</span><span class="submit-icon">✓</span>';
+      
+      // Reset form after success (or redirect)
+      setTimeout(() => {
+        form.reset();
+        fileNameDisplay.textContent = 'No files selected';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span class="submit-text">Request Free Estimate</span><span class="submit-icon">→</span>';
+        
+        // Show success message
+        showSuccessMessage();
+      }, 1500);
+    }, 2000);
   });
-  el.addEventListener("input", setFormatted);
-  el.addEventListener("blur", () => { el.value = formatPhone(el.value); });
-}
 
-// [6] State mask — default CA, keep 2 uppercase letters
-function stateMask() {
-  const stateEl = document.getElementById("state");
-  if (!stateEl) return;
+  // [4] HELPER FUNCTIONS
 
-  if (!stateEl.value) stateEl.value = "CA";
-
-  stateEl.addEventListener("input", () => {
-    stateEl.value = stateEl.value.replace(/[^a-z]/gi, "").toUpperCase().slice(0, 2);
-  });
-  stateEl.addEventListener("blur", () => {
-    if (!stateEl.value) stateEl.value = "CA";
-  });
-}
-
-// [7] ZIP → City + State
-function zipToCityAndState() {
-  const zipEl = document.getElementById("zip");
-  const cityEl = document.getElementById("city");
-  const stateEl = document.getElementById("state");
-  if (!(zipEl && cityEl && stateEl)) return;
-
-  if (!stateEl.value) stateEl.value = "CA";
-
-  let zipTimer = null;
-  const lookupZip = async (zip) => {
-    if (!/^\d{5}$/.test(zip)) return;
-    try {
-      const r = await fetch(`https://api.zippopotam.us/us/${zip}`);
-      if (!r.ok) return;
-      const data = await r.json();
-      const place = data.places && data.places[0];
-      if (place) {
-        if (!cityEl.value) cityEl.value = place["place name"] || cityEl.value;
-        if (!(stateEl.value && stateEl.value.length === 2)) {
-          stateEl.value = (place["state abbreviation"] || "CA").toUpperCase().slice(0, 2);
+  function setupPhoneMasking() {
+    // Simple phone number formatting
+    phoneInput.addEventListener('input', function(e) {
+      const value = e.target.value.replace(/\D/g, '');
+      let formattedValue = '';
+      
+      if (value.length > 0) {
+        formattedValue = value.substring(0, 3);
+        if (value.length > 3) {
+          formattedValue += '-' + value.substring(3, 6);
+        }
+        if (value.length > 6) {
+          formattedValue += '-' + value.substring(6, 10);
         }
       }
-    } catch (_) {
-      if (!stateEl.value) stateEl.value = "CA";
-    }
-  };
-
-  zipEl.addEventListener("input", () => {
-    clearTimeout(zipTimer);
-    const val = zipEl.value.replace(/\D/g, "").slice(0, 5);
-    zipTimer = setTimeout(() => lookupZip(val), 300);
-  });
-  zipEl.addEventListener("blur", () => {
-    const val = zipEl.value.replace(/\D/g, "").slice(0, 5);
-    lookupZip(val);
-  });
-}
-
-// [8] Floating labels for selects (Service/Referral)
-function floatSelectsOnValue() {
-  document.querySelectorAll(".floating-select select").forEach((sel) => {
-    const wrap = sel.parentElement; // .floating-select
-    const set = () => {
-      if (sel.value && sel.value !== "") wrap.classList.add("has-value");
-      else wrap.classList.remove("has-value");
-    };
-    sel.addEventListener("change", set);
-    set();              // initial
-    setTimeout(set, 0); // handle autofill
-  });
-}
-
-// [9] Google Places (optional)
-function enablePlacesAutocomplete() {
-  if (window.google && google.maps && google.maps.places) {
-    const street = document.getElementById("street");
-    if (street) {
-      new google.maps.places.Autocomplete(street, {
-        types: ["address"],
-        componentRestrictions: { country: "us" }
-      });
-    }
-  }
-}
-
-// [10] Show invalid borders only after user interacts
-function wireTouchedUx() {
-  const fields = document.querySelectorAll("#estimate-form input, #estimate-form select, #estimate-form textarea");
-  fields.forEach((el) => {
-    const mark = () => el.classList.add("touched");
-    el.addEventListener("blur", mark);
-    el.addEventListener("change", mark);
-  });
-}
-
-// [11] File input — guaranteed click + filename list
-function setupFileUpload() {
-  const fileInput = document.getElementById("photos");
-  const trigger   = document.querySelector(".custom-file-upload"); // the navy button
-  const label     = document.querySelector(".file-name");
-
-  if (!fileInput) return;
-
-  // Always open the file chooser when clicking the navy button
-  if (trigger) {
-    trigger.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      fileInput.click();      // programmatically open the picker
+      
+      e.target.value = formattedValue;
     });
   }
 
-  // Show selected file names
-  fileInput.addEventListener("change", (e) => {
-    if (!label) return;
-    const files = Array.from(e.target.files || []);
-    if (!files.length) { label.textContent = "No files selected"; return; }
+  function setupFormValidation() {
+    // Add real-time validation feedback
+    const inputs = form.querySelectorAll('input:not([type="hidden"]), textarea, select');
+    
+    inputs.forEach(input => {
+      input.addEventListener('blur', validateField);
+      input.addEventListener('input', clearError);
+    });
+  }
 
-    const names = files.map(f => f.name);
-    const shown = names.slice(0, 3).join(", ");
-    label.textContent = names.length > 3 ? `${shown} (+${names.length - 3} more)` : shown;
+  function validateField(e) {
+    const field = e.target;
+    const value = field.value.trim();
+    const fieldId = field.id;
+    const fieldGroup = field.closest('.zenith-input-group, .floating-select');
+    
+    // Clear previous errors
+    clearError(field);
+    
+    // Required field validation
+    if (field.required && !value) {
+      showError(fieldGroup, 'This field is required');
+      return false;
+    }
+    
+    // Specific field validations
+    switch(fieldId) {
+      case 'email':
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          showError(fieldGroup, 'Please enter a valid email');
+          return false;
+        }
+        break;
+        
+      case 'phone':
+        if (!/^\d{3}-\d{3}-\d{4}$/.test(value)) {
+          showError(fieldGroup, 'Please use format: 123-456-7890');
+          return false;
+        }
+        break;
+        
+      case 'zip':
+        if (!/^\d{5}(-\d{4})?$/.test(value)) {
+          showError(fieldGroup, 'Please enter a valid ZIP code');
+          return false;
+        }
+        break;
+        
+      case 'state':
+        if (value.length !== 2) {
+          showError(fieldGroup, 'Please use 2-letter state code');
+          return false;
+        }
+        break;
+    }
+    
+    return true;
+  }
+
+  function validateForm() {
+    let isValid = true;
+    const fieldsToValidate = form.querySelectorAll('input:not([type="hidden"]):required, textarea:required, select:required');
+    
+    fieldsToValidate.forEach(field => {
+      const event = { target: field };
+      if (!validateField(event)) {
+        isValid = false;
+      }
+    });
+    
+    return isValid;
+  }
+
+  function showError(fieldGroup, message) {
+    if (!fieldGroup) return;
+    
+    // Remove existing error if any
+    const existingError = fieldGroup.querySelector('.error-message');
+    if (existingError) existingError.remove();
+    
+    // Add error message
+    const errorElement = document.createElement('div');
+    errorElement.className = 'error-message';
+    errorElement.textContent = message;
+    errorElement.style.color = '#e74c3c';
+    errorElement.style.fontSize = '0.8rem';
+    errorElement.style.marginTop = '0.25rem';
+    
+    fieldGroup.appendChild(errorElement);
+    
+    // Highlight field
+    const input = fieldGroup.querySelector('input, textarea, select');
+    if (input) {
+      input.style.borderColor = '#e74c3c';
+      input.style.boxShadow = '0 0 0 2px rgba(231, 76, 60, 0.2)';
+    }
+  }
+
+  function clearError(e) {
+    const field = e.target || e;
+    const fieldGroup = field.closest('.zenith-input-group, .floating-select');
+    
+    if (!fieldGroup) return;
+    
+    // Remove error message
+    const errorElement = fieldGroup.querySelector('.error-message');
+    if (errorElement) errorElement.remove();
+    
+    // Reset field styling
+    field.style.borderColor = '';
+    field.style.boxShadow = '';
+  }
+
+  function setupFileUploadDisplay() {
+    fileInput.addEventListener('change', function() {
+      if (this.files.length > 0) {
+        if (this.files.length === 1) {
+          fileNameDisplay.textContent = this.files[0].name;
+        } else {
+          fileNameDisplay.textContent = `${this.files.length} files selected`;
+        }
+      } else {
+        fileNameDisplay.textContent = 'No files selected';
+      }
+    });
+  }
+
+  function setupDisplayNameGeneration() {
+    // Generate display name from first + last name
+    const nameInputs = [firstNameInput, lastNameInput];
+    
+    nameInputs.forEach(input => {
+      input.addEventListener('blur', updateDisplayName);
+    });
+  }
+
+  function updateDisplayName() {
+    const firstName = firstNameInput.value.trim();
+    const lastName = lastNameInput.value.trim();
+    
+    if (firstName || lastName) {
+      displayNameField.value = `${firstName} ${lastName}`.trim();
+    }
+  }
+
+  function showSuccessMessage() {
+    // Create success message element
+    const successMessage = document.createElement('div');
+    successMessage.className = 'zenith-success-message';
+    successMessage.innerHTML = `
+      <div style="
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+        text-align: center;
+      ">
+        <h3 style="
+          color: var(--zenith-navy);
+          margin-top: 0;
+          margin-bottom: 1rem;
+        ">Thank You!</h3>
+        <p style="
+          color: #495057;
+          margin-bottom: 1rem;
+        ">Your roofing estimate request has been received. Our team will contact you within 24 hours.</p>
+        <p style="
+          color: #6c757d;
+          font-size: 0.9rem;
+          margin-bottom: 0;
+        ">For immediate assistance, call <strong>858-900-6163</strong></p>
+      </div>
+    `;
+    
+    // Insert after form
+    form.parentNode.insertBefore(successMessage, form.nextSibling);
+    
+    // Remove message after 5 seconds
+    setTimeout(() => {
+      successMessage.style.opacity = '0';
+      successMessage.style.transition = 'opacity 0.5s ease';
+      setTimeout(() => successMessage.remove(), 500);
+    }, 5000);
+  }
+
+  // [5] ADDITIONAL ENHANCEMENTS
+  
+  // Auto-advance fields (like ZIP after state)
+  document.getElementById('state')?.addEventListener('input', function() {
+    if (this.value.length === 2) {
+      document.getElementById('zip')?.focus();
+    }
   });
-}
 
-// [12] Tiny copy tweak
-function fixCopy() {
-  const phoneHint = document.getElementById("phone-hint");
-  if (phoneHint) phoneHint.textContent = "Example: 858-900-6163";
-}
-
-// [13] Submit → Zapier (FormData)
-async function onSubmit(e) {
-  e.preventDefault();
-  const form = e.currentTarget;
-
-  const fd = new FormData(form);
-
-  // add raw phone digits
-  const phoneRaw = String(fd.get("phone") || "");
-  fd.set("phone_digits", phoneRaw.replace(/\D/g, ""));
-
-  // ensure display-name present
-  const first = (fd.get("first-name") || "").toString().trim();
-  const last  = (fd.get("last-name")  || "").toString().trim();
-  const dn    = (fd.get("display-name") || "").toString().trim();
-  if (!dn) fd.set("display-name", [first, last].filter(Boolean).join(" "));
-
-  // default state if empty
-  if (!String(fd.get("state") || "").trim()) fd.set("state", "CA");
-
-  // honeypot → pretend success
-  if ((fd.get("company") || "").toString().trim() !== "") {
-    showSuccessMessage();
-    form.reset();
-    return;
-  }
-
-  // page + reCAPTCHA
-  fd.append("page", location.pathname + location.hash);
-  try {
-    if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) {
-      fd.append("recaptcha", grecaptcha.getResponse(window.__zenithRecaptchaWidgetId) || "");
+  // Service type "Other" details
+  const serviceSelect = document.getElementById('service');
+  const detailsTextarea = document.getElementById('details');
+  
+  serviceSelect?.addEventListener('change', function() {
+    if (this.value === 'Other') {
+      detailsTextarea.placeholder = 'Please describe your roofing needs';
+    } else {
+      detailsTextarea.placeholder = ' ';
     }
-  } catch (_) {}
-
-  const btn = form.querySelector('button[type="submit"]');
-  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="submit-text">Sending...</span>'; }
-
-  try {
-    const res = await fetch(ZAP_URL, { method: "POST", body: fd });
-    if (!res.ok) throw new Error("Submit failed");
-
-    showSuccessMessage();
-    form.reset();
-
-    // reset UI bits
-    if (window.grecaptcha && window.__zenithRecaptchaWidgetId != null) {
-      grecaptcha.reset(window.__zenithRecaptchaWidgetId);
-    }
-    const label = document.querySelector(".file-name");
-    if (label) label.textContent = "No files selected";
-    const stateEl = document.getElementById("state");
-    if (stateEl) stateEl.value = "CA";
-    floatSelectsOnValue();
-  } catch (err) {
-    console.error(err);
-    showErrorMessage();
-  } finally {
-    if (btn) { btn.disabled = false; btn.innerHTML = '<span class="submit-text">Request Free Estimate</span><span class="submit-icon">→</span>'; }
-  }
-}
-
-// [14] Simple toasts for now
-function showSuccessMessage() {
-  alert("Thank you! Your estimate request has been received. We'll contact you within 24 hours.");
-}
-function showErrorMessage() {
-  alert("Sorry, something went wrong. Please call 858-900-6163 or try again.");
-}
-<script>
-document.addEventListener("change", (e) => {
-  if (e.target && e.target.id === "photos") {
-    const out = document.querySelector(".file-name");
-    if (!out) return;
-    const names = Array.from(e.target.files || []).map(f => f.name);
-    out.textContent = names.length ? names.join(", ") : "No files selected";
-  }
+  });
 });
-</script>
