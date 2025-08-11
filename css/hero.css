@@ -175,17 +175,20 @@ textarea:invalid:focus {
 
 .zenith-btn:hover { background-color: #2c5282; }
 
-/* reCAPTCHA container & slot (ensure visible, not squeezed) */
+/* reCAPTCHA container & slot (centered nicely) */
 .recaptcha-container {
   display: flex;
-  justify-content: center;
+  justify-content: center;  /* horizontal center */
+  align-items: center;      /* vertical center if taller row */
   width: 100%;
+  margin-top: 0.5rem;       /* small space above */
+  margin-bottom: 0.5rem;    /* small space below */
 }
 
 #recaptcha-slot {
-  display: inline-block;
-  min-width: 304px;   /* Google default */
-  min-height: 78px;   /* Google default */
+  display: block;
+  min-width: 304px;   /* Google default width */
+  min-height: 78px;   /* Google default height */
 }
 
 /* Disclaimer */
