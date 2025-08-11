@@ -1,5 +1,6 @@
 <!-- =========================================================
  [HERO SECTION] Zenith Roofing — Free Estimate Form
+ Two-column desktop / stacked mobile
  File: hero-section.html
 ========================================================= -->
 <section class="zenith-hero" id="roofing-estimate">
@@ -26,87 +27,75 @@
 
     <!-- ===== Form ===== -->
     <form id="estimate-form" method="POST">
-      <!-- First Name -->
-      <div class="form-group">
-        <label for="firstName">First Name*</label>
-        <input type="text" id="firstName" name="first_name" required>
-      </div>
+      <div class="form-grid">
+        <!-- Column 1 -->
+        <div class="form-col">
+          <div class="form-group">
+            <label for="firstName">First Name*</label>
+            <input type="text" id="firstName" name="first_name" required>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name*</label>
+            <input type="text" id="lastName" name="last_name" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number*</label>
+            <input type="tel" id="phone" name="phone" pattern="\(\d{3}\) \d{3}-\d{4}" placeholder="(555) 555-5555" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address*</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="serviceType">Service Type*</label>
+            <select id="serviceType" name="service_type" required>
+              <option value="">Select Service</option>
+              <option>Roof Replacement</option>
+              <option>Roof Repair</option>
+              <option>Gutters</option>
+              <option>Roof Maintenance</option>
+              <option>Commercial Roofing</option>
+              <option>Residential Roofing</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
 
-      <!-- Last Name -->
-      <div class="form-group">
-        <label for="lastName">Last Name*</label>
-        <input type="text" id="lastName" name="last_name" required>
-      </div>
-
-      <!-- Phone -->
-      <div class="form-group">
-        <label for="phone">Phone Number*</label>
-        <input type="tel" id="phone" name="phone" pattern="\(\d{3}\) \d{3}-\d{4}" placeholder="(555) 555-5555" required>
-      </div>
-
-      <!-- Email -->
-      <div class="form-group">
-        <label for="email">Email Address*</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-
-      <!-- Service Type -->
-      <div class="form-group">
-        <label for="serviceType">Service Type*</label>
-        <select id="serviceType" name="service_type" required>
-          <option value="">Select Service</option>
-          <option>Roof Replacement</option>
-          <option>Roof Repair</option>
-          <option>Gutters</option>
-          <option>Roof Maintenance</option>
-          <option>Commercial Roofing</option>
-          <option>Residential Roofing</option>
-          <option>Other</option>
-        </select>
-      </div>
-
-      <!-- Address -->
-      <div class="form-group">
-        <label for="streetAddress">Street Address*</label>
-        <input type="text" id="streetAddress" name="street_address" required>
-      </div>
-
-      <!-- ZIP Code -->
-      <div class="form-group">
-        <label for="zip">ZIP Code*</label>
-        <input type="text" id="zip" name="zip" maxlength="10" required>
-      </div>
-
-      <!-- City (auto-populated) -->
-      <div class="form-group">
-        <label for="city">City*</label>
-        <input type="text" id="city" name="city" readonly required>
-      </div>
-
-      <!-- Brief Description -->
-      <div class="form-group">
-        <label for="description">Brief Description*</label>
-        <textarea id="description" name="description" rows="4" required></textarea>
-      </div>
-
-      <!-- Upload Photos -->
-      <div class="form-group">
-        <label for="photos">Upload Photos</label>
-        <input type="file" id="photos" name="photos" accept="image/*" multiple>
-      </div>
-
-      <!-- How Did You Hear About Us -->
-      <div class="form-group">
-        <label for="referral">How Did You Hear About Us?*</label>
-        <select id="referral" name="referral_source" required>
-          <option value="">Select Option</option>
-          <option>Google</option>
-          <option>Yelp</option>
-          <option>Angi</option>
-          <option>Social Media</option>
-          <option>Referral</option>
-          <option>Other</option>
-        </select>
+        <!-- Column 2 -->
+        <div class="form-col">
+          <div class="form-group">
+            <label for="streetAddress">Street Address*</label>
+            <input type="text" id="streetAddress" name="street_address" required>
+          </div>
+          <div class="form-group">
+            <label for="zip">ZIP Code*</label>
+            <input type="text" id="zip" name="zip" maxlength="10" required>
+          </div>
+          <div class="form-group">
+            <label for="city">City*</label>
+            <input type="text" id="city" name="city" readonly required>
+          </div>
+          <div class="form-group">
+            <label for="description">Brief Description*</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="photos">Upload Photos</label>
+            <input type="file" id="photos" name="photos" accept="image/*" multiple>
+          </div>
+          <div class="form-group">
+            <label for="referral">How Did You Hear About Us?*</label>
+            <select id="referral" name="referral_source" required>
+              <option value="">Select Option</option>
+              <option>Google</option>
+              <option>Yelp</option>
+              <option>Angi</option>
+              <option>Social Media</option>
+              <option>Referral</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <!-- reCAPTCHA -->
@@ -125,4 +114,3 @@
     </form>
   </div>
 </section>
-
