@@ -1,6 +1,5 @@
 <!-- =========================================================
  [HERO SECTION] Zenith Roofing — Free Estimate Form
- Row-based layout
 ========================================================= -->
 <section class="zenith-hero" id="roofing-estimate">
 
@@ -33,69 +32,63 @@
       <!-- Row 1: First Name | Last Name -->
       <div class="form-row">
         <div class="form-group form-col-6">
-          <label for="firstName">First Name*</label>
-          <input type="text" id="firstName" name="first_name" autocomplete="given-name" required>
+          <label for="firstName" class="sr-only">First Name*</label>
+          <input type="text" id="firstName" name="first_name" placeholder="First Name*" autocomplete="given-name" required>
         </div>
         <div class="form-group form-col-6">
-          <label for="lastName">Last Name*</label>
-          <input type="text" id="lastName" name="last_name" autocomplete="family-name" required>
+          <label for="lastName" class="sr-only">Last Name*</label>
+          <input type="text" id="lastName" name="last_name" placeholder="Last Name*" autocomplete="family-name" required>
         </div>
       </div>
 
       <!-- Row 2: Phone | Email -->
       <div class="form-row">
         <div class="form-group form-col-6">
-          <label for="phone">Phone Number*</label>
+          <label for="phone" class="sr-only">Phone Number*</label>
           <input
-            type="tel"
-            id="phone"
-            name="phone"
-            inputmode="tel"
-            placeholder="(555) 555-5555"
-            pattern="\\(\\d{3}\\) \\d{3}-\\d{4}"
-            required
-          >
+            type="tel" id="phone" name="phone" inputmode="tel"
+            placeholder="Phone Number*" pattern="\\(\\d{3}\\) \\d{3}-\\d{4}" required>
         </div>
         <div class="form-group form-col-6">
-          <label for="email">Email Address*</label>
-          <input type="email" id="email" name="email" autocomplete="email" required>
+          <label for="email" class="sr-only">Email Address*</label>
+          <input type="email" id="email" name="email" placeholder="Email Address*" autocomplete="email" required>
         </div>
       </div>
 
       <!-- Row 3: Street Address (full width) -->
       <div class="form-row">
         <div class="form-group">
-          <label for="streetAddress">Street Address*</label>
-          <input type="text" id="streetAddress" name="street_address" autocomplete="address-line1" required>
+          <label for="streetAddress" class="sr-only">Street Address*</label>
+          <input type="text" id="streetAddress" name="street_address" placeholder="Street Address*" autocomplete="address-line1" required>
         </div>
       </div>
 
       <!-- Row 4: City | State | ZIP -->
       <div class="form-row">
         <div class="form-group form-col-4">
-          <label for="city">City*</label>
-          <input type="text" id="city" name="city" autocomplete="address-level2" required>
+          <label for="city" class="sr-only">City*</label>
+          <input type="text" id="city" name="city" placeholder="City*" autocomplete="address-level2" required>
         </div>
         <div class="form-group form-col-4">
-          <label for="state">State*</label>
-          <input type="text" id="state" name="state" value="CA" readonly>
+          <label for="state" class="sr-only">State*</label>
+          <input type="text" id="state" name="state" value="CA" placeholder="State*" readonly>
         </div>
         <div class="form-group form-col-4">
-          <label for="zip">ZIP Code*</label>
-          <input type="text" id="zip" name="zip" maxlength="10" autocomplete="postal-code" required>
+          <label for="zip" class="sr-only">ZIP Code*</label>
+          <input type="text" id="zip" name="zip" placeholder="ZIP Code*" maxlength="10" autocomplete="postal-code" required>
         </div>
       </div>
 
       <!-- Row 5: Upload | Service Type | Referral -->
       <div class="form-row">
         <div class="form-group form-col-4">
-          <label for="photos">Upload Photos</label>
+          <label for="photos" class="sr-only">Upload Photos</label>
           <input type="file" id="photos" name="photos" accept="image/*" multiple>
         </div>
         <div class="form-group form-col-4">
-          <label for="serviceType">Service Type*</label>
+          <label for="serviceType" class="sr-only">Service Type*</label>
           <select id="serviceType" name="service_type" required>
-            <option value="">Select Service</option>
+            <option value="" selected disabled hidden>Service Type*</option>
             <option>Roof Replacement</option>
             <option>Roof Repair</option>
             <option>Gutters</option>
@@ -106,9 +99,9 @@
           </select>
         </div>
         <div class="form-group form-col-4">
-          <label for="referral">How Did You Hear About Us?*</label>
+          <label for="referral" class="sr-only">How did you hear about us?*</label>
           <select id="referral" name="referral_source" required>
-            <option value="">Select Option</option>
+            <option value="" selected disabled hidden>How did you hear about us?*</option>
             <option>Google</option>
             <option>Yelp</option>
             <option>Angi</option>
@@ -122,28 +115,29 @@
       <!-- Row 6: Description -->
       <div class="form-row">
         <div class="form-group">
-          <label for="description">Brief Description*</label>
-          <textarea id="description" name="description" rows="4" placeholder="Tell us briefly what you need help with..." required></textarea>
+          <label for="description" class="sr-only">Brief Description*</label>
+          <textarea id="description" name="description" rows="4"
+            placeholder="Brief Description* — tell us what you need help with" required></textarea>
         </div>
       </div>
 
-      <!-- reCAPTCHA Row (EXPLICIT RENDER SLOT) -->
+      <!-- reCAPTCHA Row (explicit render slot) -->
       <div class="form-row">
         <div class="form-group recaptcha-container">
           <div id="recaptcha-slot" aria-label="reCAPTCHA widget"></div>
         </div>
       </div>
 
-      <!-- Row 8: Submit Button -->
+      <!-- Submit -->
       <div class="form-row">
         <button type="submit" class="zenith-btn">Request Free Estimate</button>
       </div>
 
-<!-- Disclaimer -->
-<p class="form-disclaimer">
-  <em>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our 
-  <a href="#real-estate">Real Estate Services</a>.</em>
-</p>
+      <!-- Disclaimer -->
+      <p class="form-disclaimer">
+        <em>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our
+        <a href="#real-estate">Real Estate Services</a>.</em>
+      </p>
     </form>
   </div>
 </section>
