@@ -30,22 +30,18 @@
   overflow:hidden;
 }
 
-/* ===== Background video (runs under the fixed header) ===== */
-.zenith-video-container{ position:absolute; z-index:-1; left:0; right:0; bottom:0; }
-.zenith-background-video,
-.zenith-video-overlay{
-  position:absolute;
-  left:0; right:0; bottom:0;
-  /* pull up behind header + extend height so it fills behind it */
-  top: calc(-1 * var(--header-h));
-  height: calc(100% + var(--header-h));
-  width:100%;
+/* ========== BACKGROUND VIDEO ========== */
+.background-video {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -9999;
+  opacity: 0.6; /* ⬅️ increased from 0.35 */
+  pointer-events: none;
 }
-.zenith-background-video{ object-fit:cover; object-position:center; }
-.zenith-video-overlay{
-  background-color: rgba(7,46,89,0.78); /* true Zenith navy tint */
-  mix-blend-mode: normal;               /* prevents purple cast */
-}
+
 
 /* ===== Card ===== */
 .zenith-card{
