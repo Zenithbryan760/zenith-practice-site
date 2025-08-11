@@ -16,26 +16,29 @@
   --shadow-sm:0 4px 14px rgba(2,14,32,.10);
 }
 
-/* ===== Base & Layout ===== */
-.zenith-hero{
-  position:relative; min-height:100vh;
-  display:flex; align-items:center; justify-content:center;
-  padding:clamp(1.25rem, 2vw, 2rem);
-  color:var(--zenith-text);
-  font-family:'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  overflow:hidden;
+/* ========== BASE ========== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--zenith-blue); scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  color: var(--text-gray);
+  background: transparent;
+  line-height: 1.6;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+/* ========== BACKGROUND VIDEO ========== */
+.background-video {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -9999;
+  opacity: 0.6; /* ⬅️ increased from 0.35 */
+  pointer-events: none;
 }
 
-/* Background video + true brand tint */
-.zenith-video-container,
-.zenith-background-video,
-.zenith-video-overlay{position:absolute; inset:0;}
-.zenith-video-container{z-index:-1;}
-.zenith-background-video{object-fit:cover;}
-.zenith-video-overlay{
-  background-color: rgba(7,46,89,0.78); /* solid Zenith navy tint */
-  mix-blend-mode: normal;               /* no purple cast */
-}
 
 /* ===== Card ===== */
 .zenith-card{
