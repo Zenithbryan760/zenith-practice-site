@@ -29,19 +29,18 @@
 }
 
 /* ===== HERO-ONLY BACKGROUND VIDEO ===== */
-.zenith-video-container {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  z-index: 0;
-  background: url("roofing-poster.jpg") center/cover no-repeat; /* fallback image */
+.zenith-video-container{
+  position:absolute;                 /* lives inside the hero only */
+  inset:0;
+  overflow:hidden;
+  z-index:0;                         /* behind hero content */
 }
-.zenith-background-video {
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-.zenith-background-video.is-playing {
-  opacity: 1;
+.zenith-background-video{
+  position:absolute;
+  inset:0;
+  width:100%; height:100%;
+  object-fit:cover;                  /* fill hero without stretching */
+  object-position:center;
 }
 .zenith-video-overlay{
   position:absolute;
