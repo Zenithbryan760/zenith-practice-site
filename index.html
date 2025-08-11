@@ -321,6 +321,17 @@
   <!-- ===== OTHER SCRIPTS ===== -->
   <script src="js/header-mobile.js" defer></script>
   <script src="js/header.js" defer></script>
+  <script>
+  (function () {
+    function setNavCollapsedClass() {
+      var toggle = document.querySelector('.menu-toggle');
+      var collapsed = toggle && getComputedStyle(toggle).display !== 'none';
+      document.documentElement.classList.toggle('nav-collapsed', collapsed);
+    }
+    window.addEventListener('load', setNavCollapsedClass);
+    window.addEventListener('resize', setNavCollapsedClass);
+  })();
+</script>
 
   <!-- IMPORTANT: hero.js (helpers like ZIP->City + submit guard) -->
   <script src="js/hero.js" defer></script>
