@@ -13,20 +13,20 @@
     <div class="zenith-video-overlay"></div>
   </div>
 
-<!-- ===== Card ===== -->
-<div class="zenith-card">
-  <!-- Header with Centered Logo -->
-  <div class="zenith-header">
-    <div class="zenith-logo-container">
-      <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-logo">
-      <div class="logo-backdrop"></div>
+  <!-- ===== Card ===== -->
+  <div class="zenith-card">
+    <!-- Header with Centered Logo -->
+    <div class="zenith-header">
+      <div class="zenith-logo-container">
+        <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-logo">
+        <div class="logo-backdrop"></div>
+      </div>
+      <div class="zenith-header-text">
+        <h1>FREE ESTIMATES</h1>
+        <h2>FOR HOMEOWNERS & BUSINESS OWNERS</h2>
+        <p class="service-area">Roofing Contractor in Escondido, San Diego, Temecula & Southern California</p>
+      </div>
     </div>
-    <div class="zenith-header-text">
-      <h1>FREE ESTIMATES</h1>
-      <h2>FOR HOMEOWNERS & BUSINESS OWNERS</h2>
-      <p class="service-area">Roofing Contractor in Escondido, San Diego, Temecula & Southern California</p>
-    </div>
-  </div>
 
     <!-- ===== Form ===== -->
     <form id="estimate-form" method="POST" novalidate>
@@ -127,10 +127,10 @@
         </div>
       </div>
 
-      <!-- reCAPTCHA Row -->
+      <!-- reCAPTCHA Row (EXPLICIT RENDER SLOT) -->
       <div class="form-row">
         <div class="form-group recaptcha-container">
-          <div class="g-recaptcha" data-sitekey="6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI"></div>
+          <div id="recaptcha-slot" aria-label="reCAPTCHA widget"></div>
         </div>
       </div>
 
