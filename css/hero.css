@@ -191,3 +191,17 @@ input:invalid:focus, select:invalid:focus, textarea:invalid:focus{
     }
   }
 }
+/* When header is collapsed (hamburger visible), hide hero logo */
+.nav-collapsed .zenith-hero .zenith-header .zenith-logo-container,
+.nav-collapsed .zenith-hero .zenith-header .zenith-logo,
+.nav-collapsed .zenith-hero .zenith-header .logo-backdrop {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* And keep the hero offset below the fixed bar */
+.nav-collapsed .zenith-hero {
+  --collapsed-header-height: 80px; /* adjust if needed */
+  padding-top: calc(var(--collapsed-header-height) + 12px);
+  min-height: calc(100svh - var(--collapsed-header-height));
+}
