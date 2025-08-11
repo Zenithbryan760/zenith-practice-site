@@ -1,115 +1,272 @@
 /* =========================================================
-   HERO SECTION STYLES — Zenith Roofing
-   ========================================================= */
+   Zenith Roofing — Hero / Free Estimate (Polished + Brand)
+   Single source of truth (no duplicates)
+   ======================================================== */
 
-/* ---------- Background Video ---------- */
-.background-video {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -9999; /* behind everything */
-  opacity: 0.6; /* adjust brightness */
-  pointer-events: none;
-}
-.background-video::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(7, 46, 89, 0.5); /* navy overlay */
-  z-index: -9998;
+/* Brand tokens */
+:root{
+  --zenith-navy:#072e59;
+  --zenith-navy-2:#0b3a6f;
+  --zenith-orange:#f7941d;
+  --zenith-text:#1e293b;
+  --zenith-muted:#64748b;
+  --zenith-border:#e2e8f0;
+  --radius:10px;
+  --shadow-lg:0 14px 40px rgba(2,14,32,.18);
+  --shadow-sm:0 4px 14px rgba(2,14,32,.10);
 }
 
-/* ---------- Card ---------- */
-.zenith-card {
-  position: relative;
-  background: #fff;
-  padding: 24px;
-  border-radius: 8px;
-  max-width: 900px;
-  width: 95%;
-  z-index: 1;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+/* ===== Base & Layout ===== */
+.zenith-hero{
+  position:relative; min-height:100vh;
+  display:flex; align-items:center; justify-content:center;
+  padding:clamp(1.25rem, 2vw, 2rem);
+  color:var(--zenith-text);
+  font-family:'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  overflow:hidden;
 }
 
-/* ---------- Header ---------- */
-.zenith-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-.zenith-logo {
-  width: 60px;
-  margin-right: 1rem;
-}
-.zenith-header-text h2 {
-  margin: 0;
-  font-size: 1.4rem;
-  color: #072e59;
-}
-.zenith-header-text p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #555;
+/* Background video + true brand tint */
+.zenith-video-container,
+.zenith-background-video,
+.zenith-video-overlay{position:absolute; inset:0;}
+.zenith-video-container{z-index:-1;}
+.zenith-background-video{object-fit:cover;}
+.zenith-video-overlay{
+  background-color: rgba(7,46,89,0.78); /* solid Zenith navy tint */
+  mix-blend-mode: normal;               /* no purple cast */
 }
 
-/* ---------- Form Layout ---------- */
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
+/* ===== Card ===== */
+.zenith-card{
+  background:#fff; border-radius:var(--radius);
+  box-shadow:var(--shadow-lg);
+  width:100%; max-width:920px;
+  padding:clamp(1.5rem, 3vw, 2.5rem);
 }
-.form-row-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  align-items: end;
+
+/* ===== Header ===== */
+.zenith-header{text-align:center; margin-bottom:1.75rem;}
+.zenith-logo-container{position:relative; display:inline-block; margin-bottom:.75rem;}
+.zenith-logo{position:relative; width:86px; height:auto; z-index:1;}
+
+/* Logo backdrop: navy→transparent fade with orange ring for contrast */
+.logo-backdrop{
+  position:absolute; inset:-18px; z-index:0; border-radius:50%;
+  background: radial-gradient(circle at 50% 50%,
+              rgba(0,0,0,.96) 0%,
+              rgba(7,46,89,.95) 58%,
+              rgba(7,46,89,0) 100%);
+  border:3px solid var(--zenith-orange);
+  box-shadow:0 6px 18px rgba(0,0,0,.28);
+  backdrop-filter: blur(2px);
 }
-.form-group {
-  display: flex;
-  flex-direction: column;
+
+/* Titles */
+.zenith-header-text h1{
+  margin:.25rem 0 0; font-weight:800; letter-spacing:.3px;
+  color:var(--zenith-navy);
+  font-size:clamp(1.6rem, 3.2vw, 2rem);
+  text-transform:uppercase;
 }
-label {
-  font-weight: 600;
-  margin-bottom: 0.3rem;
+.zenith-header-text h2{
+  margin:.2rem 0 .35rem; font-weight:700; color:var(--zenith-navy);
+  font-size:clamp(1rem, 2.5vw, 1.25rem);
 }
-input, select, textarea {
-  width: 100%;
-  padding: 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.service-area{ color:var(--zenith-muted); font-size:clamp(.92rem, 2vw, 1rem); }
+
+/* ===== Form grid ===== */
+.form-row{display:flex; flex-wrap:wrap; gap:1.25rem; margin-bottom:1.25rem;}
+.form-group{flex:1; display:flex; flex-direction:column; gap:.45rem; min-width:0;}
+.form-col-6{flex:0 0 calc(50% - .625rem);}
+.form-col-4{flex:0 0 calc(33.333% - .84rem);}
+
+/* Visually hidden (keep labels for a11y while using placeholders) */
+.sr-only{
+  position:absolute !important;
+  width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,1px,1px); white-space:nowrap; border:0;
 }
-textarea {
-  resize: vertical;
-  min-height: 120px;
+
+/* Labels (for screen readers) */
+label{font-weight:600; font-size:.92rem; color:#334155;}
+
+/* Inputs / selects / textareas */
+input, select, textarea{
+  width:100%; font-size:1rem;
+  border:1px solid var(--zenith-border); border-radius:10px;
+  padding:.9rem .95rem;
+  background:#fff; color:#0f172a;
+  transition: box-shadow .15s ease, border-color .15s ease, transform .05s ease;
+  box-shadow:var(--shadow-sm);
 }
-.zenith-btn {
-  display: inline-block;
-  background: #f7941d;
-  color: white;
-  padding: 0.8rem 1.5rem;
-  font-weight: bold;
+input::placeholder, textarea::placeholder{
+  color:#94a3b8; opacity:1; font-weight:500;
+}
+input:focus, select:focus, textarea:focus{
+  outline:none; border-color:var(--zenith-navy);
+  box-shadow:0 0 0 3px rgba(7,46,89,.15), var(--shadow-sm);
+}
+
+/* Invalid state -> ORANGE (brand) */
+input:invalid, select:invalid, textarea:invalid{
+  border-color:var(--zenith-orange);
+}
+input:invalid:focus, select:invalid:focus, textarea:invalid:focus{
+  box-shadow:0 0 0 3px rgba(247,148,29,.18);
+}
+
+/* ===== File input (branded "Choose Files" button) ===== */
+input[type="file"]{
+  width:100%;
+  padding:.55rem .75rem;
+  border:1px solid var(--zenith-border);
+  border-radius:10px;
+  background:#fff;
+  color:#334155;
+  box-shadow:none;
+}
+
+/* Modern browsers */
+input[type="file"]::file-selector-button{
+  background: var(--zenith-orange);
+  color:#fff;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  padding:.6rem .9rem;
+  margin-right:.75rem;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  transition: background .2s ease, box-shadow .2s ease, transform .08s ease;
+  box-shadow: 0 6px 18px rgba(247,148,29,.25);
 }
-.zenith-btn:hover {
-  background: #d77a18;
+input[type="file"]::file-selector-button:hover{
+  background:#e9830b;
+  box-shadow: 0 10px 24px rgba(247,148,29,.35);
+  transform: translateY(-1px);
 }
-.form-disclaimer {
-  font-size: 0.8rem;
-  color: #555;
-  margin-top: 0.5rem;
-}
-.recaptcha-container {
-  text-align: center;
-  margin: 1rem 0;
+input[type="file"]::file-selector-button:active{
+  transform: translateY(0);
 }
 
-/* ---------- Mobile ---------- */
-@media (max-width: 768px) {
-  .form-grid, .form-row-2 {
-    grid-template-columns: 1fr;
-  }
+/* Safari/WebKit fallback */
+input[type="file"]::-webkit-file-upload-button{
+  background: var(--zenith-orange);
+  color:#fff;
+  border:none;
+  padding:.6rem .9rem;
+  margin-right:.75rem;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  transition: background .2s ease, box-shadow .2s ease, transform .08s ease;
+  box-shadow: 0 6px 18px rgba(247,148,29,.25);
+}
+input[type="file"]::-webkit-file-upload-button:hover{
+  background:#e9830b;
+  box-shadow: 0 10px 24px rgba(247,148,29,.35);
+  transform: translateY(-1px);
+}
+
+/* Accessible focus for file input */
+input[type="file"]:focus-within{
+  outline:3px solid rgba(247,148,29,.35);
+  outline-offset:2px;
+}
+
+/* ===== Buttons ===== */
+
+/* Main submit button → ORANGE */
+.zenith-btn{
+  background: var(--zenith-orange);
+  color:#fff;
+  border:none;
+  padding:1rem 1.25rem;
+  font-size:1rem;
+  font-weight:700;
+  width:100%;
+  border-radius:12px;
+  cursor:pointer;
+  transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+  box-shadow: 0 10px 24px rgba(247,148,29,.25);
+}
+.zenith-btn:hover{
+  background:#e9830b;
+  box-shadow: 0 14px 28px rgba(247,148,29,.35);
+  transform: translateY(-1px);
+}
+.zenith-btn:active{ transform: translateY(0); }
+.zenith-btn:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:2px; }
+
+/* Utility: orange button class (use on any <a> or <button>) */
+.btn-orange{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:.7rem 1rem; border-radius:12px;
+  background: var(--zenith-orange); color:#fff; font-weight:700;
+  text-decoration:none; border:none; cursor:pointer;
+  transition: background .2s ease, transform .08s ease, box-shadow .2s ease;
+  box-shadow: 0 8px 22px rgba(247,148,29,.28);
+}
+.btn-orange:hover{ background:#e9830b; transform:translateY(-1px); box-shadow:0 12px 26px rgba(247,148,29,.36); }
+.btn-orange:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:3px; }
+
+/* ===== reCAPTCHA ===== */
+.recaptcha-container{
+  display:flex; justify-content:center; align-items:center; width:100%;
+  margin:.35rem 0 .35rem;
+}
+#recaptcha-slot{ display:block; min-width:304px; min-height:78px; }
+
+/* ===== Disclaimer (turn Real Estate link into button) ===== */
+.form-disclaimer{
+  font-size:.85rem; color:#6b7280;
+  margin-top:1rem; text-align:center; line-height:1.5;
+}
+.form-disclaimer a{
+  display:inline-flex;
+  align-items:center; justify-content:center;
+  padding:.55rem .9rem;
+  border-radius:9999px;            /* pill shape */
+  background: var(--zenith-orange);
+  color:#fff !important;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow: 0 8px 22px rgba(247,148,29,.28);
+  transition: background .2s ease, box-shadow .2s ease, transform .08s ease;
+}
+.form-disclaimer a:hover{
+  background:#e9830b;
+  box-shadow: 0 12px 26px rgba(247,148,29,.36);
+  transform: translateY(-1px);
+}
+.form-disclaimer a:focus-visible{
+  outline:3px solid rgba(247,148,29,.35);
+  outline-offset:3px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width:900px){ .zenith-card{ padding:1.75rem; } }
+@media (max-width:768px){
+  .form-col-6, .form-col-4{ flex:0 0 100%; }
+  .zenith-card{ padding:1.25rem; }
+  .zenith-logo{ width:78px; }
+}
+
+/* ===== Collapsed-nav behavior (works even with hero in separate file) =====
+   The index.js snippet toggles .nav-collapsed on <html> and sets --header-h
+   so we can hide the hero logo and offset below the fixed header cleanly. */
+.nav-collapsed .zenith-hero .zenith-header .zenith-logo-container,
+.nav-collapsed .zenith-hero .zenith-header .zenith-logo,
+.nav-collapsed .zenith-hero .zenith-header .logo-backdrop{
+  display:none !important;
+}
+
+.nav-collapsed .zenith-hero{
+  padding-top: calc(var(--header-h, 80px) + 12px);
+  min-height: calc(100svh - var(--header-h, 80px));
+}
+
+.nav-collapsed .zenith-background-video{
+  width:100%; height:100%;
+  object-fit:cover; object-position:center;
 }
