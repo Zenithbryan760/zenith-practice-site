@@ -16,6 +16,15 @@
   --shadow-sm:0 4px 14px rgba(2,14,32,.10);
 }
 
+/* Let the background video show page-wide */
+html, body { background: transparent; }
+
+/* Ensure content paints above the video */
+header, main, footer, .zenith-hero, .header, .page, .container {
+  position: relative;
+  z-index: 1;
+}
+
 /* ===== Base & Layout ===== */
 .zenith-hero{
   position:relative; min-height:100vh;
@@ -27,39 +36,26 @@
 }
 
 /* ===== BACKGROUND VIDEO GLOBAL STYLES ===== */
-.zenith-video-container {
-  position: fixed;       /* fixed so it stays put while scrolling */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: -1;           /* stays behind all content */
+.zenith-video-container{
+  position:fixed;       /* stays put while scrolling */
+  top:0; left:0;
+  width:100%; height:100%;
+  overflow:hidden;
+  z-index:0;            /* behind content, above page paint */
 }
-
-.zenith-background-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;     /* fills screen without stretching */
-  object-position: center;
+.zenith-background-video{
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  object-fit:cover;     /* fills screen without stretching */
+  object-position:center;
 }
-
-.zenith-video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(7,46,89,0.78); /* Zenith navy tint */
-  pointer-events: none;  /* so clicks pass through */
-}
-
-/* Optional: make sure all main content has some background color if needed */
-body {
-  background-color: #fff; /* adjust if you want transparent areas */
+.zenith-video-overlay{
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background-color:rgba(7,46,89,0.78); /* Zenith navy tint */
+  pointer-events:none;  /* clicks pass through */
 }
 
 /* ===== Card ===== */
@@ -71,9 +67,9 @@ body {
 }
 
 /* ===== Header ===== */
-.zenith-header{text-align:center; margin-bottom:1.75rem;}
-.zenith-logo-container{position:relative; display:inline-block; margin-bottom:.75rem;}
-.zenith-logo{position:relative; width:86px; height:auto; z-index:1;}
+.zenith-header{ text-align:center; margin-bottom:1.75rem; }
+.zenith-logo-container{ position:relative; display:inline-block; margin-bottom:.75rem; }
+.zenith-logo{ position:relative; width:86px; height:auto; z-index:1; }
 
 /* Logo backdrop: navy→transparent fade with orange ring for contrast */
 .logo-backdrop{
@@ -101,10 +97,10 @@ body {
 .service-area{ color:var(--zenith-muted); font-size:clamp(.92rem, 2vw, 1rem); }
 
 /* ===== Form grid ===== */
-.form-row{display:flex; flex-wrap:wrap; gap:1.25rem; margin-bottom:1.25rem;}
-.form-group{flex:1; display:flex; flex-direction:column; gap:.45rem; min-width:0;}
-.form-col-6{flex:0 0 calc(50% - .625rem);}
-.form-col-4{flex:0 0 calc(33.333% - .84rem);}
+.form-row{ display:flex; flex-wrap:wrap; gap:1.25rem; margin-bottom:1.25rem; }
+.form-group{ flex:1; display:flex; flex-direction:column; gap:.45rem; min-width:0; }
+.form-col-6{ flex:0 0 calc(50% - .625rem); }
+.form-col-4{ flex:0 0 calc(33.333% - .84rem); }
 
 /* Visually hidden (keep labels for a11y while using placeholders) */
 .sr-only{
@@ -114,7 +110,7 @@ body {
 }
 
 /* Labels (for screen readers) */
-label{font-weight:600; font-size:.92rem; color:#334155;}
+label{ font-weight:600; font-size:.92rem; color:#334155; }
 
 /* Inputs / selects / textareas */
 input, select, textarea{
@@ -125,18 +121,14 @@ input, select, textarea{
   transition: box-shadow .15s ease, border-color .15s ease, transform .05s ease;
   box-shadow:var(--shadow-sm);
 }
-input::placeholder, textarea::placeholder{
-  color:#94a3b8; opacity:1; font-weight:500;
-}
+input::placeholder, textarea::placeholder{ color:#94a3b8; opacity:1; font-weight:500; }
 input:focus, select:focus, textarea:focus{
   outline:none; border-color:var(--zenith-navy);
   box-shadow:0 0 0 3px rgba(7,46,89,.15), var(--shadow-sm);
 }
 
 /* Invalid state -> ORANGE (brand) */
-input:invalid, select:invalid, textarea:invalid{
-  border-color:var(--zenith-orange);
-}
+input:invalid, select:invalid, textarea:invalid{ border-color:var(--zenith-orange); }
 input:invalid:focus, select:invalid:focus, textarea:invalid:focus{
   box-shadow:0 0 0 3px rgba(247,148,29,.18);
 }
@@ -151,46 +143,29 @@ input[type="file"]{
   color:#334155;
   box-shadow:none;
 }
-
 /* Modern browsers */
 input[type="file"]::file-selector-button{
-  background: var(--zenith-orange);
-  color:#fff;
-  border: none;
-  padding:.6rem .9rem;
-  margin-right:.75rem;
-  border-radius:10px;
-  font-weight:700;
-  cursor:pointer;
-  transition: background .2s ease, box-shadow .2s ease, transform .08s ease;
-  box-shadow: 0 6px 18px rgba(247,148,29,.25);
+  background:var(--zenith-orange); color:#fff; border:none;
+  padding:.6rem .9rem; margin-right:.75rem; border-radius:10px; font-weight:700;
+  cursor:pointer; transition:background .2s, box-shadow .2s, transform .08s;
+  box-shadow:0 6px 18px rgba(247,148,29,.25);
 }
 input[type="file"]::file-selector-button:hover{
-  background:#e9830b;
-  box-shadow: 0 10px 24px rgba(247,148,29,.35);
-  transform: translateY(-1px);
+  background:#e9830b; box-shadow:0 10px 24px rgba(247,148,29,.35);
+  transform:translateY(-1px);
 }
-input[type="file"]::file-selector-button:active{
-  transform: translateY(0);
-}
+input[type="file"]::file-selector-button:active{ transform:translateY(0); }
 
 /* Safari/WebKit fallback */
 input[type="file"]::-webkit-file-upload-button{
-  background: var(--zenith-orange);
-  color:#fff;
-  border:none;
-  padding:.6rem .9rem;
-  margin-right:.75rem;
-  border-radius:10px;
-  font-weight:700;
-  cursor:pointer;
-  transition: background .2s ease, box-shadow .2s ease, transform .08s ease;
-  box-shadow: 0 6px 18px rgba(247,148,29,.25);
+  background:var(--zenith-orange); color:#fff; border:none;
+  padding:.6rem .9rem; margin-right:.75rem; border-radius:10px; font-weight:700;
+  cursor:pointer; transition:background .2s, box-shadow .2s, transform .08s;
+  box-shadow:0 6px 18px rgba(247,148,29,.25);
 }
 input[type="file"]::-webkit-file-upload-button:hover{
-  background:#e9830b;
-  box-shadow: 0 10px 24px rgba(247,148,29,.35);
-  transform: translateY(-1px);
+  background:#e9830b; box-shadow:0 10px 24px rgba(247,148,29,.35);
+  transform:translateY(-1px);
 }
 
 /* Accessible focus for file input */
@@ -200,37 +175,28 @@ input[type="file"]:focus-within{
 }
 
 /* ===== Buttons ===== */
-
-/* Main submit button → ORANGE */
 .zenith-btn{
-  background: var(--zenith-orange);
-  color:#fff;
-  border:none;
-  padding:1rem 1.25rem;
-  font-size:1rem;
-  font-weight:700;
-  width:100%;
-  border-radius:12px;
-  cursor:pointer;
-  transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
-  box-shadow: 0 10px 24px rgba(247,148,29,.25);
+  background:var(--zenith-orange); color:#fff; border:none;
+  padding:1rem 1.25rem; font-size:1rem; font-weight:700; width:100%;
+  border-radius:12px; cursor:pointer;
+  transition:transform .08s, box-shadow .2s, background .2s;
+  box-shadow:0 10px 24px rgba(247,148,29,.25);
 }
 .zenith-btn:hover{
-  background:#e9830b;
-  box-shadow: 0 14px 28px rgba(247,148,29,.35);
-  transform: translateY(-1px);
+  background:#e9830b; box-shadow:0 14px 28px rgba(247,148,29,.35);
+  transform:translateY(-1px);
 }
-.zenith-btn:active{ transform: translateY(0); }
+.zenith-btn:active{ transform:translateY(0); }
 .zenith-btn:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:2px; }
 
 /* Utility: orange button class (use on any <a> or <button>) */
 .btn-orange{
   display:inline-flex; align-items:center; justify-content:center;
   padding:.7rem 1rem; border-radius:12px;
-  background: var(--zenith-orange); color:#fff; font-weight:700;
+  background:var(--zenith-orange); color:#fff; font-weight:700;
   text-decoration:none; border:none; cursor:pointer;
-  transition: background .2s ease, transform .08s ease, box-shadow .2s ease;
-  box-shadow: 0 8px 22px rgba(247,148,29,.28);
+  transition:background .2s, transform .08s, box-shadow .2s;
+  box-shadow:0 8px 22px rgba(247,148,29,.28);
 }
 .btn-orange:hover{ background:#e9830b; transform:translateY(-1px); box-shadow:0 12px 26px rgba(247,148,29,.36); }
 .btn-orange:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:3px; }
@@ -248,25 +214,19 @@ input[type="file"]:focus-within{
   margin-top:1rem; text-align:center; line-height:1.5;
 }
 .form-disclaimer a{
-  display:inline-flex;
-  align-items:center; justify-content:center;
-  padding:.55rem .9rem;
-  border-radius:9999px;            /* pill shape */
-  background: var(--zenith-orange);
-  color:#fff !important;
-  text-decoration:none;
-  font-weight:700;
-  box-shadow: 0 8px 22px rgba(247,148,29,.28);
-  transition: background .2s ease, box-shadow .2s ease, transform .08s ease;
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:.55rem .9rem; border-radius:9999px;
+  background:var(--zenith-orange); color:#fff !important;
+  text-decoration:none; font-weight:700;
+  box-shadow:0 8px 22px rgba(247,148,29,.28);
+  transition:background .2s, box-shadow .2s, transform .08s;
 }
 .form-disclaimer a:hover{
-  background:#e9830b;
-  box-shadow: 0 12px 26px rgba(247,148,29,.36);
-  transform: translateY(-1px);
+  background:#e9830b; box-shadow:0 12px 26px rgba(247,148,29,.36);
+  transform:translateY(-1px);
 }
 .form-disclaimer a:focus-visible{
-  outline:3px solid rgba(247,148,29,.35);
-  outline-offset:3px;
+  outline:3px solid rgba(247,148,29,.35); outline-offset:3px;
 }
 
 /* ===== Responsive ===== */
@@ -285,7 +245,6 @@ input[type="file"]:focus-within{
 .nav-collapsed .zenith-hero .zenith-header .logo-backdrop{
   display:none !important;
 }
-
 .nav-collapsed .zenith-hero{
   padding-top: calc(var(--header-h, 80px) + 12px);
   min-height: calc(100svh - var(--header-h, 80px));
