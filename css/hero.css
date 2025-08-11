@@ -26,15 +26,40 @@
   overflow:hidden;
 }
 
-/* Background video + true brand tint */
-.zenith-video-container,
-.zenith-background-video,
-.zenith-video-overlay{position:absolute; inset:0;}
-.zenith-video-container{z-index:-1;}
-.zenith-background-video{object-fit:cover;}
-.zenith-video-overlay{
-  background-color: rgba(7,46,89,0.78); /* solid Zenith navy tint */
-  mix-blend-mode: normal;               /* no purple cast */
+/* ===== BACKGROUND VIDEO GLOBAL STYLES ===== */
+.zenith-video-container {
+  position: fixed;       /* fixed so it stays put while scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;           /* stays behind all content */
+}
+
+.zenith-background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* fills screen without stretching */
+  object-position: center;
+}
+
+.zenith-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(7,46,89,0.78); /* Zenith navy tint */
+  pointer-events: none;  /* so clicks pass through */
+}
+
+/* Optional: make sure all main content has some background color if needed */
+body {
+  background-color: #fff; /* adjust if you want transparent areas */
 }
 
 /* ===== Card ===== */
@@ -264,9 +289,4 @@ input[type="file"]:focus-within{
 .nav-collapsed .zenith-hero{
   padding-top: calc(var(--header-h, 80px) + 12px);
   min-height: calc(100svh - var(--header-h, 80px));
-}
-
-.nav-collapsed .zenith-background-video{
-  width:100%; height:100%;
-  object-fit:cover; object-position:center;
 }
