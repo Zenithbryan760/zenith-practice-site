@@ -98,18 +98,7 @@ const RECAPTCHA_SITE_KEY = "6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI"; // replac
         hasAnyError ||= missing;
       });
 
-      // basic email check
-      const email = document.getElementById("email");
-      if (email) {
-        const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
-        markError(email, !ok);
-        hasAnyError ||= !ok;
-      }
-
-      // reCAPTCHA check (if present)
-      if (typeof grecaptcha !== "undefined" && recaptchaWidgetId !== null) {
-        const token = grecaptcha.getResponse(recaptchaWidgetId);
-        if (!token) {
+@@ -113,40 +89,43 @@ const RECAPTCHA_SITE_KEY = "6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI"; // replac
           hasAnyError = true;
           alert("Please complete the security verification.");
         }
@@ -137,9 +126,11 @@ const RECAPTCHA_SITE_KEY = "6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI"; // replac
   // ---------- reCAPTCHA explicit render hook ----------
   // Keep this exactly named to match your <script … onload=recaptchaOnload>
   window.recaptchaOnload = function () {
+  function renderHeroRecaptchaIfReady() {
     try {
       const target = document.getElementById("estimate-recaptcha");
       if (!target || typeof grecaptcha === "undefined") return;
+      if (!target || typeof grecaptcha === "undefined" || recaptchaWidgetId !== null) return;
       recaptchaWidgetId = grecaptcha.render(target, {
         sitekey: RECAPTCHA_SITE_KEY,
         theme: "light",
@@ -149,4 +140,9 @@ const RECAPTCHA_SITE_KEY = "6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI"; // replac
       // silently ignore
     }
   };
+  }
+
+  window.renderHeroRecaptchaIfReady = renderHeroRecaptchaIfReady;
+  // Keep this exactly named to match your <script … onload=recaptchaOnload>
+  window.recaptchaOnload = renderHeroRecaptchaIfReady;
 })();
