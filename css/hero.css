@@ -152,11 +152,24 @@ input:invalid:focus, select:invalid:focus, textarea:invalid:focus{
   .zenith-card{ padding:1.25rem; }
   .zenith-logo{ width:78px; }
 }
-/* Hide logo on mobile */
+/* Hide the hero logo + its backdrop on mobile */
 @media (max-width: 768px) {
-  .zenith-logo-frame,
-  .logo-backdrop,
-  .zenith-logo {
+  .zenith-header .zenith-logo-container,
+  .zenith-header .zenith-logo,
+  .zenith-header .logo-backdrop {
     display: none !important;
+  }
+}
+/* Make the hero truly full-height on mobile and ensure video covers */
+@media (max-width: 768px) {
+  .zenith-hero {
+    min-height: 100svh;          /* mobile-safe viewport height */
+    padding: 1rem;               /* tighten padding so the card fits */
+  }
+  .zenith-background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;     /* keep the subject centered */
   }
 }
