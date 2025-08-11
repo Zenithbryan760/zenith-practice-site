@@ -1,117 +1,323 @@
-<!-- =========================================================
- [HERO SECTION] Zenith Roofing — Free Estimate Form
-========================================================= -->
-<section class="zenith-hero" id="roofing-estimate">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ===== META & SEO ===== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenith Roofing Services – San Diego & Temecula Roof Experts</title>
+  <meta name="description" content="Expert residential & commercial roofing in North County San Diego & Temecula." />
 
-  <!-- ===== BACKGROUND VIDEO ===== -->
-  <video autoplay muted loop playsinline class="background-video">
-    <source src="roofing-bg.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <!-- ===== GOOGLE FONT ===== -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- ===== Card ===== -->
-  <div class="zenith-card">
-    <!-- Header with Logo -->
-    <div class="zenith-header">
-      <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-logo">
-      <div class="zenith-header-text">
-        <h2>FREE ESTIMATE FOR HOMEOWNERS</h2>
-        <p>Roofing Contractor in Escondido, San Diego, and Temecula</p>
+  <!-- ===== reCAPTCHA BOOTSTRAP (define callbacks BEFORE loading Google) ===== -->
+  <script>
+    (function () {
+      // Re-usable render function (safe to call multiple times)
+      window.renderHeroRecaptchaIfReady = function () {
+        var slot = document.getElementById('recaptcha-slot');
+        if (!slot) return; // hero not injected yet
+
+        if (window.grecaptcha) {
+          if (!slot.dataset.rendered) {
+            grecaptcha.render(slot, {
+              sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI',
+              theme: 'light',
+              size: 'normal'
+            });
+            slot.dataset.rendered = '1';
+          }
+        }
+        // If grecaptcha isn't ready yet, recaptchaOnload will call this again.
+      };
+
+      // Called by Google's API when it finishes loading
+      window.recaptchaOnload = function () {
+        window.renderHeroRecaptchaIfReady();
+      };
+    })();
+  </script>
+
+  <!-- ===== reCAPTCHA v2 (explicit render) ===== -->
+  <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
+
+  <!-- ===== GLOBAL + HEADER STYLES ===== -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/header-mobile.css" />
+
+  <!-- ===== RESPONSIVE UTILITIES ===== -->
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- ===== HERO STYLES ===== -->
+  <link rel="stylesheet" href="css/hero.css" />
+</head>
+
+<body>
+
+  <!-- ===== HEADER & NAVIGATION ===== -->
+  <header class="header">
+    <div class="header-inner">
+
+      <!-- ===== MOBILE HEADER (≤768px) ===== -->
+      <div class="mobile-header">
+        <!-- 1) Hamburger -->
+        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+
+        <!-- 2) Centered logo -->
+        <div class="logo-section">
+          <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing logo" class="logo" />
+        </div>
+
+        <!-- 3) Phone icon -->
+        <a href="tel:8589006163" class="mobile-call" aria-label="Call 858-900-6163">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
+            <path fill="#fff" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.58.57 1 1 0 0 1 1 1v3.5a1 1 0 0 1-.91 1A19.7 19.7 0 0 1 4 4.91 1 1 0 0 1 5 4h3.5a1 1 0 0 1 1 1c0 1.23.2 2.43.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
+          </svg>
+        </a>
       </div>
+
+      <!-- ===== DESKTOP HEADER (hidden on mobile by CSS) ===== -->
+      <div class="logo-section">
+        <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing Services logo" class="logo" />
+        <p class="license">Lic# 1036112</p>
+      </div>
+
+      <!-- ===== PRIMARY NAV ===== -->
+      <nav class="nav-bar">
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#gallery">Projects</a></li>
+
+          <!-- Services Dropdown -->
+          <li class="dropdown">
+            <a href="#services">Services</a>
+            <ul class="dropdown-menu">
+
+              <!-- Roof Repairs submenu -->
+              <li class="dropdown-submenu">
+                <a href="#" class="accordion-toggle">
+                  Roof Repairs <span class="chevron"></span>
+                </a>
+                <ul class="submenu">
+                  <li><a href="#roof-tune-up">Roof Tune-Up</a></li>
+                  <li><a href="#tile-roof-repair">Tile Roof Repair</a></li>
+                  <li><a href="#clay-tile-roof-repair">Clay Tile Roof Repair</a></li>
+                  <li><a href="#slate-roof-repair">Slate Roof Repair</a></li>
+                  <li><a href="#shingles-roof-repair">Shingles Roof Repair</a></li>
+                  <li><a href="#flat-roof-repair">Flat Roof Repair</a></li>
+                  <li><a href="#skylight-repair">Skylight Repair</a></li>
+                  <li><a href="#broken-tile-replacement">Broken Tile Replacement</a></li>
+                  <li><a href="#roof-cleaning-maintenance">Roof Cleaning &amp; Maintenance</a></li>
+                </ul>
+              </li>
+
+              <!-- Residential Roofing submenu -->
+              <li class="dropdown-submenu">
+                <a href="#residential" class="accordion-toggle">
+                  Residential Roofing <span class="chevron"></span>
+                </a>
+                <ul class="submenu">
+                  <li class="submenu-label">Roof Systems</li>
+                  <li><a href="#shingles">Asphalt Shingles</a></li>
+                  <li><a href="#torch-down">Torch Down Systems</a></li>
+                  <li><a href="#tile-roof">Clay &amp; Concrete Tile</a></li>
+                  <li><a href="#tile-lift-lay">Tile Lift &amp; Reset</a></li>
+                  <li><a href="#tpo">TPO Single-Ply</a></li>
+                  <li><a href="#silicone">Silicone Coating Systems</a></li>
+                  <li class="submenu-label">Maintenance &amp; Extras</li>
+                  <li><a href="#gutters">Seamless Gutters</a></li>
+                  <li><a href="#repairs">Leak Repair &amp; Troubleshooting</a></li>
+                  <li><a href="#maintenance">Preventive Maintenance</a></li>
+                  <li><a href="#cleaning">Roof Washing &amp; Moss Removal</a></li>
+                </ul>
+              </li>
+
+              <!-- Commercial Roofing submenu -->
+              <li class="dropdown-submenu">
+                <a href="#commercial" class="accordion-toggle">
+                  Commercial Roofing <span class="chevron"></span>
+                </a>
+                <ul class="submenu">
+                  <li class="submenu-label">Roof Systems</li>
+                  <li><a href="#tpo-commercial">TPO Roofing</a></li>
+                  <li><a href="#shingles-commercial">Shingle Systems</a></li>
+                  <li><a href="#tile-commercial">Tile Roofing</a></li>
+                  <li><a href="#metal">Metal Roofing</a></li>
+                  <li><a href="#pvc">PVC Membranes</a></li>
+                  <li><a href="#torch-commercial">Torch Down Flat Roofs</a></li>
+                  <li><a href="#silicone-commercial">Silicone Restoration Coatings</a></li>
+                  <li class="submenu-label">Maintenance &amp; Extras</li>
+                  <li><a href="#gutters-commercial">Seamless Gutters</a></li>
+                  <li><a href="#maintenance-commercial">Roof Asset Maintenance</a></li>
+                  <li><a href="#cleaning-commercial">Debris Removal &amp; Cleaning</a></li>
+                </ul>
+              </li>
+
+              <!-- Real Estate Services submenu -->
+              <li class="dropdown-submenu">
+                <a href="#real-estate" class="accordion-toggle">
+                  Real Estate Services <span class="chevron"></span>
+                </a>
+                <ul class="submenu">
+                  <li><a href="#roof-reports">Certified Roof Reports</a></li>
+                  <li><a href="#roof-estimates">Pre-Sale Roofing Estimates</a></li>
+                  <li><a href="#inspections">Visual Roof Inspections</a></li>
+                  <li><a href="#certifications">Roof Certifications</a></li>
+                  <li><a href="#insurance-consulting">Insurance Consulting</a></li>
+                  <li><a href="#verbal-opinions">Professional Verbal Opinions</a></li>
+                  <li><a href="#satellite">Satellite Imagery Analysis</a></li>
+                </ul>
+              </li>
+
+              <!-- Roof Inspection standalone page -->
+              <li><a href="#roof-inspection">Roof Inspection</a></li>
+
+              <!-- Pricing -->
+              <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+          </li>
+
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#glossary">Glossary</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">YouTube</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Call/Text Section (desktop) -->
+      <div class="phone-section">
+        <p>Call/Text: <a href="tel:8589006163">858-900-6163</a></p>
+        <a href="tel:8589006163" class="call-button">Call Now</a>
+      </div>
+
     </div>
+  </header>
 
-    <!-- ===== Form ===== -->
-    <form id="estimate-form" method="POST" novalidate>
-      <!-- Grid: two columns -->
-      <div class="form-grid">
-        <!-- Column 1 -->
-        <div class="form-col">
-          <div class="form-group">
-            <label for="firstName">First Name*</label>
-            <input type="text" id="firstName" name="first_name" required>
-          </div>
-          <div class="form-group">
-            <label for="lastName">Last Name*</label>
-            <input type="text" id="lastName" name="last_name" required>
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone Number*</label>
-            <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address*</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="form-group">
-            <label for="serviceType">Service Type*</label>
-            <select id="serviceType" name="service_type" required>
-              <option value="">Select Service</option>
-              <option>Roof Replacement</option>
-              <option>Roof Repair</option>
-              <option>Gutters</option>
-              <option>Roof Maintenance</option>
-              <option>Commercial Roofing</option>
-              <option>Residential Roofing</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
+  <!-- OFF-CANVAS MOBILE NAV -->
+  <nav class="mobile-nav">
+    <ul class="mobile-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#gallery">Projects</a></li>
+      <li>
+        <button class="accordion-toggle">
+          Services <span class="chevron">›</span>
+        </button>
+        <ul class="submenu">
+          <li>
+            <button class="accordion-toggle">
+              Roof Repairs <span class="chevron">›</span>
+            </button>
+            <ul class="submenu">
+              <li><a href="#tile-roof-repair">Tile Roof Repair</a></li>
+              <li><a href="#clay-tile-roof-repair">Clay Tile Roof Repair</a></li>
+              <li><a href="#slate-roof-repair">Slate Roof Repair</a></li>
+              <li><a href="#shingles-roof-repair">Shingles Roof Repair</a></li>
+              <li><a href="#flat-roof-repair">Flat Roof Repair</a></li>
+              <li><a href="#skylight-repair">Skylight Repair</a></li>
+              <li><a href="#broken-tile-replacement">Broken Tile Replacement</a></li>
+              <li><a href="#roof-cleaning-maintenance">Roof Cleaning &amp; Maintenance</a></li>
+              <li><a href="#roof-tune-up">Roof Tune-Up</a></li>
+            </ul>
+          </li>
+          <li>
+            <button class="accordion-toggle">
+              Residential Roofing <span class="chevron">›</span>
+            </button>
+            <ul class="submenu">
+              <li>
+                <button class="accordion-toggle">
+                  Roof Systems <span class="chevron">›</span>
+                </button>
+                <ul class="submenu">
+                  <li><a href="#shingles">Asphalt Shingles</a></li>
+                  <li><a href="#torch-down">Torch Down Systems</a></li>
+                  <li><a href="#tile-roof">Clay &amp; Concrete Tile</a></li>
+                  <li><a href="#tile-lift-lay">Tile Lift &amp; Reset</a></li>
+                  <li><a href="#tpo">TPO Single-Ply</a></li>
+                  <li><a href="#silicone">Silicone Coatings</a></li>
+                </ul>
+              </li>
+              <li>
+                <button class="accordion-toggle">
+                  Maintenance &amp; Extras <span class="chevron">›</span>
+                </button>
+                <ul class="submenu">
+                  <li><a href="#gutters">Seamless Gutters</a></li>
+                  <li><a href="#repairs">Leak Repair &amp; Troubleshooting</a></li>
+                  <li><a href="#maintenance">Preventive Maintenance</a></li>
+                  <li><a href="#cleaning">Roof Washing &amp; Moss Removal</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#roof-inspection">Roof Inspection</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#glossary">Glossary</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">YouTube</a></li>
+    </ul>
+  </nav>
 
-        <!-- Column 2 -->
-        <div class="form-col">
-          <div class="form-group">
-            <label for="streetAddress">Street Address*</label>
-            <input type="text" id="streetAddress" name="street_address" required>
-          </div>
-          <div class="form-row-2">
-            <div class="form-group">
-              <label for="zip">ZIP Code*</label>
-              <input type="text" id="zip" name="zip" maxlength="10" required>
-            </div>
-            <div class="form-group">
-              <label for="city">City*</label>
-              <input type="text" id="city" name="city" readonly required>
-            </div>
-          </div>
-          <div class="form-row-2">
-            <div class="form-group">
-              <label for="photos">Upload Photos</label>
-              <input type="file" id="photos" name="photos" accept="image/*" multiple>
-            </div>
-            <div class="form-group">
-              <label for="referral">How Did You Hear About Us?*</label>
-              <select id="referral" name="referral_source" required>
-                <option value="">Select Option</option>
-                <option>Google</option>
-                <option>Yelp</option>
-                <option>Angi</option>
-                <option>Social Media</option>
-                <option>Referral</option>
-                <option>Other</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- ===== HERO PLACEHOLDER (component gets injected here) ===== -->
+  <div id="hero-placeholder"></div>
 
-      <!-- Brief Description -->
-      <div class="form-group">
-        <label for="description">Brief Description*</label>
-        <textarea id="description" name="description" rows="4" required></textarea>
-      </div>
+  <!-- ===== FETCH HERO COMPONENT ===== -->
+  <script>
+    fetch('components/hero-section.html')
+      .then(r => {
+        if (!r.ok) throw new Error('Failed to load hero-section.html');
+        return r.text();
+      })
+      .then(html => {
+        document.getElementById('hero-placeholder').innerHTML = html;
+        // After injection, try to render captcha (works whether API loaded before/after)
+        if (window.renderHeroRecaptchaIfReady) {
+          window.renderHeroRecaptchaIfReady();
+        }
+      })
+      .catch(err => console.error('❌ Hero load error:', err));
+  </script>
 
-      <!-- reCAPTCHA -->
-      <div class="form-group recaptcha-container">
-        <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
-      </div>
+  <!-- ===== OTHER SCRIPTS ===== -->
+  <script src="js/header-mobile.js" defer></script>
+  <script src="js/header.js" defer></script>
 
-      <!-- Submit -->
-      <button type="submit" class="zenith-btn">Request Estimate</button>
+  <!-- IMPORTANT: hero.js (helpers like ZIP->City + submit guard) -->
+  <script src="js/hero.js" defer></script>
 
-      <!-- Disclaimer -->
-      <p class="form-disclaimer">
-        *Free estimates are not available for real estate transactions. Please refer to our Real Estate Services Disclaimer.
-      </p>
-    </form>
-  </div>
-</section>
+  <!-- NEW: layout flags (place this RIGHT before </body>) -->
+  <script>
+    (function () {
+      function setLayoutFlags() {
+        // Is the hamburger visible? (header collapsed)
+        var toggle = document.querySelector('.menu-toggle');
+        var collapsed = toggle && getComputedStyle(toggle).display !== 'none';
+        document.documentElement.classList.toggle('nav-collapsed', collapsed);
+
+        // Measure whichever header is showing and expose height to CSS
+        var headerEl = collapsed
+          ? document.querySelector('.mobile-header')
+          : document.querySelector('.header');
+        var h = headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0;
+        document.documentElement.style.setProperty('--header-h', h + 'px');
+      }
+
+      window.addEventListener('load', setLayoutFlags);
+      window.addEventListener('resize', setLayoutFlags);
+      // Re-measure right after tapping the hamburger
+      document.addEventListener('click', function (e) {
+        if (e.target.closest('.menu-toggle')) setTimeout(setLayoutFlags, 50);
+      });
+    })();
+  </script>
+</body>
+</html>
