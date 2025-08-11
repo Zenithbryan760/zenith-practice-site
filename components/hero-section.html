@@ -1,7 +1,5 @@
-<!-- =========================================================
  [HERO SECTION] Zenith Roofing — Free Estimate Form
  Two-column desktop / stacked mobile
- File: hero-section.html
 ========================================================= -->
 <section class="zenith-hero" id="roofing-estimate">
 
@@ -59,6 +57,11 @@
               <option>Other</option>
             </select>
           </div>
+          <!-- Upload Photos moved here -->
+          <div class="form-group">
+            <label for="photos">Upload Photos</label>
+            <input type="file" id="photos" name="photos" accept="image/*" multiple>
+          </div>
         </div>
 
         <!-- Column 2 -->
@@ -79,10 +82,7 @@
             <label for="description">Brief Description*</label>
             <textarea id="description" name="description" rows="4" required></textarea>
           </div>
-          <div class="form-group">
-            <label for="photos">Upload Photos</label>
-            <input type="file" id="photos" name="photos" accept="image/*" multiple>
-          </div>
+          <!-- How Did You Hear About Us moved here -->
           <div class="form-group">
             <label for="referral">How Did You Hear About Us?*</label>
             <select id="referral" name="referral_source" required>
@@ -98,7 +98,7 @@
         </div>
       </div>
 
-      <!-- reCAPTCHA -->
+      <!-- reCAPTCHA above button -->
       <div class="form-group recaptcha-container">
         <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
       </div>
