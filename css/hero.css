@@ -54,27 +54,25 @@
 
 .logo-backdrop {
   position: absolute;
-  top: -15px;
-  left: -20px;
-  right: -20px;
-  bottom: -15px;
-  border-radius: 16px;
+  top: -12px;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  border-radius: 50%;
   z-index: 0;
 
-  /* Modern angled look */
-  transform: rotate(-2deg);
+  /* Branded layered background */
+  background: radial-gradient(circle at center, #0b3a6f 0%, #072e59 100%);
+  
+  /* Thin orange ring */
+  border: 4px solid #f7941d;
 
-  /* Branded gradient background */
-  background: linear-gradient(135deg, #072e59 0%, #0b3a6f 100%);
+  /* Inner shadow for depth */
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.25);
 
-  /* Thin orange outline */
-  border: 3px solid #f7941d;
-
-  /* Soft outer shadow */
-  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-
-  /* Inner glow to separate logo from dark navy */
-  box-shadow: inset 0 0 10px rgba(255,255,255,0.2), 0 6px 18px rgba(0,0,0,0.3);
+  /* Slight glow to separate from background video */
+  outline: 2px solid rgba(255,255,255,0.6);
+  outline-offset: 4px;
 }
 
 .zenith-logo {
