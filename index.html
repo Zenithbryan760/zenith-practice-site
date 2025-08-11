@@ -341,5 +341,31 @@
 
   <!-- IMPORTANT: hero.js (helpers like ZIP->City + submit guard) -->
   <script src="js/hero.js" defer></script>
+
+  <!-- NEW: layout flags (place this RIGHT before </body>) -->
+  <script>
+    (function () {
+      function setLayoutFlags() {
+        // Is the hamburger visible? (header collapsed)
+        var toggle = document.querySelector('.menu-toggle');
+        var collapsed = toggle && getComputedStyle(toggle).display !== 'none';
+        document.documentElement.classList.toggle('nav-collapsed', collapsed);
+
+        // Measure whichever header is showing and expose height to CSS
+        var headerEl = collapsed
+          ? document.querySelector('.mobile-header')
+          : document.querySelector('.header');
+        var h = headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0;
+        document.documentElement.style.setProperty('--header-h', h + 'px');
+      }
+
+      window.addEventListener('load', setLayoutFlags);
+      window.addEventListener('resize', setLayoutFlags);
+      // Re-measure right after tapping the hamburger
+      document.addEventListener('click', function (e) {
+        if (e.target.closest('.menu-toggle')) setTimeout(setLayoutFlags, 50);
+      });
+    })();
+  </script>
 </body>
 </html>
