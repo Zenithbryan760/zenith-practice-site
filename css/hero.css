@@ -54,28 +54,25 @@
 
 .logo-backdrop {
   position: absolute;
-  top: -12px;
-  left: -12px;
-  right: -12px;
-  bottom: -12px;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
   border-radius: 50%;
   z-index: 0;
 
-  /* Base background (Zenith navy) */
-  background-color: #072e59;
-  
-  /* Add subtle roofline pattern using a CSS gradient */
-  background-image:
-    linear-gradient(135deg, transparent 45%, #f7941d 45%, #f7941d 55%, transparent 55%),
-    radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 80%);
-  background-size: cover;
-  background-repeat: no-repeat;
+  /* Vibrant fade-out background */
+  background: radial-gradient(circle at center,
+    rgba(255,255,255,0.95) 0%,   /* bright center for contrast */
+    rgba(255,255,255,0.75) 40%,  /* soft fade */
+    rgba(255,255,255,0) 100%     /* fully transparent edges */
+  );
 
-  /* Thin orange border for branding */
-  border: 3px solid #f7941d;
+  /* Soft shadow for separation */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 
-  /* Soft drop shadow to lift it off the video */
-  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  /* Slight blur to blend into video smoothly */
+  backdrop-filter: blur(2px);
 }
 
 .zenith-logo {
