@@ -1,69 +1,66 @@
-// js/hero.js — lightweight helpers (ZIP -> City + submit guard)
+// js/hero.js — ZIP -> City + single submit handler with reCAPTCHA guard + JobNimbus submit
 
 document.addEventListener('DOMContentLoaded', function () {
-  // ZIP -> City (US) using Zippopotam.us
-  var zipInput = document.getElementById('zip');
-  var cityInput = document.getElementById('city');
+  // ---- ZIP -> City (US) using Zippopotam.us ----
+  const zipInput = document.getElementById('zip');
+  const cityInput = document.getElementById('city');
 
   if (zipInput && cityInput) {
     zipInput.addEventListener('blur', function () {
-      var zip = zipInput.value.trim();
+      const zip = (zipInput.value || '').replace(/\D/g, '');
       if (zip.length >= 5) {
         fetch('https://api.zippopotam.us/us/' + zip)
-          .then(function (res) { return res.ok ? res.json() : Promise.reject(); })
-          .then(function (data) {
-            var place = data.places && data.places[0];
+          .then(res => (res.ok ? res.json() : Promise.reject()))
+          .then(data => {
+            const place = data.places && data.places[0];
             cityInput.value = place ? place['place name'] : '';
           })
-          .catch(function () { cityInput.value = ''; });
+          .catch(() => { /* keep whatever user typed */ });
       }
     });
   }
 
-  // Optional: client-side guard to ensure captcha solved before submit
-  var form = document.getElementById('estimate-form');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      var tokenEl = document.querySelector('textarea[name="g-recaptcha-response"]');
-      var hasToken = tokenEl && tokenEl.value && tokenEl.value.trim().length > 0;
-      if (!hasToken) {
-        e.preventDefault();
-        alert('Please complete the reCAPTCHA before submitting.');
-      }
-    });
-  }
-});
-// js/hero.js Netlify Forms Functions to JobNimbus)
-// js/hero.js
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("estimate-form");
+  // ---- Single submit handler ----
+  const form = document.getElementById('estimate-form');
   if (!form) return;
 
-  // Optional: phone mask pattern hint (since your HTML pattern is (###) ###-####)
-  const phoneInput = form.querySelector('#phone');
-
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    // Collect fields by your EXACT name attributes
+    // Require reCAPTCHA solved (v2 checkbox).
+    // Prefer explicit widget id; fall back to hidden textarea if needed.
+    let token = '';
+    if (window.grecaptcha && typeof window.grecaptcha.getResponse === 'function') {
+      if (typeof window._recaptchaWidgetId !== 'undefined') {
+        token = window.grecaptcha.getResponse(window._recaptchaWidgetId) || '';
+      }
+      if (!token) {
+        const t = document.querySelector('textarea[name="g-recaptcha-response"]');
+        if (t && t.value) token = t.value.trim();
+      }
+    }
+    if (!token) {
+      alert("Please complete the reCAPTCHA before submitting.");
+      return;
+    }
+    // If you later add server-side verification in your Netlify function:
+    // data.recaptcha_token = token;
+
+    // Build payload from form fields (names match your HTML)
     const fd = new FormData(form);
-
-    // Build a plain object for JSON (excluding files)
     const data = {
-      first_name: fd.get("first_name")?.trim() || "",
-      last_name: fd.get("last_name")?.trim() || "",
-      phone: fd.get("phone")?.trim() || "",
-      email: fd.get("email")?.trim() || "",
-      street_address: fd.get("street_address")?.trim() || "",
-      city: fd.get("city")?.trim() || "",
-      state: fd.get("state")?.trim() || "",
-      zip: fd.get("zip")?.trim() || "",
-      service_type: fd.get("service_type") || "",
+      first_name: (fd.get("first_name") || "").trim(),
+      last_name:  (fd.get("last_name")  || "").trim(),
+      phone:      (fd.get("phone")      || "").trim(),
+      email:      (fd.get("email")      || "").trim(),
+      street_address: (fd.get("street_address") || "").trim(),
+      city:       (fd.get("city")       || "").trim(),
+      state:      (fd.get("state")      || "").trim(),
+      zip:        (fd.get("zip")        || "").trim(),
+      service_type:    fd.get("service_type")    || "",
       referral_source: fd.get("referral_source") || "",
-      description: fd.get("description")?.trim() || ""
+      description:     (fd.get("description")    || "").trim()
     };
-
-    // (Photos) We’re not sending files to JobNimbus yet. See notes below.
 
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn ? submitBtn.textContent : null;
@@ -86,6 +83,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       alert("Thanks! Your request has been submitted.");
       form.reset();
+
+      // Reset reCAPTCHA after success (works for explicit + fallback)
+      if (window.grecaptcha && typeof window.grecaptcha.reset === "function" &&
+          typeof window._recaptchaWidgetId !== "undefined") {
+        window.grecaptcha.reset(window._recaptchaWidgetId);
+      } else {
+        const t = document.querySelector('textarea[name=\"g-recaptcha-response\"]');
+        if (t) t.value = '';
+      }
     } catch (err) {
       console.error(err);
       alert("Network error. Please try again.");
