@@ -33,14 +33,3 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
-<script>
-  (function () {
-    function setNavCollapsedClass() {
-      var toggle = document.querySelector('.menu-toggle');
-      var collapsed = toggle && getComputedStyle(toggle).display !== 'none';
-      document.documentElement.classList.toggle('nav-collapsed', collapsed);
-    }
-    window.addEventListener('load', setNavCollapsedClass);
-    window.addEventListener('resize', setNavCollapsedClass);
-  })();
-</script>
