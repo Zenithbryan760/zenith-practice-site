@@ -10,6 +10,34 @@
   <!-- ===== GOOGLE FONT ===== -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
+  <!-- ===== reCAPTCHA BOOTSTRAP (define callbacks BEFORE loading Google) ===== -->
+  <script>
+    (function () {
+      // Re-usable render function (safe to call multiple times)
+      window.renderHeroRecaptchaIfReady = function () {
+        var slot = document.getElementById('recaptcha-slot');
+        if (!slot) return; // hero not injected yet
+
+        if (window.grecaptcha) {
+          if (!slot.dataset.rendered) {
+            grecaptcha.render(slot, {
+              sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI',
+              theme: 'light',
+              size: 'normal'
+            });
+            slot.dataset.rendered = '1';
+          }
+        }
+        // If grecaptcha isn't ready yet, recaptchaOnload will call this again.
+      };
+
+      // Called by Google's API when it finishes loading
+      window.recaptchaOnload = function () {
+        window.renderHeroRecaptchaIfReady();
+      };
+    })();
+  </script>
+
   <!-- ===== reCAPTCHA v2 (explicit render) ===== -->
   <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
 
@@ -282,7 +310,7 @@
       })
       .then(html => {
         document.getElementById('hero-placeholder').innerHTML = html;
-        // after we inject the hero markup, render captcha if Google script already loaded
+        // After injection, try to render captcha (works whether API loaded before/after)
         if (window.renderHeroRecaptchaIfReady) {
           window.renderHeroRecaptchaIfReady();
         }
@@ -294,9 +322,7 @@
   <script src="js/header-mobile.js" defer></script>
   <script src="js/header.js" defer></script>
 
-  <!-- IMPORTANT: hero.js (Zapier submit + phone mask + ZIP→City + reCAPTCHA) -->
+  <!-- IMPORTANT: hero.js (helpers like ZIP->City + submit guard) -->
   <script src="js/hero.js" defer></script>
-
-  <!-- NOTE: removed js/form-submit.js to avoid duplicate handlers -->
 </body>
 </html>
