@@ -1,389 +1,466 @@
-/* =========================================================
-   FORM STYLING - Zenith Roofing
-========================================================= */
+    /* =========================================================
+       GLOBAL STYLES - Zenith Roofing
+    ========================================================= */
+    :root {
+      --zenith-navy: #072e59;
+      --zenith-orange: #f7941d;
+      --zenith-orange-dark: #d77a18;
+      --zenith-white: #ffffff;
+    }
 
-/* [1] BASE STYLES */
-.zenith-hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  color: var(--zenith-white);
-  overflow: hidden;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.zenith-video-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
 
-.zenith-video-container video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    /* =========================================================
+       HERO SECTION STYLES
+    ========================================================= */
+    .zenith-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      color: var(--zenith-white);
+      overflow: hidden;
+    }
 
-.zenith-video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(7, 46, 89, 0.85);
-  z-index: -1;
-}
+    .zenith-video-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
 
-/* [2] CARD CONTAINER */
-.zenith-card {
-  background-color: var(--zenith-white);
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  max-width: 800px;
-  overflow: hidden;
-  margin: 2rem 0;
-}
+    .zenith-video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-/* [2.5] LOGO & HEADER */
-.zenith-luxury-card {
-  background-color: var(--zenith-navy);
-  padding: 1.5rem 2rem;
-}
+    .zenith-video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(7, 46, 89, 0.85);
+      z-index: -1;
+    }
 
-.zenith-luxury-header {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
+    /* =========================================================
+       CARD CONTAINER
+    ========================================================= */
+    .zenith-card {
+      background-color: var(--zenith-white);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 800px;
+      overflow: hidden;
+      margin: 2rem 0;
+      animation: fadeIn 0.5s ease-out;
+    }
 
-.zenith-logo-frame {
-  width: 60px;
-  height: 60px;
-  flex-shrink: 0;
-}
+    /* =========================================================
+       LOGO & HEADER
+    ========================================================= */
+    .zenith-luxury-card {
+      background-color: var(--zenith-navy);
+      padding: 1.5rem 2rem;
+    }
 
-.zenith-luxury-logo {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+    .zenith-luxury-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
 
-.zenith-luxury-titles {
-  color: var(--zenith-white);
-}
+    .zenith-logo-frame {
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+    }
 
-.zenith-luxury-subtitle {
-  font-size: 1rem;
-  font-weight: 500;
-  margin: 0 0 0.25rem 0;
-  color: rgba(255, 255, 255, 0.9);
-}
+    .zenith-luxury-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
-.zenith-luxury-locations {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
-}
+    .zenith-luxury-titles {
+      color: var(--zenith-white);
+    }
 
-.zenith-luxury-locations span {
-  margin-right: 0.5rem;
-}
+    .zenith-luxury-subtitle {
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0 0 0.25rem 0;
+      color: rgba(255, 255, 255, 0.9);
+    }
 
-.luxury-divider {
-  margin-right: 0.5rem;
-}
+    .zenith-luxury-locations {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
 
-/* [3] FORM HEADER */
-.estimate-heading {
-  padding: 1.5rem 2rem 0;
-  text-align: center;
-}
+    .zenith-luxury-locations span {
+      margin-right: 0.5rem;
+    }
 
-.estimate-title {
-  color: var(--zenith-navy);
-  font-size: 1.75rem;
-  margin: 0 0 0.5rem 0;
-  font-weight: 700;
-}
+    .luxury-divider {
+      margin-right: 0.5rem;
+    }
 
-.estimate-subtitle {
-  color: var(--zenith-navy);
-  opacity: 0.8;
-  font-size: 1rem;
-  margin: 0;
-}
+    /* =========================================================
+       FORM HEADER
+    ========================================================= */
+    .estimate-heading {
+      padding: 1.5rem 2rem 0;
+      text-align: center;
+    }
 
-/* [4] FORM STYLES */
-.zenith-form {
-  padding: 1.5rem 2rem 2rem;
-}
+    .estimate-title {
+      color: var(--zenith-navy);
+      font-size: 1.75rem;
+      margin: 0 0 0.5rem 0;
+      font-weight: 700;
+    }
 
-.zenith-form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
+    .estimate-subtitle {
+      color: var(--zenith-navy);
+      opacity: 0.8;
+      font-size: 1rem;
+      margin: 0;
+    }
 
-.zenith-input-group {
-  position: relative;
-  margin-bottom: 0.5rem;
-}
+    /* =========================================================
+       FORM STYLES
+    ========================================================= */
+    .zenith-form {
+      padding: 1.5rem 2rem 2rem;
+    }
 
-.full-width {
-  grid-column: span 2;
-}
+    .zenith-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
 
-.city-field {
-  grid-column: 1;
-}
+    .zenith-input-group {
+      position: relative;
+      margin-bottom: 1rem;
+    }
 
-.state-field {
-  grid-column: 2;
-  max-width: 80px;
-}
+    .full-width {
+      grid-column: span 2;
+    }
 
-.zip-field {
-  grid-column: 2;
-  max-width: 120px;
-  justify-self: end;
-}
+    .city-field {
+      grid-column: 1;
+    }
 
-/* Input Fields */
-.zenith-input-group input,
-.zenith-input-group textarea,
-.floating-select select {
-  width: 100%;
-  padding: 1rem 1rem 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 1rem;
-  background-color: #f9f9f9;
-  transition: all 0.2s ease;
-}
+    .state-field {
+      grid-column: 2;
+      max-width: 80px;
+    }
 
-.zenith-input-group input:focus,
-.zenith-input-group textarea:focus,
-.floating-select select:focus {
-  outline: none;
-  border-color: var(--zenith-orange);
-  box-shadow: 0 0 0 2px rgba(247, 148, 29, 0.2);
-  background-color: var(--zenith-white);
-}
+    .zip-field {
+      grid-column: 2;
+      max-width: 120px;
+      justify-self: end;
+    }
 
-.zenith-input-group textarea {
-  resize: vertical;
-  min-height: 100px;
-}
+    /* Input Fields */
+    .zenith-input-group input,
+    .zenith-input-group textarea,
+    .floating-select select {
+      width: 100%;
+      padding: 1.1rem 1rem 0.6rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1rem;
+      background-color: #f9fafb;
+      transition: all 0.2s ease;
+    }
 
-/* Floating Labels */
-.zenith-input-group label,
-.floating-select label {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  color: #666;
-  font-size: 1rem;
-  pointer-events: none;
-  transition: all 0.2s ease;
-}
+    .zenith-input-group input:focus,
+    .zenith-input-group textarea:focus,
+    .floating-select select:focus {
+      outline: none;
+      border-color: var(--zenith-orange);
+      box-shadow: 0 0 0 3px rgba(247, 148, 29, 0.15);
+      background-color: white;
+    }
 
-.zenith-input-group input:focus + label,
-.zenith-input-group input:not(:placeholder-shown) + label,
-.zenith-input-group textarea:focus + label,
-.zenith-input-group textarea:not(:placeholder-shown) + label,
-.floating-select select:focus + label,
-.floating-select select:not([value=""]) + label {
-  top: 0.4rem;
-  left: 1rem;
-  font-size: 0.75rem;
-  color: var(--zenith-orange);
-}
+    .zenith-input-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
 
-.zenith-optional {
-  color: #666;
-  font-size: 0.8rem;
-  margin-top: 0.25rem;
-  display: block;
-}
+    /* Labels */
+    .zenith-input-group label,
+    .floating-select label {
+      position: absolute;
+      top: 0.65rem;
+      left: 1rem;
+      color: #6b7280;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
 
-/* Select Dropdown */
-.floating-select {
-  position: relative;
-}
+    .zenith-input-group input:focus + label,
+    .zenith-input-group input:not(:placeholder-shown) + label,
+    .zenith-input-group textarea:focus + label,
+    .zenith-input-group textarea:not(:placeholder-shown) + label,
+    .floating-select select:focus + label,
+    .floating-select select:not([value=""]) + label {
+      top: 0.3rem;
+      font-size: 0.7rem;
+      color: var(--zenith-orange);
+    }
 
-.floating-select select {
-  appearance: none;
-  padding-right: 2.5rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 16px;
-}
+    .zenith-optional {
+      color: #6b7280;
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+      display: block;
+    }
 
-/* File Upload */
-.file-group {
-  grid-column: span 2;
-  margin-bottom: 1rem;
-}
+    /* Select Dropdown */
+    .floating-select {
+      position: relative;
+    }
 
-.file-group label {
-  position: static;
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--zenith-navy);
-  font-weight: 500;
-}
+    .floating-select select {
+      appearance: none;
+      padding-right: 2.5rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236b7280' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 12px;
+    }
 
-.file-input-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
+    /* Phone Number Field */
+    #phone {
+      letter-spacing: 0.5px;
+      font-family: monospace;
+      font-size: 0.95rem;
+    }
 
-.custom-file-upload {
-  padding: 0.75rem 1.5rem;
-  background-color: var(--zenith-orange);
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
-}
+    /* File Upload */
+    .file-group {
+      grid-column: span 2;
+      margin-bottom: 1rem;
+    }
 
-.custom-file-upload:hover {
-  background-color: var(--zenith-orange-dark);
-}
+    .file-group label {
+      position: static;
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--zenith-navy);
+      font-weight: 500;
+    }
 
-.file-name {
-  font-size: 0.9rem;
-  color: #666;
-}
+    .file-input-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
 
-input[type="file"] {
-  display: none;
-}
+    .custom-file-upload {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--zenith-orange);
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+    }
 
-/* Form Actions */
-.zenith-actions {
-  grid-column: span 2;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
+    .custom-file-upload:hover {
+      background-color: var(--zenith-orange-dark);
+    }
 
-.zenith-recaptcha {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+    .file-name {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
 
-.recaptcha-title {
-  font-size: 0.9rem;
-  color: #666;
-}
+    input[type="file"] {
+      display: none;
+    }
 
-.zenith-submit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 1rem 1.5rem;
-  background-color: var(--zenith-orange);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  width: 100%;
-}
+    /* Error Messages */
+    .error-message {
+      color: #e74c3c;
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+    }
 
-.zenith-submit:hover {
-  background-color: var(--zenith-orange-dark);
-  transform: translateY(-2px);
-}
+    /* Form Actions */
+    .zenith-actions {
+      grid-column: span 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
 
-.submit-icon {
-  font-size: 1.2rem;
-  line-height: 1;
-}
+    .zenith-recaptcha {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
 
-/* Disclaimer */
-.zenith-disclaimer {
-  grid-column: span 2;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #eee;
-  font-size: 0.85rem;
-  color: #666;
-  line-height: 1.5;
-}
+    .recaptcha-title {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
 
-.zenith-disclaimer a {
-  color: var(--zenith-orange);
-  text-decoration: none;
-}
+    .zenith-submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem;
+      background-color: var(--zenith-orange);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
 
-.zenith-disclaimer a:hover {
-  text-decoration: underline;
-}
+    .zenith-submit:hover {
+      background-color: var(--zenith-orange-dark);
+      transform: translateY(-2px);
+    }
 
-.zenith-contact {
-  margin-top: 1rem;
-}
+    .zenith-submit:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+      transform: none;
+    }
 
-.zenith-phone {
-  margin: 0;
-  font-size: 0.9rem;
-}
+    .submit-icon {
+      font-size: 1.2rem;
+      line-height: 1;
+    }
 
-.zenith-phone strong {
-  color: var(--zenith-navy);
-}
+    /* Success Message */
+    .zenith-success-message {
+      background-color: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      text-align: center;
+      animation: fadeIn 0.5s ease-out;
+    }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .zenith-form-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .full-width,
-  .city-field,
-  .state-field,
-  .zip-field,
-  .zenith-actions {
-    grid-column: span 1;
-  }
-  
-  .state-field,
-  .zip-field {
-    max-width: 100%;
-  }
-  
-  .zenith-luxury-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
-  }
-  
-  .estimate-title {
-    font-size: 1.5rem;
-  }
-}
+    /* Disclaimer */
+    .zenith-disclaimer {
+      grid-column: span 2;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #eee;
+      font-size: 0.85rem;
+      color: #6b7280;
+      line-height: 1.5;
+    }
 
-/* Animation for better UX */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    .zenith-disclaimer a {
+      color: var(--zenith-orange);
+      text-decoration: none;
+    }
 
-.zenith-card {
-  animation: fadeIn 0.5s ease-out;
-}
+    .zenith-disclaimer a:hover {
+      text-decoration: underline;
+    }
+
+    .zenith-contact {
+      margin-top: 1rem;
+    }
+
+    .zenith-phone {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .zenith-phone strong {
+      color: var(--zenith-navy);
+    }
+
+    /* =========================================================
+       ANIMATIONS
+    ========================================================= */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =========================================================
+       RESPONSIVE ADJUSTMENTS
+    ========================================================= */
+    @media (max-width: 768px) {
+      .zenith-form-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .full-width,
+      .city-field,
+      .state-field,
+      .zip-field,
+      .zenith-actions {
+        grid-column: span 1;
+      }
+      
+      .state-field,
+      .zip-field {
+        max-width: 100%;
+      }
+      
+      .zenith-luxury-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+      
+      .estimate-title {
+        font-size: 1.5rem;
+      }
+
+      .zenith-input-group input,
+      .floating-select select {
+        padding: 1.2rem 1rem 0.7rem;
+      }
+      
+      .zenith-input-group label,
+      .floating-select label {
+        top: 0.75rem;
+      }
+      
+      .zenith-input-group input:focus + label,
+      .zenith-input-group input:not(:placeholder-shown) + label,
+      .floating-select select:focus + label,
+      .floating-select select:not([value=""]) + label {
+        top: 0.35rem;
+      }
+    }
