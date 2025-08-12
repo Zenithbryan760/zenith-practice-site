@@ -41,6 +41,19 @@ exports.handler = async (event) => {
     const email = (data.email      || "").trim();
     const phone = (data.phone      || "").trim();
 
+    // Build a friendly Description for JobNimbus (Service Type first)
+    const descLines = [];
+    if ((data.service_type || "").trim()) {
+      descLines.push(`Service Type: ${data.service_type.trim()}`);
+    }
+    if ((data.description || "").trim()) {
+      descLines.push(`Details: ${data.description.trim()}`);
+    }
+    if ((data.referral_source || "").trim()) {
+      descLines.push(`Heard About Us: ${data.referral_source.trim()}`);
+    }
+    const combinedDescription = descLines.join("\n");
+
     const payload = {
       display_name: [first, last].filter(Boolean).join(" ").trim() || email || phone || "Website Lead",
       first_name: first,
@@ -48,9 +61,14 @@ exports.handler = async (event) => {
       email,
       phone,
       address: `${data.street_address || ""}, ${data.city || ""}, ${data.state || ""} ${data.zip || ""}`.trim(),
-      description: data.description || "",
+
+      // 👇 Description now starts with Service Type, then Details, then Heard About Us
+      description: combinedDescription,
+
+      // Keep these convenience fields too (harmless if JN ignores them)
       service_type:    data.service_type    || "",
       referral_source: data.referral_source || "",
+
       _source:  "website-zenithroofingca",
       _version: "jn-create-lead-2025-08-11"
     };
@@ -77,6 +95,8 @@ exports.handler = async (event) => {
 
       if (SG_KEY && TO && FROM) {
         const subject = `New Website Lead: ${[first, last].filter(Boolean).join(" ") || phone || email}`;
+
+        // Use the same combined description in the email
         const html = `
           <h2>New Website Lead</h2>
           <table cellspacing="0" cellpadding="6" style="font-family:Arial,Helvetica,sans-serif;font-size:14px">
@@ -84,9 +104,7 @@ exports.handler = async (event) => {
             <tr><td><b>Email</b></td><td>${email}</td></tr>
             <tr><td><b>Phone</b></td><td>${phone}</td></tr>
             <tr><td><b>Address</b></td><td>${data.street_address}, ${data.city}, ${data.state} ${data.zip}</td></tr>
-            <tr><td><b>Service Type</b></td><td>${data.service_type || ""}</td></tr>
-            <tr><td><b>Heard About Us</b></td><td>${data.referral_source || ""}</td></tr>
-            <tr><td><b>Description</b></td><td>${(data.description || "").replace(/\n/g,"<br>")}</td></tr>
+            <tr><td><b>Description</b></td><td>${(combinedDescription || "").replace(/\n/g,"<br>")}</td></tr>
           </table>
         `;
         const text = `New website lead
@@ -94,9 +112,8 @@ Name: ${first} ${last}
 Email: ${email}
 Phone: ${phone}
 Address: ${data.street_address}, ${data.city}, ${data.state} ${data.zip}
-Service Type: ${data.service_type || ""}
-Heard About Us: ${data.referral_source || ""}
-Description: ${data.description || ""}`;
+
+${combinedDescription || ""}`;
 
         const sgRes = await fetch("https://api.sendgrid.com/v3/mail/send", {
           method: "POST",
