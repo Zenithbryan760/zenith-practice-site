@@ -10,33 +10,30 @@
   <!-- ===== GOOGLE FONT ===== -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- ===== reCAPTCHA BOOTSTRAP (define callbacks BEFORE loading Google) ===== -->
-  <script>
-    (function () {
-      // Re-usable render function (safe to call multiple times)
-      window.renderHeroRecaptchaIfReady = function () {
-        var slot = document.getElementById('recaptcha-slot');
-        if (!slot) return; // hero not injected yet
+<script>
+  (function () {
+    // Called by you (and by Google's onload) to render the checkbox
+    window.renderHeroRecaptchaIfReady = function () {
+      var slot = document.getElementById('recaptcha-slot');
+      if (!slot) return; // hero not injected yet
 
-        if (window.grecaptcha) {
-          if (!slot.dataset.rendered) {
-            grecaptcha.render(slot, {
-              sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI',
-              theme: 'light',
-              size: 'normal'
-            });
-            slot.dataset.rendered = '1';
-          }
-        }
-        // If grecaptcha isn't ready yet, recaptchaOnload will call this again.
-      };
+      if (window.grecaptcha && !slot.dataset.rendered) {
+        // ✅ Save the widget id globally so hero.js can get/reset it later
+        window._recaptchaWidgetId = grecaptcha.render(slot, {
+          sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI',
+          theme: 'light',
+          size: 'normal'
+        });
+        slot.dataset.rendered = '1'; // guard against double-render
+      }
+    };
 
-      // Called by Google's API when it finishes loading
-      window.recaptchaOnload = function () {
-        window.renderHeroRecaptchaIfReady();
-      };
-    })();
-  </script>
+    // Google calls this when the API finishes loading
+    window.recaptchaOnload = function () {
+      window.renderHeroRecaptchaIfReady();
+    };
+  })();
+</script>
 
   <!-- ===== reCAPTCHA v2 (explicit render) ===== -->
   <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
@@ -302,21 +299,20 @@
   <div id="hero-placeholder"></div>
   
  <!-- ===== FETCH HERO COMPONENT ===== -->
-  <script>
-    fetch('components/hero-section.html')
-      .then(r => {
-        if (!r.ok) throw new Error('Failed to load hero-section.html');
-        return r.text();
-      })
-      .then(html => {
-        document.getElementById('hero-placeholder').innerHTML = html;
-        // After injection, try to render captcha (works whether API loaded before/after)
-        if (window.renderHeroRecaptchaIfReady) {
-          window.renderHeroRecaptchaIfReady();
-        }
-      })
-      .catch(err => console.error('❌ Hero load error:', err));
-  </script>
+<script>
+  fetch('components/hero-section.html')
+    .then(r => { if (!r.ok) throw new Error('Failed to load hero-section.html'); return r.text(); })
+    .then(html => {
+      document.getElementById('hero-placeholder').innerHTML = html;
+
+      // Render captcha
+      if (window.renderHeroRecaptchaIfReady) window.renderHeroRecaptchaIfReady();
+
+      // ✅ NEW: bind phone mask, ZIP→City, and submit handler
+      if (window.initEstimateForm) window.initEstimateForm();
+    })
+    .catch(err => console.error('❌ Hero load error:', err));
+</script>
 
 
   <!-- ===== OTHER SCRIPTS ===== -->
