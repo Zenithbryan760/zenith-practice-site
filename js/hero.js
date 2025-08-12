@@ -153,3 +153,285 @@
     if (document.getElementById('estimate-form')) window.initEstimateForm();
   });
 })();
+// js/hero.js
+(function () {
+  // Public API used by index.html after injecting the hero
+  window.initEstimateForm = function initEstimateForm() {
+    const form = document.getElementById('estimate-form');
+    if (!form || form.dataset.bound === 'true') return;
+    form.dataset.bound = 'true';
+
+    // Build (but don't show) a top summary area for accessibility
+    let summary = form.querySelector('.error-summary');
+    if (!summary) {
+      summary = document.createElement('div');
+      summary.className = 'error-summary';
+      summary.setAttribute('role', 'alert');
+      summary.setAttribute('aria-live', 'assertive');
+      summary.innerHTML = '<strong>Please fix the highlighted fields.</strong>';
+      form.prepend(summary);
+    }
+
+    // Phone mask: (###) ###-####
+    const phone = form.querySelector('#phone');
+    if (phone) {
+      phone.addEventListener('input', () => {
+        let v = phone.value.replace(/\D/g, '').slice(0, 10);
+        const parts = [];
+        if (v.length > 0) parts.push('(' + v.slice(0, 3));
+        if (v.length >= 4) parts[0] += ') ' + v.slice(3, 6);
+        if (v.length >= 7) parts[0] += '-' + v.slice(6, 10);
+        phone.value = parts.join('');
+      });
+    }
+
+    // Inline validation helpers
+    const fields = Array.from(form.querySelectorAll('input[required], select[required], textarea[required], #zip, #phone, #email'));
+    fields.forEach((el) => {
+      el.addEventListener('blur', () => validateField(el));
+      el.addEventListener('input', () => clearError(el)); // clear as they type
+      el.addEventListener('change', () => clearError(el));
+    });
+
+    function validateField(el) {
+      // Use native validity first
+      const isValid = el.checkValidity();
+      if (isValid) {
+        clearError(el);
+        return true;
+      }
+      let msg = 'This field is required.';
+      if (el.id === 'email' && el.value) msg = 'Enter a valid email.';
+      if (el.id === 'phone' && el.value) msg = 'Format: (123) 456-7890';
+      if (el.id === 'zip' && el.value) msg = 'Enter a 5-digit ZIP (or ZIP+4).';
+      showError(el, msg);
+      return false;
+    }
+
+    function showError(el, message) {
+      const group = el.closest('.form-group') || el.parentElement;
+      if (!group) return;
+      group.classList.add('has-error');
+      let help = group.querySelector('.field-error');
+      if (!help) {
+        help = document.createElement('div');
+        help.className = 'field-error';
+        group.appendChild(help);
+      }
+      help.textContent = message;
+    }
+
+    function clearError(el) {
+      const group = el.closest('.form-group') || el.parentElement;
+      if (!group) return;
+      group.classList.remove('has-error');
+      const help = group.querySelector('.field-error');
+      if (help) help.remove();
+      // hide global summary if no errors left
+      if (!form.querySelector('.form-group.has-error')) {
+        summary.classList.remove('show');
+      }
+    }
+
+    // reCAPTCHA helper
+    function captchaOK() {
+      try {
+        if (window.grecaptcha && typeof window._recaptchaWidgetId === 'number') {
+          return grecaptcha.getResponse(window._recaptchaWidgetId).length > 0;
+        }
+      } catch (_) {}
+      return false;
+    }
+
+    function flagCaptchaError() {
+      const slot = form.querySelector('#recaptcha-slot');
+      const wrap = slot && slot.closest('.form-group');
+      if (!wrap) return;
+      wrap.classList.add('has-error');
+      let help = wrap.querySelector('.field-error');
+      if (!help) {
+        help = document.createElement('div');
+        help.className = 'field-error';
+        wrap.appendChild(help);
+      }
+      help.textContent = 'Please verify you are not a robot.';
+      summary.classList.add('show');
+      // focus to the captcha for quick fix
+      slot.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Final submit guard: blocks only when invalid; otherwise lets your flow continue
+    form.addEventListener('submit', function (e) {
+      // Validate all required fields
+      let allGood = true;
+      fields.forEach((el) => {
+        if (!validateField(el)) allGood = false;
+      });
+
+      // Check captcha
+      if (!captchaOK()) {
+        allGood = false;
+        flagCaptchaError();
+      }
+
+      if (!allGood) {
+        e.preventDefault();            // block submit
+        e.stopImmediatePropagation();  // block any other submit handlers
+        summary.classList.add('show');
+
+        // scroll & focus first problem
+        const firstError = form.querySelector('.form-group.has-error input, .form-group.has-error select, .form-group.has-error textarea');
+        if (firstError) {
+          firstError.focus({ preventScroll: true });
+          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return false;
+      }
+
+      // If valid, do NOT interfere. Let your existing submit logic (if any) run.
+      // Nothing to do here.
+      return true;
+    }, true);
+  };
+})();
+// js/hero.js
+(function () {
+  // Public API used by index.html after injecting the hero
+  window.initEstimateForm = function initEstimateForm() {
+    const form = document.getElementById('estimate-form');
+    if (!form || form.dataset.bound === 'true') return;
+    form.dataset.bound = 'true';
+
+    // Build (but don't show) a top summary area for accessibility
+    let summary = form.querySelector('.error-summary');
+    if (!summary) {
+      summary = document.createElement('div');
+      summary.className = 'error-summary';
+      summary.setAttribute('role', 'alert');
+      summary.setAttribute('aria-live', 'assertive');
+      summary.innerHTML = '<strong>Please fix the highlighted fields.</strong>';
+      form.prepend(summary);
+    }
+
+    // Phone mask: (###) ###-####
+    const phone = form.querySelector('#phone');
+    if (phone) {
+      phone.addEventListener('input', () => {
+        let v = phone.value.replace(/\D/g, '').slice(0, 10);
+        const parts = [];
+        if (v.length > 0) parts.push('(' + v.slice(0, 3));
+        if (v.length >= 4) parts[0] += ') ' + v.slice(3, 6);
+        if (v.length >= 7) parts[0] += '-' + v.slice(6, 10);
+        phone.value = parts.join('');
+      });
+    }
+
+    // Inline validation helpers
+    const fields = Array.from(form.querySelectorAll('input[required], select[required], textarea[required], #zip, #phone, #email'));
+    fields.forEach((el) => {
+      el.addEventListener('blur', () => validateField(el));
+      el.addEventListener('input', () => clearError(el)); // clear as they type
+      el.addEventListener('change', () => clearError(el));
+    });
+
+    function validateField(el) {
+      // Use native validity first
+      const isValid = el.checkValidity();
+      if (isValid) {
+        clearError(el);
+        return true;
+      }
+      let msg = 'This field is required.';
+      if (el.id === 'email' && el.value) msg = 'Enter a valid email.';
+      if (el.id === 'phone' && el.value) msg = 'Format: (123) 456-7890';
+      if (el.id === 'zip' && el.value) msg = 'Enter a 5-digit ZIP (or ZIP+4).';
+      showError(el, msg);
+      return false;
+    }
+
+    function showError(el, message) {
+      const group = el.closest('.form-group') || el.parentElement;
+      if (!group) return;
+      group.classList.add('has-error');
+      let help = group.querySelector('.field-error');
+      if (!help) {
+        help = document.createElement('div');
+        help.className = 'field-error';
+        group.appendChild(help);
+      }
+      help.textContent = message;
+    }
+
+    function clearError(el) {
+      const group = el.closest('.form-group') || el.parentElement;
+      if (!group) return;
+      group.classList.remove('has-error');
+      const help = group.querySelector('.field-error');
+      if (help) help.remove();
+      // hide global summary if no errors left
+      if (!form.querySelector('.form-group.has-error')) {
+        summary.classList.remove('show');
+      }
+    }
+
+    // reCAPTCHA helper
+    function captchaOK() {
+      try {
+        if (window.grecaptcha && typeof window._recaptchaWidgetId === 'number') {
+          return grecaptcha.getResponse(window._recaptchaWidgetId).length > 0;
+        }
+      } catch (_) {}
+      return false;
+    }
+
+    function flagCaptchaError() {
+      const slot = form.querySelector('#recaptcha-slot');
+      const wrap = slot && slot.closest('.form-group');
+      if (!wrap) return;
+      wrap.classList.add('has-error');
+      let help = wrap.querySelector('.field-error');
+      if (!help) {
+        help = document.createElement('div');
+        help.className = 'field-error';
+        wrap.appendChild(help);
+      }
+      help.textContent = 'Please verify you are not a robot.';
+      summary.classList.add('show');
+      // focus to the captcha for quick fix
+      slot.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Final submit guard: blocks only when invalid; otherwise lets your flow continue
+    form.addEventListener('submit', function (e) {
+      // Validate all required fields
+      let allGood = true;
+      fields.forEach((el) => {
+        if (!validateField(el)) allGood = false;
+      });
+
+      // Check captcha
+      if (!captchaOK()) {
+        allGood = false;
+        flagCaptchaError();
+      }
+
+      if (!allGood) {
+        e.preventDefault();            // block submit
+        e.stopImmediatePropagation();  // block any other submit handlers
+        summary.classList.add('show');
+
+        // scroll & focus first problem
+        const firstError = form.querySelector('.form-group.has-error input, .form-group.has-error select, .form-group.has-error textarea');
+        if (firstError) {
+          firstError.focus({ preventScroll: true });
+          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return false;
+      }
+
+      // If valid, do NOT interfere. Let your existing submit logic (if any) run.
+      // Nothing to do here.
+      return true;
+    }, true);
+  };
+})();
