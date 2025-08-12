@@ -1,4 +1,4 @@
-// js/hero.js — phone mask + ZIP → City + reCAPTCHA guard + submit to Netlify
+// js/hero.js — phone mask + ZIP → City + validation + reCAPTCHA guard + submit to Netlify
 (function () {
   // ---------- PHONE MASK (###) ###-#### ----------
   function bindPhoneMask() {
@@ -62,12 +62,77 @@
     maybeFill();
   }
 
-  // ---------- SUBMIT HANDLER (reCAPTCHA + POST to Netlify) ----------
+  // ---------- LIGHTWEIGHT VALIDATION (keeps photos optional) ----------
+  function ensureErrorSummary(form) {
+    let box = form.querySelector('.error-summary');
+    if (!box) {
+      box = document.createElement('div');
+      box.className = 'error-summary';
+      box.setAttribute('role', 'alert');
+      box.setAttribute('aria-live', 'assertive');
+      const firstRow = form.querySelector('.form-row');
+      (firstRow?.parentNode || form).insertBefore(box, firstRow);
+    }
+    return box;
+  }
+
+  function clearErrors(form) {
+    form.querySelectorAll('.form-group.has-error').forEach(g => g.classList.remove('has-error'));
+    form.querySelectorAll('.field-error').forEach(n => n.remove());
+    const box = form.querySelector('.error-summary');
+    if (box) { box.textContent = ''; box.classList.remove('show'); }
+  }
+
+  function showFieldError(input, message) {
+    const group = input.closest('.form-group') || input.parentElement;
+    if (!group) return;
+    group.classList.add('has-error');
+
+    // avoid stacking duplicates
+    if (!group.querySelector('.field-error')) {
+      const note = document.createElement('div');
+      note.className = 'field-error';
+      note.textContent = message;
+      group.appendChild(note);
+    }
+  }
+
+  function getMessageFor(input) {
+    if (input.validity.valueMissing) return 'This field is required.';
+    if (input.id === 'email' && input.validity.typeMismatch) return 'Enter a valid email address.';
+    if (input.id === 'phone' && input.validity.patternMismatch) return 'Use format: (555) 123-4567';
+    if (input.id === 'zip'   && input.validity.patternMismatch) return 'Enter a 5-digit ZIP (or ZIP+4).';
+    return 'Please check this field.';
+  }
+
+  function validateForm(form) {
+    clearErrors(form);
+
+    // All required fields (browser validity), photos excluded (not required in your HTML)
+    const required = Array.from(form.querySelectorAll('[required]'));
+    const invalid = required.filter(el => !el.checkValidity());
+
+    if (invalid.length) {
+      const box = ensureErrorSummary(form);
+      box.textContent = 'Please fix the highlighted fields. Photos are optional; all other fields are required.';
+      box.classList.add('show');
+
+      invalid.forEach(el => showFieldError(el, getMessageFor(el)));
+      invalid[0].focus();
+      return false;
+    }
+    return true;
+  }
+
+  // ---------- SUBMIT HANDLER (validation + reCAPTCHA + POST) ----------
   async function submitHandler(e) {
     e.preventDefault();
     const form = e.currentTarget;
 
-    // Require reCAPTCHA (v2 checkbox)
+    // 1) Validate required fields (keeps photos optional)
+    if (!validateForm(form)) return;
+
+    // 2) Require reCAPTCHA (v2 checkbox)
     let token = '';
     if (window.grecaptcha && typeof window.grecaptcha.getResponse === 'function') {
       if (typeof window._recaptchaWidgetId !== 'undefined') {
@@ -79,12 +144,13 @@
       }
     }
     if (!token) {
-      alert("Please complete the reCAPTCHA before submitting.");
+      const box = ensureErrorSummary(form);
+      box.textContent = 'Please complete the reCAPTCHA before submitting.';
+      box.classList.add('show');
       return;
     }
-    // If you later verify server-side, you can add: data.recaptcha_token = token;
 
-    // Build payload from form fields
+    // 3) Build payload from form fields
     const fd = new FormData(form);
     const data = {
       first_name: (fd.get("first_name") || "").trim(),
@@ -129,6 +195,8 @@
         const t = document.querySelector('textarea[name="g-recaptcha-response"]');
         if (t) t.value = '';
       }
+
+      clearErrors(form);
     } catch (err) {
       console.error(err);
       alert("Network error. Please try again.");
@@ -145,6 +213,13 @@
 
     bindPhoneMask();
     bindZipToCity();
+
+    // Clarify the photos note without editing HTML
+    const photosNote = document.getElementById('photos-note');
+    if (photosNote) {
+      photosNote.textContent = 'Photos are optional; all other fields are required.';
+    }
+
     form.addEventListener('submit', submitHandler);
   };
 
