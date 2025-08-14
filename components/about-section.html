@@ -1,9 +1,18 @@
 <!-- =========================================================
-  [ABOUT SECTION] Zenith Roofing — SEO-optimized About Content
+  [ABOUT SECTION] Zenith Roofing — Brand, Parallax & CTA
 ========================================================= -->
-<section id="about" class="about-section light-section" aria-labelledby="about-title">
+<section id="about" class="about-section" aria-labelledby="about-title">
+
+  <!-- Parallax background layers (decorative) -->
+  <div class="about-parallax">
+    <div class="layer layer-navy" data-parallax data-speed="0.25" aria-hidden="true"></div>
+    <div class="layer layer-orange" data-parallax data-speed="0.18" aria-hidden="true"></div>
+    <div class="layer layer-grid" data-parallax data-speed="0.12" aria-hidden="true"></div>
+  </div>
+
   <div class="about-container">
-    <header class="about-header">
+    <!-- Header -->
+    <header class="about-header" data-animate>
       <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing Services logo" class="about-logo" />
       <div class="about-title-wrap">
         <h2 id="about-title">About Zenith Roofing Services, Inc.</h2>
@@ -11,57 +20,77 @@
       </div>
     </header>
 
+    <!-- Story + Feature Icons -->
     <div class="about-grid">
       <div class="about-copy">
-        <p>
+        <p data-animate>
           At <strong>Zenith Roofing Services, Inc.</strong>, we help homeowners and businesses across
           <strong>Escondido</strong>, <strong>San Diego</strong>, and <strong>Temecula</strong> protect their properties with dependable, long-lasting roofing.
-          We’re a <strong>licensed C-39 contractor</strong> (License #1036112) focused on craftsmanship, clear communication, and results you can trust.
+          We’re a <strong>licensed C-39 contractor</strong> (Lic# 1036112) focused on craftsmanship, clear communication, and results you can trust.
         </p>
 
-        <p>
-          We provide <strong>roof replacements</strong>, <strong>roof repairs</strong>, <strong>tile lift &amp; lay</strong>,
+        <p data-animate>
+          We provide <strong>roof replacements</strong>, <strong>roof repairs</strong>, <strong>tile lift &amp; reset</strong>,
           <strong>50-year shingle systems</strong>, <strong>torch down roofing</strong>, <strong>silicone roof coatings</strong>,
           <strong>seamless gutters</strong>, and <strong>TPO single-ply roofing systems</strong> for energy-efficient flat and low-slope roofs.
-          We install premium materials (including <strong>Owens Corning</strong>) and follow proven methods that perform in Southern California’s sun and seasonal storms.
+          We install premium materials (including <strong>Owens Corning</strong>) and build systems that perform in Southern California’s sun and seasonal storms.
         </p>
 
-        <p>
-          From North County San Diego to the Temecula Valley, clients choose us for <strong>detailed inspections</strong>,
-          <strong>transparent estimates</strong>, <strong>clean job sites</strong>, and <strong>dependable warranties</strong>.
-          Whether you need a small repair or a full roof replacement, our team delivers quality work and honest service.
-        </p>
-
-        <ul class="about-list">
-          <li><strong>Residential &amp; Commercial:</strong> homes, multi-unit, retail, and industrial</li>
-          <li><strong>Popular in SoCal:</strong> reflective <strong>TPO</strong> for flat roofs, <strong>tile</strong> systems, and <strong>50-year shingles</strong></li>
-          <li><strong>Local Focus:</strong> Escondido, San Diego, Temecula &amp; surrounding areas</li>
+        <ul class="about-bullets" aria-label="Highlights">
+          <li data-animate>
+            <span class="ico" aria-hidden="true">
+              <!-- Shield/quality icon -->
+              <svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M12 2l7 3v6c0 5-3.5 9.74-7 11-3.5-1.26-7-6-7-11V5l7-3zM7 8.7V11c0 3.74 2.62 7.77 5 8.98 2.38-1.21 5-5.24 5-8.98V8.7L12 6.4 7 8.7z"/></svg>
+            </span>
+            Licensed C-39 • Premium materials • Clean job sites
+          </li>
+          <li data-animate>
+            <span class="ico" aria-hidden="true">
+              <!-- Sun/reflectivity -->
+              <svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M6.76 4.84l-1.8-1.79L3.17 4.84l1.79 1.79 1.8-1.79zm10.48 0l1.79-1.79 1.79 1.79-1.79 1.79-1.79-1.79zM12 4V1h-0v3h0zm0 19v-3h0v3h0zm8-8h3v0h-3v0zm-19 0h3v0H1v0zm2.34 6.76l1.79-1.79 1.8 1.79-1.8 1.79-1.79-1.79zM18.07 19.76l1.79 1.79 1.79-1.79-1.79-1.79-1.79 1.79zM12 7a5 5 0 110 10 5 5 0 010-10z"/></svg>
+            </span>
+            TPO &amp; coatings for cool, energy-efficient flat roofs
+          </li>
+          <li data-animate>
+            <span class="ico" aria-hidden="true">
+              <!-- Map pin -->
+              <svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+            </span>
+            Local focus: Escondido • San Diego • Temecula
+          </li>
         </ul>
 
-        <p class="about-cta">
-          Call/Text <a href="tel:8589006163">858-900-6163</a> or <a href="#roofing-estimate">request your free estimate</a>.
-        </p>
+        <!-- CTA -->
+        <div class="about-cta" data-animate>
+          <a class="btn-orange" href="tel:8589006163">Call/Text 858-900-6163</a>
+          <a class="btn-outline" href="#roofing-estimate">Request Free Estimate</a>
+        </div>
       </div>
 
+      <!-- Visual side (image cards) -->
       <aside class="about-aside">
-        <div class="about-card">
-          <h3>Why Choose Zenith</h3>
-          <ul>
-            <li>Licensed C-39 (Lic# 1036112)</li>
-            <li>Local, owner-led service</li>
-            <li>Premium materials</li>
-            <li>Clear communication</li>
-            <li>Warranties you can count on</li>
-          </ul>
-        </div>
+        <figure class="image-card" data-animate>
+          <img src="images/about/crew-installing-tpo.jpg" alt="Zenith crew installing TPO single-ply roofing" width="640" height="420" loading="lazy" />
+          <figcaption>TPO roofing for flat & low-slope roofs</figcaption>
+        </figure>
 
-        <div class="about-service-areas about-card">
-          <h3>Service Areas</h3>
-          <p>Escondido • San Diego • Temecula • North County San Diego &amp; nearby communities</p>
+        <div class="about-cards">
+          <div class="about-card" data-animate>
+            <h3>Why Choose Zenith</h3>
+            <ul>
+              <li>Licensed C-39 (Lic# 1036112)</li>
+              <li>Owner-led, local service</li>
+              <li>Clear estimates & communication</li>
+              <li>Dependable warranties</li>
+            </ul>
+          </div>
+
+          <div class="about-card" data-animate>
+            <h3>Service Areas</h3>
+            <p>Escondido • San Diego • Temecula • North County San Diego</p>
+          </div>
         </div>
       </aside>
     </div>
   </div>
-
-
 </section>
