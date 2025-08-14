@@ -1,21 +1,30 @@
-// js/about.js — small progressive enhancement
+// js/about.js — subtle, brand-matched animations (staggered)
 document.addEventListener('DOMContentLoaded', () => {
-  const about = document.querySelector('#about');
-  if (!about) return;
+  const root = document.querySelector('#about');
+  if (!root) return;
 
-  about.style.opacity = '0';
-  about.style.transform = 'translateY(8px)';
-  about.style.transition = 'opacity .35s ease, transform .35s ease';
+  // Tag elements we want to animate in
+  const animTargets = [
+    ...root.querySelectorAll('.about-header, .about-copy p, .about-list li, .about-aside .about-card, .about-cta')
+  ];
+  animTargets.forEach(el => el.setAttribute('data-animate', ''));
 
-  const obs = new IntersectionObserver((entries, o) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        about.style.opacity = '1';
-        about.style.transform = 'translateY(0)';
-        o.disconnect();
-      }
+  // Staggered reveal using IntersectionObserver
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      // Stagger children for nicer feel
+      const children = animTargets;
+      children.forEach((el, i) => {
+        // already animated? skip
+        if (el.classList.contains('in')) return;
+        setTimeout(() => el.classList.add('in'), i * 60); // 60ms stagger
+      });
+
+      io.disconnect();
     });
   }, { threshold: 0.15 });
 
-  obs.observe(about);
+  io.observe(root);
 });
