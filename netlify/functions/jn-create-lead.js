@@ -40,7 +40,14 @@ exports.handler = async (event) => {
     const last  = (data.last_name  || "").trim();
     const email = (data.email      || "").trim();
     const phone = (data.phone      || "").trim();
-    const phoneDigits = phone.replace(/\D/g, "").slice(0, 10); // digits only
+
+    // ---- Phone: normalize to digits only (many CRMs reject punctuation) ----
+    const phoneDigits = phone.replace(/\D/g, "").slice(0, 10);
+    const phonesArray = phoneDigits ? [{ type: "Main", number: phoneDigits }] : [];
+
+    // ---- Optional: assignment targets (set these in Netlify env vars) ----
+    const ASSIGN_ID  = process.env.JN_ASSIGN_USER_ID || "";  // your JN user ID
+    const SALESREP_ID = process.env.JN_SALES_REP_ID || ASSIGN_ID;
 
     // Build a friendly Description for JobNimbus (Service Type first)
     const descLines = [];
@@ -60,10 +67,14 @@ exports.handler = async (event) => {
       first_name: first,
       last_name:  last,
       email,
-      // ✅ Send to all likely phone fields so at least one will populate
+
+      // ✅ Phone sent in every common shape so at least one maps
       mainPhone:   phoneDigits || phone,
       mobilePhone: phoneDigits || phone,
       homePhone:   phoneDigits || phone,
+      phone:       phoneDigits || phone,
+      phones:      phonesArray,
+
       address: `${data.street_address || ""}, ${data.city || ""}, ${data.state || ""} ${data.zip || ""}`.trim(),
 
       // 👇 Description now starts with Service Type, then Details, then Heard About Us
@@ -72,6 +83,13 @@ exports.handler = async (event) => {
       // Keep these convenience fields too (harmless if JN ignores them)
       service_type:    data.service_type    || "",
       referral_source: data.referral_source || "",
+
+      // ✅ Try all common assignment fields
+      // (JN will ignore unknown ones; populate at least one)
+      ...(ASSIGN_ID ? { assignedTo: [ASSIGN_ID] } : {}),
+      ...(ASSIGN_ID ? { assignedToId: ASSIGN_ID } : {}),
+      ...(ASSIGN_ID ? { ownerId: ASSIGN_ID } : {}),
+      ...(SALESREP_ID ? { salesRepId: SALESREP_ID } : {}),
 
       _source:  "website-zenithroofingca",
       _version: "jn-create-lead-2025-08-11"
