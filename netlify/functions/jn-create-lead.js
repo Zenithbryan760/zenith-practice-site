@@ -73,11 +73,13 @@ exports.handler = async (event) => {
       };
     }
 
-    // Format phone for display (optional)
+    // Format phone for display
     const formattedPhone = `(${phone.slice(0,3)}) ${phone.slice(3,6)}-${phone.slice(6)}`;
 
-    // Build description
-    const descLines = [];
+    // Build description INCLUDING PHONE NUMBER AT THE TOP
+    const descLines = [
+      `Phone: ${formattedPhone}`  // Phone now first line of description
+    ];
     if ((data.service_type || "").trim()) {
       descLines.push(`Service Type: ${data.service_type.trim()}`);
     }
@@ -89,20 +91,20 @@ exports.handler = async (event) => {
     }
     const combinedDescription = descLines.join("\n");
 
-    // JobNimbus payload with explicit phone fields
+    // JobNimbus payload with phone in both dedicated field and description
     const payload = {
       display_name: [first, last].filter(Boolean).join(" ").trim() || email || formattedPhone || "Website Lead",
       first_name: first,
       last_name: last,
       email: email,
-      phone: phone, // numeric version
-      phone_formatted: formattedPhone, // human-readable version
+      phone: phone, // numeric version (still included)
+      phone_formatted: formattedPhone, // human-readable version (still included)
       address: `${data.street_address || ""}, ${data.city || ""}, ${data.state || ""} ${data.zip || ""}`.trim(),
-      description: combinedDescription,
+      description: combinedDescription, // Now includes phone as first line
       service_type: data.service_type || "",
       referral_source: data.referral_source || "",
       _source: "website-zenithroofingca",
-      _version: "jn-create-lead-2025-08-16"
+      _version: "jn-create-lead-" + new Date().toISOString().split('T')[0] // Dynamic date
     };
 
     console.log("JobNimbus payload:", JSON.stringify(payload, null, 2));
@@ -121,7 +123,7 @@ exports.handler = async (event) => {
     const jnResponse = await res.text();
     console.log("JobNimbus response:", jnResponse);
 
-    // ... rest of your SendGrid code remains exactly the same ...
+    // SendGrid notification (unchanged)
     let mailStatus = "skipped";
     try {
       const SG_KEY = process.env.SENDGRID_API_KEY;
