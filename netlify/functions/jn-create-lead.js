@@ -1,5 +1,13 @@
 // netlify/functions/jn-create-lead.js
-const allowedOrigin = "https://zenithroofingca.com"; // use "*" while testing if you like
+const allowedOrigin = "https://zenithroofingca.com";
+
+// Enhanced phone normalization with debugging
+const normalizePhone = (raw = "") => {
+  const digits = (String(raw).match(/\d/g) || []).join("");
+  const normalized = digits.replace(/^1(?=\d{10}$)/, "");
+  console.log(`Phone normalization: raw="${raw}" → digits="${digits}" → normalized="${normalized}"`);
+  return normalized;
+};
 
 exports.handler = async (event) => {
   // CORS preflight
@@ -25,6 +33,7 @@ exports.handler = async (event) => {
 
   try {
     const data = JSON.parse(event.body || "{}");
+    console.log("Incoming form data:", JSON.stringify(data, null, 2));
 
     const JN_API_KEY = process.env.JN_API_KEY;
     const JN_CONTACT_ENDPOINT = process.env.JN_CONTACT_ENDPOINT;
@@ -37,11 +46,37 @@ exports.handler = async (event) => {
     }
 
     const first = (data.first_name || "").trim();
-    const last  = (data.last_name  || "").trim();
-    const email = (data.email      || "").trim();
-    const phone = (data.phone      || "").trim();
+    const last = (data.last_name || "").trim();
+    const email = (data.email || "").trim();
 
-    // Build a friendly Description for JobNimbus (Service Type first)
+    // Comprehensive phone field handling
+    const rawPhone = data.phone_number || data.phone || data.phoneNumber || "";
+    const phone = normalizePhone(rawPhone);
+    console.log(`Final phone: "${phone}" (from raw: "${rawPhone}")`);
+
+    // Validate phone number
+    if (!phone) {
+      return {
+        statusCode: 400,
+        headers: { "Access-Control-Allow-Origin": allowedOrigin },
+        body: JSON.stringify({ error: "Phone number is required" })
+      };
+    }
+    if (phone.length !== 10) {
+      return {
+        statusCode: 400,
+        headers: { "Access-Control-Allow-Origin": allowedOrigin },
+        body: JSON.stringify({ 
+          error: "Invalid phone number format",
+          details: `Expected 10 digits, got ${phone.length} (${phone})`
+        })
+      };
+    }
+
+    // Format phone for display (optional)
+    const formattedPhone = `(${phone.slice(0,3)}) ${phone.slice(3,6)}-${phone.slice(6)}`;
+
+    // Build description
     const descLines = [];
     if ((data.service_type || "").trim()) {
       descLines.push(`Service Type: ${data.service_type.trim()}`);
@@ -54,26 +89,25 @@ exports.handler = async (event) => {
     }
     const combinedDescription = descLines.join("\n");
 
+    // JobNimbus payload with explicit phone fields
     const payload = {
-      display_name: [first, last].filter(Boolean).join(" ").trim() || email || phone || "Website Lead",
+      display_name: [first, last].filter(Boolean).join(" ").trim() || email || formattedPhone || "Website Lead",
       first_name: first,
-      last_name:  last,
-      email,
-      phone,
+      last_name: last,
+      email: email,
+      phone: phone, // numeric version
+      phone_formatted: formattedPhone, // human-readable version
       address: `${data.street_address || ""}, ${data.city || ""}, ${data.state || ""} ${data.zip || ""}`.trim(),
-
-      // 👇 Description now starts with Service Type, then Details, then Heard About Us
       description: combinedDescription,
-
-      // Keep these convenience fields too (harmless if JN ignores them)
-      service_type:    data.service_type    || "",
+      service_type: data.service_type || "",
       referral_source: data.referral_source || "",
-
-      _source:  "website-zenithroofingca",
-      _version: "jn-create-lead-2025-08-11"
+      _source: "website-zenithroofingca",
+      _version: "jn-create-lead-2025-08-16"
     };
 
-    // ---- Create contact in JobNimbus ----
+    console.log("JobNimbus payload:", JSON.stringify(payload, null, 2));
+
+    // Create contact in JobNimbus
     const res = await fetch(JN_CONTACT_ENDPOINT, {
       method: "POST",
       headers: {
@@ -84,25 +118,25 @@ exports.handler = async (event) => {
       body: JSON.stringify(payload)
     });
 
-    const jnText = await res.text();
+    const jnResponse = await res.text();
+    console.log("JobNimbus response:", jnResponse);
 
-    // ---- SendGrid notify (best-effort; doesn't block success) ----
+    // ... rest of your SendGrid code remains exactly the same ...
     let mailStatus = "skipped";
     try {
       const SG_KEY = process.env.SENDGRID_API_KEY;
-      const TO     = process.env.LEAD_NOTIFY_TO;
-      const FROM   = process.env.LEAD_NOTIFY_FROM;
+      const TO = process.env.LEAD_NOTIFY_TO;
+      const FROM = process.env.LEAD_NOTIFY_FROM;
 
       if (SG_KEY && TO && FROM) {
-        const subject = `New Website Lead: ${[first, last].filter(Boolean).join(" ") || phone || email}`;
+        const subject = `New Website Lead: ${[first, last].filter(Boolean).join(" ") || formattedPhone || email}`;
 
-        // Use the same combined description in the email
         const html = `
           <h2>New Website Lead</h2>
           <table cellspacing="0" cellpadding="6" style="font-family:Arial,Helvetica,sans-serif;font-size:14px">
             <tr><td><b>Name</b></td><td>${first} ${last}</td></tr>
             <tr><td><b>Email</b></td><td>${email}</td></tr>
-            <tr><td><b>Phone</b></td><td>${phone}</td></tr>
+            <tr><td><b>Phone</b></td><td>${formattedPhone}</td></tr>
             <tr><td><b>Address</b></td><td>${data.street_address}, ${data.city}, ${data.state} ${data.zip}</td></tr>
             <tr><td><b>Description</b></td><td>${(combinedDescription || "").replace(/\n/g,"<br>")}</td></tr>
           </table>
@@ -110,7 +144,7 @@ exports.handler = async (event) => {
         const text = `New website lead
 Name: ${first} ${last}
 Email: ${email}
-Phone: ${phone}
+Phone: ${formattedPhone}
 Address: ${data.street_address}, ${data.city}, ${data.state} ${data.zip}
 
 ${combinedDescription || ""}`;
@@ -138,15 +172,12 @@ ${combinedDescription || ""}`;
       mailStatus = "error";
     }
 
-    // Try to include mail status in response (helps debugging)
-    let responseBody = jnText;
+    let responseBody = jnResponse;
     try {
-      const jnJson = JSON.parse(jnText);
+      const jnJson = JSON.parse(jnResponse);
       jnJson._mailStatus = mailStatus;
       responseBody = JSON.stringify(jnJson);
-    } catch (_) {
-      // leave as-is if JN response wasn't JSON
-    }
+    } catch (_) { }
 
     return {
       statusCode: res.status,
@@ -154,10 +185,15 @@ ${combinedDescription || ""}`;
       body: responseBody
     };
   } catch (err) {
+    console.error("Handler error:", err);
     return {
       statusCode: 500,
       headers: { "Access-Control-Allow-Origin": allowedOrigin },
-      body: JSON.stringify({ error: err.message })
+      body: JSON.stringify({ 
+        error: "Internal server error",
+        details: err.message,
+        stack: process.env.NODE_ENV === "development" ? err.stack : undefined
+      })
     };
   }
 };
