@@ -1,7 +1,7 @@
 // netlify/functions/jn-create-lead.js
 const allowedOrigin = "https://zenithroofingca.com"; // use "*" while testing if you like
 
-// ✅ Normalize phone number (digits only, remove leading 1 if US)
+// Normalize phone number (digits only, remove leading 1 if US)
 const normalizePhone = (raw = "") =>
   (String(raw).match(/\d/g) || []).join("").replace(/^1(?=\d{10}$)/, "");
 
@@ -44,8 +44,22 @@ exports.handler = async (event) => {
     const last  = (data.last_name  || "").trim();
     const email = (data.email      || "").trim();
 
-    // ✅ Updated to normalize phone and check alternate field names
-    const phone = normalizePhone(data.phone || data.phone_number || data.phoneNumber || "");
+    // Updated phone normalization - checks multiple possible field names
+    const phone = normalizePhone(
+      data.phone_number ||  // primary field name (matches updated form)
+      data.phone ||         // fallback to original field name
+      data.phoneNumber ||   // additional common alternative
+      ""
+    );
+
+    // Validate phone number length if provided
+    if (phone && phone.length !== 10) {
+      return {
+        statusCode: 400,
+        headers: { "Access-Control-Allow-Origin": allowedOrigin },
+        body: JSON.stringify({ error: "Phone number must be 10 digits" })
+      };
+    }
 
     // Build a friendly Description for JobNimbus (Service Type first)
     const descLines = [];
@@ -63,16 +77,16 @@ exports.handler = async (event) => {
     const payload = {
       display_name: [first, last].filter(Boolean).join(" ").trim() || email || phone || "Website Lead",
       first_name: first,
-      last_name:  last,
+      last_name: last,
       email,
-      phone, // ✅ normalized phone here
+      phone, // normalized phone here
       address: `${data.street_address || ""}, ${data.city || ""}, ${data.state || ""} ${data.zip || ""}`.trim(),
 
       description: combinedDescription,
-      service_type:    data.service_type    || "",
+      service_type: data.service_type || "",
       referral_source: data.referral_source || "",
 
-      _source:  "website-zenithroofingca",
+      _source: "website-zenithroofingca",
       _version: "jn-create-lead-2025-08-11"
     };
 
@@ -93,8 +107,8 @@ exports.handler = async (event) => {
     let mailStatus = "skipped";
     try {
       const SG_KEY = process.env.SENDGRID_API_KEY;
-      const TO     = process.env.LEAD_NOTIFY_TO;
-      const FROM   = process.env.LEAD_NOTIFY_FROM;
+      const TO = process.env.LEAD_NOTIFY_TO;
+      const FROM = process.env.LEAD_NOTIFY_FROM;
 
       if (SG_KEY && TO && FROM) {
         const subject = `New Website Lead: ${[first, last].filter(Boolean).join(" ") || phone || email}`;
@@ -145,7 +159,7 @@ ${combinedDescription || ""}`;
       const jnJson = JSON.parse(jnText);
       jnJson._mailStatus = mailStatus;
       responseBody = JSON.stringify(jnJson);
-    } catch (_) {}
+    } catch (_) { }
 
     return {
       statusCode: res.status,
