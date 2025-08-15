@@ -68,11 +68,11 @@ exports.handler = async (event) => {
       last_name:  last,
       email,
 
-      // ✅ Phone sent in every common shape so at least one maps
-      mainPhone:   phoneDigits || phone,
-      mobilePhone: phoneDigits || phone,
-      homePhone:   phoneDigits || phone,
-      phone:       phoneDigits || phone,
+      // ✅ Send digits-only to JobNimbus phone fields
+      mainPhone:   phoneDigits,
+      mobilePhone: phoneDigits,
+      homePhone:   phoneDigits,
+      phone:       phoneDigits,
       phones:      phonesArray,
 
       address: `${data.street_address || ""}, ${data.city || ""}, ${data.state || ""} ${data.zip || ""}`.trim(),
@@ -84,8 +84,7 @@ exports.handler = async (event) => {
       service_type:    data.service_type    || "",
       referral_source: data.referral_source || "",
 
-      // ✅ Try all common assignment fields
-      // (JN will ignore unknown ones; populate at least one)
+      // ✅ Try all common assignment fields (will be ignored if env vars not set)
       ...(ASSIGN_ID ? { assignedTo: [ASSIGN_ID] } : {}),
       ...(ASSIGN_ID ? { assignedToId: ASSIGN_ID } : {}),
       ...(ASSIGN_ID ? { ownerId: ASSIGN_ID } : {}),
