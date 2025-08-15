@@ -1,6 +1,10 @@
 // netlify/functions/jn-create-lead.js
 const allowedOrigin = "https://zenithroofingca.com"; // use "*" while testing if you like
 
+// ✅ Normalize phone number (digits only, remove leading 1 if US)
+const normalizePhone = (raw = "") =>
+  (String(raw).match(/\d/g) || []).join("").replace(/^1(?=\d{10}$)/, "");
+
 exports.handler = async (event) => {
   // CORS preflight
   if (event.httpMethod === "OPTIONS") {
@@ -39,7 +43,9 @@ exports.handler = async (event) => {
     const first = (data.first_name || "").trim();
     const last  = (data.last_name  || "").trim();
     const email = (data.email      || "").trim();
-    const phone = (data.phone      || "").trim();
+
+    // ✅ Updated to normalize phone and check alternate field names
+    const phone = normalizePhone(data.phone || data.phone_number || data.phoneNumber || "");
 
     // Build a friendly Description for JobNimbus (Service Type first)
     const descLines = [];
@@ -59,13 +65,10 @@ exports.handler = async (event) => {
       first_name: first,
       last_name:  last,
       email,
-      phone,
+      phone, // ✅ normalized phone here
       address: `${data.street_address || ""}, ${data.city || ""}, ${data.state || ""} ${data.zip || ""}`.trim(),
 
-      // 👇 Description now starts with Service Type, then Details, then Heard About Us
       description: combinedDescription,
-
-      // Keep these convenience fields too (harmless if JN ignores them)
       service_type:    data.service_type    || "",
       referral_source: data.referral_source || "",
 
@@ -96,7 +99,6 @@ exports.handler = async (event) => {
       if (SG_KEY && TO && FROM) {
         const subject = `New Website Lead: ${[first, last].filter(Boolean).join(" ") || phone || email}`;
 
-        // Use the same combined description in the email
         const html = `
           <h2>New Website Lead</h2>
           <table cellspacing="0" cellpadding="6" style="font-family:Arial,Helvetica,sans-serif;font-size:14px">
@@ -138,15 +140,12 @@ ${combinedDescription || ""}`;
       mailStatus = "error";
     }
 
-    // Try to include mail status in response (helps debugging)
     let responseBody = jnText;
     try {
       const jnJson = JSON.parse(jnText);
       jnJson._mailStatus = mailStatus;
       responseBody = JSON.stringify(jnJson);
-    } catch (_) {
-      // leave as-is if JN response wasn't JSON
-    }
+    } catch (_) {}
 
     return {
       statusCode: res.status,
