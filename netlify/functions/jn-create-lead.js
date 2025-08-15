@@ -40,10 +40,7 @@ exports.handler = async (event) => {
     const last  = (data.last_name  || "").trim();
     const email = (data.email      || "").trim();
     const phone = (data.phone      || "").trim();
-    const phoneDigits = phone.replace(/\D/g, "").slice(0, 10);
-    const phonePretty = phoneDigits
-      ? `(${phoneDigits.slice(0,3)}) ${phoneDigits.slice(3,6)}-${phoneDigits.slice(6)}`
-      : "";
+    const phoneDigits = phone.replace(/\D/g, "").slice(0, 10); // digits only
 
     // Build a friendly Description for JobNimbus (Service Type first)
     const descLines = [];
@@ -63,8 +60,10 @@ exports.handler = async (event) => {
       first_name: first,
       last_name:  last,
       email,
-      // ✅ Send number to Main Phone in JobNimbus
-      mainPhone: phonePretty || phone,
+      // ✅ Send to all likely phone fields so at least one will populate
+      mainPhone:   phoneDigits || phone,
+      mobilePhone: phoneDigits || phone,
+      homePhone:   phoneDigits || phone,
       address: `${data.street_address || ""}, ${data.city || ""}, ${data.state || ""} ${data.zip || ""}`.trim(),
 
       // 👇 Description now starts with Service Type, then Details, then Heard About Us
