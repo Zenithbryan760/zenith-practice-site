@@ -242,33 +242,3 @@ input[type="file"]:focus-within{
   padding-top: calc(var(--header-h, 80px) + 12px);
   min-height: calc(100svh - var(--header-h, 80px));
 }
-/* === Minimal validation helpers (non-destructive) === */
-.field-note{
-  margin-top:.35rem;
-  font-size:.85rem;
-  color:var(--zenith-muted);
-}
-
-.form-group.has-error input,
-.form-group.has-error select,
-.form-group.has-error textarea{
-  border-color:#dc2626 !important; /* subtle red highlight */
-  box-shadow:0 0 0 3px rgba(220,38,38,0.12), var(--shadow-sm);
-}
-
-.field-error{
-  margin-top:.35rem;
-  font-size:.85rem;
-  color:#b91c1c;         /* dark red */
-}
-
-.error-summary{
-  display:none;
-  background:#fff7ed;    /* soft orange tint */
-  border:1px solid #fed7aa;
-  color:#7c2d12;
-  padding:.85rem 1rem;
-  border-radius:10px;
-  margin:0 0 1rem 0;
-}
-.error-summary.show{ display:block; }
