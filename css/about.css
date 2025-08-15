@@ -422,40 +422,8 @@
   animation: fade-up 0.8s var(--ease-out) forwards;
 }
 
-.about-section [data-animate].in [data-animate-child]:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.about-section [data-animate].in [data-animate-child]:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
 .about-section [data-animate].in {
   animation: fade-in 0.8s var(--ease-out) forwards;
-}
-
-.about-section [data-animate][data-animate-delay="0.1"].in {
-  animation-delay: 0.1s;
-}
-
-.about-section [data-animate][data-animate-delay="0.15"].in {
-  animation-delay: 0.15s;
-}
-
-.about-section [data-animate][data-animate-delay="0.2"].in {
-  animation-delay: 0.2s;
-}
-
-.about-section [data-animate][data-animate-delay="0.25"].in {
-  animation-delay: 0.25s;
-}
-
-.about-section [data-animate][data-animate-delay="0.3"].in {
-  animation-delay: 0.3s;
-}
-
-.about-section [data-animate][data-animate-delay="0.35"].in {
-  animation-delay: 0.35s;
 }
 
 /* Logo animation */
@@ -477,41 +445,19 @@
 
 /* ---------- Responsive tweaks ---------- */
 @media (max-width: 768px) {
-  .about-header { 
-    margin-bottom: 32px;
-  }
-  
-  .about-bullets li { 
-    font-size: 0.95rem; 
-    padding: 12px;
-  }
-  
-  .about-cta {
-    flex-direction: column;
-  }
-  
-  .btn-orange, 
-  .btn-outline {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-  }
+  .about-header { margin-bottom: 32px; }
+  .about-bullets li { font-size: 0.95rem; padding: 12px; }
+  .about-cta { flex-direction: column; }
+  .btn-orange, .btn-outline { width: 100%; }
 }
 
 @media (max-width: 480px) {
-  .about-section {
-    padding: 60px 16px;
-  }
-  
-  .about-title-wrap h2 {
-    font-size: 1.8rem;
-  }
-  
-  .about-subtitle {
-    font-size: 1rem;
-  }
-  
-  .about-card {
-    padding: 16px;
-  }
+  .about-section { padding: 60px 16px; }
+  .about-title-wrap h2 { font-size: 1.8rem; }
+  .about-subtitle { font-size: 1rem; }
+  .about-card { padding: 16px; }
 }
+
+/* === OVERRIDE: remove grid layer and use solid background === */
+.about-parallax .layer-grid { display: none !important; }
+.about-section { background: #ffffff !important; }
