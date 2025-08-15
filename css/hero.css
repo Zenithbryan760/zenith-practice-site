@@ -120,11 +120,36 @@ input:focus, select:focus, textarea:focus{
   box-shadow:0 0 0 3px rgba(7,46,89,.15), var(--shadow-sm);
 }
 
-/* Invalid state -> ORANGE (brand) */
-input:invalid, select:invalid, textarea:invalid{ border-color:var(--zenith-orange); }
-input:invalid:focus, select:invalid:focus, textarea:invalid:focus{
-  box-shadow:0 0 0 3px rgba(247,148,29,.18);
+/* Invalid state -> RED (required fields) */
+input:invalid, select:invalid, textarea:invalid{
+  border-color:#dc2626;
 }
+input:invalid:focus, select:invalid:focus, textarea:invalid:focus{
+  box-shadow:0 0 0 3px rgba(220,38,38,.18);
+}
+
+/* JS validation states */
+.form-group.has-error input,
+.form-group.has-error select,
+.form-group.has-error textarea{
+  border-color:#dc2626 !important;
+  box-shadow:0 0 0 3px rgba(220,38,38,.12);
+}
+.field-error{
+  margin-top:.35rem;
+  font-size:.85rem;
+  color:#b91c1c;
+}
+.error-summary{
+  display:none;
+  background:#fef2f2;
+  border:1px solid #fecaca;
+  color:#7f1d1d;
+  padding:.85rem 1rem;
+  border-radius:10px;
+  margin:0 0 1rem 0;
+}
+.error-summary.show{ display:block; }
 
 /* ===== File input (branded "Choose Files" button) ===== */
 input[type="file"]{
@@ -230,9 +255,7 @@ input[type="file"]:focus-within{
   .zenith-logo{ width:78px; }
 }
 
-/* ===== Collapsed-nav behavior (works even with hero in separate file) =====
-   The index.js snippet toggles .nav-collapsed on <html> and sets --header-h
-   so we can hide the hero logo and offset below the fixed header cleanly. */
+/* ===== Collapsed-nav behavior ===== */
 .nav-collapsed .zenith-hero .zenith-header .zenith-logo-container,
 .nav-collapsed .zenith-hero .zenith-header .zenith-logo,
 .nav-collapsed .zenith-hero .zenith-header .logo-backdrop{
