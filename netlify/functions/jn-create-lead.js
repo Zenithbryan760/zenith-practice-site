@@ -41,15 +41,10 @@ exports.handler = async (event) => {
     const email = (data.email      || "").trim();
     const phone = (data.phone      || "").trim();
 
-    // ---- Phone: normalize to digits only (many CRMs reject punctuation) ----
+    // ---- Phone: normalize to digits only ----
     const phoneDigits = phone.replace(/\D/g, "").slice(0, 10);
-    const phonesArray = phoneDigits ? [{ type: "Main", number: phoneDigits }] : [];
 
-    // ---- Optional: assignment targets (set these in Netlify env vars) ----
-    const ASSIGN_ID  = process.env.JN_ASSIGN_USER_ID || "";  // your JN user ID
-    const SALESREP_ID = process.env.JN_SALES_REP_ID || ASSIGN_ID;
-
-    // Build a friendly Description for JobNimbus (Service Type first)
+    // Build a friendly Description for JobNimbus
     const descLines = [];
     if ((data.service_type || "").trim()) {
       descLines.push(`Service Type: ${data.service_type.trim()}`);
@@ -68,27 +63,16 @@ exports.handler = async (event) => {
       last_name:  last,
       email,
 
-      // ✅ Send digits-only to JobNimbus phone fields
-      mainPhone:   phoneDigits,
-      mobilePhone: phoneDigits,
-      homePhone:   phoneDigits,
-      phone:       phoneDigits,
-      phones:      phonesArray,
+      // ✅ Only send Main Phone, digits-only
+      mainPhone: phoneDigits,
 
       address: `${data.street_address || ""}, ${data.city || ""}, ${data.state || ""} ${data.zip || ""}`.trim(),
 
-      // 👇 Description now starts with Service Type, then Details, then Heard About Us
       description: combinedDescription,
 
-      // Keep these convenience fields too (harmless if JN ignores them)
+      // Convenience fields (harmless if ignored)
       service_type:    data.service_type    || "",
       referral_source: data.referral_source || "",
-
-      // ✅ Try all common assignment fields (will be ignored if env vars not set)
-      ...(ASSIGN_ID ? { assignedTo: [ASSIGN_ID] } : {}),
-      ...(ASSIGN_ID ? { assignedToId: ASSIGN_ID } : {}),
-      ...(ASSIGN_ID ? { ownerId: ASSIGN_ID } : {}),
-      ...(SALESREP_ID ? { salesRepId: SALESREP_ID } : {}),
 
       _source:  "website-zenithroofingca",
       _version: "jn-create-lead-2025-08-11"
@@ -117,7 +101,6 @@ exports.handler = async (event) => {
       if (SG_KEY && TO && FROM) {
         const subject = `New Website Lead: ${[first, last].filter(Boolean).join(" ") || phone || email}`;
 
-        // Use the same combined description in the email
         const html = `
           <h2>New Website Lead</h2>
           <table cellspacing="0" cellpadding="6" style="font-family:Arial,Helvetica,sans-serif;font-size:14px">
@@ -159,15 +142,13 @@ ${combinedDescription || ""}`;
       mailStatus = "error";
     }
 
-    // Try to include mail status in response (helps debugging)
+    // Try to include mail status in response
     let responseBody = jnText;
     try {
       const jnJson = JSON.parse(jnText);
       jnJson._mailStatus = mailStatus;
       responseBody = JSON.stringify(jnJson);
-    } catch (_) {
-      // leave as-is if JN response wasn't JSON
-    }
+    } catch (_) {}
 
     return {
       statusCode: res.status,
