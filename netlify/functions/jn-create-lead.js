@@ -41,10 +41,7 @@ exports.handler = async (event) => {
     const email = (data.email      || "").trim();
     const phone = (data.phone      || "").trim();
 
-    // ---- Phone: normalize to digits only ----
-    const phoneDigits = phone.replace(/\D/g, "").slice(0, 10);
-
-    // Build a friendly Description for JobNimbus
+    // Build a friendly Description for JobNimbus (Service Type first)
     const descLines = [];
     if ((data.service_type || "").trim()) {
       descLines.push(`Service Type: ${data.service_type.trim()}`);
@@ -62,15 +59,13 @@ exports.handler = async (event) => {
       first_name: first,
       last_name:  last,
       email,
-
-      // ✅ Only send Main Phone, digits-only
-      mainPhone: phoneDigits,
-
+      phone,
       address: `${data.street_address || ""}, ${data.city || ""}, ${data.state || ""} ${data.zip || ""}`.trim(),
 
+      // 👇 Description now starts with Service Type, then Details, then Heard About Us
       description: combinedDescription,
 
-      // Convenience fields (harmless if ignored)
+      // Keep these convenience fields too (harmless if JN ignores them)
       service_type:    data.service_type    || "",
       referral_source: data.referral_source || "",
 
@@ -101,6 +96,7 @@ exports.handler = async (event) => {
       if (SG_KEY && TO && FROM) {
         const subject = `New Website Lead: ${[first, last].filter(Boolean).join(" ") || phone || email}`;
 
+        // Use the same combined description in the email
         const html = `
           <h2>New Website Lead</h2>
           <table cellspacing="0" cellpadding="6" style="font-family:Arial,Helvetica,sans-serif;font-size:14px">
@@ -142,13 +138,15 @@ ${combinedDescription || ""}`;
       mailStatus = "error";
     }
 
-    // Try to include mail status in response
+    // Try to include mail status in response (helps debugging)
     let responseBody = jnText;
     try {
       const jnJson = JSON.parse(jnText);
       jnJson._mailStatus = mailStatus;
       responseBody = JSON.stringify(jnJson);
-    } catch (_) {}
+    } catch (_) {
+      // leave as-is if JN response wasn't JSON
+    }
 
     return {
       statusCode: res.status,
