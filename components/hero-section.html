@@ -41,20 +41,19 @@
   </div>
 
   <!-- Row 2 -->
-  <div class="form-row">
-    <div class="form-group form-col-6">
-      <label for="phone" class="sr-only">Phone Number*</label>
-      <input
-        type="tel"
-        id="phone"
-        name="phone"
-        inputmode="tel"
-        placeholder="Phone Number*"
-        pattern="\(\d{3}\) \d{3}-\d{4}"
-        maxlength="14"
-        required
-      />
-    </div>
+<div class="form-group form-col-6">
+  <label for="phone" class="sr-only">Phone Number*</label>
+  <input
+    type="tel"
+    id="phone"
+    name="phone_number" <!-- Changed from name="phone" -->
+    inputmode="tel"
+    placeholder="Phone Number*"
+    pattern="\(\d{3}\) \d{3}-\d{4}"
+    maxlength="14"
+    required
+  />
+</div>
     <div class="form-group form-col-6">
       <label for="email" class="sr-only">Email Address*</label>
       <input type="email" id="email" name="email" placeholder="Email Address*" autocomplete="email" required />
