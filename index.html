@@ -340,11 +340,15 @@
     })
     .catch(err => console.error('❌ Hero load error:', err));
 </script>
- <!-- ===== FETCH ABout COMPONENT ===== -->
-  <script>
+<!-- ===== FETCH About COMPONENT ===== -->
+<script>
   fetch('components/about-section.html')
     .then(r => { if (!r.ok) throw new Error('Failed to load about-section.html'); return r.text(); })
-    .then(html => { document.getElementById('about-placeholder').innerHTML = html; })
+    .then(html => {
+      document.getElementById('about-placeholder').innerHTML = html;
+      // ✅ Ensure animations & parallax are wired up even if this loads after DOMContentLoaded
+      if (window.initAboutSection) window.initAboutSection();
+    })
     .catch(err => console.error('❌ About load error:', err));
 </script>
 
