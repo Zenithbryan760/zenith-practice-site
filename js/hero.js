@@ -1,230 +1,184 @@
-// js/hero.js — phone mask + ZIP → City + validation + reCAPTCHA guard + submit to Netlify
-(function () {
-  // ---------- PHONE MASK (###) ###-#### ----------
-  function bindPhoneMask() {
-    const el = document.getElementById('phone');
-    if (!el || el._masked) return;
-    el._masked = true;
-    el.setAttribute('maxlength', '14');
+// netlify/functions/jn-create-lead.js
+const allowedOrigin = "https://zenithroofingca.com"; // use "*" while testing if you like
 
-    const fmt = v => {
-      const d = (v || '').replace(/\D/g, '').slice(0, 10);
-      if (!d) return '';
-      if (d.length < 4) return `(${d}`;
-      if (d.length < 7) return `(${d.slice(0,3)}) ${d.slice(3)}`;
-      return `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
+exports.handler = async (event) => {
+  // CORS preflight
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": allowedOrigin,
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
+      },
+      body: ""
+    };
+  }
+
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      headers: { "Access-Control-Allow-Origin": allowedOrigin },
+      body: "Method Not Allowed"
+    };
+  }
+
+  try {
+    const data = JSON.parse(event.body || "{}");
+
+    const JN_API_KEY = process.env.JN_API_KEY;
+    const JN_CONTACT_ENDPOINT = process.env.JN_CONTACT_ENDPOINT;
+    if (!JN_API_KEY || !JN_CONTACT_ENDPOINT) {
+      return {
+        statusCode: 500,
+        headers: { "Access-Control-Allow-Origin": allowedOrigin },
+        body: JSON.stringify({ error: "Server not configured (missing env vars)" })
+      };
+    }
+
+    const first = (data.first_name || "").trim();
+    const last  = (data.last_name  || "").trim();
+    const email = (data.email      || "").trim();
+    const phone = (data.phone      || "").trim();
+
+    // ---- Phone: normalize to digits only (many CRMs reject punctuation) ----
+    const phoneDigits = phone.replace(/\D/g, "").slice(0, 10);
+    const phonesArray = phoneDigits ? [{ type: "Main", number: phoneDigits }] : [];
+
+    // ---- Optional: assignment targets (set these in Netlify env vars) ----
+    const ASSIGN_ID  = process.env.JN_ASSIGN_USER_ID || "";  // your JN user ID
+    const SALESREP_ID = process.env.JN_SALES_REP_ID || ASSIGN_ID;
+
+    // Build a friendly Description for JobNimbus (Service Type first)
+    const descLines = [];
+    if ((data.service_type || "").trim()) {
+      descLines.push(`Service Type: ${data.service_type.trim()}`);
+    }
+    if ((data.description || "").trim()) {
+      descLines.push(`Details: ${data.description.trim()}`);
+    }
+    if ((data.referral_source || "").trim()) {
+      descLines.push(`Heard About Us: ${data.referral_source.trim()}`);
+    }
+    const combinedDescription = descLines.join("\n");
+
+    const payload = {
+      display_name: [first, last].filter(Boolean).join(" ").trim() || email || phone || "Website Lead",
+      first_name: first,
+      last_name:  last,
+      email,
+
+      // ✅ Send digits-only to JobNimbus phone fields
+      mainPhone:   phoneDigits,
+      mobilePhone: phoneDigits,
+      homePhone:   phoneDigits,
+      phone:       phoneDigits,
+      phones:      phonesArray,
+
+      address: `${data.street_address || ""}, ${data.city || ""}, ${data.state || ""} ${data.zip || ""}`.trim(),
+
+      // 👇 Description now starts with Service Type, then Details, then Heard About Us
+      description: combinedDescription,
+
+      // Keep these convenience fields too (harmless if JN ignores them)
+      service_type:    data.service_type    || "",
+      referral_source: data.referral_source || "",
+
+      // ✅ Try all common assignment fields (will be ignored if env vars not set)
+      ...(ASSIGN_ID ? { assignedTo: [ASSIGN_ID] } : {}),
+      ...(ASSIGN_ID ? { assignedToId: ASSIGN_ID } : {}),
+      ...(ASSIGN_ID ? { ownerId: ASSIGN_ID } : {}),
+      ...(SALESREP_ID ? { salesRepId: SALESREP_ID } : {}),
+
+      _source:  "website-zenithroofingca",
+      _version: "jn-create-lead-2025-08-11"
     };
 
-    el.addEventListener('input', e => { e.target.value = fmt(e.target.value); });
-    el.addEventListener('blur', e => {
-      const len = e.target.value.replace(/\D/g, '').length;
-      e.target.setCustomValidity(len === 0 || len === 10 ? '' : 'Enter a 10-digit phone number');
+    // ---- Create contact in JobNimbus ----
+    const res = await fetch(JN_CONTACT_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${JN_API_KEY}`
+      },
+      body: JSON.stringify(payload)
     });
-  }
 
-  // ---------- ZIP → CITY AUTOFILL ----------
-  function bindZipToCity() {
-    const zipInput  = document.getElementById('zip');
-    const cityInput = document.getElementById('city');
-    if (!zipInput || !cityInput || zipInput._zipBound) return;
-    zipInput._zipBound = true;
+    const jnText = await res.text();
 
-    const cache = {}; // { "92025": "Escondido" }
-    cityInput.addEventListener('input', () => { cityInput.dataset.autofilled = ''; });
-
-    async function lookup(zip5) {
-      if (cache[zip5]) return cache[zip5];
-      const res = await fetch('https://api.zippopotam.us/us/' + zip5);
-      if (!res.ok) throw new Error('zip lookup failed');
-      const data = await res.json();
-      const place = data.places && data.places[0];
-      const city  = place ? place['place name'] : '';
-      cache[zip5] = city;
-      return city;
-    }
-
-    async function maybeFill() {
-      const digits = (zipInput.value || '').replace(/\D/g, '');
-      if (!(digits.length === 5 || digits.length === 9)) return;
-      try {
-        const city = await lookup(digits.slice(0,5));
-        const canOverwrite = !cityInput.value || cityInput.dataset.autofilled === '1';
-        if (canOverwrite) {
-          cityInput.value = city || '';
-          cityInput.dataset.autofilled = '1';
-        }
-      } catch {}
-    }
-
-    zipInput.addEventListener('input',  maybeFill);
-    zipInput.addEventListener('change', maybeFill);
-    // Run once if a ZIP is prefilled
-    maybeFill();
-  }
-
-  // ---------- LIGHTWEIGHT VALIDATION (keeps photos optional) ----------
-  function ensureErrorSummary(form) {
-    let box = form.querySelector('.error-summary');
-    if (!box) {
-      box = document.createElement('div');
-      box.className = 'error-summary';
-      box.setAttribute('role', 'alert');
-      box.setAttribute('aria-live', 'assertive');
-      const firstRow = form.querySelector('.form-row');
-      (firstRow?.parentNode || form).insertBefore(box, firstRow);
-    }
-    return box;
-  }
-
-  function clearErrors(form) {
-    form.querySelectorAll('.form-group.has-error').forEach(g => g.classList.remove('has-error'));
-    form.querySelectorAll('.field-error').forEach(n => n.remove());
-    const box = form.querySelector('.error-summary');
-    if (box) { box.textContent = ''; box.classList.remove('show'); }
-  }
-
-  function showFieldError(input, message) {
-    const group = input.closest('.form-group') || input.parentElement;
-    if (!group) return;
-    group.classList.add('has-error');
-
-    // avoid stacking duplicates
-    if (!group.querySelector('.field-error')) {
-      const note = document.createElement('div');
-      note.className = 'field-error';
-      note.textContent = message;
-      group.appendChild(note);
-    }
-  }
-
-  function getMessageFor(input) {
-    if (input.validity.valueMissing) return 'This field is required.';
-    if (input.id === 'email' && input.validity.typeMismatch) return 'Enter a valid email address.';
-    if (input.id === 'phone' && input.validity.patternMismatch) return 'Use format: (555) 123-4567';
-    if (input.id === 'zip'   && input.validity.patternMismatch) return 'Enter a 5-digit ZIP (or ZIP+4).';
-    return 'Please check this field.';
-  }
-
-  function validateForm(form) {
-    clearErrors(form);
-
-    // All required fields (browser validity), photos excluded (not required in your HTML)
-    const required = Array.from(form.querySelectorAll('[required]'));
-    const invalid = required.filter(el => !el.checkValidity());
-
-    if (invalid.length) {
-      const box = ensureErrorSummary(form);
-      box.textContent = 'Please fix the highlighted fields. Photos are optional; all other fields are required.';
-      box.classList.add('show');
-
-      invalid.forEach(el => showFieldError(el, getMessageFor(el)));
-      invalid[0].focus();
-      return false;
-    }
-    return true;
-  }
-
-  // ---------- SUBMIT HANDLER (validation + reCAPTCHA + POST) ----------
-  async function submitHandler(e) {
-    e.preventDefault();
-    const form = e.currentTarget;
-
-    // 1) Validate required fields (keeps photos optional)
-    if (!validateForm(form)) return;
-
-    // 2) Require reCAPTCHA (v2 checkbox)
-    let token = '';
-    if (window.grecaptcha && typeof window.grecaptcha.getResponse === 'function') {
-      if (typeof window._recaptchaWidgetId !== 'undefined') {
-        token = window.grecaptcha.getResponse(window._recaptchaWidgetId) || '';
-      }
-      if (!token) {
-        const t = document.querySelector('textarea[name="g-recaptcha-response"]');
-        if (t && t.value) token = t.value.trim();
-      }
-    }
-    if (!token) {
-      const box = ensureErrorSummary(form);
-      box.textContent = 'Please complete the reCAPTCHA before submitting.';
-      box.classList.add('show');
-      return;
-    }
-
-    // 3) Build payload from form fields
-    const fd = new FormData(form);
-    const data = {
-      first_name: (fd.get("first_name") || "").trim(),
-      last_name:  (fd.get("last_name")  || "").trim(),
-      phone:      (fd.get("phone")      || "").trim(),
-      email:      (fd.get("email")      || "").trim(),
-      street_address: (fd.get("street_address") || "").trim(),
-      city:       (fd.get("city")       || "").trim(),
-      state:      (fd.get("state")      || "").trim(),
-      zip:        (fd.get("zip")        || "").trim(),
-      service_type:    fd.get("service_type")    || "",
-      referral_source: fd.get("referral_source") || "",
-      description:     (fd.get("description")    || "").trim()
-    };
-
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn ? submitBtn.textContent : null;
-    if (submitBtn) { submitBtn.textContent = "Submitting…"; submitBtn.disabled = true; }
-
+    // ---- SendGrid notify (best-effort; doesn't block success) ----
+    let mailStatus = "skipped";
     try {
-      const res = await fetch("/.netlify/functions/jn-create-lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
+      const SG_KEY = process.env.SENDGRID_API_KEY;
+      const TO     = process.env.LEAD_NOTIFY_TO;
+      const FROM   = process.env.LEAD_NOTIFY_FROM;
 
-      const text = await res.text();
-      if (!res.ok) {
-        console.error("JobNimbus error:", text);
-        alert("Sorry, there was a problem submitting your request.");
-        return;
+      if (SG_KEY && TO && FROM) {
+        const subject = `New Website Lead: ${[first, last].filter(Boolean).join(" ") || phone || email}`;
+
+        // Use the same combined description in the email
+        const html = `
+          <h2>New Website Lead</h2>
+          <table cellspacing="0" cellpadding="6" style="font-family:Arial,Helvetica,sans-serif;font-size:14px">
+            <tr><td><b>Name</b></td><td>${first} ${last}</td></tr>
+            <tr><td><b>Email</b></td><td>${email}</td></tr>
+            <tr><td><b>Phone</b></td><td>${phone}</td></tr>
+            <tr><td><b>Address</b></td><td>${data.street_address}, ${data.city}, ${data.state} ${data.zip}</td></tr>
+            <tr><td><b>Description</b></td><td>${(combinedDescription || "").replace(/\n/g,"<br>")}</td></tr>
+          </table>
+        `;
+        const text = `New website lead
+Name: ${first} ${last}
+Email: ${email}
+Phone: ${phone}
+Address: ${data.street_address}, ${data.city}, ${data.state} ${data.zip}
+
+${combinedDescription || ""}`;
+
+        const sgRes = await fetch("https://api.sendgrid.com/v3/mail/send", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${SG_KEY}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            personalizations: [{ to: [{ email: TO }], subject }],
+            from: { email: FROM, name: "Zenith Roofing Website" },
+            reply_to: email ? { email } : undefined,
+            content: [
+              { type: "text/plain", value: text },
+              { type: "text/html", value: html }
+            ]
+          })
+        });
+        mailStatus = `${sgRes.status}`;
       }
-
-      alert("Thanks! Your request has been submitted.");
-      form.reset();
-
-      // Reset reCAPTCHA
-      if (window.grecaptcha && typeof window.grecaptcha.reset === "function" &&
-          typeof window._recaptchaWidgetId !== "undefined") {
-        window.grecaptcha.reset(window._recaptchaWidgetId);
-      } else {
-        const t = document.querySelector('textarea[name="g-recaptcha-response"]');
-        if (t) t.value = '';
-      }
-
-      clearErrors(form);
-    } catch (err) {
-      console.error(err);
-      alert("Network error. Please try again.");
-    } finally {
-      if (submitBtn && originalText) { submitBtn.textContent = originalText; submitBtn.disabled = false; }
+    } catch (e) {
+      console.error("SendGrid error:", e);
+      mailStatus = "error";
     }
+
+    // Try to include mail status in response (helps debugging)
+    let responseBody = jnText;
+    try {
+      const jnJson = JSON.parse(jnText);
+      jnJson._mailStatus = mailStatus;
+      responseBody = JSON.stringify(jnJson);
+    } catch (_) {
+      // leave as-is if JN response wasn't JSON
+    }
+
+    return {
+      statusCode: res.status,
+      headers: { "Access-Control-Allow-Origin": allowedOrigin },
+      body: responseBody
+    };
+  } catch (err) {
+    return {
+      statusCode: 500,
+      headers: { "Access-Control-Allow-Origin": allowedOrigin },
+      body: JSON.stringify({ error: err.message })
+    };
   }
-
-  // ---------- PUBLIC INIT (call after hero HTML is injected) ----------
-  window.initEstimateForm = function initEstimateForm() {
-    const form = document.getElementById('estimate-form');
-    if (!form || form._bound) return;        // avoid double-binding
-    form._bound = true;
-
-    bindPhoneMask();
-    bindZipToCity();
-
-    // Clarify the photos note without editing HTML
-    const photosNote = document.getElementById('photos-note');
-    if (photosNote) {
-      photosNote.textContent = 'Photos are optional; all other fields are required.';
-    }
-
-    form.addEventListener('submit', submitHandler);
-  };
-
-  // Also try at DOM load in case hero is already present
-  document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('estimate-form')) window.initEstimateForm();
-  });
-})();
+};
