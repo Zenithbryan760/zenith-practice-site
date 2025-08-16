@@ -353,3 +353,279 @@ nav ul ul {
     gap: 12px;
   }
 }
+/* off-canvas container, hidden by default */
+.mobile-nav {
+  position: fixed;
+  top: 0; right: -100%;
+  width: 80%;
+  height: 100%;
+  background: var(--zenith-blue);
+  color: var(--white);
+  overflow-y: auto;
+  transition: right 0.3s ease;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+/* Slide in when open */
+.mobile-nav.open {
+  right: 0;
+}
+
+/* Basic reset */
+.mobile-nav .submenu,
+.mobile-nav .mobile-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Accordion buttons */
+.accordion-toggle {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Hide all submenus by default */
+.mobile-nav .submenu {
+  display: none;
+}
+
+/* Show when its parent <li> has .open */
+.mobile-nav li.open > .submenu {
+  display: block;
+}
+
+/* Indent nested levels */
+.mobile-nav .submenu .submenu {
+  padding-left: 1rem;
+}
+
+/* Chevron transition */
+.chevron {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+li.open > .accordion-toggle .chevron {
+  transform: rotate(90deg);
+}
+
+/* =========================================================
+   css/header-mobile.css — Off-canvas & Accordion (mobile only)
+   ========================================================= */
+@media (max-width: 1024px) {
+  /*–– Brand color variables ––*/
+  :root {
+    --nav-bg: var(--zenith-blue);
+    --nav-text: #fff;
+    --nav-accent: var(--zenith-orange);
+    --toggle-height: 3.5rem;
+  }
+
+  /*–– 1) Off-canvas drawer ––*/
+  .mobile-nav {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 80%; max-width: 320px;
+    height: 100vh;
+    background: var(--nav-bg);
+    color: var(--nav-text);
+    overflow-y: auto;
+    transition: right 0.4s ease;
+    z-index: 2000;
+    padding-top: var(--toggle-height);
+    box-shadow: -4px 0 12px rgba(0,0,0,0.3);
+  }
+  .mobile-nav.open {
+    right: 0;
+  }
+
+/*–– 2) Mobile header bar (hamburger, logo, call) ––*/
+.mobile-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 6rem;                          /* taller header */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--nav-bg);
+  padding: 0 1rem;
+  border-bottom: 2px solid var(--nav-accent);
+  z-index: 2001;
+  overflow: visible;                     /* prevent clipping */
+}
+
+/* Center & pad the logo for headspace */
+.mobile-header .logo-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 0;                    /* vertical breathing room */
+}
+
+/* Scale logo to fit within header */
+.mobile-header .logo-section .logo {
+  max-height: calc(6rem - 1.5rem);       /* header minus total vertical padding */
+  width: auto;
+  display: block;
+}
+
+/* Harmonize icon sizes with the new logo */
+.mobile-header .menu-toggle,
+.mobile-header .mobile-call {
+  width: 2.75rem;
+  height: 2.75rem;
+  background: var(--nav-bg);
+  border: 2px solid var(--nav-accent);
+  border-radius: 50%;
+  color: var(--nav-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+.mobile-header .menu-toggle:hover,
+.mobile-header .mobile-call:hover {
+  background: var(--nav-accent);
+  color: var(--nav-bg);
+}
+.mobile-header .menu-toggle:active,
+.mobile-header .mobile-call:active {
+  transform: scale(0.9);
+}
+
+
+  /*–– 3) Reset lists & separators ––*/
+  .mobile-links,
+  .mobile-links .submenu {
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .mobile-links > li {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  /*–– 4) Top-level simple links (Home, Projects…) ––*/
+  .mobile-links > li > a {
+    display: block;
+    padding: 0 1rem;
+    height: var(--toggle-height);
+    line-height: var(--toggle-height);
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .mobile-links > li > a:hover {
+    background: var(--nav-accent);
+    color: var(--nav-bg);
+  }
+
+  /*–– 5) Accordion toggle buttons ––*/
+  .accordion-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: var(--toggle-height);
+    padding: 0 1rem;
+    background: none;
+    border: none;
+    color: var(--nav-text);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  .accordion-toggle:hover {
+    background: rgba(255,255,255,0.1);
+  }
+  .accordion-toggle:active {
+    transform: scale(0.98);
+  }
+
+  /*–– 6) Chevron arrows ––*/
+  .accordion-toggle .chevron {
+    width: 1em; height: 1em;
+    display: inline-block;
+    background: var(--nav-accent);
+    mask: url('data:image/svg+xml;utf8,<svg fill="%23fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971l-194.343 194.343c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901l154.592-154.59L34.425 102.243c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0l194.343 194.343c9.372 9.372 9.372 24.568 0 33.901z"/></svg>') center/contain no-repeat;
+    transition: transform 0.3s ease;
+  }
+  li.open > .accordion-toggle .chevron {
+    transform: rotate(90deg);
+  }
+/*–– 6.1) MOBILE ACCORDION COLOR OVERRIDES ––*/
+/* Powder-blue backdrop for the Services toggle itself */
+.mobile-nav .mobile-links > li > .accordion-toggle {
+  background: #e0f0ff;               /* light powder blue */
+  color: var(--zenith-blue);         /* dark navy text for readability */
+}
+
+/* Slightly deeper powder-blue for the Services submenu panel */
+.mobile-nav .mobile-links > li > .submenu {
+  background: #d0e8ff;
+}
+
+/* Powder-blue backdrops for every nested toggle */
+.mobile-nav .submenu .accordion-toggle {
+  background: #e0f0ff;
+  color: var(--zenith-blue);
+}
+/* And the panels inside those nested toggles */
+.mobile-nav .submenu .submenu {
+  background: #d0e8ff;
+}
+
+/*–– 6.2) MOBILE ACCORDION TEXT COLOR OVERRIDES ––*/
+/* Make all submenu link text dark navy */
+.mobile-nav .submenu li a {
+  color: var(--zenith-blue);
+}
+
+/* Hover state: switch to your orange for clarity */
+.mobile-nav .mobile-links > li > .accordion-toggle:hover,
+.mobile-nav .submenu li a:hover {
+  color: var(--zenith-orange);
+  background: rgba(247,148,29,0.1);  /* soft orange highlight if desired */
+}
+
+  /*–– 7) Submenu expand/collapse ––*/
+  .submenu {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+    background: rgba(0,0,0,0.1);
+  }
+  li.open > .submenu {
+    max-height: 1000px;
+  }
+  .submenu li {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .submenu li a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .submenu li a:hover {
+    background: var(--nav-accent);
+    color: var(--nav-bg);
+  }
+}
