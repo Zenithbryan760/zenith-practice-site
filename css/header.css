@@ -75,4 +75,362 @@ a { text-decoration: none; }
   text-align:center;
   gap: 2px;
 }
-.header .head
+.header .header-inner > .logo-section .logo{
+  height: 80px;
+  width:auto;
+  display:block;
+  margin-bottom: 2px;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
+}
+.header .header-inner > .logo-section .license{
+  color: var(--white);
+  font-size: 0.84rem;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing:.02em;
+  opacity:.95;
+}
+
+/* =========================================================
+   4) DESKTOP NAV + HOVER UNDERLINE
+   ========================================================= */
+.nav-bar{ display:block; }
+.nav-links{
+  display:flex; align-items:center; justify-content:center;
+  gap: clamp(14px, 2vw, 22px);
+}
+.nav-links > li { position: relative; }
+
+/* Link base (for underline animation) */
+.nav-links a{
+  position: relative;               /* anchor ::after */
+  color: var(--white);
+  padding: 10px 2px;
+  display: inline-block;
+  transition: color .28s ease, transform .2s ease;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing:.01em;
+  font-size: .98rem;
+  will-change: color, transform;
+}
+/* Center-out underline */
+.nav-links a::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 0; height: 2px;
+  background: var(--zenith-orange);
+  border-radius: 1px;
+  transition: width .28s ease, left .28s ease;
+}
+.nav-links a:hover{
+  color: var(--zenith-orange);
+  transform: translateY(-1px);
+}
+.nav-links a:hover::after{ width: 80%; left: 10%; }
+
+/* Active/current page */
+.nav-links a.is-active,
+.nav-links a[aria-current="page"]{ color: var(--zenith-orange); }
+.nav-links a.is-active::after,
+.nav-links a[aria-current="page"]::after{ width:80%; left:10%; }
+
+/* Keyboard focus mirrors hover with clear ring */
+.nav-links a:focus-visible{
+  outline: none;
+  color: var(--zenith-orange);
+  box-shadow: 0 0 0 3px rgba(247,148,29,.28);
+  border-radius: 8px;
+}
+.nav-links a:focus-visible::after{ width:80%; left:10%; }
+
+/* =========================================================
+   5) DESKTOP DROPDOWNS (glass card look)
+   ========================================================= */
+.dropdown > a{ padding-right: 18px; }
+
+.dropdown-menu{
+  position:absolute; top:100%; left:0;
+  min-width: 260px;
+  background: var(--menu-bg);
+  color: var(--zenith-text);
+  padding: 10px;
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--menu-border);
+
+  opacity:0; visibility:hidden; transform: translateY(10px);
+  transition: opacity .26s ease, transform .26s ease, visibility .26s ease;
+  backdrop-filter: blur(8px) saturate(120%);
+}
+.dropdown:hover > .dropdown-menu,
+.dropdown:focus-within > .dropdown-menu{
+  opacity:1; visibility:visible; transform: translateY(0);
+}
+
+.dropdown-menu > li > a{
+  display:block;
+  padding:10px 12px;
+  border-radius:10px;
+  color: var(--zenith-text);
+  transition: background-color .2s ease, color .2s ease, transform .18s ease;
+  font-weight: 500;
+}
+.dropdown-menu a:hover{
+  background-color: rgba(247,148,29,0.10);
+  color: var(--zenith-orange);
+  transform: translateX(1px);
+}
+
+/* Labels inside dropdown */
+.submenu-label{
+  padding:8px 12px;
+  font-size:.78rem;
+  text-transform: uppercase;
+  letter-spacing:.08em;
+  color: var(--zenith-muted);
+  cursor: default;
+}
+
+/* Flyout submenu */
+.dropdown-submenu{ position: relative; }
+.dropdown-submenu > .submenu{
+  position:absolute; top:0; left:100%;
+  min-width: 240px;
+  background: var(--menu-bg);
+  color: var(--zenith-text);
+  padding: 10px;
+  border-radius: 12px;
+  border:1px solid var(--menu-border);
+  box-shadow: var(--shadow-md);
+
+  opacity:0; visibility:hidden; transform: translateY(10px);
+  transition: opacity .26s ease, transform .26s ease, visibility .26s ease;
+  z-index: 2;
+  backdrop-filter: blur(8px) saturate(120%);
+}
+.dropdown-submenu:hover > .submenu,
+.dropdown-submenu:focus-within > .submenu{
+  opacity:1; visibility:visible; transform: translateY(0);
+}
+.submenu a{
+  display:block; padding:9px 10px; border-radius:10px;
+  color: var(--zenith-text);
+  transition: background-color .2s ease, color .2s ease, transform .18s ease;
+  font-weight: 500;
+}
+.submenu a:hover{
+  background-color: rgba(247,148,29,0.10);
+  color: var(--zenith-orange);
+  transform: translateX(1px);
+}
+
+/* =========================================================
+   6) PHONE SECTION (desktop)
+   ========================================================= */
+.phone-section{
+  display:flex; flex-direction:column; align-items:flex-end; gap:6px;
+}
+.phone-section p{ margin:0; font-size:.95rem; }
+.phone-section p a{
+  position: relative;
+  color: var(--white);
+  transition: color .26s ease;
+}
+.phone-section p a::after{
+  content:"";
+  position:absolute; left:50%; bottom:-2px;
+  width:0; height:2px; background:var(--zenith-orange);
+  transition: width .26s ease, left .26s ease;
+}
+.phone-section p a:hover{ color:var(--zenith-orange); }
+.phone-section p a:hover::after{ width:80%; left:10%; }
+
+.call-button{
+  display:inline-block;
+  padding:9px 16px;
+  color:#072e59;
+  background: var(--zenith-orange);
+  border-radius: 999px;
+  font-weight: 700;
+  border: none;
+  transition: transform .18s ease, box-shadow .18s ease, opacity .26s ease;
+  box-shadow: 0 8px 18px rgba(247,148,29,.22);
+}
+.call-button:hover{ transform: translateY(-1px); box-shadow: 0 10px 20px rgba(247,148,29,.28); }
+.call-button:active{ transform: translateY(0); }
+
+/* =========================================================
+   7) MOBILE HEADER (hamburger + logo + call)
+   ========================================================= */
+.mobile-header{
+  display:none; /* shown at ≤ 1024px */
+  align-items:center; justify-content:space-between;
+  gap: 10px;
+}
+.menu-toggle{
+  appearance:none;
+  font: inherit;
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.32);
+  border-radius:12px;
+  padding:10px 12px;
+  cursor:pointer;
+  transition: background .2s ease, border-color .2s ease, transform .18s ease;
+}
+.menu-toggle:hover{ background:rgba(255,255,255,.12); transform: translateY(-1px); }
+.mobile-header .logo{ height: 40px; width:auto; display:block; filter: drop-shadow(0 2px 6px rgba(0,0,0,.18)); }
+.mobile-call{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:44px; height:44px; border-radius:50%;
+  background:var(--zenith-orange);
+  box-shadow: 0 8px 18px rgba(247,148,29,.22);
+}
+
+/* =========================================================
+   8) OFF-CANVAS MOBILE NAV (powder-blue accordions)
+   ========================================================= */
+.mobile-nav{
+  position: fixed; inset: 0 30% 0 0; /* left panel */
+  max-width: 420px;
+  transform: translateX(-100%);
+  background: #0b3a6f;
+  color: #fff;
+  padding: 18px 16px 40px;
+  overflow-y: auto;
+  box-shadow: 8px 0 24px rgba(0,0,0,.25);
+  transition: transform .32s ease;
+  z-index: 1100;
+}
+body.nav-open .mobile-nav{ transform: translateX(0); }
+
+/* Dim backdrop */
+body.nav-open::after{
+  content:"";
+  position: fixed; inset:0;
+  background: rgba(0,0,0,.45);
+  z-index: 1090;
+}
+
+/* Top-level items */
+.mobile-links > li > a,
+.mobile-links > li > button.accordion-toggle{
+  display:flex; align-items:center; justify-content:space-between;
+  width:100%;
+  padding: 12px 12px;
+  color:#fff; font-size: 1rem; border:0; background:transparent;
+  border-radius:12px;
+  font-weight: 600;
+}
+.mobile-links a:hover,
+.mobile-links button.accordion-toggle:hover{
+  background: rgba(255,255,255,.08);
+}
+
+/* Chevron */
+.chevron{ display:inline-block; transition: transform .25s ease; }
+
+/* Default hidden submenus */
+.mobile-links .submenu{
+  display:none; padding-left: 10px; margin: 6px 0 10px;
+  border-left: 2px solid rgba(255,255,255,.15);
+}
+.mobile-links li.open > .submenu{ display:block; }
+.mobile-links li.open > .accordion-toggle .chevron{ transform: rotate(90deg); }
+
+/* ------- Powder-blue color scheme (modernized edges) ------- */
+.mobile-nav .mobile-links > li > .accordion-toggle{
+  background: #e0f0ff;               /* powder blue */
+  color: var(--zenith-blue);          /* dark navy text */
+  box-shadow: 0 1px 0 rgba(2,14,32,.04) inset, 0 6px 14px rgba(11,58,111,.08);
+}
+
+/* Panel under the top-level accordion */
+.mobile-nav .mobile-links > li > .submenu{
+  background: #d0e8ff;               /* deeper powder blue */
+  border-left: none;
+  border-radius: 12px;
+  padding: 6px 6px 10px;
+  box-shadow: 0 1px 0 rgba(2,14,32,.04) inset, 0 6px 14px rgba(11,58,111,.08);
+}
+
+/* Nested toggles */
+.mobile-nav .submenu .accordion-toggle{
+  background: #e0f0ff;
+  color: var(--zenith-blue);
+  border-radius: 10px;
+}
+
+/* Nested panels */
+.mobile-nav .submenu .submenu{
+  background: #d0e8ff;
+  border-left: none;
+  border-radius: 10px;
+}
+
+/* Links inside submenus: dark navy text */
+.mobile-nav .submenu li a{
+  color: var(--zenith-blue);
+  border-radius: 10px;
+  padding: 10px 10px;
+  font-weight: 600;
+}
+
+/* Hover clarity: orange text + soft orange wash */
+.mobile-nav .mobile-links > li > .accordion-toggle:hover,
+.mobile-nav .submenu li a:hover{
+  color: var(--zenith-orange);
+  background: rgba(247,148,29,0.10);
+}
+
+/* =========================================================
+   9) RESPONSIVE
+   ========================================================= */
+@media (max-width: 1024px){
+  .mobile-header{ display:flex; }
+  .header .header-inner{
+    grid-template-columns: 1fr; gap: 0; padding: 10px 14px;
+  }
+  /* Hide desktop-only regions at mobile size */
+  .header .header-inner > .logo-section,
+  .nav-bar,
+  .phone-section{ display:none; }
+}
+
+/* =========================================================
+   10) ACCESSIBILITY & MOTION
+   ========================================================= */
+@media (prefers-reduced-motion: reduce){
+  .nav-links a,
+  .nav-links a::after,
+  .dropdown-menu,
+  .submenu a,
+  .call-button,
+  .mobile-nav,
+  .mobile-links .submenu,
+  .chevron{ transition: none !important; }
+}
+
+/* Better focus rings on interactive elements in mobile panel */
+.mobile-nav a:focus-visible,
+.mobile-nav button:focus-visible,
+.menu-toggle:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(247,148,29,.28);
+}
+
+/* =========================================================
+   11) OPTIONAL: LEFT→RIGHT UNDERLINE VARIANT
+   Add .underline-ltr on .nav-bar to switch site-wide.
+   ========================================================= */
+.nav-bar.underline-ltr .nav-links a::after{
+  left:0; bottom:4px; width:0; height:2px; border-radius:1px;
+}
+.nav-bar.underline-ltr .nav-links a:hover::after{ width:100%; left:0; }
+.nav-bar.underline-ltr .nav-links a.is-active::after,
+.nav-bar.underline-ltr .nav-links a[aria-current="page"]::after{
+  width:100%; left:0;
+}
