@@ -1,6 +1,6 @@
 /* =========================================================
    Zenith Roofing — Header & Navigation (Desktop + Mobile)
-   Clean single file (no messy overrides)
+   Clean single file with powder-blue mobile UI
    ========================================================= */
 
 /* ---------- Brand tokens (safe defaults) ---------- */
@@ -8,14 +8,22 @@
   --zenith-navy:#072e59;
   --zenith-navy-2:#0b3a6f;
   --zenith-orange:#f7941d;
-  --zenith-blue: var(--zenith-navy); /* fallback */
+  --zenith-blue: var(--zenith-navy);      /* used for dark navy text */
   --white:#ffffff;
   --zenith-text:#0f172a;
   --zenith-muted:#64748b;
   --zenith-border:#e2e8f0;
+
+  /* Mobile nav theme */
+  --nav-bg: var(--zenith-navy-2);         /* mobile header + panel bg */
+  --nav-accent:#e0f0ff;                   /* powder-blue accent */
+  --nav-text:#ffffff;                     /* text/icons on dark header */
+
+  /* UI tokens */
   --radius:12px;
   --shadow-lg:0 14px 40px rgba(2,14,32,.18);
   --shadow-sm:0 4px 14px rgba(2,14,32,.10);
+  --toggle-height:3rem;                   /* mobile row height */
 }
 
 /* ---------- Basics / resets ---------- */
@@ -24,7 +32,7 @@ nav ul, nav ul ul { margin:0; padding:0; list-style:none; }
 a { text-decoration: none; }
 
 /* =========================================================
-   1) HEADER BAR
+   1) HEADER BAR (desktop base)
    ========================================================= */
 .header{
   position: sticky; top: 0; z-index: 1000;
@@ -97,10 +105,8 @@ a { text-decoration: none; }
   border-radius: 1px;
   transition: width .3s ease, left .3s ease;
 }
-.nav-links a:hover{
-  color: var(--zenith-orange);
-}
-.nav-links a:hover::after{ width: 80%; left: 10%; }
+.nav-links a:hover{ color: var(--zenith-orange); }
+.nav-links a:hover::after{ width:80%; left:10%; }
 
 /* Active/current page */
 .nav-links a.is-active,
@@ -225,37 +231,71 @@ a { text-decoration: none; }
 .call-button:active{ transform: translateY(0); }
 
 /* =========================================================
-   5) MOBILE HEADER (hamburger + logo + call)
+   5) MOBILE HEADER (fixed powder-blue accent)
    ========================================================= */
+/* Shown at <= 1024px; fixed so it stays visible */
 .mobile-header{
-  display:none; /* shown at <= 1024px */
-  align-items:center; justify-content:space-between;
-  gap: 10px;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 6rem;                          /* taller header */
+  display: none;                          /* enabled via media query */
+  align-items: center;
+  justify-content: space-between;
+  background: var(--nav-bg);
+  padding: 0 1rem;
+  border-bottom: 2px solid var(--nav-accent);
+  z-index: 2001;
+  overflow: visible;
 }
-.menu-toggle{
-  appearance:none;
-  font: inherit;
-  background:transparent; color:#fff;
-  border:1px solid rgba(255,255,255,.35);
-  border-radius:10px;
-  padding:8px 10px;
-  cursor:pointer;
+
+/* Center & pad the logo for headspace */
+.mobile-header .logo-section{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 0;
 }
-.mobile-header .logo{ height: 40px; width:auto; display:block; }
-.mobile-call{
-  display:inline-flex; align-items:center; justify-content:center;
-  width:42px; height:42px; border-radius:50%;
-  background:var(--zenith-orange);
+
+/* Scale logo to fit within header */
+.mobile-header .logo-section .logo{
+  max-height: calc(6rem - 1.5rem); /* header minus total vertical padding */
+  width: auto;
+  display: block;
+}
+
+/* Harmonized round buttons (hamburger + call) */
+.mobile-header .menu-toggle,
+.mobile-header .mobile-call{
+  width: 2.75rem; height: 2.75rem;
+  background: var(--nav-bg);
+  border: 2px solid var(--nav-accent);
+  border-radius: 50%;
+  color: var(--nav-text);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease, color .2s ease;
+}
+.mobile-header .menu-toggle:hover,
+.mobile-header .mobile-call:hover{
+  background: var(--nav-accent);
+  color: var(--nav-bg);
+}
+.mobile-header .menu-toggle:active,
+.mobile-header .mobile-call:active{
+  transform: scale(0.9);
 }
 
 /* =========================================================
    6) OFF-CANVAS MOBILE NAV (powder-blue accordions)
    ========================================================= */
 .mobile-nav{
-  position: fixed; inset: 0 30% 0 0; /* left panel */
+  position: fixed;
+  top: 6rem; left: 0; right: 30%; bottom: 0;   /* sits below fixed header */
   max-width: 420px;
   transform: translateX(-100%);
-  background: #0b3a6f;
+  background: var(--nav-bg);
   color: #fff;
   padding: 18px 16px 40px;
   overflow-y: auto;
@@ -265,7 +305,7 @@ a { text-decoration: none; }
 }
 body.nav-open .mobile-nav{ transform: translateX(0); }
 
-/* Dim backdrop */
+/* Dim backdrop (keeps header above due to z-index) */
 body.nav-open::after{
   content:"";
   position: fixed; inset:0;
@@ -273,78 +313,107 @@ body.nav-open::after{
   z-index: 1090;
 }
 
-/* Top-level items */
-.mobile-links > li > a,
-.mobile-links > li > button.accordion-toggle{
+/* 6.1 Reset lists & separators */
+.mobile-links,
+.mobile-links .submenu{ list-style:none; margin:0; padding:0; }
+.mobile-links > li{ border-bottom: 1px solid rgba(255,255,255,0.2); }
+
+/* 6.2 Top-level simple links (Home, Projects…) */
+.mobile-links > li > a{
+  display:block;
+  padding: 0 1rem;
+  height: var(--toggle-height);
+  line-height: var(--toggle-height);
+  color: var(--nav-text);
+  font-size: 1rem; font-weight: 600;
+  transition: background .2s ease, color .2s ease;
+}
+.mobile-links > li > a:hover{
+  background: var(--nav-accent);
+  color: var(--nav-bg);
+}
+
+/* 6.3 Accordion toggle buttons */
+.accordion-toggle{
   display:flex; align-items:center; justify-content:space-between;
   width:100%;
-  padding: 12px 10px;
-  color:#fff; font-size: 1rem; border:0; background:transparent;
-  border-radius:10px;
+  height: var(--toggle-height);
+  padding: 0 1rem;
+  background: none; border: none;
+  color: var(--nav-text);
+  font-size: 1rem; font-weight: 600;
+  cursor: pointer;
+  transition: background .2s ease, transform .1s ease, color .2s ease;
 }
-.mobile-links a:hover,
-.mobile-links button.accordion-toggle:hover{
-  background: rgba(255,255,255,.08);
+.accordion-toggle:hover{ background: rgba(255,255,255,0.1); }
+.accordion-toggle:active{ transform: scale(0.98); }
+
+/* 6.4 Chevron arrows (text-based, rotates) */
+.chevron{
+  display:inline-block;
+  transition: transform .3s ease;
+  margin-left: .5rem;
 }
+li.open > .accordion-toggle .chevron{ transform: rotate(90deg); }
 
-/* Chevron */
-.chevron{ display:inline-block; transition: transform .25s ease; }
-
-/* Default hidden submenus */
-.mobile-links .submenu{
-  display:none; padding-left: 10px; margin: 6px 0 10px;
-  border-left: 2px solid rgba(255,255,255,.15);
-}
-.mobile-links li.open > .submenu{ display:block; }
-.mobile-links li.open > .accordion-toggle .chevron{ transform: rotate(90deg); }
-
-/* ------- Powder-blue color scheme you requested ------- */
-/* Top-level accordion (e.g., Services) button */
+/* 6.5 Powder-blue **color overrides** you asked for */
 .mobile-nav .mobile-links > li > .accordion-toggle{
-  background: #e0f0ff;               /* powder blue */
-  color: var(--zenith-blue);          /* dark navy text */
+  background: var(--nav-accent);            /* powder blue */
+  color: var(--zenith-blue);                /* dark navy text */
+  border-radius: 10px;
 }
-
-/* Panel under the top-level accordion */
 .mobile-nav .mobile-links > li > .submenu{
-  background: #d0e8ff;               /* deeper powder blue */
+  background: #d0e8ff;                      /* deeper powder blue */
   border-left: none;
   border-radius: 10px;
   padding: 6px 6px 10px;
 }
-
-/* Nested toggles */
 .mobile-nav .submenu .accordion-toggle{
-  background: #e0f0ff;
+  background: var(--nav-accent);
   color: var(--zenith-blue);
+  border-radius: 10px;
 }
-
-/* Nested panels */
 .mobile-nav .submenu .submenu{
   background: #d0e8ff;
   border-left: none;
   border-radius: 10px;
 }
 
-/* Links inside submenus: dark navy text */
-.mobile-nav .submenu li a{ color: var(--zenith-blue); }
+/* 6.6 Submenu expand/collapse (animated height) */
+.submenu{
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease;
+  background: rgba(0,0,0,0.1);              /* faint divider bg */
+}
+li.open > .submenu{ max-height: 1000px; }   /* enough for tall lists */
 
-/* Hover clarity: orange text + soft orange wash */
-.mobile-nav .mobile-links > li > .accordion-toggle:hover,
-.mobile-nav .submenu li a:hover{
-  color: var(--zenith-orange);
+/* 6.7 Links inside submenus */
+.submenu li{ border-bottom: 1px solid rgba(255,255,255,0.2); }
+.submenu li a{
+  display:block;
+  padding: 0.75rem 1.5rem;
+  color: var(--zenith-blue);                 /* dark navy text */
+  font-size: .95rem;
+  transition: background .2s ease, color .2s ease;
+}
+.submenu li a:hover{
   background: rgba(247,148,29,0.1);
+  color: var(--zenith-orange);
 }
 
 /* =========================================================
    7) RESPONSIVE
    ========================================================= */
 @media (max-width: 1024px){
+  /* Enable fixed mobile header and create space below it */
   .mobile-header{ display:flex; }
-  .header .header-inner{
-    grid-template-columns: 1fr; gap: 0; padding: 10px 14px;
-  }
+  .header{ padding-top: 6rem; }              /* prevent content underlap */
+
   /* Hide desktop-only regions at mobile size */
+  .header .header-inner{
+    grid-template-columns: 1fr; gap: 0; padding: 0;
+  }
   .header .header-inner > .logo-section,
   .nav-bar,
   .phone-section{ display:none; }
