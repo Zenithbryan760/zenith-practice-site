@@ -71,16 +71,15 @@ nav ul ul {
 /* -------------------------------------------------------------------
    [4] LOGO & LICENSE
    ------------------------------------------------------------------- */
-.logo-section {
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Space between logo and license */
+.logo-section { text-align: center; }
+.logo {
+  height: 80px;
+  display: block;
+  margin-bottom: 4px;
 }
-
 .license {
   color: var(--white);
   font-size: 0.85rem;
-  white-space: nowrap;
 }
 
 /* -------------------------------------------------------------------
