@@ -1,13 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Simple fade-in animation for steps
-  const steps = document.querySelectorAll(".step");
-  steps.forEach((step, index) => {
-    step.style.opacity = 0;
-    step.style.transform = "translateY(20px)";
-    setTimeout(() => {
-      step.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-      step.style.opacity = 1;
-      step.style.transform = "translateY(0)";
-    }, 200 * index);
-  });
-});
+// Optional: subtle fade-in on scroll
+(()=>{
+  const els = document.querySelectorAll('#about .about-card');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.transition='300ms ease'; e.target.style.transform='translateY(0)'; e.target.style.opacity='1'; } });
+  },{threshold:.2});
+  els.forEach(el=>{ el.style.opacity='0'; el.style.transform='translateY(10px)'; io.observe(el); });
+})();
