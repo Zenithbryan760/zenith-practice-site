@@ -2,10 +2,17 @@
 <html lang="en">
 <head>
   <!-- ===== META & SEO ===== -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Zenith Roofing Services – San Diego & Temecula Roof Experts</title>
-  <meta name="description" content="Licensed roofing contractor serving Escondido, San Diego & Temecula. Roof repair, replacement, tile, shingles, TPO, torch down, silicone coatings & gutters." />
+  <meta name="description" content="Licensed roofing contractor serving Escondido, San Diego & Temecula. Roof repair, replacement, tile, shingles, TPO, torch down, silicone coatings & gutters.">
+
+  <!-- Preload critical resources -->
+  <link rel="preload" href="css/base.css" as="style">
+  <link rel="preload" href="css/header.css" as="style">
+  <link rel="preload" href="css/hero.css" as="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- ✅ Structured data -->
   <script type="application/ld+json">
@@ -26,13 +33,54 @@
   }
   </script>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Critical CSS (minimal styles needed for initial render) -->
+  <style>
+    /* Base layout and font fallbacks */
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .header { position: relative; z-index: 5000; }
+    
+    /* Smooth hover effects */
+    a, button, .hover-effect { transition: all 0.3s ease; }
+    a:hover, button:hover, .hover-effect:hover { opacity: 0.9; transform: translateY(-1px); }
+    
+    /* Video container fix */
+    .zenith-video-container,
+    .zenith-background-video,
+    .zenith-video-overlay { pointer-events: none; z-index: 0; }
+    
+    /* Nav overflow fix */
+    .nav-bar, .nav-links, .nav-links li, .nav-links a { overflow: visible; }
+    
+    /* Layout flags placeholder */
+    :root { --header-h: 80px; }
+  </style>
 
-  <!-- ===== reCAPTCHA helpers (must be before API script) ===== -->
+  <!-- Non-critical CSS (loaded asynchronously) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"></noscript>
+  
+  <link rel="stylesheet" href="css/base.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/header.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/header-mobile.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/hero.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/about.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/why-choose.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/trust.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/photo.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/testimonial.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/cta.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/service-areas.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/real-estate.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/footer.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/responsive.css" media="print" onload="this.media='all'">
+  
+  <!-- Swiper CSS (testimonials) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" media="print" onload="this.media='all'">
+
+  <!-- reCAPTCHA helpers (must be before API script) -->
   <script>
-    (function () {
-      window.renderHeroRecaptchaIfReady = function () {
+    (function() {
+      window.renderHeroRecaptchaIfReady = function() {
         var slot = document.getElementById('recaptcha-slot');
         if (!slot) return;
         if (window.grecaptcha && !slot.dataset.rendered) {
@@ -44,49 +92,20 @@
           slot.dataset.rendered = '1';
         }
       };
-      window.recaptchaOnload = function () {
+      window.recaptchaOnload = function() {
         window.renderHeroRecaptchaIfReady();
       };
     })();
   </script>
-  <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
-
-  <!-- ===== STYLES ===== -->
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/header.css" />
-  <link rel="stylesheet" href="css/header-mobile.css" />
-  <link rel="stylesheet" href="css/hero.css" />
-  <link rel="stylesheet" href="css/about.css" />
-  <link rel="stylesheet" href="css/why-choose.css" />
-  <link rel="stylesheet" href="css/trust.css" />
-  <link rel="stylesheet" href="css/photo.css" />
-  <link rel="stylesheet" href="css/testimonial.css" />
-  <link rel="stylesheet" href="css/cta.css" />
-  <link rel="stylesheet" href="css/service-areas.css" />
-  <link rel="stylesheet" href="css/real-estate.css" />
-  <link rel="stylesheet" href="css/footer.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
-
-  <!-- Swiper CSS (testimonials) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-
-  <!-- Tiny, safe hover fix (can also live in base.css) -->
-  <style>
-    .header { position: relative; z-index: 5000; }
-    .zenith-video-container,
-    .zenith-background-video,
-    .zenith-video-overlay { pointer-events: none; z-index: 0; }
-    .nav-bar, .nav-links, .nav-links li, .nav-links a { overflow: visible; }
-  </style>
 </head>
 <body>
 
-  <!-- Header include FIRST so it’s present for measurements -->
+  <!-- Header include FIRST so it's present for measurements -->
   <section data-include="components/header-section.html"></section>
 
   <!-- ===== MAIN (partials auto-injected below) ===== -->
   <main>
-    <!-- Adjust /components/ to /sections/ if that’s your folder -->
+    <!-- Adjust /components/ to /sections/ if that's your folder -->
     <section data-include="header-section.html"></section>
     <section data-include="components/hero-section.html"></section>
     <section data-include="components/about-section.html"></section>
@@ -100,7 +119,11 @@
     <section data-include="components/footer.html"></section>
   </main>
 
-  <!-- ===== JS (no duplicates) ===== -->
+  <!-- ===== JS (optimized loading) ===== -->
+  <!-- Load reCAPTCHA after other content -->
+  <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
+  
+  <!-- Combined and deferred scripts -->
   <script src="js/header-mobile.js" defer></script>
   <script src="js/header.js" defer></script>
   <script src="js/hero.js" defer></script>
@@ -112,14 +135,18 @@
   <script src="js/service-areas.js" defer></script>
   <script src="js/real-estate.js" defer></script>
   <script src="js/footer.js" defer></script>
-
+  
   <!-- Swiper + testimonials init -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
   <script src="js/testimonial.js" defer></script>
 
-  <!-- Tiny include loader: replaces [data-include] with the partial HTML, then runs your inits -->
+  <!-- Optimized include loader -->
   <script>
-    (function () {
+    (function() {
+      // Load CSS for browsers that don't support onload (old IE)
+      function loadCSS(e,n,o,t){"use strict";var i=window.document.createElement("link");var r=n||window.document.getElementsByTagName("script")[0];i.rel="stylesheet";i.href=e;i.media="only x";t&&(i.onload=t);r.parentNode.insertBefore(i,r);setTimeout(function(){i.media=o||"all"})}
+      
+      // Async include loader
       async function include(el) {
         const src = el.getAttribute('data-include');
         if (!src) return;
@@ -133,57 +160,62 @@
         }
       }
 
-      async function runIncludesAndInit() {
-        const nodes = Array.from(document.querySelectorAll('[data-include]'));
-        for (const n of nodes) { await include(n); }
-
-        // After hero is present, wire reCAPTCHA + form helpers
-        if (window.renderHeroRecaptchaIfReady) window.renderHeroRecaptchaIfReady();
-        if (window.initEstimateForm) window.initEstimateForm();
-
-        // Section-specific initializers (they safely no-op if missing)
-        if (window.initAboutSection) window.initAboutSection();
-        if (window.initWhyChoose) window.initWhyChoose();
-        if (window.initTrustSection) window.initTrustSection();
-        if (window.initPhotoSection) window.initPhotoSection();
-        if (window.initTestimonials) window.initTestimonials();
-        if (window.initCTA) window.initCTA();
-        if (window.initServiceAreas) window.initServiceAreas();
-        if (window.initRealEstate) window.initRealEstate();
-        if (window.initFooter) window.initFooter();
-
-        // NEW: header + layout after injection
-        if (window.initHeader) window.initHeader();
-        if (window.initHeaderMobile) window.initHeaderMobile();
-        if (window.setLayoutFlags) window.setLayoutFlags();
+      // Main initialization
+      async function init() {
+        // Load includes in parallel
+        const includes = Array.from(document.querySelectorAll('[data-include]'));
+        await Promise.all(includes.map(include));
+        
+        // Initialize components
+        const initFunctions = [
+          'renderHeroRecaptchaIfReady',
+          'initEstimateForm',
+          'initAboutSection',
+          'initWhyChoose',
+          'initTrustSection',
+          'initPhotoSection',
+          'initTestimonials',
+          'initCTA',
+          'initServiceAreas',
+          'initRealEstate',
+          'initFooter',
+          'initHeader',
+          'initHeaderMobile',
+          'setLayoutFlags'
+        ];
+        
+        initFunctions.forEach(fn => {
+          if (typeof window[fn] === 'function') window[fn]();
+        });
       }
 
+      // Start initialization based on document state
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', runIncludesAndInit);
+        document.addEventListener('DOMContentLoaded', init);
       } else {
-        runIncludesAndInit();
+        init();
       }
+      
+      // Layout flags (made global so loader can call it)
+      window.setLayoutFlags = function() {
+        var toggle = document.querySelector('.menu-toggle');
+        var collapsed = toggle && getComputedStyle(toggle).display !== 'none';
+        document.documentElement.classList.toggle('nav-collapsed', collapsed);
+
+        var headerEl = collapsed
+          ? document.querySelector('.mobile-header')
+          : document.querySelector('.header');
+        var h = headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0;
+        document.documentElement.style.setProperty('--header-h', h + 'px');
+      };
+      
+      // Event listeners for layout changes
+      window.addEventListener('load', window.setLayoutFlags);
+      window.addEventListener('resize', window.setLayoutFlags);
+      document.addEventListener('click', function(e) {
+        if (e.target.closest('.menu-toggle')) setTimeout(window.setLayoutFlags, 50);
+      });
     })();
-  </script>
-
-  <!-- Layout flags (made global so loader can call it) -->
-  <script>
-    window.setLayoutFlags = function () {
-      var toggle = document.querySelector('.menu-toggle');
-      var collapsed = toggle && getComputedStyle(toggle).display !== 'none';
-      document.documentElement.classList.toggle('nav-collapsed', collapsed);
-
-      var headerEl = collapsed
-        ? document.querySelector('.mobile-header')
-        : document.querySelector('.header');
-      var h = headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0;
-      document.documentElement.style.setProperty('--header-h', h + 'px');
-    };
-    window.addEventListener('load', window.setLayoutFlags);
-    window.addEventListener('resize', window.setLayoutFlags);
-    document.addEventListener('click', function (e) {
-      if (e.target.closest('.menu-toggle')) setTimeout(window.setLayoutFlags, 50);
-    });
   </script>
 </body>
 </html>
