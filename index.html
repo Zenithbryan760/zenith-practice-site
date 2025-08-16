@@ -159,34 +159,38 @@
         }
       }
 
-      // Main initialization
-      async function init() {
-        // Load includes in parallel
-        const includes = Array.from(document.querySelectorAll('[data-include]'));
-        await Promise.all(includes.map(include));
-        
-        // Initialize components
-        const initFunctions = [
-          'renderHeroRecaptchaIfReady',
-          'initEstimateForm',
-          'initAboutSection',
-          'initWhyChoose',
-          'initTrustSection',
-          'initPhotoSection',
-          'initTestimonials',
-          'initCTA',
-          'initServiceAreas',
-          'initRealEstate',
-          'initFooter',
-          'initHeader',
-          'initHeaderMobile',
-          'setLayoutFlags'
-        ];
-        
-        initFunctions.forEach(fn => {
-          if (typeof window[fn] === 'function') window[fn]();
-        });
-      }
+// Main initialization
+async function init() {
+  // 1. First load all includes
+  const includes = Array.from(document.querySelectorAll('[data-include]'));
+  await Promise.all(includes.map(include));
+
+  // 2. Special case: Initialize mobile menu immediately after header loads
+  if (window.initMobileMenu) {
+    window.initMobileMenu();
+  }
+
+  // 3. Initialize all other components
+  const initFunctions = [
+    'renderHeroRecaptchaIfReady',
+    'initEstimateForm',
+    'initAboutSection',
+    'initWhyChoose',
+    'initTrustSection',
+    'initPhotoSection',
+    'initTestimonials',
+    'initCTA',
+    'initServiceAreas',
+    'initRealEstate',
+    'initFooter',
+    'initHeader',
+    'setLayoutFlags' // Note: Removed 'initHeaderMobile' from this list
+  ];
+  
+  initFunctions.forEach(fn => {
+    if (typeof window[fn] === 'function') window[fn]();
+  });
+}
 
       // Start initialization based on document state
       if (document.readyState === 'loading') {
