@@ -1,0 +1,6 @@
+.why-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center}
+.trust-list{list-style:none;padding:0;margin:.75rem 0 0}
+.trust-list li{display:flex;gap:.5rem;align-items:flex-start;padding:.35rem 0}
+.check{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--zenith-orange);color:#fff;font-weight:700}
+.why-image img{border-radius:var(--radius);box-shadow:var(--shadow-lg)}
+@media (max-width:900px){.why-grid{grid-template-columns:1fr}}
