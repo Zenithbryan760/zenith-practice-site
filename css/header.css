@@ -1,32 +1,30 @@
 /* =========================================================
    Zenith Roofing — Header & Navigation (Desktop + Mobile)
-   Uses center-out underline animation + desktop dropdowns
-   and an off-canvas mobile menu with accordions.
+   Clean single file (no messy overrides)
    ========================================================= */
 
-/* ---------- Brand tokens (safe defaults if not already set) ---------- */
+/* ---------- Brand tokens (safe defaults) ---------- */
 :root{
   --zenith-navy:#072e59;
   --zenith-navy-2:#0b3a6f;
   --zenith-orange:#f7941d;
+  --zenith-blue: var(--zenith-navy); /* fallback */
   --white:#ffffff;
-  --zenith-text:#0f172a;   /* dark slate */
-  --zenith-muted:#64748b;  /* slate 500 */
-  --zenith-border:#e2e8f0; /* slate 200 */
+  --zenith-text:#0f172a;
+  --zenith-muted:#64748b;
+  --zenith-border:#e2e8f0;
   --radius:12px;
   --shadow-lg:0 14px 40px rgba(2,14,32,.18);
   --shadow-sm:0 4px 14px rgba(2,14,32,.10);
 }
 
-/* =========================================================
-   0) BASICS / RESETS
-   ========================================================= */
+/* ---------- Basics / resets ---------- */
 .header * { box-sizing: border-box; }
 nav ul, nav ul ul { margin:0; padding:0; list-style:none; }
 a { text-decoration: none; }
 
 /* =========================================================
-   1) HEADER BAR (sticky, brand styling)
+   1) HEADER BAR
    ========================================================= */
 .header{
   position: sticky; top: 0; z-index: 1000;
@@ -45,13 +43,30 @@ a { text-decoration: none; }
   align-items: center;
 }
 
-/* Logo + license (desktop) */
-.logo-section{ display:flex; align-items:center; gap:10px; }
-.logo{ height: 40px; width:auto; display:block; }
-.license{ margin:0; font-size:.9rem; opacity:.9; }
+/* Desktop logo stack (centered, image over license) */
+.header .header-inner > .logo-section{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap: 0;
+}
+.header .header-inner > .logo-section .logo{
+  height: 80px;         /* requested size */
+  width:auto;
+  display:block;
+  margin-bottom: 4px;
+}
+.header .header-inner > .logo-section .license{
+  color: var(--white);
+  font-size: 0.85rem;
+  line-height: 1.2;
+  margin: 0;
+}
 
 /* =========================================================
-   2) DESKTOP NAV
+   2) DESKTOP NAV + HOVER UNDERLINE
    ========================================================= */
 .nav-bar{ display:block; }
 .nav-links{
@@ -60,55 +75,51 @@ a { text-decoration: none; }
 }
 .nav-links > li { position: relative; }
 
-/* ---- Link base (needed for underline animation) ---- */
+/* Link base (for underline animation) */
 .nav-links a{
-  position: relative;                 /* anchors the ::after line */
+  position: relative;               /* anchor ::after */
   color: var(--white);
-  text-decoration: none;
   padding: 8px 2px;
   display: inline-block;
-  transition: color .3s ease;         /* smooth color change */
+  transition: color .3s ease;
   -webkit-font-smoothing: antialiased;
   line-height: 1.2;
   font-weight: 500;
 }
-
-/* ---- Center-out underline that grows on hover ---- */
+/* Center-out underline */
 .nav-links a::after{
-  content:"";
-  position:absolute;
-  left:50%; bottom:4px;
-  width:0; height:2px;
-  background:var(--zenith-orange);
-  border-radius:1px;
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 0; height: 2px;
+  background: var(--zenith-orange);
+  border-radius: 1px;
   transition: width .3s ease, left .3s ease;
 }
-.nav-links a:hover{ color:var(--zenith-orange); }
-.nav-links a:hover::after{ width:80%; left:10%; }
+.nav-links a:hover{
+  color: var(--zenith-orange);
+}
+.nav-links a:hover::after{ width: 80%; left: 10%; }
 
-/* Active state (current page) */
+/* Active/current page */
 .nav-links a.is-active,
-.nav-links a[aria-current="page"]{
-  color:var(--zenith-orange);
-}
+.nav-links a[aria-current="page"]{ color: var(--zenith-orange); }
 .nav-links a.is-active::after,
-.nav-links a[aria-current="page"]::after{
-  width:80%; left:10%;
-}
+.nav-links a[aria-current="page"]::after{ width:80%; left:10%; }
 
 /* Keyboard focus mirrors hover */
 .nav-links a:focus-visible{
-  outline:none;
-  color:var(--zenith-orange);
+  outline: none;
+  color: var(--zenith-orange);
 }
 .nav-links a:focus-visible::after{ width:80%; left:10%; }
 
 /* =========================================================
-   3) DESKTOP DROPDOWNS (Services mega + submenus)
+   3) DESKTOP DROPDOWNS
    ========================================================= */
-.dropdown > a{ padding-right: 18px; } /* room for caret if you add later */
+.dropdown > a{ padding-right: 18px; }
 
-/* Base dropdown menu */
 .dropdown-menu{
   position:absolute; top:100%; left:0;
   min-width: 260px;
@@ -122,14 +133,11 @@ a { text-decoration: none; }
   opacity:0; visibility:hidden; transform: translateY(10px);
   transition: opacity .3s ease, transform .3s ease, visibility .3s ease;
 }
-
-/* Show on hover/focus (desktop) */
 .dropdown:hover > .dropdown-menu,
 .dropdown:focus-within > .dropdown-menu{
   opacity:1; visibility:visible; transform: translateY(0);
 }
 
-/* Items inside dropdown */
 .dropdown-menu > li > a{
   display:block;
   padding:10px 12px;
@@ -138,11 +146,11 @@ a { text-decoration: none; }
   transition: background-color .2s ease, color .2s ease;
 }
 .dropdown-menu a:hover{
-  background-color: rgba(247,148,29,0.1);  /* soft orange wash */
+  background-color: rgba(247,148,29,0.1);
   color: var(--zenith-orange);
 }
 
-/* Labels inside dropdowns */
+/* Labels inside dropdown */
 .submenu-label{
   padding:8px 12px;
   font-size:.8rem;
@@ -152,7 +160,7 @@ a { text-decoration: none; }
   cursor: default;
 }
 
-/* Submenu (flyout) inside dropdown */
+/* Flyout submenu */
 .dropdown-submenu{ position: relative; }
 .dropdown-submenu > .submenu{
   position:absolute; top:0; left:100%;
@@ -163,6 +171,7 @@ a { text-decoration: none; }
   border-radius: 10px;
   border:1px solid var(--zenith-border);
   box-shadow: var(--shadow-lg);
+
   opacity:0; visibility:hidden; transform: translateY(10px);
   transition: opacity .3s ease, transform .3s ease, visibility .3s ease;
   z-index: 2;
@@ -172,21 +181,13 @@ a { text-decoration: none; }
   opacity:1; visibility:visible; transform: translateY(0);
 }
 .submenu a{
-  display:block;
-  padding:9px 10px;
-  border-radius:8px;
+  display:block; padding:9px 10px; border-radius:8px;
   color: var(--zenith-text);
   transition: background-color .2s ease, color .2s ease;
 }
 .submenu a:hover{
   background-color: rgba(247,148,29,0.1);
   color: var(--zenith-orange);
-}
-
-/* Optional: style the .accordion-toggle anchors in desktop menu */
-.dropdown-submenu > a.accordion-toggle{
-  display:flex; align-items:center; justify-content:space-between;
-  gap: 8px;
 }
 
 /* =========================================================
@@ -224,7 +225,7 @@ a { text-decoration: none; }
 .call-button:active{ transform: translateY(0); }
 
 /* =========================================================
-   5) MOBILE HEADER (hamburger, logo, call)
+   5) MOBILE HEADER (hamburger + logo + call)
    ========================================================= */
 .mobile-header{
   display:none; /* shown at <= 1024px */
@@ -240,6 +241,7 @@ a { text-decoration: none; }
   padding:8px 10px;
   cursor:pointer;
 }
+.mobile-header .logo{ height: 40px; width:auto; display:block; }
 .mobile-call{
   display:inline-flex; align-items:center; justify-content:center;
   width:42px; height:42px; border-radius:50%;
@@ -247,14 +249,13 @@ a { text-decoration: none; }
 }
 
 /* =========================================================
-   6) OFF-CANVAS MOBILE NAV (slides in from left)
-   Requires a class toggle (e.g., add .nav-open on <body>)
+   6) OFF-CANVAS MOBILE NAV (powder-blue accordions)
    ========================================================= */
 .mobile-nav{
-  position: fixed; inset: 0 30% 0 0; /* left panel, right side translucent */
+  position: fixed; inset: 0 30% 0 0; /* left panel */
   max-width: 420px;
   transform: translateX(-100%);
-  background: #0b3a6f;  /* brand navy-2 */
+  background: #0b3a6f;
   color: #fff;
   padding: 18px 16px 40px;
   overflow-y: auto;
@@ -262,16 +263,17 @@ a { text-decoration: none; }
   transition: transform .35s ease;
   z-index: 1100;
 }
-/* Dim backdrop (use a pseudo on body when open) */
+body.nav-open .mobile-nav{ transform: translateX(0); }
+
+/* Dim backdrop */
 body.nav-open::after{
   content:"";
   position: fixed; inset:0;
   background: rgba(0,0,0,.45);
   z-index: 1090;
 }
-body.nav-open .mobile-nav{ transform: translateX(0); }
 
-/* Mobile links list */
+/* Top-level items */
 .mobile-links > li > a,
 .mobile-links > li > button.accordion-toggle{
   display:flex; align-items:center; justify-content:space-between;
@@ -285,40 +287,67 @@ body.nav-open .mobile-nav{ transform: translateX(0); }
   background: rgba(255,255,255,.08);
 }
 
-/* Chevron indicator on toggles */
-.chevron{
-  display:inline-block;
-  transition: transform .25s ease; 
-}
+/* Chevron */
+.chevron{ display:inline-block; transition: transform .25s ease; }
 
-/* Nested submenus default hidden on mobile */
+/* Default hidden submenus */
 .mobile-links .submenu{
   display:none; padding-left: 10px; margin: 6px 0 10px;
   border-left: 2px solid rgba(255,255,255,.15);
 }
-.mobile-links .submenu a{
-  display:block; padding:10px; border-radius:10px; color:#fff;
-}
-.mobile-links .submenu a:hover{ background: rgba(255,255,255,.08); }
-
-/* When parent <li> has .open, reveal submenu + rotate chevron */
 .mobile-links li.open > .submenu{ display:block; }
 .mobile-links li.open > .accordion-toggle .chevron{ transform: rotate(90deg); }
 
+/* ------- Powder-blue color scheme you requested ------- */
+/* Top-level accordion (e.g., Services) button */
+.mobile-nav .mobile-links > li > .accordion-toggle{
+  background: #e0f0ff;               /* powder blue */
+  color: var(--zenith-blue);          /* dark navy text */
+}
+
+/* Panel under the top-level accordion */
+.mobile-nav .mobile-links > li > .submenu{
+  background: #d0e8ff;               /* deeper powder blue */
+  border-left: none;
+  border-radius: 10px;
+  padding: 6px 6px 10px;
+}
+
+/* Nested toggles */
+.mobile-nav .submenu .accordion-toggle{
+  background: #e0f0ff;
+  color: var(--zenith-blue);
+}
+
+/* Nested panels */
+.mobile-nav .submenu .submenu{
+  background: #d0e8ff;
+  border-left: none;
+  border-radius: 10px;
+}
+
+/* Links inside submenus: dark navy text */
+.mobile-nav .submenu li a{ color: var(--zenith-blue); }
+
+/* Hover clarity: orange text + soft orange wash */
+.mobile-nav .mobile-links > li > .accordion-toggle:hover,
+.mobile-nav .submenu li a:hover{
+  color: var(--zenith-orange);
+  background: rgba(247,148,29,0.1);
+}
+
 /* =========================================================
-   7) RESPONSIVE BEHAVIOR
+   7) RESPONSIVE
    ========================================================= */
 @media (max-width: 1024px){
-  /* Show mobile header, hide desktop layout bits */
   .mobile-header{ display:flex; }
-  .logo-section,
-  .nav-bar,
-  .phone-section{ display:none; }
-
-  /* Make header-inner simple row at mobile */
-  .header-inner{
+  .header .header-inner{
     grid-template-columns: 1fr; gap: 0; padding: 10px 14px;
   }
+  /* Hide desktop-only regions at mobile size */
+  .header .header-inner > .logo-section,
+  .nav-bar,
+  .phone-section{ display:none; }
 }
 
 /* =========================================================
@@ -336,9 +365,8 @@ body.nav-open .mobile-nav{ transform: translateX(0); }
 }
 
 /* =========================================================
-   9) OPTIONAL: LEFT-TO-RIGHT UNDERLINE VARIANT
-   Add .underline-ltr on a parent (e.g., .nav-bar.underline-ltr)
-   to switch animation style site-wide without editing links.
+   9) OPTIONAL: LEFT→RIGHT UNDERLINE VARIANT
+   Add .underline-ltr on .nav-bar to switch site-wide.
    ========================================================= */
 .nav-bar.underline-ltr .nav-links a::after{
   left:0; bottom:4px; width:0; height:2px; border-radius:1px;
