@@ -1,0 +1,4 @@
+.re-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.re-card{background:#fff;border:1px solid var(--zenith-border);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow-sm)}
+.re-card h3{margin:.25rem 0 .4rem;color:var(--zenith-navy-2)}
+@media (max-width:900px){.re-grid{grid-template-columns:1fr}}
