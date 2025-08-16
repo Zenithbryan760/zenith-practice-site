@@ -1,0 +1,20 @@
+/* css/trust.css — scoped, safe, and only for the badges section */
+#badges .badge-row{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:18px;
+  align-items:center;
+}
+
+#badges .badge{
+  width:100%;
+  max-height:64px;          /* keeps mixed badge logos visually consistent */
+  object-fit:contain;
+  justify-self:center;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,.06));
+}
+
+@media (max-width:480px){
+  #badges .badge-row{ gap:14px; }
+  #badges .badge{ max-height:56px; }
+}
