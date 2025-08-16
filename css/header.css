@@ -1,49 +1,45 @@
 /* =========================================================
    Zenith Roofing — Header & Navigation (Desktop + Mobile)
-   Modernized typography + visuals (keeps your HTML intact)
+   Evenly spaced tabs + consistent Services dropdown spacing
    ========================================================= */
 
-/* ---------- 0) OPTIONAL: Modern Web Font (safe fallbacks) ----------
-   Note: @import must be at the very top of the CSS file. 
-   If you prefer Poppins, swap the family below accordingly.
-------------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+/* 0) Font (keeps your brand vibe) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* ---------- 1) Design tokens ---------- */
+/* 1) Design tokens */
 :root{
-  /* Brand */
   --zenith-navy:#072e59;
   --zenith-navy-2:#0b3a6f;
   --zenith-orange:#f7941d;
-  --zenith-blue: var(--zenith-navy); /* fallback */
+  --zenith-blue: var(--zenith-navy);
 
-  /* Neutral */
   --white:#ffffff;
   --zenith-text:#0f172a;
   --zenith-muted:#64748b;
   --zenith-border:#e2e8f0;
 
-  /* Type */
-  --font-sans: "Plus Jakarta Sans", Inter, ui-sans-serif, system-ui, -apple-system,
-               "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-sans:"Poppins", Inter, ui-sans-serif, system-ui, -apple-system,
+              "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 
-  /* Radii & shadows */
   --radius:12px;
   --shadow-lg:0 18px 50px rgba(2,14,32,.18);
   --shadow-md:0 10px 30px rgba(2,14,32,.14);
   --shadow-sm:0 4px 14px rgba(2,14,32,.10);
 
-  /* Header look */
   --header-bg: linear-gradient(180deg, rgba(7,46,89,0.96) 0%, rgba(7,46,89,0.93) 70%, rgba(7,46,89,0.90) 100%);
-  --menu-bg: rgba(255,255,255,0.92);   /* dropdown glass */
+  --menu-bg: rgba(255,255,255,0.94);
   --menu-border: rgba(2,14,32,0.08);
 }
 
-/* ---------- 2) Base & resets (scoped to header) ---------- */
+/* 2) Base (scoped) */
 .header * { box-sizing: border-box; }
 nav ul, nav ul ul { margin:0; padding:0; list-style:none; }
 a { text-decoration: none; }
-.header, .header a, .mobile-nav, .mobile-nav a, .menu-toggle, .accordion-toggle { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+.header, .header a, .mobile-nav, .mobile-nav a, .menu-toggle, .accordion-toggle {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
 
 /* =========================================================
    3) HEADER BAR
@@ -54,7 +50,7 @@ a { text-decoration: none; }
   background: var(--header-bg);
   color: var(--white);
   box-shadow: 0 4px 18px rgba(0,0,0,.26);
-  backdrop-filter: saturate(140%) blur(6px); /* graceful degrade */
+  backdrop-filter: saturate(140%) blur(6px);
 }
 .header-inner{
   max-width: 1200px;
@@ -66,127 +62,120 @@ a { text-decoration: none; }
   align-items: center;
 }
 
-/* Desktop logo stack (centered, image over license) */
+/* Logo stack */
 .header .header-inner > .logo-section{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  gap: 2px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:2px;
 }
 .header .header-inner > .logo-section .logo{
-  height: 80px;
-  width:auto;
-  display:block;
-  margin-bottom: 2px;
+  height: 80px; width:auto; display:block; margin-bottom:2px;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
 }
 .header .header-inner > .logo-section .license{
-  color: var(--white);
-  font-size: 0.84rem;
-  line-height: 1.2;
-  margin: 0;
-  letter-spacing:.02em;
-  opacity:.95;
+  color: var(--white); font-size:.84rem; line-height:1.2; margin:0; letter-spacing:.02em; opacity:.95;
 }
 
 /* =========================================================
-   4) DESKTOP NAV + HOVER UNDERLINE
+   4) DESKTOP NAV — EVENLY SPACED TABS
    ========================================================= */
-.nav-bar{ display:block; }
+.nav-bar{ display:block; width:100%; }
 .nav-links{
-  display:flex; align-items:center; justify-content:center;
-  gap: clamp(14px, 2vw, 22px);
+  display:flex;
+  align-items:stretch;              /* tabs same height */
+  justify-content:space-between;    /* spread across row */
+  gap: 0;                           /* equal-width tabs remove gap */
 }
-.nav-links > li { position: relative; }
-
-/* Link base (for underline animation) */
-.nav-links a{
-  position: relative;               /* anchor ::after */
+.nav-links > li{
+  position:relative;
+  flex:1 1 0;                       /* ⬅️ equal-width tabs */
+  min-width:0;
+  display:flex;                     /* for full-width anchors */
+}
+.nav-links > li > a{
+  position: relative;
+  flex:1 1 auto;
+  display:flex; align-items:center; justify-content:center; /* center label */
   color: var(--white);
-  padding: 10px 2px;
-  display: inline-block;
-  transition: color .28s ease, transform .2s ease;
-  line-height: 1.15;
-  font-weight: 600;
-  letter-spacing:.01em;
-  font-size: .98rem;
-  will-change: color, transform;
+  padding: 12px 6px;                /* uniform vertical rhythm */
+  transition: color .28s ease, transform .2s ease, background .2s ease;
+  line-height:1.15; font-weight:600; letter-spacing:.01em; font-size:.98rem;
+  border-radius:10px;               /* subtle pill */
 }
-/* Center-out underline */
-.nav-links a::after{
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 4px;
-  width: 0; height: 2px;
-  background: var(--zenith-orange);
-  border-radius: 1px;
-  transition: width .28s ease, left .28s ease;
-}
-.nav-links a:hover{
+.nav-links > li > a:hover{
   color: var(--zenith-orange);
+  background: rgba(255,255,255,.06);
   transform: translateY(-1px);
 }
-.nav-links a:hover::after{ width: 80%; left: 10%; }
+/* Underline animation */
+.nav-links a::after{
+  content:"";
+  position:absolute; left:50%; bottom:6px;
+  width:0; height:2px; background:var(--zenith-orange); border-radius:1px;
+  transition: width .28s ease, left .28s ease;
+}
+.nav-links a:hover::after{ width:80%; left:10%; }
 
-/* Active/current page */
+/* Active/current */
 .nav-links a.is-active,
-.nav-links a[aria-current="page"]{ color: var(--zenith-orange); }
+.nav-links a[aria-current="page"]{ color: var(--zenith-orange); background: rgba(255,255,255,.06); }
 .nav-links a.is-active::after,
 .nav-links a[aria-current="page"]::after{ width:80%; left:10%; }
 
-/* Keyboard focus mirrors hover with clear ring */
+/* Keyboard focus */
 .nav-links a:focus-visible{
-  outline: none;
+  outline:none;
   color: var(--zenith-orange);
   box-shadow: 0 0 0 3px rgba(247,148,29,.28);
-  border-radius: 8px;
 }
 .nav-links a:focus-visible::after{ width:80%; left:10%; }
 
 /* =========================================================
-   5) DESKTOP DROPDOWNS (glass card look)
+   5) DESKTOP DROPDOWNS — CONSISTENT SPACING
    ========================================================= */
-.dropdown > a{ padding-right: 18px; }
+.dropdown > a{ padding-right: 22px; } /* room for chevron if you add one */
 
+/* Base menu panel */
 .dropdown-menu{
-  position:absolute; top:100%; left:0;
-  min-width: 260px;
+  position:absolute; top:calc(100% + 8px); left:0;   /* slight offset for air */
+  min-width: 280px;
   background: var(--menu-bg);
   color: var(--zenith-text);
-  padding: 10px;
   border-radius: 14px;
-  box-shadow: var(--shadow-lg);
   border: 1px solid var(--menu-border);
+  box-shadow: var(--shadow-lg);
+  padding: 10px;
 
-  opacity:0; visibility:hidden; transform: translateY(10px);
-  transition: opacity .26s ease, transform .26s ease, visibility .26s ease;
+  display:flex; flex-direction:column; gap:6px;      /* ⬅️ even vertical spacing */
+
+  opacity:0; visibility:hidden; transform: translateY(8px);
+  transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
   backdrop-filter: blur(8px) saturate(120%);
 }
+
+/* Open on hover/focus */
 .dropdown:hover > .dropdown-menu,
 .dropdown:focus-within > .dropdown-menu{
   opacity:1; visibility:visible; transform: translateY(0);
 }
 
+/* Items */
+.dropdown-menu > li{ margin:0; }
 .dropdown-menu > li > a{
-  display:block;
-  padding:10px 12px;
+  display:flex; align-items:center; gap:10px;
+  padding:12px 12px;                /* ⬅️ consistent hit area */
   border-radius:10px;
   color: var(--zenith-text);
-  transition: background-color .2s ease, color .2s ease, transform .18s ease;
-  font-weight: 500;
+  font-weight:500;
+  transition: background-color .18s ease, color .18s ease, transform .16s ease;
 }
-.dropdown-menu a:hover{
-  background-color: rgba(247,148,29,0.10);
+.dropdown-menu > li > a:hover{
+  background: rgba(247,148,29,0.10);
   color: var(--zenith-orange);
   transform: translateX(1px);
 }
 
-/* Labels inside dropdown */
+/* Section label */
 .submenu-label{
-  padding:8px 12px;
+  padding:10px 12px 4px;
   font-size:.78rem;
   text-transform: uppercase;
   letter-spacing:.08em;
@@ -194,20 +183,21 @@ a { text-decoration: none; }
   cursor: default;
 }
 
-/* Flyout submenu */
+/* Flyout submenu (Services → nested) */
 .dropdown-submenu{ position: relative; }
 .dropdown-submenu > .submenu{
-  position:absolute; top:0; left:100%;
-  min-width: 240px;
+  position:absolute; top:0; left:100%; margin-left:10px;
+  min-width: 260px;
   background: var(--menu-bg);
   color: var(--zenith-text);
-  padding: 10px;
   border-radius: 12px;
   border:1px solid var(--menu-border);
   box-shadow: var(--shadow-md);
+  padding:10px;
+  display:flex; flex-direction:column; gap:6px;      /* ⬅️ even spacing */
 
-  opacity:0; visibility:hidden; transform: translateY(10px);
-  transition: opacity .26s ease, transform .26s ease, visibility .26s ease;
+  opacity:0; visibility:hidden; transform: translateY(8px);
+  transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
   z-index: 2;
   backdrop-filter: blur(8px) saturate(120%);
 }
@@ -216,13 +206,13 @@ a { text-decoration: none; }
   opacity:1; visibility:visible; transform: translateY(0);
 }
 .submenu a{
-  display:block; padding:9px 10px; border-radius:10px;
-  color: var(--zenith-text);
-  transition: background-color .2s ease, color .2s ease, transform .18s ease;
-  font-weight: 500;
+  display:flex; align-items:center;
+  padding:12px 12px; border-radius:10px;
+  color: var(--zenith-text); font-weight:500;
+  transition: background-color .18s ease, color .18s ease, transform .16s ease;
 }
 .submenu a:hover{
-  background-color: rgba(247,148,29,0.10);
+  background: rgba(247,148,29,0.10);
   color: var(--zenith-orange);
   transform: translateX(1px);
 }
@@ -235,13 +225,11 @@ a { text-decoration: none; }
 }
 .phone-section p{ margin:0; font-size:.95rem; }
 .phone-section p a{
-  position: relative;
-  color: var(--white);
+  position: relative; color: var(--white);
   transition: color .26s ease;
 }
 .phone-section p a::after{
-  content:"";
-  position:absolute; left:50%; bottom:-2px;
+  content:""; position:absolute; left:50%; bottom:-2px;
   width:0; height:2px; background:var(--zenith-orange);
   transition: width .26s ease, left .26s ease;
 }
@@ -251,11 +239,8 @@ a { text-decoration: none; }
 .call-button{
   display:inline-block;
   padding:9px 16px;
-  color:#072e59;
-  background: var(--zenith-orange);
-  border-radius: 999px;
-  font-weight: 700;
-  border: none;
+  color:#072e59; background: var(--zenith-orange);
+  border-radius: 999px; font-weight:700; border:none;
   transition: transform .18s ease, box-shadow .18s ease, opacity .26s ease;
   box-shadow: 0 8px 18px rgba(247,148,29,.22);
 }
@@ -267,22 +252,17 @@ a { text-decoration: none; }
    ========================================================= */
 .mobile-header{
   display:none; /* shown at ≤ 1024px */
-  align-items:center; justify-content:space-between;
-  gap: 10px;
+  align-items:center; justify-content:space-between; gap:10px;
 }
 .menu-toggle{
-  appearance:none;
-  font: inherit;
-  background:rgba(255,255,255,.06);
-  color:#fff;
+  appearance:none; font: inherit;
+  background:rgba(255,255,255,.06); color:#fff;
   border:1px solid rgba(255,255,255,.32);
-  border-radius:12px;
-  padding:10px 12px;
-  cursor:pointer;
+  border-radius:12px; padding:10px 12px; cursor:pointer;
   transition: background .2s ease, border-color .2s ease, transform .18s ease;
 }
 .menu-toggle:hover{ background:rgba(255,255,255,.12); transform: translateY(-1px); }
-.mobile-header .logo{ height: 40px; width:auto; display:block; filter: drop-shadow(0 2px 6px rgba(0,0,0,.18)); }
+.mobile-header .logo{ height:40px; width:auto; display:block; filter: drop-shadow(0 2px 6px rgba(0,0,0,.18)); }
 .mobile-call{
   display:inline-flex; align-items:center; justify-content:center;
   width:44px; height:44px; border-radius:50%;
@@ -294,36 +274,27 @@ a { text-decoration: none; }
    8) OFF-CANVAS MOBILE NAV (powder-blue accordions)
    ========================================================= */
 .mobile-nav{
-  position: fixed; inset: 0 30% 0 0; /* left panel */
-  max-width: 420px;
+  position: fixed; inset: 0 30% 0 0; max-width: 420px;
   transform: translateX(-100%);
-  background: #0b3a6f;
-  color: #fff;
-  padding: 18px 16px 40px;
-  overflow-y: auto;
+  background: #0b3a6f; color: #fff;
+  padding: 18px 16px 40px; overflow-y: auto;
   box-shadow: 8px 0 24px rgba(0,0,0,.25);
-  transition: transform .32s ease;
-  z-index: 1100;
+  transition: transform .32s ease; z-index: 1100;
 }
 body.nav-open .mobile-nav{ transform: translateX(0); }
 
-/* Dim backdrop */
+/* Backdrop */
 body.nav-open::after{
-  content:"";
-  position: fixed; inset:0;
-  background: rgba(0,0,0,.45);
-  z-index: 1090;
+  content:""; position: fixed; inset:0; background: rgba(0,0,0,.45); z-index: 1090;
 }
 
 /* Top-level items */
+.mobile-links > li + li{ margin-top:6px; }            /* even vertical rhythm */
 .mobile-links > li > a,
 .mobile-links > li > button.accordion-toggle{
   display:flex; align-items:center; justify-content:space-between;
-  width:100%;
-  padding: 12px 12px;
-  color:#fff; font-size: 1rem; border:0; background:transparent;
-  border-radius:12px;
-  font-weight: 600;
+  width:100%; padding: 12px 12px; color:#fff; font-size: 1rem; border:0; background:transparent;
+  border-radius:12px; font-weight:600;
 }
 .mobile-links a:hover,
 .mobile-links button.accordion-toggle:hover{
@@ -333,57 +304,36 @@ body.nav-open::after{
 /* Chevron */
 .chevron{ display:inline-block; transition: transform .25s ease; }
 
-/* Default hidden submenus */
+/* Submenus */
 .mobile-links .submenu{
-  display:none; padding-left: 10px; margin: 6px 0 10px;
-  border-left: 2px solid rgba(255,255,255,.15);
+  display:none; padding-left: 10px; margin: 8px 0 6px; border-left: 2px solid rgba(255,255,255,.15);
 }
 .mobile-links li.open > .submenu{ display:block; }
 .mobile-links li.open > .accordion-toggle .chevron{ transform: rotate(90deg); }
 
-/* ------- Powder-blue color scheme (modernized edges) ------- */
+/* Powder-blue scheme */
 .mobile-nav .mobile-links > li > .accordion-toggle{
-  background: #e0f0ff;               /* powder blue */
-  color: var(--zenith-blue);          /* dark navy text */
+  background: #e0f0ff; color: var(--zenith-blue);
   box-shadow: 0 1px 0 rgba(2,14,32,.04) inset, 0 6px 14px rgba(11,58,111,.08);
 }
-
-/* Panel under the top-level accordion */
 .mobile-nav .mobile-links > li > .submenu{
-  background: #d0e8ff;               /* deeper powder blue */
-  border-left: none;
-  border-radius: 12px;
+  background: #d0e8ff; border-left:none; border-radius: 12px;
   padding: 6px 6px 10px;
   box-shadow: 0 1px 0 rgba(2,14,32,.04) inset, 0 6px 14px rgba(11,58,111,.08);
 }
-
-/* Nested toggles */
 .mobile-nav .submenu .accordion-toggle{
-  background: #e0f0ff;
-  color: var(--zenith-blue);
-  border-radius: 10px;
+  background: #e0f0ff; color: var(--zenith-blue); border-radius: 10px;
 }
-
-/* Nested panels */
 .mobile-nav .submenu .submenu{
-  background: #d0e8ff;
-  border-left: none;
-  border-radius: 10px;
+  background: #d0e8ff; border-left: none; border-radius: 10px;
 }
-
-/* Links inside submenus: dark navy text */
+.mobile-nav .submenu li + li{ margin-top:6px; }       /* even spacing in nested lists */
 .mobile-nav .submenu li a{
-  color: var(--zenith-blue);
-  border-radius: 10px;
-  padding: 10px 10px;
-  font-weight: 600;
+  color: var(--zenith-blue); border-radius: 10px; padding: 10px 10px; font-weight:600;
 }
-
-/* Hover clarity: orange text + soft orange wash */
 .mobile-nav .mobile-links > li > .accordion-toggle:hover,
 .mobile-nav .submenu li a:hover{
-  color: var(--zenith-orange);
-  background: rgba(247,148,29,0.10);
+  color: var(--zenith-orange); background: rgba(247,148,29,0.10);
 }
 
 /* =========================================================
@@ -391,43 +341,30 @@ body.nav-open::after{
    ========================================================= */
 @media (max-width: 1024px){
   .mobile-header{ display:flex; }
-  .header .header-inner{
-    grid-template-columns: 1fr; gap: 0; padding: 10px 14px;
-  }
-  /* Hide desktop-only regions at mobile size */
-  .header .header-inner > .logo-section,
-  .nav-bar,
-  .phone-section{ display:none; }
+  .header .header-inner{ grid-template-columns: 1fr; gap: 0; padding: 10px 14px; }
+  .header .header-inner > .logo-section, .nav-bar, .phone-section{ display:none; }
 }
 
 /* =========================================================
    10) ACCESSIBILITY & MOTION
    ========================================================= */
 @media (prefers-reduced-motion: reduce){
-  .nav-links a,
-  .nav-links a::after,
-  .dropdown-menu,
-  .submenu a,
-  .call-button,
-  .mobile-nav,
-  .mobile-links .submenu,
-  .chevron{ transition: none !important; }
+  .nav-links a, .nav-links a::after, .dropdown-menu, .submenu a,
+  .call-button, .mobile-nav, .mobile-links .submenu, .chevron{
+    transition: none !important;
+  }
 }
-
-/* Better focus rings on interactive elements in mobile panel */
 .mobile-nav a:focus-visible,
 .mobile-nav button:focus-visible,
 .menu-toggle:focus-visible{
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(247,148,29,.28);
+  outline:none; box-shadow: 0 0 0 3px rgba(247,148,29,.28);
 }
 
 /* =========================================================
    11) OPTIONAL: LEFT→RIGHT UNDERLINE VARIANT
-   Add .underline-ltr on .nav-bar to switch site-wide.
    ========================================================= */
 .nav-bar.underline-ltr .nav-links a::after{
-  left:0; bottom:4px; width:0; height:2px; border-radius:1px;
+  left:0; bottom:6px; width:0; height:2px; border-radius:1px;
 }
 .nav-bar.underline-ltr .nav-links a:hover::after{ width:100%; left:0; }
 .nav-bar.underline-ltr .nav-links a.is-active::after,
