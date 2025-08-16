@@ -1,242 +1,202 @@
-  <!-- ===== HEADER & NAVIGATION ===== -->
-  <header class="header">
-    <div class="header-inner">
+<!-- components/header-section.html -->
+<header class="header">
+  <div class="header-inner">
 
-      <!-- ===== MOBILE HEADER (≤768px) ===== -->
-      <div class="mobile-header">
-        <!-- 1) Hamburger -->
-        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-
-        <!-- 2) Centered logo -->
-        <div class="logo-section">
-          <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing logo" class="logo" />
-        </div>
-
-        <!-- 3) Phone icon -->
-        <a href="tel:8589006163" class="mobile-call" aria-label="Call 858-900-6163">
-          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
-            <path fill="#fff" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.58.57 1 1 0 0 1 1 1v3.5a1 1 0 0 1-.91 1A19.7 19.7 0 0 1 4 4.91 1 1 0 0 1 5 4h3.5a1 1 0 0 1 1 1c0 1.23.2 2.43.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
-          </svg>
-        </a>
-      </div>
-
-      <!-- ===== DESKTOP HEADER (hidden on mobile by CSS) ===== -->
+    <!-- MOBILE HEADER -->
+    <div class="mobile-header">
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
       <div class="logo-section">
-        <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing Services logo" class="logo" />
-        <p class="license">Lic# 1036112</p>
+        <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing logo" class="logo" />
       </div>
-
-      <!-- ===== PRIMARY NAV ===== -->
-      <nav class="nav-bar">
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#gallery">Projects</a></li>
-
-          <!-- Services Dropdown -->
-          <li class="dropdown">
-            <a href="#services">Services</a>
-            <ul class="dropdown-menu">
-
-              <!-- Roof Repairs submenu -->
-              <li class="dropdown-submenu">
-                <a href="#" class="accordion-toggle">
-                  Roof Repairs <span class="chevron"></span>
-                </a>
-                <ul class="submenu">
-                  <li><a href="#roof-tune-up">Roof Tune-Up</a></li>
-                  <li><a href="#tile-roof-repair">Tile Roof Repair</a></li>
-                  <li><a href="#clay-tile-roof-repair">Clay Tile Roof Repair</a></li>
-                  <li><a href="#slate-roof-repair">Slate Roof Repair</a></li>
-                  <li><a href="#shingles-roof-repair">Shingles Roof Repair</a></li>
-                  <li><a href="#flat-roof-repair">Flat Roof Repair</a></li>
-                  <li><a href="#skylight-repair">Skylight Repair</a></li>
-                  <li><a href="#broken-tile-replacement">Broken Tile Replacement</a></li>
-                  <li><a href="#roof-cleaning-maintenance">Roof Cleaning &amp; Maintenance</a></li>
-                </ul>
-              </li>
-
-              <!-- Residential Roofing submenu -->
-              <li class="dropdown-submenu">
-                <a href="#residential" class="accordion-toggle">
-                  Residential Roofing <span class="chevron"></span>
-                </a>
-                <ul class="submenu">
-                  <li class="submenu-label">Roof Systems</li>
-                  <li><a href="#shingles">Asphalt Shingles</a></li>
-                  <li><a href="#torch-down">Torch Down Systems</a></li>
-                  <li><a href="#tile-roof">Clay &amp; Concrete Tile</a></li>
-                  <li><a href="#tile-lift-lay">Tile Lift &amp; Reset</a></li>
-                  <li><a href="#tpo">TPO Single-Ply</a></li>
-                  <li><a href="#silicone">Silicone Coating Systems</a></li>
-                  <li class="submenu-label">Maintenance &amp; Extras</li>
-                  <li><a href="#gutters">Seamless Gutters</a></li>
-                  <li><a href="#repairs">Leak Repair &amp; Troubleshooting</a></li>
-                  <li><a href="#maintenance">Preventive Maintenance</a></li>
-                  <li><a href="#cleaning">Roof Washing &amp; Moss Removal</a></li>
-                </ul>
-              </li>
-
-              <!-- Commercial Roofing submenu -->
-              <li class="dropdown-submenu">
-                <a href="#commercial" class="accordion-toggle">
-                  Commercial Roofing <span class="chevron"></span>
-                </a>
-                <ul class="submenu">
-                  <li class="submenu-label">Roof Systems</li>
-                  <li><a href="#tpo-commercial">TPO Roofing</a></li>
-                  <li><a href="#shingles-commercial">Shingle Systems</a></li>
-                  <li><a href="#tile-commercial">Tile Roofing</a></li>
-                  <li><a href="#metal">Metal Roofing</a></li>
-                  <li><a href="#pvc">PVC Membranes</a></li>
-                  <li><a href="#torch-commercial">Torch Down Flat Roofs</a></li>
-                  <li><a href="#silicone-commercial">Silicone Restoration Coatings</a></li>
-                  <li class="submenu-label">Maintenance &amp; Extras</li>
-                  <li><a href="#gutters-commercial">Seamless Gutters</a></li>
-                  <li><a href="#maintenance-commercial">Roof Asset Maintenance</a></li>
-                  <li><a href="#cleaning-commercial">Debris Removal &amp; Cleaning</a></li>
-                </ul>
-              </li>
-
-              <!-- Real Estate Services submenu -->
-              <li class="dropdown-submenu">
-                <a href="#real-estate" class="accordion-toggle">
-                  Real Estate Services <span class="chevron"></span>
-                </a>
-                <ul class="submenu">
-                  <li><a href="#roof-reports">Certified Roof Reports</a></li>
-                  <li><a href="#roof-estimates">Pre-Sale Roofing Estimates</a></li>
-                  <li><a href="#inspections">Visual Roof Inspections</a></li>
-                  <li><a href="#certifications">Roof Certifications</a></li>
-                  <li><a href="#insurance-consulting">Insurance Consulting</a></li>
-                  <li><a href="#verbal-opinions">Professional Verbal Opinions</a></li>
-                  <li><a href="#satellite">Satellite Imagery Analysis</a></li>
-                </ul>
-              </li>
-
-              <!-- Roof Inspection standalone page -->
-              <li><a href="#roof-inspection">Roof Inspection</a></li>
-
-              <!-- Pricing -->
-              <li><a href="pricing.html">Pricing</a></li>
-            </ul>
-          </li>
-
-          <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#glossary">Glossary</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li>
-            <a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">YouTube</a>
-          </li>
-        </ul>
-      </nav>
-
-      <!-- Call/Text Section (desktop) -->
-      <div class="phone-section">
-        <p>Call/Text: <a href="tel:8589006163">858-900-6163</a></p>
-        <a href="tel:8589006163" class="call-button">Call Now</a>
-      </div>
-
+      <a href="tel:8589006163" class="mobile-call" aria-label="Call 858-900-6163">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
+          <path fill="#fff" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.58.57 1 1 0 0 1 1 1v3.5a1 1 0 0 1-.91 1A19.7 19.7 0 0 1 4 4.91 1 1 0 0 1 5 4h3.5a1 1 0 0 1 1 1c0 1.23.2 2.43.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
+        </svg>
+      </a>
     </div>
-  </header>
 
- <!-- OFF-CANVAS MOBILE NAV -->
-  <nav class="mobile-nav">
-    <ul class="mobile-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#gallery">Projects</a></li>
-      <li>
-        <button class="accordion-toggle">
-          Services <span class="chevron">›</span>
-        </button>
-        <ul class="submenu">
-          <li>
-            <button class="accordion-toggle">
-              Roof Repairs <span class="chevron">›</span>
-            </button>
-            <ul class="submenu">
-              <li><a href="#tile-roof-repair">Tile Roof Repair</a></li>
-              <li><a href="#clay-tile-roof-repair">Clay Tile Roof Repair</a></li>
-              <li><a href="#slate-roof-repair">Slate Roof Repair</a></li>
-              <li><a href="#shingles-roof-repair">Shingles Roof Repair</a></li>
-              <li><a href="#flat-roof-repair">Flat Roof Repair</a></li>
-              <li><a href="#skylight-repair">Skylight Repair</a></li>
-              <li><a href="#broken-tile-replacement">Broken Tile Replacement</a></li>
-              <li><a href="#roof-cleaning-maintenance">Roof Cleaning &amp; Maintenance</a></li>
-              <li><a href="#roof-tune-up">Roof Tune-Up</a></li>
-            </ul>
-          </li>
-          <li>
-            <button class="accordion-toggle">
-              Residential Roofing <span class="chevron">›</span>
-            </button>
-            <ul class="submenu">
-              <li>
-                <button class="accordion-toggle">
-                  Roof Systems <span class="chevron">›</span>
-                </button>
-                <ul class="submenu">
-                  <li><a href="#shingles">Asphalt Shingles</a></li>
-                  <li><a href="#torch-down">Torch Down Systems</a></li>
-                  <li><a href="#tile-roof">Clay &amp; Concrete Tile</a></li>
-                  <li><a href="#tile-lift-lay">Tile Lift &amp; Reset</a></li>
-                  <li><a href="#tpo">TPO Single-Ply</a></li>
-                  <li><a href="#silicone">Silicone Coatings</a></li>
-                </ul>
-              </li>
-              <li>
-                <button class="accordion-toggle">
-                  Maintenance &amp; Extras <span class="chevron">›</span>
-                </button>
-                <ul class="submenu">
-                  <li><a href="#gutters">Seamless Gutters</a></li>
-                  <li><a href="#repairs">Leak Repair &amp; Troubleshooting</a></li>
-                  <li><a href="#maintenance">Preventive Maintenance</a></li>
-                  <li><a href="#cleaning">Roof Washing &amp; Moss Removal</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <button class="accordion-toggle">
-              Commercial Roofing <span class="chevron">›</span>
-            </button>
-            <ul class="submenu">
-              <li>
-                <button class="accordion-toggle">
-                  Roof Systems <span class="chevron">›</span>
-                </button>
-                <ul class="submenu">
-                  <li><a href="#tpo-commercial">TPO Roofing</a></li>
-                  <li><a href="#shingles-commercial">Shingle Systems</a></li>
-                  <li><a href="#tile-commercial">Tile Roofing</a></li>
-                  <li><a href="#metal">Metal Roofing</a></li>
-                  <li><a href="#pvc">PVC Membranes</a></li>
-                  <li><a href="#torch-commercial">Torch Down Flat Roofs</a></li>
-                  <li><a href="#silicone-commercial">Silicone Coatings</a></li>
-                </ul>
-              </li>
-              <li>
-                <button class="accordion-toggle">
-                  Maintenance &amp; Extras <span class="chevron">›</span>
-                </button>
-                <ul class="submenu">
-                  <li><a href="#gutters-commercial">Seamless Gutters</a></li>
-                  <li><a href="#maintenance-commercial">Roof Asset Maintenance</a></li>
-                  <li><a href="#cleaning-commercial">Debris Removal &amp; Cleaning</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><a href="#roof-inspection">Roof Inspection</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
+    <!-- DESKTOP HEADER -->
+    <div class="logo-section">
+      <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing Services logo" class="logo" />
+      <p class="license">Lic# 1036112</p>
+    </div>
+
+    <!-- PRIMARY NAV -->
+    <nav class="nav-bar">
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#gallery">Projects</a></li>
+
+        <li class="dropdown">
+          <a href="#services">Services</a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+              <a href="#" class="accordion-toggle">Roof Repairs <span class="chevron"></span></a>
+              <ul class="submenu">
+                <li><a href="#roof-tune-up">Roof Tune-Up</a></li>
+                <li><a href="#tile-roof-repair">Tile Roof Repair</a></li>
+                <li><a href="#clay-tile-roof-repair">Clay Tile Roof Repair</a></li>
+                <li><a href="#slate-roof-repair">Slate Roof Repair</a></li>
+                <li><a href="#shingles-roof-repair">Shingles Roof Repair</a></li>
+                <li><a href="#flat-roof-repair">Flat Roof Repair</a></li>
+                <li><a href="#skylight-repair">Skylight Repair</a></li>
+                <li><a href="#broken-tile-replacement">Broken Tile Replacement</a></li>
+                <li><a href="#roof-cleaning-maintenance">Roof Cleaning &amp; Maintenance</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown-submenu">
+              <a href="#residential" class="accordion-toggle">Residential Roofing <span class="chevron"></span></a>
+              <ul class="submenu">
+                <li class="submenu-label">Roof Systems</li>
+                <li><a href="#shingles">Asphalt Shingles</a></li>
+                <li><a href="#torch-down">Torch Down Systems</a></li>
+                <li><a href="#tile-roof">Clay &amp; Concrete Tile</a></li>
+                <li><a href="#tile-lift-lay">Tile Lift &amp; Reset</a></li>
+                <li><a href="#tpo">TPO Single-Ply</a></li>
+                <li><a href="#silicone">Silicone Roof Coatings</a></li>
+                <li class="submenu-label">Maintenance &amp; Extras</li>
+                <li><a href="#gutters">Seamless Gutters</a></li>
+                <li><a href="#repairs">Leak Repair &amp; Troubleshooting</a></li>
+                <li><a href="#maintenance">Preventive Maintenance</a></li>
+                <li><a href="#cleaning">Roof Washing &amp; Moss Removal</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown-submenu">
+              <a href="#commercial" class="accordion-toggle">Commercial Roofing <span class="chevron"></span></a>
+              <ul class="submenu">
+                <li class="submenu-label">Roof Systems</li>
+                <li><a href="#tpo-commercial">TPO Roofing</a></li>
+                <li><a href="#shingles-commercial">Shingle Systems</a></li>
+                <li><a href="#tile-commercial">Tile Roofing</a></li>
+                <li><a href="#metal">Metal Roofing</a></li>
+                <li><a href="#pvc">PVC Membranes</a></li>
+                <li><a href="#torch-commercial">Torch Down Flat Roofs</a></li>
+                <li><a href="#silicone-commercial">Silicone Restoration Coatings</a></li>
+                <li class="submenu-label">Maintenance &amp; Extras</li>
+                <li><a href="#gutters-commercial">Seamless Gutters</a></li>
+                <li><a href="#maintenance-commercial">Roof Asset Maintenance</a></li>
+                <li><a href="#cleaning-commercial">Debris Removal &amp; Cleaning</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown-submenu">
+              <a href="#real-estate" class="accordion-toggle">Real Estate Services <span class="chevron"></span></a>
+              <ul class="submenu">
+                <li><a href="#roof-reports">Certified Roof Reports</a></li>
+                <li><a href="#roof-estimates">Pre-Sale Roofing Estimates</a></li>
+                <li><a href="#inspections">Visual Roof Inspections</a></li>
+                <li><a href="#certifications">Roof Certifications</a></li>
+                <li><a href="#insurance-consulting">Insurance Consulting</a></li>
+                <li><a href="#verbal-opinions">Professional Verbal Opinions</a></li>
+                <li><a href="#satellite">Satellite Imagery Analysis</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#roof-inspection">Roof Inspection</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#glossary">Glossary</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">YouTube</a></li>
       </ul>
-      <li><a href="#reviews">Reviews</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#blog">Blog</a></li>
-      <li><a href="#glossary">Glossary</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">YouTube</a></li>
-    </ul>
-  </nav>
+    </nav>
+
+    <!-- Call/Text Section (desktop) -->
+    <div class="phone-section">
+      <p>Call/Text: <a href="tel:8589006163">858-900-6163</a></p>
+      <a href="tel:8589006163" class="call-button">Call Now</a>
+    </div>
+
+  </div>
+</header>
+
+<!-- OFF-CANVAS MOBILE NAV -->
+<nav class="mobile-nav">
+  <ul class="mobile-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#gallery">Projects</a></li>
+    <li>
+      <button class="accordion-toggle">Services <span class="chevron">›</span></button>
+      <ul class="submenu">
+        <li>
+          <button class="accordion-toggle">Roof Repairs <span class="chevron">›</span></button>
+          <ul class="submenu">
+            <li><a href="#tile-roof-repair">Tile Roof Repair</a></li>
+            <li><a href="#clay-tile-roof-repair">Clay Tile Roof Repair</a></li>
+            <li><a href="#slate-roof-repair">Slate Roof Repair</a></li>
+            <li><a href="#shingles-roof-repair">Shingles Roof Repair</a></li>
+            <li><a href="#flat-roof-repair">Flat Roof Repair</a></li>
+            <li><a href="#skylight-repair">Skylight Repair</a></li>
+            <li><a href="#broken-tile-replacement">Broken Tile Replacement</a></li>
+            <li><a href="#roof-cleaning-maintenance">Roof Cleaning &amp; Maintenance</a></li>
+            <li><a href="#roof-tune-up">Roof Tune-Up</a></li>
+          </ul>
+        </li>
+        <li>
+          <button class="accordion-toggle">Residential Roofing <span class="chevron">›</span></button>
+          <ul class="submenu">
+            <li>
+              <button class="accordion-toggle">Roof Systems <span class="chevron">›</span></button>
+              <ul class="submenu">
+                <li><a href="#shingles">Asphalt Shingles</a></li>
+                <li><a href="#torch-down">Torch Down Systems</a></li>
+                <li><a href="#tile-roof">Clay &amp; Concrete Tile</a></li>
+                <li><a href="#tile-lift-lay">Tile Lift &amp; Reset</a></li>
+                <li><a href="#tpo">TPO Single-Ply</a></li>
+                <li><a href="#silicone">Silicone Coatings</a></li>
+              </ul>
+            </li>
+            <li>
+              <button class="accordion-toggle">Maintenance &amp; Extras <span class="chevron">›</span></button>
+              <ul class="submenu">
+                <li><a href="#gutters">Seamless Gutters</a></li>
+                <li><a href="#repairs">Leak Repair &amp; Troubleshooting</a></li>
+                <li><a href="#maintenance">Preventive Maintenance</a></li>
+                <li><a href="#cleaning">Roof Washing &amp; Moss Removal</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <button class="accordion-toggle">Commercial Roofing <span class="chevron">›</span></button>
+          <ul class="submenu">
+            <li>
+              <button class="accordion-toggle">Roof Systems <span class="chevron">›</span></button>
+              <ul class="submenu">
+                <li><a href="#tpo-commercial">TPO Roofing</a></li>
+                <li><a href="#shingles-commercial">Shingle Systems</a></li>
+                <li><a href="#tile-commercial">Tile Roofing</a></li>
+                <li><a href="#metal">Metal Roofing</a></li>
+                <li><a href="#pvc">PVC Membranes</a></li>
+                <li><a href="#torch-commercial">Torch Down Flat Roofs</a></li>
+                <li><a href="#silicone-commercial">Silicone Coatings</a></li>
+              </ul>
+            </li>
+            <li>
+              <button class="accordion-toggle">Maintenance &amp; Extras <span class="chevron">›</span></button>
+              <ul class="submenu">
+                <li><a href="#gutters-commercial">Seamless Gutters</a></li>
+                <li><a href="#maintenance-commercial">Roof Asset Maintenance</a></li>
+                <li><a href="#cleaning-commercial">Debris Removal &amp; Cleaning</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#roof-inspection">Roof Inspection</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#glossary">Glossary</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+  </ul>
+</nav>
