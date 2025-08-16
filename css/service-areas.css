@@ -1,0 +1,4 @@
+.areas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.areas-grid h3{color:var(--zenith-navy-2);margin:.25rem 0 .5rem}
+.areas-grid ul{margin:.25rem 0;padding-left:1.1rem}
+@media (max-width:900px){.areas-grid{grid-template-columns:1fr}}
