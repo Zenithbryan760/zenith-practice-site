@@ -1,15 +1,76 @@
-/* ===================================================================
-   css/header.css — Complete Header & Navigation (Desktop + Mobile)
-   =================================================================== */
+/* ======================================================================
+   Zenith Roofing — HEADER & NAVIGATION (Desktop + Mobile, Single Source)
+   ----------------------------------------------------------------------
+   HOW THIS FILE IS ORGANIZED
+   0) Quick notes
+   1) Base / Resets (safe defaults)
+   2) Desktop Header (layout, logo, phone)
+   3) Desktop Primary Nav (links + underline hover)
+   4) Desktop Dropdowns (mega/flyouts + arrows)
+   5) Menu Content Styling (labels + link hovers)
+   6) Mobile System (≤1024px): fixed top bar + off-canvas drawer + accordion
+   ----------------------------------------------------------------------
+   EDITING TIPS (rookie-friendly)
+   • Colors: change your CSS variables (not here) e.g. --zenith-blue, --zenith-orange
+   • Spacing: adjust paddings/margins where commented “EDIT SIZE”
+   • Mobile header height: search “MOBILE HEADER HEIGHT”
+   ====================================================================== */
 
-/* ---------------------------------------
-   [0] Base resets used by header
---------------------------------------- */
-nav ul, nav ul ul { list-style: none; margin: 0; padding: 0; }
 
-/* ---------------------------------------
-   [1] Header container (desktop)
---------------------------------------- */
+/* ======================================================================
+   0) QUICK NOTES
+   ----------------------------------------------------------------------
+   • Desktop uses .header (sticky bar) with center nav and phone block.
+   • Mobile (≤1024px) hides .header and uses .mobile-header (fixed)
+     + an off-canvas .mobile-nav with accordion submenus.
+   • You do NOT need JS for desktop hover menus, but you need JS to
+     toggle the mobile drawer (add/remove .open on .mobile-nav and li).
+   ====================================================================== */
+
+
+/* ======================================================================
+   1) BASE / RESETS (safe defaults)
+   ====================================================================== */
+
+/* Reset list styles for all nav menus */
+nav ul,
+nav ul ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hidden by default on desktop; shown in mobile section */
+.mobile-header { display: none; }
+
+/* Hidden by default on desktop; shown in mobile section */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--white);
+  cursor: pointer;
+}
+
+/* Call button used in mobile header */
+.mobile-call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;  /* EDIT SIZE */
+  height: 40px; /* EDIT SIZE */
+  background: var(--zenith-orange);
+  border-radius: 50%;
+  text-decoration: none;
+}
+.mobile-call svg { width: 20px; height: 20px; } /* icon size */
+
+
+/* ======================================================================
+   2) DESKTOP HEADER (layout, logo, phone)
+   ====================================================================== */
+
 .header {
   background: var(--zenith-blue);
   color: var(--white);
@@ -19,197 +80,30 @@ nav ul, nav ul ul { list-style: none; margin: 0; padding: 0; }
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
+
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
-  padding: 15px 20px;
-  max-width: 1200px;
+  padding: 15px 20px; /* EDIT SIZE */
+  max-width: 1200px;  /* EDIT SIZE */
   margin: 0 auto;
 }
 
-/* Logo + license */
+/* Logo block (left) */
 .logo-section { text-align: center; }
 .logo {
-  height: 80px;
+  height: 80px;       /* EDIT SIZE */
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 4px; /* small separation from license line */
 }
 .license {
   color: var(--white);
   font-size: 0.85rem;
 }
 
-/* ---------------------------------------
-   [2] Desktop nav + links
---------------------------------------- */
-.nav-bar {
-  flex: 1 1 auto;
-  display: flex;
-  justify-content: center;
-  position: relative;          /* for dropdown placement */
-}
-.nav-links {
-  display: flex;
-  gap: 12px;
-}
-.nav-links li { position: relative; }
-
-/* Base link style */
-.nav-links a {
-  position: relative;
-  color: var(--white);
-  padding: 10px 16px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Make top-level links fill the tile for consistent hover/click area */
-.header .nav-links > li > a{
-  display: block;
-  height: var(--header-h, 80px);
-  line-height: var(--header-h, 80px);
-  padding: 0 14px;
-}
-
-/* Underline animation */
-.nav-links > li > a::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 4px;
-  width: 0;
-  height: 2px;
-  background: var(--zenith-orange);
-  border-radius: 1px;
-  transition: width 0.3s ease, left 0.3s ease;
-}
-
-/* Drive hover from the LI so edges still trigger */
-.header .nav-links > li:hover > a { color: var(--zenith-orange); }
-.header .nav-links > li:hover > a::after { width: 80%; left: 10%; }
-
-/* Neutralize any global anchor lift in the nav */
-.header .nav-links a:hover { transform: none; opacity: 1; }
-
-/* ---------------------------------------
-   [3] Desktop dropdowns
---------------------------------------- */
-.dropdown-menu {
-  display: grid;
-  grid-auto-rows: min-content;
-  row-gap: 4px;
-  padding: 12px 0;
-  min-width: 220px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--zenith-blue);
-  border-radius: 8px;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.2),
-    0 4px 12px rgba(0,0,0,0.15);
-  z-index: 200;
-}
-.dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* Side-aligned triangle indicators for submenu triggers */
-.nav-bar .dropdown > a,
-.nav-bar .dropdown-submenu > a {
-  position: relative;
-  padding-right: 1.8em;
-}
-.nav-bar .dropdown > a::before,
-.nav-bar .dropdown-submenu > a::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 0.6em;
-  transform: translateY(-50%) rotate(0deg);
-  border-top: 0.25em solid transparent;
-  border-bottom: 0.25em solid transparent;
-  border-left: 0.4em solid var(--zenith-orange);
-  transition: transform 0.25s ease;
-  pointer-events: none;
-}
-.nav-bar .dropdown.open > a::before,
-.nav-bar .dropdown-submenu.open > a::before {
-  transform: translateY(-50%) rotate(90deg);
-}
-/* Hide arrow on the top-level “Services” link */
-.nav-bar .nav-links > li.dropdown > a::before { display: none; }
-
-/* Fly-out submenu */
-.dropdown-submenu { position: relative; }
-.submenu {
-  display: grid;
-  grid-auto-rows: min-content;
-  row-gap: 4px;
-  padding: 12px 0;
-  min-width: 220px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background: var(--zenith-blue);
-  border-radius: 8px;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.2),
-    0 4px 12px rgba(0,0,0,0.15);
-  z-index: 250;
-}
-.dropdown-submenu:hover .submenu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
-}
-
-/* Links inside dropdown panels */
-.dropdown-menu a,
-.submenu a {
-  display: block;
-  padding: 12px 20px;
-  color: var(--white);
-  font-size: 0.95rem;
-  line-height: 1.4;
-  text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-.dropdown-menu a:hover,
-.submenu a:hover {
-  background-color: rgba(247,148,29,0.1);
-  color: var(--zenith-orange);
-}
-
-/* Labels inside submenus */
-.submenu-label {
-  padding: 8px 20px;
-  margin: 8px 0 4px;
-  font-size: 0.75rem;
-  color: #ccc;
-  background: var(--zenith-blue);
-  text-transform: uppercase;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  pointer-events: none;
-}
-
-/* ---------------------------------------
-   [4] Desktop phone/call section
---------------------------------------- */
+/* Phone block (right) */
 .phone-section {
   flex: 0 0 auto;
   display: flex;
@@ -245,7 +139,7 @@ nav ul, nav ul ul { list-style: none; margin: 0; padding: 0; }
 .phone-section a.call-button {
   background: var(--zenith-orange);
   color: var(--white);
-  padding: 8px 20px;
+  padding: 8px 20px;   /* EDIT SIZE */
   border-radius: 4px;
   font-weight: 700;
   text-decoration: none;
@@ -258,240 +152,372 @@ nav ul, nav ul ul { list-style: none; margin: 0; padding: 0; }
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
 
-/* ---------------------------------------
-   [5] Mobile header (hidden on desktop)
---------------------------------------- */
-.mobile-header {
-  display: none; /* shown ≤1024px */
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-}
-.mobile-call {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px; height: 40px;
-  background: var(--zenith-orange);
-  border-radius: 50%;
-  text-decoration: none;
-}
-.mobile-call svg { width: 20px; height: 20px; }
 
-/* Hamburger (hidden on desktop) */
-.menu-toggle {
-  display: none; /* shown ≤1024px */
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  color: var(--white);
-  cursor: pointer;
-}
+/* ======================================================================
+   3) DESKTOP PRIMARY NAV (center links + orange underline hover)
+   ====================================================================== */
 
-/* ---------------------------------------
-   [6] Off-canvas mobile nav (scoped)
---------------------------------------- */
-.mobile-nav {
-  position: fixed;
-  top: 0; right: -100%;
-  width: 80%;
-  height: 100%;
-  background: var(--zenith-blue);
-  color: var(--white);
-  overflow-y: auto;
-  transition: right 0.3s ease;
-  z-index: 2000;
-  padding: 1rem;
-}
-.mobile-nav.open { right: 0; }
-.mobile-nav .mobile-links,
-.mobile-nav .submenu {
-  list-style: none;
-  padding: 0; margin: 0;
-}
-
-/* Accordion buttons (scoped to mobile drawer) */
-.mobile-nav .accordion-toggle {
-  background: none;
-  border: none;
-  color: var(--white);
-  font-size: 1rem;
-  width: 100%;
-  text-align: left;
-  padding: 0.75rem 0;
+.nav-bar {
+  flex: 1 1 auto;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
+  justify-content: center;
+  position: relative; /* needed so dropdowns position from here */
 }
-.mobile-nav .chevron { display: inline-block; transition: transform 0.2s ease; }
-.mobile-nav li.open > .accordion-toggle .chevron { transform: rotate(90deg); }
+.nav-links {
+  display: flex;
+  gap: 12px; /* space between top-level items — EDIT SIZE */
+}
+.nav-links li { position: relative; }
 
-/* Hide all submenus by default in the drawer */
-.mobile-nav .submenu { display: none; }
-.mobile-nav li.open > .submenu { display: block; }
+.nav-links a {
+  position: relative;
+  color: var(--white);
+  padding: 10px 16px;  /* EDIT SIZE */
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* Indent nested levels */
-.mobile-nav .submenu .submenu { padding-left: 1rem; }
+/* Orange underline animation on hover */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 0;
+  height: 2px;
+  background: var(--zenith-orange);
+  border-radius: 1px;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-links a:hover { color: var(--zenith-orange); }
+.nav-links a:hover::after { width: 80%; left: 10%; }
 
-/* ---------------------------------------
-   [7] Mobile responsive overrides
---------------------------------------- */
+
+/* ======================================================================
+   4) DESKTOP DROPDOWNS (hover reveal + flyout + arrows)
+   ====================================================================== */
+
+/* First-level dropdown panel (appears under its parent) */
+.dropdown-menu {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  padding: 12px 0;        /* EDIT SIZE */
+  min-width: 220px;       /* EDIT SIZE */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--zenith-blue);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 12px rgba(0,0,0,0.15);
+  z-index: 200;
+}
+
+/* Reveal dropdown on hover (desktop only behavior) */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Fly-out submenu (appears to the right) */
+.dropdown-submenu { position: relative; }
+.submenu {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  padding: 12px 0;        /* EDIT SIZE */
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: var(--zenith-blue);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 12px rgba(0,0,0,0.15);
+  z-index: 250;
+}
+
+/* Reveal fly-out on hover */
+.dropdown-submenu:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* Arrow indicators on dropdown triggers (right side) */
+.nav-bar .dropdown > a,
+.nav-bar .dropdown-submenu > a {
+  position: relative;
+  padding-right: 1.8em; /* makes room for arrow */
+}
+.nav-bar .dropdown > a::before,
+.nav-bar .dropdown-submenu > a::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0.6em;
+  transform: translateY(-50%) rotate(0deg);
+  border-top: 0.25em solid transparent;
+  border-bottom: 0.25em solid transparent;
+  border-left: 0.4em solid var(--zenith-orange);
+  transition: transform 0.25s ease;
+  pointer-events: none;
+}
+
+/* Rotate arrow when parent has .open (JS can toggle this if desired) */
+.nav-bar .dropdown.open > a::before,
+.nav-bar .dropdown-submenu.open > a::before {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* Hide arrow on the top-level “Services” link only (cleaner look) */
+.nav-bar .nav-links > li.dropdown > a::before {
+  display: none;
+}
+
+
+/* ======================================================================
+   5) MENU CONTENT STYLING (labels + link hovers)
+   ====================================================================== */
+
+/* Menu links inside panels (dropdown + submenu) */
+.dropdown-menu a,
+.submenu a {
+  display: block;
+  padding: 12px 20px; /* EDIT SIZE */
+  color: var(--white);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.dropdown-menu a:hover,
+.submenu a:hover {
+  background-color: rgba(247,148,29,0.1);
+  color: var(--zenith-orange);
+}
+
+/* Optional small header/label rows inside a menu */
+.submenu-label {
+  padding: 8px 20px;
+  margin: 8px 0 4px;
+  font-size: 0.75rem;
+  color: #ccc;
+  background: var(--zenith-blue);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  pointer-events: none;
+}
+
+
+/* ======================================================================
+   6) MOBILE SYSTEM (≤1024px): fixed top bar + off-canvas accordion
+   ====================================================================== */
+
 @media (max-width: 1024px) {
-  /* Variables for mobile bar */
-  :root {
-    --nav-bg: var(--zenith-blue);
-    --nav-text: #fff;
-    --nav-accent: var(--zenith-orange);
-    --toggle-height: 3.5rem;
-  }
 
-  /* Off-canvas sizing/details */
-  .mobile-nav {
-    right: -100%;
-    width: 80%; max-width: 320px;
-    height: 100vh;
-    background: var(--nav-bg);
-    color: var(--nav-text);
-    transition: right 0.4s ease;
-    padding-top: var(--toggle-height);
-    box-shadow: -4px 0 12px rgba(0,0,0,0.3);
-  }
-  .mobile-nav.open { right: 0; }
+  /* --------------------------------------------------------------
+     MOBILE HEADER HEIGHT (edit here)
+     -------------------------------------------------------------- */
+  :root { --toggle-height: 3.5rem; } /* affects accordion row height */
 
-  /* Mobile header bar */
+  /* Hide the desktop header entirely on mobile for a clean setup */
+  .header { display: none; }
+
+  /* Show the mobile header bar (fixed, with hamburger + logo + call) */
   .mobile-header {
-    display: flex;
     position: fixed;
     top: 0; left: 0; right: 0;
-    height: 6rem;
+    height: 6rem; /* MOBILE HEADER HEIGHT — EDIT SIZE */
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--nav-bg);
+    background: var(--zenith-blue);
     padding: 0 1rem;
-    border-bottom: 2px solid var(--nav-accent);
+    border-bottom: 2px solid var(--zenith-orange);
     z-index: 2001;
-    overflow: visible;
+    overflow: visible; /* prevents icon clipping */
   }
+
+  /* Center the logo in the mobile header */
   .mobile-header .logo-section {
-    flex: 1; display: flex; justify-content: center; align-items: center;
-    padding: 0.75rem 0;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 0; /* vertical breathing room */
   }
   .mobile-header .logo-section .logo {
-    max-height: calc(6rem - 1.5rem);
-    width: auto; display: block;
+    max-height: calc(6rem - 1.5rem); /* fits inside header */
+    width: auto;
+    display: block;
   }
+
+  /* Round icon buttons (hamburger + phone) */
   .mobile-header .menu-toggle,
   .mobile-header .mobile-call {
-    width: 2.75rem; height: 2.75rem;
-    background: var(--nav-bg);
-    border: 2px solid var(--nav-accent);
+    width: 2.75rem;
+    height: 2.75rem;
+    background: var(--zenith-blue);
+    border: 2px solid var(--zenith-orange);
     border-radius: 50%;
-    color: var(--nav-text);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem; cursor: pointer;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;   /* hamburger size */
+    cursor: pointer;
     transition: background 0.2s ease, transform 0.1s ease;
   }
   .mobile-header .menu-toggle:hover,
-  .mobile-header .mobile-call:hover { background: var(--nav-accent); color: var(--nav-bg); }
+  .mobile-header .mobile-call:hover {
+    background: var(--zenith-orange);
+    color: var(--zenith-blue);
+  }
   .mobile-header .menu-toggle:active,
-  .mobile-header .mobile-call:active { transform: scale(0.9); }
+  .mobile-header .mobile-call:active {
+    transform: scale(0.9);
+  }
 
-  /* Collapse desktop bits in header */
-  .mobile-header .menu-toggle { display: block; }
-  .header-inner > .logo-section,
-  .header-inner > .phone-section { display: none !important; }
-
-  /* If you ever show inline dropdown under the bar, these rules keep it tidy */
-  .nav-bar { width: 100%; position: relative; }
-  .nav-links {
-    display: none;             /* we use the off-canvas drawer instead */
-    flex-direction: column;
-    width: 100%;
+  /* --------------------------------------------------------------
+     OFF-CANVAS DRAWER (slides from right)
+     -------------------------------------------------------------- */
+  .mobile-nav {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 80%;           /* EDIT SIZE (drawer width) */
+    max-width: 320px;     /* EDIT SIZE (max drawer width) */
+    height: 100vh;
     background: var(--zenith-blue);
-    border-top: 1px solid rgba(255,255,255,0.2);
-    margin-top: 8px;
-    gap: 0;
+    color: var(--white);
+    overflow-y: auto;
+    transition: right 0.4s ease;
+    z-index: 2000;
+    padding-top: var(--toggle-height); /* avoid overlap with first row */
+    box-shadow: -4px 0 12px rgba(0,0,0,0.3);
   }
-  .nav-bar.open .nav-links {
-    display: flex;
-    position: absolute;
-    top: 100%; left: 0; width: 100%;
-    z-index: 999;
-  }
-  .nav-links li { width: 100%; text-align: center; }
-  .nav-links a { padding: 12px 0; font-size: 1rem; }
-  .nav-links a::after { display: none; }
+  .mobile-nav.open { right: 0; } /* JS adds .open to slide in */
 
-  /* In the drawer: top-level links */
-  .mobile-links > li { border-bottom: 1px solid rgba(255,255,255,0.2); }
+  /* Lists + separators */
+  .mobile-links,
+  .mobile-links .submenu {
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .mobile-links > li {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  /* Simple top-level links (no submenu) */
   .mobile-links > li > a {
     display: block;
     padding: 0 1rem;
     height: var(--toggle-height);
     line-height: var(--toggle-height);
-    color: var(--nav-text);
+    color: var(--white);
     text-decoration: none;
-    font-size: 1rem; font-weight: 600;
+    font-size: 1rem;
+    font-weight: 600;
     transition: background 0.2s ease, color 0.2s ease;
   }
-  .mobile-links > li > a:hover { background: var(--nav-accent); color: var(--nav-bg); }
-
-  /* Drawer accordion buttons (scoped) */
-  .mobile-nav .accordion-toggle {
-    display: flex; align-items: center; justify-content: space-between;
-    width: 100%; height: var(--toggle-height);
-    padding: 0 1rem; background: none; border: none;
-    color: var(--nav-text); font-size: 1rem; font-weight: 600; cursor: pointer;
-    transition: background 0.2s ease, transform 0.1s ease;
+  .mobile-links > li > a:hover {
+    background: var(--zenith-orange);
+    color: var(--zenith-blue);
   }
-  .mobile-nav .accordion-toggle:hover { background: rgba(255,255,255,0.1); }
-  .mobile-nav .accordion-toggle:active { transform: scale(0.98); }
 
-  /* Chevron icon inside button */
-  .mobile-nav .accordion-toggle .chevron {
-    width: 1em; height: 1em; display: inline-block;
-    background: var(--nav-accent);
+  /* Accordion toggle rows (items that reveal a submenu) */
+  .accordion-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: var(--toggle-height);
+    padding: 0 1rem;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    text-align: left;
+  }
+  .accordion-toggle:hover { background: rgba(255,255,255,0.1); }
+  .accordion-toggle:active { transform: scale(0.98); }
+
+  /* Chevron indicator (rotates when open) */
+  .chevron {
+    width: 1em; height: 1em;
+    display: inline-block;
+    background: var(--zenith-orange);
     mask: url('data:image/svg+xml;utf8,<svg fill="%23fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971l-194.343 194.343c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901l154.592-154.59L34.425 102.243c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0l194.343 194.343c9.372 9.372 9.372 24.568 0 33.901z"/></svg>') center/contain no-repeat;
     transition: transform 0.3s ease;
   }
-  .mobile-nav li.open > .accordion-toggle .chevron { transform: rotate(90deg); }
+  li.open > .accordion-toggle .chevron { transform: rotate(90deg); }
 
-  /* Drawer submenu expand/collapse */
-  .mobile-nav .submenu {
+  /* Submenus: collapsed by default, expand when parent li has .open */
+  .submenu {
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.4s ease;
     background: rgba(0,0,0,0.1);
   }
-  .mobile-nav li.open > .submenu { max-height: 1000px; }
-  .mobile-nav .submenu li { border-bottom: 1px solid rgba(255,255,255,0.2); }
-  .mobile-nav .submenu li a {
+  li.open > .submenu { max-height: 1000px; } /* large enough to show all */
+
+  /* Submenu rows + nested indent */
+  .submenu li { border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .submenu li a {
     display: block;
-    padding: 0.75rem 1.5rem;
-    color: var(--nav-text);
+    padding: 0.75rem 1.5rem; /* indent */
+    color: var(--white);
     text-decoration: none;
     font-size: 0.95rem;
     transition: background 0.2s ease, color 0.2s ease;
   }
-  .mobile-nav .submenu li a:hover { background: var(--nav-accent); color: var(--nav-bg); }
+  .submenu li a:hover {
+    background: var(--zenith-orange);
+    color: var(--zenith-blue);
+  }
+  .mobile-nav .submenu .submenu { padding-left: 1rem; } /* deeper levels */
 
-  /* Optional powder-blue accents for Services sections in drawer */
-  .mobile-nav .mobile-links > li > .accordion-toggle { background: #e0f0ff; color: var(--zenith-blue); }
-  .mobile-nav .mobile-links > li > .submenu { background: #d0e8ff; }
-  .mobile-nav .submenu .accordion-toggle { background: #e0f0ff; color: var(--zenith-blue); }
-  .mobile-nav .submenu .submenu { background: #d0e8ff; }
-  .mobile-nav .submenu li a { color: var(--zenith-blue); }
+  /* --------------------------------------------------------------
+     OPTIONAL: Powder-blue overrides for Services area (visual grouping)
+     -------------------------------------------------------------- */
+  .mobile-nav .mobile-links > li > .accordion-toggle {
+    background: #e0f0ff;          /* “Services” row backdrop */
+    color: var(--zenith-blue);
+  }
+  .mobile-nav .mobile-links > li > .submenu {
+    background: #d0e8ff;          /* panel backdrop for first submenu */
+  }
+  .mobile-nav .submenu .accordion-toggle {
+    background: #e0f0ff;          /* nested toggles backdrop */
+    color: var(--zenith-blue);
+  }
+  .mobile-nav .submenu .submenu {
+    background: #d0e8ff;          /* nested panels backdrop */
+  }
+  .mobile-nav .submenu li a {
+    color: var(--zenith-blue);     /* make submenu links dark navy */
+  }
   .mobile-nav .mobile-links > li > .accordion-toggle:hover,
-  .mobile-nav .submenu li a:hover { color: var(--zenith-orange); background: rgba(247,148,29,0.1); }
-
-  /* Header spacing tweaks on mobile */
-  .header { z-index: 1000; }
-  .header-inner {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 10px 16px;
-    gap: 12px;
+  .mobile-nav .submenu li a:hover {
+    color: var(--zenith-orange);
+    background: rgba(247,148,29,0.1);
   }
 }
+/* ========================== END OF FILE ============================== */
