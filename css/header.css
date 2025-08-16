@@ -1,278 +1,630 @@
 /* ===================================================================
-   css/header.css — Header & Navigation (Desktop + Mobile)
+   css/header.css — Complete Header & Navigation Styles
    =================================================================== */
 
 /* -------------------------------------------------------------------
-   [0] BRAND TOKENS (safe defaults)
+   [0] MOBILE HEADER (hidden on desktop by default)
    ------------------------------------------------------------------- */
-:root{
-  --zenith-blue:#072e59;          /* primary header/nav background */
-  --zenith-orange:#f7941d;        /* accent/hover/underline */
-  --white:#fff;
+.mobile-header {
+  display: none;               /* shown only ≤768px */
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+.mobile-call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--zenith-orange);
+  border-radius: 50%;
+  text-decoration: none;
+}
+.mobile-call svg { width: 20px; height: 20px; }
+
+/* -------------------------------------------------------------------
+   [1] HAMBURGER TOGGLE (hidden on desktop by default)
+   ------------------------------------------------------------------- */
+.menu-toggle {
+  display: none;               /* shown only ≤768px */
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--white);
+  cursor: pointer;
 }
 
 /* -------------------------------------------------------------------
-   [1] RESETS USED BY NAV
+   [2] RESET NAV LISTS
    ------------------------------------------------------------------- */
-nav ul, nav ul ul { list-style:none; margin:0; padding:0; }
+nav ul,
+nav ul ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
 /* -------------------------------------------------------------------
-   [2] HEADER (desktop baseline)
+   [3] HEADER CONTAINER
    ------------------------------------------------------------------- */
-.header{
-  position:sticky; top:0; z-index:1000;
-  width:100%;
-  background:var(--zenith-blue);
-  color:var(--white);
-  box-shadow:0 2px 8px rgba(0,0,0,.3);
+.header {
+  background: var(--zenith-blue);
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
-.header-inner{
-  display:flex; align-items:center; justify-content:space-between;
-  max-width:1200px; margin:0 auto; padding:15px 20px;
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  padding: 15px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-
-/* Logo + license */
-.logo-section{ text-align:center; }
-.logo{ height:80px; display:block; margin-bottom:4px; }
-.license{ color:var(--white); font-size:.85rem; }
 
 /* -------------------------------------------------------------------
-   [3] NAV BAR & LINKS (desktop)
+   [4] LOGO & LICENSE
    ------------------------------------------------------------------- */
-.nav-bar{
-  flex:1 1 auto; display:flex; justify-content:center;
-  position:relative;            /* anchor for dropdown placement */
+.logo-section { text-align: center; }
+.logo {
+  height: 80px;
+  display: block;
+  margin-bottom: 4px;
 }
-.nav-links{ display:flex; gap:12px; }
-.nav-links li{ position:relative; }
-
-.nav-links a{
-  position:relative;
-  color:var(--white);
-  padding:10px 16px;
-  font-weight:600;
-  text-decoration:none;
-  transition:color .3s ease;
-  -webkit-font-smoothing:antialiased;
+.license {
+  color: var(--white);
+  font-size: 0.85rem;
 }
-
-/* Underline grows on hover (center → out) */
-.nav-links a::after{
-  content:"";
-  position:absolute; left:50%; bottom:4px;
-  width:0; height:2px; border-radius:1px;
-  background:var(--zenith-orange);
-  transition:width .3s ease, left .3s ease;
-}
-.nav-links a:hover{ color:var(--zenith-orange); }
-.nav-links a:hover::after{ width:80%; left:10%; }
 
 /* -------------------------------------------------------------------
-   [4] DROPDOWN (desktop hover)
+   [5] NAVIGATION & LINKS
    ------------------------------------------------------------------- */
-.dropdown-menu{
-  display:grid; grid-auto-rows:min-content; row-gap:4px;
-  min-width:220px; padding:12px 0;
-
-  position:absolute; top:100%; left:0; z-index:200;
-  background:var(--zenith-blue);
-  border-radius:8px;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 4px 12px rgba(0,0,0,.15);
-
-  opacity:0; visibility:hidden; transform:translateY(10px);
-  transition:opacity .3s ease, transform .3s ease, visibility .3s;
+.nav-bar {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  position: relative;          /* for dropdown placement */
 }
-.dropdown:hover .dropdown-menu{
-  opacity:1; visibility:visible; transform:translateY(0);
+.nav-links {
+  display: flex;
+  gap: 12px;
+}
+.nav-links li { position: relative; }
+.nav-links a {
+  position: relative;
+  color: var(--white);
+  padding: 10px 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 0;
+  height: 2px;
+  background: var(--zenith-orange);
+  border-radius: 1px;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-links a:hover { color: var(--zenith-orange); }
+.nav-links a:hover::after { width: 80%; left: 10%; }
+
+/* -------------------------------------------------------------------
+   [6] DROPDOWN MENU (desktop hover)
+   ------------------------------------------------------------------- */
+.dropdown-menu {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  padding: 12px 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--zenith-blue);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 12px rgba(0,0,0,0.15);
+  z-index: 200;
+}
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-/* Right-side chevrons for items that open submenus */
+/* -------------------------------------------------------------------
+   [6.1] SIDE-ALIGNED TRIANGLE INDICATORS
+   ------------------------------------------------------------------- */
+/* 1) Reserve space on the right for all dropdown triggers */
 .nav-bar .dropdown > a,
-.nav-bar .dropdown-submenu > a{
-  position:relative; padding-right:1.8em;
+.nav-bar .dropdown-submenu > a {
+  position: relative;
+  padding-right: 1.8em;
 }
+
+/* 2) Draw the triangle with ::before */
 .nav-bar .dropdown > a::before,
-.nav-bar .dropdown-submenu > a::before{
-  content:""; position:absolute; top:50%; right:.6em;
-  transform:translateY(-50%) rotate(0deg);
-  border-top:.25em solid transparent;
-  border-bottom:.25em solid transparent;
-  border-left:.4em solid var(--zenith-orange);
-  transition:transform .25s ease;
-  pointer-events:none;
+.nav-bar .dropdown-submenu > a::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0.6em;
+  transform: translateY(-50%) rotate(0deg);
+  border-top: 0.25em solid transparent;
+  border-bottom: 0.25em solid transparent;
+  border-left: 0.4em solid var(--zenith-orange);
+  transition: transform 0.25s ease;
+  pointer-events: none;
 }
-/* Rotate when parent gets .open (JS toggles this) */
+
+/* 3) Rotate the arrow on open */
 .nav-bar .dropdown.open > a::before,
-.nav-bar .dropdown-submenu.open > a::before{
-  transform:translateY(-50%) rotate(90deg);
-}
-/* Hide arrow on top-level "Services" if desired */
-.nav-bar .nav-links > li.dropdown > a::before{ display:none; }
-
-/* Fly-out submenu (desktop) */
-.dropdown-submenu{ position:relative; }
-.submenu{
-  display:grid; grid-auto-rows:min-content; row-gap:4px;
-  min-width:220px; padding:12px 0;
-
-  position:absolute; top:0; left:100%; z-index:250;
-  background:var(--zenith-blue);
-  border-radius:8px;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 4px 12px rgba(0,0,0,.15);
-
-  opacity:0; visibility:hidden; transform:translateX(10px);
-  transition:opacity .3s ease, transform .3s ease, visibility .3s;
-}
-.dropdown-submenu:hover .submenu{
-  opacity:1; visibility:visible; transform:translateX(0);
+.nav-bar .dropdown-submenu.open > a::before {
+  transform: translateY(-50%) rotate(90deg);
 }
 
-/* Links inside dropdowns */
-.dropdown-menu a, .submenu a{
-  display:block; padding:12px 20px;
-  color:var(--white); font-size:.95rem; line-height:1.4;
-  text-decoration:none;
-  transition:background-color .2s ease, color .2s ease;
-}
-.dropdown-menu a:hover, .submenu a:hover{
-  background-color:rgba(247,148,29,.1);
-  color:var(--zenith-orange);
-}
-
-/* Optional label rows inside submenus */
-.submenu-label{
-  padding:8px 20px; margin:8px 0 4px;
-  font-size:.75rem; color:#ccc; text-transform:uppercase;
-  background:var(--zenith-blue);
-  border-bottom:1px solid rgba(255,255,255,.2);
-  pointer-events:none;
+/* Hide arrow on the top-level "Services" link only */
+.nav-bar .nav-links > li.dropdown > a::before {
+  display: none;
 }
 
 /* -------------------------------------------------------------------
-   [5] PHONE / CTA (desktop)
+   [7] SUBMENU (fly-out on desktop)
    ------------------------------------------------------------------- */
-.phone-section{
-  flex:0 0 auto; display:flex; flex-direction:column;
-  align-items:center; justify-content:center; gap:6px; text-align:center;
+.dropdown-submenu { position: relative; }
+.submenu {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  padding: 12px 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: var(--zenith-blue);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 12px rgba(0,0,0,0.15);
+  z-index: 250;
 }
-.phone-section p{ margin:0; font-size:.9rem; font-weight:600; }
-.phone-section p a{
-  position:relative; color:var(--white); text-decoration:none;
-  transition:color .3s ease;
-}
-.phone-section p a::after{
-  content:""; position:absolute; left:50%; bottom:-2px;
-  width:0; height:2px; background:var(--zenith-orange);
-  transition:width .3s ease, left .3s ease;
-}
-.phone-section p a:hover{ color:var(--zenith-orange); }
-.phone-section p a:hover::after{ width:80%; left:10%; }
-
-.phone-section .call-button{
-  display:inline-block;
-  background:var(--zenith-orange); color:var(--white);
-  padding:8px 20px; border-radius:4px; font-weight:700;
-  text-decoration:none;
-  box-shadow:0 4px 12px rgba(0,0,0,.15);
-  transition:transform .2s ease, box-shadow .2s ease;
-}
-.phone-section .call-button:hover{
-  transform:scale(1.05); box-shadow:0 6px 16px rgba(0,0,0,.2);
+.dropdown-submenu:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
 }
 
 /* -------------------------------------------------------------------
-   [6] MOBILE BASICS (hidden by default; enabled ≤1024px)
+   [8] LINKS INSIDE MENUS
    ------------------------------------------------------------------- */
-.mobile-header{ display:none; width:100%; align-items:center; justify-content:space-between; padding:12px 16px; }
-.mobile-call{
-  display:inline-flex; align-items:center; justify-content:center;
-  width:40px; height:40px; border-radius:50%;
-  background:var(--zenith-orange); text-decoration:none;
+.dropdown-menu a,
+.submenu a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--white);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
-.mobile-call svg{ width:20px; height:20px; }
-.menu-toggle{ display:none; background:none; border:none; font-size:1.8rem; color:var(--white); cursor:pointer; }
-
-/* Off-canvas drawer (closed by default) */
-.mobile-nav{
-  position:fixed; top:0; right:-100%;
-  width:80%; max-width:320px; height:100vh;
-  background:var(--zenith-blue); color:var(--white);
-  overflow-y:auto; z-index:2000; padding:1rem;
-  transition:right .3s ease;
+.dropdown-menu a:hover,
+.submenu a:hover {
+  background-color: rgba(247,148,29,0.1);
+  color: var(--zenith-orange);
 }
-.mobile-nav.open{ right:0; }
-
-/* Accordion */
-.accordion-toggle{
-  background:none; border:none; color:var(--white);
-  font-size:1rem; width:100%; text-align:left;
-  padding:.75rem 0; display:flex; justify-content:space-between; align-items:center; cursor:pointer;
-}
-.chevron{ display:inline-block; transition:transform .2s ease; }
-li.open > .accordion-toggle .chevron{ transform:rotate(90deg); }
-
-/* Nested lists (mobile) */
-.mobile-nav .mobile-links, .mobile-nav .submenu{ list-style:none; margin:0; padding:0; }
-.mobile-nav .submenu{ display:none; }
-.mobile-nav li.open > .submenu{ display:block; }
-.mobile-nav .submenu .submenu{ padding-left:1rem; }
 
 /* -------------------------------------------------------------------
-   [7] RESPONSIVE RULES (≤1024px)
+   [9] SUBMENU LABELS
    ------------------------------------------------------------------- */
-@media (max-width:1024px){
-  .mobile-header{ display:flex; position:fixed; top:0; left:0; right:0; z-index:2001;
-    background:var(--zenith-blue); border-bottom:2px solid var(--zenith-orange); }
-  .mobile-header .menu-toggle{ display:block; }
-  .header-inner > .menu-toggle{ display:none; }
+.submenu-label {
+  padding: 8px 20px;
+  margin: 8px 0 4px;
+  font-size: 0.75rem;
+  color: #ccc;
+  background: var(--zenith-blue);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  pointer-events: none;
+}
 
-  /* center the logo in the fixed mobile header */
-  .mobile-header .logo-section{
-    flex:1; display:flex; justify-content:center; align-items:center; padding:.5rem 0;
-  }
-  .mobile-header .logo{ max-height:52px; width:auto; }
+/* -------------------------------------------------------------------
+   [10] CALL/TEXT SECTION (desktop)
+   ------------------------------------------------------------------- */
+.phone-section {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+}
+.phone-section p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.phone-section p a {
+  position: relative;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.phone-section p a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--zenith-orange);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.phone-section p a:hover { color: var(--zenith-orange); }
+.phone-section p a:hover::after { width: 80%; left: 10%; }
+.phone-section a.call-button {
+  background: var(--zenith-orange);
+  color: var(--white);
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+}
+.phone-section a.call-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
 
-  /* hide desktop-only bits */
+/* ===================================================================
+   [12] MOBILE (≤1024px) — collapse into hamburger menu
+   =================================================================== */
+@media (max-width: 1024px) {
+  .mobile-header       { display: flex; }
+  .mobile-header .menu-toggle { display: block; }
+  .header-inner > .menu-toggle { display: none; }
+
   .header-inner > .logo-section,
-  .header-inner > .phone-section{ display:none !important; }
-
-  /* mobile dropdown (inline stack) */
-  .nav-bar{ width:100%; position:relative; }
-  .nav-links{
-    display:none; flex-direction:column; width:100%;
-    background:var(--zenith-blue); border-top:1px solid rgba(255,255,255,.2);
-    margin-top:8px; gap:0;
-  }
-  .nav-bar.open .nav-links{
-    display:flex; position:absolute; top:100%; left:0; width:100%; z-index:999;
-  }
-  .nav-links li{ width:100%; text-align:center; }
-  .nav-links a{ padding:12px 0; font-size:1rem; }
-  .nav-links a::after{ display:none; } /* keep mobile simple */
-
-  /* make desktop dropdowns static for mobile; accordion handles show/hide */
-  .dropdown-menu, .submenu{
-    position:static; box-shadow:none; opacity:1; visibility:visible; transform:none;
+  .header-inner > .phone-section {
+    display: none !important;
   }
 
-  /* mobile list dividers + link styling */
-  .mobile-links > li{ border-bottom:1px solid rgba(255,255,255,.2); }
-  .mobile-links > li > a{
-    display:block; padding:0 1rem; height:3.5rem; line-height:3.5rem;
-    color:var(--white); text-decoration:none; font-weight:600;
-    transition:background .2s ease, color .2s ease;
+  .nav-bar { width: 100%; position: relative; }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: var(--zenith-blue);
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 8px;
+    gap: 0;
   }
-  .mobile-links > li > a:hover{ background:rgba(255,255,255,.1); color:var(--white); }
-
-  /* collapsible panels */
-  .submenu{ overflow:hidden; max-height:0; transition:max-height .35s ease; background:rgba(0,0,0,.08); }
-  li.open > .submenu{ max-height:1000px; }
-
-  .submenu li{ border-bottom:1px solid rgba(255,255,255,.2); }
-  .submenu li a{
-    display:block; padding:.75rem 1.5rem;
-    color:var(--white); text-decoration:none; font-size:.95rem;
-    transition:background .2s ease, color .2s ease;
+  .nav-bar.open .nav-links {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 999;
   }
-  .submenu li a:hover{ background:rgba(255,255,255,.1); color:var(--white); }
+  .nav-links li { width: 100%; text-align: center; }
+  .nav-links a  { padding: 12px 0; font-size: 1rem; }
+  .nav-links a::after { display: none; }
+
+  /* keep dropdown containers visible; submenu toggles handle show/hide */
+  .dropdown-menu,
+  .submenu {
+    position: static;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .header { z-index: 1000; }
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 16px;
+    gap: 12px;
+  }
+}
+
+/* off-canvas container, hidden by default */
+.mobile-nav {
+  position: fixed;
+  top: 0; right: -100%;
+  width: 80%;
+  height: 100%;
+  background: var(--zenith-blue);
+  color: var(--white);
+  overflow-y: auto;
+  transition: right 0.3s ease;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+/* Slide in when open */
+.mobile-nav.open {
+  right: 0;
+}
+
+/* Basic reset */
+.mobile-nav .submenu,
+.mobile-nav .mobile-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Accordion buttons */
+.accordion-toggle {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Hide all submenus by default */
+.mobile-nav .submenu {
+  display: none;
+}
+
+/* Show when its parent <li> has .open */
+.mobile-nav li.open > .submenu {
+  display: block;
+}
+
+/* Indent nested levels */
+.mobile-nav .submenu .submenu {
+  padding-left: 1rem;
+}
+
+/* Chevron transition */
+.chevron {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+li.open > .accordion-toggle .chevron {
+  transform: rotate(90deg);
+}
+
+/* =========================================================
+   css/header-mobile.css — Off-canvas & Accordion (mobile only)
+   ========================================================= */
+@media (max-width: 1024px) {
+  /* Brand color variables */
+  :root {
+    --nav-bg: var(--zenith-blue);
+    --nav-text: #fff;
+    --nav-accent: var(--zenith-orange);
+    --toggle-height: 3.5rem;
+  }
+
+  /* 1) Off-canvas drawer */
+  .mobile-nav {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 80%; max-width: 320px;
+    height: 100vh;
+    background: var(--nav-bg);
+    color: var(--nav-text);
+    overflow-y: auto;
+    transition: right 0.4s ease;
+    z-index: 2000;
+    padding-top: var(--toggle-height);
+    box-shadow: -4px 0 12px rgba(0,0,0,0.3);
+  }
+  .mobile-nav.open {
+    right: 0;
+  }
+
+  /* 2) Mobile header bar (hamburger, logo, call) */
+  .mobile-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 6rem;                          /* taller header */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--nav-bg);
+    padding: 0 1rem;
+    border-bottom: 2px solid var(--nav-accent);
+    z-index: 2001;
+    overflow: visible;                     /* prevent clipping */
+  }
+
+  /* Center & pad the logo for headspace */
+  .mobile-header .logo-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 0;                    /* vertical breathing room */
+  }
+
+  /* Scale logo to fit within header */
+  .mobile-header .logo-section .logo {
+    max-height: calc(6rem - 1.5rem);       /* header minus total vertical padding */
+    width: auto;
+    display: block;
+  }
+
+  /* Harmonize icon sizes with the new logo */
+  .mobile-header .menu-toggle,
+  .mobile-header .mobile-call {
+    width: 2.75rem;
+    height: 2.75rem;
+    background: var(--nav-bg);
+    border: 2px solid var(--nav-accent);
+    border-radius: 50%;
+    color: var(--nav-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  .mobile-header .menu-toggle:hover,
+  .mobile-header .mobile-call:hover {
+    background: var(--nav-accent);
+    color: var(--nav-bg);
+  }
+  .mobile-header .menu-toggle:active,
+  .mobile-header .mobile-call:active {
+    transform: scale(0.9);
+  }
+
+  /* 3) Reset lists & separators */
+  .mobile-links,
+  .mobile-links .submenu {
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .mobile-links > li {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  /* 4) Top-level simple links (Home, Projects…) */
+  .mobile-links > li > a {
+    display: block;
+    padding: 0 1rem;
+    height: var(--toggle-height);
+    line-height: var(--toggle-height);
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .mobile-links > li > a:hover {
+    background: var(--nav-accent);
+    color: var(--nav-bg);
+  }
+
+  /* 5) Accordion toggle buttons */
+  .accordion-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: var(--toggle-height);
+    padding: 0 1rem;
+    background: none;
+    border: none;
+    color: var(--nav-text);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  .accordion-toggle:hover {
+    background: rgba(255,255,255,0.1);
+  }
+  .accordion-toggle:active {
+    transform: scale(0.98);
+  }
+
+  /* 6) Chevron arrows */
+  .accordion-toggle .chevron {
+    width: 1em; height: 1em;
+    display: inline-block;
+    background: var(--nav-accent);
+    mask: url('data:image/svg+xml;utf8,<svg fill="%23fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971l-194.343 194.343c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901l154.592-154.59L34.425 102.243c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0l194.343 194.343c9.372 9.372 9.372 24.568 0 33.901z"/></svg>') center/contain no-repeat;
+    transition: transform 0.3s ease;
+  }
+  li.open > .accordion-toggle .chevron {
+    transform: rotate(90deg);
+  }
+
+  /* 6.1) MOBILE ACCORDION COLOR OVERRIDES */
+  /* Powder-blue backdrop for the Services toggle itself */
+  .mobile-nav .mobile-links > li > .accordion-toggle {
+    background: #e0f0ff;               /* light powder blue */
+    color: var(--zenith-blue);         /* dark navy text for readability */
+  }
+
+  /* Slightly deeper powder-blue for the Services submenu panel */
+  .mobile-nav .mobile-links > li > .submenu {
+    background: #d0e8ff;
+  }
+
+  /* Powder-blue backdrops for every nested toggle */
+  .mobile-nav .submenu .accordion-toggle {
+    background: #e0f0ff;
+    color: var(--zenith-blue);
+  }
+  /* And the panels inside those nested toggles */
+  .mobile-nav .submenu .submenu {
+    background: #d0e8ff;
+  }
+
+  /* 6.2) MOBILE ACCORDION TEXT COLOR OVERRIDES */
+  /* Make all submenu link text dark navy */
+  .mobile-nav .submenu li a {
+    color: var(--zenith-blue);
+  }
+
+  /* Hover state: switch to your orange for clarity */
+  .mobile-nav .mobile-links > li > .accordion-toggle:hover,
+  .mobile-nav .submenu li a:hover {
+    color: var(--zenith-orange);
+    background: rgba(247,148,29,0.1);  /* soft orange highlight if desired */
+  }
+
+  /* 7) Submenu expand/collapse */
+  .submenu {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+    background: rgba(0,0,0,0.1);
+  }
+  li.open > .submenu {
+    max-height: 1000px;
+  }
+  .submenu li {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .submenu li a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .submenu li a:hover {
+    background: var(--nav-accent);
+    color: var(--nav-bg);
+  }
 }
