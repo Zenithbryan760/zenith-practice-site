@@ -51,7 +51,7 @@
   </script>
   <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
 
-  <!-- ===== STYLES (no duplicates) ===== -->
+  <!-- ===== STYLES ===== -->
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/header.css" />
   <link rel="stylesheet" href="css/header-mobile.css" />
@@ -69,13 +69,25 @@
 
   <!-- Swiper CSS (testimonials) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+  <!-- Tiny, safe hover fix (can also live in base.css) -->
+  <style>
+    .header { position: relative; z-index: 5000; }
+    .zenith-video-container,
+    .zenith-background-video,
+    .zenith-video-overlay { pointer-events: none; z-index: 0; }
+    .nav-bar, .nav-links, .nav-links li, .nav-links a { overflow: visible; }
+  </style>
 </head>
 <body>
 
+  <!-- Header include FIRST so it’s present for measurements -->
+  <section data-include="components/header-section.html"></section>
+
   <!-- ===== MAIN (partials auto-injected below) ===== -->
   <main>
-    <!-- Change paths to /sections/*.html if that’s where your files live -->
-     <section data-include="components/header-section.html"></section>
+    <!-- Adjust /components/ to /sections/ if that’s your folder -->
+    <section data-include="header-section.html"></section>
     <section data-include="components/hero-section.html"></section>
     <section data-include="components/about-section.html"></section>
     <section data-include="components/why-choose-section.html"></section>
@@ -93,7 +105,6 @@
   <script src="js/header.js" defer></script>
   <script src="js/hero.js" defer></script>
   <script src="js/about.js" defer></script>
-  <!-- Optional: Add the ones below only if you have them -->
   <script src="js/why-choose.js" defer></script>
   <script src="js/trust.js" defer></script>
   <script src="js/photo.js" defer></script>
@@ -102,11 +113,11 @@
   <script src="js/real-estate.js" defer></script>
   <script src="js/footer.js" defer></script>
 
-  <!-- Swiper + testimonials init (keep once) -->
+  <!-- Swiper + testimonials init -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
   <script src="js/testimonial.js" defer></script>
 
-  <!-- Tiny loader: replaces [data-include] with the partial HTML, then runs your inits -->
+  <!-- Tiny include loader: replaces [data-include] with the partial HTML, then runs your inits -->
   <script>
     (function () {
       async function include(el) {
@@ -140,6 +151,11 @@
         if (window.initServiceAreas) window.initServiceAreas();
         if (window.initRealEstate) window.initRealEstate();
         if (window.initFooter) window.initFooter();
+
+        // NEW: header + layout after injection
+        if (window.initHeader) window.initHeader();
+        if (window.initHeaderMobile) window.initHeaderMobile();
+        if (window.setLayoutFlags) window.setLayoutFlags();
       }
 
       if (document.readyState === 'loading') {
@@ -150,26 +166,24 @@
     })();
   </script>
 
-  <!-- Layout flags (same as your previous index; keep at end) -->
+  <!-- Layout flags (made global so loader can call it) -->
   <script>
-    (function () {
-      function setLayoutFlags() {
-        var toggle = document.querySelector('.menu-toggle');
-        var collapsed = toggle && getComputedStyle(toggle).display !== 'none';
-        document.documentElement.classList.toggle('nav-collapsed', collapsed);
+    window.setLayoutFlags = function () {
+      var toggle = document.querySelector('.menu-toggle');
+      var collapsed = toggle && getComputedStyle(toggle).display !== 'none';
+      document.documentElement.classList.toggle('nav-collapsed', collapsed);
 
-        var headerEl = collapsed
-          ? document.querySelector('.mobile-header')
-          : document.querySelector('.header');
-        var h = headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0;
-        document.documentElement.style.setProperty('--header-h', h + 'px');
-      }
-      window.addEventListener('load', setLayoutFlags);
-      window.addEventListener('resize', setLayoutFlags);
-      document.addEventListener('click', function (e) {
-        if (e.target.closest('.menu-toggle')) setTimeout(setLayoutFlags, 50);
-      });
-    })();
+      var headerEl = collapsed
+        ? document.querySelector('.mobile-header')
+        : document.querySelector('.header');
+      var h = headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0;
+      document.documentElement.style.setProperty('--header-h', h + 'px');
+    };
+    window.addEventListener('load', window.setLayoutFlags);
+    window.addEventListener('resize', window.setLayoutFlags);
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('.menu-toggle')) setTimeout(window.setLayoutFlags, 50);
+    });
   </script>
 </body>
 </html>
