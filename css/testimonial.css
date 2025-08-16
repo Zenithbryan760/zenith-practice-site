@@ -1,0 +1,6 @@
+.testimonial-card{display:flex;flex-direction:column;height:100%;background:#fff;border:1px solid var(--zenith-border);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow-sm)}
+.testimonial-card .quote{font-size:2rem;color:var(--zenith-orange);line-height:1}
+.testimonial-card .stars{margin:.25rem 0 .5rem}
+.testimonial-card p{color:var(--zenith-text);margin:0 0 .9rem}
+.testimonial-card footer{border-top:1px solid var(--zenith-border);padding-top:.6rem;color:var(--zenith-muted)}
+.swiper{padding:8px}
