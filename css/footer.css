@@ -1,0 +1,7 @@
+.site-footer{background:#0b3a6f;color:#dbeafe;margin-top:2rem}
+.site-footer a{color:#fff;text-decoration:none}
+.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:18px;padding:1.25rem 0}
+.footer-nav{display:grid;gap:.35rem}
+.footer-badges{display:flex;gap:10px;align-items:center;filter:grayscale(.1);opacity:.95}
+.footer-badges img{height:36px;width:auto}
+@media (max-width:900px){.footer-grid{grid-template-columns:1fr}}
