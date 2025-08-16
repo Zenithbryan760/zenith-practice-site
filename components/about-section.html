@@ -1,130 +1,95 @@
 <!-- =========================================================
-  [ABOUT] Zenith Roofing — Minimal, SEO-tuned (Escondido | San Diego | Temecula)
-  Place this file at components/about-section.html
+  [ABOUT] Zenith Roofing — Hero-style card (like your screenshot)
 ========================================================= -->
-<section id="about" class="about-section about--minimal" aria-labelledby="about-title">
-  <!-- Soft background accents -->
-  <div class="about-parallax" aria-hidden="true">
-    <div class="layer layer-navy" data-parallax data-speed="0.25"></div>
-    <div class="layer layer-orange" data-parallax data-speed="0.18"></div>
-    <div class="layer layer-grid" data-parallax data-speed="0.12"></div>
-  </div>
-
+<section id="about" class="about-section about--hero" aria-labelledby="about-title">
   <div class="about-container">
-    <!-- Header -->
-    <header class="about-header" data-animate>
-      <div class="logo-wrapper" data-animate-child>
-        <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing Services logo" class="about-logo" />
-      </div>
-      <div class="about-title-wrap" data-animate-child>
-        <h2 id="about-title">About Zenith Roofing Services, Inc.</h2>
-        <p class="about-subtitle">Escondido-based roofing experts serving San Diego &amp; Temecula</p>
-      </div>
-    </header>
+    <!-- HERO CARD -->
+    <div class="about-hero" data-animate>
+      <div class="about-hero-grid">
+        <!-- Left: headline, copy, pills, CTAs -->
+        <div class="about-hero-copy" data-animate-child>
+          <h1 id="about-title" class="about-hero-title">
+            About Zenith Roofing<br />Services, Inc.
+          </h1>
+          <p class="about-hero-sub">Escondido-based roofing experts serving San Diego &amp; Temecula</p>
 
-    <div class="about-grid">
-      <!-- Left: copy + process -->
-      <div class="about-copy">
-        <p data-animate data-animate-delay="0.1">
-          We’re a local roofing company headquartered in <strong>Escondido</strong>, helping homeowners, HOAs, and small businesses across
-          <strong>San Diego County</strong> and the <strong>Temecula Valley</strong> get dependable roofs that stand up to SoCal sun, wind, and seasonal storms.
-          Our approach is simple: <em>inspect thoroughly, scope clearly, install precisely</em>.
-        </p>
+          <p class="about-hero-text">
+            We’re a local roofing company headquartered in <strong>Escondido</strong>, helping homeowners, HOAs, and small
+            businesses across <strong>San Diego County</strong> and the <strong>Temecula Valley</strong> get dependable
+            roofs that stand up to SoCal sun, wind, and seasonal storms.
+          </p>
 
-        <p data-animate data-animate-delay="0.15">
-          From <strong>roof repair</strong> and <strong>leak diagnostics</strong> to <strong>full roof replacement</strong>, we build systems that fit your roof and climate:
-          <strong>clay &amp; concrete tile</strong>, <strong>asphalt shingles</strong>, <strong>torch-down</strong>, <strong>TPO single-ply</strong>,
-          and <strong>silicone roof coatings</strong> for cool, energy-efficient flat roofs. You get photo updates and clean job sites—every time.
-        </p>
+          <!-- Pills -->
+          <ul class="pill-row" aria-label="Highlights">
+            <li class="pill">Licensed &amp; Insured</li>
+            <li class="pill">Local Experts</li>
+            <li class="pill">Photo Documentation</li>
+          </ul>
 
-        <!-- Minimal timeline -->
-        <ol class="process process--minimal" aria-label="How we work">
-          <li data-animate data-animate-delay="0.2">
-            <span class="dot">1</span>
-            <div class="content">
-              <h3>Inspect &amp; Document</h3>
-              <p>Photo-backed inspection and moisture/penetration check. Clear notes and options.</p>
-            </div>
-          </li>
-          <li data-animate data-animate-delay="0.25">
-            <span class="dot">2</span>
-            <div class="content">
-              <h3>Scope &amp; Plan</h3>
-              <p>Line-item estimate with choices for lifespan and budget (tile, shingle, TPO, torch-down, coatings).</p>
-            </div>
-          </li>
-          <li data-animate data-animate-delay="0.3">
-            <span class="dot">3</span>
-            <div class="content">
-              <h3>Install &amp; Verify</h3>
-              <p>Code-compliant install, daily cleanup, punch list &amp; final walkthrough—plus photos for your records.</p>
-            </div>
-          </li>
-        </ol>
-
-        <!-- Slim CTAs -->
-        <div class="about-cta about-cta--minimal" data-animate data-animate-delay="0.35">
-          <a class="btn-orange" href="tel:8589006163" aria-label="Call or text Zenith Roofing Services">
-            <span class="btn-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                <path fill="currentColor" d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.03-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/>
-              </svg>
-            </span>
-            Call/Text 858-900-6163
-          </a>
-          <a class="btn-outline" href="#roofing-estimate">
-            <span class="btn-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM11 7h2v4h4v2h-4v4h-2v-4H7v-2h4z"/>
-              </svg>
-            </span>
-            Request Free Estimate
-          </a>
+          <!-- CTAs -->
+          <div class="about-cta">
+            <a class="btn-orange" href="tel:8589006163">
+              <span class="btn-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <path fill="currentColor" d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.03-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/>
+                </svg>
+              </span>
+              Call/Text 858-900-6163
+            </a>
+            <a class="btn-outline" href="#roofing-estimate">
+              <span class="btn-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM11 7h2v4h4v2h-4v4h-2v-4H7v-2h4z"/>
+                </svg>
+              </span>
+              Request Free Estimate
+            </a>
+          </div>
         </div>
 
-        <!-- Local SEO helper -->
-        <p class="about-seo-line" data-animate data-animate-delay="0.4">
-          Looking for a <strong>roofing contractor in Escondido</strong>, <strong>San Diego roof repair</strong>, or <strong>Temecula roof replacement</strong>?
-          We serve North County San Diego and the Temecula Valley.
-        </p>
+        <!-- Right: image -->
+        <div class="about-hero-media" data-animate-child>
+          <figure class="about-photo">
+            <img
+              src="images/about/crew-installing-tpo.jpg"
+              alt="Zenith Roofing crew installing tile and flashing on a Southern California home"
+              width="900" height="600" loading="lazy" />
+          </figure>
+        </div>
       </div>
+    </div>
 
-      <!-- Right: single image + compact facts -->
-      <aside class="about-aside">
-        <figure class="about-photo" data-animate data-animate-delay="0.1">
-          <img src="images/about/crew-installing-tpo.jpg"
-               alt="Zenith crew installing TPO single-ply roofing in Southern California"
-               width="640" height="420" loading="lazy" />
-          <figcaption>TPO &amp; torch-down solutions for flat &amp; low-slope roofs</figcaption>
-        </figure>
+    <!-- SECOND ROW: simple approach (clean, minimal) -->
+    <div class="about-steps" aria-label="Our Simple Approach">
+      <h2 class="steps-title">Our Simple Approach</h2>
+      <ol class="process process--minimal">
+        <li data-animate>
+          <span class="dot">1</span>
+          <div class="content">
+            <h3>Inspect &amp; Document</h3>
+            <p>Photo-backed inspection and moisture/penetration check. Clear notes and options.</p>
+          </div>
+        </li>
+        <li data-animate>
+          <span class="dot">2</span>
+          <div class="content">
+            <h3>Scope &amp; Plan</h3>
+            <p>Line-item estimate with choices for lifespan and budget (tile, shingle, TPO, torch-down, coatings).</p>
+          </div>
+        </li>
+        <li data-animate>
+          <span class="dot">3</span>
+          <div class="content">
+            <h3>Install &amp; Verify</h3>
+            <p>Code-compliant install, daily cleanup, punch list &amp; final walkthrough—plus photos for your records.</p>
+          </div>
+        </li>
+      </ol>
 
-        <ul class="fact-list" aria-label="Quick facts" data-animate data-animate-delay="0.2">
-          <li>
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zM11 14l-2.1-2.1 1.4-1.4L11 11.2l3.8-3.8 1.4 1.4L11 14z"/></svg>
-            Systems: tile, shingles, torch-down, TPO, silicone coatings
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7z"/></svg>
-            Areas: Escondido • San Diego • Temecula • North County
-          </li>
-        </ul>
-      </aside>
+      <p class="about-seo-line">
+        Need a <strong>roofing contractor in Escondido</strong>, <strong>San Diego roof repair</strong>, or
+        <strong>Temecula roof replacement</strong>? We serve North County San Diego and the Temecula Valley.
+      </p>
     </div>
   </div>
-
-  <!-- Helpful FAQ schema (no visual output) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"Do you handle both residential and commercial roofing?",
-       "acceptedAnswer":{"@type":"Answer","text":"Yes. We service homes, HOAs, and small businesses with repairs and full replacements including tile, shingles, TPO, torch-down, and silicone coatings."}},
-      {"@type":"Question","name":"Which areas do you serve?",
-       "acceptedAnswer":{"@type":"Answer","text":"We are based in Escondido and serve San Diego County and the Temecula Valley, including North County San Diego."}},
-      {"@type":"Question","name":"Do you repair leaks or only replace roofs?",
-       "acceptedAnswer":{"@type":"Answer","text":"We do both. Our inspection identifies the source of leaks and we provide repair or replacement options with clear scope and photos."}}
-    ]
-  }
-  </script>
 </section>
