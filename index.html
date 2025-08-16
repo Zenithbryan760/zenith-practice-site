@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- ===== META & SEO ===== -->
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Zenith Roofing Services – San Diego & Temecula Roof Experts</title>
-<meta name="description" content="Licensed roofing contractor serving Escondido, San Diego & Temecula. Roof repair, replacement, tile, shingles, TPO, torch down, silicone coatings & gutters." />
+  <!-- ===== META & SEO ===== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zenith Roofing Services – San Diego & Temecula Roof Experts</title>
+  <meta name="description" content="Licensed roofing contractor serving Escondido, San Diego & Temecula. Roof repair, replacement, tile, shingles, TPO, torch down, silicone coatings & gutters." />
 
-   <!-- ✅ Structured data: put this in the HEAD -->
+  <!-- ✅ Structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -17,11 +17,7 @@
     "telephone": "+1-858-900-6163",
     "areaServed": ["Escondido CA","San Diego CA","Temecula CA","North County San Diego"],
     "url": "https://zenithroofingca.com/",
-    "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "CA",
-      "addressCountry": "US"
-    },
+    "address": { "@type": "PostalAddress", "addressRegion": "CA", "addressCountry": "US" },
     "license": "C-39 #1036112",
     "sameAs": [
       "https://www.yelp.com/biz/zenith-roofing-services-escondido",
@@ -30,51 +26,50 @@
   }
   </script>
 
-  <!-- ===== GOOGLE FONT ===== -->
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
-<script>
-  (function () {
-    // Called by you (and by Google's onload) to render the checkbox
-    window.renderHeroRecaptchaIfReady = function () {
-      var slot = document.getElementById('recaptcha-slot');
-      if (!slot) return; // hero not injected yet
-
-      if (window.grecaptcha && !slot.dataset.rendered) {
-        // ✅ Save the widget id globally so hero.js can get/reset it later
-        window._recaptchaWidgetId = grecaptcha.render(slot, {
-          sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI',
-          theme: 'light',
-          size: 'normal'
-        });
-        slot.dataset.rendered = '1'; // guard against double-render
-      }
-    };
-
-    // Google calls this when the API finishes loading
-    window.recaptchaOnload = function () {
-      window.renderHeroRecaptchaIfReady();
-    };
-  })();
-</script>
-
-  <!-- ===== reCAPTCHA v2 (explicit render) ===== -->
+  <!-- ===== reCAPTCHA helpers (must be before API script) ===== -->
+  <script>
+    (function () {
+      window.renderHeroRecaptchaIfReady = function () {
+        var slot = document.getElementById('recaptcha-slot');
+        if (!slot) return;
+        if (window.grecaptcha && !slot.dataset.rendered) {
+          window._recaptchaWidgetId = grecaptcha.render(slot, {
+            sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI',
+            theme: 'light',
+            size: 'normal'
+          });
+          slot.dataset.rendered = '1';
+        }
+      };
+      window.recaptchaOnload = function () {
+        window.renderHeroRecaptchaIfReady();
+      };
+    })();
+  </script>
   <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
 
-  <!-- ===== GLOBAL + HEADER STYLES ===== -->
+  <!-- ===== STYLES (no duplicates) ===== -->
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/header.css" />
   <link rel="stylesheet" href="css/header-mobile.css" />
-
-  <!-- ===== RESPONSIVE UTILITIES ===== -->
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/why-choose.css" />
+  <link rel="stylesheet" href="css/trust.css" />
+  <link rel="stylesheet" href="css/photo.css" />
+  <link rel="stylesheet" href="css/testimonial.css" />
+  <link rel="stylesheet" href="css/cta.css" />
+  <link rel="stylesheet" href="css/service-areas.css" />
+  <link rel="stylesheet" href="css/real-estate.css" />
+  <link rel="stylesheet" href="css/footer.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 
-  <!-- ===== HERO STYLES ===== -->
-  <link rel="stylesheet" href="css/hero.css" />
-    <!-- ===== About STYLES ===== -->
-  <link rel="stylesheet" href="css/about.css" />
+  <!-- Swiper CSS (testimonials) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 </head>
-
 <body>
 
   <!-- ===== HEADER & NAVIGATION ===== -->
@@ -99,7 +94,7 @@
         </a>
       </div>
 
-      <!-- ===== DESKTOP HEADER (hidden on mobile by CSS) ===== -->
+      <!-- ===== DESKTOP HEADER ===== -->
       <div class="logo-section">
         <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing Services logo" class="logo" />
         <p class="license">Lic# 1036112</p>
@@ -118,9 +113,7 @@
 
               <!-- Roof Repairs submenu -->
               <li class="dropdown-submenu">
-                <a href="#" class="accordion-toggle">
-                  Roof Repairs <span class="chevron"></span>
-                </a>
+                <a href="#" class="accordion-toggle">Roof Repairs <span class="chevron"></span></a>
                 <ul class="submenu">
                   <li><a href="#roof-tune-up">Roof Tune-Up</a></li>
                   <li><a href="#tile-roof-repair">Tile Roof Repair</a></li>
@@ -136,9 +129,7 @@
 
               <!-- Residential Roofing submenu -->
               <li class="dropdown-submenu">
-                <a href="#residential" class="accordion-toggle">
-                  Residential Roofing <span class="chevron"></span>
-                </a>
+                <a href="#residential" class="accordion-toggle">Residential Roofing <span class="chevron"></span></a>
                 <ul class="submenu">
                   <li class="submenu-label">Roof Systems</li>
                   <li><a href="#shingles">Asphalt Shingles</a></li>
@@ -146,7 +137,7 @@
                   <li><a href="#tile-roof">Clay &amp; Concrete Tile</a></li>
                   <li><a href="#tile-lift-lay">Tile Lift &amp; Reset</a></li>
                   <li><a href="#tpo">TPO Single-Ply</a></li>
-                  <li><a href="#silicone">Silicone Coating Systems</a></li>
+                  <li><a href="#silicone">Silicone Roof Coatings</a></li>
                   <li class="submenu-label">Maintenance &amp; Extras</li>
                   <li><a href="#gutters">Seamless Gutters</a></li>
                   <li><a href="#repairs">Leak Repair &amp; Troubleshooting</a></li>
@@ -157,9 +148,7 @@
 
               <!-- Commercial Roofing submenu -->
               <li class="dropdown-submenu">
-                <a href="#commercial" class="accordion-toggle">
-                  Commercial Roofing <span class="chevron"></span>
-                </a>
+                <a href="#commercial" class="accordion-toggle">Commercial Roofing <span class="chevron"></span></a>
                 <ul class="submenu">
                   <li class="submenu-label">Roof Systems</li>
                   <li><a href="#tpo-commercial">TPO Roofing</a></li>
@@ -178,9 +167,7 @@
 
               <!-- Real Estate Services submenu -->
               <li class="dropdown-submenu">
-                <a href="#real-estate" class="accordion-toggle">
-                  Real Estate Services <span class="chevron"></span>
-                </a>
+                <a href="#real-estate" class="accordion-toggle">Real Estate Services <span class="chevron"></span></a>
                 <ul class="submenu">
                   <li><a href="#roof-reports">Certified Roof Reports</a></li>
                   <li><a href="#roof-estimates">Pre-Sale Roofing Estimates</a></li>
@@ -192,10 +179,8 @@
                 </ul>
               </li>
 
-              <!-- Roof Inspection standalone page -->
+              <!-- Standalone links -->
               <li><a href="#roof-inspection">Roof Inspection</a></li>
-
-              <!-- Pricing -->
               <li><a href="pricing.html">Pricing</a></li>
             </ul>
           </li>
@@ -205,9 +190,7 @@
           <li><a href="#blog">Blog</a></li>
           <li><a href="#glossary">Glossary</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li>
-            <a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">YouTube</a>
-          </li>
+          <li><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">YouTube</a></li>
         </ul>
       </nav>
 
@@ -220,20 +203,17 @@
     </div>
   </header>
 
- <!-- OFF-CANVAS MOBILE NAV -->
+  <!-- OFF-CANVAS MOBILE NAV -->
   <nav class="mobile-nav">
     <ul class="mobile-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#gallery">Projects</a></li>
+
       <li>
-        <button class="accordion-toggle">
-          Services <span class="chevron">›</span>
-        </button>
+        <button class="accordion-toggle">Services <span class="chevron">›</span></button>
         <ul class="submenu">
           <li>
-            <button class="accordion-toggle">
-              Roof Repairs <span class="chevron">›</span>
-            </button>
+            <button class="accordion-toggle">Roof Repairs <span class="chevron">›</span></button>
             <ul class="submenu">
               <li><a href="#tile-roof-repair">Tile Roof Repair</a></li>
               <li><a href="#clay-tile-roof-repair">Clay Tile Roof Repair</a></li>
@@ -246,15 +226,12 @@
               <li><a href="#roof-tune-up">Roof Tune-Up</a></li>
             </ul>
           </li>
+
           <li>
-            <button class="accordion-toggle">
-              Residential Roofing <span class="chevron">›</span>
-            </button>
+            <button class="accordion-toggle">Residential Roofing <span class="chevron">›</span></button>
             <ul class="submenu">
               <li>
-                <button class="accordion-toggle">
-                  Roof Systems <span class="chevron">›</span>
-                </button>
+                <button class="accordion-toggle">Roof Systems <span class="chevron">›</span></button>
                 <ul class="submenu">
                   <li><a href="#shingles">Asphalt Shingles</a></li>
                   <li><a href="#torch-down">Torch Down Systems</a></li>
@@ -265,9 +242,7 @@
                 </ul>
               </li>
               <li>
-                <button class="accordion-toggle">
-                  Maintenance &amp; Extras <span class="chevron">›</span>
-                </button>
+                <button class="accordion-toggle">Maintenance &amp; Extras <span class="chevron">›</span></button>
                 <ul class="submenu">
                   <li><a href="#gutters">Seamless Gutters</a></li>
                   <li><a href="#repairs">Leak Repair &amp; Troubleshooting</a></li>
@@ -277,15 +252,12 @@
               </li>
             </ul>
           </li>
+
           <li>
-            <button class="accordion-toggle">
-              Commercial Roofing <span class="chevron">›</span>
-            </button>
+            <button class="accordion-toggle">Commercial Roofing <span class="chevron">›</span></button>
             <ul class="submenu">
               <li>
-                <button class="accordion-toggle">
-                  Roof Systems <span class="chevron">›</span>
-                </button>
+                <button class="accordion-toggle">Roof Systems <span class="chevron">›</span></button>
                 <ul class="submenu">
                   <li><a href="#tpo-commercial">TPO Roofing</a></li>
                   <li><a href="#shingles-commercial">Shingle Systems</a></li>
@@ -297,9 +269,7 @@
                 </ul>
               </li>
               <li>
-                <button class="accordion-toggle">
-                  Maintenance &amp; Extras <span class="chevron">›</span>
-                </button>
+                <button class="accordion-toggle">Maintenance &amp; Extras <span class="chevron">›</span></button>
                 <ul class="submenu">
                   <li><a href="#gutters-commercial">Seamless Gutters</a></li>
                   <li><a href="#maintenance-commercial">Roof Asset Maintenance</a></li>
@@ -308,79 +278,112 @@
               </li>
             </ul>
           </li>
+
           <li><a href="#roof-inspection">Roof Inspection</a></li>
           <li><a href="pricing.html">Pricing</a></li>
-      </ul>
-      <li><a href="#reviews">Reviews</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#blog">Blog</a></li>
-      <li><a href="#glossary">Glossary</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#glossary">Glossary</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">YouTube</a></li>
+        </ul>
     </ul>
   </nav>
 
-  <!-- ===== HERO PLACEHOLDER (component gets injected here) ===== -->
-<div id="hero-placeholder"></div>
-  <!-- ===== ABOUT PLACEHOLDER ===== -->
-<div id="about-placeholder"></div>
-  
- <!-- ===== FETCH HERO COMPONENT ===== -->
-<script>
-  fetch('components/hero-section.html')
-    .then(r => { if (!r.ok) throw new Error('Failed to load hero-section.html'); return r.text(); })
-    .then(html => {
-      document.getElementById('hero-placeholder').innerHTML = html;
+  <!-- ===== MAIN (partials auto-injected below) ===== -->
+  <main>
+    <!-- Change paths to /sections/*.html if that’s where your files live -->
+    <section data-include="components/hero-section.html"></section>
+    <section data-include="components/about-section.html"></section>
+    <section data-include="components/why-choose-section.html"></section>
+    <section data-include="components/trust-section.html"></section>
+    <section data-include="components/photo-section.html"></section>
+    <section data-include="components/testimonial-section.html"></section>
+    <section data-include="components/cta-section.html"></section>
+    <section data-include="components/service-areas.html"></section>
+    <section data-include="components/real-estate.html"></section>
+    <section data-include="components/footer.html"></section>
+  </main>
 
-      // Render captcha
-      if (window.renderHeroRecaptchaIfReady) window.renderHeroRecaptchaIfReady();
-
-      // ✅ NEW: bind phone mask, ZIP→City, and submit handler
-      if (window.initEstimateForm) window.initEstimateForm();
-    })
-    .catch(err => console.error('❌ Hero load error:', err));
-</script>
-<!-- ===== FETCH About COMPONENT ===== -->
-<script>
-  fetch('components/about-section.html')
-    .then(r => { if (!r.ok) throw new Error('Failed to load about-section.html'); return r.text(); })
-    .then(html => {
-      document.getElementById('about-placeholder').innerHTML = html;
-      // ✅ Ensure animations & parallax are wired up even if this loads after DOMContentLoaded
-      if (window.initAboutSection) window.initAboutSection();
-    })
-    .catch(err => console.error('❌ About load error:', err));
-</script>
-
-
-  <!-- ===== OTHER SCRIPTS ===== -->
+  <!-- ===== JS (no duplicates) ===== -->
   <script src="js/header-mobile.js" defer></script>
   <script src="js/header.js" defer></script>
-  <script src="js/about.js" defer></script>
-
-  <!-- IMPORTANT: hero.js (helpers like ZIP->City + submit guard) -->
   <script src="js/hero.js" defer></script>
+  <script src="js/about.js" defer></script>
+  <!-- Optional: Add the ones below only if you have them -->
+  <script src="js/why-choose.js" defer></script>
+  <script src="js/trust.js" defer></script>
+  <script src="js/photo.js" defer></script>
+  <script src="js/cta.js" defer></script>
+  <script src="js/service-areas.js" defer></script>
+  <script src="js/real-estate.js" defer></script>
+  <script src="js/footer.js" defer></script>
 
-  <!-- NEW: layout flags (place this RIGHT before </body>) -->
+  <!-- Swiper + testimonials init (keep once) -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
+  <script src="js/testimonial.js" defer></script>
+
+  <!-- Tiny loader: replaces [data-include] with the partial HTML, then runs your inits -->
+  <script>
+    (function () {
+      async function include(el) {
+        const src = el.getAttribute('data-include');
+        if (!src) return;
+        try {
+          const res = await fetch(src, { cache: 'no-cache' });
+          if (!res.ok) throw new Error('Failed to load ' + src);
+          const html = await res.text();
+          el.outerHTML = html;
+        } catch (e) {
+          console.error('❌ Include error:', src, e);
+        }
+      }
+
+      async function runIncludesAndInit() {
+        const nodes = Array.from(document.querySelectorAll('[data-include]'));
+        for (const n of nodes) { await include(n); }
+
+        // After hero is present, wire reCAPTCHA + form helpers
+        if (window.renderHeroRecaptchaIfReady) window.renderHeroRecaptchaIfReady();
+        if (window.initEstimateForm) window.initEstimateForm();
+
+        // Section-specific initializers (they safely no-op if missing)
+        if (window.initAboutSection) window.initAboutSection();
+        if (window.initWhyChoose) window.initWhyChoose();
+        if (window.initTrustSection) window.initTrustSection();
+        if (window.initPhotoSection) window.initPhotoSection();
+        if (window.initTestimonials) window.initTestimonials();
+        if (window.initCTA) window.initCTA();
+        if (window.initServiceAreas) window.initServiceAreas();
+        if (window.initRealEstate) window.initRealEstate();
+        if (window.initFooter) window.initFooter();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', runIncludesAndInit);
+      } else {
+        runIncludesAndInit();
+      }
+    })();
+  </script>
+
+  <!-- Layout flags (same as your previous index; keep at end) -->
   <script>
     (function () {
       function setLayoutFlags() {
-        // Is the hamburger visible? (header collapsed)
         var toggle = document.querySelector('.menu-toggle');
         var collapsed = toggle && getComputedStyle(toggle).display !== 'none';
         document.documentElement.classList.toggle('nav-collapsed', collapsed);
 
-        // Measure whichever header is showing and expose height to CSS
         var headerEl = collapsed
           ? document.querySelector('.mobile-header')
           : document.querySelector('.header');
         var h = headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0;
         document.documentElement.style.setProperty('--header-h', h + 'px');
       }
-
       window.addEventListener('load', setLayoutFlags);
       window.addEventListener('resize', setLayoutFlags);
-      // Re-measure right after tapping the hamburger
       document.addEventListener('click', function (e) {
         if (e.target.closest('.menu-toggle')) setTimeout(setLayoutFlags, 50);
       });
