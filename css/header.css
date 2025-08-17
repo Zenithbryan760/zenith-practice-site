@@ -409,9 +409,30 @@ body.nav-open::after{
    9) RESPONSIVE
    ========================================================= */
 @media (max-width: 1024px){
-  .mobile-header{ display:flex; }
+  .mobile-header{ 
+    display:flex; 
+    position: relative;   /* so content sits above the fade */
+    z-index: 1;
+  }
   .header .header-inner{ grid-template-columns: 1fr; gap: 0; padding: 10px 14px; }
   .header .header-inner > .logo-section, .nav-bar, .phone-section{ display:none; }
+
+  /* Bottom fade on the blue header */
+  .header::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;               /* overlap to avoid a seam */
+    height: 14px;               /* adjust 10–20px if you want */
+    background: linear-gradient(
+      to bottom,
+      rgba(7,46,89,0.75),
+      rgba(7,46,89,0)
+    );
+    pointer-events: none;
+    z-index: 0;                 /* under the header content */
+  }
 }
 
 /* Tiny phones (≤360px): slightly smaller logo & header */
@@ -419,7 +440,6 @@ body.nav-open::after{
   .mobile-header .logo{ height:72px; max-height:72px; }
   .mobile-header{ min-height: 88px; }
 }
-
 /* =========================================================
    10) ACCESSIBILITY & MOTION
    ========================================================= */
