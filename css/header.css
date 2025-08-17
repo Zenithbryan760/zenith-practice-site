@@ -254,10 +254,9 @@ a { text-decoration: none; }
   display:none; /* shown at ≤ 1024px */
   align-items:center;
   justify-content:space-between;
-  gap:10px;
-  /* ↓ smaller blue band */
-  min-height: 92px;     /* was 96px */
-  padding: 4px 12px;    /* was 8px 14px */
+  gap:8px;            /* a bit tighter than 10px */
+  min-height: 88px;   /* was 92px — now just tall enough for the 88px logo */
+  padding: 0 10px;    /* no top/bottom padding; only side padding */
 }
 
 /* Center the logo between the two buttons */
@@ -268,16 +267,15 @@ a { text-decoration: none; }
   align-items: center;
 }
 
-/* Make the mobile logo a little bigger */
+/* Mobile logo */
 .mobile-header .logo{
-  height: 88px;          /* was 84px */
+  height: 88px;          /* keep the bigger logo */
   max-height: 88px;
   width: auto;
-  max-width: 320px;      /* was 300px */
+  max-width: 320px;
   display: block;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
 }
-
 
 /* Hamburger toggle — same footprint as call button */
 .menu-toggle{
@@ -325,6 +323,7 @@ a { text-decoration: none; }
 }
 /* Keep the phone icon visible on orange */
 .mobile-call svg path { fill: #072e59; }
+
 
 
 
