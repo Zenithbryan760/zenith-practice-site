@@ -248,97 +248,80 @@ a { text-decoration: none; }
 .call-button:active{ transform: translateY(0); }
 
 /* =========================================================
-   MOBILE HEADER (hamburger + logo + call)
+   7) MOBILE HEADER (hamburger + logo + call)
    ========================================================= */
-.mobile-header {
-  display: none; /* shown at ≤ 1024px */
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 64px;          /* comfortable header height */
-  padding: 12px 16px;        /* balanced padding */
-  background: #fff;          /* ensure contrast */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* subtle shadow */
+.mobile-header{
+  display:none; /* shown at ≤ 1024px */
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  min-height: 56px;          /* consistent row height */
+  padding: 10px 14px;        /* comfortable spacing */
 }
 
-/* Center the logo with balanced spacing */
-.mobile-header .logo-section {
+/* Center the logo nicely between the two buttons */
+.mobile-header .logo-section{
   flex: 1;
-  min-width: 0; /* allows proper shrinking */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 8px; /* breathing room */
 }
 
-/* Responsive logo sizing */
-.mobile-header .logo {
-  height: clamp(42px, 8vw, 52px);
+/* Responsive mobile logo: larger but still fluid */
+.mobile-header .logo{
+  height: clamp(40px, 10vw, 56px);      /* was 28–40 → now 40–56 */
   width: auto;
-  max-width: min(240px, 60vw);
-  object-fit: contain;
+  max-width: clamp(140px, 36vw, 240px); /* was 110–180 → now 140–240 */
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
 }
 
-/* Button base styles (shared by both buttons) */
-.menu-toggle,
-.mobile-call {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+/* Hamburger toggle — same footprint as call button */
+.menu-toggle{
+  appearance: none;
+  font: inherit;
   background: var(--zenith-orange);
+  color: #072e59;
+  border: 0;
+  border-radius: 12px;
+  width: 44px;                      /* match call button size */
+  height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(247,148,29,0.25);
-  transition: all 0.2s ease;
-  border: none;
-  padding: 0;
+  box-shadow: 0 8px 18px rgba(247,148,29,.22);
+  transition: transform .18s ease, box-shadow .18s ease, opacity .26s ease;
 }
-
-/* Hamburger specific styles */
-.menu-toggle {
-  position: relative;
+.menu-toggle:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(247,148,29,.28);
 }
-
-/* Hamburger icon bars (example - adjust to your actual icon) */
-.menu-toggle::before {
-  content: "";
-  width: 24px;
-  height: 2px;
-  background: #072e59;
-  box-shadow: 
-    0 -8px 0 #072e59,
-    0 8px 0 #072e59;
-}
-
-/* Call button specific styles */
-.mobile-call {
-  border-radius: 50%; /* circular shape */
-}
-
-/* Hover/active states for both buttons */
-.menu-toggle:hover,
-.mobile-call:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(247,148,29,0.3);
-}
-
-.menu-toggle:active,
-.mobile-call:active {
+.menu-toggle:active{
   transform: translateY(0);
-  box-shadow: 0 3px 8px rgba(247,148,29,0.25);
 }
 
-/* Ensure phone icon is visible */
-.mobile-call svg {
-  width: 22px;
-  height: 22px;
+/* Mobile call button — matches toggle size/feel */
+.mobile-call{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--zenith-orange);
+  box-shadow: 0 8px 18px rgba(247,148,29,.22);
+  transition: transform .18s ease, box-shadow .18s ease, opacity .26s ease;
 }
-.mobile-call svg path { 
-  fill: #072e59; 
+.mobile-call:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(247,148,29,.28);
 }
+.mobile-call:active{
+  transform: translateY(0);
+}
+/* Keep the phone icon visible on orange */
+.mobile-call svg path { fill: #072e59; }
 
 
 /* =========================================================
