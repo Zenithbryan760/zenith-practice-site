@@ -254,20 +254,25 @@ a { text-decoration: none; }
   display:none; /* shown at ≤ 1024px */
   align-items:center; justify-content:space-between; gap:10px;
 }
+/* Hamburger toggle — match Call Now button styling */
 .menu-toggle{
-  appearance:none; font: inherit;
-  background:rgba(255,255,255,.06); color:#fff;
-  border:1px solid rgba(255,255,255,.32);
-  border-radius:12px; padding:10px 12px; cursor:pointer;
-  transition: background .2s ease, border-color .2s ease, transform .18s ease;
+  appearance: none;
+  font: inherit;
+  background: var(--zenith-orange);
+  color: #072e59;                     /* same text color as .call-button */
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(247,148,29,.22); /* same glow as .call-button */
+  transition: transform .18s ease, box-shadow .18s ease, opacity .26s ease;
 }
-.menu-toggle:hover{ background:rgba(255,255,255,.12); transform: translateY(-1px); }
-.mobile-header .logo{ height:40px; width:auto; display:block; filter: drop-shadow(0 2px 6px rgba(0,0,0,.18)); }
-.mobile-call{
-  display:inline-flex; align-items:center; justify-content:center;
-  width:44px; height:44px; border-radius:50%;
-  background:var(--zenith-orange);
-  box-shadow: 0 8px 18px rgba(247,148,29,.22);
+.menu-toggle:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(247,148,29,.28);
+}
+.menu-toggle:active{
+  transform: translateY(0);
 }
 
 /* =========================================================
