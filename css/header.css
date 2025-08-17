@@ -250,10 +250,14 @@ a { text-decoration: none; }
 /* =========================================================
    7) MOBILE HEADER (hamburger + logo + call)
    ========================================================= */
+/* =========================================================
+   7) MOBILE HEADER (hamburger + logo + call)
+   ========================================================= */
 .mobile-header{
   display:none; /* shown at ≤ 1024px */
   align-items:center; justify-content:space-between; gap:10px;
 }
+
 /* Hamburger toggle — match Call Now button styling */
 .menu-toggle{
   appearance: none;
@@ -264,7 +268,7 @@ a { text-decoration: none; }
   border-radius: 12px;
   padding: 10px 12px;
   cursor: pointer;
-  box-shadow: 0 8px 18px rgba(247,148,29,.22); /* same glow as .call-button */
+  box-shadow: 0 8px 18px rgba(247,148,29,.22);
   transition: transform .18s ease, box-shadow .18s ease, opacity .26s ease;
 }
 .menu-toggle:hover{
@@ -274,6 +278,28 @@ a { text-decoration: none; }
 .menu-toggle:active{
   transform: translateY(0);
 }
+
+/* Mobile call button — match Call Now button feel */
+.mobile-call{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--zenith-orange);
+  box-shadow: 0 8px 18px rgba(247,148,29,.22);
+  transition: transform .18s ease, box-shadow .18s ease, opacity .26s ease;
+}
+.mobile-call:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(247,148,29,.28);
+}
+.mobile-call:active{
+  transform: translateY(0);
+}
+/* Ensure the phone icon stays visible on orange */
+.mobile-call svg path { fill: #072e59; } /* navy icon on orange */
 
 /* =========================================================
    8) OFF-CANVAS MOBILE NAV (powder-blue accordions)
