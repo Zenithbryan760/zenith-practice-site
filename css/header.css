@@ -268,15 +268,16 @@ a { text-decoration: none; }
   align-items: center;
 }
 
-/* Slightly bigger logo */
+/* Make the mobile logo a little bigger */
 .mobile-header .logo{
-  height: 84px;         /* was 80px */
-  max-height: 84px;
+  height: 88px;          /* was 84px */
+  max-height: 88px;
   width: auto;
-  max-width: 300px;     /* headroom; adjust if needed */
+  max-width: 320px;      /* was 300px */
   display: block;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
 }
+
 
 /* Hamburger toggle — same footprint as call button */
 .menu-toggle{
