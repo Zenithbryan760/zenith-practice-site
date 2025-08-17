@@ -250,12 +250,18 @@ a { text-decoration: none; }
 /* =========================================================
    7) MOBILE HEADER (hamburger + logo + call)
    ========================================================= */
-/* =========================================================
-   7) MOBILE HEADER (hamburger + logo + call)
-   ========================================================= */
 .mobile-header{
   display:none; /* shown at ≤ 1024px */
   align-items:center; justify-content:space-between; gap:10px;
+}
+
+/* Responsive mobile logo: scales with screen width */
+.mobile-header .logo{
+  height: clamp(28px, 7vw, 40px);   /* min 28px, fluid, max 40px */
+  width: auto;
+  max-width: clamp(110px, 30vw, 180px);
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
 }
 
 /* Hamburger toggle — match Call Now button styling */
@@ -300,6 +306,7 @@ a { text-decoration: none; }
 }
 /* Ensure the phone icon stays visible on orange */
 .mobile-call svg path { fill: #072e59; } /* navy icon on orange */
+
 
 /* =========================================================
    8) OFF-CANVAS MOBILE NAV (powder-blue accordions)
