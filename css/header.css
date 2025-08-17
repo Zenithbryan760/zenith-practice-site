@@ -440,6 +440,22 @@ body.nav-open::after{
   .mobile-header .logo{ height:72px; max-height:72px; }
   .mobile-header{ min-height: 88px; }
 }
+/* Real fade: make the last 18px of the header transparent */
+@media (max-width: 1024px){
+  .header{
+    /* fade only on mobile */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0,0,0,1) calc(100% - 18px),
+      rgba(0,0,0,0) 100%
+    );
+            mask-image: linear-gradient(
+      to bottom,
+      rgba(0,0,0,1) calc(100% - 18px),
+      rgba(0,0,0,0) 100%
+    );
+  }
+}
 /* =========================================================
    10) ACCESSIBILITY & MOTION
    ========================================================= */
