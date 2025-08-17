@@ -412,6 +412,12 @@ body.nav-open::after{
   .header .header-inner > .logo-section, .nav-bar, .phone-section{ display:none; }
 }
 
+/* Tiny phones (≤360px): slightly smaller logo & header */
+@media (max-width: 360px){
+  .mobile-header .logo{ height:72px; max-height:72px; }
+  .mobile-header{ min-height: 88px; }
+}
+
 /* =========================================================
    10) ACCESSIBILITY & MOTION
    ========================================================= */
