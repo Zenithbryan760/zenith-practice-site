@@ -255,8 +255,9 @@ a { text-decoration: none; }
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  min-height: 96px;          /* tall enough for 80px logo + padding */
-  padding: 8px 14px;
+  /* ↓ smaller blue band */
+  min-height: 92px;     /* was 96px */
+  padding: 4px 12px;    /* was 8px 14px */
 }
 
 /* Center the logo between the two buttons */
@@ -267,12 +268,12 @@ a { text-decoration: none; }
   align-items: center;
 }
 
-/* Make mobile logo same size as desktop */
+/* Slightly bigger logo */
 .mobile-header .logo{
-  height: 80px;
-  max-height: 80px;
+  height: 84px;         /* was 80px */
+  max-height: 84px;
   width: auto;
-  max-width: 280px;          /* safety cap; adjust if needed */
+  max-width: 300px;     /* headroom; adjust if needed */
   display: block;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
 }
@@ -323,6 +324,7 @@ a { text-decoration: none; }
 }
 /* Keep the phone icon visible on orange */
 .mobile-call svg path { fill: #072e59; }
+
 
 
 
