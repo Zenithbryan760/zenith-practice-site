@@ -252,27 +252,43 @@ a { text-decoration: none; }
    ========================================================= */
 .mobile-header{
   display:none; /* shown at ≤ 1024px */
-  align-items:center; justify-content:space-between; gap:10px;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  min-height: 56px;          /* consistent row height */
+  padding: 10px 14px;        /* comfortable spacing */
 }
 
-/* Responsive mobile logo: scales with screen width */
+/* Center the logo nicely between the two buttons */
+.mobile-header .logo-section{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive mobile logo: balanced against 44×44 buttons */
 .mobile-header .logo{
-  height: clamp(28px, 7vw, 40px);   /* min 28px, fluid, max 40px */
+  height: clamp(32px, 8.5vw, 42px);  /* larger floor & ceiling than before */
   width: auto;
-  max-width: clamp(110px, 30vw, 180px);
+  max-width: clamp(120px, 32vw, 200px);
   display: block;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
 }
 
-/* Hamburger toggle — match Call Now button styling */
+/* Hamburger toggle — same footprint as call button */
 .menu-toggle{
   appearance: none;
   font: inherit;
   background: var(--zenith-orange);
-  color: #072e59;                     /* same text color as .call-button */
+  color: #072e59;
   border: 0;
   border-radius: 12px;
-  padding: 10px 12px;
+  width: 44px;                      /* match call button size */
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   box-shadow: 0 8px 18px rgba(247,148,29,.22);
   transition: transform .18s ease, box-shadow .18s ease, opacity .26s ease;
@@ -285,7 +301,7 @@ a { text-decoration: none; }
   transform: translateY(0);
 }
 
-/* Mobile call button — match Call Now button feel */
+/* Mobile call button — matches toggle size/feel */
 .mobile-call{
   display: inline-flex;
   align-items: center;
@@ -304,8 +320,8 @@ a { text-decoration: none; }
 .mobile-call:active{
   transform: translateY(0);
 }
-/* Ensure the phone icon stays visible on orange */
-.mobile-call svg path { fill: #072e59; } /* navy icon on orange */
+/* Keep the phone icon visible on orange */
+.mobile-call svg path { fill: #072e59; }
 
 
 /* =========================================================
