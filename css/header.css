@@ -288,16 +288,27 @@ body.nav-open::after{
   content:""; position: fixed; inset:0; background: rgba(0,0,0,.45); z-index: 1090;
 }
 
-/* Top-level items */
-.mobile-links > li + li{ margin-top:6px; }            /* even vertical rhythm */
-.mobile-links > li > a,
-.mobile-links > li > button.accordion-toggle{
+/* Top-level + nested items (uniform tabs) */
+.mobile-links > li + li{ margin-top:6px; } /* keep the even rhythm */
+
+.mobile-nav a,
+.mobile-nav .accordion-toggle{
   display:flex; align-items:center; justify-content:space-between;
-  width:100%; padding: 12px 12px; color:#fff; font-size: 1rem; border:0; background:transparent;
-  border-radius:12px; font-weight:600;
+  width:100%;
+  padding:12px 12px;
+  font-family: var(--font-sans);
+  font-weight:600;
+  font-size:1rem;
+  line-height:1.2;
+  color:#fff;
+  background:transparent;
+  border:0;
+  border-radius:12px;
+  text-align:left;
 }
-.mobile-links a:hover,
-.mobile-links button.accordion-toggle:hover{
+
+.mobile-nav a:hover,
+.mobile-nav .accordion-toggle:hover{
   background: rgba(255,255,255,.08);
 }
 
