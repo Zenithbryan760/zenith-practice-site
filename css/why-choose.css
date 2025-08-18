@@ -1,183 +1,128 @@
 /* =========================================================
-   Why Choose — Modern, Professional, Mobile-First
-   Animated tile background + neon-navy theme
+   Why Choose — clean + modern, aligned to site styling
+   Subtle shingle-grid background wash, no flashy motion
    ========================================================= */
 
 :root{
-  /* Neon navy palette */
-  --navy: #155EEF;        /* bright, accessible navy */
-  --navy-2:#1B5FFF;       /* highlight navy */
-  --navy-deep:#0A1F3F;    /* deep base */
-  --navy-mid:#0B2E59;     /* mid tone */
-
-  --text:#0f172a;
-  --muted:#667085;
-
+  --zenith-navy:#072e59;
+  --zenith-navy-2:#0b3a6f;
+  --zenith-orange:#f7941d;
+  --zenith-text:#0f172a;
+  --bg:#f8fafc;
   --surface:#ffffff;
-  --line:#e6eef5;
-
+  --line:#e7ecf2;
   --radius:16px;
   --radius-lg:20px;
-
-  /* Background animation controls */
-  --tile-size: 26px;                  /* grid size */
-  --tile-line: rgba(255,255,255,.07); /* grid line color */
-  --tile-speed: 42s;                  /* animation duration */
 }
 
-/* Section shell */
-#why-choose.why-choose-modern{
+/* Section shell + background */
+.why-choose-section{
   position:relative;
   overflow:hidden;
-  color:var(--text);
-  padding:clamp(1.6rem,3.2vw,2.6rem) 1rem;
+  background: var(--bg);
+  color: var(--zenith-text);
+  padding: clamp(1.6rem,3vw,2.6rem) 1rem;
 }
 
-/* ===== Animated TILE + GRADIENT background ===== */
-#why-choose.bg-tiles{
-  /* base vertical gradient with neon navy feel */
+/* Subtle brand-tinted wash + faint “shingle” grid */
+.why-choose-section::before,
+.why-choose-section::after{ content:""; position:absolute; inset:0; pointer-events:none; }
+.why-choose-section::before{
   background:
-    linear-gradient(180deg, var(--navy-deep) 0%, var(--navy-mid) 55%, #0E3D86 100%);
+    radial-gradient(900px 520px at 8% -10%, rgba(11,58,111,.07) 0, transparent 60%),
+    radial-gradient(700px 420px at 98% 0%, rgba(247,148,29,.08) 0, transparent 55%);
 }
-
-/* subtle brand washes (adds depth) */
-#why-choose.bg-tiles::after{
-  content:"";
-  position:absolute; inset:0;
+.why-choose-section::after{
+  /* ultra-light diagonal grid evokes shingles */
   background:
-    radial-gradient(900px 520px at 8% -10%, rgba(27,95,255,.20) 0, transparent 60%),
-    radial-gradient(700px 420px at 100% 0%, rgba(247,148,29,.14) 0, transparent 55%);
-  pointer-events:none;
+    repeating-linear-gradient(135deg, rgba(7,46,89,.035) 0 2px, transparent 2px 18px),
+    repeating-linear-gradient(45deg,  rgba(7,46,89,.025) 0 2px, transparent 2px 18px);
+  mix-blend-mode: normal;
+  opacity:.7;
 }
 
-/* animated tile grid (runs on its own layer) */
-#why-choose.bg-tiles::before{
-  content:"";
-  position:absolute; inset:0;
-  background-image:
-    linear-gradient(to right, var(--tile-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--tile-line) 1px, transparent 1px);
-  background-size: var(--tile-size) var(--tile-size), var(--tile-size) var(--tile-size);
-  background-position: 0 0, 0 0;
-  opacity:.45;
-  animation: tilesShift var(--tile-speed) linear infinite;
-  pointer-events:none;
-}
+/* Container */
+.why-choose-section .why-container{ max-width:1100px; margin-inline:auto; position:relative; z-index:1; }
 
-@keyframes tilesShift{
-  0%   { background-position: 0 0, 0 0; }
-  100% { background-position: 200px 200px, 200px 200px; }
-}
-
-/* Keep content above backgrounds */
-#why-choose .why-wrap,
-#why-choose .why-cols{ position:relative; z-index:1; }
-
-/* Container + layout */
-#why-choose .why-wrap{ max-width:1100px; margin-inline:auto; }
-#why-choose .why-cols{
+/* Layout: stack on mobile, 2-col on desktop */
+.why-choose-section .why-grid{
   display:grid; gap:1.25rem; align-items:center;
   grid-template-columns:1fr; /* mobile */
 }
 @media (min-width:900px){
-  #why-choose .why-cols{ grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); } /* ~55/45 */
+  .why-choose-section .why-grid{ grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr); }
 }
 
 /* Title */
-#why-choose .why-title{
+.why-choose-section .why-title{
   margin:0 0 .85rem 0;
   font-size:clamp(1.55rem,3.1vw,2.15rem);
   line-height:1.15;
-  color:var(--navy);
-  text-shadow:0 0 .5px rgba(27,95,255,.35); /* very soft neon shimmer */
+  color:var(--zenith-navy);
 }
-#why-choose .why-title::after{
-  content:"";
-  display:block;
-  width:56px; height:3px; margin-top:.55rem;
-  background:linear-gradient(90deg, var(--navy-2), var(--navy));
-  border-radius:3px; opacity:.95;
+.why-choose-section .why-title::after{
+  content:""; display:block; width:56px; height:3px; margin-top:.55rem;
+  background: var(--zenith-navy); border-radius:3px; opacity:.9;
 }
 
 /* Checklist */
-#why-choose .why-text{ text-align:left; }
-#why-choose .why-list{
+.why-choose-section .why-list{
   list-style:none; margin:0; padding:0;
   display:grid; gap:.65rem;
 }
-#why-choose .why-list li{
-  display:grid;
-  grid-template-columns:38px 1fr;   /* icon + text */
-  align-items:start; column-gap:.7rem;
+.why-choose-section .why-list li{
+  display:grid; grid-template-columns:38px 1fr; align-items:start; column-gap:.7rem;
   line-height:1.6;
-  color:#f8fafc;                    /* readable on dark bg */
 }
-
-/* Check chip (✓ works as plain text) */
-#why-choose .check{
+.why-choose-section .check{
   display:inline-grid; place-items:center;
   width:38px; height:38px; border-radius:50%;
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.24);
-  color:#fff; font-weight:700; font-size:16px; line-height:1;
-  box-shadow:0 0 0 2px rgba(27,95,255,.12) inset, 0 6px 16px rgba(27,95,255,.18);
+  background:#fff; border:1px solid var(--line);
+  color:var(--zenith-navy); font-weight:700; font-size:16px; line-height:1;
 }
 
-/* Buttons */
-#why-choose .why-actions{
+/* Actions (pill buttons, site-style) */
+.why-choose-section .why-actions{
   margin-top:1rem; display:flex; flex-wrap:wrap; gap:.6rem .7rem;
 }
-#why-choose .btn{
+.why-choose-section .btn{
   display:inline-flex; align-items:center; justify-content:center;
   padding:.62rem 1rem; border-radius:999px; text-decoration:none; font-weight:600;
-  border:1px solid rgba(255,255,255,.22); color:#f2f6ff; background:rgba(255,255,255,.08);
-  backdrop-filter: blur(6px);
-  transition:transform .15s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease;
+  border:1px solid var(--line); background:#fff; color:var(--zenith-text);
+  transition:transform .15s ease, border-color .15s ease, background .15s ease;
 }
-#why-choose .btn:hover{
-  transform:translateY(-1px); background:rgba(255,255,255,.12);
-  border-color:rgba(255,255,255,.32);
+.why-choose-section .btn:hover{ transform:translateY(-1px); background:#f9fbfe; border-color:#d7e0ea; }
+.why-choose-section .btn--primary{
+  color:#fff; border-color:transparent;
+  background: linear-gradient(180deg, var(--zenith-orange) 0%, #ffb457 100%);
+  box-shadow: 0 8px 20px rgba(247,148,29,.22);
 }
-#why-choose .btn--primary{
-  color:#fff;
-  border-color:transparent;
-  background:linear-gradient(180deg, var(--navy-2) 0%, var(--navy) 100%);
-  box-shadow:0 10px 28px rgba(27,95,255,.32), inset 0 1px 0 rgba(255,255,255,.25);
-}
-#why-choose .btn--primary:hover{
-  transform:translateY(-2px);
-  box-shadow:0 16px 36px rgba(27,95,255,.38), inset 0 1px 0 rgba(255,255,255,.3);
-}
+.why-choose-section .btn--primary:hover{ transform:translateY(-2px); box-shadow: 0 14px 28px rgba(247,148,29,.28); }
 
 /* Image block */
-#why-choose .why-media{
+.why-choose-section .why-image{
   position:relative; overflow:hidden;
-  border:1px solid rgba(255,255,255,.18);
+  border:1px solid var(--line);
   border-radius:var(--radius-lg);
   background:var(--surface);
-  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  box-shadow:0 8px 24px rgba(2,12,32,.06);
 }
-#why-choose .why-media img{
+.why-choose-section .why-image img{
   display:block; width:100%; height:100%;
   object-fit:cover; aspect-ratio:16/10;           /* mobile crop */
 }
 @media (min-width:900px){
-  #why-choose .why-media img{ aspect-ratio:4/5; } /* taller crop on desktop */
+  .why-choose-section .why-image img{ aspect-ratio:4/5; } /* taller desktop crop */
 }
 
 /* Mobile polish */
 @media (max-width:520px){
-  #why-choose .why-title{ text-align:center; }
-  #why-choose .why-title::after{ margin-inline:auto; }
+  .why-choose-section .why-title{ text-align:center; }
+  .why-choose-section .why-title::after{ margin-inline:auto; }
 }
 
 /* A11y helper */
 .sr-only{
   position:absolute; width:1px; height:1px; padding:0; margin:-1px;
   overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
-}
-
-/* Optional: quickly tone down motion for users who prefer it */
-@media (prefers-reduced-motion: reduce){
-  #why-choose.bg-tiles::before{ animation: none; }
 }
