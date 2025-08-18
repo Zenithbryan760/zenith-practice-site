@@ -1,181 +1,215 @@
 /* =========================================================
-   About Section — Clean Minimal
+   About Section — Modern Minimal
    Scoped to .about-section
    ========================================================= */
 
+/* Brand tokens (fallbacks if not defined globally) */
 :root{
   --zenith-navy:#072e59;
   --zenith-navy-2:#0b3a6f;
   --zenith-orange:#f7941d;
   --zenith-text:#0f172a;
-  --zenith-muted:#64748b;
-  --zenith-border:#e5e7eb;    /* slightly lighter */
-  --white:#ffffff;
-  --offwhite:#f9fafb;
-  --radius:12px;
+  --zenith-muted:#6b7280;
+  --surface:#ffffff;
+  --bg:#f8fafc;
+  --line:#e5e7eb;
+  --radius:14px;
+  --shadow:0 8px 22px rgba(2,14,32,.06);
+  --shadow-hover:0 14px 34px rgba(2,14,32,.10);
 }
 
-/* ---------- Section & container ---------- */
+/* Section & container */
 .about-section{
-  background: var(--offwhite);
+  background: linear-gradient(180deg, var(--bg) 0%, #fff 100%);
   color: var(--zenith-text);
-  padding: clamp(1.5rem, 3vw, 2.25rem) 1rem;
+  padding: clamp(2rem, 4vw, 3rem) 1rem;
 }
 .about-section .about-container{
-  max-width: 1100px;          /* a bit tighter for calm layout */
+  max-width: 1140px;
   margin-inline: auto;
 }
 
-/* ---------- Header ---------- */
+/* Header */
 .about-section .about-header{ text-align:center; }
 
+.about-section .about-kicker{
+  display:inline-block;
+  margin-bottom:.5rem;
+  font: 600 .8rem/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing:.12em; text-transform:uppercase;
+  color: var(--zenith-muted);
+}
+
 .about-section .about-title{
-  font-size: clamp(1.6rem, 2.4vw, 2rem);
-  line-height: 1.2;
-  letter-spacing: .2px;
-  color: var(--zenith-navy);
+  position: relative;
+  display: inline-block;
   margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  line-height: 1.15;
+  color: var(--zenith-navy);
+}
+.about-section .title-underline{
+  position:absolute; left: 10px; right: -4px; bottom: -10px; height: 3px;
+  background: linear-gradient(90deg, rgba(7,46,89,.25), rgba(247,148,29,.45));
+  border-radius: 99px;
 }
 
 .about-section .about-lede{
-  max-width: 62ch;
-  margin: .6rem auto 0;
-  font-size: 1rem;
+  max-width: 64ch;
+  margin: .9rem auto 0;
+  font-size: clamp(1rem, 1.1vw, 1.06rem);
   color: var(--zenith-text);
 }
 .about-section .about-lede a{
   color: var(--zenith-navy-2);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .about-section .about-lede a:hover{ color: var(--zenith-orange); }
 
-/* ---------- Badges (subtle chips) ---------- */
+/* Badges — ghost chips */
 .about-section .about-badges{
-  display: flex; flex-wrap: wrap; justify-content: center;
-  gap: .5rem .6rem; margin-top: .75rem; padding-left: 0; list-style: none;
+  display:flex; flex-wrap:wrap; justify-content:center;
+  gap:.5rem .6rem; margin-top:.9rem; padding-left:0; list-style:none;
 }
 .about-section .badge-chip{
-  display: inline-flex; align-items: center; gap: .35rem;
-  padding: .36rem .6rem;
-  background: #fff;
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.42rem .65rem;
+  background: transparent;
   color: var(--zenith-text);
-  border: 1px solid var(--zenith-border);
+  border: 1px solid var(--line);
   border-radius: 999px;
-  font-size: .93rem;
-  box-shadow: none;           /* no shadow for quiet look */
+  font-size:.93rem;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.about-section .badge-chip:hover{
+  background: #fff;
+  border-color: #d9dde3;
+  color: var(--zenith-navy);
 }
 .about-section .badge-chip a{ color: inherit; text-decoration: none; }
 .about-section .badge-chip a:hover{ color: var(--zenith-orange); }
 
-/* ---------- Cards grid (quiet cards) ---------- */
+/* Feature cards — calm, modern */
 .about-section .about-grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
   gap: 1.25rem;
-  max-width: 100%;            /* align with container width */
-  margin-top: clamp(1.1rem, 2vw, 1.4rem);
+  margin-top: clamp(1.2rem, 2.2vw, 1.6rem);
 }
 .about-section .about-card{
-  background: #fff;
-  border: 1px solid var(--zenith-border);
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1rem 1.1rem;
-  box-shadow: none;           /* remove shadows */
+  padding: 1.05rem 1.15rem;
+  box-shadow: var(--shadow);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.about-section .about-card:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
 }
 .about-section .about-card h3{
   margin: 0 0 .35rem;
+  font-size: 1.08rem;
   color: var(--zenith-navy);
-  font-size: 1.05rem;
 }
-.about-section .about-card p{ margin: 0; line-height: 1.6; }
-.about-section .about-card p a{ color: var(--zenith-navy-2); }
-.about-section .about-card p a:hover{ color: var(--zenith-orange); }
+.about-section .about-card p{ margin: 0; line-height: 1.65; }
+.about-section .about-card a{ color: var(--zenith-navy-2); }
+.about-section .about-card a:hover{ color: var(--zenith-orange); }
 
-/* ---------- Process (simple list with light badges) ---------- */
+/* Process — simple, aligned */
 .about-section .about-process{
-  max-width: 900px;
-  margin: clamp(1.4rem, 3vw, 1.8rem) auto 0;
+  max-width: 960px;
+  margin: clamp(1.5rem, 3vw, 2rem) auto 0;
 }
 .about-section .process-title{
-  text-align: center;
-  margin: 0 0 .6rem;
-  color: var(--zenith-navy);
-  font-size: 1.05rem;
-  font-weight: 600;
+  text-align:center; margin: 0 0 .7rem; color: var(--zenith-navy); font-weight: 700;
 }
 .about-section .process-steps{
-  list-style: none; margin: 0; padding: 0;
-  display: grid; gap: .7rem;
+  list-style:none; margin:0; padding:0; display:grid; gap:.7rem;
 }
 .about-section .process-steps li{
-  display: flex; align-items: center;
-  border: 1px solid var(--zenith-border);
+  display:flex; align-items:center; gap:.55rem;
+  padding:.6rem .8rem;
+  background: var(--surface);
+  border:1px solid var(--line);
   border-radius: var(--radius);
-  background: #fff;
-  padding: .55rem .7rem;
-  line-height: 1.5;
 }
 .about-section .step-badge{
-  flex-shrink: 0;
-  width: 28px; height: 28px; border-radius: 50%;
-  display: inline-grid; place-items: center;
-  font-weight: 700; font-size: .9rem;
+  flex:0 0 30px; height:30px;
+  display:grid; place-items:center;
+  border-radius:50%;
+  background: rgba(247,148,29,.1);
   color: var(--zenith-orange);
-  background: rgba(247,148,29,.08);      /* very light fill */
-  border: 1px solid rgba(247,148,29,.22);
-  margin-right: .55rem;
+  font-weight:700;
+  border: 1px solid rgba(247,148,29,.25);
 }
 .about-section .step-label{
-  font-weight: 600; margin-right: .35rem; color: var(--zenith-text);
+  font-weight:600; margin-right:.3rem; color: var(--zenith-text);
 }
 
-/* ---------- Specialties ---------- */
+/* Specialties — clean cards */
 .about-section .about-specialties{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.1rem;
-  max-width: 100%;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap:1.1rem;
   margin-top: clamp(1.1rem, 2.2vw, 1.5rem);
 }
 .about-section .specialty{
-  background: #fff;
-  border: 1px solid var(--zenith-border);
+  background: var(--surface);
+  border:1px solid var(--line);
   border-radius: var(--radius);
   padding: 1rem 1.1rem;
 }
 .about-section .specialty h4{
-  margin: 0 0 .25rem;
-  font-weight: 600;
-  color: var(--zenith-navy);
+  margin:0 0 .25rem; color: var(--zenith-navy); font-weight:700;
 }
-.about-section .specialty p{ margin: 0; line-height: 1.6; }
-.about-section .inline-link{ color: var(--zenith-navy-2); text-decoration: none; }
+.about-section .specialty p{ margin:0; line-height:1.6; }
+.about-section .inline-link{ color: var(--zenith-navy-2); text-decoration: underline; text-underline-offset:2px; }
 .about-section .inline-link:hover{ color: var(--zenith-orange); }
 
-/* ---------- Soft nav links (calm chips) ---------- */
+/* Secondary links — modern ghost pills */
 .about-section .about-links{
-  display: flex; flex-wrap: wrap; justify-content: center;
-  gap: .55rem .65rem; max-width: 900px; margin: clamp(1rem, 2vw, 1.3rem) auto 0; padding-left: 0;
+  display:flex; flex-wrap:wrap; justify-content:center;
+  gap:.55rem .65rem;
+  max-width: 960px;
+  margin: clamp(1rem, 2.2vw, 1.4rem) auto 0;
+  padding-left:0; list-style:none;
 }
 .about-section .link-chip{
-  display: inline-flex; align-items: center;
-  padding: .45rem .7rem;
-  background: #fff;
+  display:inline-flex; align-items:center;
+  padding:.5rem .8rem;
+  background: transparent;
   color: var(--zenith-text);
-  border: 1px solid var(--zenith-border);
+  border:1px solid var(--line);
   border-radius: 999px;
-  text-decoration: none;
-  font-size: .93rem;
+  text-decoration:none;
+  font-size:.94rem;
+  transition: background .15s ease, border-color .15s ease, color .15s ease, transform .15s ease;
 }
-.about-section .link-chip:hover{ color: var(--zenith-orange); border-color: var(--zenith-orange); }
-.about-section .link-chip:focus-visible{ outline: 2px solid var(--zenith-orange); outline-offset: 2px; }
+.about-section .link-chip:hover{
+  background:#fff;
+  border-color:#d9dde3;
+  color: var(--zenith-navy-2);
+  transform: translateY(-1px);
+}
+.about-section .link-chip:focus-visible{
+  outline:2px solid var(--zenith-orange);
+  outline-offset:2px;
+}
 
-/* ---------- Responsive ---------- */
+/* Responsive */
 @media (max-width: 900px){
-  .about-section .about-header{ text-align: left; }
-  .about-section .about-lede{ margin-left: 0; margin-right: 0; }
+  .about-section .about-header{ text-align:left; }
+  .about-section .about-lede{ margin-left:0; margin-right:0; }
   .about-section .about-badges,
-  .about-section .about-links{ justify-content: flex-start; }
-  .about-section .about-grid{ grid-template-columns: 1fr; }
-  .about-section .about-specialties{ grid-template-columns: 1fr; }
+  .about-section .about-links{ justify-content:flex-start; }
+  .about-section .about-grid{ grid-template-columns:1fr; }
+  .about-section .about-specialties{ grid-template-columns:1fr; }
+}
+
+/* Motion preference */
+@media (prefers-reduced-motion: reduce){
+  .about-section *{ transition:none !important; }
 }
