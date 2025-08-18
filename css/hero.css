@@ -204,26 +204,24 @@ input[type="file"]:focus-within{
 }
 #recaptcha-slot{ display:block; min-width:304px; min-height:78px; }
 
-/* ===== Disclaimer (turn Real Estate link into button) ===== */
+/* ===== Disclaimer (Real Estate link as bold orange text) ===== */
 .form-disclaimer{
   font-size:.85rem; color:#6b7280;
   margin-top:1rem; text-align:center; line-height:1.5;
 }
 .form-disclaimer a{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:.55rem .9rem; border-radius:9999px;
-  background:var(--zenith-orange); color:#fff !important;
-  text-decoration:none; font-weight:700;
-  box-shadow:0 8px 22px rgba(247,148,29,.28);
-  transition:background .2s, box-shadow .2s, transform .08s;
+  color: var(--zenith-orange);
+  font-weight: 800;        /* bold */
+  text-decoration: none;   /* no underline by default */
 }
 .form-disclaimer a:hover{
-  background:#e9830b; box-shadow:0 12px 26px rgba(247,148,29,.36);
-  transform:translateY(-1px);
+  text-decoration: underline;
 }
 .form-disclaimer a:focus-visible{
-  outline:3px solid rgba(247,148,29,.35); outline-offset:3px;
+  outline: 2px dotted var(--zenith-orange);
+  outline-offset: 2px;
 }
+
 
 /* ===== Responsive ===== */
 @media (max-width:900px){ .zenith-card{ padding:1.75rem; } }
