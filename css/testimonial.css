@@ -39,6 +39,10 @@
 }
 #testimonials .swiper-slide{ height:auto; }
 
+/* Slide transition helpers (toggled by JS) */
+#testimonials .t-slide{ transition: transform .45s ease, opacity .45s ease; }
+#testimonials .t-slide.is-dim{ transform: scale(.97); opacity:.85; }
+
 /* Card */
 #testimonials .t-card{
   background:var(--surface);
@@ -49,6 +53,7 @@
   height:100%;
   display:flex; flex-direction:column;
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  will-change:transform;
 }
 @media (hover:hover){
   #testimonials .t-card:hover{ transform:translateY(-3px); border-color:#dfe6ee; box-shadow:var(--shadow-lg); }
@@ -63,7 +68,7 @@
   margin-bottom:.55rem;
 }
 
-/* Stars (simple, readable, accessible) */
+/* Stars */
 #testimonials .t-stars{
   color:#f59e0b; letter-spacing:.12em; font-size:1rem;
   margin-bottom:.4rem;
@@ -95,6 +100,10 @@
 }
 #testimonials .swiper-button-prev:after,
 #testimonials .swiper-button-next:after{ font-size:16px; }
+#testimonials .swiper-button-prev:focus-visible,
+#testimonials .swiper-button-next:focus-visible{
+  outline:0; box-shadow:0 0 0 3px rgba(247,148,29,.28);
+}
 @media (max-width:700px){
   #testimonials .swiper-button-prev,
   #testimonials .swiper-button-next{ width:36px; height:36px; }
@@ -125,10 +134,11 @@
 /* Motion-respect */
 @media (prefers-reduced-motion: reduce){
   #testimonials .t-card,
-  #testimonials .t-btn{ transition:none !important; }
+  #testimonials .t-btn,
+  #testimonials .t-slide{ transition:none !important; }
 }
 
-/* Utility (only here) */
+/* Utility */
 #testimonials .sr-only{
   position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
 }
