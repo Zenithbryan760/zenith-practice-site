@@ -1,237 +1,82 @@
-/* =========================================================
-   Why Choose — Modern, Mobile-First with Responsive Figure
-   Scoped to .why-choose-section
-   Uses van image: /images/zenith-van-optimized.jpg
-   ========================================================= */
+/* ============================
+   TIERED VARIANT (less boxy)
+   Top 3 = cards, bottom 3 = flat list
+   ============================ */
 
-:root{
-  --zenith-navy:#072e59;
-  --zenith-navy-2:#0b3a6f;
-  --zenith-orange:#f7941d;
-  --zenith-text:#0f172a;
-  --zenith-muted:#667085;
-  --bg:#fbfcfe;
-  --surface:#ffffff;
-  --line:#e7ecf2;
-  --radius:12px;
-  --radius-lg:16px;
+/* keep your current grid; only change presentation */
+.why-choose-section .why-grid--tiered .why-card{
+  transition: transform .14s ease, border-color .14s ease, background .14s ease, box-shadow .14s ease;
 }
 
-/* Section & container */
-.why-choose-section{
-  background:var(--bg);
-  color:var(--zenith-text);
-  padding:clamp(1.5rem,3.5vw,2.6rem) 1rem;
+/* PRIME (top row: items 1–3) — keep cards, a touch more emphasis */
+.why-choose-section .why-grid--tiered .why-card:nth-child(-n+3){
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 20px rgba(2,12,32,.06);
 }
-.why-choose-section .why-container{
-  max-width:1100px;
-  margin-inline:auto;
-}
-
-/* Layout */
-.why-choose-section .why-layout{
-  display:grid;
-  gap:1.2rem;
-  align-items:center;
-  grid-template-columns:1fr;              /* mobile */
-}
-@media (min-width:900px){
-  .why-choose-section .why-layout{
-    grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); /* ~60/40 split */
-  }
+.why-choose-section .why-grid--tiered .why-card:nth-child(-n+3):hover{
+  transform: translateY(-2px);
+  border-color: #d8dee6;
+  box-shadow: 0 14px 28px rgba(2,12,32,.08);
 }
 
-/* Header */
-.why-choose-section .why-header{ text-align:left; }
-.why-choose-section .why-kicker{
-  margin:0 0 .3rem;
-  font:600 .82rem/1 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  text-transform:uppercase;
-  letter-spacing:.14em;
-  color:var(--zenith-muted);
-}
-.why-choose-section .why-title{
-  margin:0;
-  font-size:clamp(1.6rem,3.2vw,2.2rem);
-  line-height:1.15;
-  color:var(--zenith-navy);
-}
-.why-choose-section .why-lede{
-  max-width:62ch;
-  margin:.55rem 0 0;
-  line-height:1.7;
+/* PLAIN (bottom row: items 4–6) — no box, just a neat line + compact icon */
+.why-choose-section .why-grid--tiered .why-card:nth-child(n+4){
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: .2rem 0 1rem;
+  display: grid;
+  grid-template-columns: 40px 1fr;     /* icon + text */
+  align-items: start;
+  gap: .7rem;
+  position: relative;
 }
 
-/* Grid */
-.why-choose-section .why-grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:.9rem;
-  margin-top:clamp(.9rem,2vw,1.3rem);
-}
-.why-choose-section .why-card{
-  grid-column:span 12;
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:.95rem 1rem;
-  transition:transform .14s ease,border-color .14s ease,background .14s ease;
-}
-.why-choose-section .why-card:hover{
-  transform:translateY(-1px);
-  border-color:#d8dee6;
-}
-.why-choose-section .why-card h3{
-  margin:.1rem 0 .2rem;
-  font-size:1.02rem;
-  color:var(--zenith-navy);
-}
-.why-choose-section .why-card p{
-  margin:0;
-  line-height:1.6;
+/* divider for bottom row */
+.why-choose-section .why-grid--tiered .why-card:nth-child(n+4)::before{
+  content:"";
+  position:absolute;
+  left: 0; right: 0; top: 0;
+  height: 1px;
+  background: var(--line);
+  opacity: .9;
 }
 
-/* Icon chip (and constrain any stray SVG/IMG) */
-.why-choose-section .why-icon{
-  display:inline-grid;
-  place-items:center;
-  width:40px; height:40px;
-  border-radius:50%;
-  background:linear-gradient(135deg,rgba(7,46,89,.08),rgba(247,148,29,.12));
-  color:var(--zenith-navy);
-  border:1px solid rgba(7,46,89,.15);
+/* smaller, line-only icon chip for the plain row */
+.why-choose-section .why-grid--tiered .why-card:nth-child(n+4) .why-icon{
+  width: 36px; height: 36px;
+  background: transparent;
+  border: 1px solid rgba(7,46,89,.22);
+  color: var(--zenith-navy);
 }
-.why-choose-section .why-icon svg{
-  width:22px; height:22px;
-  stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;
-}
-.why-choose-section .why-card > svg,
-.why-choose-section .why-card > img{
-  width:42px; height:42px; object-fit:contain; display:inline-block;
-  padding:.35rem; border-radius:50%;
-  background:linear-gradient(135deg,rgba(7,46,89,.08),rgba(247,148,29,.12));
-  border:1px solid rgba(7,46,89,.15);
+.why-choose-section .why-grid--tiered .why-card:nth-child(n+4) .why-icon svg{
+  width: 20px; height: 20px;
 }
 
-/* Desktop: 3-up grid */
-@media (min-width:820px){
-  .why-choose-section .why-card{ grid-column:span 4; }
+/* tighten copy in the plain row */
+.why-choose-section .why-grid--tiered .why-card:nth-child(n+4) h3{
+  margin: .1rem 0 .15rem;
+  font-size: 1rem;
+  color: var(--zenith-navy);
+}
+.why-choose-section .why-grid--tiered .why-card:nth-child(n+4) p{
+  margin: 0;
+  color: var(--zenith-muted);
 }
 
-/* Bottom: stats + actions */
-.why-choose-section .why-bottom{
-  margin-top:clamp(1rem,2vw,1.5rem);
-  display:grid;
-  gap:.9rem;
+/* hover cue for the plain row (subtle) */
+.why-choose-section .why-grid--tiered .why-card:nth-child(n+4):hover{
+  transform: translateX(2px);
 }
 
-/* Reset bullets to avoid stray • marks */
-.why-choose-section .why-stats{ list-style:none; padding:0; margin:0; }
-.why-choose-section .why-actions{ list-style:none; padding:0; margin:0; }
-
-.why-choose-section .why-stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:.6rem;
-  max-width:720px;
-}
-.why-choose-section .why-stats li{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:999px;
-  padding:.55rem .7rem;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.15rem;
-  text-align:center;
-}
-.why-choose-section .stat-num{ font-weight:700; color:var(--zenith-navy); }
-.why-choose-section .stat-label{ font-size:.85rem; color:var(--zenith-muted); }
-
-/* Actions (pills) */
-.why-choose-section .why-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:.6rem .7rem;
-}
-.why-choose-section .why-btn{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:.58rem .95rem;
-  border-radius:999px;
-  border:1px solid var(--line);
-  background:linear-gradient(180deg,#fff 0%,#f7f9fc 100%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.65), 0 1px 2px rgba(2,12,32,.04);
-  font-weight:600; letter-spacing:.01em; text-decoration:none; color:var(--zenith-text);
-  transition:border-color .15s ease, transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
-}
-.why-choose-section .why-btn:hover{
-  transform:translateY(-1px);
-  border-color:#dbe3ec;
-  background:linear-gradient(180deg,#fff 0%,#eff3f8 100%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 6px 18px rgba(2,12,32,.10);
-}
-.why-choose-section .why-btn--primary{
-  color:#fff; border-color:transparent;
-  background:linear-gradient(135deg,var(--zenith-orange),#ffb457);
-  box-shadow:0 8px 20px rgba(247,148,29,.25);
-}
-.why-choose-section .why-btn--primary:hover{
-  transform:translateY(-2px);
-  box-shadow:0 14px 28px rgba(247,148,29,.30);
+/* Desktop: maintain 3-up layout */
+@media (min-width: 820px){
+  .why-choose-section .why-grid--tiered .why-card{ grid-column: span 4; }
 }
 
-/* Responsive image figure (with your file name) */
-.why-choose-section .why-image{
-  position:relative;
-  overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:var(--radius-lg);
-  background:#fff;
-  box-shadow:0 12px 30px rgba(2,12,32,.08);
-}
-.why-choose-section .why-image img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  aspect-ratio:16 / 10;           /* mobile: landscape */
-}
-
-/* OPTIONAL: use CSS background instead of <img>.
-   Add class .is-bg to .why-image if you choose this method. */
-.why-choose-section .why-image.is-bg{
-  background-image: url("/images/zenith-van-optimized.jpg"); /* <-- your filename */
-  background-size:cover;
-  background-position:center;
-  aspect-ratio:16 / 10;
-}
-.why-choose-section .why-image.is-bg img{ display:none; }
-
-@media (min-width:900px){
-  .why-choose-section .why-image img{ aspect-ratio:4 / 5; } /* desktop: taller crop */
-  .why-choose-section .why-image.is-bg{ aspect-ratio:4 / 5; }
-}
-
-/* Mobile niceties */
-@media (max-width:680px){
-  .why-choose-section .why-header{ text-align:center; }
-  .why-choose-section .why-actions{
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    padding-bottom:.25rem;
-  }
-  .why-choose-section .why-btn{ white-space:nowrap; }
-  .why-choose-section .why-stats{ max-width:100%; }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .why-choose-section *{ transition:none !important; }
-}
-
-/* Visually hidden utility */
-.sr-only{
-  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+/* Mobile polish: no dividers between separate rows, only between items */
+@media (max-width: 680px){
+  .why-choose-section .why-grid--tiered .why-card:nth-child(4){ margin-top:.2rem; }
+  .why-choose-section .why-grid--tiered .why-card:nth-child(n+4)::before{ left: 52px; } /* align with icon edge */
 }
