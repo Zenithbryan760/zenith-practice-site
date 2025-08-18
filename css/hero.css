@@ -239,7 +239,8 @@ input[type="file"]:focus-within{
   }
 }
 .nav-collapsed .zenith-hero{
-  padding-top: calc(var(--header-h, 80px) + 12px);
+  /* offset exactly by header height—no extra gap */
+  padding-top: var(--header-h, 80px);
   min-height: calc(100svh - var(--header-h, 80px));
 }
 /* === Minimal validation helpers (non-destructive) === */
