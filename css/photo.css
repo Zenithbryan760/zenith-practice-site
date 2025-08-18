@@ -53,4 +53,83 @@
 @media (min-width:680px){
   .photo-grid{ grid-template-columns: 1fr 1fr; } /* tablet */
 }
-@media (min-width:1024px
+@media (min-width:1024px){
+  .photo-grid{
+    grid-template-columns: 2fr 1fr 1fr;        /* desktop, feature gets 2fr */
+    grid-auto-rows: 1fr;
+  }
+  .photo-item.feature{ grid-column: 1 / span 1; grid-row: 1 / span 2; }
+}
+
+/* Card */
+.photo-card{
+  display:block;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition: box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+}
+
+/* Link + focus ring */
+.photo-link{ display:block; outline:0; }
+.photo-link:focus-visible{
+  box-shadow:0 0 0 4px rgba(247,148,29,.25);
+  border-radius:inherit;
+}
+
+/* Image rules: aspect ratios prevent CLS */
+.photo-card img{
+  width:100%; height:100%; display:block; object-fit:cover; backface-visibility:hidden;
+  transform:translateZ(0);
+  transition: transform .25s ease, filter .25s ease;
+  aspect-ratio: 4 / 3;                 /* default ratio */
+}
+.photo-item.feature img{ aspect-ratio: 16 / 9; }  /* forklift banner looks great wider */
+
+/* Hover lift (only on hover-capable devices) */
+@media (hover:hover){
+  .photo-card:hover{ transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color:#dfe6ee; }
+  .photo-card:hover img{ transform: scale(1.03); filter: saturate(1.05) contrast(1.05); }
+}
+
+/* Captions — good for UX + SEO */
+.caption{
+  padding:.6rem .8rem;
+  font-size:.95rem;
+  color:#4b5563;
+}
+
+/* CTAs */
+.photo-cta{
+  margin-top: clamp(1rem, 2.2vw, 1.4rem);
+  display:flex; gap:.6rem .7rem; flex-wrap:wrap; justify-content:center;
+}
+.photo-cta .btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:.62rem 1rem; border-radius:999px; text-decoration:none; font-weight:600;
+  border:1px solid var(--line);
+  background:#fff; color:var(--zenith-text);
+  transition:transform .15s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease, color .15s ease;
+}
+.photo-cta .btn:not(.btn--primary):hover{
+  transform:translateY(-1px); background:#f1f5f9; border-color:#d7e0ea;
+}
+.photo-cta .btn--primary{
+  color:#fff; border-color:transparent;
+  background:linear-gradient(180deg, var(--zenith-orange) 0%, #ffb457 100%);
+  box-shadow:0 8px 20px rgba(247,148,29,.22), inset 0 1px 0 rgba(255,255,255,.25);
+}
+.photo-cta .btn--primary:hover,
+.photo-cta .btn--primary:focus-visible{
+  transform:translateY(-2px);
+  background:linear-gradient(180deg, #f38a0a 0%, #ffa83b 100%);
+  box-shadow:0 14px 28px rgba(247,148,29,.28), inset 0 1px 0 rgba(255,255,255,.3);
+  color:#fff; outline:0;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .photo-card, .photo-card img, .photo-cta .btn{ transition:none !important; }
+}
