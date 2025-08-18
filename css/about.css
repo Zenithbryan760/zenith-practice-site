@@ -1,41 +1,181 @@
 /* =========================================================
-   About Section — Zenith Roofing Services
-   Namespaced to .about-section to avoid conflicts
+   About Section — Clean Minimal
+   Scoped to .about-section
    ========================================================= */
 
-/* ---------- Container & global spacing ---------- */
+:root{
+  --zenith-navy:#072e59;
+  --zenith-navy-2:#0b3a6f;
+  --zenith-orange:#f7941d;
+  --zenith-text:#0f172a;
+  --zenith-muted:#64748b;
+  --zenith-border:#e5e7eb;    /* slightly lighter */
+  --white:#ffffff;
+  --offwhite:#f9fafb;
+  --radius:12px;
+}
+
+/* ---------- Section & container ---------- */
 .about-section{
-  background: var(--offwhite, #f8fafc);
-  color: var(--zenith-text, #0f172a);
-  padding: clamp(1.5rem, 3vw, 2.5rem) 1rem;
+  background: var(--offwhite);
+  color: var(--zenith-text);
+  padding: clamp(1.5rem, 3vw, 2.25rem) 1rem;
 }
 .about-section .about-container{
-  max-width: 1200px;
+  max-width: 1100px;          /* a bit tighter for calm layout */
   margin-inline: auto;
 }
 
-/* ---------- Header: title, lede, badges ---------- */
+/* ---------- Header ---------- */
 .about-section .about-header{ text-align:center; }
+
 .about-section .about-title{
-  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-size: clamp(1.6rem, 2.4vw, 2rem);
   line-height: 1.2;
   letter-spacing: .2px;
-  color: var(--zenith-navy, #072e59);
-}
-.about-section .about-lede{
-  max-width: 62ch;
-  margin: .5rem auto 0;
-  font-size: clamp(1rem, 1.2vw, 1.05rem);
-  color: var(--zenith-text, #0f172a);
-}
-.about-section .about-lede a{
-  color: var(--zenith-navy-2, #0b3a6f);
-  text-underline-offset: 2px;
-}
-.about-section .about-lede a:hover{
-  color: var(--zenith-orange, #f7941d);
+  color: var(--zenith-navy);
+  margin: 0;
 }
 
-/* Badges row */
+.about-section .about-lede{
+  max-width: 62ch;
+  margin: .6rem auto 0;
+  font-size: 1rem;
+  color: var(--zenith-text);
+}
+.about-section .about-lede a{
+  color: var(--zenith-navy-2);
+  text-decoration: none;
+}
+.about-section .about-lede a:hover{ color: var(--zenith-orange); }
+
+/* ---------- Badges (subtle chips) ---------- */
 .about-section .about-badges{
-  /* your original intent (
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: .5rem .6rem; margin-top: .75rem; padding-left: 0; list-style: none;
+}
+.about-section .badge-chip{
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .36rem .6rem;
+  background: #fff;
+  color: var(--zenith-text);
+  border: 1px solid var(--zenith-border);
+  border-radius: 999px;
+  font-size: .93rem;
+  box-shadow: none;           /* no shadow for quiet look */
+}
+.about-section .badge-chip a{ color: inherit; text-decoration: none; }
+.about-section .badge-chip a:hover{ color: var(--zenith-orange); }
+
+/* ---------- Cards grid (quiet cards) ---------- */
+.about-section .about-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  max-width: 100%;            /* align with container width */
+  margin-top: clamp(1.1rem, 2vw, 1.4rem);
+}
+.about-section .about-card{
+  background: #fff;
+  border: 1px solid var(--zenith-border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  box-shadow: none;           /* remove shadows */
+}
+.about-section .about-card h3{
+  margin: 0 0 .35rem;
+  color: var(--zenith-navy);
+  font-size: 1.05rem;
+}
+.about-section .about-card p{ margin: 0; line-height: 1.6; }
+.about-section .about-card p a{ color: var(--zenith-navy-2); }
+.about-section .about-card p a:hover{ color: var(--zenith-orange); }
+
+/* ---------- Process (simple list with light badges) ---------- */
+.about-section .about-process{
+  max-width: 900px;
+  margin: clamp(1.4rem, 3vw, 1.8rem) auto 0;
+}
+.about-section .process-title{
+  text-align: center;
+  margin: 0 0 .6rem;
+  color: var(--zenith-navy);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.about-section .process-steps{
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: .7rem;
+}
+.about-section .process-steps li{
+  display: flex; align-items: center;
+  border: 1px solid var(--zenith-border);
+  border-radius: var(--radius);
+  background: #fff;
+  padding: .55rem .7rem;
+  line-height: 1.5;
+}
+.about-section .step-badge{
+  flex-shrink: 0;
+  width: 28px; height: 28px; border-radius: 50%;
+  display: inline-grid; place-items: center;
+  font-weight: 700; font-size: .9rem;
+  color: var(--zenith-orange);
+  background: rgba(247,148,29,.08);      /* very light fill */
+  border: 1px solid rgba(247,148,29,.22);
+  margin-right: .55rem;
+}
+.about-section .step-label{
+  font-weight: 600; margin-right: .35rem; color: var(--zenith-text);
+}
+
+/* ---------- Specialties ---------- */
+.about-section .about-specialties{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+  max-width: 100%;
+  margin-top: clamp(1.1rem, 2.2vw, 1.5rem);
+}
+.about-section .specialty{
+  background: #fff;
+  border: 1px solid var(--zenith-border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+}
+.about-section .specialty h4{
+  margin: 0 0 .25rem;
+  font-weight: 600;
+  color: var(--zenith-navy);
+}
+.about-section .specialty p{ margin: 0; line-height: 1.6; }
+.about-section .inline-link{ color: var(--zenith-navy-2); text-decoration: none; }
+.about-section .inline-link:hover{ color: var(--zenith-orange); }
+
+/* ---------- Soft nav links (calm chips) ---------- */
+.about-section .about-links{
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: .55rem .65rem; max-width: 900px; margin: clamp(1rem, 2vw, 1.3rem) auto 0; padding-left: 0;
+}
+.about-section .link-chip{
+  display: inline-flex; align-items: center;
+  padding: .45rem .7rem;
+  background: #fff;
+  color: var(--zenith-text);
+  border: 1px solid var(--zenith-border);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: .93rem;
+}
+.about-section .link-chip:hover{ color: var(--zenith-orange); border-color: var(--zenith-orange); }
+.about-section .link-chip:focus-visible{ outline: 2px solid var(--zenith-orange); outline-offset: 2px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px){
+  .about-section .about-header{ text-align: left; }
+  .about-section .about-lede{ margin-left: 0; margin-right: 0; }
+  .about-section .about-badges,
+  .about-section .about-links{ justify-content: flex-start; }
+  .about-section .about-grid{ grid-template-columns: 1fr; }
+  .about-section .about-specialties{ grid-template-columns: 1fr; }
+}
