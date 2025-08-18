@@ -31,7 +31,6 @@
   z-index: 0;                        /* base layer */
 }
 
-
 /* ===== HERO-ONLY BACKGROUND VIDEO ===== */
 .zenith-video-container{
   position:absolute;                 /* lives inside the hero only */
@@ -253,20 +252,17 @@ input[type="file"]:focus-within{
   font-size:.85rem;
   color:var(--zenith-muted);
 }
-
 .form-group.has-error input,
 .form-group.has-error select,
 .form-group.has-error textarea{
   border-color:#dc2626 !important; /* subtle red highlight */
   box-shadow:0 0 0 3px rgba(220,38,38,0.12), var(--shadow-sm);
 }
-
 .field-error{
   margin-top:.35rem;
   font-size:.85rem;
   color:#b91c1c;         /* dark red */
 }
-
 .error-summary{
   display:none;
   background:#fff7ed;    /* soft orange tint */
