@@ -1,225 +1,341 @@
 /* =========================================================
-   About Section — Zenith Roofing Services
-   Namespaced to .about-section (safe to drop in)
-   Uses CSS variables if present; includes sensible fallbacks
+   About Section — Zenith Roofing (Enhanced)
+   Namespaced to .about-section to avoid conflicts
    ========================================================= */
 
-/* ---------- Section & container ---------- */
+/* ---------- Brand tokens (fallbacks if not defined globally) ---------- */
+:root{
+  --zenith-navy:#072e59;
+  --zenith-navy-2:#0b3a6f;
+  --zenith-orange:#f7941d;
+  --zenith-text:#0f172a;
+  --zenith-muted:#64748b;
+  --zenith-border:#e2e8f0;
+  --white:#ffffff;
+  --offwhite:#f8fafc;
+  --radius:14px;
+  --shadow-sm:0 6px 18px rgba(2,14,32,.10);
+  --shadow-md:0 14px 36px rgba(2,14,32,.12);
+}
+
+/* ---------- Section wrapper (subtle gradients + glow accents) ---------- */
 .about-section{
-  background: var(--offwhite, #f8fafc);
-  color: var(--zenith-text, #0f172a);
-  padding: clamp(1.5rem, 3vw, 2.5rem) 1rem;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, var(--offwhite) 0%, #ffffff 100%);
+  color: var(--zenith-text);
+  padding: clamp(1.8rem, 3vw, 3rem) 1rem;
+  isolation: isolate;
+}
+.about-section::before,
+.about-section::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  filter: blur(40px);
+  opacity:.45;
+  pointer-events:none;
+}
+.about-section::before{
+  top:-140px; right:-140px;
+  width:360px; height:360px;
+  background: radial-gradient(ellipse at center, rgba(247,148,29,.28), transparent 60%);
+}
+.about-section::after{
+  bottom:-160px; left:-160px;
+  width:420px; height:420px;
+  background: radial-gradient(ellipse at center, rgba(7,46,89,.18), transparent 60%);
 }
 .about-section .about-container{
   max-width: 1200px;
   margin-inline: auto;
 }
 
-/* ---------- Header: title, lede, badges ---------- */
+/* ---------- Header: kicker, title w/ accent, lede ---------- */
 .about-section .about-header{ text-align:center; }
 
+.about-section .about-kicker{
+  display:inline-block;
+  font-size:.85rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color: var(--zenith-muted);
+  background: #fff;
+  border:1px solid var(--zenith-border);
+  border-radius: 999px;
+  padding:.35rem .65rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom:.6rem;
+}
+
 .about-section .about-title{
-  font-size: clamp(1.5rem, 2.4vw, 2rem);
-  line-height: 1.2;
+  position: relative;
+  display: inline-block;
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  line-height: 1.15;
   letter-spacing: .2px;
-  color: var(--zenith-navy, #072e59);
+  color: var(--zenith-navy);
+  margin: 0;
+}
+.about-section .about-title .title-accent{
+  position:absolute;
+  left: 12px;
+  right: -6px;
+  bottom: -10px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(7,46,89,.12), rgba(247,148,29,.28));
+  filter: blur(6px);
 }
 
 .about-section .about-lede{
-  max-width: 62ch;                  /* comfortable reading width */
-  margin: .5rem auto 0;             /* center the paragraph */
-  font-size: clamp(1rem, 1.2vw, 1.05rem);
-  color: var(--zenith-text, #0f172a);
+  max-width: 62ch;
+  margin: .9rem auto 0;
+  font-size: clamp(1rem, 1.2vw, 1.075rem);
+  color: var(--zenith-text);
 }
 .about-section .about-lede a{
-  color: var(--zenith-navy-2, #0b3a6f);
+  color: var(--zenith-navy-2);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 .about-section .about-lede a:hover{
-  color: var(--zenith-orange, #f7941d);
+  color: var(--zenith-orange);
 }
 
-/* Badges row (ul reset + centered chips) */
+/* ---------- Badges row (chips) ---------- */
 .about-section .about-badges{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: .5rem .7rem;
-  margin-top: .75rem;
-  padding-left: 0;                   /* remove default ul padding */
-  list-style: none;                  /* remove bullets */
+  gap: .6rem .8rem;
+  margin-top: .95rem;
+  padding-left: 0;
+  list-style: none;
 }
 .about-section .badge-chip{
   display: inline-flex;
   align-items: center;
-  gap: .35rem;
-  padding: .4rem .6rem;
-  background: var(--white, #ffffff);
-  color: var(--zenith-text, #0f172a);
-  border: 1px solid var(--zenith-border, #e2e8f0);
-  border-radius: var(--radius, 12px);
-  box-shadow: 0 4px 14px rgba(2,14,32,.06);
+  gap: .4rem;
+  padding: .5rem .7rem;
+  background: var(--white);
+  color: var(--zenith-text);
+  border: 1px solid var(--zenith-border);
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
   font-size: .95rem;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, color .18s ease;
+}
+.about-section .badge-chip:hover{
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(7,46,89,.25);
 }
 .about-section .badge-chip a{
-  color: inherit;
-  text-decoration: none;
+  color: inherit; text-decoration: none;
 }
-.about-section .badge-chip a:hover{
-  color: var(--zenith-orange, #f7941d);
-  text-decoration: underline;
-}
+.about-section .badge-chip a:hover{ color: var(--zenith-orange); text-decoration: underline; }
 
-/* ---------- Cards grid ---------- */
+/* ---------- Cards grid (gradient borders + lift) ---------- */
 .about-section .about-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
-  max-width: 1100px;                 /* cards row width */
+  max-width: 1100px;
   margin-inline: auto;
   margin-top: clamp(1.25rem, 2.2vw, 1.6rem);
 }
 .about-section .about-card{
-  background: var(--white, #ffffff);
-  border: 1px solid var(--zenith-border, #e2e8f0);
-  border-radius: var(--radius, 12px);
-  padding: 1rem 1.1rem;
-  box-shadow: 0 4px 14px rgba(2,14,32,.08);
+  position: relative;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, rgba(7,46,89,.25), rgba(247,148,29,.35)) border-box;
+  border: 1px solid transparent;    /* for gradient border */
+  border-radius: var(--radius);
+  padding: 1.05rem 1.15rem 1.15rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.about-section .about-card .card-accent{
+  position:absolute;
+  inset: 0 auto auto 0;
+  width: 44%;
+  height: 6px;
+  border-radius: 6px 6px 0 0;
+  background: linear-gradient(90deg, var(--zenith-orange), rgba(247,148,29,.4), transparent);
+  opacity:.7;
+  pointer-events:none;
+}
+.about-section .about-card:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 .about-section .about-card h3{
-  margin: 0 0 .35rem;
-  color: var(--zenith-navy, #072e59);
-  font-size: 1.1rem;
+  margin: 0 0 .4rem;
+  color: var(--zenith-navy);
+  font-size: 1.15rem;
 }
 .about-section .about-card p{
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 .about-section .about-card p a{
-  color: var(--zenith-navy-2, #0b3a6f);
+  color: var(--zenith-navy-2);
   text-underline-offset: 2px;
 }
-.about-section .about-card p a:hover{
-  color: var(--zenith-orange, #f7941d);
-}
+.about-section .about-card p a:hover{ color: var(--zenith-orange); }
 
-/* ---------- Process (3 steps) ---------- */
+/* ---------- Process (timeline: stacked on mobile, connected on desktop) ---------- */
 .about-section .about-process{
-  max-width: 980px;                  /* process list width */
+  position: relative;
+  max-width: 980px;
   margin-inline: auto;
-  margin-top: clamp(1.6rem, 3vw, 2rem);
+  margin-top: clamp(1.6rem, 3vw, 2.2rem);
 }
 .about-section .process-title{
   text-align: center;
-  margin: 0 0 .75rem;
-  color: var(--zenith-navy, #072e59);
+  margin: 0 0 .9rem;
+  color: var(--zenith-navy);
 }
+
 .about-section .process-steps{
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: .8rem;
+  gap: .9rem;
 }
 .about-section .process-steps li{
-  display: flex;                     /* badge + text horizontal */
-  align-items: center;
-  min-height: 54px;
-  line-height: 1.5;
-  background: var(--white, #ffffff);
-  border: 1px solid var(--zenith-border, #e2e8f0);
-  border-radius: var(--radius, 12px);
-  padding: .6rem .8rem;
-  box-shadow: 0 4px 14px rgba(2,14,32,.05);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .65rem .8rem;
+  align-items: start;
+  background: var(--white);
+  border: 1px solid var(--zenith-border);
+  border-radius: var(--radius);
+  padding: .75rem .9rem;
+  box-shadow: 0 6px 18px rgba(2,14,32,.06);
 }
 .about-section .step-badge{
-  flex-shrink: 0;
+  grid-row: 1 / span 2;
+  align-self: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--zenith-orange), #ffb45c);
+  color: #fff;
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--zenith-orange, #f7941d);
-  color: #fff;
-  font-weight: 700;
-  margin-right: .65rem;
+  box-shadow: 0 6px 16px rgba(247,148,29,.35);
 }
+.about-section .step-content p{ margin: .15rem 0 0; }
 .about-section .step-label{
-  font-weight: 600;
-  margin-right: .35rem;
-  color: var(--zenith-text, #0f172a);
+  display: inline-block;
+  font-weight: 650;
+  color: var(--zenith-text);
 }
 
-/* ---------- Specialties (3-up responsive) ---------- */
+/* Desktop timeline connector */
+@media (min-width: 900px){
+  .about-section .process-steps{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem 1.2rem;
+  }
+  .about-section .about-process::before{
+    content:"";
+    position:absolute;
+    top: 36px;                        /* centered on badges */
+    left: 2%;
+    right: 2%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--zenith-border), rgba(7,46,89,.15), var(--zenith-border));
+    z-index: 0;
+  }
+  .about-section .process-steps li{
+    position: relative;
+    z-index: 1;                        /* above the line */
+  }
+}
+
+/* ---------- Specialties (3-up with icons) ---------- */
 .about-section .about-specialties{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  max-width: 980px;                  /* specialties row width */
-  margin-inline: auto;
-  margin-top: clamp(1.3rem, 2.6vw, 1.8rem);
-}
-.about-section .specialty{
-  background: var(--white, #ffffff);
-  border: 1px solid var(--zenith-border, #e2e8f0);
-  border-radius: var(--radius, 12px);
-  padding: 1rem 1.1rem;
-  box-shadow: 0 4px 14px rgba(2,14,32,.06);
-}
-.about-section .specialty h4{
-  margin: 0 0 .3rem;
-  font-weight: 600;
-  color: var(--zenith-navy, #072e59);
-}
-.about-section .specialty p{
-  margin: 0;
-  line-height: 1.6;
-}
-.about-section .inline-link{
-  color: var(--zenith-navy-2, #0b3a6f);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.about-section .inline-link:hover{
-  color: var(--zenith-orange, #f7941d);
-}
-
-/* ---------- Soft nav links (chips) ---------- */
-.about-section .about-links{
-  display: flex;                     /* make justify-content work */
-  flex-wrap: wrap;
-  justify-content: center;           /* centered on desktop */
-  gap: .6rem .75rem;
+  gap: 1.4rem;
   max-width: 980px;
   margin-inline: auto;
-  margin-top: clamp(1rem, 2vw, 1.4rem);
+  margin-top: clamp(1.3rem, 2.6vw, 1.9rem);
+}
+.about-section .specialty{
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--zenith-border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 1.1rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.about-section .specialty:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(7,46,89,.22);
+}
+.about-section .specialty h4{
+  margin: 0 0 .35rem;
+  font-weight: 700;
+  color: var(--zenith-navy);
+}
+.about-section .specialty p{ margin: 0; line-height: 1.6; }
+
+.about-section .specialty-icon{
+  position:absolute;
+  top: 12px; right: 12px;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  display:grid; place-items:center;
+  color: var(--zenith-navy-2);
+  background: rgba(7,46,89,.06);
+}
+
+/* ---------- Soft nav links (animated chips) ---------- */
+.about-section .about-links{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .65rem .8rem;
+  max-width: 980px;
+  margin-inline: auto;
+  margin-top: clamp(1rem, 2.2vw, 1.6rem);
   padding-left: 0;
 }
 .about-section .link-chip{
   display: inline-flex;
   align-items: center;
-  padding: .5rem .75rem;
+  gap: .45rem;
+  padding: .55rem .85rem;
   background: #fff;
-  color: var(--zenith-text, #0f172a);
-  border: 1px solid var(--zenith-border, #e2e8f0);
+  color: var(--zenith-text);
+  border: 1px solid var(--zenith-border);
   border-radius: 999px;
-  box-shadow: 0 4px 14px rgba(2,14,32,.06);
+  box-shadow: var(--shadow-sm);
   text-decoration: none;
-  font-size: .95rem;
-  transition: transform .15s ease, box-shadow .15s ease, color .15s ease, border-color .15s ease;
+  font-size: .96rem;
+  transition: transform .16s ease, box-shadow .16s ease, color .16s ease, border-color .16s ease;
 }
 .about-section .link-chip:hover{
-  color: var(--zenith-orange, #f7941d);
-  border-color: var(--zenith-orange, #f7941d);
+  color: var(--zenith-orange);
+  border-color: var(--zenith-orange);
   transform: translateY(-1px);
-  box-shadow: 0 8px 22px rgba(2,14,32,.10);
+  box-shadow: 0 10px 24px rgba(2,14,32,.12);
 }
 .about-section .link-chip:focus-visible{
-  outline: 2px solid var(--zenith-orange, #f7941d);
+  outline: 2px solid var(--zenith-orange);
   outline-offset: 2px;
 }
+.about-section .chip-arrow{ transform: translateX(0); transition: transform .16s ease; }
+.about-section .link-chip:hover .chip-arrow{ transform: translateX(2px); }
 
 /* ---------- Responsive tweaks ---------- */
 @media (max-width: 1200px){
@@ -230,14 +346,22 @@
   .about-section .about-process,
   .about-section .about-specialties,
   .about-section .about-links{
-    max-width: 92vw;                 /* comfy margins on tablets */
+    max-width: 92vw;
   }
 }
 @media (max-width: 900px){
-  .about-section .about-header{ text-align:left; } /* reads better on phones */
+  .about-section .about-header{ text-align:left; }
   .about-section .about-lede{ margin-left:0; margin-right:0; }
   .about-section .about-badges,
   .about-section .about-links{ justify-content:flex-start; }
   .about-section .about-grid{ grid-template-columns: 1fr; }
   .about-section .about-specialties{ grid-template-columns: 1fr; }
+}
+
+/* ---------- Motion preferences (reduce) ---------- */
+@media (prefers-reduced-motion: reduce){
+  .about-section *{
+    transition: none !important;
+    animation: none !important;
+  }
 }
