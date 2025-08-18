@@ -1,6 +1,5 @@
 /* =========================================================
-   Why Choose — Minimal, Modern, Mobile-First
-   Drop-in CSS (no HTML changes required)
+   Why Choose — Simple, Modern, Professional (Mobile-First)
    ========================================================= */
 
 :root{
@@ -13,6 +12,7 @@
   --surface:#ffffff;
   --line:#e6eef5;
   --radius:14px;
+  --radius-lg:18px;
 }
 
 /* Section & container */
@@ -31,7 +31,7 @@
   display:grid;
   gap:1.25rem;
   align-items:center;
-  grid-template-columns:1fr;                 /* mobile */
+  grid-template-columns:1fr;
 }
 @media (min-width:900px){
   .why-choose-section .why-layout{
@@ -54,10 +54,10 @@
   max-width:62ch; margin:.55rem 0 0; line-height:1.7;
 }
 
-/* Features: auto-fit grid, soft cards (no heavy shadows) */
+/* Features: auto-fit grid, soft professional cards */
 .why-choose-section .why-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
   gap:1rem;
   margin-top:clamp(.9rem,2vw,1.3rem);
 }
@@ -76,9 +76,9 @@
 .why-choose-section .why-card h3{
   margin:.1rem 0 .25rem; color:var(--navy); font-size:1.02rem;
 }
-.why-choose-section .why-card p{ margin:0; line-height:1.6; color:var(--text); }
+.why-choose-section .why-card p{ margin:0; line-height:1.6; }
 
-/* Icon chip (simple + consistent) */
+/* Icon chip */
 .why-choose-section .why-icon{
   display:inline-grid; place-items:center;
   width:44px; height:44px; border-radius:50%;
@@ -89,14 +89,15 @@
   width:22px; height:22px; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;
 }
 
-/* Hard guard: never let global img/svg rules blow these up */
+/* Hard guard: stop global img/svg rules from blowing up icons */
 .why-choose-section .why-card svg,
 .why-choose-section .why-card img{
   max-width:48px !important; max-height:48px !important; width:auto; height:auto;
 }
 
-/* Stats + Actions (lightweight) */
+/* Proof/metrics + actions */
 .why-choose-section .why-bottom{ margin-top:clamp(1rem,2vw,1.5rem); display:grid; gap:.9rem; }
+
 .why-choose-section .why-stats{
   list-style:none; padding:0; margin:0;
   display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem;
@@ -118,15 +119,13 @@
   transition:transform .15s ease, border-color .15s ease, background .15s ease;
 }
 .why-choose-section .why-btn:hover{ transform:translateY(-1px); border-color:#d7e0ea; background:#f9fbfe; }
-.why-choose-section .why-btn--primary{
-  color:#fff; background:var(--navy); border-color:transparent;
-}
+.why-choose-section .why-btn--primary{ color:#fff; background:var(--navy); border-color:transparent; }
 .why-choose-section .why-btn--primary:hover{ background:var(--navy-2); transform:translateY(-2px); }
 
 /* Van image */
 .why-choose-section .why-image{
   position:relative; overflow:hidden; border:1px solid var(--line);
-  border-radius:18px; background:#fff;
+  border-radius:var(--radius-lg); background:#fff;
 }
 .why-choose-section .why-image img{
   display:block; width:100%; height:100%; object-fit:cover; aspect-ratio:16/10;  /* mobile */
