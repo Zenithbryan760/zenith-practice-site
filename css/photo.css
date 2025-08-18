@@ -1,5 +1,5 @@
 /* =========================================================
-   PHOTO / PROJECTS — modern gallery, mobile-first + SEO-friendly
+   PHOTO / PROJECTS — 4-tile gallery, mobile-first & SEO-friendly
    ========================================================= */
 
 :root{
@@ -14,7 +14,7 @@
   --radius-lg:20px;
 }
 
-/* Section band (subtle gradient that matches the site) */
+/* Section band to match site tone */
 .photo-section{
   position:relative;
   padding: clamp(1.6rem, 3vw, 2.6rem) 1rem;
@@ -39,100 +39,18 @@
   background:var(--zenith-navy); border-radius:3px; opacity:.9;
 }
 .photo-sub{
-  margin:.45rem auto 1.2rem;
+  margin:.45rem auto 1.15rem;
   max-width:62ch; color:#4b5563;
   font-size:clamp(.95rem,1.2vw,1rem);
 }
 
-/* Responsive grid (auto-fit, large feature options) */
+/* Grid: single column on phones, two on tablets, 3/feature on desktop */
 .photo-grid{
   list-style:none; padding:0; margin:0;
-  display:grid;
-  gap: clamp(.75rem, 1.6vw, 1rem);
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  align-items:stretch;
+  display:grid; gap: clamp(.75rem, 1.6vw, 1rem);
+  grid-template-columns: 1fr;                  /* mobile */
 }
-@media (min-width:1100px){
-  .photo-item.span-2{ grid-column: span 2; }
+@media (min-width:680px){
+  .photo-grid{ grid-template-columns: 1fr 1fr; } /* tablet */
 }
-
-/* Aspect ratios */
-.photo-item img{ aspect-ratio: 4 / 3; }
-.photo-item.wide img{ aspect-ratio: 16 / 9; }
-.photo-item.tall img{ aspect-ratio: 3 / 4; }
-
-/* Card styles */
-.photo-card{
-  display:block;
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  transition: box-shadow .18s ease, transform .18s ease, border-color .18s ease;
-}
-
-/* Clickable image area */
-.photo-link{
-  display:block; position:relative; outline:0;
-}
-.photo-link:focus-visible{
-  box-shadow:0 0 0 4px rgba(247,148,29,.25);
-  border-radius:inherit;
-}
-
-/* Images: fast paint, no layout shift */
-.photo-card img{
-  width:100%; height:100%; display:block;
-  object-fit:cover; backface-visibility:hidden;
-  transform:translateZ(0);
-  transition: transform .25s ease, filter .25s ease;
-}
-
-/* Hover lift with gentle zoom */
-@media (hover:hover){
-  .photo-card:hover{ transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color:#dfe6ee; }
-  .photo-card:hover img{ transform: scale(1.03); filter: saturate(1.04) contrast(1.04); }
-}
-
-/* Captions improve SEO + UX */
-.caption{
-  padding: .6rem .8rem;
-  font-size:.95rem;
-  color:#4b5563;
-}
-
-/* CTA row */
-.photo-cta{
-  margin-top: clamp(1rem, 2.2vw, 1.4rem);
-  display:flex; gap:.6rem .7rem; flex-wrap:wrap; justify-content:center;
-}
-
-/* Reuse your button styling (works with site buttons) */
-.photo-cta .btn{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:.62rem 1rem; border-radius:999px; text-decoration:none; font-weight:600;
-  border:1px solid var(--line);
-  background:#fff; color:var(--zenith-text);
-  transition:transform .15s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease, color .15s ease;
-}
-.photo-cta .btn:not(.btn--primary):hover{
-  transform:translateY(-1px); background:#f1f5f9; border-color:#d7e0ea;
-}
-.photo-cta .btn--primary{
-  color:#fff; border-color:transparent;
-  background:linear-gradient(180deg, var(--zenith-orange) 0%, #ffb457 100%);
-  box-shadow:0 8px 20px rgba(247,148,29,.22), inset 0 1px 0 rgba(255,255,255,.25);
-}
-.photo-cta .btn--primary:hover,
-.photo-cta .btn--primary:focus-visible{
-  transform:translateY(-2px);
-  background:linear-gradient(180deg, #f38a0a 0%, #ffa83b 100%);
-  box-shadow:0 14px 28px rgba(247,148,29,.28), inset 0 1px 0 rgba(255,255,255,.3);
-  color:#fff; outline:0;
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .photo-card, .photo-card img, .photo-cta .btn{ transition: none !important; }
-}
+@media (min-width:1024px
