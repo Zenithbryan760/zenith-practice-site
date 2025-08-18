@@ -1,10 +1,8 @@
 /* =========================================================
-   About Section — Modern, SEO-friendly, brand-aligned
-   Namespaced to avoid collisions
+   About Section — Premium polish pass
    ========================================================= */
 
 :root{
-  /* Fallbacks if not defined elsewhere */
   --zenith-navy:#072e59;
   --zenith-orange:#f7941d;
   --zenith-text:#0f172a;
@@ -15,157 +13,110 @@
   --shadow-lg:0 18px 50px rgba(2,14,32,.18);
 }
 
-.about-section{
-  background:#fff;
-  padding: clamp(2.25rem, 5vw, 4.5rem) 1rem;
-}
-.about-container{
-  max-width: 1200px;
-  margin: 0 auto;
-}
+.about-section{ background:#fff; padding: clamp(2.25rem, 5vw, 4.5rem) 1rem; }
+.about-container{ max-width:1200px; margin:0 auto; }
 
-.about-header{
-  margin-bottom: clamp(1.5rem, 3vw, 2rem);
-}
+/* Header */
+.about-header{ margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem); }
 .about-title{
-  margin: 0 0 .4rem;
-  font-size: clamp(1.6rem, 2.3vw, 2.1rem);
-  line-height: 1.2;
-  color: var(--zenith-navy);
-  font-weight: 800;
+  margin:0 0 .35rem; font-size:clamp(1.6rem, 2.3vw, 2.1rem);
+  line-height:1.2; color:var(--zenith-navy); font-weight:800;
 }
 .about-lede{
-  margin: 0;
-  max-width: 65ch;
-  color: var(--zenith-text);
-  font-size: clamp(1rem, 1.1vw, 1.075rem);
+  margin:0; max-width:68ch; color:var(--zenith-text);
+  font-size:clamp(1rem, 1.1vw, 1.075rem);
 }
-.about-lede a{
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.about-lede a:hover{ color: var(--zenith-orange); }
+.about-lede a{ color:inherit; text-decoration:underline; text-underline-offset:3px; }
+.about-lede a:hover{ color:var(--zenith-orange); }
 
+/* Badge chips */
 .about-badges{
-  display: flex; flex-wrap: wrap; gap: .5rem 1rem;
-  list-style: none; margin: .75rem 0 0; padding: 0;
-  color: var(--zenith-muted);
+  display:flex; flex-wrap:wrap; gap:.5rem .6rem;
+  margin:.9rem 0 0; padding:0; list-style:none;
 }
-.about-badges a{
-  color: inherit; text-decoration: underline; text-underline-offset: 3px;
+.badge-chip{
+  display:inline-flex; align-items:center; gap:.4rem;
+  border:1px solid var(--zenith-border);
+  background:linear-gradient(#fff, #fafafa);
+  color:var(--zenith-muted);
+  border-radius:999px; padding:.45rem .7rem; font-size:.92rem;
 }
-.about-badges a:hover{ color: var(--zenith-orange); }
+.badge-chip a{ color:inherit; text-decoration:none; }
+.badge-chip a:hover{ color:var(--zenith-orange); text-decoration:underline; text-underline-offset:3px; }
 
-/* Cards */
+/* Cards (equal height + refined hover) */
 .about-grid{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: clamp(1rem, 2vw, 1.5rem);
-  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  display:grid; grid-template-columns:repeat(3, minmax(0,1fr));
+  gap: clamp(1rem, 2vw, 1.25rem);
+  margin-top: clamp(1.1rem, 2.2vw, 1.4rem);
 }
-@media (max-width: 900px){ .about-grid{ grid-template-columns: 1fr; } }
+@media (max-width: 900px){ .about-grid{ grid-template-columns:1fr; } }
 
 .about-card{
-  background: #fff;
-  border: 1px solid var(--zenith-border);
-  border-radius: var(--radius);
-  padding: clamp(1rem, 2vw, 1.25rem);
-  box-shadow: var(--shadow-sm);
-  transition: transform .2s ease, box-shadow .2s ease;
+  display:flex; flex-direction:column; justify-content:flex-start; /* equal-height */
+  background:#fff; border:1px solid var(--zenith-border);
+  border-radius:var(--radius); padding:clamp(1rem, 2vw, 1.25rem);
+  box-shadow:var(--shadow-sm);
+  transition:transform .18s ease, box-shadow .18s ease;
+  will-change:transform;
 }
-.about-card:hover{
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
-}
-.about-card h3{
-  margin: 0 0 .4rem;
-  font-size: 1.1rem;
-  color: var(--zenith-navy);
-}
-.about-card p{
-  margin: 0;
-  color: var(--zenith-text);
-}
+.about-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-lg); }
+.about-card h3{ margin:0 0 .45rem; font-size:1.08rem; color:var(--zenith-navy); font-weight:800; letter-spacing:.1px; }
+.about-card p{ margin:0; color:var(--zenith-text); }
+.about-card a{ color:inherit; text-decoration:underline; text-underline-offset:3px; }
+.about-card a:hover{ color:var(--zenith-orange); }
 
-/* Process */
-.about-process{
-  margin-top: clamp(1.75rem, 3vw, 2.25rem);
-}
+/* Process (centered title + inline badges + better alignment) */
+.about-process{ margin-top: clamp(1.6rem, 3vw, 2.2rem); }
 .process-title{
-  margin: 0 0 .6rem;
-  font-size: 1.15rem;
-  color: var(--zenith-navy);
+  margin:0 0 .7rem; text-align:center; font-size:1.12rem;
+  color:var(--zenith-navy); font-weight:800;
 }
 .process-steps{
-  counter-reset: step;
-  list-style: none; padding: 0; margin: 0;
-  display: grid; gap: .8rem;
+  list-style:none; padding:0; margin:0;
+  display:grid; gap:.6rem;
 }
 .process-steps li{
-  position: relative;
-  border: 1px solid var(--zenith-border);
-  border-radius: 12px;
-  background: #fff;
-  padding: .85rem 1rem .85rem 3rem;
+  display:flex; align-items:center; gap:.65rem;
+  border:1px solid var(--zenith-border); background:#fff;
+  border-radius:12px; padding:.8rem 1rem;
 }
-.process-steps li::before{
-  counter-increment: step;
-  content: counter(step);
-  position: absolute; left: .9rem; top: 50%; transform: translateY(-50%);
-  width: 1.6rem; height: 1.6rem; border-radius: 999px;
-  display: grid; place-items: center;
-  background: var(--zenith-orange); color: #fff; font-weight: 700;
+.step-badge{
+  flex:0 0 auto; width:1.65rem; height:1.65rem; border-radius:999px;
+  display:grid; place-items:center; background:var(--zenith-orange); color:#fff; font-weight:800;
 }
-.step-label{
-  display: inline-block; font-weight: 700; color: var(--zenith-text);
-  margin-right: .35rem;
-}
+.step-label{ font-weight:800; color:var(--zenith-text); margin-right:.25rem; }
 
-/* Specialties (3-up) */
+/* Specialties */
 .about-specialties{
-  margin-top: clamp(1.5rem, 3vw, 2rem);
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
+  margin-top: clamp(1.35rem, 3vw, 1.9rem);
+  display:grid; grid-template-columns:repeat(3, minmax(0,1fr));
   gap: clamp(1rem, 2vw, 1.25rem);
 }
-@media (max-width: 900px){ .about-specialties{ grid-template-columns: 1fr; } }
-
+@media (max-width: 900px){ .about-specialties{ grid-template-columns:1fr; } }
 .specialty{
-  background: #fff;
-  border: 1px solid var(--zenith-border);
-  border-radius: 12px;
-  padding: 1rem;
+  background:#fff; border:1px solid var(--zenith-border);
+  border-radius:12px; padding:1rem;
 }
-.specialty h4{
-  margin: 0 0 .35rem;
-  font-size: 1.05rem;
-  color: var(--zenith-navy);
-}
-.specialty p{
-  margin: 0; color: var(--zenith-text);
-}
+.specialty h4{ margin:0 0 .35rem; font-size:1.02rem; color:var(--zenith-navy); font-weight:800; }
+.specialty p{ margin:0; color:var(--zenith-text); }
 
-/* Soft internal links row (no heavy CTA) */
+/* Soft internal links */
 .about-links{
-  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
-  display: flex; flex-wrap: wrap; gap: .5rem;
+  margin-top: clamp(1.1rem, 2.2vw, 1.5rem);
+  display:flex; flex-wrap:wrap; gap:.5rem;
 }
 .link-chip{
-  display: inline-flex; align-items: center;
-  padding: .55rem .8rem;
-  border-radius: 999px;
-  border: 1px solid var(--zenith-border);
-  background: #fff;
-  color: var(--zenith-text);
-  text-decoration: none;
-  transition: border-color .2s ease, transform .2s ease;
+  display:inline-flex; align-items:center; padding:.55rem .8rem;
+  border-radius:999px; border:1px solid var(--zenith-border);
+  background:#fff; color:var(--zenith-text); text-decoration:none;
+  transition:border-color .18s ease, transform .18s ease;
 }
-.link-chip:hover{
-  border-color: var(--zenith-orange);
-  transform: translateY(-1px);
+.link-chip:hover{ border-color:var(--zenith-orange); transform:translateY(-1px); }
+.inline-link{ text-decoration:underline; text-underline-offset:3px; }
+.inline-link:hover{ color:var(--zenith-orange); }
+
+/* Motion sensitivity */
+@media (prefers-reduced-motion: reduce){
+  .about-card, .link-chip{ transition:none; }
 }
-.inline-link{
-  text-decoration: underline; text-underline-offset: 3px;
-}
-.inline-link:hover{ color: var(--zenith-orange); }
