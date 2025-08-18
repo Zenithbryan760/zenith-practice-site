@@ -1,88 +1,86 @@
 /* =========================================================
    Why Choose — Modern, Professional, Mobile-First
-   Includes subtle roof background motif
-   Scoped to #why-choose
+   Animated tile background + neon-navy theme
    ========================================================= */
 
 :root{
-  --navy:#072e59;
-  --navy-2:#0b3a6f;
-  --orange:#f7941d;
+  /* Neon navy palette */
+  --navy: #155EEF;        /* bright, accessible navy */
+  --navy-2:#1B5FFF;       /* highlight navy */
+  --navy-deep:#0A1F3F;    /* deep base */
+  --navy-mid:#0B2E59;     /* mid tone */
+
   --text:#0f172a;
   --muted:#667085;
-  --bg:#f8fafc;          /* light page background */
-  --surface:#ffffff;     /* cards / media bg */
-  --line:#e6eef5;        /* subtle borders */
+
+  --surface:#ffffff;
+  --line:#e6eef5;
+
   --radius:16px;
   --radius-lg:20px;
+
+  /* Background animation controls */
+  --tile-size: 26px;                  /* grid size */
+  --tile-line: rgba(255,255,255,.07); /* grid line color */
+  --tile-speed: 42s;                  /* animation duration */
 }
 
-/* Section shell + background layers */
+/* Section shell */
 #why-choose.why-choose-modern{
-  position:relative;        /* for pseudo-backgrounds */
+  position:relative;
   overflow:hidden;
-  background:var(--bg);
   color:var(--text);
   padding:clamp(1.6rem,3.2vw,2.6rem) 1rem;
 }
 
-/* --- Background “roof” design (very subtle) --- */
-/* soft brand washes */
-#why-choose.why-choose-modern{
+/* ===== Animated TILE + GRADIENT background ===== */
+#why-choose.bg-tiles{
+  /* base vertical gradient with neon navy feel */
   background:
-    radial-gradient(900px 520px at 8% -10%,
-      rgba(11,58,111,.08) 0, rgba(11,58,111,0) 60%),
-    radial-gradient(700px 420px at 98% 0%,
-      rgba(247,148,29,.09) 0, rgba(247,148,29,0) 60%),
-    var(--bg);
+    linear-gradient(180deg, var(--navy-deep) 0%, var(--navy-mid) 55%, #0E3D86 100%);
 }
-/* roofline silhouette along the top */
-#why-choose.why-choose-modern::before{
-  content:"";
-  position:absolute; inset:-70px -40px auto -40px; height:160px;
-  background:linear-gradient(
-    to bottom,
-    rgba(7,46,89,.06), rgba(7,46,89,.04) 40%, rgba(7,46,89,0)
-  );
-  /* jagged roof peaks */
-  -webkit-clip-path: polygon(
-    0% 100%, 7% 62%, 14% 100%, 25% 58%, 37% 100%,
-    50% 62%, 63% 100%, 75% 58%, 86% 100%, 100% 62%, 100% 0%, 0% 0%
-  );
-  clip-path: polygon(
-    0% 100%, 7% 62%, 14% 100%, 25% 58%, 37% 100%,
-    50% 62%, 63% 100%, 75% 58%, 86% 100%, 100% 62%, 100% 0%, 0% 0%
-  );
-  pointer-events:none;
-}
-/* faint “shingle” micro-texture */
-#why-choose.why-choose-modern::after{
+
+/* subtle brand washes (adds depth) */
+#why-choose.bg-tiles::after{
   content:"";
   position:absolute; inset:0;
   background:
-    repeating-linear-gradient(135deg, rgba(7,46,89,.035) 0 2px, transparent 2px 18px),
-    repeating-linear-gradient(45deg,  rgba(247,148,29,.025) 0 2px, transparent 2px 18px);
+    radial-gradient(900px 520px at 8% -10%, rgba(27,95,255,.20) 0, transparent 60%),
+    radial-gradient(700px 420px at 100% 0%, rgba(247,148,29,.14) 0, transparent 55%);
   pointer-events:none;
 }
 
-/* Layer content above backgrounds */
+/* animated tile grid (runs on its own layer) */
+#why-choose.bg-tiles::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(to right, var(--tile-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--tile-line) 1px, transparent 1px);
+  background-size: var(--tile-size) var(--tile-size), var(--tile-size) var(--tile-size);
+  background-position: 0 0, 0 0;
+  opacity:.45;
+  animation: tilesShift var(--tile-speed) linear infinite;
+  pointer-events:none;
+}
+
+@keyframes tilesShift{
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 200px 200px, 200px 200px; }
+}
+
+/* Keep content above backgrounds */
 #why-choose .why-wrap,
 #why-choose .why-cols{ position:relative; z-index:1; }
 
-/* Container */
+/* Container + layout */
 #why-choose .why-wrap{ max-width:1100px; margin-inline:auto; }
-
-/* Layout: stack on mobile, 2-col on desktop */
 #why-choose .why-cols{
-  display:grid;
-  gap:1.25rem;
-  align-items:center;
-  grid-template-columns:1fr;                      /* mobile */
+  display:grid; gap:1.25rem; align-items:center;
+  grid-template-columns:1fr; /* mobile */
 }
 @media (min-width:900px){
-  #why-choose .why-cols{
-    grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); /* ~55/45 */
-  }
+  #why-choose .why-cols{ grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); } /* ~55/45 */
 }
 
 /* Title */
@@ -91,11 +89,14 @@
   font-size:clamp(1.55rem,3.1vw,2.15rem);
   line-height:1.15;
   color:var(--navy);
+  text-shadow:0 0 .5px rgba(27,95,255,.35); /* very soft neon shimmer */
 }
 #why-choose .why-title::after{
   content:"";
-  display:block; width:56px; height:3px; margin-top:.55rem;
-  background:var(--navy); border-radius:3px; opacity:.9;
+  display:block;
+  width:56px; height:3px; margin-top:.55rem;
+  background:linear-gradient(90deg, var(--navy-2), var(--navy));
+  border-radius:3px; opacity:.95;
 }
 
 /* Checklist */
@@ -109,14 +110,17 @@
   grid-template-columns:38px 1fr;   /* icon + text */
   align-items:start; column-gap:.7rem;
   line-height:1.6;
+  color:#f8fafc;                    /* readable on dark bg */
 }
 
-/* Check icon (works with ✓ text) */
+/* Check chip (✓ works as plain text) */
 #why-choose .check{
   display:inline-grid; place-items:center;
   width:38px; height:38px; border-radius:50%;
-  background:#fff; border:1px solid var(--line);
-  color:var(--navy); font-weight:700; font-size:16px; line-height:1;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.24);
+  color:#fff; font-weight:700; font-size:16px; line-height:1;
+  box-shadow:0 0 0 2px rgba(27,95,255,.12) inset, 0 6px 16px rgba(27,95,255,.18);
 }
 
 /* Buttons */
@@ -125,21 +129,33 @@
 }
 #why-choose .btn{
   display:inline-flex; align-items:center; justify-content:center;
-  padding:.6rem .95rem; border-radius:999px; text-decoration:none; font-weight:600;
-  border:1px solid var(--line); background:#fff; color:var(--text);
-  transition:transform .15s ease, border-color .15s ease, background .15s ease;
+  padding:.62rem 1rem; border-radius:999px; text-decoration:none; font-weight:600;
+  border:1px solid rgba(255,255,255,.22); color:#f2f6ff; background:rgba(255,255,255,.08);
+  backdrop-filter: blur(6px);
+  transition:transform .15s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease;
 }
-#why-choose .btn:hover{ transform:translateY(-1px); border-color:#d7e0ea; background:#f9fbfe; }
-#why-choose .btn--primary{ color:#fff; background:var(--navy); border-color:transparent; }
-#why-choose .btn--primary:hover{ background:var(--navy-2); transform:translateY(-2px); }
+#why-choose .btn:hover{
+  transform:translateY(-1px); background:rgba(255,255,255,.12);
+  border-color:rgba(255,255,255,.32);
+}
+#why-choose .btn--primary{
+  color:#fff;
+  border-color:transparent;
+  background:linear-gradient(180deg, var(--navy-2) 0%, var(--navy) 100%);
+  box-shadow:0 10px 28px rgba(27,95,255,.32), inset 0 1px 0 rgba(255,255,255,.25);
+}
+#why-choose .btn--primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 36px rgba(27,95,255,.38), inset 0 1px 0 rgba(255,255,255,.3);
+}
 
 /* Image block */
 #why-choose .why-media{
   position:relative; overflow:hidden;
-  border:1px solid var(--line);
+  border:1px solid rgba(255,255,255,.18);
   border-radius:var(--radius-lg);
   background:var(--surface);
-  box-shadow:0 8px 30px rgba(2,12,32,.06);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
 }
 #why-choose .why-media img{
   display:block; width:100%; height:100%;
@@ -155,8 +171,13 @@
   #why-choose .why-title::after{ margin-inline:auto; }
 }
 
-/* A11y helper for figcaption */
+/* A11y helper */
 .sr-only{
   position:absolute; width:1px; height:1px; padding:0; margin:-1px;
   overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+/* Optional: quickly tone down motion for users who prefer it */
+@media (prefers-reduced-motion: reduce){
+  #why-choose.bg-tiles::before{ animation: none; }
 }
