@@ -1,7 +1,6 @@
 /* =========================================================
-   PHOTO / PROJECTS — uniform cards, mobile-first, pro look
+   PHOTO / PROJECTS — uniform, modern, mobile-first
    ========================================================= */
-
 :root{
   --zenith-navy:#072e59;
   --zenith-orange:#f7941d;
@@ -13,7 +12,7 @@
   --radius:16px;
 }
 
-/* Section band (matches site aesthetic) */
+/* Section band to match the rest of the site */
 .photo-section{
   position:relative;
   padding: clamp(1.6rem, 3vw, 2.6rem) 1rem;
@@ -23,21 +22,20 @@
     linear-gradient(180deg,#f8fafc 0%, #f1f5fb 60%, #eef3f9 100%);
   color: var(--zenith-text);
 }
-.photo-shell{ max-width:1100px; margin-inline:auto; }
 
 /* Header */
 .photo-header{ text-align:center; }
-.photo-title{
+.photo-section .section-title{
   margin:0;
   font-size:clamp(1.35rem,2.8vw,1.95rem);
   line-height:1.2;
   color:var(--zenith-navy);
 }
-.photo-title::after{
+.photo-section .section-title::after{
   content:""; display:block; width:56px; height:3px; margin:.55rem auto 0;
   background:var(--zenith-navy); border-radius:3px; opacity:.9;
 }
-.photo-sub{
+.photo-section .section-subtitle{
   margin:.45rem auto 1.15rem;
   max-width:62ch; color:#4b5563;
   font-size:clamp(.95rem,1.2vw,1rem);
@@ -45,16 +43,16 @@
 
 /* Uniform grid: 1-up phones → 2x2 desktop */
 .photo-grid{
-  list-style:none; padding:0; margin:0;
-  display:grid; gap: clamp(.85rem, 1.6vw, 1rem);
-  grid-template-columns: 1fr;          /* phones */
+  display:grid;
+  grid-template-columns:1fr;        /* phones */
+  gap: clamp(.85rem, 1.6vw, 1rem);
 }
 @media (min-width:700px){
-  .photo-grid{ grid-template-columns: 1fr 1fr; } /* 2x2 from tablets up */
+  .photo-grid{ grid-template-columns:1fr 1fr; }
 }
 
-/* Cards */
-.photo-card{
+/* Card */
+.photo-item{
   background:var(--surface);
   border:1px solid var(--line);
   border-radius:var(--radius);
@@ -63,50 +61,40 @@
   transition: box-shadow .18s ease, transform .18s ease, border-color .18s ease;
 }
 @media (hover:hover){
-  .photo-card:hover{ transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color:#dfe6ee; }
+  .photo-item:hover{ transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color:#dfe6ee; }
 }
 
-/* Media box — forces identical height across all cards */
-.media{
-  position:relative;
+/* Images: force identical height for consistency */
+.photo-item img{
+  display:block;
   width:100%;
-  aspect-ratio: 4 / 3;          /* UNIFORM ratio = consistent grid */
-  overflow:hidden;
-  background:#f3f6fb;
-}
-.media img{
-  position:absolute; inset:0;
-  width:100%; height:100%;
+  height:auto;
+  aspect-ratio: 4 / 3;     /* ensures a uniform card height */
   object-fit:cover;
   backface-visibility:hidden;
-  transform: translateZ(0);
+  transform:translateZ(0);
   transition: transform .25s ease, filter .25s ease;
 }
 @media (hover:hover){
-  .photo-card:hover .media img{ transform: scale(1.03); filter: saturate(1.05) contrast(1.05); }
+  .photo-item:hover img{ transform:scale(1.03); filter:saturate(1.05) contrast(1.05); }
 }
 
-/* Captions — same min height for perfect alignment */
+/* Captions — same min height so rows align perfectly */
 .caption{
   padding:.65rem .85rem;
   font-size:.95rem;
   color:#4b5563;
-  min-height: 48px;              /* keeps all cards equal height */
+  min-height:48px;
   display:flex; align-items:center;
 }
 
-/* Click target + focus ring (a11y) */
-.photo-link{ display:block; outline:0; }
-.photo-link:focus-visible{
-  box-shadow:0 0 0 4px rgba(247,148,29,.25);
-  border-radius:inherit;
-}
-
-/* CTAs (reuses your button style) */
+/* CTA row */
 .photo-cta{
   margin-top: clamp(1rem, 2.2vw, 1.4rem);
   display:flex; gap:.6rem .7rem; flex-wrap:wrap; justify-content:center;
 }
+
+/* Buttons (matches your site buttons) */
 .photo-cta .btn{
   display:inline-flex; align-items:center; justify-content:center;
   padding:.62rem 1rem; border-radius:999px; text-decoration:none; font-weight:600;
@@ -130,7 +118,14 @@
   color:#fff; outline:0;
 }
 
-/* Respect reduced motion */
+/* Accessibility: visible focus on card links (if you wrap img in <a>, optional) */
+.photo-item a:focus-visible{
+  outline:0;
+  box-shadow:0 0 0 4px rgba(247,148,29,.25);
+  border-radius:var(--radius);
+}
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce){
-  .photo-card, .media img, .photo-cta .btn{ transition:none !important; }
+  .photo-item, .photo-item img, .photo-cta .btn{ transition:none !important; }
 }
