@@ -1,6 +1,5 @@
 /* =========================================================
-   Why Choose — synced with the HTML above
-   (scope rules to #why-choose.why-choose-section)
+   Why Choose — single, clean stylesheet (no overrides)
    ========================================================= */
 
 :root{
@@ -15,17 +14,17 @@
   --radius-lg:20px;
 }
 
-/* Shell + background */
+/* ===== Shell & background ===== */
 #why-choose.why-choose-section{
   position:relative;
   z-index:0;
   overflow:hidden;
-  background:linear-gradient(180deg,#f8fafc 0%,#f4f7fb 55%,#eef3f9 100%);
   color:var(--zenith-text);
   padding:clamp(1.6rem,3vw,2.6rem) 1rem;
+  background:linear-gradient(180deg,#f8fafc 0%,#f4f7fb 55%,#eef3f9 100%);
 }
 
-/* brand wash */
+/* Brand-tinted wash for depth (very subtle) */
 #why-choose.why-choose-section::before{
   content:"";
   position:absolute; inset:0; pointer-events:none;
@@ -34,18 +33,24 @@
     radial-gradient(700px 420px at 98% 0%, rgba(247,148,29,.08) 0, transparent 55%);
 }
 
-/* subtle clip-art overlay (house + building + palms) */
-#why-choose.why-choose-section::after{
+/* Illustration only behind the TEXT column (not the photo) */
+#why-choose.why-choose-section .why-text{
+  position:relative;        /* create local stacking context */
+  z-index:1;                /* keep text above the art */
+}
+#why-choose.why-choose-section .why-text::before{
   content:"";
-  position:absolute; inset:0; pointer-events:none;
-  opacity:.34;
+  position:absolute;
+  top:-16px; bottom:-12px; left:-28px; right:48%;
+  pointer-events:none; z-index:0;
+  opacity:.50;
   background-repeat:no-repeat;
-  background-position:right -70px bottom -10px;
-  background-size:min(74vw, 920px) auto;
+  background-position:left bottom -10px;
+  background-size:contain;
   background-image:
     url('data:image/svg+xml;utf8,\
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">\
-  <g fill="%23d6dde8">\
+  <g fill="%23c9d1dd">\
     <polygon points="120,360 260,250 400,360 372,360 372,430 148,430 148,360" />\
     <rect x="170" y="360" width="180" height="70" rx="6" />\
     <rect x="215" y="382" width="35" height="48" rx="4" />\
@@ -83,26 +88,29 @@
   </g>\
 </svg>');
 }
-
 @media (max-width:900px){
-  #why-choose.why-choose-section::after{
-    background-position:center bottom -8px;
-    background-size:min(92vw, 680px) auto;
-    opacity:.28;
+  #why-choose.why-choose-section .why-text::before{
+    left:-18px; right:8%;
+    opacity:.42;
+    background-position:left bottom -6px;
   }
 }
 
-/* Container & layout */
-#why-choose.why-choose-section .why-container{ max-width:1100px; margin-inline:auto; position:relative; z-index:1; }
+/* ===== Container & layout ===== */
+#why-choose.why-choose-section .why-container{
+  max-width:1100px; margin-inline:auto; position:relative; z-index:1;
+}
 #why-choose.why-choose-section .why-grid{
   display:grid; gap:1.25rem; align-items:center;
-  grid-template-columns:1fr;               /* mobile */
+  grid-template-columns:1fr;          /* mobile */
 }
 @media (min-width:900px){
-  #why-choose.why-choose-section .why-grid{ grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr); }
+  #why-choose.why-choose-section .why-grid{
+    grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  }
 }
 
-/* Title */
+/* ===== Title ===== */
 #why-choose.why-choose-section .why-title{
   margin:0 0 .85rem 0;
   font-size:clamp(1.55rem,3.1vw,2.15rem);
@@ -114,13 +122,14 @@
   background:var(--zenith-navy); border-radius:3px; opacity:.9;
 }
 
-/* Checklist */
+/* ===== Checklist ===== */
 #why-choose.why-choose-section .why-list{
   list-style:none; margin:0; padding:0;
   display:grid; gap:.65rem;
 }
 #why-choose.why-choose-section .why-list li{
-  display:grid; grid-template-columns:38px 1fr; align-items:start; column-gap:.7rem; line-height:1.6;
+  display:grid; grid-template-columns:38px 1fr; align-items:start; column-gap:.7rem;
+  line-height:1.6;
 }
 #why-choose.why-choose-section .check{
   display:inline-grid; place-items:center;
@@ -129,8 +138,10 @@
   color:var(--zenith-navy); font-weight:700; font-size:16px; line-height:1;
 }
 
-/* Actions / buttons */
-#why-choose.why-choose-section .why-actions{ margin-top:1rem; display:flex; flex-wrap:wrap; gap:.6rem .7rem; }
+/* ===== Actions / Buttons ===== */
+#why-choose.why-choose-section .why-actions{
+  margin-top:1rem; display:flex; flex-wrap:wrap; gap:.6rem .7rem;
+}
 #why-choose.why-choose-section .btn{
   display:inline-flex; align-items:center; justify-content:center;
   padding:.62rem 1rem; border-radius:999px; text-decoration:none; font-weight:600;
@@ -140,11 +151,11 @@
 }
 #why-choose.why-choose-section .btn:not(.btn--primary):hover{
   transform:translateY(-1px);
-  background:#f1f5f9;
-  border-color:#d7e0ea;
+  background:#f1f5f9; border-color:#d7e0ea;
 }
 #why-choose.why-choose-section .btn--primary{
-  color:#fff; border-color:transparent;
+  color:#fff;
+  border-color:transparent;
   background:linear-gradient(180deg, var(--zenith-orange) 0%, #ffb457 100%);
   box-shadow:0 8px 20px rgba(247,148,29,.22), inset 0 1px 0 rgba(255,255,255,.25);
 }
@@ -153,12 +164,13 @@
   transform:translateY(-2px);
   background:linear-gradient(180deg, #f38a0a 0%, #ffa83b 100%);
   box-shadow:0 14px 28px rgba(247,148,29,.28), inset 0 1px 0 rgba(255,255,255,.3);
-  color:#fff;
-  outline:0;
+  color:#fff; outline:0;
 }
-#why-choose.why-choose-section .btn:focus-visible{ outline:0; box-shadow:0 0 0 3px rgba(247,148,29,.25); }
+#why-choose.why-choose-section .btn:focus-visible{
+  outline:0; box-shadow:0 0 0 3px rgba(247,148,29,.25);
+}
 
-/* Image card */
+/* ===== Image Card ===== */
 #why-choose.why-choose-section .why-image{
   position:relative; overflow:hidden;
   border:1px solid var(--line);
@@ -173,72 +185,8 @@
   #why-choose.why-choose-section .why-image img{ aspect-ratio:4/5; }
 }
 
-/* A11y helper */
+/* ===== A11y helper ===== */
 .sr-only{
   position:absolute; width:1px; height:1px; padding:0; margin:-1px;
   overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
-}
-/* --- WHY CHOOSE: make the house/building/palms visible --- */
-/* Keep content above the illustration */
-#why-choose.why-choose-section .why-container{
-  position: relative;
-  z-index: 1;
-}
-
-/* Put the illustration below content, darker, and fully in-frame */
-#why-choose.why-choose-section::after{
-  z-index: 0;                /* behind content but above the gradient */
-  opacity: .55;              /* was ~.34 — make it read on light bg */
-  background-position: right 0 bottom -12px;   /* bring it on-screen */
-  background-size: min(68vw, 820px) auto;      /* a touch smaller so it’s visible */
-  /* same art, slightly darker fill (%23c7d0dd) */
-  background-image:
-    url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">\
-  <g fill="%23c7d0dd">\
-    <polygon points="120,360 260,250 400,360 372,360 372,430 148,430 148,360" />\
-    <rect x="170" y="360" width="180" height="70" rx="6" />\
-    <rect x="215" y="382" width="35" height="48" rx="4" />\
-    <rect x="270" y="382" width="35" height="48" rx="4" />\
-    <rect x="700" y="270" width="260" height="190" rx="10" />\
-    <g opacity=".9">\
-      <rect x="725" y="295" width="28" height="28" rx="3" />\
-      <rect x="765" y="295" width="28" height="28" rx="3" />\
-      <rect x="805" y="295" width="28" height="28" rx="3" />\
-      <rect x="845" y="295" width="28" height="28" rx="3" />\
-      <rect x="885" y="295" width="28" height="28" rx="3" />\
-      <rect x="725" y="335" width="28" height="28" rx="3" />\
-      <rect x="765" y="335" width="28" height="28" rx="3" />\
-      <rect x="805" y="335" width="28" height="28" rx="3" />\
-      <rect x="845" y="335" width="28" height="28" rx="3" />\
-      <rect x="885" y="335" width="28" height="28" rx="3" />\
-      <rect x="725" y="375" width="28" height="28" rx="3" />\
-      <rect x="765" y="375" width="28" height="28" rx="3" />\
-      <rect x="805" y="375" width="28" height="28" rx="3" />\
-      <rect x="845" y="375" width="28" height="28" rx="3" />\
-      <rect x="885" y="375" width="28" height="28" rx="3" />\
-    </g>\
-    <g transform="translate(520,270)">\
-      <rect x="55" y="120" width="10" height="100" rx="5" />\
-      <path d="M60 120 C40 105, 25 105, 10 110 C28 120, 45 125, 60 125 Z" />\
-      <path d="M60 120 C80 105, 95 105, 110 110 C92 120, 75 125, 60 125 Z" />\
-      <path d="M60 118 C45 95, 45 85, 50 70 C55 88, 58 100, 60 112 Z" />\
-      <path d="M60 118 C75 95, 75 85, 70 70 C65 88, 62 100, 60 112 Z" />\
-    </g>\
-    <g transform="translate(600,300) scale(0.9)">\
-      <rect x="55" y="120" width="10" height="100" rx="5" />\
-      <path d="M60 120 C40 105, 25 105, 10 110 C28 120, 45 125, 60 125 Z" />\
-      <path d="M60 120 C80 105, 95 105, 110 110 C92 120, 75 125, 60 125 Z" />\
-    </g>\
-  </g>\
-</svg>');
-}
-
-/* Mobile: keep it subtle & centered */
-@media (max-width: 900px){
-  #why-choose.why-choose-section::after{
-    background-position: center bottom -8px;
-    background-size: min(90vw, 680px) auto;
-    opacity:.40;
-  }
 }
