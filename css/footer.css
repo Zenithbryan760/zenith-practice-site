@@ -1,125 +1,115 @@
 /* =========================================================
-   Zenith Roofing — Footer
-   Scoped, safe classes prefixed with .ftr-*
-   Uses brand tokens if present; falls back to hex values
+   Zenith Roofing — Footer (scoped, non-destructive)
+   All styles live under #site-footer.ftr
+   No global tokens or resets are overridden.
    ========================================================= */
 
-/* Brand tokens (fallbacks) */
-:root{
-  --zenith-navy: var(--zenith-navy, #072e59);
-  --zenith-navy-2: var(--zenith-navy-2, #0b3a6f);
-  --zenith-orange: var(--zenith-orange, #f7941d);
-  --zenith-text: var(--zenith-text, #0f172a);
-  --zenith-muted: var(--zenith-muted, #94a3b8);
-  --white: #ffffff;
+/* Local, footer-only tokens that read your site tokens (with fallbacks) */
+#site-footer.ftr{
+  --ftr-navy:   var(--zenith-navy, #072e59);
+  --ftr-navy-2: var(--zenith-navy-2, #0b3a6f);
+  --ftr-orange: var(--zenith-orange, #f7941d);
+  --ftr-text:   var(--zenith-text, #0f172a);
+  --ftr-muted:  var(--zenith-muted, #94a3b8);
+  --ftr-white:  #ffffff;
 }
 
-/* Utilities */
-.sr-only{
+/* A11y helper (scoped) */
+#site-footer.ftr .sr-only{
   position:absolute!important; width:1px; height:1px;
-  padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0);
+  white-space:nowrap; border:0;
 }
 
-.ftr { color: var(--white); background: var(--zenith-navy); }
-.ftr a { color: var(--white); text-decoration: none; }
-.ftr a:hover, .ftr a:focus { text-decoration: underline; }
+/* Base */
+#site-footer.ftr{ color:var(--ftr-white); background:var(--ftr-navy); }
+#site-footer.ftr a{ color:var(--ftr-white); text-decoration:none; }
+#site-footer.ftr a:hover, 
+#site-footer.ftr a:focus{ text-decoration:underline; }
 
 /* Container */
-.ftr-container{
-  width: min(1200px, 92%);
-  margin-inline: auto;
-}
+#site-footer.ftr .ftr-container{ width:min(1200px,92%); margin-inline:auto; }
 
 /* ---------- Top CTA strip ---------- */
-.ftr-cta{
-  background: linear-gradient(90deg, var(--zenith-navy-2), var(--zenith-navy));
-  border-bottom: 1px solid rgba(255,255,255,.08);
+#site-footer.ftr .ftr-cta{
+  background:linear-gradient(90deg, var(--ftr-navy-2), var(--ftr-navy));
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
-.ftr-cta .ftr-container{
+#site-footer.ftr .ftr-cta .ftr-container{
   display:flex; align-items:center; justify-content:space-between;
-  gap: 1rem; padding: .9rem 0;
+  gap:1rem; padding:.9rem 0;
 }
-.ftr-cta-text{ font-weight: 600; letter-spacing: .2px; }
-
-.ftr-btn{
+#site-footer.ftr .ftr-cta-text{ font-weight:600; letter-spacing:.2px; }
+#site-footer.ftr .ftr-btn{
   display:inline-flex; align-items:center; justify-content:center;
-  padding:.6rem .95rem; border-radius:10px; font-weight:600; border:1px solid transparent;
-  transition: transform .15s ease, opacity .15s ease, background-color .2s ease, border-color .2s ease;
-  white-space: nowrap;
+  padding:.6rem .95rem; border-radius:10px; font-weight:600; 
+  border:1px solid transparent; white-space:nowrap;
+  transition:transform .15s ease, opacity .15s ease, background-color .2s ease, border-color .2s ease;
 }
-.ftr-btn:hover{ transform: translateY(-1px); }
-.ftr-btn-primary{ background: var(--zenith-orange); color: #0b0b0b; }
-.ftr-btn-primary:hover{ opacity:.92; }
-.ftr-btn-ghost{ background: transparent; border-color: rgba(255,255,255,.25); }
-.ftr-btn-ghost:hover{ background: rgba(255,255,255,.06); }
+#site-footer.ftr .ftr-btn:hover{ transform:translateY(-1px); }
+#site-footer.ftr .ftr-btn-primary{ background:var(--ftr-orange); color:#0b0b0b; }
+#site-footer.ftr .ftr-btn-primary:hover{ opacity:.92; }
+#site-footer.ftr .ftr-btn-ghost{ background:transparent; border-color:rgba(255,255,255,.25); }
+#site-footer.ftr .ftr-btn-ghost:hover{ background:rgba(255,255,255,.06); }
 
 /* ---------- Main footer ---------- */
-.ftr-main{ padding: 2.2rem 0 2rem; }
-.ftr-grid{
-  display:grid; gap: 2rem;
-  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;  /* brand wider */
+#site-footer.ftr .ftr-main{ padding:2.2rem 0 2rem; }
+#site-footer.ftr .ftr-grid{
+  display:grid; gap:2rem;
+  grid-template-columns:1.4fr 1fr 1fr 1.2fr;  /* brand wider */
 }
-@media (max-width: 1024px){
-  .ftr-grid{ grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 640px){
-  .ftr-grid{ grid-template-columns: 1fr; }
-}
+@media (max-width:1024px){ #site-footer.ftr .ftr-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:640px){  #site-footer.ftr .ftr-grid{ grid-template-columns:1fr; } }
 
-.ftr-col{ min-width: 0; }
+#site-footer.ftr .ftr-col{ min-width:0; }
 
-.ftr-brand .ftr-wordmark{
+/* Brand block */
+#site-footer.ftr .ftr-brand .ftr-wordmark{
   display:flex; flex-direction:column; gap:.25rem; margin-bottom:.5rem;
 }
-.ftr-name{ font-size:1.15rem; font-weight:800; letter-spacing:.2px; }
-.ftr-lic{ font-size:.95rem; color: rgba(255,255,255,.85); }
-
-.ftr-blurb{ color: rgba(255,255,255,.85); margin: .6rem 0 1rem; line-height:1.6; }
+#site-footer.ftr .ftr-name{ font-size:1.15rem; font-weight:800; letter-spacing:.2px; }
+#site-footer.ftr .ftr-lic{ font-size:.95rem; color:rgba(255,255,255,.85); }
+#site-footer.ftr .ftr-blurb{ color:rgba(255,255,255,.85); margin:.6rem 0 1rem; line-height:1.6; }
 
 /* Contact & profiles */
-.ftr-contact, .ftr-profiles{
-  display:flex; flex-wrap:wrap; gap:.6rem 1rem; margin: .3rem 0 1rem; padding:0; list-style:none;
+#site-footer.ftr .ftr-contact,
+#site-footer.ftr .ftr-profiles{
+  display:flex; flex-wrap:wrap; gap:.6rem 1rem; margin:.3rem 0 1rem; padding:0; list-style:none;
 }
-.ftr-contact a, .ftr-profiles a{
-  padding: .25rem 0; border-bottom: 1px dashed transparent;
-}
-.ftr-contact a:hover, .ftr-profiles a:hover{
-  border-color: rgba(255,255,255,.35);
-}
+#site-footer.ftr .ftr-contact a,
+#site-footer.ftr .ftr-profiles a{ padding:.25rem 0; border-bottom:1px dashed transparent; }
+#site-footer.ftr .ftr-contact a:hover,
+#site-footer.ftr .ftr-profiles a:hover{ border-color:rgba(255,255,255,.35); }
 
 /* Titles & lists */
-.ftr-title{
+#site-footer.ftr .ftr-title{
   font-size:1.05rem; font-weight:800; margin-bottom:.65rem;
-  border-bottom: 2px solid rgba(255,255,255,.12); padding-bottom:.35rem;
+  border-bottom:2px solid rgba(255,255,255,.12); padding-bottom:.35rem;
 }
-.ftr-list{ list-style:none; margin:0; padding:0; display:grid; gap:.45rem; }
-.ftr-list a{ color: rgba(255,255,255,.95); }
-.ftr-list a:hover{ color: #fff; }
+#site-footer.ftr .ftr-list{ list-style:none; margin:0; padding:0; display:grid; gap:.45rem; }
+#site-footer.ftr .ftr-list a{ color:rgba(255,255,255,.95); }
+#site-footer.ftr .ftr-list a:hover{ color:#fff; }
 
 /* Service area columns */
-.ftr-columns{
-  --cols: 1;
-  display:grid; grid-template-columns: repeat(var(--cols), minmax(0,1fr)); gap:.35rem .85rem;
+#site-footer.ftr .ftr-columns{
+  --cols:1;
+  display:grid; grid-template-columns:repeat(var(--cols), minmax(0,1fr)); gap:.35rem .85rem;
 }
-@media (min-width: 480px){ .ftr-columns{ --cols: 2; } }
-@media (min-width: 900px){ .ftr-columns{ --cols: 2; } }
+@media (min-width:480px){ #site-footer.ftr .ftr-columns{ --cols:2; } }
+@media (min-width:900px){  #site-footer.ftr .ftr-columns{ --cols:2; } }
 
 /* ---------- Bottom bar ---------- */
-.ftr-bottom{
-  background: #061f3b; border-top: 1px solid rgba(255,255,255,.08);
+#site-footer.ftr .ftr-bottom{ background:#061f3b; border-top:1px solid rgba(255,255,255,.08); }
+#site-footer.ftr .ftr-bottom-row{
+  display:flex; align-items:center; gap:1rem; padding:.9rem 0; flex-wrap:wrap;
 }
-.ftr-bottom-row{
-  display:flex; align-items:center; gap:1rem; padding: .9rem 0; flex-wrap: wrap;
-}
-.ftr-copy{ color: rgba(255,255,255,.85); margin-right:auto; }
-.ftr-legal{
-  list-style:none; display:flex; flex-wrap:wrap; gap:.8rem; margin:0; padding:0;
-}
-.ftr-legal a{ color: rgba(255,255,255,.9); }
-.ftr-legal a:hover{ color: #fff; }
+#site-footer.ftr .ftr-copy{ color:rgba(255,255,255,.85); margin-right:auto; }
+#site-footer.ftr .ftr-legal{ list-style:none; display:flex; flex-wrap:wrap; gap:.8rem; margin:0; padding:0; }
+#site-footer.ftr .ftr-legal a{ color:rgba(255,255,255,.9); }
+#site-footer.ftr .ftr-legal a:hover{ color:#fff; }
 
-.ftr-top{
+#site-footer.ftr .ftr-top{
   margin-left:auto; border:1px solid rgba(255,255,255,.25);
   padding:.35rem .6rem; border-radius:8px; font-size:.9rem;
 }
-.ftr-top:hover{ background: rgba(255,255,255,.06); }
+#site-footer.ftr .ftr-top:hover{ background:rgba(255,255,255,.06); }
