@@ -1,54 +1,61 @@
-<section id="why-choose" class="why-section" aria-label="Why choose Zenith Roofing Services">
-  <div class="why-container">
-    <header class="why-header">
-      <h2 class="why-title">Why Home &amp; Business Owners Choose Zenith</h2>
-      <p class="why-lede">
-        Craftsmanship, clean job sites, and transparent scopes—built for San Diego &amp; Temecula roofs.
-      </p>
-      <ul class="why-badges" aria-label="Credentials and affiliations">
-        <li class="badge-chip">CSLB #1036112 • C-39</li>
-        <li class="badge-chip"><a href="https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828" target="_blank" rel="noopener">Owens Corning Preferred</a></li>
-        <li class="badge-chip"><a href="https://share.google/5hObHe0NZpdu8wbaO" target="_blank" rel="noopener">Google Guaranteed</a></li>
-      </ul>
-    </header>
+/* ============================
+   ABOUT — Centering & Proportion
+   (Drop-in overrides)
+   ============================ */
 
-    <div class="why-grid">
-      <div class="why-text">
-        <ul class="trust-list">
-          <li><span class="check" aria-hidden="true">✓</span> Veteran roofers with 20–40+ years’ expertise</li>
-          <li><span class="check" aria-hidden="true">✓</span> Fully licensed &amp; insured — CA Lic. #1036112</li>
-          <li><span class="check" aria-hidden="true">✓</span> Premium materials &amp; manufacturer-backed options</li>
-          <li><span class="check" aria-hidden="true">✓</span> Residential &amp; commercial specialists</li>
-          <li><span class="check" aria-hidden="true">✓</span> Transparent scope, photo documentation, clean sites</li>
-        </ul>
+/* 1) Title + lede centered with a readable measure */
+.about-header{ text-align:center; }
+.about-title{ letter-spacing:.2px; }
+.about-lede{
+  max-width: 62ch;          /* comfortable reading width */
+  margin: .35rem auto 0;    /* center the paragraph */
+}
 
-        <!-- subtle internal links, not a big CTA -->
-        <nav class="why-links" aria-label="Explore more">
-          <a class="link-chip" href="/reviews">Read Reviews</a>
-          <a class="link-chip" href="/projects">See Projects</a>
-          <a class="link-chip" href="/glossary">Roofing Glossary</a>
-        </nav>
-      </div>
+/* 2) Trust badges as centered chips with consistent gap */
+.about-badges{ justify-content: center; gap: .5rem .7rem; }
 
-      <figure class="why-image">
-        <img src="images/zenith-van-optimized.jpg" alt="Zenith Roofing Services van" loading="lazy" />
-      </figure>
-    </div>
+/* 3) Limit the width of each block so the page reads in columns */
+.about-grid{
+  max-width: 1100px;        /* cards row width */
+  margin-inline: auto;
+}
+.about-process{
+  max-width: 980px;         /* process list width */
+  margin-inline: auto;
+}
+.about-specialties{
+  max-width: 980px;         /* specialties row width */
+  margin-inline: auto;
+}
+.about-links{
+  justify-content: center;  /* soft nav chips centered */
+  max-width: 980px;
+  margin-inline: auto;
+}
 
-    <!-- Three small highlights to echo value (balanced widths) -->
-    <div class="why-cards" role="list">
-      <article class="why-card" role="listitem">
-        <h3>Precise Installs</h3>
-        <p>Code-compliant flashing, protected penetrations, and tidy finishes that look as good as they perform.</p>
-      </article>
-      <article class="why-card" role="listitem">
-        <h3>Photo Proof</h3>
-        <p>Before, during, and after photos—so you see exactly what was found and how it was resolved.</p>
-      </article>
-      <article class="why-card" role="listitem">
-        <h3>Clear Options</h3>
-        <p>Line-item scopes with good/better/best choices and timelines explained in plain English.</p>
-      </article>
-    </div>
-  </div>
-</section>
+/* 4) Rhythm tweaks (more even vertical spacing) */
+.about-grid{ margin-top: clamp(1.25rem, 2.2vw, 1.6rem); }
+.about-process{ margin-top: clamp(1.6rem, 3vw, 2rem); }
+.about-specialties{ margin-top: clamp(1.3rem, 2.6vw, 1.8rem); }
+.about-links{ margin-top: clamp(1rem, 2vw, 1.4rem); }
+
+/* 5) Subtle visual balance on cards & steps */
+.about-card{ text-align:left; }
+.process-title{ text-align:center; }
+.process-steps li{ align-items: center; min-height: 54px; }
+
+/* 6) Nice-looking breakpoints */
+@media (max-width: 1200px){
+  .about-grid{ max-width: 1000px; }
+}
+@media (max-width: 1024px){
+  .about-grid, .about-process, .about-specialties, .about-links{
+    max-width: 92vw;        /* keeps comfy margins on tablets */
+  }
+}
+@media (max-width: 900px){
+  .about-header{ text-align:left; }       /* reads better on phones */
+  .about-lede{ margin-left:0; margin-right:0; }
+  .about-badges{ justify-content:flex-start; }
+  .about-links{ justify-content:flex-start; }
+}
