@@ -12,11 +12,11 @@
           </p>
         </header>
 
-        <!-- Feature grid -->
-        <div class="why-grid" role="list">
+        <!-- Feature grid (tiered: top 3 cards, bottom 3 flat list) -->
+        <div class="why-grid why-grid--tiered" role="list">
+          <!-- 1 -->
           <article class="why-card" role="listitem">
             <span class="why-icon" aria-hidden="true">
-              <!-- Camera -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <rect x="3.5" y="6.5" width="17" height="11" rx="2.2"/>
                 <path d="M8 6.5l1.3-2h5.4l1.3 2"/>
@@ -27,9 +27,9 @@
             <p>Every phase is documented, so you (and HOAs or buyers) have a clear record of the work.</p>
           </article>
 
+          <!-- 2 -->
           <article class="why-card" role="listitem">
             <span class="why-icon" aria-hidden="true">
-              <!-- Clipboard -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <rect x="5" y="4.5" width="14" height="16" rx="2"/>
                 <rect x="8.5" y="2.5" width="7" height="4" rx="1.2"/>
@@ -40,9 +40,9 @@
             <p>Line-item proposals, code notes, and options tuned to slope, drainage, and climate.</p>
           </article>
 
+          <!-- 3 -->
           <article class="why-card" role="listitem">
             <span class="why-icon" aria-hidden="true">
-              <!-- Shield -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M12 3l7 3v6c0 4.6-3.3 7.7-7 9-3.7-1.3-7-4.4-7-9V6l7-3z"/>
                 <path d="M9.5 12.2l2 2 3.8-4.2"/>
@@ -52,9 +52,9 @@
             <p>CSLB C-39 #1036112 with safety-first practices and consistent jobsite standards.</p>
           </article>
 
+          <!-- 4 -->
           <article class="why-card" role="listitem">
             <span class="why-icon" aria-hidden="true">
-              <!-- Star badge -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M12 3l2.6 5.3 5.9.9-4.3 4.2 1 5.9L12 16.9 6.8 20.3l1-5.9L3.5 9.2l5.9-.9L12 3z"/>
               </svg>
@@ -63,9 +63,9 @@
             <p>Preferred with major shingle and flat-roof systems for strong material support.</p>
           </article>
 
+          <!-- 5 -->
           <article class="why-card" role="listitem">
             <span class="why-icon" aria-hidden="true">
-              <!-- Leaf -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M20 4c-7 1-12.5 6.5-13.5 13.5"/>
                 <path d="M20 4c-1 6-6 11-12 12M8 16l-4 4"/>
@@ -75,9 +75,9 @@
             <p>Daily magnet sweeps, protected landscaping, and tidy staging for minimal disruption.</p>
           </article>
 
+          <!-- 6 -->
           <article class="why-card" role="listitem">
             <span class="why-icon" aria-hidden="true">
-              <!-- Clock -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <circle cx="12" cy="12" r="8.5"/>
                 <path d="M12 7.8v4.6l3.6 2.1"/>
@@ -88,7 +88,7 @@
           </article>
         </div>
 
-        <!-- Proof/metrics + actions -->
+        <!-- Stats + actions -->
         <div class="why-bottom">
           <ul class="why-stats" aria-label="Highlights">
             <li><span class="stat-num" aria-hidden="true">4.9★</span><span class="stat-label">Avg. Reviews</span></li>
@@ -102,15 +102,14 @@
         </div>
       </div>
 
-      <!-- RIGHT: responsive image (root-relative path so it works from /components/) -->
+      <!-- RIGHT: responsive image using your filename -->
       <figure class="why-image">
         <img
-          src="/images/zenith-van-1200.jpg"
-          srcset="/images/zenith-van-768.jpg 768w, /images/zenith-van-1200.jpg 1200w, /images/zenith-van-1600.jpg 1600w"
-          sizes="(max-width: 900px) 92vw, 520px"
+          src="/images/zenith-van-optimized.jpg"
           alt="Zenith Roofing Services van"
           loading="lazy"
           decoding="async"
+          width="1200" height="800"
         />
         <figcaption class="sr-only">Company vehicle at a jobsite</figcaption>
       </figure>
