@@ -230,13 +230,13 @@ input[type="file"]:focus-within{
   .zenith-logo{ width:78px; }
 }
 
-/* ===== Collapsed-nav behavior (works even with hero in separate file) =====
-   The index.js snippet toggles .nav-collapsed on <html> and sets --header-h
-   so we can hide the hero logo and offset below the fixed header cleanly. */
-.nav-collapsed .zenith-hero .zenith-header .zenith-logo-container,
-.nav-collapsed .zenith-hero .zenith-header .zenith-logo,
-.nav-collapsed .zenith-hero .zenith-header .logo-backdrop{
-  display:none !important;
+/* Hide the HERO card logo only when the nav is actually collapsed (mobile) */
+@media (max-width: 1024px){
+  html.nav-collapsed .zenith-hero .zenith-header .zenith-logo-container,
+  html.nav-collapsed .zenith-hero .zenith-header .zenith-logo,
+  html.nav-collapsed .zenith-hero .zenith-header .logo-backdrop {
+    display: none !important;
+  }
 }
 .nav-collapsed .zenith-hero{
   padding-top: calc(var(--header-h, 80px) + 12px);
