@@ -1,131 +1,136 @@
-<section id="photos" class="photo-section" aria-labelledby="photos-title">
-  <div class="photo-shell">
-    <header class="photo-header">
-      <h2 id="photos-title" class="photo-title">Recent Work &amp; Jobsite Photos</h2>
-      <p class="photo-sub">Torch-down, tile, and solar-integrated roofs—built for Southern California homes and businesses.</p>
-    </header>
+/* =========================================================
+   PHOTO / PROJECTS — uniform cards, mobile-first, pro look
+   ========================================================= */
 
-    <!-- Uniform 2×2 grid on desktop, 1-up on phones -->
-    <ul class="photo-grid" role="list" aria-label="Roofing project gallery">
-      <li class="photo-card" role="listitem">
-        <figure>
-          <a class="photo-link"
-             href="images/zenith-sign-forklift.jpg"
-             target="_blank" rel="noopener"
-             aria-label="Open full photo: Job staging with forklift and Zenith Roofing site sign">
-            <div class="media">
-              <img
-                src="images/zenith-sign-forklift.jpg"
-                alt="Job staging with forklift hoisting a Zenith Roofing Services sign—safe, organized setup"
-                width="1600" height="1200"
-                loading="eager" fetchpriority="high" decoding="async"
-                sizes="(min-width:1024px) 520px, (min-width:700px) 48vw, 100vw">
-            </div>
-          </a>
-          <figcaption class="caption">Job staging • Safe, organized start</figcaption>
-        </figure>
-      </li>
+:root{
+  --zenith-navy:#072e59;
+  --zenith-orange:#f7941d;
+  --zenith-text:#0f172a;
+  --surface:#ffffff;
+  --line:#e7ecf2;
+  --shadow: 0 10px 24px rgba(2,12,32,.06);
+  --shadow-lg: 0 16px 44px rgba(2,12,32,.12);
+  --radius:16px;
+}
 
-      <li class="photo-card" role="listitem">
-        <figure>
-          <a class="photo-link"
-             href="images/torch-down-point-loma.jpeg"
-             target="_blank" rel="noopener"
-             aria-label="Open full photo: Torch-down modified bitumen roof in Point Loma">
-            <div class="media">
-              <img
-                src="images/torch-down-point-loma.jpeg"
-                alt="Torch-down modified bitumen roof in Point Loma with new cap sheet and edge metal"
-                width="1600" height="1200"
-                loading="lazy" decoding="async"
-                sizes="(min-width:1024px) 520px, (min-width:700px) 48vw, 100vw">
-            </div>
-          </a>
-          <figcaption class="caption">Torch-down • Point Loma</figcaption>
-        </figure>
-      </li>
+/* Section band (matches site aesthetic) */
+.photo-section{
+  position:relative;
+  padding: clamp(1.6rem, 3vw, 2.6rem) 1rem;
+  background:
+    radial-gradient(900px 520px at 8% -10%, rgba(11,58,111,.05) 0, transparent 55%),
+    radial-gradient(700px 420px at 98% 0%, rgba(247,148,29,.06) 0, transparent 50%),
+    linear-gradient(180deg,#f8fafc 0%, #f1f5fb 60%, #eef3f9 100%);
+  color: var(--zenith-text);
+}
+.photo-shell{ max-width:1100px; margin-inline:auto; }
 
-      <li class="photo-card" role="listitem">
-        <figure>
-          <a class="photo-link"
-             href="images/modern-tile-roof.png"
-             target="_blank" rel="noopener"
-             aria-label="Open full photo: Modern concrete tile roof with ridge venting">
-            <div class="media">
-              <img
-                src="images/modern-tile-roof.png"
-                alt="Modern concrete tile roof with ridge venting and color-matched flashings"
-                width="1600" height="1200"
-                loading="lazy" decoding="async"
-                sizes="(min-width:1024px) 520px, (min-width:700px) 48vw, 100vw">
-            </div>
-          </a>
-          <figcaption class="caption">Modern tile roof • North County</figcaption>
-        </figure>
-      </li>
+/* Header */
+.photo-header{ text-align:center; }
+.photo-title{
+  margin:0;
+  font-size:clamp(1.35rem,2.8vw,1.95rem);
+  line-height:1.2;
+  color:var(--zenith-navy);
+}
+.photo-title::after{
+  content:""; display:block; width:56px; height:3px; margin:.55rem auto 0;
+  background:var(--zenith-navy); border-radius:3px; opacity:.9;
+}
+.photo-sub{
+  margin:.45rem auto 1.15rem;
+  max-width:62ch; color:#4b5563;
+  font-size:clamp(.95rem,1.2vw,1rem);
+}
 
-      <li class="photo-card" role="listitem">
-        <figure>
-          <a class="photo-link"
-             href="images/clay-tiles-solar-shingles.jpg"
-             target="_blank" rel="noopener"
-             aria-label="Open full photo: Clay tile roof blended with solar shingles">
-            <div class="media">
-              <img
-                src="images/clay-tiles-solar-shingles.jpg"
-                alt="Clay tile roof blended with solar shingles—flush integration around penetrations"
-                width="1600" height="1200"
-                loading="lazy" decoding="async"
-                sizes="(min-width:1024px) 520px, (min-width:700px) 48vw, 100vw">
-            </div>
-          </a>
-          <figcaption class="caption">Clay tile + solar shingles • San Diego</figcaption>
-        </figure>
-      </li>
-    </ul>
+/* Uniform grid: 1-up phones → 2x2 desktop */
+.photo-grid{
+  list-style:none; padding:0; margin:0;
+  display:grid; gap: clamp(.85rem, 1.6vw, 1rem);
+  grid-template-columns: 1fr;          /* phones */
+}
+@media (min-width:700px){
+  .photo-grid{ grid-template-columns: 1fr 1fr; } /* 2x2 from tablets up */
+}
 
-    <nav class="photo-cta" aria-label="Project links">
-      <a class="btn btn--primary" href="/projects">See More Projects</a>
-      <a class="btn" href="/contact">Request Estimate</a>
-    </nav>
-  </div>
+/* Cards */
+.photo-card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition: box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+}
+@media (hover:hover){
+  .photo-card:hover{ transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color:#dfe6ee; }
+}
 
-  <!-- Machine-readable context for images (helps Google/AI) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Zenith Roofing Services — Recent Work",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1,
-        "item": { "@type": "ImageObject",
-          "contentUrl": "https://zenithroofingca.com/images/zenith-sign-forklift.jpg",
-          "name": "Job staging with Zenith Roofing sign",
-          "caption": "Forklift hoisting a Zenith Roofing sign—safe, organized site setup."
-        }
-      },
-      { "@type": "ListItem", "position": 2,
-        "item": { "@type": "ImageObject",
-          "contentUrl": "https://zenithroofingca.com/images/torch-down-point-loma.jpeg",
-          "name": "Torch-down roof in Point Loma",
-          "caption": "Modified bitumen roof with new cap sheet and edge metal."
-        }
-      },
-      { "@type": "ListItem", "position": 3,
-        "item": { "@type": "ImageObject",
-          "contentUrl": "https://zenithroofingca.com/images/modern-tile-roof.png",
-          "name": "Modern concrete tile roof",
-          "caption": "Ridge venting and color-matched flashings."
-        }
-      },
-      { "@type": "ListItem", "position": 4,
-        "item": { "@type": "ImageObject",
-          "contentUrl": "https://zenithroofingca.com/images/clay-tiles-solar-shingles.jpg",
-          "name": "Clay tile roof with solar shingles",
-          "caption": "Flush integration around penetrations."
-        }
-      }
-    ]
-  }
-  </script>
-</section>
+/* Media box — forces identical height across all cards */
+.media{
+  position:relative;
+  width:100%;
+  aspect-ratio: 4 / 3;          /* UNIFORM ratio = consistent grid */
+  overflow:hidden;
+  background:#f3f6fb;
+}
+.media img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  backface-visibility:hidden;
+  transform: translateZ(0);
+  transition: transform .25s ease, filter .25s ease;
+}
+@media (hover:hover){
+  .photo-card:hover .media img{ transform: scale(1.03); filter: saturate(1.05) contrast(1.05); }
+}
+
+/* Captions — same min height for perfect alignment */
+.caption{
+  padding:.65rem .85rem;
+  font-size:.95rem;
+  color:#4b5563;
+  min-height: 48px;              /* keeps all cards equal height */
+  display:flex; align-items:center;
+}
+
+/* Click target + focus ring (a11y) */
+.photo-link{ display:block; outline:0; }
+.photo-link:focus-visible{
+  box-shadow:0 0 0 4px rgba(247,148,29,.25);
+  border-radius:inherit;
+}
+
+/* CTAs (reuses your button style) */
+.photo-cta{
+  margin-top: clamp(1rem, 2.2vw, 1.4rem);
+  display:flex; gap:.6rem .7rem; flex-wrap:wrap; justify-content:center;
+}
+.photo-cta .btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:.62rem 1rem; border-radius:999px; text-decoration:none; font-weight:600;
+  border:1px solid var(--line);
+  background:#fff; color:var(--zenith-text);
+  transition:transform .15s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease, color .15s ease;
+}
+.photo-cta .btn:not(.btn--primary):hover{
+  transform:translateY(-1px); background:#f1f5f9; border-color:#d7e0ea;
+}
+.photo-cta .btn--primary{
+  color:#fff; border-color:transparent;
+  background:linear-gradient(180deg, var(--zenith-orange) 0%, #ffb457 100%);
+  box-shadow:0 8px 20px rgba(247,148,29,.22), inset 0 1px 0 rgba(255,255,255,.25);
+}
+.photo-cta .btn--primary:hover,
+.photo-cta .btn--primary:focus-visible{
+  transform:translateY(-2px);
+  background:linear-gradient(180deg, #f38a0a 0%, #ffa83b 100%);
+  box-shadow:0 14px 28px rgba(247,148,29,.28), inset 0 1px 0 rgba(255,255,255,.3);
+  color:#fff; outline:0;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .photo-card, .media img, .photo-cta .btn{ transition:none !important; }
+}
