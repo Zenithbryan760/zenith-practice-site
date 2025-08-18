@@ -1,5 +1,5 @@
 /* =========================================================
-   Testimonials — modern, accessible, mobile-first
+   Testimonials — modern carousel, mobile-first, accessible
    Scoped to #testimonials
    ========================================================= */
 :root{
@@ -32,16 +32,18 @@
 }
 #testimonials .section-subtitle{ max-width:62ch; margin:.4rem auto 1.1rem; color:#4b5563; }
 
-/* Swiper layout */
+/* Swiper layout: allow card shadows to breathe */
 #testimonials .testimonialSwiper{
   overflow:visible;
   padding: .5rem .25rem 1.5rem;
 }
-#testimonials .swiper-slide{ height:auto; }
 
-/* Slide transition helpers (toggled by JS) */
-#testimonials .t-slide{ transition: transform .45s ease, opacity .45s ease; }
-#testimonials .t-slide.is-dim{ transform: scale(.97); opacity:.85; }
+/* Slide transitions for the “dim” effect */
+#testimonials .swiper-slide{
+  height:auto;
+  transition: transform .45s ease, opacity .45s ease;
+}
+#testimonials .swiper-slide.is-dim{ transform: scale(.97); opacity:.9; }
 
 /* Card */
 #testimonials .t-card{
@@ -53,7 +55,6 @@
   height:100%;
   display:flex; flex-direction:column;
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  will-change:transform;
 }
 @media (hover:hover){
   #testimonials .t-card:hover{ transform:translateY(-3px); border-color:#dfe6ee; box-shadow:var(--shadow-lg); }
@@ -100,10 +101,6 @@
 }
 #testimonials .swiper-button-prev:after,
 #testimonials .swiper-button-next:after{ font-size:16px; }
-#testimonials .swiper-button-prev:focus-visible,
-#testimonials .swiper-button-next:focus-visible{
-  outline:0; box-shadow:0 0 0 3px rgba(247,148,29,.28);
-}
 @media (max-width:700px){
   #testimonials .swiper-button-prev,
   #testimonials .swiper-button-next{ width:36px; height:36px; }
@@ -133,9 +130,9 @@
 
 /* Motion-respect */
 @media (prefers-reduced-motion: reduce){
+  #testimonials .swiper-slide,
   #testimonials .t-card,
-  #testimonials .t-btn,
-  #testimonials .t-slide{ transition:none !important; }
+  #testimonials .t-btn{ transition:none !important; }
 }
 
 /* Utility */
