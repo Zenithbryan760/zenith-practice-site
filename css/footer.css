@@ -1,9 +1,9 @@
 /* =========================================================
-   Zenith Roofing — Footer (scoped, non-destructive)
-   All rules under #site-footer.ftr
+   Zenith Roofing — Footer (single, clean, non-destructive)
+   All rules are scoped to #site-footer.ftr
    ========================================================= */
 
-/* Footer-local tokens pulling from your globals */
+/* Footer-local tokens pulling from your globals (with fallbacks) */
 #site-footer.ftr{
   --ftr-navy:   var(--zenith-navy, #072e59);
   --ftr-navy-2: var(--zenith-navy-2, #0b3a6f);
@@ -13,17 +13,16 @@
   --ftr-white:  #ffffff;
 }
 
+/* A11y helper */
 #site-footer.ftr .sr-only{
   position:absolute!important; width:1px; height:1px; padding:0; margin:-1px;
   overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
 }
 
+/* ---------- Base ---------- */
 #site-footer.ftr{ color:var(--ftr-white); background:var(--ftr-navy); }
 #site-footer.ftr a{ color:var(--ftr-white); text-decoration:none; }
-#site-footer.ftr a:hover, 
-#site-footer.ftr a:focus{ text-decoration:underline; }
-
-/* Container */
+#site-footer.ftr a:hover,#site-footer.ftr a:focus{ text-decoration:underline; }
 #site-footer.ftr .ftr-container{ width:min(1200px,92%); margin-inline:auto; }
 
 /* ---------- Top CTA strip ---------- */
@@ -50,9 +49,16 @@
 
 /* ---------- Main footer ---------- */
 #site-footer.ftr .ftr-main{ padding:2.2rem 0 2rem; }
+
+/* Even 4-column desktop; responsive grid */
 #site-footer.ftr .ftr-grid{
   display:grid; gap:2rem;
-  grid-template-columns:1.4fr 1fr 1fr 1.2fr;
+  grid-template-columns:1.4fr 1fr 1fr 1.2fr;   /* default */
+}
+@media (min-width:1025px){
+  #site-footer.ftr .ftr-grid{ grid-template-columns:repeat(4, minmax(0,1fr)); column-gap:2.5rem; }
+  #site-footer.ftr .ftr-col{ padding:0 .5rem; }
+  #site-footer.ftr .ftr-brand{ max-width:42ch; } /* nicer line length */
 }
 @media (max-width:1024px){ #site-footer.ftr .ftr-grid{ grid-template-columns:1fr 1fr; } }
 @media (max-width:640px){  #site-footer.ftr .ftr-grid{ grid-template-columns:1fr; } }
@@ -61,9 +67,7 @@
 
 /* Brand block */
 #site-footer.ftr .ftr-logo img{ height:44px; width:auto; display:block; margin-bottom:.6rem; }
-#site-footer.ftr .ftr-brand .ftr-wordmark{
-  display:flex; flex-direction:column; gap:.25rem; margin-bottom:.5rem;
-}
+#site-footer.ftr .ftr-brand .ftr-wordmark{ display:flex; flex-direction:column; gap:.25rem; margin-bottom:.5rem; }
 #site-footer.ftr .ftr-name{ font-size:1.15rem; font-weight:800; letter-spacing:.2px; }
 #site-footer.ftr .ftr-lic{ font-size:.95rem; color:rgba(255,255,255,.85); }
 #site-footer.ftr .ftr-blurb{ color:rgba(255,255,255,.85); margin:.6rem 0 1rem; line-height:1.6; }
@@ -87,10 +91,14 @@
   background:rgba(255,255,255,.06);
   transition:transform .15s ease, background-color .2s ease, border-color .2s ease, opacity .2s ease;
 }
-#site-footer.ftr .ftr-social-btn:hover{ transform:translateY(-1px); background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.35); }
 #site-footer.ftr .ftr-social-btn svg{ width:18px; height:18px; fill:currentColor; }
+#site-footer.ftr .ftr-social-btn:hover{
+  background:var(--ftr-orange);
+  border-color:var(--ftr-orange);
+  color:#0b0b0b;
+}
 
-/* Accordion (uses <details>) */
+/* Accordion (mobile uses <details>) */
 #site-footer.ftr .ftr-acc{ border-bottom:2px solid rgba(255,255,255,.12); padding-bottom:.4rem; }
 #site-footer.ftr .ftr-acc > summary.ftr-title{
   list-style:none; cursor:pointer; position:relative; padding-right:26px;
@@ -99,14 +107,52 @@
 #site-footer.ftr .ftr-acc > summary::-webkit-details-marker{ display:none; }
 #site-footer.ftr .ftr-acc > summary::after{
   content:"▾"; position:absolute; right:0; top:0; font-size:1rem; opacity:.9;
-  transform-origin:center; transition: transform .2s ease;
+  transform-origin:center; transition:transform .2s ease;
 }
-#site-footer.ftr .ftr-acc[open] > summary::after{ transform: rotate(180deg); }
+#site-footer.ftr .ftr-acc[open] > summary::after{ transform:rotate(180deg); }
 
-/* Lists */
-#site-footer.ftr .ftr-list{ list-style:none; margin:0; padding:0; display:grid; gap:.45rem; }
-#site-footer.ftr .ftr-list a{ color:rgba(255,255,255,.95); padding:.15rem 0; display:inline-block; }
-#site-footer.ftr .ftr-list a:hover{ color:#fff; }
+/* Titles & lists */
+#site-footer.ftr .ftr-title{
+  font-size:1.05rem; font-weight:800; margin-bottom:.65rem;
+  border-bottom:2px solid rgba(255,255,255,.12); padding-bottom:.35rem;
+}
+#site-footer.ftr .ftr-list{ list-style:none; margin:0; padding:0; display:grid; gap:.5rem; line-height:1.55; }
+
+/* Orange hover / focus underline for links */
+#site-footer.ftr .ftr-list a,
+#site-footer.ftr .ftr-contact a,
+#site-footer.ftr .ftr-profiles a,
+#site-footer.ftr .ftr-legal a{
+  position:relative; text-decoration:none; transition:color .18s ease;
+}
+#site-footer.ftr .ftr-list a::after,
+#site-footer.ftr .ftr-contact a::after,
+#site-footer.ftr .ftr-profiles a::after,
+#site-footer.ftr .ftr-legal a::after{
+  content:""; position:absolute; left:0; bottom:-2px; height:2px; width:0;
+  background:var(--ftr-orange); transition:width .18s ease;
+}
+#site-footer.ftr .ftr-list a:hover,
+#site-footer.ftr .ftr-contact a:hover,
+#site-footer.ftr .ftr-profiles a:hover,
+#site-footer.ftr .ftr-legal a:hover,
+#site-footer.ftr .ftr-list a:focus-visible,
+#site-footer.ftr .ftr-contact a:focus-visible,
+#site-footer.ftr .ftr-profiles a:focus-visible,
+#site-footer.ftr .ftr-legal a:focus-visible{
+  color:var(--ftr-orange);
+}
+#site-footer.ftr .ftr-list a:hover::after,
+#site-footer.ftr .ftr-contact a:hover::after,
+#site-footer.ftr .ftr-profiles a:hover::after,
+#site-footer.ftr .ftr-legal a:hover::after,
+#site-footer.ftr .ftr-list a:focus-visible::after,
+#site-footer.ftr .ftr-contact a:focus-visible::after,
+#site-footer.ftr .ftr-profiles a:focus-visible::after,
+#site-footer.ftr .ftr-legal a:focus-visible::after{ width:100%; }
+/* avoid double underline look on these lists */
+#site-footer.ftr .ftr-contact a:hover,
+#site-footer.ftr .ftr-profiles a:hover{ border-bottom-color:transparent; }
 
 /* Service area columns */
 #site-footer.ftr .ftr-columns{
@@ -130,8 +176,11 @@
 #site-footer.ftr .ftr-top{
   margin-left:auto; border:1px solid rgba(255,255,255,.25);
   padding:.45rem .75rem; border-radius:10px; font-size:.95rem; min-height:44px;
+  transition:background-color .2s ease, border-color .2s ease, color .2s ease;
 }
-#site-footer.ftr .ftr-top:hover{ background:rgba(255,255,255,.06); }
+#site-footer.ftr .ftr-top:hover{
+  background:var(--ftr-orange); color:#0b0b0b; border-color:var(--ftr-orange);
+}
 
 /* ---------- Mobile tweaks ---------- */
 @media (max-width:768px){
@@ -139,27 +188,24 @@
   #site-footer.ftr .ftr-cta .ftr-container{
     flex-direction:column; align-items:stretch; text-align:center;
   }
-  #site-footer.ftr .ftr-cta-actions{
-    display:flex; gap:.6rem; width:100%;
-  }
+  #site-footer.ftr .ftr-cta-actions{ display:flex; gap:.6rem; width:100%; }
   #site-footer.ftr .ftr-cta-actions .ftr-btn{ flex:1; width:100%; }
   #site-footer.ftr .ftr-cta-text{ font-size:1rem; }
 
-  /* larger touch targets & spacing */
+  /* bigger touch targets */
   #site-footer.ftr .ftr-list a{ padding:.25rem 0; }
   #site-footer.ftr .ftr-contact a{ padding:.3rem 0; }
-  
+
   /* keep accordions interactive on mobile only */
   #site-footer.ftr .ftr-acc > summary.ftr-title{ pointer-events:auto; }
 }
 
-/* On desktop, keep sections open and disable accidental collapsing */
+/* Desktop: sections fixed open (no accidental collapse) */
 @media (min-width:769px){
   #site-footer.ftr .ftr-acc{ border:0; padding:0; }
   #site-footer.ftr .ftr-acc > summary.ftr-title{
     cursor:default; padding-right:0; margin-bottom:.65rem;
   }
   #site-footer.ftr .ftr-acc > summary::after{ display:none; }
-  /* Don’t allow toggling on desktop */
   #site-footer.ftr .ftr-acc > summary{ pointer-events:none; }
 }
