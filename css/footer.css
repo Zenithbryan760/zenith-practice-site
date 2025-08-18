@@ -1,10 +1,9 @@
 /* =========================================================
    Zenith Roofing — Footer (scoped, non-destructive)
-   All styles live under #site-footer.ftr
-   No global tokens or resets are overridden.
+   All rules under #site-footer.ftr
    ========================================================= */
 
-/* Local, footer-only tokens that read your site tokens (with fallbacks) */
+/* Footer-local tokens pulling from your globals */
 #site-footer.ftr{
   --ftr-navy:   var(--zenith-navy, #072e59);
   --ftr-navy-2: var(--zenith-navy-2, #0b3a6f);
@@ -14,14 +13,11 @@
   --ftr-white:  #ffffff;
 }
 
-/* A11y helper (scoped) */
 #site-footer.ftr .sr-only{
-  position:absolute!important; width:1px; height:1px;
-  padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0);
-  white-space:nowrap; border:0;
+  position:absolute!important; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
 }
 
-/* Base */
 #site-footer.ftr{ color:var(--ftr-white); background:var(--ftr-navy); }
 #site-footer.ftr a{ color:var(--ftr-white); text-decoration:none; }
 #site-footer.ftr a:hover, 
@@ -42,8 +38,8 @@
 #site-footer.ftr .ftr-cta-text{ font-weight:600; letter-spacing:.2px; }
 #site-footer.ftr .ftr-btn{
   display:inline-flex; align-items:center; justify-content:center;
-  padding:.6rem .95rem; border-radius:10px; font-weight:600; 
-  border:1px solid transparent; white-space:nowrap;
+  padding:.7rem 1rem; border-radius:12px; font-weight:700; 
+  border:1px solid transparent; white-space:nowrap; min-height:44px;
   transition:transform .15s ease, opacity .15s ease, background-color .2s ease, border-color .2s ease;
 }
 #site-footer.ftr .ftr-btn:hover{ transform:translateY(-1px); }
@@ -56,7 +52,7 @@
 #site-footer.ftr .ftr-main{ padding:2.2rem 0 2rem; }
 #site-footer.ftr .ftr-grid{
   display:grid; gap:2rem;
-  grid-template-columns:1.4fr 1fr 1fr 1.2fr;  /* brand wider */
+  grid-template-columns:1.4fr 1fr 1fr 1.2fr;
 }
 @media (max-width:1024px){ #site-footer.ftr .ftr-grid{ grid-template-columns:1fr 1fr; } }
 @media (max-width:640px){  #site-footer.ftr .ftr-grid{ grid-template-columns:1fr; } }
@@ -64,6 +60,7 @@
 #site-footer.ftr .ftr-col{ min-width:0; }
 
 /* Brand block */
+#site-footer.ftr .ftr-logo img{ height:44px; width:auto; display:block; margin-bottom:.6rem; }
 #site-footer.ftr .ftr-brand .ftr-wordmark{
   display:flex; flex-direction:column; gap:.25rem; margin-bottom:.5rem;
 }
@@ -81,13 +78,34 @@
 #site-footer.ftr .ftr-contact a:hover,
 #site-footer.ftr .ftr-profiles a:hover{ border-color:rgba(255,255,255,.35); }
 
-/* Titles & lists */
-#site-footer.ftr .ftr-title{
-  font-size:1.05rem; font-weight:800; margin-bottom:.65rem;
-  border-bottom:2px solid rgba(255,255,255,.12); padding-bottom:.35rem;
+/* Social buttons */
+#site-footer.ftr .ftr-social{ display:flex; gap:.6rem; margin:.2rem 0 1.1rem; }
+#site-footer.ftr .ftr-social-btn{
+  width:42px; height:42px; border-radius:999px;
+  display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.06);
+  transition:transform .15s ease, background-color .2s ease, border-color .2s ease, opacity .2s ease;
 }
+#site-footer.ftr .ftr-social-btn:hover{ transform:translateY(-1px); background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.35); }
+#site-footer.ftr .ftr-social-btn svg{ width:18px; height:18px; fill:currentColor; }
+
+/* Accordion (uses <details>) */
+#site-footer.ftr .ftr-acc{ border-bottom:2px solid rgba(255,255,255,.12); padding-bottom:.4rem; }
+#site-footer.ftr .ftr-acc > summary.ftr-title{
+  list-style:none; cursor:pointer; position:relative; padding-right:26px;
+  font-size:1.05rem; font-weight:800; margin-bottom:.5rem;
+}
+#site-footer.ftr .ftr-acc > summary::-webkit-details-marker{ display:none; }
+#site-footer.ftr .ftr-acc > summary::after{
+  content:"▾"; position:absolute; right:0; top:0; font-size:1rem; opacity:.9;
+  transform-origin:center; transition: transform .2s ease;
+}
+#site-footer.ftr .ftr-acc[open] > summary::after{ transform: rotate(180deg); }
+
+/* Lists */
 #site-footer.ftr .ftr-list{ list-style:none; margin:0; padding:0; display:grid; gap:.45rem; }
-#site-footer.ftr .ftr-list a{ color:rgba(255,255,255,.95); }
+#site-footer.ftr .ftr-list a{ color:rgba(255,255,255,.95); padding:.15rem 0; display:inline-block; }
 #site-footer.ftr .ftr-list a:hover{ color:#fff; }
 
 /* Service area columns */
@@ -99,7 +117,9 @@
 @media (min-width:900px){  #site-footer.ftr .ftr-columns{ --cols:2; } }
 
 /* ---------- Bottom bar ---------- */
-#site-footer.ftr .ftr-bottom{ background:#061f3b; border-top:1px solid rgba(255,255,255,.08); }
+#site-footer.ftr .ftr-bottom{
+  background:#061f3b; border-top:1px solid rgba(255,255,255,.08);
+}
 #site-footer.ftr .ftr-bottom-row{
   display:flex; align-items:center; gap:1rem; padding:.9rem 0; flex-wrap:wrap;
 }
@@ -107,9 +127,39 @@
 #site-footer.ftr .ftr-legal{ list-style:none; display:flex; flex-wrap:wrap; gap:.8rem; margin:0; padding:0; }
 #site-footer.ftr .ftr-legal a{ color:rgba(255,255,255,.9); }
 #site-footer.ftr .ftr-legal a:hover{ color:#fff; }
-
 #site-footer.ftr .ftr-top{
   margin-left:auto; border:1px solid rgba(255,255,255,.25);
-  padding:.35rem .6rem; border-radius:8px; font-size:.9rem;
+  padding:.45rem .75rem; border-radius:10px; font-size:.95rem; min-height:44px;
 }
 #site-footer.ftr .ftr-top:hover{ background:rgba(255,255,255,.06); }
+
+/* ---------- Mobile tweaks ---------- */
+@media (max-width:768px){
+  /* stack CTA */
+  #site-footer.ftr .ftr-cta .ftr-container{
+    flex-direction:column; align-items:stretch; text-align:center;
+  }
+  #site-footer.ftr .ftr-cta-actions{
+    display:flex; gap:.6rem; width:100%;
+  }
+  #site-footer.ftr .ftr-cta-actions .ftr-btn{ flex:1; width:100%; }
+  #site-footer.ftr .ftr-cta-text{ font-size:1rem; }
+
+  /* larger touch targets & spacing */
+  #site-footer.ftr .ftr-list a{ padding:.25rem 0; }
+  #site-footer.ftr .ftr-contact a{ padding:.3rem 0; }
+  
+  /* keep accordions interactive on mobile only */
+  #site-footer.ftr .ftr-acc > summary.ftr-title{ pointer-events:auto; }
+}
+
+/* On desktop, keep sections open and disable accidental collapsing */
+@media (min-width:769px){
+  #site-footer.ftr .ftr-acc{ border:0; padding:0; }
+  #site-footer.ftr .ftr-acc > summary.ftr-title{
+    cursor:default; padding-right:0; margin-bottom:.65rem;
+  }
+  #site-footer.ftr .ftr-acc > summary::after{ display:none; }
+  /* Don’t allow toggling on desktop */
+  #site-footer.ftr .ftr-acc > summary{ pointer-events:none; }
+}
