@@ -18,15 +18,19 @@
 
 /* ===== Base & Layout ===== */
 .zenith-hero{
-  position:relative;                 /* contains the video */
-  min-height:100vh;
-  display:flex; align-items:center; justify-content:center;
-  padding:clamp(1.25rem, 2vw, 2rem);
-  color:var(--zenith-text);
-  font-family:'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  overflow:hidden;                   /* clip the background video to hero */
+  position: relative;                /* contains the video */
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+
+  /* no extra top gap under the header */
+  padding: 0 clamp(1.25rem, 2vw, 2rem) clamp(1.25rem, 2vw, 2rem);
+
+  color: var(--zenith-text);
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  overflow: hidden;                  /* clip the background video to hero */
   z-index: 0;                        /* base layer */
 }
+
 
 /* ===== HERO-ONLY BACKGROUND VIDEO ===== */
 .zenith-video-container{
