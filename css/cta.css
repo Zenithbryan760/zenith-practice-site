@@ -7,9 +7,7 @@
   overflow: hidden;
   isolation: isolate;
   border-radius: var(--radius, 12px);
-  padding: 0; /* handled by .cta-container */
   margin: clamp(1.25rem, 2.5vw, 2rem) auto;
-  /* uses your variables if present, otherwise fallbacks */
   background: linear-gradient(
     135deg,
     var(--zenith-navy-2, #0b3a6f),
@@ -81,6 +79,11 @@
   transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease, color .18s ease;
   will-change: transform;
   box-shadow: var(--shadow-sm, 0 4px 14px rgba(2,14,32,.10));
+}
+
+.cta-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 .cta-btn--primary {
