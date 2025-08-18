@@ -1,10 +1,9 @@
 /* =========================================================
-   Why Choose — single, clean stylesheet (no overrides)
+   Why Choose — clean stylesheet with full-section gray clip art
    ========================================================= */
 
 :root{
   --zenith-navy:#072e59;
-  --zenith-navy-2:#0b3a6f;
   --zenith-orange:#f7941d;
   --zenith-text:#0f172a;
   --bg:#f8fafc;
@@ -14,43 +13,31 @@
   --radius-lg:20px;
 }
 
-/* ===== Shell & background ===== */
+/* ===== Shell & gradient ===== */
 #why-choose.why-choose-section{
   position:relative;
-  z-index:0;
   overflow:hidden;
   color:var(--zenith-text);
   padding:clamp(1.6rem,3vw,2.6rem) 1rem;
   background:linear-gradient(180deg,#f8fafc 0%,#f4f7fb 55%,#eef3f9 100%);
 }
 
-/* Brand-tinted wash for depth (very subtle) */
-#why-choose.why-choose-section::before{
+/* ===== Gray clip-art behind EVERYTHING in the section ===== */
+#why-choose.why-choose-section::after{
   content:"";
-  position:absolute; inset:0; pointer-events:none;
-  background:
-    radial-gradient(900px 520px at 8% -10%, rgba(11,58,111,.07) 0, transparent 60%),
-    radial-gradient(700px 420px at 98% 0%, rgba(247,148,29,.08) 0, transparent 55%);
-}
-
-/* Illustration only behind the TEXT column (not the photo) */
-#why-choose.why-choose-section .why-text{
-  position:relative;        /* create local stacking context */
-  z-index:1;                /* keep text above the art */
-}
-#why-choose.why-choose-section .why-text::before{
-  content:"";
-  position:absolute;
-  top:-16px; bottom:-12px; left:-28px; right:48%;
-  pointer-events:none; z-index:0;
-  opacity:.50;
+  position:absolute; inset:0;
+  z-index:0;                     /* sits under all content */
+  pointer-events:none;
+  opacity:.46;                   /* subtle but visible */
   background-repeat:no-repeat;
-  background-position:left bottom -10px;
-  background-size:contain;
+  background-position: right 2% bottom -10px;  /* desktop anchor */
+  background-size: min(75vw, 980px) auto;      /* scale with viewport */
+
+  /* light gray artwork (house roof, building, palms) */
   background-image:
     url('data:image/svg+xml;utf8,\
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">\
-  <g fill="%23c9d1dd">\
+  <g fill="%23cfd6df">\
     <polygon points="120,360 260,250 400,360 372,360 372,430 148,430 148,360" />\
     <rect x="170" y="360" width="180" height="70" rx="6" />\
     <rect x="215" y="382" width="35" height="48" rx="4" />\
@@ -88,21 +75,22 @@
   </g>\
 </svg>');
 }
-@media (max-width:900px){
-  #why-choose.why-choose-section .why-text::before{
-    left:-18px; right:8%;
-    opacity:.42;
-    background-position:left bottom -6px;
+@media (max-width: 900px){
+  #why-choose.why-choose-section::after{
+    background-position: center bottom -8px;
+    background-size: min(92vw, 720px) auto;
+    opacity:.40;
   }
 }
 
-/* ===== Container & layout ===== */
-#why-choose.why-choose-section .why-container{
-  max-width:1100px; margin-inline:auto; position:relative; z-index:1;
-}
+/* Keep all content above the background art */
+#why-choose.why-choose-section .why-container{ position:relative; z-index:1; }
+
+/* ===== Layout ===== */
+#why-choose.why-choose-section .why-container{ max-width:1100px; margin-inline:auto; }
 #why-choose.why-choose-section .why-grid{
   display:grid; gap:1.25rem; align-items:center;
-  grid-template-columns:1fr;          /* mobile */
+  grid-template-columns:1fr;           /* mobile */
 }
 @media (min-width:900px){
   #why-choose.why-choose-section .why-grid{
