@@ -1,88 +1,53 @@
-<section id="photos" class="photo-section" aria-labelledby="photos-title">
-  <div class="photo-shell">
+<section id="gallery" class="photo-section gray-section" aria-labelledby="gallery-title">
+  <div class="container">
     <header class="photo-header">
-      <h2 id="photos-title" class="photo-title">Recent Work &amp; Jobsite Photos</h2>
-      <p class="photo-sub">Torch-down, tile, and solar-integrated roofs—built for Southern California homes and businesses.</p>
+      <h2 id="gallery-title" class="section-title">Our Recent Work</h2>
+      <p class="section-subtitle mw-3xl">
+        Transforming homes and businesses across San Diego &amp; Temecula with durable, efficient roofing systems.
+      </p>
     </header>
 
-    <!-- Uniform 2×2 grid on desktop, 1-up on phones -->
-    <ul class="photo-grid" role="list" aria-label="Roofing project gallery">
-      <li class="photo-card" role="listitem">
-        <figure>
-          <a class="photo-link"
-             href="images/zenith-sign-forklift.jpg"
-             target="_blank" rel="noopener"
-             aria-label="Open full photo: Job staging with forklift and Zenith Roofing site sign">
-            <div class="media">
-              <img
-                src="images/zenith-sign-forklift.jpg"
-                alt="Job staging with forklift hoisting a Zenith Roofing Services sign—safe, organized setup"
-                width="1600" height="1200"
-                loading="eager" fetchpriority="high" decoding="async"
-                sizes="(min-width:1024px) 520px, (min-width:700px) 48vw, 100vw">
-            </div>
-          </a>
-          <figcaption class="caption">Job staging • Safe, organized start</figcaption>
-        </figure>
-      </li>
+    <div class="photo-grid" role="list" aria-label="Roofing project gallery">
+      <!-- 1 -->
+      <figure class="photo-item" role="listitem">
+        <img
+          src="images/clay-tiles-solar-shingles.jpg"
+          alt="Clay tile roof blended with solar shingles in Escondido, CA"
+          loading="eager" fetchpriority="high" decoding="async"
+          sizes="(min-width:1024px) 520px, (min-width:700px) 48vw, 100vw">
+        <figcaption class="caption">Clay Tile Roof with Solar — Escondido, CA</figcaption>
+      </figure>
 
-      <li class="photo-card" role="listitem">
-        <figure>
-          <a class="photo-link"
-             href="images/torch-down-point-loma.jpeg"
-             target="_blank" rel="noopener"
-             aria-label="Open full photo: Torch-down modified bitumen roof in Point Loma">
-            <div class="media">
-              <img
-                src="images/torch-down-point-loma.jpeg"
-                alt="Torch-down modified bitumen roof in Point Loma with new cap sheet and edge metal"
-                width="1600" height="1200"
-                loading="lazy" decoding="async"
-                sizes="(min-width:1024px) 520px, (min-width:700px) 48vw, 100vw">
-            </div>
-          </a>
-          <figcaption class="caption">Torch-down • Point Loma</figcaption>
-        </figure>
-      </li>
+      <!-- 2 -->
+      <figure class="photo-item" role="listitem">
+        <img
+          src="images/modern-tile-roof.png"
+          alt="Modern tile roof with ridge venting in San Diego, CA"
+          loading="lazy" decoding="async"
+          sizes="(min-width:1024px) 520px, (min-width:700px) 48vw, 100vw">
+        <figcaption class="caption">Modern Tile Roof — San Diego, CA</figcaption>
+      </figure>
 
-      <li class="photo-card" role="listitem">
-        <figure>
-          <a class="photo-link"
-             href="images/modern-tile-roof.png"
-             target="_blank" rel="noopener"
-             aria-label="Open full photo: Modern concrete tile roof with ridge venting">
-            <div class="media">
-              <img
-                src="images/modern-tile-roof.png"
-                alt="Modern concrete tile roof with ridge venting and color-matched flashings"
-                width="1600" height="1200"
-                loading="lazy" decoding="async"
-                sizes="(min-width:1024px) 520px, (min-width:700px) 48vw, 100vw">
-            </div>
-          </a>
-          <figcaption class="caption">Modern tile roof • North County</figcaption>
-        </figure>
-      </li>
+      <!-- 3 -->
+      <figure class="photo-item" role="listitem">
+        <img
+          src="images/torch-down-point-loma.jpeg"
+          alt="Torch-down modified bitumen flat roof in Point Loma, CA"
+          loading="lazy" decoding="async"
+          sizes="(min-width:1024px) 520px, (min-width:700px) 48vw, 100vw">
+        <figcaption class="caption">Torch-Down Roof — Point Loma, CA</figcaption>
+      </figure>
 
-      <li class="photo-card" role="listitem">
-        <figure>
-          <a class="photo-link"
-             href="images/clay-tiles-solar-shingles.jpg"
-             target="_blank" rel="noopener"
-             aria-label="Open full photo: Clay tile roof blended with solar shingles">
-            <div class="media">
-              <img
-                src="images/clay-tiles-solar-shingles.jpg"
-                alt="Clay tile roof blended with solar shingles—flush integration around penetrations"
-                width="1600" height="1200"
-                loading="lazy" decoding="async"
-                sizes="(min-width:1024px) 520px, (min-width:700px) 48vw, 100vw">
-            </div>
-          </a>
-          <figcaption class="caption">Clay tile + solar shingles • San Diego</figcaption>
-        </figure>
-      </li>
-    </ul>
+      <!-- 4 -->
+      <figure class="photo-item" role="listitem">
+        <img
+          src="images/zenith-sign-forklift.jpg"
+          alt="Zenith Roofing on-site forklift with company sign during job staging"
+          loading="lazy" decoding="async"
+          sizes="(min-width:1024px) 520px, (min-width:700px) 48vw, 100vw">
+        <figcaption class="caption">On-Site Equipment — Zenith Roofing</figcaption>
+      </figure>
+    </div>
 
     <nav class="photo-cta" aria-label="Project links">
       <a class="btn btn--primary" href="/projects">See More Projects</a>
@@ -90,7 +55,7 @@
     </nav>
   </div>
 
-  <!-- Machine-readable context for images (helps Google/AI) -->
+  <!-- Optional: machine-readable context for images (SEO/AI) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -99,30 +64,30 @@
     "itemListElement": [
       { "@type": "ListItem", "position": 1,
         "item": { "@type": "ImageObject",
-          "contentUrl": "https://zenithroofingca.com/images/zenith-sign-forklift.jpg",
-          "name": "Job staging with Zenith Roofing sign",
-          "caption": "Forklift hoisting a Zenith Roofing sign—safe, organized site setup."
+          "contentUrl": "https://zenithroofingca.com/images/clay-tiles-solar-shingles.jpg",
+          "name": "Clay tile roof with solar shingles",
+          "caption": "Clay tile roof blended with solar shingles in Escondido, CA."
         }
       },
       { "@type": "ListItem", "position": 2,
         "item": { "@type": "ImageObject",
-          "contentUrl": "https://zenithroofingca.com/images/torch-down-point-loma.jpeg",
-          "name": "Torch-down roof in Point Loma",
-          "caption": "Modified bitumen roof with new cap sheet and edge metal."
+          "contentUrl": "https://zenithroofingca.com/images/modern-tile-roof.png",
+          "name": "Modern tile roof",
+          "caption": "Modern tile roof with ridge venting in San Diego, CA."
         }
       },
       { "@type": "ListItem", "position": 3,
         "item": { "@type": "ImageObject",
-          "contentUrl": "https://zenithroofingca.com/images/modern-tile-roof.png",
-          "name": "Modern concrete tile roof",
-          "caption": "Ridge venting and color-matched flashings."
+          "contentUrl": "https://zenithroofingca.com/images/torch-down-point-loma.jpeg",
+          "name": "Torch-down roof",
+          "caption": "Modified bitumen torch-down roof in Point Loma, CA."
         }
       },
       { "@type": "ListItem", "position": 4,
         "item": { "@type": "ImageObject",
-          "contentUrl": "https://zenithroofingca.com/images/clay-tiles-solar-shingles.jpg",
-          "name": "Clay tile roof with solar shingles",
-          "caption": "Flush integration around penetrations."
+          "contentUrl": "https://zenithroofingca.com/images/zenith-sign-forklift.jpg",
+          "name": "Job staging with forklift",
+          "caption": "Zenith Roofing on-site forklift with company sign during job staging."
         }
       }
     ]
