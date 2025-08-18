@@ -3,9 +3,13 @@
   const hasReducedMotion = () =>
     window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function initTestimonials() {
+  function doInit() {
     const el = document.querySelector('.testimonialSwiper');
     if (!el || typeof Swiper === 'undefined') return;
+
+    // Guard: avoid double init after async includes / re-inits
+    if (el.dataset.inited === '1') return;
+    el.dataset.inited = '1';
 
     const reduce = hasReducedMotion();
 
@@ -63,19 +67,32 @@
     });
   }
 
-  // Lazy init when visible (perf)
-  const target = document.querySelector('.testimonialSwiper');
-  if (target && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          initTestimonials();
-          io.disconnect();
-        }
-      });
-    }, { threshold: 0.15 });
-    io.observe(target);
+  // Lazy init when visible (perf) — also expose a global guarded init for your loader
+  function ensureInit() {
+    const target = document.querySelector('.testimonialSwiper');
+    if (!target) return;
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            doInit();
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.15 });
+      io.observe(target);
+    } else {
+      doInit();
+    }
+  }
+
+  // Called by your index loader (safe to call multiple times)
+  window.initTestimonials = ensureInit;
+
+  // Fallback init if someone loads this file standalone
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ensureInit);
   } else {
-    document.addEventListener('DOMContentLoaded', initTestimonials);
+    ensureInit();
   }
 })();
