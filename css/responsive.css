@@ -2,7 +2,7 @@
    responsive.css — Media queries & responsive overrides
    =================================================================== */
 
-/* Tablet & small desktop: stack header elements, adjust grids */
+/* ≤1024px: tablet & small desktop */
 @media (max-width: 1024px) {
   /* Header: stack logo, nav, and call button */
   .header-inner {
@@ -15,14 +15,14 @@
     gap: 8px;
   }
 
-  /* Hero: tighten spacing and font-sizes */
-  .hero {
+  /* Hero card (use .zenith-hero to match your current markup) */
+  .zenith-hero {
     padding: 60px 20px;
   }
-  .hero h1 {
+  .zenith-hero h1 {
     font-size: 2rem;
   }
-  .hero p {
+  .zenith-hero p {
     font-size: 1.125rem;
   }
 
@@ -30,17 +30,23 @@
   .form-row {
     flex-direction: column;
   }
+
+  /* FORCE mobile nav UI: hide desktop nav, show mobile header */
+  .nav-bar { display: none !important; }          /* hide desktop nav */
+  .mobile-header { display: flex !important; }     /* show mobile header */
+  .mobile-nav { display: block !important; }       /* ensure off-canvas exists */
+  .menu-toggle {
+    display: inline-flex !important;               /* show hamburger (overrides safe default) */
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-/* Mobile: full-width buttons, single-column galleries, smaller text */
+/* ≤768px: phone */
 @media (max-width: 768px) {
-  /* Hero: even smaller headings */
-  .hero h1 {
-    font-size: 1.75rem;
-  }
-  .hero p {
-    font-size: 1rem;
-  }
+  /* Hero text gets smaller on phones */
+  .zenith-hero h1 { font-size: 1.75rem; }
+  .zenith-hero p  { font-size: 1rem; }
 
   /* Buttons stretch full width */
   .button,
@@ -50,29 +56,8 @@
   }
 
   /* Gallery: single column photos */
-  .photo-grid {
-    grid-template-columns: 1fr;
-  }
+  .photo-grid { grid-template-columns: 1fr; }
 
   /* Badge row: tighter gap */
-  .badge-row {
-    gap: 16px;
-  }
-}
-/* ===================================================================
-   FORCE mobile layout ≤ 992px — hide the desktop nav-bar entirely
-   =================================================================== */
-@media (max-width: 1024px) {
-  /* 1) Hide the entire desktop menu container */
-  .nav-bar {
-    display: none !important;
-  }
-  /* 2) Make sure your mobile header (hamburger+logo+call) shows */
-  .mobile-header {
-    display: flex !important;
-  }
-  /* 3) Make sure your off-canvas mobile nav is available */
-  .mobile-nav {
-    display: block !important;
-  }
+  .badge-row { gap: 16px; }
 }
