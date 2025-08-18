@@ -33,27 +33,32 @@
   }
   </script>
 
-  <!-- Critical CSS (minimal styles needed for initial render) -->
-  <style>
-    /* Base layout and font fallbacks */
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    .header { position: relative; z-index: 5000; }
-    
-    /* Smooth hover effects */
-    a, button, .hover-effect { transition: all 0.3s ease; }
-    a:hover, button:hover, .hover-effect:hover { opacity: 0.9; transform: translateY(-1px); }
-    
-    /* Video container fix */
-    .zenith-video-container,
-    .zenith-background-video,
-    .zenith-video-overlay { pointer-events: none; z-index: 0; }
-    
-    /* Nav overflow fix */
-    .nav-bar, .nav-links, .nav-links li, .nav-links a { overflow: visible; }
-    
-    /* Layout flags placeholder */
-    :root { --header-h: 80px; }
-  </style>
+<!-- Critical CSS (minimal styles needed for initial render) -->
+<style>
+  /* Base layout and font fallbacks */
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  .header { position: relative; z-index: 5000; }
+  
+  /* Smooth hover effects */
+  a, button, .hover-effect { transition: all 0.3s ease; }
+  a:hover, button:hover, .hover-effect:hover { opacity: 0.9; transform: translateY(-1px); }
+  
+  /* Video container fix */
+  .zenith-video-container,
+  .zenith-background-video,
+  .zenith-video-overlay { pointer-events: none; z-index: 0; }
+  
+  /* Nav overflow fix */
+  .nav-bar, .nav-links, .nav-links li, .nav-links a { overflow: visible; }
+
+  /* ✅ Safe defaults so we don't mark "collapsed" before header.css loads */
+  .mobile-header { display: none; }
+  .menu-toggle   { display: none; }
+  
+  /* Layout flags placeholder */
+  :root { --header-h: 80px; }
+</style>
+
 
   <!-- Non-critical CSS (loaded asynchronously) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
