@@ -1,24 +1,31 @@
 .site-footer {
   background-color: var(--zenith-gray);
   color: var(--white);
-  padding: 2rem 0;
+  padding: 2rem 1rem; /* Increased padding */
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  gap: 2rem;
+  grid-template-columns: 1fr; /* Single column */
+  text-align: center; /* Center content */
+  gap: 1.5rem;
 }
 
-.footer-info {
-  margin-bottom: 1rem; /* Added margin for spacing */
+.footer-info, .footer-nav, .footer-badges {
+  margin: 0 auto; /* Center align children */
+}
+
+.footer-info p, 
+.footer-info h3 {
+  margin: 0.5rem 0; /* Consistent spacing */
+  font-size: 1.1rem; /* Larger font size */
 }
 
 .footer-nav {
   display: flex;
-  flex-direction: column; /* Stack links on small screens */
-  gap: 0.5rem; /* Space between links */
+  flex-direction: column;
+  align-items: center; /* Center links */
+  gap: 0.5rem;
 }
 
 .footer-nav a {
@@ -26,20 +33,21 @@
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s;
+  font-size: 1.1rem; /* Larger font size */
 }
 
 .footer-nav a:hover {
-  color: var(--zenith-blue); /* Hover color change */
+  color: var(--zenith-blue);
 }
 
 .footer-badges {
   display: flex;
   gap: 1rem;
-  justify-content: center; /* Center badges */
+  justify-content: center;
 }
 
 .footer-badges img {
-  max-width: 120px; /* Set max width to be responsive */
+  max-width: 100px; /* Adjusted for mobiles */
 }
 
 .footer-bottom {
@@ -47,22 +55,22 @@
   padding-top: 1rem;
   border-top: 1px solid var(--zenith-border);
   margin-top: 1rem;
+  font-size: 0.9rem; /* Slightly smaller font size for bottom text */
 }
 
-/* Responsive Design */
-@media (max-width: 900px) {
+@media (min-width: 900px) {
   .footer-grid {
-    grid-template-columns: 1fr; /* Stack all footer content on smaller screens */
-    text-align: center; /* Center text for better mobile display */
+    grid-template-columns: repeat(3, 1fr); /* Restore columns for large screens */
+    text-align: left; /* Align left for larger screens */
   }
 
   .footer-nav {
-    flex-direction: row; /* Horizontal layout on larger screens */
+    flex-direction: row; /* Horizontal layout */
     flex-wrap: wrap;
-    justify-content: center; /* Center links */
+    justify-content: center;
   }
 
   .footer-nav a {
-    margin: 0 0.5rem; /* Add margin for spacing */
+    margin: 0 0.5rem;
   }
 }
