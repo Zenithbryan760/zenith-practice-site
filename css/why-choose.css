@@ -1,128 +1,136 @@
-/* =========================================================
-   Why Choose — clean + modern, aligned to site styling
-   Subtle shingle-grid background wash, no flashy motion
-   ========================================================= */
+/* -------------------------------
+   1) Button readability fixes
+   ------------------------------- */
 
-:root{
-  --zenith-navy:#072e59;
-  --zenith-navy-2:#0b3a6f;
-  --zenith-orange:#f7941d;
-  --zenith-text:#0f172a;
-  --bg:#f8fafc;
-  --surface:#ffffff;
-  --line:#e7ecf2;
-  --radius:16px;
-  --radius-lg:20px;
-}
-
-/* Section shell + background */
-.why-choose-section{
-  position:relative;
-  overflow:hidden;
-  background: var(--bg);
-  color: var(--zenith-text);
-  padding: clamp(1.6rem,3vw,2.6rem) 1rem;
-}
-
-/* Subtle brand-tinted wash + faint “shingle” grid */
-.why-choose-section::before,
-.why-choose-section::after{ content:""; position:absolute; inset:0; pointer-events:none; }
-.why-choose-section::before{
-  background:
-    radial-gradient(900px 520px at 8% -10%, rgba(11,58,111,.07) 0, transparent 60%),
-    radial-gradient(700px 420px at 98% 0%, rgba(247,148,29,.08) 0, transparent 55%);
-}
-.why-choose-section::after{
-  /* ultra-light diagonal grid evokes shingles */
-  background:
-    repeating-linear-gradient(135deg, rgba(7,46,89,.035) 0 2px, transparent 2px 18px),
-    repeating-linear-gradient(45deg,  rgba(7,46,89,.025) 0 2px, transparent 2px 18px);
-  mix-blend-mode: normal;
-  opacity:.7;
-}
-
-/* Container */
-.why-choose-section .why-container{ max-width:1100px; margin-inline:auto; position:relative; z-index:1; }
-
-/* Layout: stack on mobile, 2-col on desktop */
-.why-choose-section .why-grid{
-  display:grid; gap:1.25rem; align-items:center;
-  grid-template-columns:1fr; /* mobile */
-}
-@media (min-width:900px){
-  .why-choose-section .why-grid{ grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr); }
-}
-
-/* Title */
-.why-choose-section .why-title{
-  margin:0 0 .85rem 0;
-  font-size:clamp(1.55rem,3.1vw,2.15rem);
-  line-height:1.15;
-  color:var(--zenith-navy);
-}
-.why-choose-section .why-title::after{
-  content:""; display:block; width:56px; height:3px; margin-top:.55rem;
-  background: var(--zenith-navy); border-radius:3px; opacity:.9;
-}
-
-/* Checklist */
-.why-choose-section .why-list{
-  list-style:none; margin:0; padding:0;
-  display:grid; gap:.65rem;
-}
-.why-choose-section .why-list li{
-  display:grid; grid-template-columns:38px 1fr; align-items:start; column-gap:.7rem;
-  line-height:1.6;
-}
-.why-choose-section .check{
-  display:inline-grid; place-items:center;
-  width:38px; height:38px; border-radius:50%;
-  background:#fff; border:1px solid var(--line);
-  color:var(--zenith-navy); font-weight:700; font-size:16px; line-height:1;
-}
-
-/* Actions (pill buttons, site-style) */
-.why-choose-section .why-actions{
-  margin-top:1rem; display:flex; flex-wrap:wrap; gap:.6rem .7rem;
-}
-.why-choose-section .btn{
+/* Base pill buttons */
+#why-choose .btn{
   display:inline-flex; align-items:center; justify-content:center;
   padding:.62rem 1rem; border-radius:999px; text-decoration:none; font-weight:600;
-  border:1px solid var(--line); background:#fff; color:var(--zenith-text);
-  transition:transform .15s ease, border-color .15s ease, background .15s ease;
-}
-.why-choose-section .btn:hover{ transform:translateY(-1px); background:#f9fbfe; border-color:#d7e0ea; }
-.why-choose-section .btn--primary{
-  color:#fff; border-color:transparent;
-  background: linear-gradient(180deg, var(--zenith-orange) 0%, #ffb457 100%);
-  box-shadow: 0 8px 20px rgba(247,148,29,.22);
-}
-.why-choose-section .btn--primary:hover{ transform:translateY(-2px); box-shadow: 0 14px 28px rgba(247,148,29,.28); }
-
-/* Image block */
-.why-choose-section .why-image{
-  position:relative; overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:var(--radius-lg);
-  background:var(--surface);
-  box-shadow:0 8px 24px rgba(2,12,32,.06);
-}
-.why-choose-section .why-image img{
-  display:block; width:100%; height:100%;
-  object-fit:cover; aspect-ratio:16/10;           /* mobile crop */
-}
-@media (min-width:900px){
-  .why-choose-section .why-image img{ aspect-ratio:4/5; } /* taller desktop crop */
+  border:1px solid var(--line, #e6eef5);
+  background:#fff; color:var(--zenith-text, #0f172a);
+  transition:transform .15s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease, color .15s ease;
 }
 
-/* Mobile polish */
-@media (max-width:520px){
-  .why-choose-section .why-title{ text-align:center; }
-  .why-choose-section .why-title::after{ margin-inline:auto; }
+/* Limit the “white on hover” behavior to NON-primary buttons only */
+#why-choose .btn:not(.btn--primary):hover{
+  transform:translateY(-1px);
+  background:#f1f5f9;
+  border-color:#d7e0ea;
+  color:var(--zenith-text, #0f172a);
 }
 
-/* A11y helper */
-.sr-only{
-  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+/* Primary (orange) button — keeps contrast on hover/focus */
+#why-choose .btn--primary{
+  color:#fff;
+  border-color:transparent;
+  background:linear-gradient(180deg, var(--zenith-orange, #f7941d) 0%, #ffb457 100%);
+  box-shadow:0 8px 20px rgba(247,148,29,.22), inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+/* Make sure generic :hover doesn’t override primary */
+#why-choose .btn--primary:hover,
+#why-choose .btn--primary:focus-visible{
+  transform:translateY(-2px);
+  background:linear-gradient(180deg, #f38a0a 0%, #ffa83b 100%); /* slightly deeper on hover */
+  box-shadow:0 14px 28px rgba(247,148,29,.28), inset 0 1px 0 rgba(255,255,255,.3);
+  color:#fff; /* lock text to white */
+  outline:0;
+}
+
+/* Accessible focus ring */
+#why-choose .btn:focus-visible{
+  outline:0;
+  box-shadow:0 0 0 3px rgba(247,148,29,.25);
+}
+
+/* -------------------------------
+   2) Gradient + clip-art background
+   (house roof + building + palms)
+   ------------------------------- */
+
+#why-choose{
+  position:relative;
+  overflow:hidden;
+}
+
+/* Base gradient that matches your site */
+#why-choose{
+  background:
+    linear-gradient(180deg, #f8fafc 0%, #f2f6fb 60%, #eef3f9 100%);
+}
+
+/* Decorative overlay: light-gray clip-art drawn as inline SVG.
+   No extra files; scales with section size. */
+#why-choose::after{
+  content:"";
+  position:absolute; inset:0;
+  background-repeat:no-repeat;
+  background-position:right -80px bottom -20px; /* desktop anchor */
+  background-size:min(72vw, 900px) auto;
+  opacity:.35;           /* keep it subtle */
+  pointer-events:none;
+
+  /* SVG notes:
+     - fill color is URL-encoded (%23 for #)
+     - shapes: roofline, house body, commercial building w/ windows, two palms
+  */
+  background-image:
+    url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">\
+  <g fill="%23d6dde8">\
+    <!-- House roof + body -->\
+    <polygon points="120,360 260,250 400,360 372,360 372,430 148,430 148,360" />\
+    <rect x="170" y="360" width="180" height="70" rx="6" />\
+    <rect x="215" y="382" width="35" height="48" rx="4" />\
+    <rect x="270" y="382" width="35" height="48" rx="4" />\
+\
+    <!-- Commercial building -->\
+    <rect x="700" y="270" width="260" height="190" rx="10" />\
+    <!-- windows -->\
+    <g opacity=".9">\
+      <rect x="725" y="295" width="28" height="28" rx="3" />\
+      <rect x="765" y="295" width="28" height="28" rx="3" />\
+      <rect x="805" y="295" width="28" height="28" rx="3" />\
+      <rect x="845" y="295" width="28" height="28" rx="3" />\
+      <rect x="885" y="295" width="28" height="28" rx="3" />\
+\
+      <rect x="725" y="335" width="28" height="28" rx="3" />\
+      <rect x="765" y="335" width="28" height="28" rx="3" />\
+      <rect x="805" y="335" width="28" height="28" rx="3" />\
+      <rect x="845" y="335" width="28" height="28" rx="3" />\
+      <rect x="885" y="335" width="28" height="28" rx="3" />\
+\
+      <rect x="725" y="375" width="28" height="28" rx="3" />\
+      <rect x="765" y="375" width="28" height="28" rx="3" />\
+      <rect x="805" y="375" width="28" height="28" rx="3" />\
+      <rect x="845" y="375" width="28" height="28" rx="3" />\
+      <rect x="885" y="375" width="28" height="28" rx="3" />\
+    </g>\
+\
+    <!-- Palm tree 1 -->\
+    <g transform="translate(520,270)">\
+      <rect x="55" y="120" width="10" height="100" rx="5" />\
+      <path d="M60 120 C40 105, 25 105, 10 110 C28 120, 45 125, 60 125 Z" />\
+      <path d="M60 120 C80 105, 95 105, 110 110 C92 120, 75 125, 60 125 Z" />\
+      <path d="M60 118 C45 95, 45 85, 50 70 C55 88, 58 100, 60 112 Z" />\
+      <path d="M60 118 C75 95, 75 85, 70 70 C65 88, 62 100, 60 112 Z" />\
+    </g>\
+\
+    <!-- Palm tree 2 -->\
+    <g transform="translate(600,300) scale(0.9)">\
+      <rect x="55" y="120" width="10" height="100" rx="5" />\
+      <path d="M60 120 C40 105, 25 105, 10 110 C28 120, 45 125, 60 125 Z" />\
+      <path d="M60 120 C80 105, 95 105, 110 110 C92 120, 75 125, 60 125 Z" />\
+    </g>\
+  </g>\
+</svg>');
+}
+
+/* Mobile adjustments for the artwork */
+@media (max-width: 900px){
+  #why-choose::after{
+    background-position:center bottom -10px;
+    background-size:min(92vw, 680px) auto;
+    opacity:.28;
+  }
 }
