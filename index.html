@@ -12,22 +12,15 @@
   <link rel="preload" href="css/header.css" as="style">
   <link rel="preload" href="css/hero.css" as="style">
 
-  <!-- ✅ Preload the LCP hero image (WebP + PNG fallback) -->
-  <link rel="preload" as="image" href="/images/modern-tile-roof.webp" imagesizes="100vw">
-  <link rel="preload" as="image" href="/images/modern-tile-roof.png"  imagesizes="100vw">
-
-  <!-- ✅ Preload the hero partial so the include fetch is instant -->
+  <!-- ✅ Preload the mobile LCP hero image + the hero partial -->
+  <link rel="preload" as="image" href="images/zenith-van-optimized.jpg" imagesizes="100vw">
   <link rel="preload" as="fetch" href="components/hero-section.html" crossorigin="anonymous">
 
   <!-- Fonts: preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Google Font with swap to avoid FOIT/CLS -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"></noscript>
-
-  <!-- Optional structured data (keep or remove if you already have it) -->
+  <!-- Structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -46,21 +39,22 @@
   }
   </script>
 
-  <!-- Critical CSS (tiny) -->
+  <!-- Critical CSS (tiny, to avoid flashes) -->
   <style>
     body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
     .header { position: relative; z-index: 5000; }
-    a, button, .hover-effect { transition: all 0.3s ease; }
-    a:hover, button:hover, .hover-effect:hover { opacity: .9; transform: translateY(-1px); }
-    .nav-bar, .nav-links, .nav-links li, .nav-links a { overflow: visible; }
-    .mobile-header { display: none; } .menu-toggle { display: none; }
-    :root { --header-h: 80px; }
+    a, button, .hover-effect { transition: all .3s ease; }
+    a:hover, button:hover, .hover-effect:hover { opacity:.9; transform:translateY(-1px); }
+    :root { --header-h: 80px; }                /* placeholder until header loads */
     .zenith-hero { min-height: 100svh; min-height: 100dvh; }
     html { scroll-behavior: smooth; scroll-padding-top: var(--header-h, 80px); }
     [id] { scroll-margin-top: calc(var(--header-h, 80px) + 12px); }
   </style>
 
-  <!-- Site CSS (async) -->
+  <!-- Non-critical CSS (async) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"></noscript>
+
   <link rel="stylesheet" href="css/base.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="css/header.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="css/hero.css" media="print" onload="this.media='all'">
@@ -75,13 +69,11 @@
   <link rel="stylesheet" href="css/footer.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="css/responsive.css" media="print" onload="this.media='all'">
 
-  <!-- Swiper CSS (testimonials) -->
+  <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" media="print" onload="this.media='all'">
-
-  <!-- (No reCAPTCHA script here; it is injected lazily by hero.js) -->
 </head>
-<body>
 
+<body>
   <!-- Header include FIRST so it's present for measurements -->
   <section data-include="components/header-section.html"></section>
 
@@ -99,7 +91,7 @@
     <section data-include="components/footer.html"></section>
   </main>
 
-  <!-- ===== JS (all deferred) ===== -->
+  <!-- ===== JS (all defer) ===== -->
   <script src="js/header.js" defer></script>
   <script src="js/hero.js" defer></script>
   <script src="js/about.js" defer></script>
@@ -137,9 +129,8 @@
 
         if (window.initMobileMenu) window.initMobileMenu();
 
-        const initFunctions = [
-          'initEstimateForm',
-          /* 'initHeroVideo',  <-- REMOVED (no background video now) */
+        const initFns = [
+          'initEstimateForm',      // will also lazy-load reCAPTCHA
           'initAboutSection',
           'initWhyChoose',
           'initTrustSection',
@@ -152,9 +143,10 @@
           'initHeader',
           'setLayoutFlags'
         ];
-        initFunctions.forEach(fn => { if (typeof window[fn] === 'function') window[fn](); });
+        initFns.forEach(n => { if (typeof window[n] === 'function') window[n](); });
       }
 
+      // Layout flags (used for sticky-header offset & CLS)
       window.setLayoutFlags = function() {
         var toggle = document.querySelector('.menu-toggle');
         var collapsed = toggle && getComputedStyle(toggle).display !== 'none';
@@ -177,7 +169,7 @@
       window.addEventListener('resize', window.setLayoutFlags);
       document.addEventListener('click', function(e) {
         if (e.target.closest('.menu-toggle')) setTimeout(window.setLayoutFlags, 50);
-      }, { passive: true });
+      });
 
       window.addEventListener('orientationchange', window.setLayoutFlags, { passive: true });
       if (window.visualViewport) {
@@ -213,7 +205,7 @@
           e.preventDefault();
           scrollToHash(href, true);
         }
-      }, { passive: true });
+      });
       window.addEventListener('load', function(){
         if(location.hash){
           setTimeout(function(){ scrollToHash(location.hash, false); }, 0);
