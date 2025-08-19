@@ -1,13 +1,39 @@
-// File: js/hero.js
-// phone mask + ZIP → City + validation + reCAPTCHA guard + desktop video lazy-load + Netlify submit (with timeout)
+// js/hero.js — phone mask + ZIP→City + validation + lazy reCAPTCHA + submit
 (function () {
-  // ---------- PHONE MASK (###) ###-#### ----------
+  const RECAPTCHA_SITEKEY = '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI';
+
+  // --- Lazy-load reCAPTCHA only when user sees or focuses the form ---
+  function ensureRecaptchaScript() {
+    if (document.querySelector('script[data-zenith-recaptcha]')) return;
+    const s = document.createElement('script');
+    s.src = 'https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit';
+    s.async = true; s.defer = true; s.setAttribute('data-zenith-recaptcha','1');
+    document.head.appendChild(s);
+  }
+  window.recaptchaOnload = function() {
+    const slot = document.getElementById('recaptcha-slot');
+    if (slot && !slot.dataset.rendered && window.grecaptcha) {
+      window._recaptchaWidgetId = grecaptcha.render(slot, {
+        sitekey: RECAPTCHA_SITEKEY, theme: 'light', size: 'normal'
+      });
+      slot.dataset.rendered = '1';
+    }
+  };
+  function setupLazyRecaptcha(form) {
+    const trigger = () => { ensureRecaptchaScript(); obs && obs.disconnect(); form.removeEventListener('focusin', trigger); };
+    const obs = ('IntersectionObserver' in window)
+      ? new IntersectionObserver((es)=>{ if (es.some(e=>e.isIntersecting)) trigger(); }, { rootMargin:'300px' })
+      : null;
+    if (obs) obs.observe(form);
+    form.addEventListener('focusin', trigger, { once:true });
+  }
+
+  // ---------- PHONE MASK ----------
   function bindPhoneMask() {
     const el = document.getElementById('phone');
     if (!el || el._masked) return;
     el._masked = true;
     el.setAttribute('maxlength', '14');
-
     const fmt = v => {
       const d = (v || '').replace(/\D/g, '').slice(0, 10);
       if (!d) return '';
@@ -15,14 +41,7 @@
       if (d.length < 7) return `(${d.slice(0,3)}) ${d.slice(3)}`;
       return `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
     };
-
-    const onInput = e => { e.target.value = fmt(e.target.value); };
-    el.addEventListener('input', onInput);
-    el.addEventListener('paste', e => {
-      e.preventDefault();
-      const text = (e.clipboardData || window.clipboardData).getData('text') || '';
-      el.value = fmt(text);
-    });
+    el.addEventListener('input', e => { e.target.value = fmt(e.target.value); });
     el.addEventListener('blur', e => {
       const len = e.target.value.replace(/\D/g, '').length;
       e.target.setCustomValidity(len === 0 || len === 10 ? '' : 'Enter a 10-digit phone number');
@@ -36,28 +55,17 @@
     if (!zipInput || !cityInput || zipInput._zipBound) return;
     zipInput._zipBound = true;
 
-    const cache = Object.create(null); // in-memory
-    let inFlight; // AbortController
-
-    // prefer sessionStorage to persist across nav
-    try {
-      const persisted = sessionStorage.getItem('zipCityCache');
-      if (persisted) Object.assign(cache, JSON.parse(persisted));
-    } catch {}
-
+    const cache = {};
     cityInput.addEventListener('input', () => { cityInput.dataset.autofilled = ''; });
 
     async function lookup(zip5) {
       if (cache[zip5]) return cache[zip5];
-      if (inFlight) inFlight.abort();
-      inFlight = new AbortController();
-      const res = await fetch('https://api.zippopotam.us/us/' + zip5, { signal: inFlight.signal });
+      const res = await fetch('https://api.zippopotam.us/us/' + zip5);
       if (!res.ok) throw new Error('zip lookup failed');
       const data = await res.json();
       const place = data.places && data.places[0];
       const city  = place ? place['place name'] : '';
       cache[zip5] = city;
-      try { sessionStorage.setItem('zipCityCache', JSON.stringify(cache)); } catch {}
       return city;
     }
 
@@ -76,11 +84,10 @@
 
     zipInput.addEventListener('input',  maybeFill);
     zipInput.addEventListener('change', maybeFill);
-    // Run once if a ZIP is prefilled
     maybeFill();
   }
 
-  // ---------- LIGHTWEIGHT VALIDATION (keeps photos optional) ----------
+  // ---------- VALIDATION ----------
   function ensureErrorSummary(form) {
     let box = form.querySelector('.error-summary');
     if (!box) {
@@ -93,20 +100,16 @@
     }
     return box;
   }
-
   function clearErrors(form) {
     form.querySelectorAll('.form-group.has-error').forEach(g => g.classList.remove('has-error'));
     form.querySelectorAll('.field-error').forEach(n => n.remove());
     const box = form.querySelector('.error-summary');
     if (box) { box.textContent = ''; box.classList.remove('show'); }
   }
-
   function showFieldError(input, message) {
     const group = input.closest('.form-group') || input.parentElement;
     if (!group) return;
     group.classList.add('has-error');
-
-    // avoid stacking duplicates
     if (!group.querySelector('.field-error')) {
       const note = document.createElement('div');
       note.className = 'field-error';
@@ -114,7 +117,6 @@
       group.appendChild(note);
     }
   }
-
   function getMessageFor(input) {
     if (input.validity.valueMissing) return 'This field is required.';
     if (input.id === 'email' && input.validity.typeMismatch) return 'Enter a valid email address.';
@@ -122,19 +124,14 @@
     if (input.id === 'zip'   && input.validity.patternMismatch) return 'Enter a 5-digit ZIP (or ZIP+4).';
     return 'Please check this field.';
   }
-
   function validateForm(form) {
     clearErrors(form);
-
-    // All required fields (browser validity), photos excluded (not required in your HTML)
     const required = Array.from(form.querySelectorAll('[required]'));
     const invalid = required.filter(el => !el.checkValidity());
-
     if (invalid.length) {
       const box = ensureErrorSummary(form);
       box.textContent = 'Please fix the highlighted fields. Photos are optional; all other fields are required.';
       box.classList.add('show');
-
       invalid.forEach(el => showFieldError(el, getMessageFor(el)));
       invalid[0].focus();
       return false;
@@ -142,41 +139,13 @@
     return true;
   }
 
-  // ---------- HERO DESKTOP VIDEO: lazy-inject src only on desktop ----------
-  function initHeroVideo() {
-    const video = document.querySelector('.zenith-background-video');
-    if (!video || video._bound) return;
-    video._bound = true;
-
-    const loadIfDesktop = () => {
-      const isDesktop = window.matchMedia('(min-width: 769px)').matches;
-      if (!isDesktop || video.dataset.loaded === '1') return;
-      const src = video.getAttribute('data-src');
-      if (src) {
-        video.src = src;
-        video.dataset.loaded = '1';
-      }
-    };
-
-    loadIfDesktop();
-    const mq = window.matchMedia('(min-width: 769px)');
-    if (mq.addEventListener) mq.addEventListener('change', loadIfDesktop);
-    else mq.addListener(loadIfDesktop);
-    window.addEventListener('load', loadIfDesktop, { once: true });
-  }
-
-  // ---------- SUBMIT HANDLER (validation + reCAPTCHA + POST) ----------
+  // ---------- SUBMIT ----------
   async function submitHandler(e) {
     e.preventDefault();
     const form = e.currentTarget;
+    if (!validateForm(form)) return;
 
-    if (form._submitting) return;
-    form._submitting = true;
-
-    // 1) Validate required fields (keeps photos optional)
-    if (!validateForm(form)) { form._submitting = false; return; }
-
-    // 2) Require reCAPTCHA (v2 checkbox)
+    // Require reCAPTCHA
     let token = '';
     if (window.grecaptcha && typeof window.grecaptcha.getResponse === 'function') {
       if (typeof window._recaptchaWidgetId !== 'undefined') {
@@ -191,11 +160,10 @@
       const box = ensureErrorSummary(form);
       box.textContent = 'Please complete the reCAPTCHA before submitting.';
       box.classList.add('show');
-      form._submitting = false;
       return;
     }
 
-    // 3) Build payload from form fields
+    // Build payload
     const fd = new FormData(form);
     const data = {
       first_name: (fd.get("first_name") || "").trim(),
@@ -215,16 +183,11 @@
     const originalText = submitBtn ? submitBtn.textContent : null;
     if (submitBtn) { submitBtn.textContent = "Submitting…"; submitBtn.disabled = true; }
 
-    // Timeout protection
-    const ctrl = new AbortController();
-    const timeout = setTimeout(() => ctrl.abort(), 15000);
-
     try {
       const res = await fetch("/.netlify/functions/jn-create-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-        signal: ctrl.signal
+        body: JSON.stringify(data)
       });
 
       const text = await res.text();
@@ -237,7 +200,6 @@
       alert("Thanks! Your request has been submitted.");
       form.reset();
 
-      // Reset reCAPTCHA
       if (window.grecaptcha && typeof window.grecaptcha.reset === "function" &&
           typeof window._recaptchaWidgetId !== "undefined") {
         window.grecaptcha.reset(window._recaptchaWidgetId);
@@ -251,34 +213,27 @@
       console.error(err);
       alert("Network error. Please try again.");
     } finally {
-      clearTimeout(timeout);
       if (submitBtn && originalText) { submitBtn.textContent = originalText; submitBtn.disabled = false; }
-      form._submitting = false;
     }
   }
 
-  // ---------- PUBLIC INIT (call after hero HTML is injected) ----------
+  // ---------- INIT ----------
   window.initEstimateForm = function initEstimateForm() {
     const form = document.getElementById('estimate-form');
-    if (!form || form._bound) return;        // avoid double-binding
+    if (!form || form._bound) return;
     form._bound = true;
 
     bindPhoneMask();
     bindZipToCity();
+    setupLazyRecaptcha(form);
 
-    // Clarify the photos note without editing HTML
     const photosNote = document.getElementById('photos-note');
     if (photosNote) photosNote.textContent = 'Photos are optional; all other fields are required.';
 
     form.addEventListener('submit', submitHandler);
   };
 
-  // Export video init so the loader can call it after includes
-  window.initHeroVideo = initHeroVideo;
-
-  // Also try at DOM load in case hero is already present
   document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('estimate-form')) window.initEstimateForm();
-    if (document.querySelector('.zenith-background-video')) window.initHeroVideo();
   });
 })();
