@@ -1,31 +1,43 @@
-<!-- [HERO SECTION] Zenith Roofing — Free Estimate Form (no video; image only) -->
+<!-- =========================================================
+ [HERO SECTION] Zenith Roofing — Free Estimate Form
+========================================================= -->
 <section class="zenith-hero" id="roofing-estimate" aria-label="Free roofing estimate">
   <!-- Invisible anchor so menu links land below the sticky header -->
   <span id="home" class="sr-only" aria-hidden="true"></span>
 
-  <!-- ===== Background media (single image on all devices) ===== -->
+  <!-- ===== Background media (mobile image + desktop video) ===== -->
   <div class="zenith-hero-media">
-    <picture>
-      <source srcset="/images/modern-tile-roof.webp" type="image/webp">
-      <img
-        class="zenith-hero-mobile-img"
-        src="/images/modern-tile-roof.png"
-        alt="Modern tile roof"
-        width="1600" height="900"
-        fetchpriority="high" decoding="async">
-    </picture>
-    <!-- subtle tint so text stays readable -->
-    <div class="zenith-image-overlay" aria-hidden="true"></div>
+    <!-- Mobile image (fast LCP) -->
+    <img
+      class="zenith-hero-mobile-img"
+      src="/images/modern-tile-roof.png"
+      alt="Modern tile roof"
+      width="1600" height="900"
+      fetchpriority="high" decoding="async">
+
+    <!-- Desktop video (sources injected by JS only on desktop) -->
+    <div class="zenith-video-container" aria-hidden="true">
+      <video
+        class="zenith-background-video"
+        autoplay muted loop playsinline
+        preload="none"
+        poster="/images/modern-tile-roof.png"
+        data-src-webm="/video/roofing-bg.webm"
+        data-src-mp4="/video/roofing-bg.mp4"></video>
+      <div class="zenith-video-overlay"></div>
+    </div>
   </div>
 
   <!-- ===== Card ===== -->
   <div class="zenith-card">
+    <!-- Header -->
     <div class="zenith-header">
       <div class="zenith-logo-container">
-        <img src="images/badges/logo-zenith-icon.png"
+        <!-- Use the real PNG directly so it never breaks; reserve square space -->
+        <img src="/images/badges/logo-zenith-icon.png"
              alt="Zenith Roofing"
              class="zenith-logo"
-             width="86" height="48"
+             width="88" height="88"
              loading="eager" decoding="async" />
         <div class="logo-backdrop" aria-hidden="true"></div>
       </div>
