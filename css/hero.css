@@ -21,10 +21,9 @@
   --logo-size-desktop:86px;
   --logo-size-mobile:78px;
 
-/* 🔵 Hero tint controls */
---hero-tint: rgba(7,46,89,.40);
---hero-tint-strong: rgba(7,46,89,.62);
-
+  /* 🔵 Hero tint controls */
+  --hero-tint: rgba(7,46,89,.50);      /* ~50% overall tint */
+  --hero-tint-strong: rgba(7,46,89,.62); /* slightly stronger on small screens (optional) */
 }
 
 /* ---------- Base & Layout ---------- */
@@ -42,6 +41,8 @@
 
 /* ===== Background media (photo only) ===== */
 .zenith-hero-media{ position:absolute; inset:0; z-index:0; }
+.zenith-hero-media picture,
+.zenith-hero-media img{ display:block; width:100%; height:100%; }
 
 /* LCP image */
 .zenith-hero-mobile-img{
@@ -49,19 +50,18 @@
   width:100%; height:100%;
   object-fit:cover; object-position:center;
   display:block; z-index:0; /* under tint */
+  aspect-ratio:16/9;        /* helps prevent CLS on slow connections */
 }
 
-/* 🔵 50% navy tint (uniform) — image (0) → tint (1) → card (2) → logo (3) */
-.zenith-hero-media::after{
-  content:"";
-  position:absolute;
-  inset:0;
+/* Single overlay element for the tint */
+.zenith-image-overlay{
+  position:absolute; inset:0; z-index:1;
+  background:var(--hero-tint);
   pointer-events:none;
-  z-index:1;                   /* above image, below card */
-  background: rgba(7,46,89,.70);
 }
 
-
+/* Make sure hero content sits above the media + tint */
+.zenith-hero > *:not(.zenith-hero-media){ position:relative; z-index:2; }
 
 /* ===== Card ===== */
 .zenith-card{
@@ -229,12 +229,8 @@ input[type="file"]:focus-within{
   .zenith-card{ padding:1.25rem; }
   .zenith-logo{ width:var(--logo-size-mobile) !important; height:auto !important; }
 
-  /* Slightly stronger wash on small screens */
-  .zenith-hero-media::after{
-    background:
-      radial-gradient(760px 380px at 10% -10%, rgba(7,46,89,.46) 0, rgba(7,46,89,0) 55%),
-      linear-gradient(180deg, rgba(7,46,89,.16) 0%, rgba(7,46,89,.28) 100%);
-  }
+  /* Slightly stronger tint on small screens (optional) */
+  .zenith-image-overlay{ background: var(--hero-tint-strong); }
 }
 
 /* Hide hero logo only when nav is collapsed (mobile) */
@@ -270,6 +266,6 @@ input[type="file"]:focus-within{
 }
 .error-summary.show{ display:block; }
 
-/* ⚠️ Remove any old background-image helper like:
+/* ⚠️ If you had an old helper like:
    .zenith-hero-mobile{ background:url("images/zenith-van-optimized.jpg") center/cover no-repeat; }
-*/
+   make sure it's removed so it doesn't fight this setup. */
