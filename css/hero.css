@@ -37,8 +37,9 @@
   object-fit:cover;            /* fill */
   object-position:center;      /* centered */
   display:block;
-  /* OPTIONAL: make the photo itself slightly transparent
-     opacity:.94; */
+
+  /* Make the photo itself slightly transparent */
+  opacity:.82;                 /* adjust .70–.90 to taste */
 }
 
 /* Softer, more transparent tint for readability without heaviness */
@@ -46,13 +47,15 @@
   position:absolute; inset:0;
   pointer-events:none;
   background:
+    /* faint linear wash */
     linear-gradient(to bottom,
-      rgba(7,46,89,.42),
-      rgba(7,46,89,.55) 55%,
-      rgba(7,46,89,.60)
+      rgba(7,46,89,.10),
+      rgba(7,46,89,.18) 55%,
+      rgba(7,46,89,.22)
     ),
+    /* subtle corner fade so the image breathes */
     radial-gradient(1200px 70% at 110% -10%,
-      rgba(7,46,89,.22),
+      rgba(7,46,89,.06),
       rgba(7,46,89,0) 60%
     );
 }
