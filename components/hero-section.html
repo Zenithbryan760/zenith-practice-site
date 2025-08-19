@@ -10,20 +10,20 @@
     <!-- Mobile image (fast LCP) -->
     <img
       class="zenith-hero-mobile-img"
-      src="images/modern-tile-roof.png"
+      src="/images/modern-tile-roof.png"
       alt="Modern tile roof"
       width="1600" height="900"
       fetchpriority="high" decoding="async">
 
-    <!-- Desktop video (optional). Poster must exist, so use the same tile image -->
+    <!-- Desktop video (sources injected by JS only on desktop) -->
     <div class="zenith-video-container" aria-hidden="true">
       <video
         class="zenith-background-video"
         autoplay muted loop playsinline
         preload="none"
-        poster="images/modern-tile-roof.png"
-        data-src-webm="video/roofing-bg.webm"
-        data-src-mp4="video/roofing-bg.mp4"></video>
+        poster="/images/modern-tile-roof.png"
+        data-src-webm="/video/roofing-bg.webm"
+        data-src-mp4="/video/roofing-bg.mp4"></video>
       <div class="zenith-video-overlay"></div>
     </div>
   </div>
@@ -33,15 +33,12 @@
     <!-- Header -->
     <div class="zenith-header">
       <div class="zenith-logo-container">
-        <picture>
-          <source srcset="images/badges/logo-zenith-icon-88.webp" type="image/webp" />
-          <!-- Use the square icon; give matching square dimensions -->
-          <img src="images/badges/logo-zenith-icon.png"
-               alt="Zenith Roofing"
-               class="zenith-logo"
-               width="88" height="88"
-               loading="eager" decoding="async" />
-        </picture>
+        <!-- Use the real PNG directly so it never breaks; reserve square space -->
+        <img src="/images/badges/logo-zenith-icon.png"
+             alt="Zenith Roofing"
+             class="zenith-logo"
+             width="88" height="88"
+             loading="eager" decoding="async" />
         <div class="logo-backdrop" aria-hidden="true"></div>
       </div>
       <div class="zenith-header-text">
