@@ -1,10 +1,9 @@
 /* =========================================================
    hero.css — Zenith Roofing — Hero / Free Estimate (PHOTO ONLY)
-   - Single background photo + branded navy tint overlay
-   - Optimized for LCP & CLS (no background video here)
+   Single background photo + branded navy tint overlay
    ======================================================== */
 
-/* ---------- Brand tokens ---------- */
+/* ---------- Brand tokens (single :root) ---------- */
 :root{
   --zenith-navy:#072e59;
   --zenith-navy-2:#0b3a6f;
@@ -21,8 +20,7 @@
   --logo-size-desktop:86px;
   --logo-size-mobile:78px;
 
- /* 🔵 Hero tint controls */
-:root{
+  /* 🔵 Hero tint controls */
   --hero-tint: rgba(7,46,89,.50);      /* ~50% */
   --hero-tint-strong: rgba(7,46,89,.62);
 }
@@ -30,17 +28,17 @@
 /* ---------- Base & Layout ---------- */
 .zenith-hero{
   position:relative;
-  min-height:100svh; /* stable mobile viewport */
+  min-height:100svh;
   min-height:100dvh;
   display:flex; align-items:center; justify-content:center;
   padding:0 clamp(1.25rem, 2vw, 2rem) clamp(1.25rem, 2vw, 2rem);
-  color:var(--zenith-text);
+  color:#fff; /* readable on tinted photo */
   font-family:'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   overflow:hidden;
   z-index:0;
 }
 
-/* ===== Background media (photo only) ===== */
+/* Background media (photo only) */
 .zenith-hero-media{ position:absolute; inset:0; z-index:0; }
 .zenith-hero-media picture,
 .zenith-hero-media img{ display:block; width:100%; height:100%; }
@@ -50,12 +48,13 @@
   position:absolute; inset:0;
   width:100%; height:100%;
   object-fit:cover; object-position:center;
-  display:block; z-index:0; /* under tint */
-  aspect-ratio:16/9;        /* reduces CLS */
+  display:block; z-index:0;       /* under tint */
+  aspect-ratio:16/9;              /* reduces CLS */
 }
 
-/* Single overlay element for the tint */
-.zenith-image-overlay{
+/* 50% tint overlay (no extra HTML needed) */
+.zenith-hero::after{
+  content:"";
   position:absolute; inset:0; z-index:1;
   background:var(--hero-tint);
   pointer-events:none;
@@ -64,15 +63,14 @@
 /* Content sits above media + tint */
 .zenith-hero > *:not(.zenith-hero-media){ position:relative; z-index:2; }
 
-/* Optional: slightly stronger tint on small screens */
+/* Slightly stronger tint on small screens */
 @media (max-width:768px){
-  .zenith-image-overlay{ background: var(--hero-tint-strong); }
+  .zenith-hero::after{ background: var(--hero-tint-strong); }
 }
-
 
 /* ===== Card ===== */
 .zenith-card{
-  position:relative; z-index:2;      /* above tint */
+  position:relative; z-index:2;
   background:#fff; border-radius:var(--radius);
   box-shadow:var(--shadow-lg);
   width:100%; max-width:920px;
@@ -83,7 +81,6 @@
 .zenith-header{ text-align:center; margin-bottom:1.75rem; }
 .zenith-logo-container{ position:relative; display:inline-block; margin-bottom:.75rem; }
 
-/* keep logo aspect ratio */
 .zenith-logo{
   display:block;
   width:var(--logo-size-desktop);
@@ -235,9 +232,7 @@ input[type="file"]:focus-within{
   .form-col-6, .form-col-4{ flex:0 0 100%; }
   .zenith-card{ padding:1.25rem; }
   .zenith-logo{ width:var(--logo-size-mobile) !important; height:auto !important; }
-
-  /* Slightly stronger tint on small screens (optional) */
-  .zenith-image-overlay{ background: var(--hero-tint-strong); }
+  .zenith-hero::after{ background: var(--hero-tint-strong); }
 }
 
 /* Hide hero logo only when nav is collapsed (mobile) */
@@ -253,7 +248,7 @@ input[type="file"]:focus-within{
   min-height:calc(100svh - var(--header-h, 80px));
 }
 
-/* ---------- Minimal validation helpers ---------- */
+/* Validation helpers */
 .field-note{ margin-top:.35rem; font-size:.85rem; color:var(--zenith-muted); }
 .form-group.has-error input,
 .form-group.has-error select,
@@ -273,6 +268,5 @@ input[type="file"]:focus-within{
 }
 .error-summary.show{ display:block; }
 
-/* ⚠️ If you had an old helper like:
-   .zenith-hero-mobile{ background:url("images/zenith-van-optimized.jpg") center/cover no-repeat; }
-   make sure it's removed so it doesn't fight this setup. */
+/* Disable any old video background, if present */
+.zenith-video-container{ display:none !important; }
