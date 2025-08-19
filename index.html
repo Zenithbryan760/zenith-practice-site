@@ -16,25 +16,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-
-  <!-- ✅ Structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "RoofingContractor",
-    "name": "Zenith Roofing Services, Inc.",
-    "image": "https://zenithroofingca.com/images/badges/logo-zenith-icon.png",
-    "telephone": "+1-858-900-6163",
-    "areaServed": ["Escondido CA","San Diego CA","Temecula CA","North County San Diego"],
-    "url": "https://zenithroofingca.com/",
-    "address": { "@type": "PostalAddress", "addressRegion": "CA", "addressCountry": "US" },
-    "license": "C-39 #1036112",
-    "sameAs": [
-      "https://www.yelp.com/biz/zenith-roofing-services-escondido",
-      "https://www.angi.com/companylist/us/ca/escondido/zenith-roofing-services-inc-reviews-1.htm"
-    ]
-  }
-  </script>
+<!-- ✅ Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RoofingContractor",
+  "name": "Zenith Roofing Services, Inc.",
+  "image": "https://zenithroofingca.com/images/badges/logo-zenith-icon.png",
+  "telephone": "+1-858-900-6163",
+  "areaServed": ["Escondido CA","San Diego CA","Temecula CA","North County San Diego"],
+  "url": "https://zenithroofingca.com/",
+  "address": { "@type": "PostalAddress", "addressRegion": "CA", "addressCountry": "US" },
+  "license": "C-39 #1036112",
+  "sameAs": [
+    "https://www.yelp.com/biz/zenith-roofing-services-escondido",
+    "https://www.angi.com/companylist/us/ca/escondido/zenith-roofing-services-inc-reviews-1.htm"
+  ]
+}
+</script>
 
 <!-- Critical CSS (minimal styles needed for initial render) -->
 <style>
@@ -60,50 +59,63 @@
   
   /* Layout flags placeholder */
   :root { --header-h: 80px; }
+
+  /* =========================
+     STEP 3 — HERO HEIGHT FIX
+     ========================= */
+  /* Use stable viewport units so the hero fills the screen on iOS/Android */
+  .zenith-hero { min-height: 100svh; min-height: 100dvh; }
+
+  /* ==============================
+     STEP 5 — ANCHOR OFFSET + SMOOTH
+     ============================== */
+  /* Make in-page links scroll smoothly and stop below the sticky header */
+  html { scroll-behavior: smooth; scroll-padding-top: var(--header-h, 80px); }
+  /* Extra safety for any element with an id used as an anchor */
+  [id] { scroll-margin-top: calc(var(--header-h, 80px) + 12px); }
 </style>
 
+<!-- Non-critical CSS (loaded asynchronously) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"></noscript>
 
-  <!-- Non-critical CSS (loaded asynchronously) -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"></noscript>
-  
-  <link rel="stylesheet" href="css/base.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/header.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/hero.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/about.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/why-choose.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/trust.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/photo.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/testimonial.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/cta.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/service-areas.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/real-estate.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/footer.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/responsive.css" media="print" onload="this.media='all'">
-  
-  <!-- Swiper CSS (testimonials) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/base.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/header.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/hero.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/about.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/why-choose.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/trust.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/photo.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/testimonial.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/cta.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/service-areas.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/real-estate.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/footer.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/responsive.css" media="print" onload="this.media='all'">
 
-  <!-- reCAPTCHA helpers (must be before API script) -->
-  <script>
-    (function() {
-      window.renderHeroRecaptchaIfReady = function() {
-        var slot = document.getElementById('recaptcha-slot');
-        if (!slot) return;
-        if (window.grecaptcha && !slot.dataset.rendered) {
-          window._recaptchaWidgetId = grecaptcha.render(slot, {
-            sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI',
-            theme: 'light',
-            size: 'normal'
-          });
-          slot.dataset.rendered = '1';
-        }
-      };
-      window.recaptchaOnload = function() {
-        window.renderHeroRecaptchaIfReady();
-      };
-    })();
-  </script>
+<!-- Swiper CSS (testimonials) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" media="print" onload="this.media='all'">
+
+<!-- reCAPTCHA helpers (must be before API script) -->
+<script>
+  (function() {
+    window.renderHeroRecaptchaIfReady = function() {
+      var slot = document.getElementById('recaptcha-slot');
+      if (!slot) return;
+      if (window.grecaptcha && !slot.dataset.rendered) {
+        window._recaptchaWidgetId = grecaptcha.render(slot, {
+          sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI',
+          theme: 'light',
+          size: 'normal'
+        });
+        slot.dataset.rendered = '1';
+      }
+    };
+    window.recaptchaOnload = function() {
+      window.renderHeroRecaptchaIfReady();
+    };
+  })();
+</script>
 </head>
 <body>
 
@@ -165,38 +177,38 @@
         }
       }
 
-// Main initialization
-async function init() {
-  // 1. First load all includes
-  const includes = Array.from(document.querySelectorAll('[data-include]'));
-  await Promise.all(includes.map(include));
+      // Main initialization
+      async function init() {
+        // 1. First load all includes
+        const includes = Array.from(document.querySelectorAll('[data-include]'));
+        await Promise.all(includes.map(include));
 
-  // 2. Special case: Initialize mobile menu immediately after header loads
-  if (window.initMobileMenu) {
-    window.initMobileMenu();
-  }
+        // 2. Special case: Initialize mobile menu immediately after header loads
+        if (window.initMobileMenu) {
+          window.initMobileMenu();
+        }
 
-  // 3. Initialize all other components
-  const initFunctions = [
-    'renderHeroRecaptchaIfReady',
-    'initEstimateForm',
-    'initAboutSection',
-    'initWhyChoose',
-    'initTrustSection',
-    'initPhotoSection',
-    'initTestimonials',
-    'initCTA',
-    'initServiceAreas',
-    'initRealEstate',
-    'initFooter',
-    'initHeader',
-    'setLayoutFlags' // Note: Removed 'initHeaderMobile' from this list
-  ];
-  
-  initFunctions.forEach(fn => {
-    if (typeof window[fn] === 'function') window[fn]();
-  });
-}
+        // 3. Initialize all other components
+        const initFunctions = [
+          'renderHeroRecaptchaIfReady',
+          'initEstimateForm',
+          'initAboutSection',
+          'initWhyChoose',
+          'initTrustSection',
+          'initPhotoSection',
+          'initTestimonials',
+          'initCTA',
+          'initServiceAreas',
+          'initRealEstate',
+          'initFooter',
+          'initHeader',
+          'setLayoutFlags' // Note: Removed 'initHeaderMobile' from this list
+        ];
+        
+        initFunctions.forEach(fn => {
+          if (typeof window[fn] === 'function') window[fn]();
+        });
+      }
 
       // Start initialization based on document state
       if (document.readyState === 'loading') {
@@ -223,6 +235,43 @@ async function init() {
       window.addEventListener('resize', window.setLayoutFlags);
       document.addEventListener('click', function(e) {
         if (e.target.closest('.menu-toggle')) setTimeout(window.setLayoutFlags, 50);
+      });
+    })();
+  </script>
+
+  <!-- STEP 5 JS fallback (older browsers): smooth scroll with header offset -->
+  <script>
+    (function(){
+      var root = document.documentElement;
+      function headerHeight(){
+        var h = parseInt(getComputedStyle(root).getPropertyValue('--header-h')) || 80;
+        return h + 8; // tiny breathing room
+      }
+      function scrollToHash(hash, replace){
+        var id = (hash || '').slice(1);
+        if(!id) return;
+        var el = document.getElementById(id);
+        if(!el) return;
+        var y = el.getBoundingClientRect().top + window.pageYOffset - headerHeight();
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        if(replace) { try { history.replaceState(null, '', '#' + id); } catch(_){} }
+      }
+      // Intercept clicks on same-page anchors
+      document.addEventListener('click', function(e){
+        var a = e.target.closest('a[href^="#"]');
+        if(!a) return;
+        var href = a.getAttribute('href');
+        if(href === '#' || href.length < 2) return; // ignore empty hash
+        if(document.getElementById(href.slice(1))){
+          e.preventDefault();
+          scrollToHash(href, true);
+        }
+      });
+      // If page loads with a hash, offset correctly after layout flags set
+      window.addEventListener('load', function(){
+        if(location.hash){
+          setTimeout(function(){ scrollToHash(location.hash, false); }, 0);
+        }
       });
     })();
   </script>
