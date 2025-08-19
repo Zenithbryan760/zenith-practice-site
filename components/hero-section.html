@@ -2,18 +2,30 @@
  [HERO SECTION] Zenith Roofing — Free Estimate Form
 ========================================================= -->
 <section class="zenith-hero" id="roofing-estimate">
-  <!-- STEP 5: Invisible anchor so menu links land below the header -->
+  <!-- Invisible anchor so menu links land below the sticky header -->
   <span id="home" class="sr-only" aria-hidden="true"></span>
 
-  <!-- Background Video (runs behind header; styled via hero.css) -->
-  <div class="zenith-video-container">
-    <video class="zenith-background-video" autoplay muted loop playsinline poster="roofing-poster.jpg">
-      <source src="roofing-bg.mp4" type="video/mp4">
-    </video>
-    <div class="zenith-video-overlay"></div>
+  <!-- ===== Background media (mobile image + desktop video) ===== -->
+  <div class="zenith-hero-media">
+    <!-- Mobile image (fast LCP, no video bytes on phones) -->
+    <div class="zenith-hero-mobile" role="img" aria-label="Zenith Roofing work background"></div>
+
+    <!-- Desktop video (source injected by script; see index.html) -->
+    <div class="zenith-video-container">
+      <video
+        class="zenith-background-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="none"
+        poster="images/zenith-van-optimized.jpg"
+        data-src="roofing-bg.mp4"><!-- source injected via JS on desktop --></video>
+      <div class="zenith-video-overlay"></div>
+    </div>
   </div>
 
-  <!-- Card -->
+  <!-- ===== Card ===== -->
   <div class="zenith-card">
     <!-- Header -->
     <div class="zenith-header">
@@ -28,7 +40,7 @@
       </div>
     </div>
 
-    <!-- Form -->
+    <!-- ===== Form ===== -->
     <form id="estimate-form" method="POST" novalidate>
       <!-- Row 1 -->
       <div class="form-row">
@@ -46,7 +58,6 @@
       <div class="form-row">
         <div class="form-group form-col-6">
           <label for="phone" class="sr-only">Phone Number*</label>
-          <!-- STEP 6: relaxed pattern + autocomplete, removed maxlength -->
           <input
             type="tel"
             id="phone"
