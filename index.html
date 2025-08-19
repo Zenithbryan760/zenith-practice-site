@@ -43,16 +43,26 @@
   </script>
 
   <!-- Critical CSS (tiny, avoids flashes) -->
-  <style>
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    .header { position: relative; z-index: 5000; }
-    a, button, .hover-effect { transition: all .3s ease; }
-    a:hover, button:hover, .hover-effect:hover { opacity:.9; transform:translateY(-1px); }
-    :root { --header-h: 80px; }                /* placeholder until header loads */
-    .zenith-hero { min-height: 100svh; min-height: 100dvh; }
-    html { scroll-behavior: smooth; scroll-padding-top: var(--header-h, 80px); }
-    [id] { scroll-margin-top: calc(var(--header-h, 80px) + 12px); }
-  </style>
+<style>
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  .header { position: relative; z-index: 5000; }
+  a, button, .hover-effect { transition: all .3s ease; }
+  a:hover, button:hover, .hover-effect:hover { opacity:.9; transform:translateY(-1px); }
+
+  :root { --header-h: 80px; }                 /* placeholder until header loads */
+  .zenith-hero { min-height: 100svh; min-height: 100dvh; }
+
+  /* ✅ reserve space while the include loader fetches hero-section.html */
+  [data-include="components/hero-section.html"]{
+    display:block;
+    min-height:100svh;
+    min-height:100dvh;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: var(--header-h, 80px); }
+  [id] { scroll-margin-top: calc(var(--header-h, 80px) + 12px); }
+</style>
+
 
   <!-- Non-critical CSS (async) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
