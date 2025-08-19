@@ -15,9 +15,13 @@
   --shadow-lg:0 14px 40px rgba(2,14,32,.18);
   --shadow-sm:0 4px 14px rgba(2,14,32,.10);
 
-  /* Logo sizing (adjust to taste) */
+  /* Logo sizing */
   --logo-size-desktop: 86px;
   --logo-size-mobile: 78px;
+
+  /* 🟦 Hero tint controls */
+  --hero-tint: rgba(7,46,89,.22);
+  --hero-tint-strong: rgba(7,46,89,.42);
 }
 
 /* ---------- Base & Layout ---------- */
@@ -34,7 +38,9 @@
 }
 
 /* Background media wrapper (photo only) */
-.zenith-hero-media{ position:absolute; inset:0; z-index:0; }
+.zenith-hero-media{
+  position:absolute; inset:0; z-index:0;
+}
 
 /* ✅ Photo fills hero on ALL sizes (LCP element) */
 .zenith-hero-mobile-img{
@@ -42,6 +48,18 @@
   width:100%; height:100%;
   object-fit:cover; object-position:center;
   display:block;
+  z-index:0; /* sits under the overlay */
+}
+
+/* 🟦 Branded blue tint overlay (no HTML needed) */
+.zenith-hero-media::after{
+  content:"";
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  /* mix of soft vignette + subtle vertical wash */
+  background:
+    radial-gradient(900px 480px at 8% -10%, var(--hero-tint-strong) 0, rgba(7,46,89,0) 55%),
+    radial-gradient(700px 380px at 98% 0%, var(--hero-tint) 0, rgba(7,46,89,0) 55%),
+    linear-gradient(180deg, rgba(7,46,89,.10) 0%, rgba(7,46,89,.22) 100%);
 }
 
 /* ---------- Card ---------- */
@@ -70,8 +88,8 @@
 .logo-backdrop{
   position:absolute; inset:-18px; z-index:0; border-radius:50%;
   background: radial-gradient(circle at 50% 50%,
-              rgba(0,0,0,.96) 0%,
-              rgba(7,46,89,.95) 58%,
+              rgba(7,46,89,.96) 0%,
+              rgba(7,46,89,.85) 58%,
               rgba(7,46,89,0) 100%);
   border:3px solid var(--zenith-orange);
   box-shadow:0 6px 18px rgba(0,0,0,.28);
@@ -158,109 +176,3 @@ input[type="file"]::-webkit-file-upload-button:hover{
   transform:translateY(-1px);
 }
 input[type="file"]:focus-within{
-  outline:3px solid rgba(247,148,29,.35);
-  outline-offset:2px;
-}
-
-/* Buttons */
-.zenith-btn{
-  background:var(--zenith-orange); color:#fff; border:none;
-  padding:1rem 1.25rem; font-size:1rem; font-weight:700; width:100%;
-  border-radius:12px; cursor:pointer;
-  transition:transform .08s, box-shadow .2s, background .2s;
-  box-shadow:0 10px 24px rgba(247,148,29,.25);
-}
-.zenith-btn:hover{
-  background:#e9830b; box-shadow:0 14px 28px rgba(247,148,29,.35);
-  transform:translateY(-1px);
-}
-.zenith-btn:active{ transform:translateY(0); }
-.zenith-btn:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:2px; }
-
-/* Utility button */
-.btn-orange{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:.7rem 1rem; border-radius:12px;
-  background:var(--zenith-orange); color:#fff; font-weight:700;
-  text-decoration:none; border:none; cursor:pointer;
-  transition:background .2s, transform .08s, box-shadow .2s;
-  box-shadow:0 8px 22px rgba(247,148,29,.28);
-}
-.btn-orange:hover{ background:#e9830b; transform:translateY(-1px); box-shadow:0 12px 26px rgba(247,148,29,.36); }
-.btn-orange:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:3px; }
-
-/* reCAPTCHA */
-.recaptcha-container{
-  display:flex; justify-content:center; align-items:center; width:100%;
-  margin:.35rem 0 .35rem;
-}
-#recaptcha-slot{ display:block; min-width:304px; min-height:78px; }
-
-/* Disclaimer */
-.form-disclaimer{
-  font-size:.85rem; color:#6b7280;
-  margin-top:1rem; text-align:center; line-height:1.5;
-}
-.form-disclaimer a{
-  color: var(--zenith-orange);
-  font-weight: 800;
-  text-decoration: none;
-}
-.form-disclaimer a:hover{ text-decoration: underline; }
-.form-disclaimer a:focus-visible{
-  outline: 2px dotted var(--zenith-orange);
-  outline-offset: 2px;
-}
-
-/* ---------- Responsive ---------- */
-@media (max-width: 900px){
-  .zenith-card{ padding: 1.75rem; }
-}
-
-@media (max-width: 768px){
-  .form-col-6, .form-col-4{ flex: 0 0 100%; }
-  .zenith-card{ padding: 1.25rem; }
-  .zenith-logo{
-    width: var(--logo-size-mobile) !important;
-    height: auto !important;
-  }
-}
-
-/* Hide the HERO card logo only when the nav is actually collapsed (mobile) */
-@media (max-width: 1024px){
-  html.nav-collapsed .zenith-hero .zenith-header .zenith-logo-container,
-  html.nav-collapsed .zenith-hero .zenith-header .zenith-logo,
-  html.nav-collapsed .zenith-hero .zenith-header .logo-backdrop{
-    display:none !important;
-  }
-}
-
-/* When nav is collapsed, give the hero space under the header */
-.nav-collapsed .zenith-hero{
-  padding-top: var(--header-h, 80px);
-  min-height: calc(100svh - var(--header-h, 80px));
-}
-
-/* ---------- Minimal validation helpers ---------- */
-.field-note{ margin-top:.35rem; font-size:.85rem; color:var(--zenith-muted); }
-.form-group.has-error input,
-.form-group.has-error select,
-.form-group.has-error textarea{
-  border-color:#dc2626 !important;
-  box-shadow:0 0 0 3px rgba(220,38,38,0.12), var(--shadow-sm);
-}
-.field-error{ margin-top:.35rem; font-size:.85rem; color:#b91c1c; }
-.error-summary{
-  display:none;
-  background:#fff7ed;
-  border:1px solid #fed7aa;
-  color:#7c2d12;
-  padding:.85rem 1rem;
-  border-radius:10px;
-  margin:0 0 1rem 0;
-}
-.error-summary.show{ display:block; }
-
-/* ⚠️ Remove any old background-image helper like:
-   .zenith-hero-mobile{ background: url("images/zenith-van-optimized.jpg") center / cover no-repeat; }
-*/
