@@ -1,7 +1,6 @@
-/* File: css/hero.css */
 /* =========================================================
-   Zenith Roofing — Hero / Free Estimate (Polished + Brand)
-   Single source of truth (no duplicates)
+   Zenith Roofing — Hero / Free Estimate (PHOTO ONLY)
+   LCP + CLS improvements
    ======================================================== */
 
 /* Brand tokens */
@@ -33,7 +32,7 @@
 /* ===== Background media wrapper ===== */
 .zenith-hero-media{ position:absolute; inset:0; z-index:0; }
 
-/* ✅ Mobile LCP as a real <img> (replaces old background-image) */
+/* ✅ Photo fills hero on ALL sizes (LCP element) */
 .zenith-hero-mobile-img{
   position:absolute; inset:0;
   width:100%; height:100%;
@@ -41,30 +40,10 @@
   display:block;
 }
 
-/* Desktop video container */
-.zenith-video-container{
-  position:absolute; inset:0;
-  overflow:hidden;
-  z-index:0;
-}
-.zenith-background-video{
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:cover; object-position:center;
-}
-.zenith-video-overlay{
-  position:absolute; inset:0;
-  background-color:rgba(7,46,89,0.78); /* Zenith navy tint */
-  pointer-events:none;
-}
-
-/* Show image on phones; show video on desktops */
-@media (max-width: 768px){
-  .zenith-video-container{ display:none; }
-}
-@media (min-width: 769px){
-  .zenith-hero-mobile-img{ display:none; }
-}
+/* ⛔ Hard-disable any old video if it sneaks back in */
+.zenith-video-container{ display:none !important; }
+.zenith-background-video{ display:none !important; }
+.zenith-video-overlay{ display:none !important; }
 
 /* ===== Card ===== */
 .zenith-card{
@@ -80,7 +59,7 @@
 .zenith-header{ text-align:center; margin-bottom:1.75rem; }
 .zenith-logo-container{ position:relative; display:inline-block; margin-bottom:.75rem; }
 
-/* ✅ Fixed dimensions stop logo-related CLS */
+/* ✅ Fixed dimensions prevent logo-related CLS */
 .zenith-logo{ width:86px; height:48px; object-fit:contain; position:relative; z-index:1; }
 
 /* Logo backdrop: navy→transparent fade with orange ring for contrast */
@@ -237,7 +216,7 @@ input[type="file"]:focus-within{
 @media (max-width:768px){
   .form-col-6, .form-col-4{ flex:0 0 100%; }
   .zenith-card{ padding:1.25rem; }
-  .zenith-logo{ width:78px; height:44px; } /* keep fixed size at small screens too */
+  .zenith-logo{ width:78px; height:44px; } /* fixed size at small screens too */
 }
 
 /* Hide the HERO card logo only when the nav is actually collapsed (mobile) */
