@@ -21,9 +21,10 @@
   --logo-size-desktop:86px;
   --logo-size-mobile:78px;
 
-  /* 🔵 Hero tint controls */
-  --hero-tint: rgba(7,46,89,.50);      /* ~50% overall tint */
-  --hero-tint-strong: rgba(7,46,89,.62); /* slightly stronger on small screens (optional) */
+ /* 🔵 Hero tint controls */
+:root{
+  --hero-tint: rgba(7,46,89,.50);      /* ~50% */
+  --hero-tint-strong: rgba(7,46,89,.62);
 }
 
 /* ---------- Base & Layout ---------- */
@@ -50,7 +51,7 @@
   width:100%; height:100%;
   object-fit:cover; object-position:center;
   display:block; z-index:0; /* under tint */
-  aspect-ratio:16/9;        /* helps prevent CLS on slow connections */
+  aspect-ratio:16/9;        /* reduces CLS */
 }
 
 /* Single overlay element for the tint */
@@ -60,8 +61,14 @@
   pointer-events:none;
 }
 
-/* Make sure hero content sits above the media + tint */
+/* Content sits above media + tint */
 .zenith-hero > *:not(.zenith-hero-media){ position:relative; z-index:2; }
+
+/* Optional: slightly stronger tint on small screens */
+@media (max-width:768px){
+  .zenith-image-overlay{ background: var(--hero-tint-strong); }
+}
+
 
 /* ===== Card ===== */
 .zenith-card{
