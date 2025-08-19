@@ -1,4 +1,4 @@
-// js/hero.js — phone mask + ZIP → City + validation + LAZY reCAPTCHA + desktop video + submit
+// js/hero.js — phone mask + ZIP → City + validation + LAZY reCAPTCHA + submit (no video)
 (function () {
   /* ------------------- PHONE MASK (###) ###-#### ------------------- */
   function bindPhoneMask() {
@@ -242,29 +242,6 @@
     }
   }
 
-  /* ------------------- DESKTOP-ONLY VIDEO INJECTION ------------------- */
-  function initHeroVideo() {
-    const v = document.querySelector('.zenith-background-video');
-    if (!v || v._loaded) return;
-
-    const isDesktop = window.matchMedia('(min-width: 769px)').matches;
-    const saveData = (navigator.connection && navigator.connection.saveData) ? true : false;
-    if (!isDesktop || saveData) return;
-
-    const webm = v.getAttribute('data-src-webm');
-    const mp4  = v.getAttribute('data-src-mp4');
-    if (webm) {
-      const s = document.createElement('source');
-      s.src = webm; s.type = 'video/webm'; v.appendChild(s);
-    }
-    if (mp4) {
-      const s = document.createElement('source');
-      s.src = mp4; s.type = 'video/mp4'; v.appendChild(s);
-    }
-    v._loaded = true;
-    try { v.load(); v.play().catch(()=>{}); } catch {}
-  }
-
   /* ------------------- PUBLIC INIT ------------------- */
   window.initEstimateForm = function initEstimateForm() {
     const form = document.getElementById('estimate-form');
@@ -277,11 +254,8 @@
     form.addEventListener('submit', submitHandler);
   };
 
-  window.initHeroVideo = initHeroVideo;
-
-  // Run if the hero is already present
+  // Run automatically if the hero is already present
   document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('estimate-form')) window.initEstimateForm();
-    initHeroVideo();
   });
 })();
