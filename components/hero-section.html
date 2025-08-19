@@ -5,19 +5,20 @@
   <!-- Invisible anchor so menu links land below the sticky header -->
   <span id="home" class="sr-only" aria-hidden="true"></span>
 
-  <!-- ===== Background media (PNG only for now) ===== -->
-  <div class="zenith-hero-media" aria-hidden="true">
-    <img
-      class="zenith-hero-mobile-img"
-      src="images/modern-tile-roof.png"
-      alt="Zenith Roofing work background"
-      width="1600" height="900"
-      sizes="100vw"
-      decoding="async"
-      fetchpriority="high">
-    <div class="zenith-image-overlay" aria-hidden="true"></div>
-  </div>
-
+<!-- ===== Background media (WebP, responsive) ===== -->
+<div class="zenith-hero-media" aria-hidden="true">
+  <img class="zenith-hero-mobile-img"
+       src="images/modern-tile-roof-1280.webp"
+       srcset="images/modern-tile-roof-640.webp 640w,
+               images/modern-tile-roof-960.webp 960w,
+               images/modern-tile-roof-1280.webp 1280w,
+               images/modern-tile-roof-1600.webp 1600w"
+       sizes="100vw"
+       alt="Zenith Roofing work background"
+       width="1280" height="720"
+       decoding="async" fetchpriority="high">
+  <div class="zenith-image-overlay" aria-hidden="true"></div>
+</div>
   <!-- ===== Card ===== -->
   <div class="zenith-card">
     <div class="zenith-header">
