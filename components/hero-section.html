@@ -8,19 +8,20 @@
   <!-- ===== Background media (mobile image + desktop video) ===== -->
   <div class="zenith-hero-media">
     <!-- Mobile image (fast LCP) -->
-<img class="zenith-hero-mobile-img"
-     src="/images/modern-tile-roof.png"
-     alt="Modern tile roof"
-     width="1600" height="900"
-     fetchpriority="high" decoding="async">
+    <img
+      class="zenith-hero-mobile-img"
+      src="images/modern-tile-roof.png"
+      alt="Modern tile roof"
+      width="1600" height="900"
+      fetchpriority="high" decoding="async">
 
-    <!-- Desktop video (sources injected by JS only on desktop) -->
+    <!-- Desktop video (optional). Poster must exist, so use the same tile image -->
     <div class="zenith-video-container" aria-hidden="true">
       <video
         class="zenith-background-video"
         autoplay muted loop playsinline
         preload="none"
-        poster="images/zenith-van-optimized.webp"
+        poster="images/modern-tile-roof.png"
         data-src-webm="video/roofing-bg.webm"
         data-src-mp4="video/roofing-bg.mp4"></video>
       <div class="zenith-video-overlay"></div>
@@ -34,10 +35,11 @@
       <div class="zenith-logo-container">
         <picture>
           <source srcset="images/badges/logo-zenith-icon-88.webp" type="image/webp" />
+          <!-- Use the square icon; give matching square dimensions -->
           <img src="images/badges/logo-zenith-icon.png"
                alt="Zenith Roofing"
                class="zenith-logo"
-               width="86" height="48"
+               width="88" height="88"
                loading="eager" decoding="async" />
         </picture>
         <div class="logo-backdrop" aria-hidden="true"></div>
