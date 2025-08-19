@@ -1,32 +1,21 @@
 <!-- =========================================================
- [HERO SECTION] Zenith Roofing — Free Estimate Form
+ [HERO SECTION] Zenith Roofing — Free Estimate (PHOTO ONLY)
 ========================================================= -->
 <section class="zenith-hero" id="roofing-estimate" aria-label="Free roofing estimate">
+  <!-- Invisible anchor so menu links land below the sticky header -->
   <span id="home" class="sr-only" aria-hidden="true"></span>
 
-  <!-- Background media (mobile image + desktop video) -->
+  <!-- ===== Background media (photo only) ===== -->
   <div class="zenith-hero-media">
-    <!-- Mobile image (fast LCP) -->
     <img
       class="zenith-hero-mobile-img"
-      src="images/modern-tile-roof.png"
+      src="images/zenith-van-optimized.jpg"
       alt="Zenith Roofing work background"
       width="1600" height="900"
       fetchpriority="high" decoding="async">
-
-    <!-- Desktop video (lazy-injected src by js/hero.js) -->
-    <div class="zenith-video-container" aria-hidden="true">
-      <video
-        class="zenith-background-video"
-        autoplay muted loop playsinline
-        preload="none"
-        poster="images/modern-tile-roof.png"
-        data-src="roofing-bg.mp4"></video>
-      <div class="zenith-video-overlay"></div>
-    </div>
   </div>
 
-  <!-- Card -->
+  <!-- ===== Card ===== -->
   <div class="zenith-card">
     <div class="zenith-header">
       <div class="zenith-logo-container">
@@ -34,7 +23,7 @@
              alt="Zenith Roofing"
              class="zenith-logo"
              width="86" height="48" decoding="async" />
-        <div class="logo-backdrop"></div>
+        <div class="logo-backdrop" aria-hidden="true"></div>
       </div>
       <div class="zenith-header-text">
         <h1>FREE ESTIMATES</h1>
@@ -43,8 +32,9 @@
       </div>
     </div>
 
-    <!-- Form -->
+    <!-- ===== Form ===== -->
     <form id="estimate-form" method="POST" novalidate>
+      <!-- Row 1 -->
       <div class="form-row">
         <div class="form-group form-col-6">
           <label for="firstName" class="sr-only">First Name*</label>
@@ -56,6 +46,7 @@
         </div>
       </div>
 
+      <!-- Row 2 -->
       <div class="form-row">
         <div class="form-group form-col-6">
           <label for="phone" class="sr-only">Phone Number*</label>
@@ -67,7 +58,8 @@
             placeholder="Phone Number*"
             pattern="[\d\s\-\(\)\.]{10,}"
             autocomplete="tel"
-            required />
+            required
+          />
         </div>
         <div class="form-group form-col-6">
           <label for="email" class="sr-only">Email Address*</label>
@@ -75,6 +67,7 @@
         </div>
       </div>
 
+      <!-- Row 3 -->
       <div class="form-row">
         <div class="form-group">
           <label for="streetAddress" class="sr-only">Street Address*</label>
@@ -82,6 +75,7 @@
         </div>
       </div>
 
+      <!-- Row 4 -->
       <div class="form-row">
         <div class="form-group form-col-4">
           <label for="city" class="sr-only">City*</label>
@@ -102,10 +96,12 @@
             pattern="\d{5}(-\d{4})?"
             maxlength="10"
             autocomplete="postal-code"
-            required />
+            required
+          />
         </div>
       </div>
 
+      <!-- Row 5 -->
       <div class="form-row">
         <div class="form-group form-col-4">
           <label for="photos" class="sr-only">Upload Photos</label>
@@ -138,6 +134,7 @@
         </div>
       </div>
 
+      <!-- Row 6 -->
       <div class="form-row">
         <div class="form-group">
           <label for="description" class="sr-only">Brief Description*</label>
@@ -145,17 +142,19 @@
         </div>
       </div>
 
+      <!-- reCAPTCHA -->
       <div class="form-row">
         <div class="form-group recaptcha-container">
-          <!-- ✅ Set your public site key here -->
-          <div id="recaptcha-slot" data-sitekey="YOUR_RECAPTCHA_SITE_KEY" aria-label="reCAPTCHA widget"></div>
+          <div id="recaptcha-slot" aria-label="reCAPTCHA widget"></div>
         </div>
       </div>
 
+      <!-- Submit -->
       <div class="form-row">
         <button type="submit" class="zenith-btn">Request Free Estimate</button>
       </div>
 
+      <!-- Disclaimer -->
       <p class="form-disclaimer">
         <em>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our
         <a href="#real-estate">Real Estate Services</a>.</em>
