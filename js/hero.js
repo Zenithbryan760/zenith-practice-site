@@ -1,39 +1,12 @@
-// js/hero.js — phone mask + ZIP→City + validation + lazy reCAPTCHA + submit
+// js/hero.js — phone mask + ZIP→City + validation + lazy reCAPTCHA + submit to Netlify
 (function () {
-  const RECAPTCHA_SITEKEY = '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI';
-
-  // --- Lazy-load reCAPTCHA only when user sees or focuses the form ---
-  function ensureRecaptchaScript() {
-    if (document.querySelector('script[data-zenith-recaptcha]')) return;
-    const s = document.createElement('script');
-    s.src = 'https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit';
-    s.async = true; s.defer = true; s.setAttribute('data-zenith-recaptcha','1');
-    document.head.appendChild(s);
-  }
-  window.recaptchaOnload = function() {
-    const slot = document.getElementById('recaptcha-slot');
-    if (slot && !slot.dataset.rendered && window.grecaptcha) {
-      window._recaptchaWidgetId = grecaptcha.render(slot, {
-        sitekey: RECAPTCHA_SITEKEY, theme: 'light', size: 'normal'
-      });
-      slot.dataset.rendered = '1';
-    }
-  };
-  function setupLazyRecaptcha(form) {
-    const trigger = () => { ensureRecaptchaScript(); obs && obs.disconnect(); form.removeEventListener('focusin', trigger); };
-    const obs = ('IntersectionObserver' in window)
-      ? new IntersectionObserver((es)=>{ if (es.some(e=>e.isIntersecting)) trigger(); }, { rootMargin:'300px' })
-      : null;
-    if (obs) obs.observe(form);
-    form.addEventListener('focusin', trigger, { once:true });
-  }
-
-  // ---------- PHONE MASK ----------
+  // ---------- PHONE MASK (###) ###-#### ----------
   function bindPhoneMask() {
     const el = document.getElementById('phone');
     if (!el || el._masked) return;
     el._masked = true;
     el.setAttribute('maxlength', '14');
+
     const fmt = v => {
       const d = (v || '').replace(/\D/g, '').slice(0, 10);
       if (!d) return '';
@@ -41,6 +14,7 @@
       if (d.length < 7) return `(${d.slice(0,3)}) ${d.slice(3)}`;
       return `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
     };
+
     el.addEventListener('input', e => { e.target.value = fmt(e.target.value); });
     el.addEventListener('blur', e => {
       const len = e.target.value.replace(/\D/g, '').length;
@@ -55,7 +29,7 @@
     if (!zipInput || !cityInput || zipInput._zipBound) return;
     zipInput._zipBound = true;
 
-    const cache = {};
+    const cache = {}; // { "92025": "Escondido" }
     cityInput.addEventListener('input', () => { cityInput.dataset.autofilled = ''; });
 
     async function lookup(zip5) {
@@ -87,7 +61,7 @@
     maybeFill();
   }
 
-  // ---------- VALIDATION ----------
+  // ---------- LIGHTWEIGHT VALIDATION ----------
   function ensureErrorSummary(form) {
     let box = form.querySelector('.error-summary');
     if (!box) {
@@ -100,12 +74,14 @@
     }
     return box;
   }
+
   function clearErrors(form) {
     form.querySelectorAll('.form-group.has-error').forEach(g => g.classList.remove('has-error'));
     form.querySelectorAll('.field-error').forEach(n => n.remove());
     const box = form.querySelector('.error-summary');
     if (box) { box.textContent = ''; box.classList.remove('show'); }
   }
+
   function showFieldError(input, message) {
     const group = input.closest('.form-group') || input.parentElement;
     if (!group) return;
@@ -117,6 +93,7 @@
       group.appendChild(note);
     }
   }
+
   function getMessageFor(input) {
     if (input.validity.valueMissing) return 'This field is required.';
     if (input.id === 'email' && input.validity.typeMismatch) return 'Enter a valid email address.';
@@ -124,6 +101,7 @@
     if (input.id === 'zip'   && input.validity.patternMismatch) return 'Enter a 5-digit ZIP (or ZIP+4).';
     return 'Please check this field.';
   }
+
   function validateForm(form) {
     clearErrors(form);
     const required = Array.from(form.querySelectorAll('[required]'));
@@ -139,10 +117,55 @@
     return true;
   }
 
-  // ---------- SUBMIT ----------
+  // ---------- LAZY reCAPTCHA (v2 checkbox) ----------
+  function loadRecaptchaOnce() {
+    if (window._recaptchaLoading || window.grecaptcha) return Promise.resolve();
+    window._recaptchaLoading = true;
+    return new Promise(resolve => {
+      const s = document.createElement('script');
+      s.src = 'https://www.google.com/recaptcha/api.js?render=explicit';
+      s.async = true; s.defer = true;
+      s.onload = () => resolve();
+      document.head.appendChild(s);
+    });
+  }
+
+  function renderHeroRecaptchaIfReady() {
+    const slot = document.getElementById('recaptcha-slot');
+    if (!slot || slot.dataset.rendered) return;
+    if (window.grecaptcha && typeof window.grecaptcha.render === 'function') {
+      window._recaptchaWidgetId = grecaptcha.render(slot, {
+        sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI',
+        theme: 'light',
+        size: 'normal'
+      });
+      slot.dataset.rendered = '1';
+    }
+  }
+
+  function ensureRecaptcha() {
+    const slot = document.getElementById('recaptcha-slot');
+    if (!slot) return;
+    // Load when the slot is near viewport
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        if (entries.some(e => e.isIntersecting)) {
+          io.disconnect();
+          loadRecaptchaOnce().then(renderHeroRecaptchaIfReady);
+        }
+      }, { rootMargin: '400px 0px' });
+      io.observe(slot);
+    } else {
+      // Fallback: just load after a tick
+      setTimeout(() => loadRecaptchaOnce().then(renderHeroRecaptchaIfReady), 0);
+    }
+  }
+
+  // ---------- SUBMIT HANDLER ----------
   async function submitHandler(e) {
     e.preventDefault();
     const form = e.currentTarget;
+
     if (!validateForm(form)) return;
 
     // Require reCAPTCHA
@@ -200,6 +223,7 @@
       alert("Thanks! Your request has been submitted.");
       form.reset();
 
+      // Reset reCAPTCHA
       if (window.grecaptcha && typeof window.grecaptcha.reset === "function" &&
           typeof window._recaptchaWidgetId !== "undefined") {
         window.grecaptcha.reset(window._recaptchaWidgetId);
@@ -217,7 +241,7 @@
     }
   }
 
-  // ---------- INIT ----------
+  // ---------- PUBLIC INIT ----------
   window.initEstimateForm = function initEstimateForm() {
     const form = document.getElementById('estimate-form');
     if (!form || form._bound) return;
@@ -225,7 +249,7 @@
 
     bindPhoneMask();
     bindZipToCity();
-    setupLazyRecaptcha(form);
+    ensureRecaptcha();            // ← lazy-load and render
 
     const photosNote = document.getElementById('photos-note');
     if (photosNote) photosNote.textContent = 'Photos are optional; all other fields are required.';
@@ -233,6 +257,7 @@
     form.addEventListener('submit', submitHandler);
   };
 
+  // Also try at DOM load in case hero is already present
   document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('estimate-form')) window.initEstimateForm();
   });
