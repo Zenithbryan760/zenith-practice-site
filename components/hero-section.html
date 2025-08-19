@@ -5,45 +5,19 @@
   <!-- Invisible anchor so menu links land below the sticky header -->
   <span id="home" class="sr-only" aria-hidden="true"></span>
 
-  /* 🔵 Hero tint controls */
-  --hero-tint: rgba(7,46,89,.22);
-  --hero-tint-strong: rgba(7,46,89,.42);
-}
-
-/* ---------- Base & Layout ---------- */
-.zenith-hero{
-  position:relative;
-  min-height:100svh; /* stable mobile viewport */
-  min-height:100dvh;
-  display:flex; align-items:center; justify-content:center;
-  padding:0 clamp(1.25rem, 2vw, 2rem) clamp(1.25rem, 2vw, 2rem);
-  color:var(--zenith-text);
-  font-family:'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  overflow:hidden;
-  z-index:0;
-}
-
-/* ===== Background media (photo only) ===== */
-.zenith-hero-media{ position:absolute; inset:0; z-index:0; }
-
-/* LCP image */
-.zenith-hero-mobile-img{
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:cover; object-position:center;
-  display:block; z-index:0; /* under tint */
-}
-
-/* 🔵 Branded blue tint overlay (above image, below card) */
-.zenith-hero-media::after{
-  content:"";
-.zenith-card{ position:relative; z-index:10; }
-  background:
-    radial-gradient(900px 480px at 8% -10%, var(--hero-tint-strong) 0, rgba(7,46,89,0) 55%),
-    radial-gradient(700px 380px at 98% 0%, var(--hero-tint) 0, rgba(7,46,89,0) 55%),
-    linear-gradient(180deg, rgba(7,46,89,.12) 0%, rgba(7,46,89,.24) 100%);
-} this is all i want tinted over the images/modern-tile-roof.png
-
+<div class="zenith-hero-media">
+  <picture>
+    <source srcset="/images/modern-tile-roof.webp" type="image/webp">
+    <img
+      class="zenith-hero-mobile-img"
+      src="/images/modern-tile-roof.png"
+      alt="Zenith Roofing work background"
+      width="1600" height="900"
+      sizes="100vw"
+      decoding="async"
+      fetchpriority="high">
+  </picture>
+</div>
 
   <!-- ===== Card ===== -->
   <div class="zenith-card">
