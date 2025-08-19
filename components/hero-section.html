@@ -1,6 +1,6 @@
 /* =========================================================
    hero.css — Zenith Roofing — Hero / Free Estimate (PHOTO ONLY)
-   - Single background photo with branded navy tint overlay
+   - Single background photo + branded navy tint overlay
    - Optimized for LCP & CLS (no background video here)
    ======================================================== */
 
@@ -29,7 +29,7 @@
 /* ---------- Base & Layout ---------- */
 .zenith-hero{
   position:relative;
-  min-height:100svh;  /* stable mobile viewport */
+  min-height:100svh; /* stable mobile viewport */
   min-height:100dvh;
   display:flex; align-items:center; justify-content:center;
   padding:0 clamp(1.25rem, 2vw, 2rem) clamp(1.25rem, 2vw, 2rem);
@@ -40,17 +40,14 @@
 }
 
 /* ===== Background media (photo only) ===== */
-.zenith-hero-media{
-  position:absolute; inset:0; z-index:0;   /* media layer */
-}
+.zenith-hero-media{ position:absolute; inset:0; z-index:0; }
 
-/* LCP element (image) */
+/* LCP image */
 .zenith-hero-mobile-img{
   position:absolute; inset:0;
   width:100%; height:100%;
   object-fit:cover; object-position:center;
-  display:block;
-  z-index:0;   /* under tint */
+  display:block; z-index:0; /* under tint */
 }
 
 /* 🔵 Branded blue tint overlay (above image, below card) */
@@ -63,18 +60,9 @@
     linear-gradient(180deg, rgba(7,46,89,.12) 0%, rgba(7,46,89,.24) 100%);
 }
 
-/* Optional HTML fallback overlay if you add <div class="zenith-image-overlay"></div> after the <img> */
-.zenith-image-overlay{
-  position:absolute; inset:0; pointer-events:none; z-index:1;
-  background:
-    radial-gradient(900px 480px at 8% -10%, var(--hero-tint-strong) 0, rgba(7,46,89,0) 55%),
-    radial-gradient(700px 380px at 98% 0%, var(--hero-tint) 0, rgba(7,46,89,0) 55%),
-    linear-gradient(180deg, rgba(7,46,89,.12) 0%, rgba(7,46,89,.24) 100%);
-}
-
 /* ===== Card ===== */
 .zenith-card{
-  position:relative; z-index:2;  /* above tint */
+  position:relative; z-index:2;      /* above tint */
   background:#fff; border-radius:var(--radius);
   box-shadow:var(--shadow-lg);
   width:100%; max-width:920px;
@@ -85,7 +73,7 @@
 .zenith-header{ text-align:center; margin-bottom:1.75rem; }
 .zenith-logo-container{ position:relative; display:inline-block; margin-bottom:.75rem; }
 
-/* Keep logo aspect ratio */
+/* keep logo aspect ratio */
 .zenith-logo{
   display:block;
   width:var(--logo-size-desktop);
@@ -94,7 +82,7 @@
   position:relative; z-index:1;
 }
 
-/* Navy halo behind the circular logo */
+/* navy halo behind circular logo */
 .logo-backdrop{
   position:absolute; inset:-18px; z-index:0; border-radius:50%;
   background: radial-gradient(circle at 50% 50%,
@@ -197,7 +185,7 @@ input[type="file"]:focus-within{
 .zenith-btn:active{ transform:translateY(0); }
 .zenith-btn:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:2px; }
 
-/* Utility orange button (if used elsewhere in the card) */
+/* Utility orange button */
 .btn-orange{
   display:inline-flex; align-items:center; justify-content:center;
   padding:.7rem 1rem; border-radius:12px;
@@ -233,17 +221,12 @@ input[type="file"]:focus-within{
 @media (max-width:900px){
   .zenith-card{ padding:1.75rem; }
 }
-
 @media (max-width:768px){
   .form-col-6, .form-col-4{ flex:0 0 100%; }
   .zenith-card{ padding:1.25rem; }
+  .zenith-logo{ width:var(--logo-size-mobile) !important; height:auto !important; }
 
-  .zenith-logo{
-    width:var(--logo-size-mobile) !important;
-    height:auto !important;
-  }
-
-  /* Slightly stronger wash on small screens for readability */
+  /* Slightly stronger wash on small screens */
   .zenith-hero-media::after{
     background:
       radial-gradient(760px 380px at 10% -10%, rgba(7,46,89,.46) 0, rgba(7,46,89,0) 55%),
@@ -251,16 +234,14 @@ input[type="file"]:focus-within{
   }
 }
 
-/* Hide the HERO card logo only when the nav is actually collapsed (mobile) */
+/* Hide hero logo only when nav is collapsed (mobile) */
 @media (max-width:1024px){
   html.nav-collapsed .zenith-hero .zenith-header .zenith-logo-container,
   html.nav-collapsed .zenith-hero .zenith-header .zenith-logo,
-  html.nav-collapsed .zenith-hero .zenith-header .logo-backdrop{
-    display:none !important;
-  }
+  html.nav-collapsed .zenith-hero .zenith-header .logo-backdrop{ display:none !important; }
 }
 
-/* When nav is collapsed, give the hero space under the header */
+/* When nav is collapsed, add space under sticky header */
 .nav-collapsed .zenith-hero{
   padding-top:var(--header-h, 80px);
   min-height:calc(100svh - var(--header-h, 80px));
@@ -287,5 +268,5 @@ input[type="file"]:focus-within{
 .error-summary.show{ display:block; }
 
 /* ⚠️ Remove any old background-image helper like:
-   .zenith-hero-mobile{ background: url("images/zenith-van-optimized.jpg") center/cover no-repeat; }
+   .zenith-hero-mobile{ background:url("images/zenith-van-optimized.jpg") center/cover no-repeat; }
 */
