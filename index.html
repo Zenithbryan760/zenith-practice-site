@@ -13,16 +13,23 @@
   <link rel="preload" href="css/hero.css" as="style">
 
   <!-- ===== LCP image preload ===== -->
-  <!-- If your <picture> serves WebP in Chrome, change to .webp and add type="image/webp" -->
+  <!-- If your <picture> serves WebP, change to .webp and add type="image/webp" -->
   <link rel="preload" as="image" href="/images/modern-tile-roof.png" imagesizes="100vw">
 
   <!-- (Optional) Preload the hero partial you inject -->
   <link rel="preload" as="fetch" href="components/hero-section.html" crossorigin="anonymous">
 
-  <!-- ===== Google Fonts ===== -->
+  <!-- ===== Google Fonts (non-blocking) ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Load the stylesheet without blocking render -->
+  <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+        as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+  </noscript>
 
   <!-- ===== Structured data ===== -->
   <script type="application/ld+json">
