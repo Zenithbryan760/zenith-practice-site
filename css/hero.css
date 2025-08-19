@@ -53,12 +53,16 @@
 /* 🔵 Branded blue tint overlay (above image, below card) */
 .zenith-hero-media::after{
   content:"";
-.zenith-card{ position:relative; z-index:10; }
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
   background:
     radial-gradient(900px 480px at 8% -10%, var(--hero-tint-strong) 0, rgba(7,46,89,0) 55%),
     radial-gradient(700px 380px at 98% 0%, var(--hero-tint) 0, rgba(7,46,89,0) 55%),
     linear-gradient(180deg, rgba(7,46,89,.12) 0%, rgba(7,46,89,.24) 100%);
 }
+
 
 /* ===== Card ===== */
 .zenith-card{
