@@ -1,4 +1,5 @@
-// js/hero.js — phone mask + ZIP → City + validation + reCAPTCHA guard + submit to Netlify
+// File: js/hero.js
+// phone mask + ZIP → City + validation + reCAPTCHA guard + desktop video lazy-load + Netlify submit (with timeout)
 (function () {
   // ---------- PHONE MASK (###) ###-#### ----------
   function bindPhoneMask() {
@@ -15,7 +16,13 @@
       return `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
     };
 
-    el.addEventListener('input', e => { e.target.value = fmt(e.target.value); });
+    const onInput = e => { e.target.value = fmt(e.target.value); };
+    el.addEventListener('input', onInput);
+    el.addEventListener('paste', e => {
+      e.preventDefault();
+      const text = (e.clipboardData || window.clipboardData).getData('text') || '';
+      el.value = fmt(text);
+    });
     el.addEventListener('blur', e => {
       const len = e.target.value.replace(/\D/g, '').length;
       e.target.setCustomValidity(len === 0 || len === 10 ? '' : 'Enter a 10-digit phone number');
@@ -29,17 +36,28 @@
     if (!zipInput || !cityInput || zipInput._zipBound) return;
     zipInput._zipBound = true;
 
-    const cache = {}; // { "92025": "Escondido" }
+    const cache = Object.create(null); // in-memory
+    let inFlight; // AbortController
+
+    // prefer sessionStorage to persist across nav
+    try {
+      const persisted = sessionStorage.getItem('zipCityCache');
+      if (persisted) Object.assign(cache, JSON.parse(persisted));
+    } catch {}
+
     cityInput.addEventListener('input', () => { cityInput.dataset.autofilled = ''; });
 
     async function lookup(zip5) {
       if (cache[zip5]) return cache[zip5];
-      const res = await fetch('https://api.zippopotam.us/us/' + zip5);
+      if (inFlight) inFlight.abort();
+      inFlight = new AbortController();
+      const res = await fetch('https://api.zippopotam.us/us/' + zip5, { signal: inFlight.signal });
       if (!res.ok) throw new Error('zip lookup failed');
       const data = await res.json();
       const place = data.places && data.places[0];
       const city  = place ? place['place name'] : '';
       cache[zip5] = city;
+      try { sessionStorage.setItem('zipCityCache', JSON.stringify(cache)); } catch {}
       return city;
     }
 
@@ -124,13 +142,39 @@
     return true;
   }
 
+  // ---------- HERO DESKTOP VIDEO: lazy-inject src only on desktop ----------
+  function initHeroVideo() {
+    const video = document.querySelector('.zenith-background-video');
+    if (!video || video._bound) return;
+    video._bound = true;
+
+    const loadIfDesktop = () => {
+      const isDesktop = window.matchMedia('(min-width: 769px)').matches;
+      if (!isDesktop || video.dataset.loaded === '1') return;
+      const src = video.getAttribute('data-src');
+      if (src) {
+        video.src = src;
+        video.dataset.loaded = '1';
+      }
+    };
+
+    loadIfDesktop();
+    const mq = window.matchMedia('(min-width: 769px)');
+    if (mq.addEventListener) mq.addEventListener('change', loadIfDesktop);
+    else mq.addListener(loadIfDesktop);
+    window.addEventListener('load', loadIfDesktop, { once: true });
+  }
+
   // ---------- SUBMIT HANDLER (validation + reCAPTCHA + POST) ----------
   async function submitHandler(e) {
     e.preventDefault();
     const form = e.currentTarget;
 
+    if (form._submitting) return;
+    form._submitting = true;
+
     // 1) Validate required fields (keeps photos optional)
-    if (!validateForm(form)) return;
+    if (!validateForm(form)) { form._submitting = false; return; }
 
     // 2) Require reCAPTCHA (v2 checkbox)
     let token = '';
@@ -147,6 +191,7 @@
       const box = ensureErrorSummary(form);
       box.textContent = 'Please complete the reCAPTCHA before submitting.';
       box.classList.add('show');
+      form._submitting = false;
       return;
     }
 
@@ -170,11 +215,16 @@
     const originalText = submitBtn ? submitBtn.textContent : null;
     if (submitBtn) { submitBtn.textContent = "Submitting…"; submitBtn.disabled = true; }
 
+    // Timeout protection
+    const ctrl = new AbortController();
+    const timeout = setTimeout(() => ctrl.abort(), 15000);
+
     try {
       const res = await fetch("/.netlify/functions/jn-create-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        signal: ctrl.signal
       });
 
       const text = await res.text();
@@ -201,7 +251,9 @@
       console.error(err);
       alert("Network error. Please try again.");
     } finally {
+      clearTimeout(timeout);
       if (submitBtn && originalText) { submitBtn.textContent = originalText; submitBtn.disabled = false; }
+      form._submitting = false;
     }
   }
 
@@ -216,15 +268,17 @@
 
     // Clarify the photos note without editing HTML
     const photosNote = document.getElementById('photos-note');
-    if (photosNote) {
-      photosNote.textContent = 'Photos are optional; all other fields are required.';
-    }
+    if (photosNote) photosNote.textContent = 'Photos are optional; all other fields are required.';
 
     form.addEventListener('submit', submitHandler);
   };
 
+  // Export video init so the loader can call it after includes
+  window.initHeroVideo = initHeroVideo;
+
   // Also try at DOM load in case hero is already present
   document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('estimate-form')) window.initEstimateForm();
+    if (document.querySelector('.zenith-background-video')) window.initHeroVideo();
   });
 })();
