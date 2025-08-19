@@ -1,6 +1,6 @@
 /* =========================================================
-   Zenith Roofing — Hero / Free Estimate (Polished + Brand)
-   Single source of truth (no duplicates)
+   Zenith Roofing — Hero / Free Estimate (PHOTO ONLY)
+   LCP + CLS improvements
    ======================================================== */
 
 /* Brand tokens */
@@ -29,10 +29,10 @@
   z-index: 0;
 }
 
-/* ===== Background media wrapper ===== */
+/* Background media wrapper */
 .zenith-hero-media{ position:absolute; inset:0; z-index:0; }
 
-/* ✅ Mobile LCP as a real <img> (replaces old background-image) */
+/* ✅ Photo fills hero on ALL sizes (LCP element) */
 .zenith-hero-mobile-img{
   position:absolute; inset:0;
   width:100%; height:100%;
@@ -40,35 +40,14 @@
   display:block;
 }
 
-/* Desktop video container */
-.zenith-video-container{
-  position:absolute; inset:0;
-  overflow:hidden;
-  z-index:0;
-}
-.zenith-background-video{
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:cover; object-position:center;
-}
-.zenith-video-overlay{
-  position:absolute; inset:0;
-  background-color:rgba(7,46,89,0.78);
-  pointer-events:none;
-}
-
-/* Show image on phones; show video on desktops */
-@media (max-width: 768px){
-  .zenith-video-container{ display:none; }
-}
-@media (min-width: 769px){
-  .zenith-hero-mobile-img{ display:none; }
-}
+/* ⛔ Kill any leftover video styles/DOM if present */
+.zenith-video-container,
+.zenith-background-video,
+.zenith-video-overlay{ display:none !important; }
 
 /* ===== Card ===== */
 .zenith-card{
-  position:relative;
-  z-index:1;
+  position:relative; z-index:1;
   background:#fff; border-radius:var(--radius);
   box-shadow:var(--shadow-lg);
   width:100%; max-width:920px;
@@ -79,23 +58,21 @@
 .zenith-header{ text-align:center; margin-bottom:1.75rem; }
 .zenith-logo-container{ position:relative; display:inline-block; margin-bottom:.75rem; }
 
-/* Fixed dimensions stop logo-related CLS */
+/* ✅ Fixed dimensions prevent logo-related CLS */
 .zenith-logo{ width:86px; height:48px; object-fit:contain; position:relative; z-index:1; }
 
-/* ✅ Brand-correct navy logo backdrop (no black) */
+/* Logo backdrop */
 .logo-backdrop{
   position:absolute; inset:-18px; z-index:0; border-radius:50%;
-  background:
-    radial-gradient(circle at 50% 50%,
-      rgba(11,58,111,.98) 0%,
-      rgba(11,58,111,.96) 55%,
-      rgba(11,58,111,0) 100%);
+  background: radial-gradient(circle at 50% 50%,
+              rgba(0,0,0,.96) 0%,
+              rgba(7,46,89,.95) 58%,
+              rgba(7,46,89,0) 100%);
   border:3px solid var(--zenith-orange);
-  box-shadow:0 8px 24px rgba(7,46,89,.35);
+  box-shadow:0 6px 18px rgba(0,0,0,.28);
   backdrop-filter: blur(2px);
 }
 
-/* Titles */
 .zenith-header-text h1{
   margin:.25rem 0 0; font-weight:800; letter-spacing:.3px;
   color:var(--zenith-navy);
@@ -114,7 +91,7 @@
 .form-col-6{ flex:0 0 calc(50% - .625rem); }
 .form-col-4{ flex:0 0 calc(33.333% - .84rem); }
 
-/* Visually hidden (keep labels for a11y while using placeholders) */
+/* Visually hidden helper */
 .sr-only{
   position:absolute !important;
   width:1px; height:1px; padding:0; margin:-1px;
@@ -139,13 +116,13 @@ input:focus, select:focus, textarea:focus{
   box-shadow:0 0 0 3px rgba(7,46,89,.15), var(--shadow-sm);
 }
 
-/* Invalid state -> ORANGE (brand) */
+/* Invalid state -> ORANGE */
 input:invalid, select:invalid, textarea:invalid{ border-color:var(--zenith-orange); }
 input:invalid:focus, select:invalid:focus, textarea:invalid:focus{
   box-shadow:0 0 0 3px rgba(247,148,29,.18);
 }
 
-/* ===== File input ===== */
+/* File input */
 input[type="file"]{
   width:100%;
   padding:.55rem .75rem;
@@ -180,7 +157,7 @@ input[type="file"]:focus-within{
   outline-offset:2px;
 }
 
-/* ===== Buttons ===== */
+/* Buttons */
 .zenith-btn{
   background:var(--zenith-orange); color:#fff; border:none;
   padding:1rem 1.25rem; font-size:1rem; font-weight:700; width:100%;
@@ -195,6 +172,7 @@ input[type="file"]:focus-within{
 .zenith-btn:active{ transform:translateY(0); }
 .zenith-btn:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:2px; }
 
+/* Utility */
 .btn-orange{
   display:inline-flex; align-items:center; justify-content:center;
   padding:.7rem 1rem; border-radius:12px;
@@ -206,14 +184,14 @@ input[type="file"]:focus-within{
 .btn-orange:hover{ background:#e9830b; transform:translateY(-1px); box-shadow:0 12px 26px rgba(247,148,29,.36); }
 .btn-orange:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:3px; }
 
-/* ===== reCAPTCHA ===== */
+/* reCAPTCHA */
 .recaptcha-container{
   display:flex; justify-content:center; align-items:center; width:100%;
   margin:.35rem 0 .35rem;
 }
 #recaptcha-slot{ display:block; min-width:304px; min-height:78px; }
 
-/* ===== Disclaimer ===== */
+/* Disclaimer */
 .form-disclaimer{
   font-size:.85rem; color:#6b7280;
   margin-top:1rem; text-align:center; line-height:1.5;
@@ -229,7 +207,7 @@ input[type="file"]:focus-within{
   outline-offset: 2px;
 }
 
-/* ===== Responsive ===== */
+/* Responsive */
 @media (max-width:900px){ .zenith-card{ padding:1.75rem; } }
 @media (max-width:768px){
   .form-col-6, .form-col-4{ flex:0 0 100%; }
@@ -241,16 +219,14 @@ input[type="file"]:focus-within{
 @media (max-width: 1024px){
   html.nav-collapsed .zenith-hero .zenith-header .zenith-logo-container,
   html.nav-collapsed .zenith-hero .zenith-header .zenith-logo,
-  html.nav-collapsed .zenith-hero .zenith-header .logo-backdrop {
-    display: none !important;
-  }
+  html.nav-collapsed .zenith-hero .zenith-header .logo-backdrop { display: none !important; }
 }
 .nav-collapsed .zenith-hero{
   padding-top: var(--header-h, 80px);
   min-height: calc(100svh - var(--header-h, 80px));
 }
 
-/* === Minimal validation helpers === */
+/* Minimal validation helpers */
 .field-note{ margin-top:.35rem; font-size:.85rem; color:var(--zenith-muted); }
 .form-group.has-error input,
 .form-group.has-error select,
@@ -270,6 +246,8 @@ input[type="file"]:focus-within{
 }
 .error-summary.show{ display:block; }
 
-/* ⚠️ Remove any OLD rule like this to avoid double media:
-   .zenith-hero-mobile{ background:url("images/zenith-van-optimized.jpg") center/cover no-repeat; }
+/* ⚠️ Remove this OLD rule anywhere it appears to avoid double media:
+   .zenith-hero-mobile{
+     background: url("images/zenith-van-optimized.jpg") center / cover no-repeat;
+   }
 */
