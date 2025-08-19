@@ -19,7 +19,8 @@
 /* ===== Base & Layout ===== */
 .zenith-hero{
   position: relative;                /* contains the video */
-  min-height: 100vh;
+  min-height: 100svh;                /* stable on iOS with URL bar */
+  min-height: 100dvh;                /* modern dynamic viewport */
   display: flex; align-items: center; justify-content: center;
 
   /* no extra top gap under the header */
