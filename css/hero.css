@@ -28,42 +28,40 @@
   z-index: 0;
 }
 
+/* --- Fallback background image (works even if <img> fails) --- */
+.zenith-hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background: url("images/modern-tile-roof.png") center/cover no-repeat;
+  opacity:.82;              /* same translucency as the <img> */
+  z-index: 0;               /* base layer */
+}
+
 /* ===== Background media (image for all sizes) ===== */
-.zenith-hero-media{ position:absolute; inset:0; z-index:0; }
+.zenith-hero-media{ position:absolute; inset:0; z-index:1; }
 
 .zenith-hero-mobile-img{
   position:absolute; inset:0;
   width:100%; height:100%;
-  object-fit:cover;            /* fill */
-  object-position:center;      /* centered */
+  object-fit:cover;
+  object-position:center;
   display:block;
-
-  /* Make the photo itself slightly transparent */
-  opacity:.82;                 /* adjust .70–.90 to taste */
+  opacity:.82;              /* translucent photo */
 }
 
-/* Softer, more transparent tint for readability without heaviness */
+/* Light tint so text stays readable */
 .zenith-image-overlay{
   position:absolute; inset:0;
   pointer-events:none;
+  z-index:2;
   background:
-    /* faint linear wash */
-    linear-gradient(to bottom,
-      rgba(7,46,89,.10),
-      rgba(7,46,89,.18) 55%,
-      rgba(7,46,89,.22)
-    ),
-    /* subtle corner fade so the image breathes */
-    radial-gradient(1200px 70% at 110% -10%,
-      rgba(7,46,89,.06),
-      rgba(7,46,89,0) 60%
-    );
+    linear-gradient(to bottom, rgba(7,46,89,.10), rgba(7,46,89,.18) 55%, rgba(7,46,89,.22)),
+    radial-gradient(1200px 70% at 110% -10%, rgba(7,46,89,.06), rgba(7,46,89,0) 60%);
 }
 
 /* ===== Card ===== */
 .zenith-card{
-  position:relative;                 /* above media */
-  z-index:1;
+  position:relative; z-index:3;      /* above background + overlay */
   background:#fff; border-radius:var(--radius);
   box-shadow:var(--shadow-lg);
   width:100%; max-width:920px;
@@ -76,22 +74,23 @@
 
 /* --- LOGO: keep natural aspect (no squish) --- */
 .zenith-logo{
-  height: clamp(44px, 6vw, 58px);  /* control by height only */
-  width: auto;                     /* width follows true ratio */
+  height: clamp(44px, 6vw, 58px);
+  width: auto;
   aspect-ratio: auto;
   display: block;
   object-fit: contain;
-  max-width: none;                 /* defeat any global img max-width */
+  max-width: none;
   position: relative; z-index: 1;
 }
 
-/* Clean halo behind the logo */
+/* Solid NAVY circle behind the logo */
 .logo-backdrop{
   position:absolute; inset:-14px; z-index:0; border-radius:9999px;
-  background: radial-gradient(60% 60% at 50% 50%, rgba(7,46,89,.35), rgba(7,46,89,0));
+  background: var(--zenith-navy);    /* solid navy */
   border: 2px solid var(--zenith-orange);
   box-shadow: 0 6px 18px rgba(0,0,0,.18);
-  backdrop-filter: blur(1.5px);
+  /* remove blur so it doesn't blend with white card */
+  /* backdrop-filter: none; */
 }
 
 /* Titles */
@@ -235,7 +234,6 @@ input[type="file"]:focus-within{
 @media (max-width:768px){
   .form-col-6, .form-col-4{ flex:0 0 100%; }
   .zenith-card{ padding:1.25rem; }
-  /* logo already scales via clamp(); no width/height overrides needed */
 }
 
 /* Hide the HERO card logo only when the nav is actually collapsed (mobile) */
