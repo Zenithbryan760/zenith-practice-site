@@ -12,8 +12,9 @@
   <link rel="preload" href="css/header.css" as="style">
   <link rel="preload" href="css/hero.css" as="style">
 
-  <!-- ✅ Preload the mobile LCP hero image (WebP) -->
-<link rel="preload" as="image" href="/images/modern-tile-roof.png">
+  <!-- ✅ Preload the LCP hero image (WebP + PNG fallback) -->
+  <link rel="preload" as="image" href="/images/modern-tile-roof.webp" imagesizes="100vw">
+  <link rel="preload" as="image" href="/images/modern-tile-roof.png"  imagesizes="100vw">
 
   <!-- ✅ Preload the hero partial so the include fetch is instant -->
   <link rel="preload" as="fetch" href="components/hero-section.html" crossorigin="anonymous">
@@ -25,6 +26,25 @@
   <!-- Google Font with swap to avoid FOIT/CLS -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"></noscript>
+
+  <!-- Optional structured data (keep or remove if you already have it) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RoofingContractor",
+    "name": "Zenith Roofing Services, Inc.",
+    "image": "https://zenithroofingca.com/images/badges/logo-zenith-icon.png",
+    "telephone": "+1-858-900-6163",
+    "areaServed": ["Escondido CA","San Diego CA","Temecula CA","North County San Diego"],
+    "url": "https://zenithroofingca.com/",
+    "address": { "@type": "PostalAddress", "addressRegion": "CA", "addressCountry": "US" },
+    "license": "C-39 #1036112",
+    "sameAs": [
+      "https://www.yelp.com/biz/zenith-roofing-services-escondido",
+      "https://www.angi.com/companylist/us/ca/escondido/zenith-roofing-services-inc-reviews-1.htm"
+    ]
+  }
+  </script>
 
   <!-- Critical CSS (tiny) -->
   <style>
@@ -119,7 +139,7 @@
 
         const initFunctions = [
           'initEstimateForm',
-          'initHeroVideo',          // desktop video src injection
+          /* 'initHeroVideo',  <-- REMOVED (no background video now) */
           'initAboutSection',
           'initWhyChoose',
           'initTrustSection',
