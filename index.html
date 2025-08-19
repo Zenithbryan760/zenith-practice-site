@@ -1,4 +1,3 @@
-<!-- File: index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,17 +12,15 @@
   <link rel="preload" href="css/header.css" as="style">
   <link rel="preload" href="css/hero.css" as="style">
 
-  <!-- ✅ Preload the mobile LCP hero image -->
+  <!-- ✅ Preload the mobile LCP hero image + the hero partial -->
   <link rel="preload" as="image" href="images/zenith-van-optimized.jpg" imagesizes="100vw">
-
-  <!-- ✅ Preload the hero partial so the include fetch is instant -->
   <link rel="preload" as="fetch" href="components/hero-section.html" crossorigin="anonymous">
 
-  <!-- Fonts: preconnect (deduped) -->
+  <!-- Fonts: preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- ✅ Structured data -->
+  <!-- Structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -42,40 +39,19 @@
   }
   </script>
 
-  <!-- Critical CSS (minimal styles needed for initial render) -->
+  <!-- Critical CSS (tiny, to avoid flashes) -->
   <style>
-    /* Base layout and font fallbacks */
     body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
     .header { position: relative; z-index: 5000; }
-
-    /* Smooth hover effects */
-    a, button, .hover-effect { transition: all 0.3s ease; }
-    a:hover, button:hover, .hover-effect:hover { opacity: 0.9; transform: translateY(-1px); }
-
-    /* Video container fix */
-    .zenith-video-container,
-    .zenith-background-video,
-    .zenith-video-overlay { pointer-events: none; z-index: 0; }
-
-    /* Nav overflow fix */
-    .nav-bar, .nav-links, .nav-links li, .nav-links a { overflow: visible; }
-
-    /* ✅ Safe defaults so we don't mark "collapsed" before header.css loads */
-    .mobile-header { display: none; }
-    .menu-toggle   { display: none; }
-
-    /* Layout flags placeholder */
-    :root { --header-h: 80px; }
-
-    /* === HERO HEIGHT (stable mobile viewport) === */
+    a, button, .hover-effect { transition: all .3s ease; }
+    a:hover, button:hover, .hover-effect:hover { opacity:.9; transform:translateY(-1px); }
+    :root { --header-h: 80px; }                /* placeholder until header loads */
     .zenith-hero { min-height: 100svh; min-height: 100dvh; }
-
-    /* === ANCHOR OFFSET + SMOOTH SCROLL === */
     html { scroll-behavior: smooth; scroll-padding-top: var(--header-h, 80px); }
     [id] { scroll-margin-top: calc(var(--header-h, 80px) + 12px); }
   </style>
 
-  <!-- Non-critical CSS (loaded asynchronously) -->
+  <!-- Non-critical CSS (async) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"></noscript>
 
@@ -93,39 +69,16 @@
   <link rel="stylesheet" href="css/footer.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="css/responsive.css" media="print" onload="this.media='all'">
 
-  <!-- Swiper CSS (testimonials) -->
+  <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" media="print" onload="this.media='all'">
-
-  <!-- reCAPTCHA helpers (must be before API script) -->
-  <script>
-    (function() {
-      window.renderHeroRecaptchaIfReady = function() {
-        var slot = document.getElementById('recaptcha-slot');
-        if (!slot) return;
-        if (window.grecaptcha && !slot.dataset.rendered) {
-          window._recaptchaWidgetId = grecaptcha.render(slot, {
-            sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI',
-            theme: 'light',
-            size: 'normal'
-          });
-          slot.dataset.rendered = '1';
-        }
-      };
-      window.recaptchaOnload = function() {
-        window.renderHeroRecaptchaIfReady();
-      };
-    })();
-  </script>
 </head>
 
 <body>
-
   <!-- Header include FIRST so it's present for measurements -->
   <section data-include="components/header-section.html"></section>
 
   <!-- ===== MAIN (partials auto-injected below) ===== -->
   <main>
-    <!-- Adjust /components/ to /sections/ if that's your folder -->
     <section data-include="components/hero-section.html"></section>
     <section data-include="components/about-section.html"></section>
     <section data-include="components/why-choose-section.html"></section>
@@ -138,11 +91,7 @@
     <section data-include="components/footer.html"></section>
   </main>
 
-  <!-- ===== JS (optimized loading) ===== -->
-  <!-- Load reCAPTCHA after other content -->
-  <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
-
-  <!-- Combined and deferred scripts -->
+  <!-- ===== JS (all defer) ===== -->
   <script src="js/header.js" defer></script>
   <script src="js/hero.js" defer></script>
   <script src="js/about.js" defer></script>
@@ -174,22 +123,14 @@
         }
       }
 
-      // Main initialization
       async function init() {
-        // 1. First load all includes
         const includes = Array.from(document.querySelectorAll('[data-include]'));
         await Promise.all(includes.map(include));
 
-        // 2. Special case: Initialize mobile menu immediately after header loads
-        if (window.initMobileMenu) {
-          window.initMobileMenu();
-        }
+        if (window.initMobileMenu) window.initMobileMenu();
 
-        // 3. Initialize all other components
-        const initFunctions = [
-          'renderHeroRecaptchaIfReady',
-          'initEstimateForm',
-          'initHeroVideo',              // ✅ NEW: lazy-inject desktop video src
+        const initFns = [
+          'initEstimateForm',      // will also lazy-load reCAPTCHA
           'initAboutSection',
           'initWhyChoose',
           'initTrustSection',
@@ -202,13 +143,10 @@
           'initHeader',
           'setLayoutFlags'
         ];
-
-        initFunctions.forEach(fn => {
-          if (typeof window[fn] === 'function') window[fn]();
-        });
+        initFns.forEach(n => { if (typeof window[n] === 'function') window[n](); });
       }
 
-      // Layout flags (made global so loader can call it)
+      // Layout flags (used for sticky-header offset & CLS)
       window.setLayoutFlags = function() {
         var toggle = document.querySelector('.menu-toggle');
         var collapsed = toggle && getComputedStyle(toggle).display !== 'none';
@@ -221,21 +159,18 @@
         document.documentElement.style.setProperty('--header-h', h + 'px');
       };
 
-      // Start initialization based on document state
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
       } else {
         init();
       }
 
-      // Event listeners for layout changes
       window.addEventListener('load', window.setLayoutFlags);
       window.addEventListener('resize', window.setLayoutFlags);
       document.addEventListener('click', function(e) {
         if (e.target.closest('.menu-toggle')) setTimeout(window.setLayoutFlags, 50);
       });
 
-      /* keep header/hero sized correctly as the mobile URL bar moves */
       window.addEventListener('orientationchange', window.setLayoutFlags, { passive: true });
       if (window.visualViewport) {
         visualViewport.addEventListener('resize', window.setLayoutFlags, { passive: true });
@@ -250,7 +185,7 @@
       var root = document.documentElement;
       function headerHeight(){
         var h = parseInt(getComputedStyle(root).getPropertyValue('--header-h')) || 80;
-        return h + 8; // tiny breathing room
+        return h + 8;
       }
       function scrollToHash(hash, replace){
         var id = (hash || '').slice(1);
@@ -261,18 +196,16 @@
         window.scrollTo({ top: y, behavior: 'smooth' });
         if(replace) { try { history.replaceState(null, '', '#' + id); } catch(_){} }
       }
-      // Intercept clicks on same-page anchors
       document.addEventListener('click', function(e){
         var a = e.target.closest('a[href^="#"]');
         if(!a) return;
         var href = a.getAttribute('href');
-        if(href === '#' || href.length < 2) return; // ignore empty hash
+        if(href === '#' || href.length < 2) return;
         if(document.getElementById(href.slice(1))){
           e.preventDefault();
           scrollToHash(href, true);
         }
       });
-      // If page loads with a hash, offset correctly after layout flags set
       window.addEventListener('load', function(){
         if(location.hash){
           setTimeout(function(){ scrollToHash(location.hash, false); }, 0);
