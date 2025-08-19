@@ -1,4 +1,3 @@
-<!-- File: index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +12,10 @@
   <link rel="preload" href="css/header.css" as="style">
   <link rel="preload" href="css/hero.css" as="style">
 
-  <!-- ✅ Preload the mobile LCP hero image -->
+  <!-- Preload the hero image (LCP on phones) -->
   <link rel="preload" as="image" href="images/zenith-van-optimized.jpg" imagesizes="100vw">
-  <!-- ✅ Preload the hero partial so the include fetch is instant -->
+
+  <!-- Preload hero partial so the include fetch is instant -->
   <link rel="preload" as="fetch" href="components/hero-section.html" crossorigin="anonymous">
 
   <!-- Fonts: preconnect -->
@@ -41,32 +41,23 @@
   }
   </script>
 
-  <!-- Critical minimal CSS (keeps layout stable before files load) -->
+  <!-- Critical CSS (tiny, keeps layout stable before files load) -->
   <style>
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    .header { position: relative; z-index: 5000; }
-    a, button, .hover-effect { transition: all .3s ease; }
-    a:hover, button:hover, .hover-effect:hover { opacity:.9; transform: translateY(-1px); }
-
-    /* Safe defaults so we don't mark "collapsed" before header.css loads */
-    .mobile-header { display:none; }
-    .menu-toggle   { display:none; }
-
-    :root { --header-h: 80px; }
-    .zenith-hero { min-height: 100svh; min-height: 100dvh; }
-
-    /* Smooth scroll with header offset */
-    html { scroll-behavior:smooth; scroll-padding-top: var(--header-h, 80px); }
-    [id] { scroll-margin-top: calc(var(--header-h, 80px) + 12px); }
-
-    /* Make sure background media never eats pointer events */
-    .zenith-video-container,
-    .zenith-background-video,
-    .zenith-video-overlay { pointer-events:none; z-index:0; }
-    .nav-bar, .nav-links, .nav-links li, .nav-links a { overflow:visible; }
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+    .header{position:relative;z-index:5000}
+    a,button,.hover-effect{transition:all .3s ease}
+    a:hover,button:hover,.hover-effect:hover{opacity:.9;transform:translateY(-1px)}
+    .zenith-video-container,.zenith-background-video,.zenith-video-overlay{pointer-events:none;z-index:0}
+    .nav-bar,.nav-links,.nav-links li,.nav-links a{overflow:visible}
+    .mobile-header{display:none}
+    .menu-toggle{display:none}
+    :root{--header-h:80px}
+    .zenith-hero{min-height:100svh;min-height:100dvh}
+    html{scroll-behavior:smooth;scroll-padding-top:var(--header-h,80px)}
+    [id]{scroll-margin-top:calc(var(--header-h,80px) + 12px)}
   </style>
 
-  <!-- Non-critical CSS (async) -->
+  <!-- Async CSS -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"></noscript>
 
@@ -87,7 +78,7 @@
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" media="print" onload="this.media='all'">
 
-  <!-- reCAPTCHA helpers (define callbacks before API script is loaded) -->
+  <!-- reCAPTCHA helpers (needs to exist before API loads) -->
   <script>
     (function() {
       window.renderHeroRecaptchaIfReady = function() {
@@ -110,10 +101,9 @@
 </head>
 
 <body>
-  <!-- Header include FIRST so it's present for measurements -->
+  <!-- Header include FIRST so heights are measured correctly -->
   <section data-include="components/header-section.html"></section>
 
-  <!-- ===== MAIN (partials auto-injected below) ===== -->
   <main>
     <section data-include="components/hero-section.html"></section>
     <section data-include="components/about-section.html"></section>
@@ -127,7 +117,10 @@
     <section data-include="components/footer.html"></section>
   </main>
 
-  <!-- ===== JS (optimized loading) ===== -->
+  <!-- Load reCAPTCHA after other content -->
+  <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
+
+  <!-- Combined and deferred scripts -->
   <script src="js/header.js" defer></script>
   <script src="js/hero.js" defer></script>
   <script src="js/about.js" defer></script>
@@ -138,10 +131,12 @@
   <script src="js/service-areas.js" defer></script>
   <script src="js/real-estate.js" defer></script>
   <script src="js/footer.js" defer></script>
+
+  <!-- Swiper + testimonials init -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
   <script src="js/testimonial.js" defer></script>
 
-  <!-- Optimized include loader + layout flags -->
+  <!-- Optimized include loader -->
   <script>
     (function() {
       async function include(el) {
@@ -163,10 +158,10 @@
 
         if (window.initMobileMenu) window.initMobileMenu();
 
-        const initFunctions = [
+        [
           'renderHeroRecaptchaIfReady',
           'initEstimateForm',
-          'initHeroVideo',          // ✅ lazy desktop video loader
+          'initHeroVideo',
           'initAboutSection',
           'initWhyChoose',
           'initTrustSection',
@@ -178,8 +173,7 @@
           'initFooter',
           'initHeader',
           'setLayoutFlags'
-        ];
-        initFunctions.forEach(fn => { if (typeof window[fn] === 'function') window[fn](); });
+        ].forEach(fn => { if (typeof window[fn] === 'function') window[fn](); });
       }
 
       window.setLayoutFlags = function() {
@@ -248,8 +242,5 @@
       });
     })();
   </script>
-
-  <!-- ✅ Load reCAPTCHA once, after content -->
-  <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
 </body>
 </html>
