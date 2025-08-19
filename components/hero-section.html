@@ -1,21 +1,34 @@
+<!-- File: components/hero-section.html -->
 <!-- =========================================================
- [HERO SECTION] Zenith Roofing — Free Estimate Form (PHOTO ONLY)
+ [HERO SECTION] Zenith Roofing — Free Estimate Form
 ========================================================= -->
 <section class="zenith-hero" id="roofing-estimate" aria-label="Free roofing estimate">
   <!-- Invisible anchor so menu links land below the sticky header -->
   <span id="home" class="sr-only" aria-hidden="true"></span>
 
-  <!-- Background photo (LCP) -->
+  <!-- ===== Background media (mobile image + desktop video) ===== -->
   <div class="zenith-hero-media">
+    <!-- Mobile image (fast LCP, no video bytes on phones) -->
     <img
       class="zenith-hero-mobile-img"
       src="images/zenith-van-optimized.jpg"
       alt="Zenith Roofing work background"
       width="1600" height="900"
       fetchpriority="high" decoding="async">
+
+    <!-- Desktop video (src injected by JS only on desktop) -->
+    <div class="zenith-video-container" aria-hidden="true">
+      <video
+        class="zenith-background-video"
+        autoplay muted loop playsinline
+        preload="none"
+        poster="images/zenith-van-optimized.jpg"
+        data-src="roofing-bg.mp4"><!-- src set by js/hero.js --></video>
+      <div class="zenith-video-overlay"></div>
+    </div>
   </div>
 
-  <!-- Foreground card -->
+  <!-- ===== Card ===== -->
   <div class="zenith-card">
     <div class="zenith-header">
       <div class="zenith-logo-container">
