@@ -12,10 +12,10 @@
   <link rel="preload" href="css/header.css" as="style">
   <link rel="preload" href="css/hero.css" as="style">
 
-  <!-- Preload the hero image (LCP on phones) -->
+  <!-- ✅ Preload the mobile LCP hero image -->
   <link rel="preload" as="image" href="images/zenith-van-optimized.jpg" imagesizes="100vw">
 
-  <!-- Preload hero partial so the include fetch is instant -->
+  <!-- ✅ Preload the hero partial so the include fetch is instant -->
   <link rel="preload" as="fetch" href="components/hero-section.html" crossorigin="anonymous">
 
   <!-- Fonts: preconnect -->
@@ -41,20 +41,28 @@
   }
   </script>
 
-  <!-- Critical CSS (tiny, keeps layout stable before files load) -->
+  <!-- Critical CSS (minimal) -->
   <style>
-    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
-    .header{position:relative;z-index:5000}
-    a,button,.hover-effect{transition:all .3s ease}
-    a:hover,button:hover,.hover-effect:hover{opacity:.9;transform:translateY(-1px)}
-    .zenith-video-container,.zenith-background-video,.zenith-video-overlay{pointer-events:none;z-index:0}
-    .nav-bar,.nav-links,.nav-links li,.nav-links a{overflow:visible}
-    .mobile-header{display:none}
-    .menu-toggle{display:none}
-    :root{--header-h:80px}
-    .zenith-hero{min-height:100svh;min-height:100dvh}
-    html{scroll-behavior:smooth;scroll-padding-top:var(--header-h,80px)}
-    [id]{scroll-margin-top:calc(var(--header-h,80px) + 12px)}
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .header { position: relative; z-index: 5000; }
+
+    a, button, .hover-effect { transition: all 0.3s ease; }
+    a:hover, button:hover, .hover-effect:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .zenith-video-container,
+    .zenith-background-video,
+    .zenith-video-overlay { pointer-events: none; z-index: 0; }
+
+    .nav-bar, .nav-links, .nav-links li, .nav-links a { overflow: visible; }
+
+    .mobile-header { display: none; }
+    .menu-toggle   { display: none; }
+
+    :root { --header-h: 80px; }
+    .zenith-hero { min-height: 100svh; min-height: 100dvh; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: var(--header-h, 80px); }
+    [id] { scroll-margin-top: calc(var(--header-h, 80px) + 12px); }
   </style>
 
   <!-- Async CSS -->
@@ -78,7 +86,7 @@
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" media="print" onload="this.media='all'">
 
-  <!-- reCAPTCHA helpers (needs to exist before API loads) -->
+  <!-- reCAPTCHA helpers (must be before API script) -->
   <script>
     (function() {
       window.renderHeroRecaptchaIfReady = function() {
@@ -101,9 +109,10 @@
 </head>
 
 <body>
-  <!-- Header include FIRST so heights are measured correctly -->
+  <!-- Header include FIRST so it's present for measurements -->
   <section data-include="components/header-section.html"></section>
 
+  <!-- ===== MAIN (partials auto-injected below) ===== -->
   <main>
     <section data-include="components/hero-section.html"></section>
     <section data-include="components/about-section.html"></section>
@@ -117,6 +126,7 @@
     <section data-include="components/footer.html"></section>
   </main>
 
+  <!-- ===== JS (optimized loading) ===== -->
   <!-- Load reCAPTCHA after other content -->
   <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit" async defer></script>
 
@@ -158,10 +168,10 @@
 
         if (window.initMobileMenu) window.initMobileMenu();
 
-        [
+        const initFunctions = [
           'renderHeroRecaptchaIfReady',
           'initEstimateForm',
-          'initHeroVideo',
+          'initHeroVideo',          // ✅ lazy-inject desktop video src
           'initAboutSection',
           'initWhyChoose',
           'initTrustSection',
@@ -173,9 +183,11 @@
           'initFooter',
           'initHeader',
           'setLayoutFlags'
-        ].forEach(fn => { if (typeof window[fn] === 'function') window[fn](); });
+        ];
+        initFunctions.forEach(fn => { if (typeof window[fn] === 'function') window[fn](); });
       }
 
+      // Layout flags (global)
       window.setLayoutFlags = function() {
         var toggle = document.querySelector('.menu-toggle');
         var collapsed = toggle && getComputedStyle(toggle).display !== 'none';
