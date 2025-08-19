@@ -22,8 +22,8 @@
   --logo-size-mobile:78px;
 
   /* 🔵 Hero tint controls */
-  --hero-tint: rgba(7,46,89,.22);
-  --hero-tint-strong: rgba(7,46,89,.42);
+--hero-tint: rgba(7,46,89,.34);
+--hero-tint-strong: rgba(7,46,89,.56);
 }
 
 /* ---------- Base & Layout ---------- */
