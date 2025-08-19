@@ -269,3 +269,6 @@ input[type="file"]:focus-within{
 /* ⚠️ If you had an old helper like:
    .zenith-hero-mobile{ background:url("images/zenith-van-optimized.jpg") center/cover no-repeat; }
    make sure it's removed so it doesn't fight this setup. */
+
+.zenith-hero-mobile-img{ outline:3px solid red !important; }
+.zenith-image-overlay{ background:rgba(7,46,89,.25) !important; }
