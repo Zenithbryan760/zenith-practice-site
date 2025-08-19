@@ -1,4 +1,4 @@
-// js/hero.js — phone mask + ZIP → City + validation + reCAPTCHA guard + submit to Netlify + lazy video
+// js/hero.js — phone mask + ZIP → City + validation + reCAPTCHA render + submit to Netlify + lazy video
 (function () {
   // ---------- PHONE MASK (###) ###-#### ----------
   function bindPhoneMask() {
@@ -117,6 +117,45 @@
     return true;
   }
 
+  // ---------- reCAPTCHA (explicit render into #recaptcha-slot) ----------
+  function initRecaptcha() {
+    const slot = document.getElementById('recaptcha-slot');
+    if (!slot || slot._rendered) return;
+
+    const sitekey = slot.dataset.sitekey || window.RECAPTCHA_SITE_KEY || '';
+    if (!sitekey) {
+      console.warn('reCAPTCHA site key missing. Set data-sitekey on #recaptcha-slot or window.RECAPTCHA_SITE_KEY.');
+      return;
+    }
+
+    function render() {
+      if (!window.grecaptcha || !window.grecaptcha.render) return;
+      try {
+        window._recaptchaWidgetId = window.grecaptcha.render(slot, {
+          sitekey,
+          theme: 'light',
+          size: 'normal'
+        });
+        slot._rendered = true;
+      } catch (e) {
+        console.error('reCAPTCHA render failed:', e);
+      }
+    }
+
+    if (window.grecaptcha && window.grecaptcha.render) {
+      render();
+    } else {
+      if (!window._recaptchaLoading) {
+        window._recaptchaLoading = true;
+        const s = document.createElement('script');
+        s.src = 'https://www.google.com/recaptcha/api.js?onload=_onRecaptchaLoaded&render=explicit';
+        s.async = true; s.defer = true;
+        document.head.appendChild(s);
+      }
+      window._onRecaptchaLoaded = function() { render(); };
+    }
+  }
+
   // ---------- SUBMIT HANDLER ----------
   async function submitHandler(e) {
     e.preventDefault();
@@ -230,6 +269,7 @@
 
     bindPhoneMask();
     bindZipToCity();
+    initRecaptcha(); // ✅ render the widget
 
     const photosNote = document.getElementById('photos-note');
     if (photosNote) photosNote.textContent = 'Photos are optional; all other fields are required.';
@@ -238,6 +278,7 @@
   };
 
   window.initHeroVideo = initHeroVideo;
+  window.initRecaptcha = initRecaptcha;
 
   // Fallback init if hero is already on page
   document.addEventListener('DOMContentLoaded', () => {
