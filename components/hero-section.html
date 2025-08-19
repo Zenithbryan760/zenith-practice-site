@@ -1,31 +1,37 @@
 <!-- =========================================================
- [HERO SECTION] Zenith Roofing — Free Estimate Form
+ [HERO SECTION] Zenith Roofing — Free Estimate (image only)
 ========================================================= -->
 <section class="zenith-hero" id="roofing-estimate" aria-label="Free roofing estimate">
   <!-- Invisible anchor so menu links land below the sticky header -->
   <span id="home" class="sr-only" aria-hidden="true"></span>
 
-  <!-- ===== Background media (mobile image + desktop video) ===== -->
+  <!-- ===== Background media (single image on all devices) ===== -->
   <div class="zenith-hero-media">
-    <!-- Mobile image (fast LCP) -->
-    <img
-      class="zenith-hero-mobile-img"
-      src="/images/modern-tile-roof.png"
-      alt="Modern tile roof"
-      width="1600" height="900"
-      fetchpriority="high" decoding="async">
+    <picture>
+      <!-- Optional WebP if you have it -->
+      <source srcset="/images/modern-tile-roof.webp" type="image/webp">
+      <img
+        class="zenith-hero-mobile-img"
+        src="/images/modern-tile-roof.png"
+        alt="Modern tile roof"
+        width="1600" height="900"
+        fetchpriority="high" decoding="async">
+    </picture>
+    <!-- subtle tint so text stays readable -->
+    <div class="zenith-image-overlay" aria-hidden="true"></div>
+  </div>
 
   <!-- ===== Card ===== -->
   <div class="zenith-card">
     <!-- Header -->
     <div class="zenith-header">
       <div class="zenith-logo-container">
-        <!-- Use the real PNG directly so it never breaks; reserve square space -->
-        <img src="/images/badges/logo-zenith-icon.png"
-             alt="Zenith Roofing"
-             class="zenith-logo"
-             width="88" height="88"
-             loading="eager" decoding="async" />
+        <img
+          src="/images/badges/logo-zenith-icon.png"
+          alt="Zenith Roofing"
+          class="zenith-logo"
+          width="86" height="48"
+          loading="eager" decoding="async" />
         <div class="logo-backdrop" aria-hidden="true"></div>
       </div>
       <div class="zenith-header-text">
@@ -53,16 +59,9 @@
       <div class="form-row">
         <div class="form-group form-col-6">
           <label for="phone" class="sr-only">Phone Number*</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            inputmode="tel"
-            placeholder="Phone Number*"
-            pattern="[\d\s\-\(\)\.]{10,}"
-            autocomplete="tel"
-            required
-          />
+          <input type="tel" id="phone" name="phone" inputmode="tel"
+                 placeholder="Phone Number*" pattern="[\d\s\-\(\)\.]{10,}"
+                 autocomplete="tel" required />
         </div>
         <div class="form-group form-col-6">
           <label for="email" class="sr-only">Email Address*</label>
@@ -90,17 +89,9 @@
         </div>
         <div class="form-group form-col-4">
           <label for="zip" class="sr-only">ZIP Code*</label>
-          <input
-            type="text"
-            id="zip"
-            name="zip"
-            placeholder="ZIP Code*"
-            inputmode="numeric"
-            pattern="\d{5}(-\d{4})?"
-            maxlength="10"
-            autocomplete="postal-code"
-            required
-          />
+          <input type="text" id="zip" name="zip" placeholder="ZIP Code*"
+                 inputmode="numeric" pattern="\d{5}(-\d{4})?" maxlength="10"
+                 autocomplete="postal-code" required />
         </div>
       </div>
 
@@ -114,12 +105,9 @@
           <label for="serviceType" class="sr-only">Service Type*</label>
           <select id="serviceType" name="service_type" required>
             <option value="" selected disabled hidden>Service Type*</option>
-            <option>Roof Replacement</option>
-            <option>Roof Repair</option>
-            <option>Gutters</option>
-            <option>Roof Maintenance</option>
-            <option>Commercial Roofing</option>
-            <option>Residential Roofing</option>
+            <option>Roof Replacement</option><option>Roof Repair</option>
+            <option>Gutters</option><option>Roof Maintenance</option>
+            <option>Commercial Roofing</option><option>Residential Roofing</option>
             <option>Other</option>
           </select>
         </div>
@@ -127,12 +115,8 @@
           <label for="referral" class="sr-only">How did you hear about us?*</label>
           <select id="referral" name="referral_source" required>
             <option value="" selected disabled hidden>How did you hear about us?*</option>
-            <option>Google</option>
-            <option>Yelp</option>
-            <option>Angi</option>
-            <option>Social Media</option>
-            <option>Referral</option>
-            <option>Other</option>
+            <option>Google</option><option>Yelp</option><option>Angi</option>
+            <option>Social Media</option><option>Referral</option><option>Other</option>
           </select>
         </div>
       </div>
@@ -152,12 +136,10 @@
         </div>
       </div>
 
-      <!-- Submit -->
       <div class="form-row">
         <button type="submit" class="zenith-btn">Request Free Estimate</button>
       </div>
 
-      <!-- Disclaimer -->
       <p class="form-disclaimer">
         <em>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our
         <a href="#real-estate">Real Estate Services</a>.</em>
