@@ -32,7 +32,7 @@
 /* ===== Background media wrapper ===== */
 .zenith-hero-media{ position:absolute; inset:0; z-index:0; }
 
-/* ✅ Mobile LCP as a real <img> (replaces old background-image) */
+/* ✅ Mobile LCP as a real <img> */
 .zenith-hero-mobile-img{
   position:absolute; inset:0;
   width:100%; height:100%;
@@ -45,6 +45,7 @@
   position:absolute; inset:0;
   overflow:hidden;
   z-index:0;
+  pointer-events:none;
 }
 .zenith-background-video{
   position:absolute; inset:0;
@@ -79,13 +80,14 @@
 .zenith-header{ text-align:center; margin-bottom:1.75rem; }
 .zenith-logo-container{ position:relative; display:inline-block; margin-bottom:.75rem; }
 
-/* ✅ Keep the logo square to avoid squishing & CLS */
+/* ✅ Keep aspect, reserve square space (matches width/height in HTML) */
 .zenith-logo{
-  width:88px;               /* visual size on desktop */
-  height:auto;              /* let the aspect ratio set height */
-  aspect-ratio:1 / 1;       /* reserve square space immediately */
+  width:86px;
+  height:auto;
+  aspect-ratio:1 / 1;
   object-fit:contain;
-  position:relative; z-index:1;
+  position:relative;
+  z-index:1;
 }
 
 /* Logo backdrop */
@@ -242,7 +244,7 @@ input[type="file"]:focus-within{
 @media (max-width:768px){
   .form-col-6, .form-col-4{ flex:0 0 100%; }
   .zenith-card{ padding:1.25rem; }
-  .zenith-logo{ width:78px; height:auto; aspect-ratio:1/1; } /* square on small screens too */
+  .zenith-logo{ width:78px; } /* keep aspect, height auto */
 }
 
 /* Hide the HERO card logo only when the nav is actually collapsed (mobile) */
@@ -277,3 +279,9 @@ input[type="file"]:focus-within{
   margin:0 0 1rem 0;
 }
 .error-summary.show{ display:block; }
+
+/* ⚠️ Remove this OLD rule if it exists anywhere to avoid double media:
+   .zenith-hero-mobile{
+     background: url("images/zenith-van-optimized.jpg") center / cover no-repeat;
+   }
+*/
