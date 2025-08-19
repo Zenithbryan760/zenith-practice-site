@@ -1,6 +1,5 @@
 /* =========================================================
-   Zenith Roofing — Hero / Free Estimate (Polished + Brand)
-   Single source of truth (no duplicates)
+   Zenith Roofing — Hero / Free Estimate (Image-only version)
    ======================================================== */
 
 /* Brand tokens */
@@ -29,40 +28,22 @@
   z-index: 0;
 }
 
-/* ===== Background media wrapper ===== */
+/* ===== Background media (image for all sizes) ===== */
 .zenith-hero-media{ position:absolute; inset:0; z-index:0; }
 
-/* ✅ Mobile LCP as a real <img> (replaces old background-image) */
 .zenith-hero-mobile-img{
   position:absolute; inset:0;
   width:100%; height:100%;
-  object-fit:cover; object-position:center;
+  object-fit:cover;            /* fill */
+  object-position:center;      /* centered */
   display:block;
 }
 
-/* Desktop video container */
-.zenith-video-container{
+/* Navy tint to keep text readable */
+.zenith-image-overlay{
   position:absolute; inset:0;
-  overflow:hidden;
-  z-index:0;
-}
-.zenith-background-video{
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:cover; object-position:center;
-}
-.zenith-video-overlay{
-  position:absolute; inset:0;
-  background-color:rgba(7,46,89,0.78); /* Zenith navy tint */
+  background:rgba(7,46,89,0.78);
   pointer-events:none;
-}
-
-/* Show image on phones; show video on desktops */
-@media (max-width: 768px){
-  .zenith-video-container{ display:none; }
-}
-@media (min-width: 769px){
-  .zenith-hero-mobile-img{ display:none; }
 }
 
 /* ===== Card ===== */
@@ -79,14 +60,8 @@
 .zenith-header{ text-align:center; margin-bottom:1.75rem; }
 .zenith-logo-container{ position:relative; display:inline-block; margin-bottom:.75rem; }
 
-/* ✅ Keep the logo square to avoid squishing & CLS */
-.zenith-logo{
-  width:88px;               /* visual size on desktop */
-  height:auto;              /* let the aspect ratio set height */
-  aspect-ratio:1 / 1;       /* reserve square space immediately */
-  object-fit:contain;
-  position:relative; z-index:1;
-}
+/* Correct logo aspect ratio (no squish/CLS) */
+.zenith-logo{ width:86px; height:48px; object-fit:contain; position:relative; z-index:1; }
 
 /* Logo backdrop */
 .logo-backdrop{
@@ -181,7 +156,6 @@ input[type="file"]::-webkit-file-upload-button:hover{
   background:#e9830b; box-shadow:0 10px 24px rgba(247,148,29,.35);
   transform:translateY(-1px);
 }
-/* Accessible focus for file input */
 input[type="file"]:focus-within{
   outline:3px solid rgba(247,148,29,.35);
   outline-offset:2px;
@@ -202,7 +176,7 @@ input[type="file"]:focus-within{
 .zenith-btn:active{ transform:translateY(0); }
 .zenith-btn:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:2px; }
 
-/* Utility: orange button class (use on any <a> or <button>) */
+/* Utility button */
 .btn-orange{
   display:inline-flex; align-items:center; justify-content:center;
   padding:.7rem 1rem; border-radius:12px;
@@ -242,7 +216,7 @@ input[type="file"]:focus-within{
 @media (max-width:768px){
   .form-col-6, .form-col-4{ flex:0 0 100%; }
   .zenith-card{ padding:1.25rem; }
-  .zenith-logo{ width:78px; height:auto; aspect-ratio:1/1; } /* square on small screens too */
+  .zenith-logo{ width:78px; height:44px; } /* scaled but same ratio */
 }
 
 /* Hide the HERO card logo only when the nav is actually collapsed (mobile) */
