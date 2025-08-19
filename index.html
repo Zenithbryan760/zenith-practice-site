@@ -1,3 +1,4 @@
+<!-- File: index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +13,11 @@
   <link rel="preload" href="css/header.css" as="style">
   <link rel="preload" href="css/hero.css" as="style">
 
-  <!-- ✅ NEW: Preload the mobile LCP hero image -->
+  <!-- ✅ Preload the mobile LCP hero image -->
   <link rel="preload" as="image" href="images/zenith-van-optimized.jpg" imagesizes="100vw">
+
+  <!-- ✅ Preload the hero partial so the include fetch is instant -->
+  <link rel="preload" as="fetch" href="components/hero-section.html" crossorigin="anonymous">
 
   <!-- Fonts: preconnect (deduped) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -157,10 +161,6 @@
   <!-- Optimized include loader -->
   <script>
     (function() {
-      // Load CSS for browsers that don't support onload (old IE)
-      function loadCSS(e,n,o,t){"use strict";var i=window.document.createElement("link");var r=n||window.document.getElementsByTagName("script")[0];i.rel="stylesheet";i.href=e;i.media="only x";t&&(i.onload=t);r.parentNode.insertBefore(i,r);setTimeout(function(){i.media=o||"all"})}
-
-      // Async include loader
       async function include(el) {
         const src = el.getAttribute('data-include');
         if (!src) return;
@@ -189,6 +189,7 @@
         const initFunctions = [
           'renderHeroRecaptchaIfReady',
           'initEstimateForm',
+          'initHeroVideo',              // ✅ NEW: lazy-inject desktop video src
           'initAboutSection',
           'initWhyChoose',
           'initTrustSection',
@@ -199,19 +200,12 @@
           'initRealEstate',
           'initFooter',
           'initHeader',
-          'setLayoutFlags' // Note: Removed 'initHeaderMobile' from this list
+          'setLayoutFlags'
         ];
 
         initFunctions.forEach(fn => {
           if (typeof window[fn] === 'function') window[fn]();
         });
-      }
-
-      // Start initialization based on document state
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-      } else {
-        init();
       }
 
       // Layout flags (made global so loader can call it)
@@ -227,6 +221,13 @@
         document.documentElement.style.setProperty('--header-h', h + 'px');
       };
 
+      // Start initialization based on document state
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
       // Event listeners for layout changes
       window.addEventListener('load', window.setLayoutFlags);
       window.addEventListener('resize', window.setLayoutFlags);
@@ -234,7 +235,7 @@
         if (e.target.closest('.menu-toggle')) setTimeout(window.setLayoutFlags, 50);
       });
 
-      /* === STEP 4: keep header/hero sized correctly as the mobile URL bar moves === */
+      /* keep header/hero sized correctly as the mobile URL bar moves */
       window.addEventListener('orientationchange', window.setLayoutFlags, { passive: true });
       if (window.visualViewport) {
         visualViewport.addEventListener('resize', window.setLayoutFlags, { passive: true });
@@ -243,14 +244,14 @@
     })();
   </script>
 
-  <!-- STEP 5 JS fallback (older browsers): smooth scroll with header offset -->
+  <!-- Smooth scroll with header offset (fallback) -->
   <script>
     (function(){
       var root = document.documentElement;
       function headerHeight(){
         var h = parseInt(getComputedStyle(root).getPropertyValue('--header-h')) || 80;
         return h + 8; // tiny breathing room
-        }
+      }
       function scrollToHash(hash, replace){
         var id = (hash || '').slice(1);
         if(!id) return;
