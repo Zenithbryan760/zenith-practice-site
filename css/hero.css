@@ -51,18 +51,16 @@
   display:block; z-index:0; /* under tint */
 }
 
-/* 🔵 Branded blue tint overlay (above image, below card) */
+/* 🔵 50% navy tint (uniform) — image (0) → tint (1) → card (2) → logo (3) */
 .zenith-hero-media::after{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
-  z-index:1;
-  background:
-    radial-gradient(900px 480px at 8% -10%, var(--hero-tint-strong) 0, rgba(7,46,89,0) 55%),
-    radial-gradient(700px 380px at 98% 0%, var(--hero-tint) 0, rgba(7,46,89,0) 55%),
-linear-gradient(180deg, rgba(7,46,89,.14) 0%, rgba(7,46,89,.28) 100%);
+  z-index:1;                   /* above image, below card */
+  background: rgba(7,46,89,.50);
 }
+
 
 
 /* ===== Card ===== */
