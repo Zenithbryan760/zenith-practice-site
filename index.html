@@ -7,23 +7,24 @@
   <title>Zenith Roofing Services – San Diego & Temecula Roof Experts</title>
   <meta name="description" content="Licensed roofing contractor serving Escondido, San Diego & Temecula. Roof repair, replacement, tile, shingles, TPO, torch down, silicone coatings & gutters.">
 
-  <!-- Preload critical CSS (keeps your current styling pipeline) -->
+  <!-- ===== Preload critical CSS ===== -->
   <link rel="preload" href="css/base.css" as="style">
   <link rel="preload" href="css/header.css" as="style">
   <link rel="preload" href="css/hero.css" as="style">
 
-  <!-- ✅ Preload the hero (LCP) image -->
-  <!-- Keep JPG for now. When you export /images/modern-tile-roof.webp, change the href below. -->
-<link rel="preload" as="image" href="/images/modern-tile-roof.png" imagesizes="100vw">
+  <!-- ===== LCP image preload ===== -->
+  <!-- If your <picture> serves WebP in Chrome, change to .webp and add type="image/webp" -->
+  <link rel="preload" as="image" href="/images/modern-tile-roof.png" imagesizes="100vw">
 
   <!-- (Optional) Preload the hero partial you inject -->
   <link rel="preload" as="fetch" href="components/hero-section.html" crossorigin="anonymous">
 
-  <!-- Fonts: preconnect (faster TLS) -->
+  <!-- ===== Google Fonts ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Structured data -->
+  <!-- ===== Structured data ===== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -42,35 +43,36 @@
   }
   </script>
 
-  <!-- Critical CSS (tiny, avoids flashes) -->
-<style>
-  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-  .header { position: relative; z-index: 5000; }
-  a, button, .hover-effect { transition: all .3s ease; }
-  a:hover, button:hover, .hover-effect:hover { opacity:.9; transform:translateY(-1px); }
+  <!-- ===== Critical CSS (tiny; stabilizes layout & scroll) ===== -->
+  <style>
+    body{ margin:0; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .header{ position:relative; z-index:5000; }
+    a,button,.hover-effect{ transition:all .3s ease; }
+    a:hover,button:hover,.hover-effect:hover{ opacity:.9; transform:translateY(-1px); }
 
-  :root { --header-h: 80px; }                 /* placeholder until header loads */
-  .zenith-hero { min-height: 100svh; min-height: 100dvh; }
+    :root{ --header-h:80px; }
+    .zenith-hero{ min-height:100svh; min-height:100dvh; }
 
-  /* ✅ reserve space while the include loader fetches hero-section.html */
-  [data-include="components/hero-section.html"]{
-    display:block;
-    min-height:100svh;
-    min-height:100dvh;
-  }
+    /* Reserve hero space while the partial loads */
+    [data-include="components/hero-section.html"]{
+      display:block; min-height:100svh; min-height:100dvh;
+    }
 
-  html { scroll-behavior: smooth; scroll-padding-top: var(--header-h, 80px); }
-  [id] { scroll-margin-top: calc(var(--header-h, 80px) + 12px); }
-</style>
+    /* Zero font-swap shift above the fold */
+    .zenith-hero, .zenith-card, .zenith-header-text, #estimate-form{
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
 
+    html{ scroll-behavior:smooth; scroll-padding-top:var(--header-h,80px); }
+    [id]{ scroll-margin-top:calc(var(--header-h,80px) + 12px); }
+  </style>
 
-  <!-- Non-critical CSS (async) -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"></noscript>
+  <!-- ===== Load critical CSS normally (preloaded above) ===== -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/hero.css">
 
-  <link rel="stylesheet" href="css/base.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/header.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="css/hero.css" media="print" onload="this.media='all'">
+  <!-- ===== Non-critical CSS (async) ===== -->
   <link rel="stylesheet" href="css/about.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="css/why-choose.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="css/trust.css" media="print" onload="this.media='all'">
@@ -82,10 +84,9 @@
   <link rel="stylesheet" href="css/footer.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="css/responsive.css" media="print" onload="this.media='all'">
 
-  <!-- Swiper CSS (keep) -->
+  <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" media="print" onload="this.media='all'">
 </head>
-
 
 <body>
   <!-- Header include FIRST so it's present for measurements -->
@@ -144,7 +145,7 @@
         if (window.initMobileMenu) window.initMobileMenu();
 
         const initFns = [
-          'initEstimateForm',      // will also lazy-load reCAPTCHA
+          'initEstimateForm',
           'initAboutSection',
           'initWhyChoose',
           'initTrustSection',
