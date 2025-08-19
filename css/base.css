@@ -1,16 +1,8 @@
-/* ===== Hardening (safe, non-destructive) ===== */
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
-body { margin: 0; overflow-x: hidden; }
-img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
-input, select, textarea { font-size: 16px; } /* stop iOS auto-zoom on focus */
-a, button, .hover-effect { transition: all .3s ease; }
-
-
 /* ===================================================================
    base.css — Global resets, variables, containers, buttons
    =================================================================== */
 
-/* 1. Root Variables */
+/* 1) Root Variables */
 :root {
   --zenith-blue:    #072e59;
   --zenith-orange:  #f7941d;
@@ -21,28 +13,35 @@ a, button, .hover-effect { transition: all .3s ease; }
   --hero-overlay:   rgba(7, 46, 89, 0.35);
 }
 
-/* 2. Reset & Base Styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* 2) Reset & Hardening (safe, non-destructive) */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   scroll-behavior: smooth;
   background: var(--off-white);
 }
+
 body {
-body { font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; }
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   color: var(--text-gray);
   line-height: 1.6;
 }
 
-/* 3. Utility Classes */
+img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
+input, select, textarea { font-size: 16px; } /* stop iOS auto-zoom on focus */
+a, button, .hover-effect { transition: all .3s ease; }
+
+/* 3) Utility Classes */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
+
 .button,
 .call-button {
   display: inline-block;
@@ -55,39 +54,19 @@ body { font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Ari
   transition: background 0.3s ease;
 }
 .button:hover,
-.call-button:hover {
-  background: #e6871c;
-}
+.call-button:hover { background: #e6871c; }
 
-/* 4. Global Image & Link Styles */
-a {
-  color: inherit;
-  text-decoration: none;
-}
-img {
-  max-width: 100%;
-  display: block;
-}
+/* 4) Global Image & Link Styles */
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
 
-/* 5. Section Defaults */
-section {
-  padding: 60px 20px;
-  text-align: center;
-}
-.light-section {
-  background: var(--off-white);
-}
-.gray-section {
-  background: var(--light-gray);
-}
+/* 5) Section Defaults */
+section { padding: 60px 20px; text-align: center; }
+.light-section { background: var(--off-white); }
+.gray-section  { background: var(--light-gray); }
 h2.section-title {
   font-size: 2rem;
   color: var(--zenith-blue);
   margin-bottom: 20px;
 }
-.section-subtitle {
-  font-size: 1.1rem;
-  color: #666;
-  margin-bottom: 30px;
-}
-
+.section-subtitle { font-size: 1.1rem; color: #666; margin-bottom: 30px; }
