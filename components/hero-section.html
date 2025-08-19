@@ -8,16 +8,18 @@
   <!-- ===== Background media (mobile image + desktop video) ===== -->
   <div class="zenith-hero-media">
     <!-- Mobile image (fast LCP, no video bytes on phones) -->
-    <div class="zenith-hero-mobile" role="img" aria-label="Zenith Roofing work background"></div>
+    <img
+      class="zenith-hero-mobile-img"
+      src="images/zenith-van-optimized.jpg"
+      alt="Zenith Roofing work background"
+      width="1600" height="900"
+      fetchpriority="high" decoding="async">
 
     <!-- Desktop video (source injected by script; see index.html) -->
-    <div class="zenith-video-container">
+    <div class="zenith-video-container" aria-hidden="true">
       <video
         class="zenith-background-video"
-        autoplay
-        muted
-        loop
-        playsinline
+        autoplay muted loop playsinline
         preload="none"
         poster="images/zenith-van-optimized.jpg"
         data-src="roofing-bg.mp4"><!-- source injected via JS on desktop --></video>
@@ -30,7 +32,10 @@
     <!-- Header -->
     <div class="zenith-header">
       <div class="zenith-logo-container">
-        <img src="images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-logo" />
+        <img src="images/badges/logo-zenith-icon.png"
+             alt="Zenith Roofing"
+             class="zenith-logo"
+             width="86" height="48" decoding="async" />
         <div class="logo-backdrop"></div>
       </div>
       <div class="zenith-header-text">
