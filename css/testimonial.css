@@ -32,11 +32,14 @@
 }
 #testimonials .section-subtitle{ max-width:62ch; margin:.4rem auto 1.1rem; color:#4b5563; }
 
-/* Swiper layout: allow card shadows to breathe */
 #testimonials .testimonialSwiper{
-  overflow:visible;
+  /* Prevent horizontal overflow that causes page zoom-out */
+  overflow-x: hidden;   /* or: overflow-x: clip; (modern Safari/Chrome) */
+  overflow-y: visible;
+
   padding: .5rem .25rem 1.5rem;
 }
+
 
 /* Slide transitions for the “dim” effect */
 #testimonials .swiper-slide{
