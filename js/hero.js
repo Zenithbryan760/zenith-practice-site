@@ -1,4 +1,5 @@
-// js/hero.js — phone mask + ZIP→City + validation + lazy reCAPTCHA + submit to Netlify
+// File: js/hero.js
+// phone mask + ZIP → City + validation + reCAPTCHA guard + submit to Netlify
 (function () {
   // ---------- PHONE MASK (###) ###-#### ----------
   function bindPhoneMask() {
@@ -29,7 +30,7 @@
     if (!zipInput || !cityInput || zipInput._zipBound) return;
     zipInput._zipBound = true;
 
-    const cache = {}; // { "92025": "Escondido" }
+    const cache = {};
     cityInput.addEventListener('input', () => { cityInput.dataset.autofilled = ''; });
 
     async function lookup(zip5) {
@@ -106,59 +107,17 @@
     clearErrors(form);
     const required = Array.from(form.querySelectorAll('[required]'));
     const invalid = required.filter(el => !el.checkValidity());
+
     if (invalid.length) {
       const box = ensureErrorSummary(form);
       box.textContent = 'Please fix the highlighted fields. Photos are optional; all other fields are required.';
       box.classList.add('show');
+
       invalid.forEach(el => showFieldError(el, getMessageFor(el)));
       invalid[0].focus();
       return false;
     }
     return true;
-  }
-
-  // ---------- LAZY reCAPTCHA (v2 checkbox) ----------
-  function loadRecaptchaOnce() {
-    if (window._recaptchaLoading || window.grecaptcha) return Promise.resolve();
-    window._recaptchaLoading = true;
-    return new Promise(resolve => {
-      const s = document.createElement('script');
-      s.src = 'https://www.google.com/recaptcha/api.js?render=explicit';
-      s.async = true; s.defer = true;
-      s.onload = () => resolve();
-      document.head.appendChild(s);
-    });
-  }
-
-  function renderHeroRecaptchaIfReady() {
-    const slot = document.getElementById('recaptcha-slot');
-    if (!slot || slot.dataset.rendered) return;
-    if (window.grecaptcha && typeof window.grecaptcha.render === 'function') {
-      window._recaptchaWidgetId = grecaptcha.render(slot, {
-        sitekey: '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI',
-        theme: 'light',
-        size: 'normal'
-      });
-      slot.dataset.rendered = '1';
-    }
-  }
-
-  function ensureRecaptcha() {
-    const slot = document.getElementById('recaptcha-slot');
-    if (!slot) return;
-    // Load when the slot is near viewport
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver(entries => {
-        if (entries.some(e => e.isIntersecting)) {
-          io.disconnect();
-          loadRecaptchaOnce().then(renderHeroRecaptchaIfReady);
-        }
-      }, { rootMargin: '400px 0px' });
-      io.observe(slot);
-    } else {
-      // Fallback: just load after a tick
-      setTimeout(() => loadRecaptchaOnce().then(renderHeroRecaptchaIfReady), 0);
-    }
   }
 
   // ---------- SUBMIT HANDLER ----------
@@ -168,7 +127,7 @@
 
     if (!validateForm(form)) return;
 
-    // Require reCAPTCHA
+    // Require reCAPTCHA (v2 checkbox)
     let token = '';
     if (window.grecaptcha && typeof window.grecaptcha.getResponse === 'function') {
       if (typeof window._recaptchaWidgetId !== 'undefined') {
@@ -186,7 +145,6 @@
       return;
     }
 
-    // Build payload
     const fd = new FormData(form);
     const data = {
       first_name: (fd.get("first_name") || "").trim(),
@@ -223,7 +181,6 @@
       alert("Thanks! Your request has been submitted.");
       form.reset();
 
-      // Reset reCAPTCHA
       if (window.grecaptcha && typeof window.grecaptcha.reset === "function" &&
           typeof window._recaptchaWidgetId !== "undefined") {
         window.grecaptcha.reset(window._recaptchaWidgetId);
@@ -241,7 +198,43 @@
     }
   }
 
-  // ---------- PUBLIC INIT ----------
+  // ---------- DESKTOP VIDEO: lazy set src only on desktop ----------
+  window.initHeroVideo = function initHeroVideo() {
+    const mqDesktop = window.matchMedia('(min-width: 769px)');
+    const mqReduce  = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function maybeLoad() {
+      const vid = document.querySelector('.zenith-background-video');
+      if (!vid) return;
+
+      if (!mqDesktop.matches || mqReduce.matches) {
+        // Do not load video bytes on mobile or when reduced motion is requested
+        if (vid.getAttribute('src')) {
+          vid.removeAttribute('src');
+          try { vid.load(); } catch(_) {}
+        }
+        return;
+      }
+
+      // Desktop: set src once from data-src
+      if (!vid._loaded && vid.dataset.src) {
+        vid.src = vid.dataset.src;
+        vid._loaded = true;
+        try { vid.load(); } catch(_) {}
+      }
+    }
+
+    if (mqDesktop.addEventListener) {
+      mqDesktop.addEventListener('change', maybeLoad);
+      mqReduce.addEventListener('change', maybeLoad);
+    } else {
+      mqDesktop.addListener(maybeLoad);
+      mqReduce.addListener(maybeLoad);
+    }
+    maybeLoad();
+  };
+
+  // ---------- PUBLIC INIT (after hero HTML is injected) ----------
   window.initEstimateForm = function initEstimateForm() {
     const form = document.getElementById('estimate-form');
     if (!form || form._bound) return;
@@ -249,10 +242,11 @@
 
     bindPhoneMask();
     bindZipToCity();
-    ensureRecaptcha();            // ← lazy-load and render
 
     const photosNote = document.getElementById('photos-note');
-    if (photosNote) photosNote.textContent = 'Photos are optional; all other fields are required.';
+    if (photosNote) {
+      photosNote.textContent = 'Photos are optional; all other fields are required.';
+    }
 
     form.addEventListener('submit', submitHandler);
   };
