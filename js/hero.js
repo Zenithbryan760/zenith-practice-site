@@ -1,12 +1,39 @@
-// js/hero.js — phone mask + ZIP → City + validation + reCAPTCHA render + submit to Netlify + lazy video
+// js/hero.js — phone mask + ZIP→City + validation + lazy reCAPTCHA + submit
 (function () {
-  // ---------- PHONE MASK (###) ###-#### ----------
+  const RECAPTCHA_SITEKEY = '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI';
+
+  // --- Lazy-load reCAPTCHA only when user sees or focuses the form ---
+  function ensureRecaptchaScript() {
+    if (document.querySelector('script[data-zenith-recaptcha]')) return;
+    const s = document.createElement('script');
+    s.src = 'https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit';
+    s.async = true; s.defer = true; s.setAttribute('data-zenith-recaptcha','1');
+    document.head.appendChild(s);
+  }
+  window.recaptchaOnload = function() {
+    const slot = document.getElementById('recaptcha-slot');
+    if (slot && !slot.dataset.rendered && window.grecaptcha) {
+      window._recaptchaWidgetId = grecaptcha.render(slot, {
+        sitekey: RECAPTCHA_SITEKEY, theme: 'light', size: 'normal'
+      });
+      slot.dataset.rendered = '1';
+    }
+  };
+  function setupLazyRecaptcha(form) {
+    const trigger = () => { ensureRecaptchaScript(); obs && obs.disconnect(); form.removeEventListener('focusin', trigger); };
+    const obs = ('IntersectionObserver' in window)
+      ? new IntersectionObserver((es)=>{ if (es.some(e=>e.isIntersecting)) trigger(); }, { rootMargin:'300px' })
+      : null;
+    if (obs) obs.observe(form);
+    form.addEventListener('focusin', trigger, { once:true });
+  }
+
+  // ---------- PHONE MASK ----------
   function bindPhoneMask() {
     const el = document.getElementById('phone');
     if (!el || el._masked) return;
     el._masked = true;
     el.setAttribute('maxlength', '14');
-
     const fmt = v => {
       const d = (v || '').replace(/\D/g, '').slice(0, 10);
       if (!d) return '';
@@ -14,7 +41,6 @@
       if (d.length < 7) return `(${d.slice(0,3)}) ${d.slice(3)}`;
       return `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
     };
-
     el.addEventListener('input', e => { e.target.value = fmt(e.target.value); });
     el.addEventListener('blur', e => {
       const len = e.target.value.replace(/\D/g, '').length;
@@ -29,7 +55,7 @@
     if (!zipInput || !cityInput || zipInput._zipBound) return;
     zipInput._zipBound = true;
 
-    const cache = {}; // { "92025": "Escondido" }
+    const cache = {};
     cityInput.addEventListener('input', () => { cityInput.dataset.autofilled = ''; });
 
     async function lookup(zip5) {
@@ -61,7 +87,7 @@
     maybeFill();
   }
 
-  // ---------- LIGHTWEIGHT VALIDATION ----------
+  // ---------- VALIDATION ----------
   function ensureErrorSummary(form) {
     let box = form.querySelector('.error-summary');
     if (!box) {
@@ -74,14 +100,12 @@
     }
     return box;
   }
-
   function clearErrors(form) {
     form.querySelectorAll('.form-group.has-error').forEach(g => g.classList.remove('has-error'));
     form.querySelectorAll('.field-error').forEach(n => n.remove());
     const box = form.querySelector('.error-summary');
     if (box) { box.textContent = ''; box.classList.remove('show'); }
   }
-
   function showFieldError(input, message) {
     const group = input.closest('.form-group') || input.parentElement;
     if (!group) return;
@@ -93,7 +117,6 @@
       group.appendChild(note);
     }
   }
-
   function getMessageFor(input) {
     if (input.validity.valueMissing) return 'This field is required.';
     if (input.id === 'email' && input.validity.typeMismatch) return 'Enter a valid email address.';
@@ -101,7 +124,6 @@
     if (input.id === 'zip'   && input.validity.patternMismatch) return 'Enter a 5-digit ZIP (or ZIP+4).';
     return 'Please check this field.';
   }
-
   function validateForm(form) {
     clearErrors(form);
     const required = Array.from(form.querySelectorAll('[required]'));
@@ -117,53 +139,13 @@
     return true;
   }
 
-  // ---------- reCAPTCHA (explicit render into #recaptcha-slot) ----------
-  function initRecaptcha() {
-    const slot = document.getElementById('recaptcha-slot');
-    if (!slot || slot._rendered) return;
-
-    const sitekey = slot.dataset.sitekey || window.RECAPTCHA_SITE_KEY || '';
-    if (!sitekey) {
-      console.warn('reCAPTCHA site key missing. Set data-sitekey on #recaptcha-slot or window.RECAPTCHA_SITE_KEY.');
-      return;
-    }
-
-    function render() {
-      if (!window.grecaptcha || !window.grecaptcha.render) return;
-      try {
-        window._recaptchaWidgetId = window.grecaptcha.render(slot, {
-          sitekey,
-          theme: 'light',
-          size: 'normal'
-        });
-        slot._rendered = true;
-      } catch (e) {
-        console.error('reCAPTCHA render failed:', e);
-      }
-    }
-
-    if (window.grecaptcha && window.grecaptcha.render) {
-      render();
-    } else {
-      if (!window._recaptchaLoading) {
-        window._recaptchaLoading = true;
-        const s = document.createElement('script');
-        s.src = 'https://www.google.com/recaptcha/api.js?onload=_onRecaptchaLoaded&render=explicit';
-        s.async = true; s.defer = true;
-        document.head.appendChild(s);
-      }
-      window._onRecaptchaLoaded = function() { render(); };
-    }
-  }
-
-  // ---------- SUBMIT HANDLER ----------
+  // ---------- SUBMIT ----------
   async function submitHandler(e) {
     e.preventDefault();
     const form = e.currentTarget;
-
     if (!validateForm(form)) return;
 
-    // Require reCAPTCHA (v2 checkbox)
+    // Require reCAPTCHA
     let token = '';
     if (window.grecaptcha && typeof window.grecaptcha.getResponse === 'function') {
       if (typeof window._recaptchaWidgetId !== 'undefined') {
@@ -218,7 +200,6 @@
       alert("Thanks! Your request has been submitted.");
       form.reset();
 
-      // Reset reCAPTCHA
       if (window.grecaptcha && typeof window.grecaptcha.reset === "function" &&
           typeof window._recaptchaWidgetId !== "undefined") {
         window.grecaptcha.reset(window._recaptchaWidgetId);
@@ -236,32 +217,7 @@
     }
   }
 
-  // ---------- DESKTOP VIDEO: lazy-inject src only on ≥769px ----------
-  function initHeroVideo() {
-    const mq = window.matchMedia('(min-width: 769px)');
-    const video = document.querySelector('.zenith-background-video');
-    if (!video) return;
-
-    function load() {
-      if (!mq.matches) return;                 // phones: skip
-      if (video.dataset.loaded) return;        // already loaded
-      const src = video.getAttribute('data-src');
-      if (!src) return;
-      video.src = src;                         // single MP4 path
-      video.dataset.loaded = '1';
-      video.load();
-    }
-
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(load, { timeout: 2000 });
-    } else {
-      setTimeout(load, 600);
-    }
-
-    mq.addEventListener ? mq.addEventListener('change', load) : mq.addListener(load);
-  }
-
-  // ---------- PUBLIC INIT ----------
+  // ---------- INIT ----------
   window.initEstimateForm = function initEstimateForm() {
     const form = document.getElementById('estimate-form');
     if (!form || form._bound) return;
@@ -269,7 +225,7 @@
 
     bindPhoneMask();
     bindZipToCity();
-    initRecaptcha(); // ✅ render the widget
+    setupLazyRecaptcha(form);
 
     const photosNote = document.getElementById('photos-note');
     if (photosNote) photosNote.textContent = 'Photos are optional; all other fields are required.';
@@ -277,12 +233,7 @@
     form.addEventListener('submit', submitHandler);
   };
 
-  window.initHeroVideo = initHeroVideo;
-  window.initRecaptcha = initRecaptcha;
-
-  // Fallback init if hero is already on page
   document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('estimate-form')) window.initEstimateForm();
-    window.initHeroVideo();
   });
 })();
