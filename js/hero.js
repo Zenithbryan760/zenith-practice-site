@@ -1,5 +1,4 @@
-// File: js/hero.js
-// phone mask + ZIP → City + validation + reCAPTCHA guard + submit to Netlify
+// js/hero.js — phone mask + ZIP → City + validation + reCAPTCHA guard + submit to Netlify + lazy video
 (function () {
   // ---------- PHONE MASK (###) ###-#### ----------
   function bindPhoneMask() {
@@ -30,7 +29,7 @@
     if (!zipInput || !cityInput || zipInput._zipBound) return;
     zipInput._zipBound = true;
 
-    const cache = {};
+    const cache = {}; // { "92025": "Escondido" }
     cityInput.addEventListener('input', () => { cityInput.dataset.autofilled = ''; });
 
     async function lookup(zip5) {
@@ -107,12 +106,10 @@
     clearErrors(form);
     const required = Array.from(form.querySelectorAll('[required]'));
     const invalid = required.filter(el => !el.checkValidity());
-
     if (invalid.length) {
       const box = ensureErrorSummary(form);
       box.textContent = 'Please fix the highlighted fields. Photos are optional; all other fields are required.';
       box.classList.add('show');
-
       invalid.forEach(el => showFieldError(el, getMessageFor(el)));
       invalid[0].focus();
       return false;
@@ -145,6 +142,7 @@
       return;
     }
 
+    // Build payload
     const fd = new FormData(form);
     const data = {
       first_name: (fd.get("first_name") || "").trim(),
@@ -181,6 +179,7 @@
       alert("Thanks! Your request has been submitted.");
       form.reset();
 
+      // Reset reCAPTCHA
       if (window.grecaptcha && typeof window.grecaptcha.reset === "function" &&
           typeof window._recaptchaWidgetId !== "undefined") {
         window.grecaptcha.reset(window._recaptchaWidgetId);
@@ -198,43 +197,32 @@
     }
   }
 
-  // ---------- DESKTOP VIDEO: lazy set src only on desktop ----------
-  window.initHeroVideo = function initHeroVideo() {
-    const mqDesktop = window.matchMedia('(min-width: 769px)');
-    const mqReduce  = window.matchMedia('(prefers-reduced-motion: reduce)');
+  // ---------- DESKTOP VIDEO: lazy-inject src only on ≥769px ----------
+  function initHeroVideo() {
+    const mq = window.matchMedia('(min-width: 769px)');
+    const video = document.querySelector('.zenith-background-video');
+    if (!video) return;
 
-    function maybeLoad() {
-      const vid = document.querySelector('.zenith-background-video');
-      if (!vid) return;
-
-      if (!mqDesktop.matches || mqReduce.matches) {
-        // Do not load video bytes on mobile or when reduced motion is requested
-        if (vid.getAttribute('src')) {
-          vid.removeAttribute('src');
-          try { vid.load(); } catch(_) {}
-        }
-        return;
-      }
-
-      // Desktop: set src once from data-src
-      if (!vid._loaded && vid.dataset.src) {
-        vid.src = vid.dataset.src;
-        vid._loaded = true;
-        try { vid.load(); } catch(_) {}
-      }
+    function load() {
+      if (!mq.matches) return;                 // phones: skip
+      if (video.dataset.loaded) return;        // already loaded
+      const src = video.getAttribute('data-src');
+      if (!src) return;
+      video.src = src;                         // single MP4 path
+      video.dataset.loaded = '1';
+      video.load();
     }
 
-    if (mqDesktop.addEventListener) {
-      mqDesktop.addEventListener('change', maybeLoad);
-      mqReduce.addEventListener('change', maybeLoad);
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(load, { timeout: 2000 });
     } else {
-      mqDesktop.addListener(maybeLoad);
-      mqReduce.addListener(maybeLoad);
+      setTimeout(load, 600);
     }
-    maybeLoad();
-  };
 
-  // ---------- PUBLIC INIT (after hero HTML is injected) ----------
+    mq.addEventListener ? mq.addEventListener('change', load) : mq.addListener(load);
+  }
+
+  // ---------- PUBLIC INIT ----------
   window.initEstimateForm = function initEstimateForm() {
     const form = document.getElementById('estimate-form');
     if (!form || form._bound) return;
@@ -244,15 +232,16 @@
     bindZipToCity();
 
     const photosNote = document.getElementById('photos-note');
-    if (photosNote) {
-      photosNote.textContent = 'Photos are optional; all other fields are required.';
-    }
+    if (photosNote) photosNote.textContent = 'Photos are optional; all other fields are required.';
 
     form.addEventListener('submit', submitHandler);
   };
 
-  // Also try at DOM load in case hero is already present
+  window.initHeroVideo = initHeroVideo;
+
+  // Fallback init if hero is already on page
   document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('estimate-form')) window.initEstimateForm();
+    window.initHeroVideo();
   });
 })();
