@@ -251,21 +251,16 @@
     const saveData = (navigator.connection && navigator.connection.saveData) ? true : false;
     if (!isDesktop || saveData) return;
 
-    const webm = v.getAttribute('data-src-webm') || v.querySelector('source[type="video/webm"]')?.src;
-    const mp4  = v.getAttribute('data-src-mp4')  || v.querySelector('source[type="video/mp4"]')?.src;
-
-    // If using data- attributes, append sources; otherwise leave existing <source> tags
-    if (!v.querySelector('source') && (webm || mp4)) {
-      if (webm) {
-        const s = document.createElement('source');
-        s.src = webm; s.type = 'video/webm'; v.appendChild(s);
-      }
-      if (mp4) {
-        const s = document.createElement('source');
-        s.src = mp4; s.type = 'video/mp4'; v.appendChild(s);
-      }
+    const webm = v.getAttribute('data-src-webm');
+    const mp4  = v.getAttribute('data-src-mp4');
+    if (webm) {
+      const s = document.createElement('source');
+      s.src = webm; s.type = 'video/webm'; v.appendChild(s);
     }
-
+    if (mp4) {
+      const s = document.createElement('source');
+      s.src = mp4; s.type = 'video/mp4'; v.appendChild(s);
+    }
     v._loaded = true;
     try { v.load(); v.play().catch(()=>{}); } catch {}
   }
