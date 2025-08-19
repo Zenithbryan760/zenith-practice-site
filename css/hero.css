@@ -1,6 +1,6 @@
 /* =========================================================
    hero.css — Zenith Roofing — Hero / Free Estimate (PHOTO ONLY)
-   Single background photo + branded navy tint overlay
+   Single background photo + branded navy tint overlay (no ::after)
    ======================================================== */
 
 /* ---------- Brand tokens (single :root) ---------- */
@@ -33,7 +33,8 @@
   display:flex; align-items:center; justify-content:center;
   padding:0 clamp(1.25rem, 2vw, 2rem) clamp(1.25rem, 2vw, 2rem);
   color:#fff; /* readable on tinted photo */
-  font-family:'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  /* keep system fonts to avoid webfont swap in hero */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   overflow:hidden;
   z-index:0;
 }
@@ -52,21 +53,18 @@
   aspect-ratio:16/9;              /* reduces CLS */
 }
 
-/* 50% tint overlay (no extra HTML needed) */
-.zenith-hero::after{
-  content:"";
+/* Tint overlay as a real element (prevents CLS) */
+.zenith-image-overlay{
   position:absolute; inset:0; z-index:1;
-  background:var(--hero-tint);
+  background: var(--hero-tint);
   pointer-events:none;
+}
+@media (max-width:768px){
+  .zenith-image-overlay{ background: var(--hero-tint-strong); }
 }
 
 /* Content sits above media + tint */
 .zenith-hero > *:not(.zenith-hero-media){ position:relative; z-index:2; }
-
-/* Slightly stronger tint on small screens */
-@media (max-width:768px){
-  .zenith-hero::after{ background: var(--hero-tint-strong); }
-}
 
 /* ===== Card ===== */
 .zenith-card{
@@ -232,7 +230,6 @@ input[type="file"]:focus-within{
   .form-col-6, .form-col-4{ flex:0 0 100%; }
   .zenith-card{ padding:1.25rem; }
   .zenith-logo{ width:var(--logo-size-mobile) !important; height:auto !important; }
-  .zenith-hero::after{ background: var(--hero-tint-strong); }
 }
 
 /* Hide hero logo only when nav is collapsed (mobile) */
