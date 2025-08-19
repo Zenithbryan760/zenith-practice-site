@@ -1,31 +1,18 @@
-<!-- File: components/hero-section.html -->
 <!-- =========================================================
- [HERO SECTION] Zenith Roofing — Free Estimate Form
+ [HERO SECTION] Zenith Roofing — Free Estimate Form (PHOTO ONLY)
 ========================================================= -->
-<section class="zenith-hero" id="roofing-estimate">
+<section class="zenith-hero" id="roofing-estimate" aria-label="Free roofing estimate">
   <!-- Invisible anchor so menu links land below the sticky header -->
   <span id="home" class="sr-only" aria-hidden="true"></span>
 
-  <!-- ===== Background media (mobile image + desktop video) ===== -->
+  <!-- ===== Background media (photo only) ===== -->
   <div class="zenith-hero-media">
-    <!-- Mobile image (fast LCP, no video bytes on phones) -->
     <img
       class="zenith-hero-mobile-img"
       src="images/zenith-van-optimized.jpg"
       alt="Zenith Roofing work background"
       width="1600" height="900"
       fetchpriority="high" decoding="async">
-
-    <!-- Desktop video (source injected by script; see index.html) -->
-    <div class="zenith-video-container" aria-hidden="true">
-      <video
-        class="zenith-background-video"
-        autoplay muted loop playsinline
-        preload="none"
-        poster="images/zenith-van-optimized.jpg"
-        data-src="roofing-bg.mp4"><!-- source injected via JS on desktop --></video>
-      <div class="zenith-video-overlay"></div>
-    </div>
   </div>
 
   <!-- ===== Card ===== -->
@@ -33,11 +20,13 @@
     <!-- Header -->
     <div class="zenith-header">
       <div class="zenith-logo-container">
-        <img src="images/badges/logo-zenith-icon.png"
-             alt="Zenith Roofing"
-             class="zenith-logo"
-             width="86" height="48" decoding="async" />
-        <div class="logo-backdrop"></div>
+        <img
+          src="images/badges/logo-zenith-icon.png"
+          alt="Zenith Roofing"
+          class="zenith-logo"
+          width="86" height="48"
+          decoding="async" />
+        <div class="logo-backdrop" aria-hidden="true"></div>
       </div>
       <div class="zenith-header-text">
         <h1>FREE ESTIMATES</h1>
