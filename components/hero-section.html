@@ -5,37 +5,16 @@
   <!-- Invisible anchor so menu links land below the sticky header -->
   <span id="home" class="sr-only" aria-hidden="true"></span>
 
-  <!-- ===== Background media (responsive, no CLS) ===== -->
+  <!-- ===== Background media (PNG only for now) ===== -->
   <div class="zenith-hero-media" aria-hidden="true">
-    <picture>
-      <!-- Best: AVIF -->
-      <source type="image/avif"
-        srcset="
-          images/modern-tile-roof-640.avif   640w,
-          images/modern-tile-roof-960.avif   960w,
-          images/modern-tile-roof-1280.avif 1280w,
-          images/modern-tile-roof-1600.avif 1600w">
-
-      <!-- Fallback: WebP -->
-      <source type="image/webp"
-        srcset="
-          images/modern-tile-roof-640.webp   640w,
-          images/modern-tile-roof-960.webp   960w,
-          images/modern-tile-roof-1280.webp  1280w,
-          images/modern-tile-roof-1600.webp  1600w">
-
-      <!-- Final fallback (JPEG/PNG) -->
-      <img
-        class="zenith-hero-mobile-img"
-        src="images/modern-tile-roof.png"
-        alt="Zenith Roofing work background"
-        width="1600" height="900"
-        sizes="100vw"
-        decoding="async"
-        fetchpriority="high">
-    </picture>
-
-    <!-- Real overlay element (replaces ::after to avoid tiny CLS) -->
+    <img
+      class="zenith-hero-mobile-img"
+      src="images/modern-tile-roof.png"
+      alt="Zenith Roofing work background"
+      width="1600" height="900"
+      sizes="100vw"
+      decoding="async"
+      fetchpriority="high">
     <div class="zenith-image-overlay" aria-hidden="true"></div>
   </div>
 
@@ -76,15 +55,7 @@
       <div class="form-row">
         <div class="form-group form-col-6">
           <label for="phone" class="sr-only">Phone Number*</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            inputmode="tel"
-            placeholder="Phone Number*"
-            pattern="[\d\s\-\(\)\.]{10,}"
-            autocomplete="tel"
-            required />
+          <input type="tel" id="phone" name="phone" inputmode="tel" placeholder="Phone Number*" pattern="[\d\s\-\(\)\.]{10,}" autocomplete="tel" required />
         </div>
         <div class="form-group form-col-6">
           <label for="email" class="sr-only">Email Address*</label>
@@ -112,16 +83,7 @@
         </div>
         <div class="form-group form-col-4">
           <label for="zip" class="sr-only">ZIP Code*</label>
-          <input
-            type="text"
-            id="zip"
-            name="zip"
-            placeholder="ZIP Code*"
-            inputmode="numeric"
-            pattern="\d{5}(-\d{4})?"
-            maxlength="10"
-            autocomplete="postal-code"
-            required />
+          <input type="text" id="zip" name="zip" placeholder="ZIP Code*" inputmode="numeric" pattern="\d{5}(-\d{4})?" maxlength="10" autocomplete="postal-code" required />
         </div>
       </div>
 
