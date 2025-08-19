@@ -58,7 +58,7 @@
   inset:0;
   pointer-events:none;
   z-index:1;                   /* above image, below card */
-  background: rgba(7,46,89,.50);
+  background: rgba(7,46,89,.60);
 }
 
 
