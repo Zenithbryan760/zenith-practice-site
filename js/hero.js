@@ -1,6 +1,6 @@
-// js/hero.js — phone mask + ZIP → City + validation + LAZY reCAPTCHA + submit (no video)
+// js/hero.js — phone mask + ZIP → City + validation + reCAPTCHA guard + submit to Netlify + lazy video
 (function () {
-  /* ------------------- PHONE MASK (###) ###-#### ------------------- */
+  // ---------- PHONE MASK (###) ###-#### ----------
   function bindPhoneMask() {
     const el = document.getElementById('phone');
     if (!el || el._masked) return;
@@ -15,14 +15,14 @@
       return `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
     };
 
-    el.addEventListener('input', e => { e.target.value = fmt(e.target.value); }, { passive: true });
+    el.addEventListener('input', e => { e.target.value = fmt(e.target.value); });
     el.addEventListener('blur', e => {
       const len = e.target.value.replace(/\D/g, '').length;
       e.target.setCustomValidity(len === 0 || len === 10 ? '' : 'Enter a 10-digit phone number');
-    }, { passive: true });
+    });
   }
 
-  /* ------------------- ZIP → CITY AUTOFILL ------------------- */
+  // ---------- ZIP → CITY AUTOFILL ----------
   function bindZipToCity() {
     const zipInput  = document.getElementById('zip');
     const cityInput = document.getElementById('city');
@@ -30,7 +30,7 @@
     zipInput._zipBound = true;
 
     const cache = {}; // { "92025": "Escondido" }
-    cityInput.addEventListener('input', () => { cityInput.dataset.autofilled = ''; }, { passive: true });
+    cityInput.addEventListener('input', () => { cityInput.dataset.autofilled = ''; });
 
     async function lookup(zip5) {
       if (cache[zip5]) return cache[zip5];
@@ -56,12 +56,12 @@
       } catch {}
     }
 
-    zipInput.addEventListener('input',  maybeFill, { passive: true });
-    zipInput.addEventListener('change', maybeFill, { passive: true });
+    zipInput.addEventListener('input',  maybeFill);
+    zipInput.addEventListener('change', maybeFill);
     maybeFill();
   }
 
-  /* ------------------- LIGHTWEIGHT VALIDATION ------------------- */
+  // ---------- LIGHTWEIGHT VALIDATION ----------
   function ensureErrorSummary(form) {
     let box = form.querySelector('.error-summary');
     if (!box) {
@@ -117,61 +117,14 @@
     return true;
   }
 
-  /* ------------------- LAZY reCAPTCHA ------------------- */
-  const RECAPTCHA_SITEKEY = '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI';
-  let recaptchaBooted = false;
-
-  function loadRecaptchaScript() {
-    if (recaptchaBooted) return;
-    recaptchaBooted = true;
-
-    window.recaptchaOnload = function() {
-      const slot = document.getElementById('recaptcha-slot');
-      if (slot && window.grecaptcha && !slot.dataset.rendered) {
-        window._recaptchaWidgetId = grecaptcha.render(slot, {
-          sitekey: RECAPTCHA_SITEKEY, theme: 'light', size: 'normal'
-        });
-        slot.dataset.rendered = '1';
-      }
-    };
-
-    const s = document.createElement('script');
-    s.src = 'https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit';
-    s.async = true; s.defer = true; s.crossOrigin = 'anonymous';
-    document.head.appendChild(s);
-  }
-
-  function primeRecaptchaOnIntent(form) {
-    const slot = document.getElementById('recaptcha-slot');
-    const once = () => { loadRecaptchaScript(); cleanup(); };
-    function cleanup(){
-      form.removeEventListener('focusin', once);
-      form.removeEventListener('pointerdown', once);
-      form.removeEventListener('keydown', once);
-      if (io) io.disconnect();
-    }
-    form.addEventListener('focusin', once, { passive: true });
-    form.addEventListener('pointerdown', once, { passive: true });
-    form.addEventListener('keydown', once, { passive: true });
-
-    // Also load when the widget scrolls into view
-    let io = null;
-    if ('IntersectionObserver' in window && slot) {
-      io = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { loadRecaptchaScript(); cleanup(); } });
-      }, { rootMargin: '200px' });
-      io.observe(slot);
-    }
-  }
-
-  /* ------------------- SUBMIT HANDLER ------------------- */
+  // ---------- SUBMIT HANDLER ----------
   async function submitHandler(e) {
     e.preventDefault();
     const form = e.currentTarget;
 
     if (!validateForm(form)) return;
 
-    // Require reCAPTCHA
+    // Require reCAPTCHA (v2 checkbox)
     let token = '';
     if (window.grecaptcha && typeof window.grecaptcha.getResponse === 'function') {
       if (typeof window._recaptchaWidgetId !== 'undefined') {
@@ -189,6 +142,7 @@
       return;
     }
 
+    // Build payload
     const fd = new FormData(form);
     const data = {
       first_name: (fd.get("first_name") || "").trim(),
@@ -225,6 +179,7 @@
       alert("Thanks! Your request has been submitted.");
       form.reset();
 
+      // Reset reCAPTCHA
       if (window.grecaptcha && typeof window.grecaptcha.reset === "function" &&
           typeof window._recaptchaWidgetId !== "undefined") {
         window.grecaptcha.reset(window._recaptchaWidgetId);
@@ -242,7 +197,32 @@
     }
   }
 
-  /* ------------------- PUBLIC INIT ------------------- */
+  // ---------- DESKTOP VIDEO: lazy-inject src only on ≥769px ----------
+  function initHeroVideo() {
+    const mq = window.matchMedia('(min-width: 769px)');
+    const video = document.querySelector('.zenith-background-video');
+    if (!video) return;
+
+    function load() {
+      if (!mq.matches) return;                 // phones: skip
+      if (video.dataset.loaded) return;        // already loaded
+      const src = video.getAttribute('data-src');
+      if (!src) return;
+      video.src = src;                         // single MP4 path
+      video.dataset.loaded = '1';
+      video.load();
+    }
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(load, { timeout: 2000 });
+    } else {
+      setTimeout(load, 600);
+    }
+
+    mq.addEventListener ? mq.addEventListener('change', load) : mq.addListener(load);
+  }
+
+  // ---------- PUBLIC INIT ----------
   window.initEstimateForm = function initEstimateForm() {
     const form = document.getElementById('estimate-form');
     if (!form || form._bound) return;
@@ -250,12 +230,18 @@
 
     bindPhoneMask();
     bindZipToCity();
-    primeRecaptchaOnIntent(form);
+
+    const photosNote = document.getElementById('photos-note');
+    if (photosNote) photosNote.textContent = 'Photos are optional; all other fields are required.';
+
     form.addEventListener('submit', submitHandler);
   };
 
-  // Run automatically if the hero is already present
+  window.initHeroVideo = initHeroVideo;
+
+  // Fallback init if hero is already on page
   document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('estimate-form')) window.initEstimateForm();
+    window.initHeroVideo();
   });
 })();
