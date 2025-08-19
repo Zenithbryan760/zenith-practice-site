@@ -1,6 +1,47 @@
-// js/hero.js — phone mask + ZIP → City + validation + reCAPTCHA guard + submit to Netlify + lazy video
+// js/hero.js — phone mask + ZIP → City + validation + reCAPTCHA guard + submit + lazy desktop video
 (function () {
-  // ---------- PHONE MASK (###) ###-#### ----------
+  /* ---------- DESKTOP VIDEO: inject source only on desktop & near viewport ---------- */
+  function initHeroVideo() {
+    var mq = window.matchMedia('(min-width: 769px)');
+    var hero = document.querySelector('.zenith-hero');
+    var video = document.querySelector('.zenith-background-video');
+    if (!hero || !video) return;
+
+    function attach() {
+      if (video._attached || !mq.matches) return;
+      var src = video.dataset.src || '';
+      if (!src) return;
+      var source = document.createElement('source');
+      source.src = src;
+      source.type = 'video/mp4';
+      video.appendChild(source);
+      video.load();
+      video._attached = true;
+    }
+
+    // attach immediately on desktop if hero already visible
+    if (mq.matches) {
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { attach(); io.disconnect(); }
+          });
+        }, { rootMargin: '800px 0px' });
+        io.observe(hero);
+      } else {
+        attach(); // fallback
+      }
+    }
+
+    // react to viewport width changes
+    mq.addEventListener ? mq.addEventListener('change', function(e){ if (e.matches) attach(); })
+                        : mq.addListener(function(e){ if (e.matches) attach(); });
+  }
+
+  // Expose for index.js init
+  window.initHeroVideo = initHeroVideo;
+
+  /* ---------- PHONE MASK (###) ###-#### ---------- */
   function bindPhoneMask() {
     const el = document.getElementById('phone');
     if (!el || el._masked) return;
@@ -22,7 +63,7 @@
     });
   }
 
-  // ---------- ZIP → CITY AUTOFILL ----------
+  /* ---------- ZIP → CITY AUTOFILL ---------- */
   function bindZipToCity() {
     const zipInput  = document.getElementById('zip');
     const cityInput = document.getElementById('city');
@@ -61,7 +102,7 @@
     maybeFill();
   }
 
-  // ---------- LIGHTWEIGHT VALIDATION ----------
+  /* ---------- VALIDATION (photos optional) ---------- */
   function ensureErrorSummary(form) {
     let box = form.querySelector('.error-summary');
     if (!box) {
@@ -106,6 +147,7 @@
     clearErrors(form);
     const required = Array.from(form.querySelectorAll('[required]'));
     const invalid = required.filter(el => !el.checkValidity());
+
     if (invalid.length) {
       const box = ensureErrorSummary(form);
       box.textContent = 'Please fix the highlighted fields. Photos are optional; all other fields are required.';
@@ -117,14 +159,14 @@
     return true;
   }
 
-  // ---------- SUBMIT HANDLER ----------
+  /* ---------- SUBMIT ---------- */
   async function submitHandler(e) {
     e.preventDefault();
     const form = e.currentTarget;
 
     if (!validateForm(form)) return;
 
-    // Require reCAPTCHA (v2 checkbox)
+    // reCAPTCHA required
     let token = '';
     if (window.grecaptcha && typeof window.grecaptcha.getResponse === 'function') {
       if (typeof window._recaptchaWidgetId !== 'undefined') {
@@ -142,7 +184,7 @@
       return;
     }
 
-    // Build payload
+    // payload
     const fd = new FormData(form);
     const data = {
       first_name: (fd.get("first_name") || "").trim(),
@@ -197,51 +239,19 @@
     }
   }
 
-  // ---------- DESKTOP VIDEO: lazy-inject src only on ≥769px ----------
-  function initHeroVideo() {
-    const mq = window.matchMedia('(min-width: 769px)');
-    const video = document.querySelector('.zenith-background-video');
-    if (!video) return;
-
-    function load() {
-      if (!mq.matches) return;                 // phones: skip
-      if (video.dataset.loaded) return;        // already loaded
-      const src = video.getAttribute('data-src');
-      if (!src) return;
-      video.src = src;                         // single MP4 path
-      video.dataset.loaded = '1';
-      video.load();
-    }
-
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(load, { timeout: 2000 });
-    } else {
-      setTimeout(load, 600);
-    }
-
-    mq.addEventListener ? mq.addEventListener('change', load) : mq.addListener(load);
-  }
-
-  // ---------- PUBLIC INIT ----------
+  /* ---------- PUBLIC INIT ---------- */
   window.initEstimateForm = function initEstimateForm() {
     const form = document.getElementById('estimate-form');
     if (!form || form._bound) return;
     form._bound = true;
-
     bindPhoneMask();
     bindZipToCity();
-
-    const photosNote = document.getElementById('photos-note');
-    if (photosNote) photosNote.textContent = 'Photos are optional; all other fields are required.';
-
     form.addEventListener('submit', submitHandler);
   };
 
-  window.initHeroVideo = initHeroVideo;
-
-  // Fallback init if hero is already on page
-  document.addEventListener('DOMContentLoaded', () => {
+  // in case hero exists pre-includes
+  document.addEventListener('DOMContentLoaded', function () {
     if (document.getElementById('estimate-form')) window.initEstimateForm();
-    window.initHeroVideo();
+    if (document.querySelector('.zenith-background-video')) initHeroVideo();
   });
 })();
