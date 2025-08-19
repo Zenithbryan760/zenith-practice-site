@@ -207,19 +207,32 @@ input[type="file"]:focus-within{
   outline-offset: 2px;
 }
 
-/* Responsive */
-@media (max-width:900px){ .zenith-card{ padding:1.75rem; } }
-@media (max-width:768px){
-  .form-col-6, .form-col-4{ flex:0 0 100%; }
-  .zenith-card{ padding:1.25rem; }
-  .zenith-logo{ width:78px; height:44px; }
+/* Responsive (REPLACE THIS WHOLE BLOCK) */
+@media (max-width: 900px){
+  .zenith-card{ padding: 1.75rem; }
+}
+
+@media (max-width: 768px){
+  .form-col-6, .form-col-4{ flex: 0 0 100%; }
+  .zenith-card{ padding: 1.25rem; }
+
+  /* ✅ Don't force a fixed height — preserves aspect ratio */
+  .zenith-logo{
+    display: block;
+    width: 74px;        /* adjust to taste */
+    height: auto;       /* key fix: no smashing */
+    max-height: 48px;   /* optional cap */
+    aspect-ratio: 210/70; /* set to your logo’s real ratio if known */
+  }
 }
 
 /* Hide the HERO card logo only when the nav is actually collapsed (mobile) */
 @media (max-width: 1024px){
-  html.nav-collapsed .zenith-hero .zenith-header .zenith-logo-container,
-  html.nav-collapsed .zenith-hero .zenith-header .zenith-logo,
-  html.nav-collapsed .zenith-hero .zenith-header .logo-backdrop { display: none !important; }
+  html.nav-collapsed .zenith-hero .zenith-header .zenith-logo-container{ 
+    display: none; 
+  }
+}
+
 }
 .nav-collapsed .zenith-hero{
   padding-top: var(--header-h, 80px);
