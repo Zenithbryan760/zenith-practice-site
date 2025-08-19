@@ -8,16 +8,16 @@
   <!-- ===== Background media (single image on all devices) ===== -->
   <div class="zenith-hero-media">
     <picture>
-      <!-- Optional WebP if you have it -->
-      <source srcset="/images/modern-tile-roof.webp" type="image/webp">
+      <!-- Use RELATIVE paths so it works on subpaths, too -->
+      <source srcset="images/modern-tile-roof.webp" type="image/webp">
       <img
         class="zenith-hero-mobile-img"
-        src="/images/modern-tile-roof.png"
+        src="images/modern-tile-roof.png"
         alt="Modern tile roof"
         width="1600" height="900"
         fetchpriority="high" decoding="async">
     </picture>
-    <!-- softer tint so text stays readable without feeling heavy -->
+    <!-- soft tint for readability -->
     <div class="zenith-image-overlay" aria-hidden="true"></div>
   </div>
 
@@ -27,8 +27,8 @@
     <div class="zenith-header">
       <div class="zenith-logo-container">
         <img
-          src="/images/badges/logo-zenith-icon.png"
-          srcset="/images/badges/logo-zenith-icon.png 1x, /images/badges/logo-zenith-icon@2x.png 2x"
+          src="images/badges/logo-zenith-icon.png"
+          srcset="images/badges/logo-zenith-icon.png 1x, images/badges/logo-zenith-icon@2x.png 2x"
           alt="Zenith Roofing"
           class="zenith-logo"
           width="86" height="48"
