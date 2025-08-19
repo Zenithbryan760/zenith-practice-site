@@ -82,15 +82,16 @@
 /* Fixed dimensions stop logo-related CLS */
 .zenith-logo{ width:86px; height:48px; object-fit:contain; position:relative; z-index:1; }
 
-/* Logo backdrop */
+/* ✅ Brand-correct navy logo backdrop (no black) */
 .logo-backdrop{
   position:absolute; inset:-18px; z-index:0; border-radius:50%;
-  background: radial-gradient(circle at 50% 50%,
-              rgba(0,0,0,.96) 0%,
-              rgba(7,46,89,.95) 58%,
-              rgba(7,46,89,0) 100%);
+  background:
+    radial-gradient(circle at 50% 50%,
+      rgba(11,58,111,.98) 0%,
+      rgba(11,58,111,.96) 55%,
+      rgba(11,58,111,0) 100%);
   border:3px solid var(--zenith-orange);
-  box-shadow:0 6px 18px rgba(0,0,0,.28);
+  box-shadow:0 8px 24px rgba(7,46,89,.35);
   backdrop-filter: blur(2px);
 }
 
