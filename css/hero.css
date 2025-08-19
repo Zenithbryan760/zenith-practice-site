@@ -1,6 +1,6 @@
 /* =========================================================
-   Zenith Roofing — Hero / Free Estimate (PHOTO ONLY)
-   LCP + CLS improvements
+   Zenith Roofing — Hero / Free Estimate (Polished + Brand)
+   Single source of truth (no duplicates)
    ======================================================== */
 
 /* Brand tokens */
@@ -18,9 +18,9 @@
 
 /* ===== Base & Layout ===== */
 .zenith-hero{
-  position: relative;
-  min-height: 100svh;
-  min-height: 100dvh;
+  position: relative;                /* contains media */
+  min-height: 100svh;                /* stable mobile viewport */
+  min-height: 100dvh;                /* dynamic viewport units */
   display: flex; align-items: center; justify-content: center;
   padding: 0 clamp(1.25rem, 2vw, 2rem) clamp(1.25rem, 2vw, 2rem);
   color: var(--zenith-text);
@@ -32,18 +32,11 @@
 /* Background media wrapper */
 .zenith-hero-media{ position:absolute; inset:0; z-index:0; }
 
-/* ✅ Photo fills hero on ALL sizes (LCP element) */
+/* Single LCP photo (actual <img>) */
 .zenith-hero-mobile-img{
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:cover; object-position:center;
-  display:block;
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; display:block;
 }
-
-/* ⛔ Kill any leftover video styles/DOM if present */
-.zenith-video-container,
-.zenith-background-video,
-.zenith-video-overlay{ display:none !important; }
 
 /* ===== Card ===== */
 .zenith-card{
@@ -57,8 +50,6 @@
 /* ===== Header ===== */
 .zenith-header{ text-align:center; margin-bottom:1.75rem; }
 .zenith-logo-container{ position:relative; display:inline-block; margin-bottom:.75rem; }
-
-/* ✅ Fixed dimensions prevent logo-related CLS */
 .zenith-logo{ width:86px; height:48px; object-fit:contain; position:relative; z-index:1; }
 
 /* Logo backdrop */
@@ -73,6 +64,7 @@
   backdrop-filter: blur(2px);
 }
 
+/* Titles */
 .zenith-header-text h1{
   margin:.25rem 0 0; font-weight:800; letter-spacing:.3px;
   color:var(--zenith-navy);
@@ -91,7 +83,7 @@
 .form-col-6{ flex:0 0 calc(50% - .625rem); }
 .form-col-4{ flex:0 0 calc(33.333% - .84rem); }
 
-/* Visually hidden helper */
+/* Visually hidden (keep labels for a11y while using placeholders) */
 .sr-only{
   position:absolute !important;
   width:1px; height:1px; padding:0; margin:-1px;
@@ -116,7 +108,7 @@ input:focus, select:focus, textarea:focus{
   box-shadow:0 0 0 3px rgba(7,46,89,.15), var(--shadow-sm);
 }
 
-/* Invalid state -> ORANGE */
+/* Invalid state -> ORANGE (brand) */
 input:invalid, select:invalid, textarea:invalid{ border-color:var(--zenith-orange); }
 input:invalid:focus, select:invalid:focus, textarea:invalid:focus{
   box-shadow:0 0 0 3px rgba(247,148,29,.18);
@@ -172,7 +164,6 @@ input[type="file"]:focus-within{
 .zenith-btn:active{ transform:translateY(0); }
 .zenith-btn:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:2px; }
 
-/* Utility */
 .btn-orange{
   display:inline-flex; align-items:center; justify-content:center;
   padding:.7rem 1rem; border-radius:12px;
@@ -219,7 +210,9 @@ input[type="file"]:focus-within{
 @media (max-width: 1024px){
   html.nav-collapsed .zenith-hero .zenith-header .zenith-logo-container,
   html.nav-collapsed .zenith-hero .zenith-header .zenith-logo,
-  html.nav-collapsed .zenith-hero .zenith-header .logo-backdrop { display: none !important; }
+  html.nav-collapsed .zenith-hero .zenith-header .logo-backdrop {
+    display: none !important;
+  }
 }
 .nav-collapsed .zenith-hero{
   padding-top: var(--header-h, 80px);
@@ -246,8 +239,6 @@ input[type="file"]:focus-within{
 }
 .error-summary.show{ display:block; }
 
-/* ⚠️ Remove this OLD rule anywhere it appears to avoid double media:
-   .zenith-hero-mobile{
-     background: url("images/zenith-van-optimized.jpg") center / cover no-repeat;
-   }
+/* ⚠️ Ensure no leftover old rule exists anywhere:
+   .zenith-hero-mobile{ background:url("images/zenith-van-optimized.jpg") center/cover no-repeat; }
 */
