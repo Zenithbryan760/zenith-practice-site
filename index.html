@@ -20,20 +20,21 @@
       imagesizes="100vw">
 
 
-  <!-- (Optional) Preload the hero partial you inject -->
-  <link rel="preload" as="fetch" href="components/hero-section.html" crossorigin="anonymous">
+<!-- (Optional) Preload the hero partial you inject -->
+<link rel="preload" as="fetch" href="components/hero-section.html" crossorigin="anonymous">
 
-  <!-- ===== Google Fonts (non-blocking) ===== -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Load the stylesheet without blocking render -->
-  <link rel="preload"
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-        as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
-  </noscript>
+<!-- Google Fonts (non-blocking) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      media="print"
+      onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+</noscript>
 
   <!-- ===== Structured data ===== -->
   <script type="application/ld+json">
