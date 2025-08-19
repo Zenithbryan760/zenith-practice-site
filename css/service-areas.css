@@ -8,15 +8,6 @@
     --text-gray:      #333333;
 }
 
-/* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--off-white);
-    color: var(--text-gray);
-}
-
 /* Service Areas Section */
 .service-areas {
     padding: 2rem 1rem;
