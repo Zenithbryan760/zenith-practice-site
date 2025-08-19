@@ -1,3 +1,4 @@
+/* File: css/hero.css */
 /* =========================================================
    Zenith Roofing — Hero / Free Estimate (Polished + Brand)
    Single source of truth (no duplicates)
@@ -32,10 +33,12 @@
 /* ===== Background media wrapper ===== */
 .zenith-hero-media{ position:absolute; inset:0; z-index:0; }
 
-/* Mobile image (default) */
-.zenith-hero-mobile{
+/* ✅ Mobile LCP as a real <img> (replaces old background-image) */
+.zenith-hero-mobile-img{
   position:absolute; inset:0;
-  background: url("images/zenith-van-optimized.jpg") center / cover no-repeat;
+  width:100%; height:100%;
+  object-fit:cover; object-position:center;
+  display:block;
 }
 
 /* Desktop video container */
@@ -60,7 +63,7 @@
   .zenith-video-container{ display:none; }
 }
 @media (min-width: 769px){
-  .zenith-hero-mobile{ display:none; }
+  .zenith-hero-mobile-img{ display:none; }
 }
 
 /* ===== Card ===== */
@@ -76,7 +79,9 @@
 /* ===== Header ===== */
 .zenith-header{ text-align:center; margin-bottom:1.75rem; }
 .zenith-logo-container{ position:relative; display:inline-block; margin-bottom:.75rem; }
-.zenith-logo{ position:relative; width:86px; height:auto; z-index:1; }
+
+/* ✅ Fixed dimensions stop logo-related CLS */
+.zenith-logo{ width:86px; height:48px; object-fit:contain; position:relative; z-index:1; }
 
 /* Logo backdrop: navy→transparent fade with orange ring for contrast */
 .logo-backdrop{
@@ -232,7 +237,7 @@ input[type="file"]:focus-within{
 @media (max-width:768px){
   .form-col-6, .form-col-4{ flex:0 0 100%; }
   .zenith-card{ padding:1.25rem; }
-  .zenith-logo{ width:78px; }
+  .zenith-logo{ width:78px; height:44px; } /* keep fixed size at small screens too */
 }
 
 /* Hide the HERO card logo only when the nav is actually collapsed (mobile) */
@@ -267,3 +272,9 @@ input[type="file"]:focus-within{
   margin:0 0 1rem 0;
 }
 .error-summary.show{ display:block; }
+
+/* ⚠️ Remove this OLD rule if it exists anywhere to avoid double media:
+   .zenith-hero-mobile{
+     background: url("images/zenith-van-optimized.jpg") center / cover no-repeat;
+   }
+*/
