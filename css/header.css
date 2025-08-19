@@ -3,9 +3,6 @@
    Evenly spaced tabs + consistent Services dropdown spacing
    ========================================================= */
 
-/* 0) Font (keeps your brand vibe) */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
 /* 1) Design tokens */
 :root{
   --zenith-navy:#072e59;
