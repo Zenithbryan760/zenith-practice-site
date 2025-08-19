@@ -12,12 +12,15 @@
   <link rel="preload" href="css/header.css" as="style">
   <link rel="preload" href="css/hero.css" as="style">
 
-  <!-- ===== LCP image preload ===== -->
-<!-- With this (after you export the smaller WebP files) -->
-<!-- Preload matches the actual hero PNG -->
-<link rel="preload" as="image"
-      href="/images/modern-tile-roof.png"
+<!-- LCP image preload (WebP, responsive) -->
+<link rel="preload" as="image" type="image/webp"
+      href="/images/modern-tile-roof-1280.webp"
+      imagesrcset="/images/modern-tile-roof-640.webp 640w,
+                   /images/modern-tile-roof-960.webp 960w,
+                   /images/modern-tile-roof-1280.webp 1280w,
+                   /images/modern-tile-roof-1600.webp 1600w"
       imagesizes="100vw">
+
 
 
 <!-- (Optional) Preload the hero partial you inject -->
