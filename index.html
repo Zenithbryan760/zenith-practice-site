@@ -7,10 +7,13 @@
   <title>Zenith Roofing Services – San Diego & Temecula Roof Experts</title>
   <meta name="description" content="Licensed roofing contractor serving Escondido, San Diego & Temecula. Roof repair, replacement, tile, shingles, TPO, torch down, silicone coatings & gutters.">
 
-  <!-- Preload critical resources -->
+  <!-- Preload critical CSS -->
   <link rel="preload" href="css/base.css" as="style">
   <link rel="preload" href="css/header.css" as="style">
   <link rel="preload" href="css/hero.css" as="style">
+
+  <!-- ✅ NEW: Preload the mobile LCP hero image -->
+  <link rel="preload" as="image" href="images/zenith-van-optimized.jpg" imagesizes="100vw">
 
   <!-- Fonts: preconnect (deduped) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,18 +63,11 @@
     /* Layout flags placeholder */
     :root { --header-h: 80px; }
 
-    /* =========================
-       STEP 3 — HERO HEIGHT FIX
-       ========================= */
-    /* Use stable viewport units so the hero fills the screen on iOS/Android */
+    /* === HERO HEIGHT (stable mobile viewport) === */
     .zenith-hero { min-height: 100svh; min-height: 100dvh; }
 
-    /* ==============================
-       STEP 5 — ANCHOR OFFSET + SMOOTH
-       ============================== */
-    /* Make in-page links scroll smoothly and stop below the sticky header */
+    /* === ANCHOR OFFSET + SMOOTH SCROLL === */
     html { scroll-behavior: smooth; scroll-padding-top: var(--header-h, 80px); }
-    /* Extra safety for any element with an id used as an anchor */
     [id] { scroll-margin-top: calc(var(--header-h, 80px) + 12px); }
   </style>
 
@@ -117,6 +113,7 @@
     })();
   </script>
 </head>
+
 <body>
 
   <!-- Header include FIRST so it's present for measurements -->
