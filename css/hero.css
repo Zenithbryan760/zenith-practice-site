@@ -1,3 +1,4 @@
+/* File: css/hero.css */
 /* =========================================================
    Zenith Roofing — Hero / Free Estimate (Polished + Brand)
    Single source of truth (no duplicates)
@@ -29,18 +30,46 @@
   z-index: 0;
 }
 
-/* Background media wrapper */
+/* ===== Background media wrapper ===== */
 .zenith-hero-media{ position:absolute; inset:0; z-index:0; }
 
-/* Single LCP photo (actual <img>) */
+/* ✅ Mobile LCP as a real <img> (replaces old background-image) */
 .zenith-hero-mobile-img{
-  position:absolute; inset:0; width:100%; height:100%;
-  object-fit:cover; object-position:center; display:block;
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; object-position:center;
+  display:block;
+}
+
+/* Desktop video container */
+.zenith-video-container{
+  position:absolute; inset:0;
+  overflow:hidden;
+  z-index:0;
+}
+.zenith-background-video{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; object-position:center;
+}
+.zenith-video-overlay{
+  position:absolute; inset:0;
+  background-color:rgba(7,46,89,0.78); /* Zenith navy tint */
+  pointer-events:none;
+}
+
+/* Show image on phones; show video on desktops */
+@media (max-width: 768px){
+  .zenith-video-container{ display:none; }
+}
+@media (min-width: 769px){
+  .zenith-hero-mobile-img{ display:none; }
 }
 
 /* ===== Card ===== */
 .zenith-card{
-  position:relative; z-index:1;
+  position:relative;                 /* above media */
+  z-index:1;
   background:#fff; border-radius:var(--radius);
   box-shadow:var(--shadow-lg);
   width:100%; max-width:920px;
@@ -50,6 +79,8 @@
 /* ===== Header ===== */
 .zenith-header{ text-align:center; margin-bottom:1.75rem; }
 .zenith-logo-container{ position:relative; display:inline-block; margin-bottom:.75rem; }
+
+/* ✅ Fixed dimensions stop logo-related CLS */
 .zenith-logo{ width:86px; height:48px; object-fit:contain; position:relative; z-index:1; }
 
 /* Logo backdrop */
@@ -114,7 +145,7 @@ input:invalid:focus, select:invalid:focus, textarea:invalid:focus{
   box-shadow:0 0 0 3px rgba(247,148,29,.18);
 }
 
-/* File input */
+/* ===== File input (branded button) ===== */
 input[type="file"]{
   width:100%;
   padding:.55rem .75rem;
@@ -134,6 +165,7 @@ input[type="file"]::file-selector-button:hover{
   background:#e9830b; box-shadow:0 10px 24px rgba(247,148,29,.35);
   transform:translateY(-1px);
 }
+/* Safari/WebKit fallback */
 input[type="file"]::-webkit-file-upload-button{
   background:var(--zenith-orange); color:#fff; border:none;
   padding:.6rem .9rem; margin-right:.75rem; border-radius:10px; font-weight:700;
@@ -149,7 +181,7 @@ input[type="file"]:focus-within{
   outline-offset:2px;
 }
 
-/* Buttons */
+/* ===== Buttons ===== */
 .zenith-btn{
   background:var(--zenith-orange); color:#fff; border:none;
   padding:1rem 1.25rem; font-size:1rem; font-weight:700; width:100%;
@@ -175,14 +207,14 @@ input[type="file"]:focus-within{
 .btn-orange:hover{ background:#e9830b; transform:translateY(-1px); box-shadow:0 12px 26px rgba(247,148,29,.36); }
 .btn-orange:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:3px; }
 
-/* reCAPTCHA */
+/* ===== reCAPTCHA ===== */
 .recaptcha-container{
   display:flex; justify-content:center; align-items:center; width:100%;
   margin:.35rem 0 .35rem;
 }
 #recaptcha-slot{ display:block; min-width:304px; min-height:78px; }
 
-/* Disclaimer */
+/* ===== Disclaimer ===== */
 .form-disclaimer{
   font-size:.85rem; color:#6b7280;
   margin-top:1rem; text-align:center; line-height:1.5;
@@ -198,12 +230,12 @@ input[type="file"]:focus-within{
   outline-offset: 2px;
 }
 
-/* Responsive */
+/* ===== Responsive ===== */
 @media (max-width:900px){ .zenith-card{ padding:1.75rem; } }
 @media (max-width:768px){
   .form-col-6, .form-col-4{ flex:0 0 100%; }
   .zenith-card{ padding:1.25rem; }
-  .zenith-logo{ width:78px; height:44px; }
+  .zenith-logo{ width:78px; height:44px; } /* keep fixed size at small screens too */
 }
 
 /* Hide the HERO card logo only when the nav is actually collapsed (mobile) */
@@ -219,7 +251,7 @@ input[type="file"]:focus-within{
   min-height: calc(100svh - var(--header-h, 80px));
 }
 
-/* Minimal validation helpers */
+/* === Minimal validation helpers === */
 .field-note{ margin-top:.35rem; font-size:.85rem; color:var(--zenith-muted); }
 .form-group.has-error input,
 .form-group.has-error select,
@@ -239,6 +271,8 @@ input[type="file"]:focus-within{
 }
 .error-summary.show{ display:block; }
 
-/* ⚠️ Ensure no leftover old rule exists anywhere:
-   .zenith-hero-mobile{ background:url("images/zenith-van-optimized.jpg") center/cover no-repeat; }
+/* ⚠️ Remove this OLD rule if it exists anywhere to avoid double media:
+   .zenith-hero-mobile{
+     background: url("images/zenith-van-optimized.jpg") center / cover no-repeat;
+   }
 */
