@@ -88,28 +88,10 @@
   display:flex; align-items:center;
 }
 
-/* CTA row (nav container only) */
+/* CTA row */
 .photo-cta{
   margin-top: clamp(1rem, 2.2vw, 1.4rem);
-}
-
-/* New: make the UL act like the row of buttons */
-.photo-cta .cta-list{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: .6rem .7rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.photo-cta .cta-list li{ display:flex; }
-
-/* Also: the gallery list should not show bullets */
-.photo-grid{
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  display:flex; gap:.6rem .7rem; flex-wrap:wrap; justify-content:center;
 }
 
 /* Buttons (matches your site buttons) */
