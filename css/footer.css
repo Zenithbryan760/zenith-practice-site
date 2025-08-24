@@ -54,6 +54,7 @@
 #site-footer.ftr .ftr-grid{
   display:grid; gap:2rem;
   grid-template-columns:1.4fr 1fr 1fr 1.2fr;   /* default */
+  align-items:start; /* NEW: keeps all columns aligned from the top */
 }
 @media (min-width:1025px){
   #site-footer.ftr .ftr-grid{ grid-template-columns:repeat(4, minmax(0,1fr)); column-gap:2.5rem; }
@@ -67,7 +68,12 @@
 
 /* Brand block */
 #site-footer.ftr .ftr-logo img{ height:44px; width:auto; display:block; margin-bottom:.6rem; }
-#site-footer.ftr .ftr-brand .ftr-wordmark{ display:flex; flex-direction:column; gap:.25rem; margin-bottom:.5rem; }
+#site-footer.ftr .ftr-brand .ftr-wordmark{
+  display:flex; flex-direction:column; gap:.25rem; margin-bottom:.65rem;
+  /* NEW: match the look of .ftr-title */
+  padding-bottom:.35rem;
+  border-bottom:2px solid rgba(255,255,255,.12);
+}
 #site-footer.ftr .ftr-name{ font-size:1.15rem; font-weight:800; letter-spacing:.2px; }
 #site-footer.ftr .ftr-lic{ font-size:.95rem; color:rgba(255,255,255,.85); }
 #site-footer.ftr .ftr-blurb{ color:rgba(255,255,255,.85); margin:.6rem 0 1rem; line-height:1.6; }
