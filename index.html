@@ -12,32 +12,30 @@
   <link rel="preload" href="css/header.css" as="style">
   <link rel="preload" href="css/hero.css" as="style">
 
-<!-- LCP image preload (WebP, responsive) -->
-<link rel="preload" as="image" type="image/webp"
-      href="/images/modern-tile-roof-1280.webp"
-      imagesrcset="/images/modern-tile-roof-640.webp 640w,
-                   /images/modern-tile-roof-960.webp 960w,
-                   /images/modern-tile-roof-1280.webp 1280w,
-                   /images/modern-tile-roof-1600.webp 1600w"
-      imagesizes="100vw">
+  <!-- LCP image preload (WebP, responsive) -->
+  <link rel="preload" as="image" type="image/webp"
+        href="/images/modern-tile-roof-1280.webp"
+        imagesrcset="/images/modern-tile-roof-640.webp 640w,
+                     /images/modern-tile-roof-960.webp 960w,
+                     /images/modern-tile-roof-1280.webp 1280w,
+                     /images/modern-tile-roof-1600.webp 1600w"
+        imagesizes="100vw">
 
+  <!-- (Optional) Preload the hero partial you inject -->
+  <link rel="preload" as="fetch" href="components/hero-section.html" crossorigin="anonymous">
 
+  <!-- Google Fonts (non-blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<!-- (Optional) Preload the hero partial you inject -->
-<link rel="preload" as="fetch" href="components/hero-section.html" crossorigin="anonymous">
-
-<!-- Google Fonts (non-blocking) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-      media="print"
-      onload="this.media='all'">
-<noscript>
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
-</noscript>
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+        media="print"
+        onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+  </noscript>
 
   <!-- ===== Structured data ===== -->
   <script type="application/ld+json">
@@ -68,14 +66,12 @@
     :root{ --header-h:80px; }
     .zenith-hero{ min-height:100svh; min-height:100dvh; }
 
-    /* Reserve hero space while the partial loads */
-    [data-include="components/hero-section.html"]{
-      display:block; min-height:100svh; min-height:100dvh;
-    }
+    /* LCP stub space (replaces the old [data-include="components/hero-section.html"] rule) */
+    #hero-stub{ display:block; min-height:100svh; min-height:100dvh; }
 
     /* Zero font-swap shift above the fold */
     .zenith-hero, .zenith-card, .zenith-header-text, #estimate-form{
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: systemui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
     }
 
     html{ scroll-behavior:smooth; scroll-padding-top:var(--header-h,80px); }
@@ -99,13 +95,13 @@
   <link rel="stylesheet" href="css/footer.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="css/responsive.css" media="print" onload="this.media='all'">
 
-<!-- Swiper CSS (self-hosted) -->
-<link rel="stylesheet"
-      href="/assets/lib/swiper/10.3.1/swiper-bundle.min.css"
-      media="print" onload="this.media='all'">
-<noscript>
-  <link rel="stylesheet" href="/assets/lib/swiper/10.3.1/swiper-bundle.min.css">
-</noscript>
+  <!-- Swiper CSS (self-hosted) -->
+  <link rel="stylesheet"
+        href="/assets/lib/swiper/10.3.1/swiper-bundle.min.css"
+        media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/assets/lib/swiper/10.3.1/swiper-bundle.min.css">
+  </noscript>
 </head>
 
 <body>
@@ -114,7 +110,32 @@
 
   <!-- ===== MAIN (partials auto-injected below) ===== -->
   <main>
-    <section data-include="components/hero-section.html"></section>
+    <!-- ✅ LCP STUB replaces the hero include -->
+    <section id="hero-stub" class="zenith-hero" aria-label="Free roofing estimate">
+      <div class="zenith-hero-media">
+        <picture>
+          <!-- WebP sources (match the <head> preload) -->
+          <source type="image/webp"
+                  srcset="/images/modern-tile-roof-640.webp 640w,
+                          /images/modern-tile-roof-960.webp 960w,
+                          /images/modern-tile-roof-1280.webp 1280w,
+                          /images/modern-tile-roof-1600.webp 1600w"
+                  sizes="100vw">
+          <!-- Fallback that exists in /images/ -->
+          <img id="lcp-img"
+               class="zenith-hero-mobile-img"
+               src="/images/modern-tile-roof.png"
+               alt="Zenith Roofing work background"
+               width="1600" height="900"
+               decoding="async" fetchpriority="high">
+        </picture>
+        <div class="zenith-image-overlay" aria-hidden="true"></div>
+      </div>
+      <!-- light skeleton so layout matches before swap -->
+      <div class="zenith-card" aria-hidden="true"></div>
+    </section>
+
+    <!-- Other includes stay the same -->
     <section data-include="components/about-section.html"></section>
     <section data-include="components/why-choose-section.html"></section>
     <section data-include="components/trust-section.html"></section>
@@ -142,76 +163,93 @@
   <script defer src="/assets/lib/swiper/10.3.1/swiper-bundle.min.js"></script>
   <script defer src="js/testimonial.js"></script>
 
-  <!-- Optimized include loader -->
+  <!-- ✅ Include loader (upgrades stub; no scroll reflow) -->
   <script>
-    (function() {
-      async function include(el) {
-        const src = el.getAttribute('data-include');
-        if (!src) return;
-        try {
-          const res = await fetch(src, { cache: 'no-cache' });
-          if (!res.ok) throw new Error('Failed to load ' + src);
+  (function () {
+    // fetch + inject a single [data-include]
+    async function include(el) {
+      const src = el.getAttribute('data-include');
+      if (!src) return;
+      try {
+        const res = await fetch(src);             // normal caching
+        if (!res.ok) throw new Error('Failed ' + src);
+        const html = await res.text();
+        el.outerHTML = html;
+      } catch (e) {
+        console.error('❌ Include error:', src, e);
+      }
+    }
+
+    // Header height + collapsed state WITHOUT scroll reflow
+    function setupHeaderObservers() {
+      const root = document.documentElement;
+      const getHeader = () => document.querySelector('.mobile-header') || document.querySelector('.header');
+
+      function updateHeaderH() {
+        const h = getHeader();
+        if (h) root.style.setProperty('--header-h', Math.round(h.offsetHeight) + 'px');
+      }
+
+      // update when the header actually resizes
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(updateHeaderH);
+        const h = getHeader(); if (h) ro.observe(h);
+      }
+      window.addEventListener('load', updateHeaderH, { passive: true });
+      window.addEventListener('resize', () => requestAnimationFrame(updateHeaderH), { passive: true });
+
+      // toggle nav-collapsed via IntersectionObserver (no scroll work)
+      const sent = document.createElement('div');
+      sent.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;';
+      document.body.prepend(sent);
+      new IntersectionObserver(([e]) => {
+        root.classList.toggle('nav-collapsed', !e.isIntersecting);
+      }, { rootMargin: '-80px 0px 0px 0px' }).observe(sent); // adjust -80px if your header is taller
+    }
+
+    async function init() {
+      // include everything ELSE (hero has an LCP stub now)
+      const includes = Array.from(document.querySelectorAll('[data-include]'));
+      await Promise.all(includes.map(include));
+
+      // Upgrade the stub to the real hero component while REUSING the already-downloaded LCP <img>
+      const stub = document.getElementById('hero-stub');
+      if (stub) {
+        const res = await fetch('components/hero-section.html');
+        if (res.ok) {
           const html = await res.text();
-          el.outerHTML = html;
-        } catch (e) {
-          console.error('❌ Include error:', src, e);
+          const tpl = document.createElement('template');
+          tpl.innerHTML = html.trim();
+          const real = tpl.content.querySelector('section.zenith-hero') || tpl.content.firstElementChild;
+          if (real) {
+            const lcp = document.getElementById('lcp-img');
+            const realPic = real.querySelector('.zenith-hero-media picture') || real.querySelector('.zenith-hero-media');
+            if (lcp && realPic) {
+              const existing = realPic.querySelector('.zenith-hero-mobile-img');
+              if (existing) existing.replaceWith(lcp); else realPic.appendChild(lcp);
+            }
+            stub.replaceWith(real);
+          }
         }
       }
 
-      async function init() {
-        const includes = Array.from(document.querySelectorAll('[data-include]'));
-        await Promise.all(includes.map(include));
+      // your existing inits (unchanged)
+      if (window.initMobileMenu) window.initMobileMenu();
+      [
+        'initEstimateForm','initAboutSection','initWhyChoose','initTrustSection',
+        'initPhotoSection','initTestimonials','initCTA','initServiceAreas',
+        'initRealEstate','initFooter','initHeader'
+      ].forEach(n => { if (typeof window[n] === 'function') window[n](); });
 
-        if (window.initMobileMenu) window.initMobileMenu();
+      setupHeaderObservers();   // replaces old setLayoutFlags/scroll listeners
+    }
 
-        const initFns = [
-          'initEstimateForm',
-          'initAboutSection',
-          'initWhyChoose',
-          'initTrustSection',
-          'initPhotoSection',
-          'initTestimonials',
-          'initCTA',
-          'initServiceAreas',
-          'initRealEstate',
-          'initFooter',
-          'initHeader',
-          'setLayoutFlags'
-        ];
-        initFns.forEach(n => { if (typeof window[n] === 'function') window[n](); });
-      }
-
-      // Layout flags (used for sticky-header offset & CLS)
-      window.setLayoutFlags = function() {
-        var toggle = document.querySelector('.menu-toggle');
-        var collapsed = toggle && getComputedStyle(toggle).display !== 'none';
-        document.documentElement.classList.toggle('nav-collapsed', collapsed);
-
-        var headerEl = collapsed
-          ? document.querySelector('.mobile-header')
-          : document.querySelector('.header');
-        var h = headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0;
-        document.documentElement.style.setProperty('--header-h', h + 'px');
-      };
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-      } else {
-        init();
-      }
-
-      window.addEventListener('load', window.setLayoutFlags);
-      window.addEventListener('resize', window.setLayoutFlags);
-      document.addEventListener('click', function(e) {
-        if (e.target.closest('.menu-toggle')) setTimeout(window.setLayoutFlags, 50);
-      });
-
-      window.addEventListener('orientationchange', window.setLayoutFlags, { passive: true });
-      if (window.visualViewport) {
-        visualViewport.addEventListener('resize', window.setLayoutFlags, { passive: true });
-        visualViewport.addEventListener('scroll', window.setLayoutFlags, { passive: true });
-      }
-    })();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
   </script>
 
   <!-- Smooth scroll with header offset (fallback) -->
