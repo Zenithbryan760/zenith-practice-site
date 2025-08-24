@@ -1,45 +1,42 @@
 <!-- =========================================================
  [HERO SECTION] Zenith Roofing — Free Estimate (PHOTO ONLY)
 ========================================================= -->
+<!-- components/hero-section.html -->
 <section class="zenith-hero" id="roofing-estimate" aria-label="Free roofing estimate">
-  <!-- Invisible anchor so menu links land below the sticky header -->
   <span id="home" class="sr-only" aria-hidden="true"></span>
 
-<!-- ===== Background media (WebP, responsive) ===== -->
-<div class="zenith-hero-media">
-  <picture>
-    <!-- WebP sources -->
-    <source type="image/webp"
-            srcset="/images/modern-tile-roof-640.webp 640w,
-                    /images/modern-tile-roof-960.webp 960w,
-                    /images/modern-tile-roof-1280.webp 1280w,
-                    /images/modern-tile-roof-1600.webp 1600w"
-            sizes="100vw">
-    <!-- Fallback also WebP (so we never hit the big PNG) -->
-    <img class="zenith-hero-mobile-img"
-         src="/images/modern-tile-roof-1280.webp"
-         srcset="/images/modern-tile-roof-640.webp 640w,
-                 /images/modern-tile-roof-960.webp 960w,
-                 /images/modern-tile-roof-1280.webp 1280w,
-                 /images/modern-tile-roof-1600.webp 1600w"
-         sizes="100vw"
-         alt="Zenith Roofing work background"
-         width="1600" height="900"
-         decoding="async" fetchpriority="high">
-  </picture>
-  <div class="zenith-image-overlay" aria-hidden="true"></div>
-</div>
+  <!-- Background media (the <img> here will be replaced by the LCP image from index.html) -->
+  <div class="zenith-hero-media">
+    <picture>
+      <source type="image/webp"
+              srcset="/images/modern-tile-roof-640.webp 640w,
+                      /images/modern-tile-roof-960.webp 960w,
+                      /images/modern-tile-roof-1280.webp 1280w,
+                      /images/modern-tile-roof-1600.webp 1600w"
+              sizes="100vw">
+      <!-- Placeholder that will be replaced by #lcp-img -->
+      <img class="zenith-hero-mobile-img"
+           src="/images/modern-tile-roof-1280.webp"
+           alt="Zenith Roofing work background"
+           width="1600" height="900"
+           decoding="async">
+    </picture>
+    <div class="zenith-image-overlay" aria-hidden="true"></div>
+  </div>
 
-  <!-- ===== Card ===== -->
+  <!-- Card -->
   <div class="zenith-card">
     <div class="zenith-header">
       <div class="zenith-logo-container">
+        <!-- 👇 Use WebP logo (fixes the “improve image delivery ~63 KiB” warning) -->
         <img
-          src="images/badges/logo-zenith-icon.png"
+          src="images/badges/logo-zenith-icon-88.webp"
+          srcset="images/badges/logo-zenith-icon-88.webp 1x,
+                  images/badges/logo-zenith-icon-176.webp 2x"
+          width="88" height="88"
           alt="Zenith Roofing"
           class="zenith-logo"
-          width="86" height="48"
-          decoding="async" />
+          decoding="async">
         <div class="logo-backdrop" aria-hidden="true"></div>
       </div>
       <div class="zenith-header-text">
@@ -55,11 +52,11 @@
       <div class="form-row">
         <div class="form-group form-col-6">
           <label for="firstName" class="sr-only">First Name*</label>
-          <input type="text" id="firstName" name="first_name" placeholder="First Name*" autocomplete="given-name" required />
+          <input type="text" id="firstName" name="first_name" placeholder="First Name*" autocomplete="given-name" required>
         </div>
         <div class="form-group form-col-6">
           <label for="lastName" class="sr-only">Last Name*</label>
-          <input type="text" id="lastName" name="last_name" placeholder="Last Name*" autocomplete="family-name" required />
+          <input type="text" id="lastName" name="last_name" placeholder="Last Name*" autocomplete="family-name" required>
         </div>
       </div>
 
@@ -67,11 +64,13 @@
       <div class="form-row">
         <div class="form-group form-col-6">
           <label for="phone" class="sr-only">Phone Number*</label>
-          <input type="tel" id="phone" name="phone" inputmode="tel" placeholder="Phone Number*" pattern="[\d\s\-\(\)\.]{10,}" autocomplete="tel" required />
+          <input type="tel" id="phone" name="phone" inputmode="tel"
+                 placeholder="Phone Number*" pattern="[\d\s\-\(\)\.]{10,}"
+                 autocomplete="tel" required>
         </div>
         <div class="form-group form-col-6">
           <label for="email" class="sr-only">Email Address*</label>
-          <input type="email" id="email" name="email" placeholder="Email Address*" autocomplete="email" required />
+          <input type="email" id="email" name="email" placeholder="Email Address*" autocomplete="email" required>
         </div>
       </div>
 
@@ -79,7 +78,8 @@
       <div class="form-row">
         <div class="form-group">
           <label for="streetAddress" class="sr-only">Street Address*</label>
-          <input type="text" id="streetAddress" name="street_address" placeholder="Street Address*" autocomplete="address-line1" required />
+          <input type="text" id="streetAddress" name="street_address"
+                 placeholder="Street Address*" autocomplete="address-line1" required>
         </div>
       </div>
 
@@ -87,15 +87,17 @@
       <div class="form-row">
         <div class="form-group form-col-4">
           <label for="city" class="sr-only">City*</label>
-          <input type="text" id="city" name="city" placeholder="City*" autocomplete="address-level2" required />
+          <input type="text" id="city" name="city" placeholder="City*" autocomplete="address-level2" required>
         </div>
         <div class="form-group form-col-4">
           <label for="state" class="sr-only">State*</label>
-          <input type="text" id="state" name="state" value="CA" placeholder="State*" readonly />
+          <input type="text" id="state" name="state" value="CA" placeholder="State*" readonly>
         </div>
         <div class="form-group form-col-4">
           <label for="zip" class="sr-only">ZIP Code*</label>
-          <input type="text" id="zip" name="zip" placeholder="ZIP Code*" inputmode="numeric" pattern="\d{5}(-\d{4})?" maxlength="10" autocomplete="postal-code" required />
+          <input type="text" id="zip" name="zip" placeholder="ZIP Code*"
+                 inputmode="numeric" pattern="\d{5}(-\d{4})?" maxlength="10"
+                 autocomplete="postal-code" required>
         </div>
       </div>
 
@@ -103,7 +105,7 @@
       <div class="form-row">
         <div class="form-group form-col-4">
           <label for="photos" class="sr-only">Upload Photos</label>
-          <input type="file" id="photos" name="photos" accept="image/*" multiple />
+          <input type="file" id="photos" name="photos" accept="image/*" multiple>
         </div>
         <div class="form-group form-col-4">
           <label for="serviceType" class="sr-only">Service Type*</label>
@@ -136,7 +138,8 @@
       <div class="form-row">
         <div class="form-group">
           <label for="description" class="sr-only">Brief Description*</label>
-          <textarea id="description" name="description" rows="4" placeholder="Brief Description* — tell us what you need help with" required></textarea>
+          <textarea id="description" name="description" rows="4"
+                    placeholder="Brief Description* — tell us what you need help with" required></textarea>
         </div>
       </div>
 
@@ -154,8 +157,9 @@
 
       <!-- Disclaimer -->
       <p class="form-disclaimer">
-        <em>*Free estimates are not available for real estate transactions. If you're a real estate professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a transaction, please see our
-        <a href="#real-estate">Real Estate Services</a>.</em>
+        <em>*Free estimates are not available for real estate transactions. If you're a real estate
+        professional, buyer, or seller seeking a roof report, visual inspection, or verbal estimate for a
+        transaction, please see our <a href="#real-estate">Real Estate Services</a>.</em>
       </p>
     </form>
   </div>
