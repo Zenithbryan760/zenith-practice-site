@@ -115,35 +115,59 @@
 .about-section .about-card a{ color: var(--zenith-navy-2); }
 .about-section .about-card a:hover{ color: var(--zenith-orange); }
 
-/* Process — centered divider list */
+/* Process — centered divider list (uniform alignment) */
 .about-section .about-process{
-  text-align: center;
+  text-align:center;
   margin: clamp(1.3rem, 3vw, 1.9rem) auto 0;
 }
 .about-section .process-title{
-  margin:0 0 .7rem; color: var(--zenith-navy); font-weight:700;
+  margin:0 0 .7rem; color:var(--zenith-navy); font-weight:700;
 }
 .about-section .process-steps{
   list-style:none; margin:0; padding:0;
-  max-width: 820px;              /* centers block width */
+  max-width:820px;
   margin-inline:auto;
 }
+
+/* Each row becomes a 2-col grid: [badge][text] */
 .about-section .process-steps li{
-  display:flex; align-items:center; justify-content:center; gap:.55rem;
-  text-align:center; padding:.65rem 0;
-  border-top: 1px solid var(--line);
+  display:grid;
+  grid-template-columns:26px 1fr;
+  grid-template-rows:auto auto;           /* label on row 1, desc on row 2 */
+  column-gap:.6rem;
+  align-items:start;
+  text-align:left;                         /* keep text readable, block stays centered */
+  padding:.85rem 0;
+  border-top:1px solid var(--line);
 }
 .about-section .process-steps li:first-child{ border-top:0; }
+
+/* Badge sits centered across both rows */
 .about-section .step-badge{
-  flex:0 0 26px; height:26px;
+  grid-row:1 / span 2;
+  width:26px; height:26px; border-radius:50%;
   display:grid; place-items:center;
-  border-radius:50%;
-  background: rgba(247,148,29,.1);
-  color: var(--zenith-orange);
+  background:rgba(247,148,29,.10);
+  color:var(--zenith-orange);
   font-weight:700; font-size:.85rem;
-  border: 1px solid rgba(247,148,29,.22);
+  border:1px solid rgba(247,148,29,.22);
+  box-shadow:0 2px 8px rgba(247,148,29,.15);
 }
-.about-section .step-label{ font-weight:600; margin-right:.3rem; }
+
+/* Label on row 1 */
+.about-section .step-label{
+  grid-column:2; grid-row:1;
+  font-weight:600;
+  margin:0 0 .15rem;
+  color:var(--zenith-navy);
+}
+
+/* Description on row 2 */
+.about-section .step-desc{
+  grid-column:2; grid-row:2;
+  color:var(--zenith-text);
+  line-height:1.5;
+}
 
 /* Modern link chips (buttons) */
 .about-section .about-links{
