@@ -54,7 +54,7 @@
 #site-footer.ftr .ftr-grid{
   display:grid; gap:2rem;
   grid-template-columns:1.4fr 1fr 1fr 1.2fr;   /* default */
-  align-items:start; /* NEW: keeps all columns aligned from the top */
+  align-items:start; /* NEW: align columns from the top */
 }
 @media (min-width:1025px){
   #site-footer.ftr .ftr-grid{ grid-template-columns:repeat(4, minmax(0,1fr)); column-gap:2.5rem; }
@@ -67,21 +67,25 @@
 #site-footer.ftr .ftr-col{ min-width:0; }
 
 /* Brand block */
+#site-footer.ftr .ftr-brand{
+  text-align:left; /* NEW: match other columns */
+}
 #site-footer.ftr .ftr-logo img{ height:44px; width:auto; display:block; margin-bottom:.6rem; }
 #site-footer.ftr .ftr-brand .ftr-wordmark{
   display:flex; flex-direction:column; gap:.25rem; margin-bottom:.65rem;
-  /* NEW: match the look of .ftr-title */
-  padding-bottom:.35rem;
+  padding-bottom:.35rem; /* NEW: same bottom rule as titles */
   border-bottom:2px solid rgba(255,255,255,.12);
 }
 #site-footer.ftr .ftr-name{ font-size:1.15rem; font-weight:800; letter-spacing:.2px; }
 #site-footer.ftr .ftr-lic{ font-size:.95rem; color:rgba(255,255,255,.85); }
 #site-footer.ftr .ftr-blurb{ color:rgba(255,255,255,.85); margin:.6rem 0 1rem; line-height:1.6; }
 
-/* Contact & profiles */
+/* Contact & profiles (force left alignment in brand column) */
 #site-footer.ftr .ftr-contact,
 #site-footer.ftr .ftr-profiles{
   display:flex; flex-wrap:wrap; gap:.6rem 1rem; margin:.3rem 0 1rem; padding:0; list-style:none;
+  justify-content:flex-start; /* NEW */
+  text-align:left;           /* NEW */
 }
 #site-footer.ftr .ftr-contact a,
 #site-footer.ftr .ftr-profiles a{ padding:.25rem 0; border-bottom:1px dashed transparent; }
@@ -89,7 +93,10 @@
 #site-footer.ftr .ftr-profiles a:hover{ border-color:rgba(255,255,255,.35); }
 
 /* Social buttons */
-#site-footer.ftr .ftr-social{ display:flex; gap:.6rem; margin:.2rem 0 1.1rem; }
+#site-footer.ftr .ftr-social{
+  display:flex; gap:.6rem; margin:.2rem 0 1.1rem;
+  justify-content:flex-start; /* NEW */
+}
 #site-footer.ftr .ftr-social-btn{
   width:42px; height:42px; border-radius:999px;
   display:inline-flex; align-items:center; justify-content:center;
