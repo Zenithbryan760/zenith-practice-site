@@ -4,30 +4,27 @@
   <meta charset="utf-8">
   <title>Asphalt Shingles | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Asphalt Shingles in San Diego County.">
-  <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <style>.page{max-width:900px;margin:24px auto;padding:0 16px}.cta{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}.btn{display:inline-block;padding:10px 16px;border-radius:999px;font-weight:700;text-decoration:none}.btn-primary{background:#f7941d;color:#072e59}.btn-outline{border:2px solid #f7941d;color:#f7941d}</style>
 </head>
 <body>
-  <div id="site-header"></div>
-  <main style="max-width:1200px;margin:24px auto;padding:0 16px;">
-    <nav aria-label="Breadcrumb" style="font-size:.9rem;margin-bottom:8px;"><a href="/services/">Services</a> › <a href="/services/residential/">Residential Roofing</a></nav>
-    <h1>Asphalt Shingles</h1>
-    <p>Starter page. Replace this with your content.</p><p><a class="call-button" href="tel:8589006163">Call 858-900-6163</a></p>
+  <div data-include="/components/header-section.html"></div>
+  <main class="page">
+    <h1>Asphalt Shingle Roofing</h1>
+    <p>Attractive, budget-friendly roofs with strong warranties and color choices.</p>
+    <ul>
+      <li>Architectural &amp; impact-resistant options</li>
+      <li>Proper ventilation and flashing details</li>
+      <li>Fast, clean installation</li>
+    </ul>
+    <div class="cta">
+      <a class="btn btn-primary" href="/index.html#estimate">Get Pricing</a>
+      <a class="btn btn-outline" href="/projects/">See Shingle Projects</a>
+    </div>
   </main>
-  <div id="site-footer"></div>
+  <div data-include="/components/footer.html"></div>
+  <script src="/js/loader.js" defer></script>
   <script src="/js/header.js" defer></script>
-  <script>
-    async function include(id, url){
-      const el = document.getElementById(id);
-      try { const res = await fetch(url); el.innerHTML = await res.text(); }
-      catch(e) { el.innerHTML = ""; }
-    }
-    (async () => {
-      await include('site-header','/components/header-section.html');
-      await include('site-footer','/components/footer.html');
-      if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
-    })();
-  </script>
 </body>
 </html>
