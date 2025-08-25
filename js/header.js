@@ -1,25 +1,26 @@
 /* =======================================================================
    js/header.js — Desktop dropdowns + Mobile off-canvas (single file)
    - Desktop: hover-stable flyouts that auto-flip LEFT if near viewport edge
-   - Mobile: .menu-toggle opens/closes off-canvas; accordions expand/collapse
-   - Click-outside, ESC to close, resize cleanup
-   - Idempotent: safe to call window.ZenithHeader.init() multiple times
-   - Legacy alias: window.initMobileMenu() calls the same init
+              and scroll ONLY inside the flyout columns
+   - Mobile : .menu-toggle opens/closes off-canvas; accordions expand/collapse
+   - UX     : click-outside, ESC to close, resize cleanup
+   - Safe   : idempotent (window.ZenithHeader.init() can be called multiple times)
+   - Legacy : window.initMobileMenu() maps to ZenithHeader.init()
    ======================================================================= */
 (() => {
   'use strict';
 
-  // Guards so we don’t double-bind global listeners
+  // Guards to avoid double-binding globals
   let desktopBound = false;
   let outsideClickBound = false;
   let escBound = false;
   let resizeBound = false;
 
-  // Cache current bound elements so we only bind once per element
+  // Track current elements we bound to (avoid rebinding on re-renders)
   let boundMenuToggle = null;
   let boundMobileNav  = null;
 
-  // --- Utilities ---
+  // ---------- Utilities ----------
   const isOpen = () => document.body.classList.contains('nav-open');
   const isMobileViewport = () => window.matchMedia('(max-width: 1024px)').matches;
 
@@ -34,37 +35,7 @@
     document.body.style.overflow = '';
   };
 
-  // --- Flyout helpers (desktop) ---
-  // Compute if a flyout overflows the viewport's right edge; if so, open LEFT
-  function positionFlyout(flyout) {
-    if (!flyout) return;
-    flyout.classList.remove('open-left');
-
-    // Temporarily reveal if hidden to measure accurately
-    const wasHidden = getComputedStyle(flyout).visibility === 'hidden';
-    if (wasHidden){
-      flyout.style.visibility = 'hidden';
-      flyout.style.opacity = '0';
-      flyout.style.transform = 'translateY(0)';
-      flyout.style.display = 'block';
-    }
-
-    const rect = flyout.getBoundingClientRect();
-    const overRight = rect.right > (window.innerWidth - 8);
-
-    if (overRight) {
-      flyout.classList.add('open-left');
-    }
-
-    if (wasHidden){
-      flyout.style.display = '';
-      flyout.style.visibility = '';
-      flyout.style.opacity = '';
-      flyout.style.transform = '';
-    }
-  }
-
-  // Throttle utility
+  // Throttle helper
   function throttle(fn, wait){
     let t = null;
     return function(...args){
@@ -73,19 +44,80 @@
     };
   }
 
-  // Apply positioning to all flyouts
+  // ---------- Flyout positioning (desktop) ----------
+  // Decide if a flyout should open LEFT to avoid running off the right edge
+  function positionFlyout(flyout) {
+    if (!flyout) return;
+    flyout.classList.remove('open-left');
+
+    // Temporarily reveal if hidden to measure accurately
+    const cs = getComputedStyle(flyout);
+    const hidden = cs.visibility === 'hidden' || cs.opacity === '0';
+    if (hidden){
+      const prev = {
+        visibility: flyout.style.visibility,
+        opacity: flyout.style.opacity,
+        transform: flyout.style.transform,
+        display: flyout.style.display
+      };
+      flyout.style.visibility = 'hidden';
+      flyout.style.opacity = '0';
+      flyout.style.transform = 'translateY(0)';
+      flyout.style.display = 'block';
+
+      const rect = flyout.getBoundingClientRect();
+      if (rect.right > (window.innerWidth - 8)) {
+        flyout.classList.add('open-left');
+      }
+
+      // Restore inline styles
+      flyout.style.visibility = prev.visibility;
+      flyout.style.opacity = prev.opacity;
+      flyout.style.transform = prev.transform;
+      flyout.style.display = prev.display;
+      return;
+    }
+
+    // If already visible, just check right overflow
+    const rect = flyout.getBoundingClientRect();
+    if (rect.right > (window.innerWidth - 8)) {
+      flyout.classList.add('open-left');
+    }
+  }
+
   const positionAllFlyouts = throttle(() => {
     document.querySelectorAll('.dropdown-submenu > .submenu').forEach(positionFlyout);
   }, 120);
 
-  // Keep hover stable when moving pointer from parent item into flyout
-  function bindHoverStability() {
+  // Prevent scroll chaining: when scrolling a flyout, don’t bubble to page
+  function preventScrollChaining(el){
+    if (!el) return;
+    // Use non-passive listener so we can preventDefault
+    el.addEventListener('wheel', (e) => {
+      const delta = e.deltaY;
+      const atTop    = el.scrollTop === 0;
+      const atBottom = Math.ceil(el.scrollTop + el.clientHeight) >= el.scrollHeight;
+
+      // If trying to scroll past the top or bottom, eat the event to stop page scroll
+      if ((delta < 0 && atTop) || (delta > 0 && atBottom)) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+  }
+
+  // Bind hover stability (short grace period) and attach scroll containment
+  function bindHoverStabilityAndScroll(){
     document.querySelectorAll('.dropdown-submenu').forEach(sub => {
       let hoverTimer;
+      const flyout = sub.querySelector(':scope > .submenu');
+
+      // Add scroll containment on each flyout column
+      if (flyout) preventScrollChaining(flyout);
+
       sub.addEventListener('mouseenter', () => {
         clearTimeout(hoverTimer);
         sub.classList.add('is-hover');
-        positionFlyout(sub.querySelector(':scope > .submenu'));
+        positionFlyout(flyout);
       });
       sub.addEventListener('mouseleave', () => {
         hoverTimer = setTimeout(() => sub.classList.remove('is-hover'), 120);
@@ -93,11 +125,11 @@
     });
   }
 
-  // --- [A] Desktop dropdowns — optional click support for .submenu-toggle
+  // ---------- [A] Desktop dropdowns (optional click support) ----------
   function bindDesktopDropdowns() {
     if (desktopBound) return;
 
-    // Optional: click-to-toggle if you add .submenu-toggle on desktop
+    // Optional click-to-toggle if you add .submenu-toggle on desktop
     document.addEventListener('click', (e) => {
       const toggle = e.target.closest('.submenu-toggle');
       if (!toggle) return;
@@ -120,25 +152,25 @@
       toggle.setAttribute('aria-expanded', String(nowOpen));
       if (nowOpen) positionFlyout(li.querySelector(':scope > .submenu'));
 
-      // Prevent accidental navigate if toggle is <a>
+      // Prevent accidental navigation if toggle is an <a>
       if (toggle.tagName === 'A') e.preventDefault();
     }, { passive: false });
 
-    // Hover stability + initial positioning
-    bindHoverStability();
+    // Hover stability + initial positioning + scroll containment
+    bindHoverStabilityAndScroll();
     window.addEventListener('load', positionAllFlyouts, { once: true });
     window.addEventListener('resize', positionAllFlyouts);
 
     desktopBound = true;
   }
 
-  // --- [B] Mobile: off-canvas open/close & helpers ---
+  // ---------- [B] Mobile: off-canvas + accordions ----------
   function bindMobileControls() {
     const menuToggle = document.querySelector('.menu-toggle');
     const mobileNav  = document.querySelector('.mobile-nav');
     if (!menuToggle || !mobileNav) return;
 
-    // Hamburger click
+    // Hamburger
     if (boundMenuToggle !== menuToggle) {
       if (boundMenuToggle && boundMenuToggle !== menuToggle) {
         boundMenuToggle.setAttribute('aria-expanded', 'false');
@@ -211,14 +243,14 @@
     bindMobileControls();
   }
 
-  // Auto-init on DOM ready (idempotent)
+  // Auto-init (idempotent)
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init, { once: true });
   } else {
     init();
   }
 
-  // Expose for manual re-init if you ever re-render header
+  // Expose for manual re-init if header HTML is hot-swapped
   window.ZenithHeader = { init };
   window.initMobileMenu = () => window.ZenithHeader.init();
 })();
