@@ -1,1 +1,33 @@
-
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Satellite Imagery Analysis | Zenith Roofing Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Satellite Imagery Analysis for real estate transactions in San Diego County.">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/base.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main style="max-width:1200px;margin:24px auto;padding:0 16px;">
+    <nav aria-label="Breadcrumb" style="font-size:.9rem;margin-bottom:8px;"><a href="/services/">Services</a> › <a href="/services/real-estate/">Real Estate Services</a></nav>
+    <h1>Satellite Imagery Analysis</h1>
+    <p>Starter page. Replace this with your content.</p><p><a class="call-button" href="tel:8589006163">Call 858-900-6163</a></p>
+  </main>
+  <div id="site-footer"></div>
+  <script src="/js/header.js" defer></script>
+  <script>
+    async function include(id, url){
+      const el = document.getElementById(id);
+      try { const res = await fetch(url); el.innerHTML = await res.text(); }
+      catch(e) { el.innerHTML = ""; }
+    }
+    (async () => {
+      await include('site-header','/components/header-section.html');
+      await include('site-footer','/components/footer.html');
+      if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
+    })();
+  </script>
+</body>
+</html>
