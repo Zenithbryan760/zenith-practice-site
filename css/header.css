@@ -1,7 +1,6 @@
 /* =========================================================
    Zenith Roofing — Header & Navigation (Desktop + Mobile)
    Evenly spaced tabs + consistent Services dropdown spacing
-   Chromebook-safe dropdowns (no clipping)
    ========================================================= */
 
 /* 1) Design tokens */
@@ -43,13 +42,12 @@ a { text-decoration: none; }
    3) HEADER BAR
    ========================================================= */
 .header{
-  position: sticky; top: 0; z-index: 3000;    /* higher than hero/video */
+  position: sticky; top: 0; z-index: 1000;
   width: 100%;
   background: var(--header-bg);
   color: var(--white);
   box-shadow: 0 4px 18px rgba(0,0,0,.26);
   backdrop-filter: saturate(140%) blur(6px);
-  overflow: visible;                           /* ✅ prevent menu clipping */
 }
 .header-inner{
   max-width: 1200px;
@@ -59,7 +57,6 @@ a { text-decoration: none; }
   grid-template-columns: auto 1fr auto; /* logo | nav | phone */
   gap: 16px;
   align-items: center;
-  overflow: visible;                           /* ✅ prevent menu clipping */
 }
 
 /* Logo stack */
@@ -77,28 +74,28 @@ a { text-decoration: none; }
 /* =========================================================
    4) DESKTOP NAV — EVENLY SPACED TABS
    ========================================================= */
-.nav-bar{ display:block; width:100%; overflow: visible; }   /* ✅ */
+.nav-bar{ display:block; width:100%; }
 .nav-links{
   display:flex;
-  align-items:stretch;
-  justify-content:space-between;
-  gap: 0;
+  align-items:stretch;              /* tabs same height */
+  justify-content:space-between;    /* spread across row */
+  gap: 0;                           /* equal-width tabs remove gap */
 }
 .nav-links > li{
   position:relative;
-  flex:1 1 0;
+  flex:1 1 0;                       /* ⬅️ equal-width tabs */
   min-width:0;
-  display:flex;
+  display:flex;                     /* for full-width anchors */
 }
 .nav-links > li > a{
   position: relative;
   flex:1 1 auto;
-  display:flex; align-items:center; justify-content:center;
+  display:flex; align-items:center; justify-content:center; /* center label */
   color: var(--white);
-  padding: 12px 6px;
+  padding: 12px 6px;                /* uniform vertical rhythm */
   transition: color .28s ease, transform .2s ease, background .2s ease;
   line-height:1.15; font-weight:600; letter-spacing:.01em; font-size:.98rem;
-  border-radius:10px;
+  border-radius:10px;               /* subtle pill */
 }
 .nav-links > li > a:hover{
   color: var(--zenith-orange);
@@ -129,11 +126,13 @@ a { text-decoration: none; }
 .nav-links a:focus-visible::after{ width:80%; left:10%; }
 
 /* =========================================================
-   5) DESKTOP DROPDOWNS — CONSISTENT SPACING + NO CLIP
+   5) DESKTOP DROPDOWNS — CONSISTENT SPACING
    ========================================================= */
-.dropdown > a{ padding-right: 22px; }
+.dropdown > a{ padding-right: 22px; } /* room for chevron if you add one */
+
+/* Base menu panel */
 .dropdown-menu{
-  position:absolute; top:calc(100% + 8px); left:0;
+  position:absolute; top:calc(100% + 8px); left:0;   /* slight offset for air */
   min-width: 280px;
   background: var(--menu-bg);
   color: var(--zenith-text);
@@ -142,22 +141,24 @@ a { text-decoration: none; }
   box-shadow: var(--shadow-lg);
   padding: 10px;
 
-  display:flex; flex-direction:column; gap:6px;
+  display:flex; flex-direction:column; gap:6px;      /* ⬅️ even vertical spacing */
 
   opacity:0; visibility:hidden; transform: translateY(8px);
   transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
   backdrop-filter: blur(8px) saturate(120%);
-
-  z-index: 4000;                 /* ✅ stays above hero/video */
 }
+
+/* Open on hover/focus */
 .dropdown:hover > .dropdown-menu,
-.dropdown:focus-within > .dropdown-menu{ opacity:1; visibility:visible; transform: translateY(0); }
+.dropdown:focus-within > .dropdown-menu{
+  opacity:1; visibility:visible; transform: translateY(0);
+}
 
 /* Items */
 .dropdown-menu > li{ margin:0; }
 .dropdown-menu > li > a{
   display:flex; align-items:center; gap:10px;
-  padding:12px 12px;
+  padding:12px 12px;                /* ⬅️ consistent hit area */
   border-radius:10px;
   color: var(--zenith-text);
   font-weight:500;
@@ -190,16 +191,17 @@ a { text-decoration: none; }
   border:1px solid var(--menu-border);
   box-shadow: var(--shadow-md);
   padding:10px;
-  display:flex; flex-direction:column; gap:6px;
+  display:flex; flex-direction:column; gap:6px;      /* ⬅️ even spacing */
 
   opacity:0; visibility:hidden; transform: translateY(8px);
   transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
-  z-index: 4100;                 /* ✅ above main dropdown */
+  z-index: 2;
   backdrop-filter: blur(8px) saturate(120%);
 }
 .dropdown-submenu:hover > .submenu,
-.dropdown-submenu:focus-within > .submenu{ opacity:1; visibility:visible; transform: translateY(0); }
-
+.dropdown-submenu:focus-within > .submenu{
+  opacity:1; visibility:visible; transform: translateY(0);
+}
 .submenu a{
   display:flex; align-items:center;
   padding:12px 12px; border-radius:10px;
@@ -210,13 +212,6 @@ a { text-decoration: none; }
   background: rgba(247,148,29,0.10);
   color: var(--zenith-orange);
   transform: translateX(1px);
-}
-
-/* ✅ Chromebook/smaller-laptop fix: flip flyouts LEFT under 1200px */
-@media (max-width: 1200px){
-  .dropdown-submenu > .submenu{
-    left:auto; right:100%; margin-left:0; margin-right:10px;
-  }
 }
 
 /* =========================================================
@@ -256,33 +251,79 @@ a { text-decoration: none; }
   display:none; /* shown at ≤ 1024px */
   align-items:center;
   justify-content:space-between;
-  gap:8px;
-  min-height: 88px;
-  padding: 0 10px;
+  gap:8px;            /* a bit tighter than 10px */
+  min-height: 88px;   /* was 92px — now just tall enough for the 88px logo */
+  padding: 0 10px;    /* no top/bottom padding; only side padding */
 }
-.mobile-header .logo-section{ flex: 1; display:flex; justify-content:center; align-items:center; }
-.mobile-header .logo{ height: 88px; max-height: 88px; width:auto; max-width:320px; display:block; filter: drop-shadow(0 2px 6px rgba(0,0,0,.18)); }
 
+/* Center the logo between the two buttons */
+.mobile-header .logo-section{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mobile logo */
+.mobile-header .logo{
+  height: 88px;          /* keep the bigger logo */
+  max-height: 88px;
+  width: auto;
+  max-width: 320px;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
+}
+
+/* Hamburger toggle — same footprint as call button */
 .menu-toggle{
-  appearance:none; font:inherit; background: var(--zenith-orange); color:#072e59;
-  border:0; border-radius:12px; width:44px; height:44px;
-  display:inline-flex; align-items:center; justify-content:center; cursor:pointer;
+  appearance: none;
+  font: inherit;
+  background: var(--zenith-orange);
+  color: #072e59;
+  border: 0;
+  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   box-shadow: 0 8px 18px rgba(247,148,29,.22);
   transition: transform .18s ease, box-shadow .18s ease, opacity .26s ease;
 }
-.menu-toggle:hover{ transform: translateY(-1px); box-shadow: 0 10px 20px rgba(247,148,29,.28); }
-.menu-toggle:active{ transform: translateY(0); }
+.menu-toggle:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(247,148,29,.28);
+}
+.menu-toggle:active{
+  transform: translateY(0);
+}
 
+/* Mobile call button — matches toggle size/feel */
 .mobile-call{
-  display:inline-flex; align-items:center; justify-content:center;
-  width:44px; height:44px; border-radius:50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   background: var(--zenith-orange);
   box-shadow: 0 8px 18px rgba(247,148,29,.22);
   transition: transform .18s ease, box-shadow .18s ease, opacity .26s ease;
 }
-.mobile-call:hover{ transform: translateY(-1px); box-shadow: 0 10px 20px rgba(247,148,29,.28); }
-.mobile-call:active{ transform: translateY(0); }
-.mobile-call svg path{ fill:#072e59; }
+.mobile-call:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(247,148,29,.28);
+}
+.mobile-call:active{
+  transform: translateY(0);
+}
+/* Keep the phone icon visible on orange */
+.mobile-call svg path { fill: #072e59; }
+
+
+
+
 
 /* =========================================================
    8) OFF-CANVAS MOBILE NAV (powder-blue accordions)
@@ -293,17 +334,17 @@ a { text-decoration: none; }
   background: #0b3a6f; color: #fff;
   padding: 18px 16px 40px; overflow-y: auto;
   box-shadow: 8px 0 24px rgba(0,0,0,.25);
-  transition: transform .32s ease; z-index: 3100;
+  transition: transform .32s ease; z-index: 1100;
 }
 body.nav-open .mobile-nav{ transform: translateX(0); }
 
 /* Backdrop */
 body.nav-open::after{
-  content:""; position: fixed; inset:0; background: rgba(0,0,0,.45); z-index: 3050;
+  content:""; position: fixed; inset:0; background: rgba(0,0,0,.45); z-index: 1090;
 }
 
-/* Top-level + nested items */
-.mobile-links > li + li{ margin-top:6px; }
+/* Top-level + nested items (uniform tabs) */
+.mobile-links > li + li{ margin-top:6px; } /* keep the even rhythm */
 
 .mobile-nav a,
 .mobile-nav .accordion-toggle{
@@ -320,8 +361,11 @@ body.nav-open::after{
   border-radius:12px;
   text-align:left;
 }
+
 .mobile-nav a:hover,
-.mobile-nav .accordion-toggle:hover{ background: rgba(255,255,255,.08); }
+.mobile-nav .accordion-toggle:hover{
+  background: rgba(255,255,255,.08);
+}
 
 /* Chevron */
 .chevron{ display:inline-block; transition: transform .25s ease; }
@@ -349,7 +393,7 @@ body.nav-open::after{
 .mobile-nav .submenu .submenu{
   background: #d0e8ff; border-left: none; border-radius: 10px;
 }
-.mobile-nav .submenu li + li{ margin-top:6px; }
+.mobile-nav .submenu li + li{ margin-top:6px; }       /* even spacing in nested lists */
 .mobile-nav .submenu li a{
   color: var(--zenith-blue); border-radius: 10px; padding: 10px 10px; font-weight:600;
 }
@@ -364,13 +408,13 @@ body.nav-open::after{
 @media (max-width: 1024px){
   .mobile-header{ 
     display:flex; 
-    position: relative;
+    position: relative;   /* keep content above fade */
     z-index: 1;
   }
   .header .header-inner{ grid-template-columns: 1fr; gap: 0; padding: 10px 14px; }
   .header .header-inner > .logo-section, .nav-bar, .phone-section{ display:none; }
 
-  /* Fade edge; keep overflow visible so dropdowns aren't clipped on tablet */
+  /* Real fade: make bottom of header transparent (no solid line) */
   .header{
     -webkit-mask-image: linear-gradient(
       to bottom,
@@ -382,12 +426,14 @@ body.nav-open::after{
       rgba(0,0,0,1) calc(100% - 18px),
       rgba(0,0,0,0) 100%
     );
-    overflow: visible;
   }
 
+  /* Remove any tiny seam between header and first section */
   main { margin-top: 0 !important; }
   main > *:first-child { margin-top: 0 !important; padding-top: 0 !important; border-top: 0 !important; }
-  .header + main { margin-top: -2px; }
+  .header + main { margin-top: -2px; } /* tweak to -1px or -3px if needed */
+
+  /* If your hero has a specific class, ensure no extra space there */
   .hero, .hero-section, .zenith-hero { margin-top: 0 !important; padding-top: 0 !important; }
 }
 
@@ -412,32 +458,32 @@ body.nav-open::after{
   outline:none; box-shadow: 0 0 0 3px rgba(247,148,29,.28);
 }
 
-/* Optional underline variant */
+/* =========================================================
+   11) OPTIONAL: LEFT→RIGHT UNDERLINE VARIANT
+   ========================================================= */
 .nav-bar.underline-ltr .nav-links a::after{
   left:0; bottom:6px; width:0; height:2px; border-radius:1px;
 }
 .nav-bar.underline-ltr .nav-links a:hover::after{ width:100%; left:0; }
 .nav-bar.underline-ltr .nav-links a.is-active::after,
-.nav-bar.underline-ltr .nav-links a[aria-current="page"]::after{ width:100%; left:0; }
-
-
-/* --- Prevent tall menus from getting cut off --- */
-.dropdown-menu{
-  max-height: min(70vh, 520px);   /* fits on small laptops */
-  overflow: auto;                 /* scroll inside panel if needed */
-  overscroll-behavior: contain;   /* avoid scrolling the page by accident */
+.nav-bar.underline-ltr .nav-links a[aria-current="page"]::after{
+  width:100%; left:0;
 }
 
-/* When JS decides a flyout should open LEFT instead of right */
-.dropdown-submenu > .submenu.open-left{
-  left: auto !important;
-  right: 100% !important;
-  margin-left: 0 !important;
-  margin-right: 10px !important;
+/* =========================================================
+   APPENDED: scroll only inside flyout submenus (no other overrides)
+   ========================================================= */
+.dropdown-submenu > .submenu{
+  max-height: min(70vh, 520px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Smooth scrolling inside menus on ChromeOS */
-.dropdown-menu::-webkit-scrollbar,
-.submenu::-webkit-scrollbar{ width: 8px; }
-.dropdown-menu::-webkit-scrollbar-thumb,
-.submenu::-webkit-scrollbar-thumb{ background: rgba(7,46,89,.25); border-radius: 8px; }
+/* Optional: slimmer scrollbar inside flyouts */
+.dropdown-submenu > .submenu::-webkit-scrollbar{ width: 8px; }
+.dropdown-submenu > .submenu::-webkit-scrollbar-thumb{
+  background: rgba(7,46,89,.25);
+  border-radius: 8px;
+}
