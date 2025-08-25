@@ -1,8 +1,7 @@
 /* =======================================================================
    js/header.js — Desktop dropdowns + Mobile off-canvas (single file)
-   - Desktop: optional .submenu-toggle click handler (if you use it)
-   - Mobile: .menu-toggle opens/closes off-canvas by toggling body.nav-open
-   - Mobile accordions: .accordion-toggle expands nested <li> menus
+   - Desktop: hover-stable flyouts that auto-flip LEFT if near viewport edge
+   - Mobile: .menu-toggle opens/closes off-canvas; accordions expand/collapse
    - Click-outside, ESC to close, resize cleanup
    - Idempotent: safe to call window.ZenithHeader.init() multiple times
    - Legacy alias: window.initMobileMenu() calls the same init
@@ -19,10 +18,11 @@
   // Cache current bound elements so we only bind once per element
   let boundMenuToggle = null;
   let boundMobileNav  = null;
-  let mobileAccordionsBound = false;
 
   // --- Utilities ---
   const isOpen = () => document.body.classList.contains('nav-open');
+  const isMobileViewport = () => window.matchMedia('(max-width: 1024px)').matches;
+
   const openMobile = (menuToggle) => {
     document.body.classList.add('nav-open');
     if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
@@ -33,12 +33,71 @@
     if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   };
-  const isMobileViewport = () => window.matchMedia('(max-width: 1024px)').matches; // matches your CSS
 
-  // --- [A] Desktop dropdowns (optional click support) ---
-  // If you add .submenu-toggle to desktop triggers, this will handle click-to-toggle
+  // --- Flyout helpers (desktop) ---
+  // Compute if a flyout overflows the viewport's right edge; if so, open LEFT
+  function positionFlyout(flyout) {
+    if (!flyout) return;
+    flyout.classList.remove('open-left');
+
+    // Temporarily reveal if hidden to measure accurately
+    const wasHidden = getComputedStyle(flyout).visibility === 'hidden';
+    if (wasHidden){
+      flyout.style.visibility = 'hidden';
+      flyout.style.opacity = '0';
+      flyout.style.transform = 'translateY(0)';
+      flyout.style.display = 'block';
+    }
+
+    const rect = flyout.getBoundingClientRect();
+    const overRight = rect.right > (window.innerWidth - 8);
+
+    if (overRight) {
+      flyout.classList.add('open-left');
+    }
+
+    if (wasHidden){
+      flyout.style.display = '';
+      flyout.style.visibility = '';
+      flyout.style.opacity = '';
+      flyout.style.transform = '';
+    }
+  }
+
+  // Throttle utility
+  function throttle(fn, wait){
+    let t = null;
+    return function(...args){
+      if (t) return;
+      t = setTimeout(() => { t = null; fn.apply(this, args); }, wait);
+    };
+  }
+
+  // Apply positioning to all flyouts
+  const positionAllFlyouts = throttle(() => {
+    document.querySelectorAll('.dropdown-submenu > .submenu').forEach(positionFlyout);
+  }, 120);
+
+  // Keep hover stable when moving pointer from parent item into flyout
+  function bindHoverStability() {
+    document.querySelectorAll('.dropdown-submenu').forEach(sub => {
+      let hoverTimer;
+      sub.addEventListener('mouseenter', () => {
+        clearTimeout(hoverTimer);
+        sub.classList.add('is-hover');
+        positionFlyout(sub.querySelector(':scope > .submenu'));
+      });
+      sub.addEventListener('mouseleave', () => {
+        hoverTimer = setTimeout(() => sub.classList.remove('is-hover'), 120);
+      });
+    });
+  }
+
+  // --- [A] Desktop dropdowns — optional click support for .submenu-toggle
   function bindDesktopDropdowns() {
     if (desktopBound) return;
+
+    // Optional: click-to-toggle if you add .submenu-toggle on desktop
     document.addEventListener('click', (e) => {
       const toggle = e.target.closest('.submenu-toggle');
       if (!toggle) return;
@@ -59,10 +118,17 @@
       // Toggle current
       const nowOpen = li.classList.toggle('open');
       toggle.setAttribute('aria-expanded', String(nowOpen));
+      if (nowOpen) positionFlyout(li.querySelector(':scope > .submenu'));
 
-      // Prevent accidental nav if the toggle is an <a>
+      // Prevent accidental navigate if toggle is <a>
       if (toggle.tagName === 'A') e.preventDefault();
     }, { passive: false });
+
+    // Hover stability + initial positioning
+    bindHoverStability();
+    window.addEventListener('load', positionAllFlyouts, { once: true });
+    window.addEventListener('resize', positionAllFlyouts);
+
     desktopBound = true;
   }
 
@@ -70,37 +136,31 @@
   function bindMobileControls() {
     const menuToggle = document.querySelector('.menu-toggle');
     const mobileNav  = document.querySelector('.mobile-nav');
-
-    // If either element is missing, nothing to bind (ok on desktop-only pages)
     if (!menuToggle || !mobileNav) return;
 
-    // Bind hamburger only once per element
+    // Hamburger click
     if (boundMenuToggle !== menuToggle) {
-      // Clean old binding aria state if needed
       if (boundMenuToggle && boundMenuToggle !== menuToggle) {
         boundMenuToggle.setAttribute('aria-expanded', 'false');
       }
-
       menuToggle.addEventListener('click', () => {
         const opening = !isOpen();
         opening ? openMobile(menuToggle) : closeMobile(menuToggle);
       });
-
       boundMenuToggle = menuToggle;
     }
 
-    // Click outside to close (bind once globally)
+    // Click outside to close (bind once)
     if (!outsideClickBound) {
       document.addEventListener('click', (e) => {
         if (!isOpen()) return;
-        // Don’t close if clicking inside the panel or on the toggle
         if (mobileNav.contains(e.target) || menuToggle.contains(e.target)) return;
         closeMobile(menuToggle);
       });
       outsideClickBound = true;
     }
 
-    // ESC to close (bind once globally)
+    // ESC to close (bind once)
     if (!escBound) {
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && isOpen()) closeMobile(menuToggle);
@@ -108,7 +168,7 @@
       escBound = true;
     }
 
-    // On resize to desktop, clean up (bind once globally)
+    // On resize to desktop, clean up (bind once)
     if (!resizeBound) {
       let lastIsMobile = isMobileViewport();
       window.addEventListener('resize', () => {
@@ -119,10 +179,8 @@
       resizeBound = true;
     }
 
-    // --- [C] Mobile accordions (inside .mobile-nav) ---
-    // Delegate once to the current mobileNav
+    // Mobile accordions (delegate on panel)
     if (boundMobileNav !== mobileNav) {
-      // If we had a previous nav element, no need to "unbind" because we delegate to the element itself
       mobileNav.addEventListener('click', (e) => {
         const btn = e.target.closest('.accordion-toggle');
         if (!btn) return;
@@ -131,7 +189,7 @@
         const li = btn.closest('li');
         if (!li) return;
 
-        // Close siblings at the same level
+        // Close siblings at same level
         li.parentElement?.querySelectorAll(':scope > li.open').forEach((openLi) => {
           if (openLi !== li) {
             openLi.classList.remove('open');
@@ -145,27 +203,22 @@
       });
 
       boundMobileNav = mobileNav;
-      mobileAccordionsBound = true;
     }
   }
 
   function init() {
-    // Desktop click support (safe if you only use :hover in CSS too)
     bindDesktopDropdowns();
-
-    // Mobile controls & accordions
     bindMobileControls();
   }
 
-  // Auto-init on DOM ready (safe: idempotent)
+  // Auto-init on DOM ready (idempotent)
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init, { once: true });
   } else {
     init();
   }
 
-  // Expose for your include loader (safe to call multiple times)
+  // Expose for manual re-init if you ever re-render header
   window.ZenithHeader = { init };
-  // Legacy alias so existing calls to initMobileMenu() keep working
   window.initMobileMenu = () => window.ZenithHeader.init();
 })();
