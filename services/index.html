@@ -2,32 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Services | Zenith Roofing Services</title>
+  <title>Roofing Services | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Full-service residential & commercial roofing in San Diego.">
-  <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <style>
+    .page{max-width:1200px;margin:24px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;box-shadow:0 10px 30px rgba(2,14,32,.08)}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+    .btn{display:inline-block;padding:10px 16px;border-radius:999px;font-weight:700;text-decoration:none}
+    .btn-primary{background:#f7941d;color:#072e59}
+    .btn-outline{border:2px solid #f7941d;color:#f7941d}
+    details{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-top:12px}
+    details>summary{font-weight:700;cursor:pointer}
+  </style>
 </head>
 <body>
-  <div id="site-header"></div>
-  <main style="max-width:1200px;margin:24px auto;padding:0 16px;">
-    
-    <h1>Services</h1>
-    <p>Click a service to see our process, scope, and FAQs.</p>
+  <div data-include="/components/header-section.html"></div>
+
+  <main class="page">
+    <h1>Roofing Services</h1>
+    <p>Installation, repairs, and maintenance for homes and businesses in San Diego, Escondido, Temecula &amp; nearby.</p>
+
+    <div class="cta">
+      <a class="btn btn-primary" href="/index.html#estimate">Request Free Estimate</a>
+      <a class="btn btn-outline" href="tel:8589006163">Call/Text: 858-900-6163</a>
+    </div>
+
+    <h2>Residential Roofing</h2>
+    <div class="grid">
+      <a class="card" href="/services/residential/asphalt-shingles/"><strong>Asphalt Shingles</strong><br>Cost-effective, durable options.</a>
+      <a class="card" href="/services/residential/tile-roof/"><strong>Clay &amp; Concrete Tile</strong><br>Classic look, long life.</a>
+      <a class="card" href="/services/residential/tpo/"><strong>TPO Single-Ply</strong><br>Energy-efficient membranes.</a>
+      <a class="card" href="/services/residential/silicone/"><strong>Silicone Coatings</strong><br>Restore &amp; extend roof life.</a>
+      <a class="card" href="/services/residential/torch-down/"><strong>Torch Down Systems</strong><br>Flat/low-slope solutions.</a>
+      <a class="card" href="/services/residential/tile-lift-lay/"><strong>Tile Lift &amp; Reset</strong><br>Underlayment replacement.</a>
+    </div>
+
+    <h2 style="margin-top:28px">Roof Repairs &amp; Maintenance</h2>
+    <div class="grid">
+      <a class="card" href="/services/roof-repairs/"><strong>Leak Repair &amp; Troubleshooting</strong><br>Quick diagnostics &amp; fixes.</a>
+      <a class="card" href="/services/roof-repairs/roof-tune-up/"><strong>Roof Tune-Up</strong><br>Seal, fasteners, flashing, cleanup.</a>
+      <a class="card" href="/services/roof-repairs/flat-roof-repair/"><strong>Flat Roof Repair</strong><br>TPO/PVC/torch down patches.</a>
+      <a class="card" href="/services/gutters/"><strong>Seamless Gutters</strong><br>Custom colors &amp; leaf guards.</a>
+      <a class="card" href="/services/roof-inspection/"><strong>Roof Inspections</strong><br>Sale, insurance, and maintenance.</a>
+    </div>
+
+    <h2 style="margin-top:28px">Commercial Roofing</h2>
+    <div class="grid">
+      <a class="card" href="/services/commercial/tpo/"><strong>TPO Roofing</strong><br>Cool roof, welded seams.</a>
+      <a class="card" href="/services/commercial/pvc/"><strong>PVC Membranes</strong><br>Grease &amp; chemical resistance.</a>
+      <a class="card" href="/services/commercial/torch-down/"><strong>Torch Down</strong><br>Durable modified bitumen.</a>
+      <a class="card" href="/services/commercial/silicone-coatings/"><strong>Silicone Restoration</strong><br>Renew aging flat roofs.</a>
+      <a class="card" href="/services/commercial/roof-asset-maintenance/"><strong>Roof Asset Maintenance</strong><br>Planned inspections &amp; care.</a>
+    </div>
+
+    <details>
+      <summary>Why Zenith?</summary>
+      <ul>
+        <li>Licensed &amp; insured (Lic #1036112)</li>
+        <li>Clear pricing and written scope</li>
+        <li>Top materials + trained installers</li>
+      </ul>
+    </details>
+
+    <div class="cta">
+      <a class="btn btn-primary" href="/index.html#estimate">Get My Free Estimate</a>
+      <a class="btn btn-outline" href="/projects/">See Recent Projects</a>
+    </div>
   </main>
-  <div id="site-footer"></div>
+
+  <div data-include="/components/footer.html"></div>
+  <script src="/js/loader.js" defer></script>
   <script src="/js/header.js" defer></script>
-  <script>
-    async function include(id, url){
-      const el = document.getElementById(id);
-      try { const res = await fetch(url); el.innerHTML = await res.text(); }
-      catch(e) { el.innerHTML = ""; }
-    }
-    (async () => {
-      await include('site-header','/components/header-section.html');
-      await include('site-footer','/components/footer.html');
-      if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
-    })();
-  </script>
 </body>
 </html>
