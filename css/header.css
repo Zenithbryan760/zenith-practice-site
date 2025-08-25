@@ -419,3 +419,25 @@ body.nav-open::after{
 .nav-bar.underline-ltr .nav-links a:hover::after{ width:100%; left:0; }
 .nav-bar.underline-ltr .nav-links a.is-active::after,
 .nav-bar.underline-ltr .nav-links a[aria-current="page"]::after{ width:100%; left:0; }
+
+
+/* --- Prevent tall menus from getting cut off --- */
+.dropdown-menu{
+  max-height: min(70vh, 520px);   /* fits on small laptops */
+  overflow: auto;                 /* scroll inside panel if needed */
+  overscroll-behavior: contain;   /* avoid scrolling the page by accident */
+}
+
+/* When JS decides a flyout should open LEFT instead of right */
+.dropdown-submenu > .submenu.open-left{
+  left: auto !important;
+  right: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 10px !important;
+}
+
+/* Smooth scrolling inside menus on ChromeOS */
+.dropdown-menu::-webkit-scrollbar,
+.submenu::-webkit-scrollbar{ width: 8px; }
+.dropdown-menu::-webkit-scrollbar-thumb,
+.submenu::-webkit-scrollbar-thumb{ background: rgba(7,46,89,.25); border-radius: 8px; }
