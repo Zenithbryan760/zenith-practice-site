@@ -2,32 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Glossary | Roofing Terms</title>
+  <title>Roofing Glossary | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Roofing glossary for homeowners.">
-  <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <style>.page{max-width:900px;margin:24px auto;padding:0 16px} dt{font-weight:700;margin-top:12px}</style>
 </head>
 <body>
-  <div id="site-header"></div>
-  <main style="max-width:1200px;margin:24px auto;padding:0 16px;">
-    
-    <h1>Glossary</h1>
-    <p>Starter page. Replace this with your content.</p><p><a class="call-button" href="tel:8589006163">Call 858-900-6163</a></p>
+  <div data-include="/components/header-section.html"></div>
+  <main class="page">
+    <h1>Roofing Glossary</h1>
+    <dl>
+      <dt>Underlayment</dt><dd>Water-resistant layer beneath tile/shingle systems.</dd>
+      <dt>Flashing</dt><dd>Metal pieces that seal roof joints (chimneys, walls, vents).</dd>
+      <dt>Cool Roof</dt><dd>Roofing designed to reflect more sunlight and absorb less heat.</dd>
+    </dl>
   </main>
-  <div id="site-footer"></div>
+  <div data-include="/components/footer.html"></div>
+  <script src="/js/loader.js" defer></script>
   <script src="/js/header.js" defer></script>
-  <script>
-    async function include(id, url){
-      const el = document.getElementById(id);
-      try { const res = await fetch(url); el.innerHTML = await res.text(); }
-      catch(e) { el.innerHTML = ""; }
-    }
-    (async () => {
-      await include('site-header','/components/header-section.html');
-      await include('site-footer','/components/footer.html');
-      if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
-    })();
-  </script>
 </body>
 </html>
