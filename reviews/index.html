@@ -2,32 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Reviews | Zenith Roofing Services</title>
+  <title>Customer Reviews | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Customer reviews and testimonials.">
-  <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <style>
+    .page{max-width:900px;margin:24px auto;padding:0 16px}
+    blockquote{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;margin:12px 0;box-shadow:0 10px 30px rgba(2,14,32,.08)}
+    .stars{color:#f7941d}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+    .btn{display:inline-block;padding:10px 16px;border-radius:999px;font-weight:700;text-decoration:none}
+    .btn-primary{background:#f7941d;color:#072e59}
+    .btn-outline{border:2px solid #f7941d;color:#f7941d}
+  </style>
 </head>
 <body>
-  <div id="site-header"></div>
-  <main style="max-width:1200px;margin:24px auto;padding:0 16px;">
-    
-    <h1>Reviews</h1>
-    <p>Starter page. Replace this with your content.</p><p><a class="call-button" href="tel:8589006163">Call 858-900-6163</a></p>
+  <div data-include="/components/header-section.html"></div>
+  <main class="page">
+    <h1>Customer Reviews</h1>
+    <p>Homeowners and business owners trust Zenith for honest evaluations and quality work.</p>
+
+    <blockquote>
+      <div class="stars">★★★★★</div>
+      “Fast, professional, and fairly priced. Leak fixed the first visit.” — <strong>Emily R.</strong>, San Diego
+    </blockquote>
+    <blockquote>
+      <div class="stars">★★★★★</div>
+      “Tile underlayment replacement looks great. Crew kept the site spotless.” — <strong>Mark L.</strong>, Escondido
+    </blockquote>
+    <blockquote>
+      <div class="stars">★★★★★</div>
+      “They explained options clearly and finished on time.” — <strong>James P.</strong>, Temecula
+    </blockquote>
+
+    <div class="cta">
+      <a class="btn btn-primary" href="/index.html#estimate">Request Free Estimate</a>
+      <a class="btn btn-outline" href="tel:8589006163">Call/Text 858-900-6163</a>
+    </div>
   </main>
-  <div id="site-footer"></div>
+  <div data-include="/components/footer.html"></div>
+  <script src="/js/loader.js" defer></script>
   <script src="/js/header.js" defer></script>
-  <script>
-    async function include(id, url){
-      const el = document.getElementById(id);
-      try { const res = await fetch(url); el.innerHTML = await res.text(); }
-      catch(e) { el.innerHTML = ""; }
-    }
-    (async () => {
-      await include('site-header','/components/header-section.html');
-      await include('site-footer','/components/footer.html');
-      if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
-    })();
-  </script>
 </body>
 </html>
