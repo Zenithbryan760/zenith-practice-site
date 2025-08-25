@@ -1,3 +1,6 @@
+mkdir -p youtube
+
+cat > youtube/index.html <<'HTML'
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,20 +17,24 @@
   </style>
 </head>
 <body>
-  <div data-include="components/header-section.html"></div>
+  <!-- absolute include paths so it works from /youtube/ -->
+  <div data-include="/components/header-section.html"></div>
 
   <main class="page">
     <h1>Latest Videos</h1>
     <div class="grid">
-      <!-- Replace VIDEO_IDs with your actual video IDs -->
+      <!-- Replace VIDEO_ID_* with real IDs from your channel -->
       <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen title="Zenith Roofing video 1"></iframe>
       <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen title="Zenith Roofing video 2"></iframe>
       <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen title="Zenith Roofing video 3"></iframe>
     </div>
+    <p><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">See the full channel →</a></p>
   </main>
 
-  <div data-include="components/footer.html"></div>
+  <div data-include="/components/footer.html"></div>
+
   <script src="/js/loader.js" defer></script>
   <script src="/js/header.js" defer></script>
 </body>
 </html>
+HTML
