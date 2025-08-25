@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>YouTube Videos | Zenith Roofing Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- site styles -->
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/header.css">
+
+  <style>
+    .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:24px 0;}
+    .video-grid iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;box-shadow:0 10px 30px rgba(2,14,32,.14)}
+    .page{max-width:1200px;margin:24px auto;padding:0 16px;}
+  </style>
+</head>
+<body>
+  <!-- Header include -->
+  <div data-include="/components/header-section.html"></div>
+
+  <main class="page">
+    <h1>Roofing Videos</h1>
+    <p>Tips, repairs, installs, and behind-the-scenes from our YouTube channel.</p>
+
+    <!-- Replace VIDEO_ID_x with your real video IDs -->
+    <section class="video-grid">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" title="Video 1" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Video 2" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" title="Video 3" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" title="Video 4" allowfullscreen loading="lazy"></iframe>
+    </section>
+
+    <p><a href="https://www.youtube.com/@ZenithRoofingServices" target="_blank" rel="noopener">See the full channel on YouTube →</a></p>
+  </main>
+
+  <!-- Footer include -->
+  <div data-include="/components/footer.html"></div>
+
+  <script src="/js/loader.js" defer></script>
+  <script src="/js/header.js" defer></script>
+</body>
+</html>
