@@ -4,8 +4,12 @@
   <meta charset="utf-8">
   <title>Roofing Services | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/css/base.css">
+
+  <!-- same CSS order as your working page -->
   <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/footer.css">
+
   <style>
     .page{max-width:1200px;margin:24px auto;padding:0 16px}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
@@ -17,17 +21,15 @@
     details{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-top:12px}
     details>summary{font-weight:700;cursor:pointer}
 
-    /* --- FIX: make card link text visible --- */
-    .grid a.card,
-    .grid a.card:visited { color:#0f172a !important; text-decoration:none }
-    .grid a.card * { color:inherit !important }     /* children keep same color */
-    .grid a.card strong { display:block; margin-bottom:4px }
-    .grid a.card:hover { color:#f7941d !important; border-color:#f7941d }
+    /* ensure text inside card links stays readable */
+    .grid a.card, .grid a.card:visited{color:#0f172a!important;text-decoration:none}
+    .grid a.card *{color:inherit!important}
+    .grid .card strong{display:block;margin-bottom:4px}
   </style>
-  <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
-  <div data-include="/components/header-section.html"></div>
+  <!-- header include (same pattern as your working page) -->
+  <div id="site-header"></div>
 
   <main class="page">
     <h1>Roofing Services</h1>
@@ -81,8 +83,26 @@
     </div>
   </main>
 
-  <div data-include="/components/footer.html"></div>
-  <script src="/js/loader.js" defer></script>
+  <!-- footer include (same pattern as working page) -->
+  <div id="site-footer"></div>
+
+  <!-- same scripts as your working page -->
   <script src="/js/header.js" defer></script>
+  <script>
+    async function include(id, url){
+      const el = document.getElementById(id);
+      try {
+        const res = await fetch(url);
+        el.innerHTML = await res.text();
+      } catch(e) {
+        el.innerHTML = "";
+      }
+    }
+    (async () => {
+      await include('site-header','/components/header-section.html');
+      await include('site-footer','/components/footer.html');
+      if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
+    })();
+  </script>
 </body>
 </html>
