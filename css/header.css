@@ -487,3 +487,9 @@ body.nav-open::after{
   background: rgba(7,46,89,.25);
   border-radius: 8px;
 }
+
+
+/* Clickable logo wrapper (keeps same layout as the old div) */
+.header .header-inner > .logo-section.logo-link{ display:flex; align-items:center; }
+.mobile-header .logo-section.logo-link{ display:flex; align-items:center; }
+.logo-link .logo{ display:block; }

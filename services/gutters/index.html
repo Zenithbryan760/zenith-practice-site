@@ -342,7 +342,7 @@
         const headerHost = document.getElementById('site-header');
         const footerHost = document.getElementById('site-footer');
         if (headerHost) {
-          const res = await fetch('/components/header.html', {cache:'no-store'});
+          const res = await fetch('/components/header-section.html', {cache:'no-store'});
           headerHost.innerHTML = await res.text();
         }
         if (footerHost) {
@@ -352,6 +352,20 @@
         // Optional: add a class so your existing mobile logic can hide the hero logo when nav collapses
         document.documentElement.classList.add('nav-collapsible-ready');
       } catch (e) { console.warn('Header/Footer include failed:', e); }
+    })();
+  </script>
+
+  <script src="/js/header.js" defer></script>
+  <script>
+    async function include(id, url){
+      const el = document.getElementById(id);
+      try { const res = await fetch(url, {cache:'no-store'}); el.innerHTML = await res.text(); }
+      catch(e) { el.innerHTML = ""; }
+    }
+    (async () => {
+      await include('site-header','/components/header-section.html');
+      await include('site-footer','/components/footer.html');
+      if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
     })();
   </script>
 </body>

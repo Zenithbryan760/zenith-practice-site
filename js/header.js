@@ -119,7 +119,15 @@
       resizeBound = true;
     }
 
-    // --- [C] Mobile accordions (inside .mobile-nav) ---
+    
+    // Close the off‑canvas if any normal link is tapped inside the mobile nav
+    mobileNav.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      if (link.classList.contains('accordion-toggle')) return; // ignore accordion toggles
+      closeMobile(menuToggle);
+    });
+// --- [C] Mobile accordions (inside .mobile-nav) ---
     // Delegate once to the current mobileNav
     if (boundMobileNav !== mobileNav) {
       // If we had a previous nav element, no need to "unbind" because we delegate to the element itself
