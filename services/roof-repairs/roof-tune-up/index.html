@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#072e59" />
   <title>Roof Tune-Up & Maintenance in North County San Diego, San Diego & Temecula | Zenith Roofing Services</title>
-  <meta name="description" content="Professional roof tune-ups for shingle, tile, TPO/PVC, built-up, silicone coatings, metal, and SPF foam. Residential & commercial maintenance: seal pipes/collars, reseal flashings, clean gutters, seal drains, restore granules, and more across North County San Diego, San Diego & Temecula." />
+  <meta name="description" content="Professional roof tune-ups for shingle, tile, TPO/PVC, built-up, silicone, metal, and SPF foam. Residential & commercial: seal pipes/collars, reseal flashings, clean gutters, seal drains, restore granules—photo reports included. Serving North County San Diego, San Diego & Temecula." />
 
   <!-- Core site CSS -->
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/header.css" />
-  <!-- Shared UI layer -->
   <link rel="stylesheet" href="/css/ui.css" />
   <link rel="stylesheet" href="/css/footer.css" />
 
@@ -31,11 +31,8 @@
       background:#fff;
     }
 
-    /* Checklist bullets */
     .page .checklist{ list-style:none; margin:.5rem 0 .75rem 0; padding:0; }
-    .page .checklist li{
-      display:flex; gap:.5rem; align-items:flex-start; margin:.35rem 0;
-    }
+    .page .checklist li{ display:flex; gap:.5rem; align-items:flex-start; margin:.35rem 0; }
     .page .checklist .tick{
       flex:0 0 auto; width:1.15rem; height:1.15rem; border-radius:999px;
       border:2px solid var(--zenith-orange,#f7941d);
@@ -43,34 +40,27 @@
       font-size:.8rem; line-height:1; color:var(--zenith-orange,#f7941d);
     }
 
-    /* Pricing/plan highlights using existing .card */
     .page .plans{ display:grid; gap:16px; }
     @media (min-width:860px){ .page .plans{ grid-template-columns:1fr 1fr; } }
     .page .plan .price{ font-weight:800; font-size:1.25rem; margin:.25rem 0 .5rem; color:#0f172a; }
     .page .plan small{ color:#6b7280; }
 
-    /* System micro-cards (reuse .card look but lighter) */
     .page .micro-grid{ display:grid; gap:12px; }
     @media (min-width:860px){ .page .micro-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
     .page .micro{ border-radius:12px; border:1px dashed var(--line,#e5e7eb); padding:12px 14px; background:#fff; }
 
-    /* Gallery */
     .page .gallery{ display:grid; gap:12px; grid-template-columns:1fr 1fr; }
     @media (max-width:640px){ .page .gallery{ grid-template-columns:1fr; } }
     .page .gallery img{ border-radius:12px; width:100%; height:auto; display:block; }
 
-    /* CTA banner */
     .page .cta-band{
       background: linear-gradient(90deg, #072e59, #0b3a6f);
       color:#fff; border-radius:14px; padding:16px 18px; display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;
     }
     .page .cta-band .btn-primary{ color:#0b0b0b; }
-
-    /* Keep FAQ scoped (the look comes from /css/ui.css .faq) */
   </style>
 </head>
 <body>
-  <!-- Anchor so footer “↑ Top” works everywhere -->
   <span id="top" aria-hidden="true"></span>
 
   <!-- Header include -->
@@ -85,7 +75,7 @@
         <span class="chip">Reseal flashings</span>
         <span class="chip">Clean gutters &amp; downspouts</span>
         <span class="chip">Seal drains &amp; scuppers</span>
-        <span class="chip">Granule restoration (shingle)</span>
+        <span class="chip">Granule restoration</span>
         <span class="chip">Minor shingle/tile resets</span>
         <span class="chip">Debris &amp; valley clean-out</span>
         <span class="chip">Photo report</span>
@@ -96,14 +86,16 @@
       </div>
     </section>
 
-    <!-- Quick jump nav -->
-    <nav class="pillnav" aria-label="Sections">
-      <a href="#included">What’s Included</a>
-      <a href="#systems">By Roof System</a>
-      <a href="#plans">Maintenance Plans</a>
-      <a href="#gallery">Before &amp; After</a>
-      <a href="#faq">FAQ</a>
-    </nav>
+    <!-- Sticky pills (mobile convenience) -->
+    <div class="sticky-pills">
+      <nav class="pillnav" aria-label="Sections">
+        <a href="#included">What’s Included</a>
+        <a href="#systems">By Roof System</a>
+        <a href="#plans">Maintenance Plans</a>
+        <a href="#gallery">Before &amp; After</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
 
     <section id="included" class="card">
       <h2>What’s Included in a Roof Tune-Up</h2>
@@ -116,7 +108,7 @@
             <li><span class="tick">✓</span> Clear valleys &amp; roof debris; check <strong>valley metal</strong></li>
             <li><span class="tick">✓</span> Seal <strong>drains &amp; scuppers</strong>; correct minor ponding paths where feasible</li>
             <li><span class="tick">✓</span> Re-adhere/replace <strong>loose shingles or tiles</strong> (minor resets)</li>
-            <li><span class="tick">✓</span> <strong>Granule restoration</strong> &amp; protective seal (as appropriate on shingles)</li>
+            <li><span class="tick">✓</span> <strong>Granule restoration</strong> &amp; protective seal on shingles (as appropriate)</li>
             <li><span class="tick">✓</span> Tighten/replace <strong>metal fasteners</strong> with new neoprene washers (select areas)</li>
             <li><span class="tick">✓</span> Photo documentation &amp; <strong>repair recommendations</strong></li>
           </ul>
@@ -125,14 +117,14 @@
         <div>
           <h3>Best For</h3>
           <ul class="list">
-            <li>Roofs that are generally in good condition but due for maintenance</li>
+            <li>Roofs in generally good condition but due for maintenance</li>
             <li>Homes preparing for sale or renewing insurance</li>
-            <li>Commercial roofs needing scheduled care to protect interiors &amp; tenants</li>
+            <li>Commercial roofs needing scheduled care (tenants/interiors)</li>
           </ul>
-          <h3>Add-Ons (Popular &amp; Profitable)</h3>
+          <h3>Add-Ons (High-Value)</h3>
           <ul class="list">
             <li>Skylight re-seal or curb rebuild</li>
-            <li>Gutter guards (keeps debris out)</li>
+            <li>Gutter guards (reduce clogging)</li>
             <li>Solar penetration re-flash</li>
             <li>Attic check for active moisture</li>
           </ul>
@@ -156,7 +148,7 @@
           <ul class="checklist">
             <li><span class="tick">✓</span> Reset slipped/cracked tiles</li>
             <li><span class="tick">✓</span> Valley clean-out &amp; metal inspection</li>
-            <li><span class="tick">✓</span> Targeted underlayment checks at trouble spots</li>
+            <li><span class="tick">✓</span> Targeted underlayment checks</li>
           </ul>
         </div>
         <div class="micro">
@@ -210,7 +202,7 @@
           <p class="price">Best for residential</p>
           <ul class="checklist">
             <li><span class="tick">✓</span> 1 visit per year (post-storm timing available)</li>
-            <li><span class="tick">✓</span> Photo report &amp; estimate for recommended repairs</li>
+            <li><span class="tick">✓</span> Photo report &amp; estimate for recommendations</li>
             <li><span class="tick">✓</span> Priority scheduling</li>
           </ul>
           <div class="cta">
@@ -233,16 +225,16 @@
           </div>
         </article>
       </div>
-      <p class="tip"><strong>ROI:</strong> A single avoided interior leak (drywall/paint/flooring) can pay for years of tune-ups—especially on flat roofs with drains and scuppers.</p>
+      <p class="tip"><strong>ROI:</strong> Avoiding one interior leak (drywall/paint/flooring) can pay for years of tune-ups—especially on flat roofs with drains and scuppers.</p>
     </section>
 
     <section id="gallery" class="card">
       <h2>Before &amp; After</h2>
       <div class="gallery">
-        <img src="/images/repairs/tuneup-valley-before.jpg" alt="Valley cleared of debris during roof tune-up" loading="lazy" decoding="async" />
-        <img src="/images/repairs/tuneup-drain-sealed.jpg" alt="Roof drain resealed as part of tune-up" loading="lazy" decoding="async" />
-        <img src="/images/repairs/tuneup-collar.jpg" alt="New pipe collar installed and sealed" loading="lazy" decoding="async" />
-        <img src="/images/repairs/tuneup-metal-lap.jpg" alt="Metal lap sealed with butyl and fasteners replaced" loading="lazy" decoding="async" />
+        <img src="/images/repairs/tuneup-valley-before.jpg" width="1280" height="853" alt="Valley cleared of debris during roof tune-up" loading="lazy" decoding="async" />
+        <img src="/images/repairs/tuneup-drain-sealed.jpg" width="1280" height="853" alt="Roof drain resealed as part of tune-up" loading="lazy" decoding="async" />
+        <img src="/images/repairs/tuneup-collar.jpg" width="1280" height="853" alt="New pipe collar installed and sealed" loading="lazy" decoding="async" />
+        <img src="/images/repairs/tuneup-metal-lap.jpg" width="1280" height="853" alt="Metal lap sealed with butyl and fasteners replaced" loading="lazy" decoding="async" />
       </div>
     </section>
 
@@ -271,12 +263,19 @@
       </details>
       <details>
         <summary>Residential and commercial?</summary>
-        <div class="muted">Yes—single-family homes, HOAs, retail/office, light industrial. We tailor visit frequency and reporting to your property.</div>
+        <div class="muted">Yes—single-family homes, HOAs, retail/office, and light industrial. We tailor visit frequency and reporting to your property.</div>
       </details>
     </section>
 
     <p class="muted">Zenith Roofing Services, Inc. • CA License #1036112 C-39 • North County San Diego &amp; Temecula</p>
   </main>
+
+  <!-- Mobile quick-actions (only shows on mobile via CSS) -->
+  <nav class="actionbar" role="navigation" aria-label="Mobile quick actions">
+    <a class="ab-btn call" href="tel:8589006163" aria-label="Call 858-900-6163">Call</a>
+    <a class="ab-btn text" href="sms:8589006163" aria-label="Text 858-900-6163">Text</a>
+    <a class="ab-btn estimate" href="/index.html#estimate" aria-label="Get a Free Estimate">Estimate</a>
+  </nav>
 
   <!-- Footer include -->
   <div data-include="/components/footer.html"></div>
@@ -285,7 +284,7 @@
   <script src="/js/loader.js" defer></script>
   <script src="/js/header.js" defer></script>
 
-  <!-- Structured data: Service + FAQ -->
+  <!-- Schema: Service + FAQ -->
   <script type="application/ld+json">{
     "@context":"https://schema.org",
     "@type":"Service",
