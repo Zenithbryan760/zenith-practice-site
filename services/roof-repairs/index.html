@@ -3,75 +3,128 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#072e59" />
   <title>Roof Repairs in North County San Diego, San Diego & Temecula | Zenith Roofing Services</title>
-  <meta name="description" content="Licensed, local roof repair experts for shingle, tile, TPO/PVC, built-up, silicone coatings, metal panels, and SPF foam. Fast diagnostics, clear pricing, and durable repairs across North County San Diego, the rest of San Diego, Temecula & nearby." />
+  <meta name="description" content="Fast diagnostics and durable roof repairs for shingle, tile, TPO/PVC, built-up/torch, silicone coatings, metal panels, and SPF foam. Photo reports, clear pricing, and warranties across North County San Diego, the rest of San Diego, and Temecula." />
 
   <!-- Core site CSS -->
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/header.css" />
-  <!-- New shared UI layer -->
   <link rel="stylesheet" href="/css/ui.css" />
   <link rel="stylesheet" href="/css/footer.css" />
+
+  <!-- Page-scoped enhancements (safe; all under .page) -->
+  <style>
+    .page .hero{
+      background: linear-gradient(135deg, #f8fafc, #eef6ff);
+      border:1px solid var(--line,#e5e7eb);
+      border-radius:18px;
+      padding:24px 20px;
+      box-shadow:0 12px 28px rgba(2,12,32,.06);
+      margin:6px 0 18px;
+    }
+    .page .hero h1{ margin:0 0 .5rem; }
+    .page .hero-feats{ display:flex; flex-wrap:wrap; gap:8px; margin-top:.5rem; }
+    .page .chip{
+      border:1px solid var(--ui-line,#e5e7eb);
+      border-radius:999px; padding:.4rem .7rem; font-weight:600; background:#fff;
+    }
+    /* Reuse from tune-up page for consistency */
+    .page .checklist{ list-style:none; margin:.5rem 0 .75rem 0; padding:0; }
+    .page .checklist li{ display:flex; gap:.5rem; align-items:flex-start; margin:.35rem 0; }
+    .page .checklist .tick{
+      flex:0 0 auto; width:1.15rem; height:1.15rem; border-radius:999px;
+      border:2px solid var(--zenith-orange,#f7941d);
+      display:inline-flex; align-items:center; justify-content:center;
+      font-size:.8rem; line-height:1; color:var(--zenith-orange,#f7941d);
+    }
+    .page .gallery{ display:grid; gap:12px; grid-template-columns:1fr 1fr; }
+    @media (max-width:640px){ .page .gallery{ grid-template-columns:1fr; } }
+    .page .gallery img{ border-radius:12px; width:100%; height:auto; display:block; }
+    .page .cta-band{
+      background: linear-gradient(90deg, #072e59, #0b3a6f);
+      color:#fff; border-radius:14px; padding:16px 18px; display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;
+    }
+    .page .cta-band .btn-primary{ color:#0b0b0b; }
+  </style>
 </head>
 <body>
-  <!-- Anchor so footer “↑ Top” works everywhere -->
   <span id="top" aria-hidden="true"></span>
 
   <!-- Header include -->
   <div data-include="/components/header-section.html"></div>
 
   <main class="page">
-    <h1>Roof Repairs</h1>
-    <p class="lede">Fast diagnostics, photo-documented findings, and durable repairs for <strong>shingle</strong>, <strong>tile</strong>, <strong>TPO/PVC</strong>, <strong>built-up</strong>, <strong>silicone-coated</strong>, <strong>metal</strong>, and <strong>SPF foam</strong> roofs. We prioritize <strong>North County San Diego</strong>, then the rest of <strong>San Diego</strong>, and <strong>Temecula & surrounding areas</strong>.</p>
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Roof Repairs</h1>
+      <p class="lede">Fast diagnostics, photo-documented findings, and durable repairs for <strong>shingle</strong>, <strong>tile</strong>, <strong>TPO/PVC</strong>, <strong>built-up/torch</strong>, <strong>silicone-coated</strong>, <strong>metal</strong>, and <strong>SPF foam</strong> roofs. We prioritize <strong>North County San Diego</strong>, then the rest of <strong>San Diego</strong>, and <strong>Temecula</strong>.</p>
+      <div class="hero-feats">
+        <span class="chip">Leak detection</span>
+        <span class="chip">Flashing & penetrations</span>
+        <span class="chip">Tile/shingle replacement</span>
+        <span class="chip">TPO/PVC heat-weld patches</span>
+        <span class="chip">Metal lap & fasteners</span>
+        <span class="chip">SPF + coating touch-ups</span>
+        <span class="chip">Emergency dry-in</span>
+        <span class="chip">Photo report & warranty</span>
+      </div>
+      <div class="cta" style="margin-top:12px">
+        <a class="btn btn-primary" href="/index.html#estimate">Request Free Estimate</a>
+        <a class="btn btn-outline" href="tel:8589006163" aria-label="Call 858-900-6163">Call 858-900-6163</a>
+      </div>
+    </section>
 
-    <!-- Quick jump nav for AI & users -->
-    <nav class="pillnav" aria-label="Repair types">
-      <a href="#shingle">Shingle</a>
-      <a href="#tile">Tile</a>
-      <a href="#tpo">TPO / PVC</a>
-      <a href="#builtup">Built-Up</a>
-      <a href="#silicone">Silicone Coatings</a>
-      <a href="#metal">Metal Roofs</a>
-      <a href="#metal-panels">Metal Panels</a>
-      <a href="#spf">SPF Foam</a>
-    </nav>
-
-    <div class="cta">
-      <a class="btn btn-primary" href="/index.html#estimate">Request Free Estimate</a>
-      <a class="btn btn-outline" href="tel:8589006163">Call 858-900-6163</a>
+    <!-- Sticky pills (mobile convenience) -->
+    <div class="sticky-pills">
+      <nav class="pillnav" aria-label="Sections">
+        <a href="#process">Process</a>
+        <a href="#shingle">Shingle</a>
+        <a href="#tile">Tile</a>
+        <a href="#tpo">TPO / PVC</a>
+        <a href="#builtup">Built-Up</a>
+        <a href="#silicone">Silicone</a>
+        <a href="#metal">Metal</a>
+        <a href="#metal-panels">Metal Panels</a>
+        <a href="#spf">SPF</a>
+        <a href="#guide">Repair vs Replace</a>
+        <a href="#areas">Service Areas</a>
+        <a href="#faq">FAQ</a>
+      </nav>
     </div>
 
-    <section class="card">
+    <!-- PROCESS -->
+    <section id="process" class="card">
       <h2>Our Repair Process</h2>
       <div class="grid cols-2">
         <div>
           <ol class="list">
-            <li><strong>Conversation &amp; leak history:</strong> when it started, previous attempts, attic access if available.</li>
-            <li><strong>Targeted inspection:</strong> roof surface, flashings, penetrations, valleys, transitions, and nearby slope changes.</li>
-            <li><strong>Diagnosis with photos:</strong> you get a photo set with notes so you see what we see.</li>
-            <li><strong>Clear scope &amp; price:</strong> itemized by task and materials; we flag any risks or unknowns up-front.</li>
-            <li><strong>Repair day:</strong> we protect landscaping, perform the scope, and seal/weld/fasten per manufacturer specs.</li>
-            <li><strong>Water test (as needed):</strong> controlled hose test to confirm the leak stop when conditions allow.</li>
-            <li><strong>Wrap-up &amp; warranty:</strong> photos of completed work and written warranty for the repair area.</li>
+            <li><strong>Conversation &amp; leak history:</strong> timing, prior attempts, attic access if available.</li>
+            <li><strong>Targeted inspection:</strong> surface, flashings, penetrations, valleys, transitions.</li>
+            <li><strong>Diagnosis with photos:</strong> you get a labeled photo set.</li>
+            <li><strong>Clear scope &amp; price:</strong> itemized; risks/unknowns flagged up-front.</li>
+            <li><strong>Repair day:</strong> perform scope per manufacturer specs.</li>
+            <li><strong>Water test (as needed):</strong> controlled hose test to confirm.</li>
+            <li><strong>Wrap-up &amp; warranty:</strong> completion photos + written warranty.</li>
           </ol>
-          <p class="tip"><strong>Rule of thumb in Southern California:</strong> once a roof system is <strong>~25+ years</strong> old (or tile underlayment is past its life), larger repairs often cost more over time than a planned replacement. We’ll always tell you when a replacement is the smarter spend.</p>
+          <p class="tip"><strong>SoCal rule of thumb:</strong> around <strong>~25+ years</strong>, chasing leaks often outspends a planned replacement—if that’s the smarter move, we’ll say so.</p>
         </div>
         <div>
           <h3>Common Homeowner Situations</h3>
-          <ul class="list">
-            <li><strong>Wind-lifted shingles</strong> after Santa Ana winds.</li>
-            <li><strong>Slipped/cracked tiles</strong> and aging felt underlayment causing hidden leaks.</li>
-            <li><strong>Flat roof ponding</strong> and <strong>open seams</strong> at TPO/PVC laps.</li>
-            <li><strong>Rusty valley metal</strong> or <strong>improperly sealed penetrations</strong>.</li>
-            <li><strong>Built-up blisters</strong> and alligatoring from UV exposure.</li>
-            <li><strong>Metal fastener back-out</strong> and failed neoprene washers.</li>
-            <li><strong>SPF foam cracks</strong> or worn topcoat exposing foam.</li>
+          <ul class="checklist">
+            <li><span class="tick">✓</span> <strong>Wind-lifted shingles</strong> (Santa Anas)</li>
+            <li><span class="tick">✓</span> <strong>Slipped/cracked tiles</strong>, aging underlayment</li>
+            <li><span class="tick">✓</span> <strong>TPO/PVC</strong> open seams or punctures</li>
+            <li><span class="tick">✓</span> <strong>Rusty valley metal</strong> or leaky penetrations</li>
+            <li><span class="tick">✓</span> <strong>BUR/torch</strong> blisters, alligatoring</li>
+            <li><span class="tick">✓</span> <strong>Metal</strong> fastener back-out, failed washers</li>
+            <li><span class="tick">✓</span> <strong>SPF</strong> cracks or worn topcoat</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- ========================= Systems ========================= -->
+    <!-- SYSTEMS -->
     <section id="shingle" class="sys card">
       <h2>Asphalt Shingle Roof Repairs</h2>
       <small>Architectural &amp; 3-tab shingles</small>
@@ -79,25 +132,25 @@
         <div>
           <h3>Typical Repairs</h3>
           <ul class="list">
-            <li>Replace wind-damaged or missing shingles; seal tabs.</li>
-            <li>Reflash or reseal pipe jacks, skylights, chimneys.</li>
-            <li>Repair step/roof-to-wall flashing and cricket transitions.</li>
-            <li>Address nail pops, exposed fasteners, and ridge vent leaks.</li>
+            <li>Replace wind-damaged/missing shingles; seal tabs</li>
+            <li>Reflash pipe jacks, skylights, chimneys</li>
+            <li>Repair step/roof-to-wall flashing &amp; crickets</li>
+            <li>Address nail pops, exposed fasteners, ridge vent leaks</li>
           </ul>
           <h3>When Repair Makes Sense</h3>
           <ul class="list">
-            <li>Isolated storm damage on an otherwise healthy roof (&lt; 15–20 yrs).</li>
-            <li>Localized leaks around one penetration or transition.</li>
+            <li>Isolated storm damage on a healthy roof (&lt; 15–20 yrs)</li>
+            <li>Localized leaks around one penetration/transition</li>
           </ul>
         </div>
         <div>
           <h3>Consider Replacement</h3>
           <ul class="list">
-            <li>Widespread granule loss, brittle shingles, or frequent blow-offs.</li>
-            <li>Multiple leaks across different areas.</li>
-            <li>System age approaching <strong>~25+ years</strong> in SoCal conditions.</li>
+            <li>Widespread granule loss, brittle shingles, frequent blow-offs</li>
+            <li>Multiple leaks across different areas</li>
+            <li>System age near <strong>~25+ years</strong></li>
           </ul>
-          <p class="tip"><strong>Temporary fix:</strong> asphalt mastic and replacement shingles can stop water now; plan a larger repair when weather clears.</p>
+          <p class="tip"><strong>Temporary fix:</strong> mastic + replacement shingles can bridge a storm; plan larger repair in dry weather.</p>
         </div>
       </div>
     </section>
@@ -109,24 +162,24 @@
         <div>
           <h3>Typical Repairs</h3>
           <ul class="list">
-            <li>Replace cracked/slipped tiles; reset with proper headlap.</li>
-            <li>Open and repair valleys; replace rusted or undersized valley metal.</li>
-            <li>Localized underlayment replacement where leaks occur.</li>
-            <li>Reflash roof-to-wall, headwall, skylight, and chimney areas.</li>
+            <li>Replace cracked/slipped tiles; proper headlap</li>
+            <li>Open/repair valleys; replace rusted or undersized valley metal</li>
+            <li>Localized underlayment replacement where leaks occur</li>
+            <li>Reflash roof-to-wall, headwall, skylight, chimneys</li>
           </ul>
           <h3>Homeowner Scenarios</h3>
           <ul class="list">
-            <li>Ceiling stain near a valley after a heavy rain.</li>
-            <li>Leak at a second-story wall where the patio cover meets the roof.</li>
+            <li>Ceiling stain near a valley after heavy rain</li>
+            <li>Leak where second-story wall meets patio cover roof</li>
           </ul>
         </div>
         <div>
           <h3>Repair vs. Replace</h3>
           <ul class="list">
-            <li>Tiles often outlast the <strong>underlayment</strong>; if the felt is aged/brittle widely, a <em>lift &amp; lay</em> is smarter than chasing leaks.</li>
-            <li>For small areas, localized underlayment repair is fine; for recurring leaks, plan for full underlayment replacement.</li>
+            <li>Tiles outlast <strong>underlayment</strong>; widespread brittle felt ⇒ choose <em>lift &amp; lay</em></li>
+            <li>Small areas: localized underlayment repair; recurring leaks: full underlayment</li>
           </ul>
-          <p class="tip"><strong>Temporary fix:</strong> emergency tile reset and valley clean-out to stop water until we perform underlayment work.</p>
+          <p class="tip"><strong>Temporary fix:</strong> emergency tile reset + valley clean-out to stop water until underlayment work.</p>
         </div>
       </div>
     </section>
@@ -138,24 +191,24 @@
         <div>
           <h3>Typical Repairs</h3>
           <ul class="list">
-            <li>Weld patches over open seams, fishmouths, or punctures.</li>
-            <li>Reflash pipes, HVAC stands, drains, and curb units.</li>
-            <li>Add walkway pads; adjust scuppers/drains for ponding areas.</li>
+            <li>Weld patches over open seams/fishmouths/punctures</li>
+            <li>Reflash pipes, HVAC stands, drains, curb units</li>
+            <li>Add walkpads; adjust scuppers/drains for ponding</li>
           </ul>
           <h3>When Repair Works</h3>
           <ul class="list">
-            <li>Membrane is in decent condition with isolated seam failures.</li>
-            <li>Penetration leaks from aged flashings.</li>
+            <li>Membrane otherwise sound with isolated seam failures</li>
+            <li>Penetration leaks from aged flashings</li>
           </ul>
         </div>
         <div>
           <h3>Consider Replacement</h3>
           <ul class="list">
-            <li>Extensive UV chalking, brittleness, or widespread seam failure.</li>
-            <li>Water trapped under the membrane (wet insulation).</li>
-            <li>System age near <strong>~20–25+ years</strong> depending on exposure.</li>
+            <li>UV chalking/brittleness; widespread seam failure</li>
+            <li>Wet insulation trapped beneath</li>
+            <li>Age near <strong>~20–25+ years</strong></li>
           </ul>
-          <p class="tip"><strong>Temporary fix:</strong> membrane-compatible tape and targeted heat-welded patches can bridge a storm; schedule permanent repairs in dry weather.</p>
+          <p class="tip"><strong>Temporary fix:</strong> membrane-compatible tape + targeted heat-weld patches until permanent work.</p>
         </div>
       </div>
     </section>
@@ -167,23 +220,23 @@
         <div>
           <h3>Typical Repairs</h3>
           <ul class="list">
-            <li>Cut and patch blisters; reinforce with modified bitumen.</li>
-            <li>Seal alligatoring and splits; recoat as needed.</li>
-            <li>Reflash drains, scuppers, and metal edge transitions.</li>
+            <li>Cut/patch blisters; reinforce with mod-bit</li>
+            <li>Seal alligatoring &amp; splits; recoat as needed</li>
+            <li>Reflash drains, scuppers, metal edge transitions</li>
           </ul>
           <h3>Homeowner Scenarios</h3>
           <ul class="list">
-            <li>Ceiling spots after hot days followed by a rain (blister popped).</li>
-            <li>Leak at the low point near a drain or scupper.</li>
+            <li>Ceiling spots after hot days then rain (blister popped)</li>
+            <li>Leak near drain/scupper low point</li>
           </ul>
         </div>
         <div>
           <h3>Repair vs. Replace</h3>
           <ul class="list">
-            <li>Repairs are reliable if the plies are still sound and dry.</li>
-            <li>Widespread alligatoring/cracking or trapped moisture suggests new system.</li>
+            <li>Repairs reliable if plies are sound/dry</li>
+            <li>Widespread cracking or moisture ⇒ new system</li>
           </ul>
-          <p class="tip"><strong>Temporary fix:</strong> cold-applied mastic with polyester reinforcement to stop active drips until full repairs.</p>
+          <p class="tip"><strong>Temporary fix:</strong> cold-applied mastic + polyester reinforcement to stop active drips.</p>
         </div>
       </div>
     </section>
@@ -195,23 +248,23 @@
         <div>
           <h3>Typical Repairs</h3>
           <ul class="list">
-            <li>Re-seal penetrations, seams, and terminations with silicone.</li>
-            <li>Patch worn-through or thin areas; address ponding spots.</li>
-            <li>Prep &amp; recoat aged/chalked surfaces per manufacturer spec.</li>
+            <li>Re-seal penetrations, seams, terminations with silicone</li>
+            <li>Patch thin/worn areas; address ponding spots</li>
+            <li>Prep &amp; recoat aged/chalked surfaces</li>
           </ul>
           <h3>When Repair Works</h3>
           <ul class="list">
-            <li>Coating is mostly intact; substrate below is dry and sound.</li>
-            <li>Isolated mechanical damage or traffic wear.</li>
+            <li>Coating mostly intact; substrate dry and sound</li>
+            <li>Isolated mechanical/traffic wear</li>
           </ul>
         </div>
         <div>
           <h3>Consider Replacement</h3>
           <ul class="list">
-            <li>Coating failure exposing the original membrane or foam widely.</li>
-            <li>Poor adhesion from improper prep; saturated substrate.</li>
+            <li>Coating failure widely exposing substrate</li>
+            <li>Poor adhesion from improper prep; saturated substrate</li>
           </ul>
-          <p class="tip"><strong>Temporary fix:</strong> clean/dry and apply silicone-compatible patch to bridge a rainy week.</p>
+          <p class="tip"><strong>Temporary fix:</strong> clean/dry area and apply silicone-compatible patch.</p>
         </div>
       </div>
     </section>
@@ -223,23 +276,23 @@
         <div>
           <h3>Typical Repairs</h3>
           <ul class="list">
-            <li>Tighten/replace fasteners and neoprene washers; add stitch screws.</li>
-            <li>Seal end-laps and side-laps with butyl tape + compatible sealants.</li>
-            <li>Reflash penetrations and curbs; replace failed boots.</li>
+            <li>Tighten/replace fasteners &amp; neoprene washers</li>
+            <li>Seal end-laps &amp; side-laps with butyl + compatible sealants</li>
+            <li>Reflash penetrations/curbs; replace failed boots</li>
           </ul>
           <h3>Homeowner Scenarios</h3>
           <ul class="list">
-            <li>Drip during wind-driven rain along panel laps.</li>
-            <li>Rust staining at fastener rows or edges.</li>
+            <li>Drip during wind-driven rain along panel laps</li>
+            <li>Rust staining at fastener rows or edges</li>
           </ul>
         </div>
         <div>
           <h3>Repair vs. Replace</h3>
           <ul class="list">
-            <li>Good candidates: limited corrosion, isolated fastener back-out.</li>
-            <li>Consider new panels if there’s widespread corrosion or structural issues.</li>
+            <li>Good: limited corrosion, isolated fastener back-out</li>
+            <li>Replace: widespread corrosion or structural issues</li>
           </ul>
-          <p class="tip"><strong>Temporary fix:</strong> replace critical fasteners and apply butyl-backed reinforcement at active leak points.</p>
+          <p class="tip"><strong>Temporary fix:</strong> replace critical fasteners + butyl-backed reinforcement at active leaks.</p>
         </div>
       </div>
     </section>
@@ -251,16 +304,16 @@
         <div>
           <h3>Typical Repairs</h3>
           <ul class="list">
-            <li>Replace damaged panels; correct panel end-lap distances.</li>
-            <li>Re-seat closures; add foam closures where missing.</li>
-            <li>Seal panel penetrations (solar, satellite, additions) correctly.</li>
+            <li>Replace damaged panels; correct end-lap distances</li>
+            <li>Re-seat closures; add foam closures where missing</li>
+            <li>Seal panel penetrations (solar, satellite, additions)</li>
           </ul>
         </div>
         <div>
           <h3>When to Re-panel</h3>
           <ul class="list">
-            <li>Hail/mechanical damage across large areas.</li>
-            <li>Severe oil-canning or misalignment causing chronic leaks.</li>
+            <li>Hail/mechanical damage across large areas</li>
+            <li>Severe oil-canning or misalignment causing leaks</li>
           </ul>
         </div>
       </div>
@@ -273,29 +326,29 @@
         <div>
           <h3>Typical Repairs</h3>
           <ul class="list">
-            <li>Scarify (remove) damaged foam, re-foam, shape for drainage.</li>
-            <li>Recoat with silicone/acrylic where topcoat is thin or worn.</li>
-            <li>Seal penetrations, scuppers, and parapet transitions.</li>
+            <li>Scarify damaged foam; re-foam; shape for drainage</li>
+            <li>Recoat where topcoat is thin/worn</li>
+            <li>Seal penetrations, scuppers, parapet transitions</li>
           </ul>
           <h3>Homeowner Scenarios</h3>
           <ul class="list">
-            <li>Topcoat worn through from UV; yellow foam showing.</li>
-            <li>Cracks where foam transitions meet equipment curbs.</li>
+            <li>Topcoat worn through (yellow foam showing)</li>
+            <li>Cracks at transitions/equipment curbs</li>
           </ul>
         </div>
         <div>
           <h3>Repair vs. Replace</h3>
           <ul class="list">
-            <li>Repairs are effective when foam is dry and structurally sound.</li>
-            <li>If saturation is present, cut-out and replacement are necessary.</li>
+            <li>Effective when foam is dry and sound</li>
+            <li>If saturation is present, cut-out &amp; replacement</li>
           </ul>
-          <p class="tip"><strong>Temporary fix:</strong> compatible coating patches to protect exposed foam until full repairs.</p>
+          <p class="tip"><strong>Temporary fix:</strong> compatible coating patches to protect exposed foam.</p>
         </div>
       </div>
     </section>
 
-    <!-- ========================= Guidance ========================= -->
-    <section class="card">
+    <!-- GUIDE -->
+    <section id="guide" class="card">
       <h2>Repair vs. Replacement — Quick Guide</h2>
       <table class="table" aria-label="Repair vs replacement guide">
         <thead>
@@ -304,18 +357,18 @@
         <tbody>
           <tr><td>Shingle</td><td>Isolated storm damage; single-area leaks</td><td>Multiple areas failing; brittle shingles; ~25+ years</td></tr>
           <tr><td>Tile</td><td>Localized underlayment repair; tile reset</td><td>Underlayment aged widely; recurring valley/wall leaks</td></tr>
-          <tr><td>TPO/PVC</td><td>Isolated seam or flashing failures</td><td>Widespread seam failure; saturated insulation; ~20–25+ years</td></tr>
-          <tr><td>Built-Up/Mod-Bit</td><td>Discrete blisters/splits; sound plies</td><td>Alligatoring &amp; cracking across field; moisture trapped</td></tr>
+          <tr><td>TPO/PVC</td><td>Isolated seam or flashing failures</td><td>Widespread seam failure; wet insulation; ~20–25+ years</td></tr>
+          <tr><td>Built-Up/Mod-Bit</td><td>Discrete blisters/splits; sound plies</td><td>Alligatoring &amp; cracking across field; trapped moisture</td></tr>
           <tr><td>Silicone Coating</td><td>Touch-ups &amp; re-seals on sound substrate</td><td>Poor adhesion; coating failure exposing substrate</td></tr>
           <tr><td>Metal</td><td>Fastener &amp; lap detail repairs</td><td>Widespread corrosion or panel failure</td></tr>
           <tr><td>SPF Foam</td><td>Dry foam with limited damage</td><td>Saturated foam; widespread topcoat loss</td></tr>
         </tbody>
       </table>
-      <p class="muted">We’ll always present both options when appropriate and explain the long-term cost picture—no pressure.</p>
+      <p class="muted">We’ll present both paths and explain long-term cost—no pressure.</p>
     </section>
 
-    <!-- ========================= Service Areas ========================= -->
-    <section class="card service-areas">
+    <!-- AREAS -->
+    <section id="areas" class="card">
       <h2>Service Areas</h2>
       <p>We prioritize <strong>North County San Diego</strong>, then the rest of <strong>San Diego County</strong>, and <strong>Temecula &amp; surrounding areas</strong>.</p>
       <ul class="list">
@@ -325,49 +378,61 @@
       </ul>
     </section>
 
-    <!-- ========================= FAQs (scoped) ========================= -->
-    <section class="card faq">
+    <!-- CTA BAND -->
+    <section class="cta-band">
+      <p><strong>Ready to fix your roof?</strong> Same-week repairs in North County, San Diego &amp; Temecula.</p>
+      <div class="cta" style="margin:0">
+        <a class="btn btn-primary" href="/index.html#estimate">Start Your Repair</a>
+        <a class="btn btn-outline" href="/projects/">See Recent Repairs</a>
+      </div>
+    </section>
+
+    <!-- FAQ (scoped so footer stays navy) -->
+    <section id="faq" class="card faq">
       <h2>Roof Repair FAQs</h2>
       <details>
         <summary>How fast can you stop an active leak?</summary>
-        <div class="muted">During rain, we can often provide emergency dry-in (tarping or temporary patch) the same day. Permanent repairs follow when it’s dry and safe to work.</div>
+        <div class="muted">During rain, we often provide emergency dry-in the same day. Permanent repairs follow when it’s dry and safe to work.</div>
       </details>
       <details>
         <summary>Do repairs come with a warranty?</summary>
-        <div class="muted">Yes—repairs include a workmanship warranty for the specific repair area. If we see signs that a larger replacement is the smarter move, we’ll tell you up-front.</div>
+        <div class="muted">Yes—workmanship warranty for the specific repair area. If replacement is the smarter spend, we’ll say so up-front.</div>
       </details>
       <details>
         <summary>Will you match my shingles or tiles?</summary>
-        <div class="muted">We source the closest available match. Weathering and discontinued lines can create slight color differences; we’ll show you options before work begins.</div>
+        <div class="muted">We source the closest available match; weathering/discontinued lines can create slight differences—we’ll show options first.</div>
       </details>
       <details>
         <summary>Do small repairs extend the life of a very old roof?</summary>
-        <div class="muted">Repairs can buy time, but for systems around <strong>~25+ years</strong> in SoCal, recurring repairs can outspend a planned replacement. We’ll help you weigh both paths.</div>
+        <div class="muted">Repairs can buy time, but for systems near <strong>~25+ years</strong>, recurring fixes can outspend a planned replacement.</div>
       </details>
     </section>
-
-    <div class="cta">
-      <a class="btn btn-primary" href="/index.html#estimate">Start Your Repair</a>
-      <a class="btn btn-outline" href="/projects/">See Recent Repairs</a>
-    </div>
 
     <p class="muted">Zenith Roofing Services, Inc. • CA License #1036112 C-39 • Escondido &amp; Temecula based</p>
   </main>
 
+  <!-- Mobile quick-actions (only shows on mobile via CSS) -->
+  <nav class="actionbar" role="navigation" aria-label="Mobile quick actions">
+    <a class="ab-btn call" href="tel:8589006163" aria-label="Call 858-900-6163">Call</a>
+    <a class="ab-btn text" href="sms:8589006163" aria-label="Text 858-900-6163">Text</a>
+    <a class="ab-btn estimate" href="/index.html#estimate" aria-label="Get a Free Estimate">Estimate</a>
+  </nav>
+
   <!-- Footer include -->
   <div data-include="/components/footer.html"></div>
 
-  <!-- Loader & header scripts -->
+  <!-- Scripts -->
   <script src="/js/loader.js" defer></script>
   <script src="/js/header.js" defer></script>
 
-  <!-- Structured data (unchanged) -->
+  <!-- Schema: Service + FAQ -->
   <script type="application/ld+json">{
-    "@context":"https://schema.org","@type":"Service","name":"Roof Repair",
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Roof Repair",
     "serviceType":"Residential and Commercial Roof Repair",
-    "provider":{"@type":"LocalBusiness","name":"Zenith Roofing Services, Inc.",
-      "areaServed":["North County San Diego","San Diego County","Temecula","Murrieta","Menifee","Oceanside","Escondido","Carlsbad","San Marcos"]},
-    "areaServed":[{"@type":"City","name":"Escondido"},{"@type":"City","name":"San Marcos"},{"@type":"City","name":"Vista"},{"@type":"City","name":"Carlsbad"},{"@type":"City","name":"Oceanside"},{"@type":"City","name":"Encinitas"},{"@type":"City","name":"Poway"},{"@type":"City","name":"San Diego"},{"@type":"City","name":"Temecula"},{"@type":"City","name":"Murrieta"}],
+    "provider":{"@type":"LocalBusiness","name":"Zenith Roofing Services, Inc."},
+    "areaServed":["North County San Diego","San Diego County","Temecula","Murrieta","Menifee","Oceanside","Escondido","Carlsbad","San Marcos","Vista"],
     "hasOfferCatalog":{"@type":"OfferCatalog","name":"Roof Repair Types","itemListElement":[
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Shingle Roof Repair"}},
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Tile Roof Repair"}},
@@ -376,16 +441,18 @@
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Silicone Coating Repair"}},
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Metal Roof Repair"}},
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Metal Panel Repair"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"SPF Foam Roof Repair"}]
-    }}
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"SPF Foam Roof Repair"}}
+    ]}
   }</script>
 
   <script type="application/ld+json">{
-    "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-      {"@type":"Question","name":"How fast can you stop an active leak?","acceptedAnswer":{"@type":"Answer","text":"During rain, we can often provide emergency dry-in (tarping or temporary patch) the same day. Permanent repairs follow when it’s dry and safe to work."}},
-      {"@type":"Question","name":"Do repairs come with a warranty?","acceptedAnswer":{"@type":"Answer","text":"Yes—repairs include a workmanship warranty for the specific repair area. If we see signs that a larger replacement is the smarter move, we’ll tell you up-front."}},
-      {"@type":"Question","name":"Will you match my shingles or tiles?","acceptedAnswer":{"@type":"Answer","text":"We source the closest available match. Weathering and discontinued lines can create slight color differences; we’ll show you options before work begins."}},
-      {"@type":"Question","name":"Do small repairs extend the life of a very old roof?","acceptedAnswer":{"@type":"Answer","text":"Repairs can buy time, but for systems around ~25+ years in SoCal, recurring repairs can outspend a planned replacement. We’ll help you weigh both paths."}}
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"How fast can you stop an active leak?","acceptedAnswer":{"@type":"Answer","text":"During rain, we often provide emergency dry-in the same day. Permanent repairs follow when it’s dry and safe to work."}},
+      {"@type":"Question","name":"Do repairs come with a warranty?","acceptedAnswer":{"@type":"Answer","text":"Yes—workmanship warranty for the specific repair area. If replacement is the smarter spend, we’ll say so up-front."}},
+      {"@type":"Question","name":"Will you match my shingles or tiles?","acceptedAnswer":{"@type":"Answer","text":"We source the closest available match; weathering/discontinued lines can create slight differences—we’ll show options first."}},
+      {"@type":"Question","name":"Do small repairs extend the life of a very old roof?","acceptedAnswer":{"@type":"Answer","text":"Repairs can buy time, but for systems near ~25+ years, recurring fixes can outspend a planned replacement."}}
     ]
   }</script>
 </body>
