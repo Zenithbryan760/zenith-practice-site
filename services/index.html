@@ -17,9 +17,12 @@
     details{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-top:12px}
     details>summary{font-weight:700;cursor:pointer}
 
-    /* FIX: ensure text inside full-card links is visible on white cards */
-    a.card { color:#0f172a; text-decoration:none; }
-    a.card:hover { color:#f7941d; }
+    /* --- FIX: make card link text visible --- */
+    .grid a.card,
+    .grid a.card:visited { color:#0f172a !important; text-decoration:none }
+    .grid a.card * { color:inherit !important }     /* children keep same color */
+    .grid a.card strong { display:block; margin-bottom:4px }
+    .grid a.card:hover { color:#f7941d !important; border-color:#f7941d }
   </style>
   <link rel="stylesheet" href="/css/footer.css">
 </head>
@@ -37,30 +40,30 @@
 
     <h2>Residential Roofing</h2>
     <div class="grid">
-      <a class="card" href="/services/residential/asphalt-shingles/"><strong>Asphalt Shingles</strong><br>Cost-effective, durable options.</a>
-      <a class="card" href="/services/residential/tile-roof/"><strong>Clay &amp; Concrete Tile</strong><br>Classic look, long life.</a>
-      <a class="card" href="/services/residential/tpo/"><strong>TPO Single-Ply</strong><br>Energy-efficient membranes.</a>
-      <a class="card" href="/services/residential/silicone/"><strong>Silicone Coatings</strong><br>Restore &amp; extend roof life.</a>
-      <a class="card" href="/services/residential/torch-down/"><strong>Torch Down Systems</strong><br>Flat/low-slope solutions.</a>
-      <a class="card" href="/services/residential/tile-lift-lay/"><strong>Tile Lift &amp; Reset</strong><br>Underlayment replacement.</a>
+      <a class="card" href="/services/residential/asphalt-shingles/"><strong>Asphalt Shingles</strong>Cost-effective, durable options.</a>
+      <a class="card" href="/services/residential/tile-roof/"><strong>Clay &amp; Concrete Tile</strong>Classic look, long life.</a>
+      <a class="card" href="/services/residential/tpo/"><strong>TPO Single-Ply</strong>Energy-efficient membranes.</a>
+      <a class="card" href="/services/residential/silicone/"><strong>Silicone Coatings</strong>Restore &amp; extend roof life.</a>
+      <a class="card" href="/services/residential/torch-down/"><strong>Torch Down Systems</strong>Flat/low-slope solutions.</a>
+      <a class="card" href="/services/residential/tile-lift-lay/"><strong>Tile Lift &amp; Reset</strong>Underlayment replacement.</a>
     </div>
 
     <h2 style="margin-top:28px">Roof Repairs &amp; Maintenance</h2>
     <div class="grid">
-      <a class="card" href="/services/roof-repairs/"><strong>Leak Repair &amp; Troubleshooting</strong><br>Quick diagnostics &amp; fixes.</a>
-      <a class="card" href="/services/roof-repairs/roof-tune-up/"><strong>Roof Tune-Up</strong><br>Seal, fasteners, flashing, cleanup.</a>
-      <a class="card" href="/services/roof-repairs/flat-roof-repair/"><strong>Flat Roof Repair</strong><br>TPO/PVC/torch down patches.</a>
-      <a class="card" href="/services/gutters/"><strong>Seamless Gutters</strong><br>Custom colors &amp; leaf guards.</a>
-      <a class="card" href="/services/roof-inspection/"><strong>Roof Inspections</strong><br>Sale, insurance, and maintenance.</a>
+      <a class="card" href="/services/roof-repairs/"><strong>Leak Repair &amp; Troubleshooting</strong>Quick diagnostics &amp; fixes.</a>
+      <a class="card" href="/services/roof-repairs/roof-tune-up/"><strong>Roof Tune-Up</strong>Seal, fasteners, flashing, cleanup.</a>
+      <a class="card" href="/services/roof-repairs/flat-roof-repair/"><strong>Flat Roof Repair</strong>TPO/PVC/torch down patches.</a>
+      <a class="card" href="/services/gutters/"><strong>Seamless Gutters</strong>Custom colors &amp; leaf guards.</a>
+      <a class="card" href="/services/roof-inspection/"><strong>Roof Inspections</strong>Sale, insurance, and maintenance.</a>
     </div>
 
     <h2 style="margin-top:28px">Commercial Roofing</h2>
     <div class="grid">
-      <a class="card" href="/services/commercial/tpo/"><strong>TPO Roofing</strong><br>Cool roof, welded seams.</a>
-      <a class="card" href="/services/commercial/pvc/"><strong>PVC Membranes</strong><br>Grease &amp; chemical resistance.</a>
-      <a class="card" href="/services/commercial/torch-down/"><strong>Torch Down</strong><br>Durable modified bitumen.</a>
-      <a class="card" href="/services/commercial/silicone-coatings/"><strong>Silicone Restoration</strong><br>Renew aging flat roofs.</a>
-      <a class="card" href="/services/commercial/roof-asset-maintenance/"><strong>Roof Asset Maintenance</strong><br>Planned inspections &amp; care.</a>
+      <a class="card" href="/services/commercial/tpo/"><strong>TPO Roofing</strong>Cool roof, welded seams.</a>
+      <a class="card" href="/services/commercial/pvc/"><strong>PVC Membranes</strong>Grease &amp; chemical resistance.</a>
+      <a class="card" href="/services/commercial/torch-down/"><strong>Torch Down</strong>Durable modified bitumen.</a>
+      <a class="card" href="/services/commercial/silicone-coatings/"><strong>Silicone Restoration</strong>Renew aging flat roofs.</a>
+      <a class="card" href="/services/commercial/roof-asset-maintenance/"><strong>Roof Asset Maintenance</strong>Planned inspections &amp; care.</a>
     </div>
 
     <details>
