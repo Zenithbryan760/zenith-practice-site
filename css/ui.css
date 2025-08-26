@@ -1,32 +1,42 @@
 /* =========================================================
-   Zenith UI — shared components for all interior pages
-   Safe scope: .page, .faq, and specific component classes
+   Zenith UI — Shared components for all interior pages
+   Scope: .page (content), .faq (accordions), component classes
+   Footer safety: nothing targets #site-footer, so it's unaffected
    ========================================================= */
 
-/* Design tokens (fallbacks to your root vars) */
+/* ========== 0) Design tokens & safe resets ========== */
 :root{
   --ui-radius: 14px;
   --ui-line: var(--line, #e5e7eb);
   --ui-bg: var(--surface, #ffffff);
   --ui-muted: var(--muted, #6b7280);
   --ui-shadow: 0 12px 28px rgba(2,12,32,.08);
+  -webkit-tap-highlight-color: transparent; /* better iOS taps */
 }
 
-/* ---------- Layout ---------- */
+/* Reduce animation if user prefers */
+@media (prefers-reduced-motion: reduce){
+  .page .btn,
+  .page .actionbar .ab-btn { transition: none; }
+}
+
+/* ========== 1) Page layout & text helpers ========== */
 .page{ max-width:1040px; margin:24px auto; padding:0 16px; }
 .page .lede{ font-size:1.1rem; color:#334155; margin:.5rem 0 1.25rem; }
 .page .muted{ color:var(--ui-muted); }
 
-/* Simple responsive grid */
-.page .grid{ display:grid; gap:18px; }
-.page .grid.cols-2{ grid-template-columns:1fr; }
-@media (min-width:860px){ .page .grid.cols-2{ grid-template-columns:1fr 1fr; } }
-
-/* Section anchors */
+/* Section anchors (for in-page links / sticky pills) */
 .page .sys{ scroll-margin-top:88px; }
 .page .sys small{ color:var(--ui-muted); }
 
-/* ---------- Cards ---------- */
+/* ========== 2) Grid utilities ========== */
+.page .grid{ display:grid; gap:18px; }
+.page .grid.cols-2{ grid-template-columns:1fr; }
+@media (min-width:860px){
+  .page .grid.cols-2{ grid-template-columns:1fr 1fr; }
+}
+
+/* ========== 3) Cards ========== */
 .page .card{
   background:var(--ui-bg);
   border:1px solid var(--ui-line);
@@ -34,15 +44,22 @@
   padding:18px;
   box-shadow:var(--ui-shadow);
 }
+/* Airier card option for dense sections */
+.page .card.airy{ padding:22px 18px; }
+@media (max-width:480px){
+  .page .card{ padding:14px; border-radius:12px; }
+  .page .card.airy{ padding:18px 16px; }
+}
 
-/* ---------- Buttons ---------- */
+/* ========== 4) Buttons & CTAs ========== */
 .page .cta{ display:flex; gap:12px; flex-wrap:wrap; margin:16px 0; }
 .page .btn{
   display:inline-flex; align-items:center; justify-content:center;
-  padding:10px 16px; min-height:44px;
+  padding:10px 16px; min-height:44px; font-size:1rem; /* avoids iOS zoom */
   border-radius:999px; font-weight:700; text-decoration:none;
-  transition:transform .12s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
-  outline: none;
+  transition:transform .12s ease, box-shadow .2s ease,
+             background-color .2s ease, color .2s ease, border-color .2s ease;
+  outline:none;
 }
 .page .btn:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:2px; }
 .page .btn:hover{ transform:translateY(-1px); }
@@ -53,7 +70,7 @@
 }
 .page .btn-outline:hover{ background:rgba(247,148,29,.08); }
 
-/* ---------- Pills / quick nav ---------- */
+/* ========== 5) Pill nav (quick jump) ========== */
 .page .pillnav{ display:flex; flex-wrap:wrap; gap:8px; margin:.75rem 0 1rem; }
 .page .pillnav a{
   border:1px solid var(--ui-line); border-radius:999px;
@@ -61,113 +78,143 @@
 }
 .page .pillnav a:hover{ background:#f8fafc; }
 
-/* ---------- Lists ---------- */
+/* Sticky pills under header (keeps nav handy) */
+.page .sticky-pills{
+  position:sticky; top:var(--header-offset, 64px);
+  z-index:30; background:#fff; border-bottom:1px solid var(--ui-line); padding:8px 0;
+}
+
+/* ========== 6) Lists (generic & checklist) ========== */
 .page .list{ margin:.5rem 0 .75rem .95rem; }
 .page .list li{ margin:.25rem 0; }
 
-/* ---------- Tips / callouts ---------- */
+/* Icon checklist (with tick) */
+.page .checklist{ list-style:none; margin:.5rem 0 .75rem 0; padding:0; }
+.page .checklist li{ display:flex; gap:.5rem; align-items:flex-start; margin:.35rem 0; }
+.page .checklist .tick{
+  flex:0 0 auto; width:1.15rem; height:1.15rem; margin-top:.1rem;
+  border-radius:999px; border:2px solid var(--zenith-orange,#f7941d);
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:.8rem; line-height:1; color:var(--zenith-orange,#f7941d);
+}
+/* Professional rhythm */
+.page .checklist.relaxed li{ margin:.6rem 0; line-height:1.55; }
+/* Two-column checklist on wider phones and up */
+.page .checklist.grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:10px 18px; }
+.page .checklist.grid-2 li{ margin:0; } /* grid controls spacing */
+@media (max-width:380px){
+  .page .checklist.grid-2{ grid-template-columns:1fr; }
+}
+
+/* Optional dividers for long checklists */
+.page .checklist.with-dividers li{ padding:8px 0; border-bottom:1px solid var(--ui-line); }
+.page .checklist.with-dividers li:last-child{ border-bottom:0; }
+
+/* ========== 7) Tips / callouts ========== */
 .page .tip{
   font-size:.95rem; color:#334155; background:#f8fafc;
   border-left:4px solid var(--zenith-orange,#f7941d);
   padding:.75rem .9rem; border-radius:8px; margin:.75rem 0;
 }
 
-/* ---------- Tables ---------- */
+/* ========== 8) Tables ========== */
 .page .table{ width:100%; border-collapse:separate; border-spacing:0; }
 .page .table th, .page .table td{ border:1px solid var(--ui-line); padding:.6rem .7rem; }
 .page .table th{ background:#f9fafb; text-align:left; }
+@media (max-width:480px){
+  .page .table th, .page .table td{ padding:.5rem .55rem; }
+}
 
-/* ---------- Service areas ---------- */
-.page .service-areas ul{ columns:2; gap:1rem; }
-@media (max-width:640px){ .page .service-areas ul{ columns:1; } }
-
-/* ---------- Media helpers (images/figures) ---------- */
+/* ========== 9) Media helpers (images/figures) ========== */
 .page .media{ margin:1rem 0; }
 .page .media img{ display:block; width:100%; height:auto; border-radius:12px; }
 .page .media figcaption{ font-size:.9rem; color:var(--ui-muted); margin-top:.4rem; }
 
-/* ---------- FAQ (scoped!) ---------- */
-/* IMPORTANT: Only FAQ sections get the white accordion look.
-   This prevents footer <details> from turning into white cards. */
+/* ========== 10) Hero block (optional shared page header) ========== */
+.page .hero{
+  background:linear-gradient(135deg,#f8fafc,#eef6ff);
+  border:1px solid var(--ui-line);
+  border-radius:18px;
+  padding:24px 20px;
+  box-shadow:0 12px 28px rgba(2,12,32,.06);
+  margin:6px 0 18px;
+}
+.page .hero h1{ margin:0 0 .5rem; }
+.page .hero-feats{ display:flex; flex-wrap:wrap; gap:8px; margin-top:.5rem; }
+.page .chip{
+  border:1px solid var(--ui-line);
+  border-radius:999px; padding:.4rem .7rem; background:#fff; font-weight:600;
+}
+
+/* ========== 11) System micro-panels (small info cards) ========== */
+.page .micro-grid{ display:grid; gap:12px; }
+@media (min-width:860px){
+  .page .micro-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+.page .micro{
+  border-radius:12px; border:1px dashed var(--ui-line); padding:12px 14px; background:#fff;
+}
+
+/* ========== 12) Gallery grid ========== */
+.page .gallery{ display:grid; gap:12px; grid-template-columns:1fr 1fr; }
+.page .gallery img{ border-radius:12px; width:100%; height:auto; display:block; }
+@media (max-width:640px){ .page .gallery{ grid-template-columns:1fr; } }
+
+/* ========== 13) Service areas (columns) ========== */
+.page .service-areas ul{ columns:2; gap:1rem; }
+@media (max-width:640px){ .page .service-areas ul{ columns:1; } }
+
+/* ========== 14) FAQ (scoped to avoid footer conflicts) ========== */
+/* Only .page .faq details get the white accordion look */
 .page .faq details{
   border:1px solid var(--ui-line); border-radius:10px;
   padding:12px 14px; background:#fff;
 }
 .page .faq details + details{ margin-top:10px; }
-.page .faq summary{
-  cursor:pointer; font-weight:700; color:#0f172a;
-}
+.page .faq summary{ cursor:pointer; font-weight:700; color:#0f172a; }
 .page .faq summary::-webkit-details-marker{ display:none; }
 
-/* Motion-respect */
-@media (prefers-reduced-motion:reduce){
-  .page .btn{ transition:none; }
-}
-/* ===== Mobile-first trust & speed helpers ===== */
-
-/* Sticky sub-nav (keeps pills handy under the header) */
-.page .sticky-pills {
-  position: sticky;
-  top: 64px;            /* adjust if header is taller */
-  z-index: 30;
-  background: #fff;
-  border-bottom: 1px solid var(--ui-line, #e5e7eb);
-  padding: 8px 0;
+/* ========== 15) Sticky quick nav (already set above) mobile tweaks ========== */
+@media (max-width:700px){
+  .page .pillnav{ overflow-x:auto; white-space:nowrap; gap:6px; padding-bottom:6px; -webkit-overflow-scrolling:touch; }
+  .page .pillnav a{ display:inline-block; padding:.55rem .8rem; }
 }
 
-/* Bottom mobile action bar: Call / Text / Estimate */
-.page .actionbar {
-  position: fixed;
-  left: 0; right: 0; bottom: 0;
-  z-index: 60;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  padding: 8px max(8px, env(safe-area-inset-right))
+/* ========== 16) Bottom mobile action bar (Call / Text / Estimate) ========== */
+.page .actionbar{
+  position:fixed; left:0; right:0; bottom:0; z-index:60;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:8px;
+  padding:8px max(8px, env(safe-area-inset-right))
            max(8px, env(safe-area-inset-bottom))
            max(8px, env(safe-area-inset-left));
-  background: #fff;
-  border-top: 1px solid var(--ui-line, #e5e7eb);
-  box-shadow: 0 -10px 24px rgba(2,12,32,.08);
+  background:#fff; border-top:1px solid var(--ui-line);
+  box-shadow:0 -10px 24px rgba(2,12,32,.08);
 }
-.page .actionbar .ab-btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-height: 48px; border-radius: 12px; font-weight: 800;
-  text-decoration: none; border: 2px solid transparent;
-  transition: transform .12s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+.page .actionbar .ab-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:48px; border-radius:12px; font-weight:800; font-size:1rem;
+  text-decoration:none; border:2px solid transparent;
+  transition:transform .12s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
 }
-.page .actionbar .ab-btn:focus-visible { outline: 3px solid rgba(247,148,29,.35); outline-offset: 2px; }
-.page .actionbar .ab-btn:hover { transform: translateY(-1px); }
+.page .actionbar .ab-btn:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:2px; }
+.page .actionbar .ab-btn:hover{ transform:translateY(-1px); }
+.page .actionbar .ab-btn.call{ background:var(--zenith-orange,#f7941d); color:#0b0b0b; }
+.page .actionbar .ab-btn.text{ background:transparent; border-color:var(--zenith-orange,#f7941d); color:var(--zenith-orange,#f7941d); }
+.page .actionbar .ab-btn.estimate{ background:var(--zenith-navy,#072e59); color:#fff; }
+/* Hide action bar on larger screens */
+@media (min-width:821px){ .page .actionbar{ display:none; } }
 
-.page .actionbar .ab-btn.call { background: var(--zenith-orange,#f7941d); color: #0b0b0b; }
-.page .actionbar .ab-btn.text { background: transparent; border-color: var(--zenith-orange,#f7941d); color: var(--zenith-orange,#f7941d); }
-.page .actionbar .ab-btn.estimate { background: var(--zenith-navy,#072e59); color: #fff; }
+/* ========== 17) iPhone 15 Pro Max polish (<=480px) ========== */
+@media (max-width:480px){
+  /* Safe space so content never hides behind action bar */
+  .page{ padding:10px 12px; padding-bottom:calc(96px + env(safe-area-inset-bottom)); }
 
-/* Only show action bar on mobile */
-@media (min-width: 821px){ .page .actionbar { display: none; } }
-
-/* Optional: keep the existing pillnav but nicer target sizes on mobile */
-@media (max-width: 700px){
-  .page .pillnav a { padding: .55rem .8rem; }
-}
-
-/* Tap comfort + subtle polish */
-:root { -webkit-tap-highlight-color: transparent; }
-.page .btn, .page .ab-btn { font-size: 1rem; }   /* avoids iOS zoom on tap */
-@media (prefers-reduced-motion: reduce){
-  .page .actionbar .ab-btn, .page .btn { transition: none; }
-}
-/* ===== iPhone 15 Pro Max mobile polish (<=480px) ===== */
-@media (max-width: 480px){
-  /* Layout + safe space for bottom action bar */
-  .page{ padding: 10px 12px; padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
-
-  /* Hero density */
+  /* Compact hero on phone */
   .page .hero{ border-radius:14px; padding:16px 14px; margin:8px 0 12px; }
   .page .hero h1{ font-size:1.5rem; line-height:1.2; margin-bottom:.35rem; }
   .page .lede{ font-size:1rem; }
 
-  /* Chips: horizontal scroll (fast scan, no wrap mess) */
+  /* Chips & pills: smooth horizontal scroll */
   .page .hero-feats{
     display:grid; grid-auto-flow:column; grid-auto-columns:max-content;
     gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:6px;
@@ -175,35 +222,18 @@
   }
   .page .chip{ white-space:nowrap; scroll-snap-align:start; }
 
-  /* Sticky pills under header */
-  .sticky-pills{ top: var(--header-offset, 56px); padding:6px 0; }
-  .page .pillnav{ overflow-x:auto; white-space:nowrap; gap:6px; padding-bottom:6px; -webkit-overflow-scrolling:touch; }
-  .page .pillnav a{ display:inline-block; }
+  .page .sticky-pills{ padding:6px 0; }
+  .page [id]{ scroll-margin-top:110px; } /* account for sticky header */
 
-  /* Cards + grids */
-  .page .card{ padding:14px; border-radius:12px; }
+  /* Grids on phone */
   .page .grid.cols-2{ grid-template-columns:1fr; gap:12px; }
-  .page .micro-grid{ grid-template-columns:1fr 1fr; gap:10px; } /* faster two-up scan */
+  .page .micro-grid{ grid-template-columns:1fr 1fr; gap:10px; } /* quick two-up scan */
   .page .gallery{ grid-template-columns:1fr; }
 
-  /* Tables */
-  .page .table th, .page .table td{ padding:.5rem .55rem; }
+  /* Stack hero CTAs on mobile (if shown) */
+  .page .cta .btn{ flex:1 1 100%; }
 
-  /* Buttons */
-  .page .cta .btn{ flex:1 1 100%; }            /* stack hero CTAs */
-  .page .btn, .page .ab-btn{ font-size:1rem; } /* avoids iOS zoom */
-
-  /* Anchor offset so sticky pills don't cover headings */
-  .page [id]{ scroll-margin-top:110px; }
-
-  /* Helpers to selectively hide/show bits on phone */
+  /* Helpers to show/hide content only on phone if needed */
   .hide-on-mobile{ display:none !important; }
   .show-on-mobile{ display:initial !important; }
-}
-
-/* Bottom mobile action bar already added earlier;
-   ensure generous hit targets across iOS */
-:root{ -webkit-tap-highlight-color: transparent; }
-@media (prefers-reduced-motion: reduce){
-  .page .actionbar .ab-btn, .page .btn{ transition:none; }
 }
