@@ -31,7 +31,13 @@
 .page .lede{ font-size: clamp(1rem, .95rem + .4vw, 1.1rem); color:#334155; margin:.5rem 0 1.25rem; }
 .page .muted{ color:var(--ui-muted); }
 
-.page *{ overflow-wrap: anywhere; word-break: normal; } /* avoid layout breaks on narrow screens */
+/* Clean wrapping: no mid-word breaks on phones */
+.page *{
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
 
 /* Section anchors (for in-page links / sticky pills) */
 .page .sys{ scroll-margin-top:88px; }
@@ -106,14 +112,15 @@
 }
 /* Professional rhythm */
 .page .checklist.relaxed li{ margin:.6rem 0; line-height:1.55; }
-/* Two-column checklist where room allows */
-.page .checklist.grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:10px 18px; }
+
+/* Columns only when there is space */
+.page .checklist.grid-2{ display:grid; grid-template-columns:1fr; gap:10px 18px; }
 .page .checklist.grid-2 li{ margin:0; } /* grid controls spacing */
-@media (max-width:380px){
-  .page .checklist.grid-2{ grid-template-columns:1fr; }
+@media (min-width:560px){
+  .page .checklist.grid-2{ grid-template-columns:1fr 1fr; }
 }
 
-/* Optional dividers for long checklists */
+/* Optional dividers for long lists */
 .page .checklist.with-dividers li{ padding:8px 0; border-bottom:1px solid var(--ui-line); }
 .page .checklist.with-dividers li:last-child{ border-bottom:0; }
 
@@ -159,9 +166,7 @@
   .page .micro-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); }
 }
 /* Auto-fit option for any screen size */
-.page .micro-grid.auto-fit{
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-}
+.page .micro-grid.auto-fit{ grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .page .micro{
   border-radius:12px; border:1px dashed var(--ui-line); padding:12px 14px; background:#fff;
 }
