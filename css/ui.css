@@ -103,3 +103,57 @@
 @media (prefers-reduced-motion:reduce){
   .page .btn{ transition:none; }
 }
+/* ===== Mobile-first trust & speed helpers ===== */
+
+/* Sticky sub-nav (keeps pills handy under the header) */
+.page .sticky-pills {
+  position: sticky;
+  top: 64px;            /* adjust if header is taller */
+  z-index: 30;
+  background: #fff;
+  border-bottom: 1px solid var(--ui-line, #e5e7eb);
+  padding: 8px 0;
+}
+
+/* Bottom mobile action bar: Call / Text / Estimate */
+.page .actionbar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 8px max(8px, env(safe-area-inset-right))
+           max(8px, env(safe-area-inset-bottom))
+           max(8px, env(safe-area-inset-left));
+  background: #fff;
+  border-top: 1px solid var(--ui-line, #e5e7eb);
+  box-shadow: 0 -10px 24px rgba(2,12,32,.08);
+}
+.page .actionbar .ab-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; border-radius: 12px; font-weight: 800;
+  text-decoration: none; border: 2px solid transparent;
+  transition: transform .12s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.page .actionbar .ab-btn:focus-visible { outline: 3px solid rgba(247,148,29,.35); outline-offset: 2px; }
+.page .actionbar .ab-btn:hover { transform: translateY(-1px); }
+
+.page .actionbar .ab-btn.call { background: var(--zenith-orange,#f7941d); color: #0b0b0b; }
+.page .actionbar .ab-btn.text { background: transparent; border-color: var(--zenith-orange,#f7941d); color: var(--zenith-orange,#f7941d); }
+.page .actionbar .ab-btn.estimate { background: var(--zenith-navy,#072e59); color: #fff; }
+
+/* Only show action bar on mobile */
+@media (min-width: 821px){ .page .actionbar { display: none; } }
+
+/* Optional: keep the existing pillnav but nicer target sizes on mobile */
+@media (max-width: 700px){
+  .page .pillnav a { padding: .55rem .8rem; }
+}
+
+/* Tap comfort + subtle polish */
+:root { -webkit-tap-highlight-color: transparent; }
+.page .btn, .page .ab-btn { font-size: 1rem; }   /* avoids iOS zoom on tap */
+@media (prefers-reduced-motion: reduce){
+  .page .actionbar .ab-btn, .page .btn { transition: none; }
+}
