@@ -487,3 +487,9 @@ body.nav-open::after{
   background: rgba(7,46,89,.25);
   border-radius: 8px;
 }
+
+/* === nav-delegate.js safety hooks (non-destructive) === */
+.header .logo-section { position: relative; z-index: 1201; }
+.header .logo-section img { pointer-events: none; } /* clicks hit the link */
+.mobile-nav .submenu { display: none; }
+.mobile-nav .submenu[data-open="true"]{ display: block; }
