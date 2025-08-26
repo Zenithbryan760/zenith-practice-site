@@ -1,115 +1,357 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Roofing Services | Zenith Roofing Services</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Full‑service residential and commercial roofing in San Diego & Temecula: shingles, tile lift‑and‑lay, TPO, torch‑down, silicone coatings, gutters, skylights, inspections, real‑estate certifications, and more." />
 
-  <!-- same CSS order as your working page -->
-  <link rel="stylesheet" href="/css/header.css">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/footer.css">
+  <!-- Use your existing global styles so header/footer match the home page -->
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
 
+  <!-- Page‑scoped styles (kept tiny + namespaced to avoid overrides) -->
   <style>
-    .page{max-width:1200px;margin:24px auto;padding:0 16px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-
-    /* 🔵 Cards: brand navy with white text */
-    .card{
-      background:#072e59;            /* brand navy */
-      color:#fff;
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:12px;
-      padding:16px;
-      box-shadow:0 10px 30px rgba(0,0,0,.18);
-      transition:transform .2s ease, box-shadow .2s ease;
+    :root{
+      --zenith-navy:#072e59; 
+      --zenith-orange:#f7941d; 
+      --zenith-text:#0f172a; 
+      --line:#e5eaf1; 
+      --radius:14px; 
+      --shadow:0 10px 28px rgba(2,12,32,.08);
     }
-    .grid a.card, .grid a.card:visited{color:#fff!important;text-decoration:none}
-    .grid a.card *{color:inherit!important}
-    .grid a.card:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,.22)}
-    .grid .card strong{display:block;margin-bottom:4px}
+    .services-page main.page{ padding: clamp(1.25rem, 2.4vw, 2rem); }
+    .services-hero{ 
+      margin: 0 auto; max-width: 1100px; text-align: center; 
+      padding: clamp(1.2rem, 3vw, 2rem) 0;
+    }
+    .services-hero h1{ margin:0 0 .35rem; font-size: clamp(1.6rem, 3.2vw, 2.3rem); }
+    .services-hero p{ margin:.25rem 0 .9rem; color:#475569; }
+    .btn-row{ display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
+    .services-page main.page .btn{ display:inline-flex; align-items:center; justify-content:center; border-radius:999px; padding:.7rem 1rem; font-weight:700; text-decoration:none; box-shadow:0 8px 22px rgba(2,14,32,.10); }
+.services-page main.page .btn-primary{ background:var(--zenith-orange); color:#fff; }
+.services-page main.page .btn-outline{ outline:2px solid var(--zenith-navy); color:var(--zenith-navy); background:#fff; }
+    .btn:hover{ transform: translateY(-1px); }
 
-    .cta{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
-    .btn{display:inline-block;padding:10px 16px;border-radius:999px;font-weight:700;text-decoration:none}
-    .btn-primary{background:#f7941d;color:#072e59}
-    .btn-outline{border:2px solid #f7941d;color:#f7941d}
+    /* Grid of service cards */
+    .services-grid{ 
+      --cols: 3;
+      display:grid; gap: clamp(.8rem, 2.5vw, 1.2rem); 
+      grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+      margin: 1.2rem auto 2rem; max-width: 1150px; 
+    }
+    @media (max-width: 980px){ .services-grid{ --cols:2; } }
+    @media (max-width: 640px){ .services-grid{ --cols:1; } }
 
-    details{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-top:12px}
-    details>summary{font-weight:700;cursor:pointer}
+    .svc-card{ 
+      background:#fff; border:1px solid var(--line); border-radius: var(--radius); 
+      box-shadow: var(--shadow); padding: clamp(1rem, 2.2vw, 1.25rem); 
+      display:flex; flex-direction:column; gap:.5rem;
+    }
+    .svc-card h3{ margin:.1rem 0; font-size: clamp(1.05rem, 2.2vw, 1.2rem); }
+    .svc-badge{ display:inline-block; font-size:.72rem; font-weight:700; color:#fff; background:var(--zenith-navy); border-radius:999px; padding:.25rem .55rem; }
+    .svc-desc{ color:#475569; line-height:1.5; margin:.1rem 0 .4rem; }
+    .svc-list{ margin:.1rem 0 0; padding-left:1.1rem; color:#334155; }
+    .svc-list li{ margin:.2rem 0; }
+    .svc-actions{ margin-top:auto; display:flex; gap:.5rem; flex-wrap:wrap; }
+    .svc-actions .btn{ font-size:.9rem; padding:.55rem .8rem; }
+
+    /* Category section titles */
+    .svc-section{ margin: 1.6rem auto 2.2rem; max-width: 1150px; }
+    .svc-section h2{ font-size: clamp(1.2rem, 2.8vw, 1.6rem); margin:0 0 .6rem; }
+    .svc-section .section-sub{ color:#64748b; margin:-.2rem 0 .8rem; }
+
+    /* Little divider line */
+    .line{ height:1px; background:var(--line); margin: 1.4rem auto; max-width:1150px; }
   </style>
 </head>
-<body>
-  <!-- header include (same pattern as your working page) -->
+<body class="services-page">
+  <!-- Header include (same as home page) -->
   <div id="site-header"></div>
 
-  <main class="page">
-    <h1>Roofing Services</h1>
-    <p>Installation, repairs, and maintenance for homes and businesses in San Diego, Escondido, Temecula &amp; nearby.</p>
+  <main class="page" id="top">
+    <header class="services-hero" aria-labelledby="services-title">
+      <h1 id="services-title">Roofing Services</h1>
+      <p>Installation, repairs, and maintenance for homes, HOAs, and businesses across San Diego & Temecula.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="/index.html#estimate">Request Free Estimate</a>
+        <a class="btn btn-outline" href="tel:8589006163" aria-label="Call Zenith Roofing Services at 858-900-6163">Call 858‑900‑6163</a>
+      </div>
+    </header>
 
-    <div class="cta">
-      <a class="btn btn-primary" href="/index.html#estimate">Request Free Estimate</a>
-      <a class="btn btn-outline" href="tel:8589006163">Call/Text: 858-900-6163</a>
-    </div>
+    <!-- Residential -->
+    <section class="svc-section" aria-labelledby="svc-residential">
+      <h2 id="svc-residential">Residential Roofing</h2>
+      <p class="section-sub">Premium materials, clean job sites, and clear communication from start to finish.</p>
+      <div class="services-grid">
+        <article class="svc-card">
+          <span class="svc-badge">Shingle</span>
+          <h3>Asphalt Shingle Replacement</h3>
+          <p class="svc-desc">Owens Corning Duration Cool and other premium systems installed to spec and code.</p>
+          <ul class="svc-list">
+            <li>Peel‑and‑stick underlayment on low slopes</li>
+            <li>Starter/ridge, proper nailing & ventilation</li>
+            <li>Title 24 cool‑roof options</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Get a Quote</a>
+          </div>
+        </article>
 
-    <h2>Residential Roofing</h2>
-    <div class="grid">
-      <a class="card" href="/services/residential/asphalt-shingles/"><strong>Asphalt Shingles</strong>Cost-effective, durable options.</a>
-      <a class="card" href="/services/residential/tile-roof/"><strong>Clay &amp; Concrete Tile</strong>Classic look, long life.</a>
-      <a class="card" href="/services/residential/tpo/"><strong>TPO Single-Ply</strong>Energy-efficient membranes.</a>
-      <a class="card" href="/services/residential/silicone/"><strong>Silicone Coatings</strong>Restore &amp; extend roof life.</a>
-      <a class="card" href="/services/residential/torch-down/"><strong>Torch Down Systems</strong>Flat/low-slope solutions.</a>
-      <a class="card" href="/services/residential/tile-lift-lay/"><strong>Tile Lift &amp; Reset</strong>Underlayment replacement.</a>
-    </div>
+        <article class="svc-card">
+          <span class="svc-badge">Tile</span>
+          <h3>Tile Lift &amp; Lay (Underlayment Replacement)</h3>
+          <p class="svc-desc">We carefully remove and reuse tiles, replace underlayment, and update all flashings.</p>
+          <ul class="svc-list">
+            <li>Two layers 40‑lb felt (or upgraded options)</li>
+            <li>New metal, vents, drip edge, paint to match</li>
+            <li>15‑year watertight company warranty</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Start Lift &amp; Lay</a>
+          </div>
+        </article>
 
-    <h2 style="margin-top:28px">Roof Repairs &amp; Maintenance</h2>
-    <div class="grid">
-      <a class="card" href="/services/roof-repairs/"><strong>Leak Repair &amp; Troubleshooting</strong>Quick diagnostics &amp; fixes.</a>
-      <a class="card" href="/services/roof-repairs/roof-tune-up/"><strong>Roof Tune-Up</strong>Seal, fasteners, flashing, cleanup.</a>
-      <a class="card" href="/services/roof-repairs/flat-roof-repair/"><strong>Flat Roof Repair</strong>TPO/PVC/torch down patches.</a>
-      <a class="card" href="/services/gutters/"><strong>Seamless Gutters</strong>Custom colors &amp; leaf guards.</a>
-      <a class="card" href="/services/roof-inspection/"><strong>Roof Inspections</strong>Sale, insurance, and maintenance.</a>
-    </div>
+        <article class="svc-card">
+          <span class="svc-badge">Flat</span>
+          <h3>Torch‑Down / Modified Bitumen</h3>
+          <p class="svc-desc">Durable low‑slope systems with proper priming, laps, and terminations.</p>
+          <ul class="svc-list">
+            <li>Dead‑valley solutions & tie‑ins</li>
+            <li>Custom metal edge & scuppers</li>
+            <li>Hot‑work best practices</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Discuss Options</a>
+          </div>
+        </article>
 
-    <h2 style="margin-top:28px">Commercial Roofing</h2>
-    <div class="grid">
-      <a class="card" href="/services/commercial/tpo/"><strong>TPO Roofing</strong>Cool roof, welded seams.</a>
-      <a class="card" href="/services/commercial/pvc/"><strong>PVC Membranes</strong>Grease &amp; chemical resistance.</a>
-      <a class="card" href="/services/commercial/torch-down/"><strong>Torch Down</strong>Durable modified bitumen.</a>
-      <a class="card" href="/services/commercial/silicone-coatings/"><strong>Silicone Restoration</strong>Renew aging flat roofs.</a>
-      <a class="card" href="/services/commercial/roof-asset-maintenance/"><strong>Roof Asset Maintenance</strong>Planned inspections &amp; care.</a>
-    </div>
+        <article class="svc-card">
+          <span class="svc-badge">Coatings</span>
+          <h3>Silicone Roof Coatings</h3>
+          <p class="svc-desc">Extend life on qualifying roofs with high‑solids silicone and proper prep.</p>
+          <ul class="svc-list">
+            <li>Seam reinforcement & penetration detail</li>
+            <li>Cleaning, priming, and mil‑thickness verification</li>
+            <li>Reflectivity & energy savings</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Check Eligibility</a>
+          </div>
+        </article>
 
-    <details>
-      <summary>Why Zenith?</summary>
-      <ul>
-        <li>Licensed &amp; insured (Lic #1036112)</li>
-        <li>Clear pricing and written scope</li>
-        <li>Top materials + trained installers</li>
-      </ul>
-    </details>
+        <article class="svc-card">
+          <span class="svc-badge">Gutters</span>
+          <h3>Gutters &amp; Guards</h3>
+          <p class="svc-desc">Seamless gutters, guards, downspouts, and proper drainage to protect your home.</p>
+          <ul class="svc-list">
+            <li>Aluminum, copper, and color‑matched options</li>
+            <li>Fascia repairs as needed</li>
+            <li>Clean‑out maintenance</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Gutter Quote</a>
+          </div>
+        </article>
 
-    <div class="cta">
-      <a class="btn btn-primary" href="/index.html#estimate">Get My Free Estimate</a>
-      <a class="btn btn-outline" href="/projects/">See Recent Projects</a>
-    </div>
+        <article class="svc-card">
+          <span class="svc-badge">Skylights</span>
+          <h3>Skylights &amp; Flashing</h3>
+          <p class="svc-desc">New installs and replacements with curb/flashing kits sealed to manufacturer specs.</p>
+          <ul class="svc-list">
+            <li>Energy‑efficient models available</li>
+            <li>Leak diagnostics & remediation</li>
+            <li>Solar tube options</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Replace Skylight</a>
+          </div>
+        </article>
+
+        <article class="svc-card">
+          <span class="svc-badge">Wood</span>
+          <h3>Fascia &amp; Deck Repairs</h3>
+          <p class="svc-desc">Replace damaged plywood, shiplap, fascia, and rafter tails the right way.</p>
+          <ul class="svc-list">
+            <li>Code‑compliant fastening & flashing</li>
+            <li>Paint‑ready finish on exterior wood</li>
+            <li>Photo documentation</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Request Assessment</a>
+          </div>
+        </article>
+
+        <article class="svc-card">
+          <span class="svc-badge">Inspection</span>
+          <h3>Roof Inspections &amp; Reports</h3>
+          <p class="svc-desc">Clear findings with photos and practical recommendations for next steps.</p>
+          <ul class="svc-list">
+            <li>Storm/leak diagnostics</li>
+            <li>Insurance documentation support</li>
+            <li>Maintenance planning</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Book Inspection</a>
+          </div>
+        </article>
+
+        <article class="svc-card">
+          <span class="svc-badge">Real Estate</span>
+          <h3>Roof Certifications</h3>
+          <p class="svc-desc">Straightforward summaries of condition and expected lifespan for real‑estate needs.</p>
+          <ul class="svc-list">
+            <li>Seller/buyer/agent friendly</li>
+            <li>Photos + scope recommendations</li>
+            <li>Fast turnaround available</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Request Certificate</a>
+          </div>
+        </article>
+
+        <article class="svc-card">
+          <span class="svc-badge">Emergency</span>
+          <h3>Leak Repairs</h3>
+          <p class="svc-desc">Responsive leak tracking, temporary dry‑in, and permanent repairs where feasible.</p>
+          <ul class="svc-list">
+            <li>Penetrations, flashing, and transitions</li>
+            <li>Photo before/after</li>
+            <li>Honest, no‑pressure advice</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="tel:8589006163">Call Now</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="line" role="presentation"></div>
+
+    <!-- Commercial / HOA -->
+    <section class="svc-section" aria-labelledby="svc-commercial">
+      <h2 id="svc-commercial">Commercial, HOA &amp; Multi‑Unit</h2>
+      <p class="section-sub">Single‑ply TPO, coatings, metal, and proactive maintenance programs.</p>
+      <div class="services-grid">
+        <article class="svc-card">
+          <span class="svc-badge">TPO</span>
+          <h3>Single‑Ply TPO Systems</h3>
+          <p class="svc-desc">New installs and overlays with fan‑fold insulation and heat‑welded seams.</p>
+          <ul class="svc-list">
+            <li>60‑mil membranes from top manufacturers</li>
+            <li>Perimeter edge, curbs, drains to spec</li>
+            <li>Title 24 cool‑roof compliant</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Plan a Project</a>
+          </div>
+        </article>
+
+        <article class="svc-card">
+          <span class="svc-badge">Coatings</span>
+          <h3>High‑Solids Silicone (Commercial)</h3>
+          <p class="svc-desc">Restore and protect with reinforced seams, penetrations, and warranted systems.</p>
+          <ul class="svc-list">
+            <li>Moisture surveys & substrate prep</li>
+            <li>Manufacturer warranty options</li>
+            <li>Minimal downtime</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Evaluate Roof</a>
+          </div>
+        </article>
+
+        <article class="svc-card">
+          <span class="svc-badge">Metal</span>
+          <h3>Standing‑Seam Metal</h3>
+          <p class="svc-desc">Durable, long‑life systems with clean aesthetics and engineered details.</p>
+          <ul class="svc-list">
+            <li>Custom edge metals & transitions</li>
+            <li>Wall/roof terminations & snow details (as needed)</li>
+            <li>Copper drip‑edge capabilities</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Discuss Metal</a>
+          </div>
+        </article>
+
+        <article class="svc-card">
+          <span class="svc-badge">Programs</span>
+          <h3>Roof Maintenance &amp; Inspections</h3>
+          <p class="svc-desc">Annual/bi‑annual programs to extend service life and catch issues early.</p>
+          <ul class="svc-list">
+            <li>Debris removal & drainage checks</li>
+            <li>Sealant and penetration detail</li>
+            <li>Report with photos & recommendations</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Set Up Plan</a>
+          </div>
+        </article>
+
+        <article class="svc-card">
+          <span class="svc-badge">Details</span>
+          <h3>Scuppers, Drains &amp; Hatches</h3>
+          <p class="svc-desc">Replace aged components and improve drainage & access safety.</p>
+          <ul class="svc-list">
+            <li>Custom scuppers & downspout tie‑ins</li>
+            <li>New hatches and OSHA‑minded details</li>
+            <li>Code‑compliant flashing</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Upgrade Details</a>
+          </div>
+        </article>
+
+        <article class="svc-card">
+          <span class="svc-badge">Solar</span>
+          <h3>Solar Stanchion Flashing</h3>
+          <p class="svc-desc">Coordinate with solar providers and properly flash new penetrations.</p>
+          <ul class="svc-list">
+            <li>Tile, shingle, and flat‑roof solutions</li>
+            <li>Manufacturer‑aligned details</li>
+            <li>Leak‑free workmanship focus</li>
+          </ul>
+          <div class="svc-actions">
+            <a class="btn btn-primary" href="/index.html#estimate">Coordinate Solar</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="line" role="presentation"></div>
+
+    <!-- Assurance note (short and friendly) -->
+    <section class="svc-section" aria-labelledby="svc-why">
+      <h2 id="svc-why">Our Promise</h2>
+      <p class="section-sub">Licensed C‑39 • Photo documentation • Honest, no‑pressure recommendations.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="/index.html#estimate">Schedule Your Free Estimate</a>
+      </div>
+    </section>
   </main>
 
-  <!-- footer include (same pattern as your working page) -->
+  <!-- Footer include (same as home page) -->
   <div id="site-footer"></div>
 
-  <!-- same scripts as your working page -->
-  <script src="/js/header.js" defer></script>
+  <!-- Tiny include loader so header/footer match your home page -->
   <script>
-    // fetch + inject header & footer, just like your working page
-    async function include(id, url){
-      const el = document.getElementById(id);
-      try { const res = await fetch(url); el.innerHTML = await res.text(); }
-      catch(e) { el.innerHTML = ""; }
-    }
-    (async () => {
-      await include('site-header','/components/header-section.html');
-      await include('site-footer','/components/footer.html');
-      if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
+    (async function loadPartials(){
+      try {
+        const headerHost = document.getElementById('site-header');
+        const footerHost = document.getElementById('site-footer');
+        if (headerHost) {
+          const res = await fetch('/components/header.html', {cache:'no-store'});
+          headerHost.innerHTML = await res.text();
+        }
+        if (footerHost) {
+          const res = await fetch('/components/footer.html', {cache:'no-store'});
+          footerHost.innerHTML = await res.text();
+        }
+        // Optional: add a class so your existing mobile logic can hide the hero logo when nav collapses
+        document.documentElement.classList.add('nav-collapsible-ready');
+      } catch (e) { console.warn('Header/Footer include failed:', e); }
     })();
   </script>
 </body>
