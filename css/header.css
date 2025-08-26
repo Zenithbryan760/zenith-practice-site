@@ -493,3 +493,21 @@ body.nav-open::after{
 .header .header-inner > .logo-section.logo-link{ display:flex; align-items:center; }
 .mobile-header .logo-section.logo-link{ display:flex; align-items:center; }
 .logo-link .logo{ display:block; }
+
+/* === nav-delegate.js safety hooks (non-destructive) === */
+.header .logo-section { position: relative; z-index: 1201; }
+.header .logo-section img { pointer-events: none; } /* clicks hit the link */
+.mobile-nav .submenu { display: none; }
+.mobile-nav .submenu[data-open="true"]{ display: block; }
+
+/* toggle visibility for both html and body (safety) */
+@media (max-width: 1024px){
+  html.nav-open .site-nav,
+  body.nav-open .site-nav,
+  html.menu-open .site-nav,
+  body.menu-open .site-nav,
+  html.nav-open .mobile-nav,
+  body.nav-open .mobile-nav,
+  html.menu-open .mobile-nav,
+  body.menu-open .mobile-nav { display: block; }
+}
