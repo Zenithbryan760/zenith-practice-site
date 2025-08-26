@@ -4,85 +4,43 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#072e59" />
-  <title>Roof Tune-Up & Maintenance in North County San Diego, San Diego & Temecula | Zenith Roofing Services</title>
-  <meta name="description" content="Professional roof tune-ups for shingle, tile, TPO/PVC, built-up, silicone, metal, and SPF foam. Residential & commercial: seal pipes/collars, reseal flashings, clean gutters, seal drains, restore granules—photo reports included. Serving North County San Diego, San Diego & Temecula." />
+  <title>Roof Tune-Up & Maintenance | North County San Diego, San Diego & Temecula | Zenith Roofing Services</title>
+  <meta name="description" content="Professional roof tune-ups for shingle, tile, TPO/PVC, built-up, silicone, metal, and SPF foam. Residential & commercial: seal pipes/collars, reseal flashings, clean gutters, seal drains, restore granules — photo reports included. Serving North County San Diego, San Diego & Temecula." />
 
   <!-- Core site CSS -->
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/ui.css" />
   <link rel="stylesheet" href="/css/footer.css" />
-
-  <!-- Page-scoped (unchanged; safe) -->
-  <style>
-    .page .hero{
-      background: linear-gradient(135deg, #f8fafc, #eef6ff);
-      border:1px solid var(--line,#e5e7eb);
-      border-radius:18px;
-      padding:24px 20px;
-      box-shadow:0 12px 28px rgba(2,12,32,.06);
-      margin:6px 0 18px;
-    }
-    .page .hero h1{ margin:0 0 .5rem; }
-    .page .hero-feats{ display:flex; flex-wrap:wrap; gap:8px; margin-top:.5rem; }
-    .page .chip{
-      border:1px solid var(--line,#e5e7eb);
-      border-radius:999px; padding:.4rem .7rem; font-weight:600; background:#fff;
-    }
-    .page .checklist{ list-style:none; margin:.5rem 0 .75rem 0; padding:0; }
-    .page .checklist li{ display:flex; gap:.5rem; align-items:flex-start; margin:.35rem 0; }
-    .page .checklist .tick{
-      flex:0 0 auto; width:1.15rem; height:1.15rem; border-radius:999px;
-      border:2px solid var(--zenith-orange,#f7941d);
-      display:inline-flex; align-items:center; justify-content:center;
-      font-size:.8rem; line-height:1; color:var(--zenith-orange,#f7941d);
-    }
-    .page .plans{ display:grid; gap:16px; }
-    @media (min-width:860px){ .page .plans{ grid-template-columns:1fr 1fr; } }
-    .page .plan .price{ font-weight:800; font-size:1.25rem; margin:.25rem 0 .5rem; color:#0f172a; }
-    .page .plan small{ color:#6b7280; }
-    .page .micro-grid{ display:grid; gap:12px; }
-    @media (min-width:860px){ .page .micro-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
-    .page .micro{ border-radius:12px; border:1px dashed var(--line,#e5e7eb); padding:12px 14px; background:#fff; }
-    .page .gallery{ display:grid; gap:12px; grid-template-columns:1fr 1fr; }
-    @media (max-width:640px){ .page .gallery{ grid-template-columns:1fr; } }
-    .page .gallery img{ border-radius:12px; width:100%; height:auto; display:block; }
-    .page .cta-band{
-      background: linear-gradient(90deg, #072e59, #0b3a6f);
-      color:#fff; border-radius:14px; padding:16px 18px; display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;
-    }
-    .page .cta-band .btn-primary{ color:#0b0b0b; }
-  </style>
 </head>
 <body>
   <span id="top" aria-hidden="true"></span>
 
+  <!-- Header include -->
   <div data-include="/components/header-section.html"></div>
 
   <main class="page">
+    <!-- HERO -->
     <section class="hero">
       <h1>Roof Tune-Up &amp; Maintenance</h1>
       <p class="lede">Prevent leaks, extend life, and keep warranties valid. We tune up <strong>every roof type</strong>—residential &amp; commercial—across <strong>North County San Diego</strong>, the rest of <strong>San Diego</strong>, and <strong>Temecula</strong>.</p>
-
-      <!-- chips become horizontal scroll on iPhone via ui.css -->
-      <div class="hero-feats">
+      <div class="hero-feats" aria-label="Highlights">
         <span class="chip">Seal pipes &amp; collars</span>
         <span class="chip">Reseal flashings</span>
-        <span class="chip">Clean gutters &amp; downspouts</span>
+        <span class="chip">Clean gutters</span>
         <span class="chip">Seal drains &amp; scuppers</span>
         <span class="chip">Granule restoration</span>
         <span class="chip">Minor shingle/tile resets</span>
         <span class="chip">Debris &amp; valley clean-out</span>
         <span class="chip">Photo report</span>
       </div>
-
-      <!-- hide this on iPhone; action bar handles CTAs -->
-      <div class="cta hide-on-mobile" style="margin-top:12px">
+      <div class="cta" style="margin-top:12px">
         <a class="btn btn-primary" href="/index.html#estimate">Book a Tune-Up</a>
         <a class="btn btn-outline" href="tel:8589006163" aria-label="Call 858-900-6163">Call 858-900-6163</a>
       </div>
     </section>
 
+    <!-- Sticky quick-nav -->
     <div class="sticky-pills">
       <nav class="pillnav" aria-label="Sections">
         <a href="#included">What’s Included</a>
@@ -93,20 +51,21 @@
       </nav>
     </div>
 
-    <section id="included" class="card">
+    <!-- WHAT'S INCLUDED -->
+    <section id="included" class="card airy">
       <h2>What’s Included in a Roof Tune-Up</h2>
       <div class="grid cols-2">
         <div>
-          <ul class="checklist">
-            <li><span class="tick">✓</span> Seal/replace <strong>pipe collars, vents, and boots</strong></li>
-            <li><span class="tick">✓</span> Reseal <strong>flashing</strong> at walls, skylights, chimneys, and penetrations</li>
-            <li><span class="tick">✓</span> Clean <strong>gutters/downspouts</strong>; flush and secure as needed</li>
-            <li><span class="tick">✓</span> Clear valleys &amp; roof debris; check <strong>valley metal</strong></li>
-            <li><span class="tick">✓</span> Seal <strong>drains &amp; scuppers</strong>; correct minor ponding paths</li>
-            <li><span class="tick">✓</span> Re-adhere/replace <strong>loose shingles or tiles</strong> (minor resets)</li>
-            <li><span class="tick">✓</span> <strong>Granule restoration</strong> &amp; protective seal (as appropriate)</li>
-            <li><span class="tick">✓</span> Tighten/replace <strong>metal fasteners</strong> w/ new washers (select areas)</li>
-            <li><span class="tick">✓</span> Photo documentation &amp; <strong>repair recommendations</strong></li>
+          <ul class="checklist grid-2 relaxed" aria-label="Included tasks">
+            <li><span class="tick">✓</span> Seal/replace <strong>pipe collars, vents &amp; boots</strong></li>
+            <li><span class="tick">✓</span> Reseal <strong>flashings</strong> (walls, skylights, chimneys)</li>
+            <li><span class="tick">✓</span> Clean &amp; flush <strong>gutters/downspouts</strong></li>
+            <li><span class="tick">✓</span> Clear <strong>valleys</strong> &amp; roof debris</li>
+            <li><span class="tick">✓</span> Seal <strong>drains &amp; scuppers</strong></li>
+            <li><span class="tick">✓</span> Re-adhere/replace <strong>loose shingles/tiles</strong></li>
+            <li><span class="tick">✓</span> <strong>Granule restoration</strong> on worn shingle areas</li>
+            <li><span class="tick">✓</span> Tighten/replace <strong>metal fasteners</strong> (new washers)</li>
+            <li><span class="tick">✓</span> Photo documentation &amp; <strong>recommendations</strong></li>
           </ul>
           <p class="tip"><strong>Pro tip:</strong> A tune-up every 12–24 months prevents small issues from becoming leaks—especially before winter rains or after Santa Ana winds.</p>
         </div>
@@ -114,66 +73,74 @@
           <h3>Best For</h3>
           <ul class="list">
             <li>Roofs in good condition but due for maintenance</li>
-            <li>Homes prepping for sale or insurance</li>
-            <li>Commercial roofs needing scheduled care</li>
+            <li>Homes preparing for sale or insurance</li>
+            <li>Commercial roofs with drains &amp; foot traffic</li>
           </ul>
-          <h3>Add-Ons (High-Value)</h3>
+          <h3>High-Value Add-Ons</h3>
           <ul class="list">
             <li>Skylight re-seal or curb rebuild</li>
-            <li>Gutter guards (reduce clogging)</li>
+            <li>Gutter guards to reduce clogging</li>
             <li>Solar penetration re-flash</li>
-            <li>Attic check for active moisture</li>
+            <li>Attic moisture check</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section id="systems" class="card">
+    <!-- BY SYSTEM -->
+    <section id="systems" class="card airy">
       <h2>Tune-Ups by Roof System</h2>
-      <div class="micro-grid">
-        <div class="micro"><h3>Shingle</h3>
+      <div class="micro-grid" aria-label="Systems">
+        <div class="micro">
+          <h3>Shingle</h3>
           <ul class="checklist">
             <li><span class="tick">✓</span> Reset loose tabs; seal exposed nails</li>
             <li><span class="tick">✓</span> Ridge/hip cap checks; <strong>granule touch-ups</strong></li>
-            <li><span class="tick">✓</span> Pipe/vent collar replacement</li>
+            <li><span class="tick">✓</span> Replace aged collars</li>
           </ul>
         </div>
-        <div class="micro"><h3>Tile</h3>
+        <div class="micro">
+          <h3>Tile</h3>
           <ul class="checklist">
             <li><span class="tick">✓</span> Reset slipped/cracked tiles</li>
             <li><span class="tick">✓</span> Valley clean-out &amp; metal inspection</li>
             <li><span class="tick">✓</span> Targeted underlayment checks</li>
           </ul>
         </div>
-        <div class="micro"><h3>TPO / PVC</h3>
+        <div class="micro">
+          <h3>TPO / PVC</h3>
           <ul class="checklist">
             <li><span class="tick">✓</span> Reweld open seams/fishmouths</li>
-            <li><span class="tick">✓</span> Seal curbs, pipes, drains</li>
+            <li><span class="tick">✓</span> Seal curbs, pipes &amp; drains</li>
             <li><span class="tick">✓</span> Walkpad &amp; ponding path tweaks</li>
           </ul>
         </div>
-        <div class="micro"><h3>Built-Up / Torch</h3>
+        <div class="micro">
+          <h3>Built-Up / Torch</h3>
           <ul class="checklist">
             <li><span class="tick">✓</span> Patch blisters/splits; reinforce</li>
             <li><span class="tick">✓</span> Edge metal &amp; scupper seals</li>
             <li><span class="tick">✓</span> Surface coating touch-ups</li>
           </ul>
         </div>
-        <div class="micro"><h3>Silicone-Coated</h3>
+        <div class="micro">
+          <h3>Silicone-Coated</h3>
           <ul class="checklist">
             <li><span class="tick">✓</span> Re-seal penetrations &amp; terminations</li>
             <li><span class="tick">✓</span> Spot recoat thin/worn areas</li>
             <li><span class="tick">✓</span> Address ponding wear zones</li>
           </ul>
         </div>
-        <div class="micro"><h3>Metal / Panels</h3>
+        <div class="micro">
+          <h3>Metal / Panels</h3>
           <ul class="checklist">
             <li><span class="tick">✓</span> Tighten/replace fasteners &amp; washers</li>
             <li><span class="tick">✓</span> Seal side/end laps with butyl</li>
             <li><span class="tick">✓</span> Correct misaligned closures</li>
           </ul>
         </div>
-        <div class="micro"><h3>SPF (Foam)</h3>
+        <div class="micro">
+          <h3>SPF (Foam)</h3>
           <ul class="checklist">
             <li><span class="tick">✓</span> Patch surface cracks; seal transitions</li>
             <li><span class="tick">✓</span> Topcoat touch-ups where thin</li>
@@ -183,12 +150,13 @@
       </div>
     </section>
 
-    <section id="plans" class="card">
+    <!-- PLANS -->
+    <section id="plans" class="card airy">
       <h2>Maintenance Plans</h2>
-      <div class="plans">
-        <article class="plan card">
+      <div class="grid cols-2" aria-label="Plan options">
+        <article class="card">
           <h3>Annual Tune-Up</h3>
-          <p class="price">Best for residential</p>
+          <p class="muted">Best for residential</p>
           <ul class="checklist">
             <li><span class="tick">✓</span> 1 visit/year (post-storm timing available)</li>
             <li><span class="tick">✓</span> Photo report &amp; recommendations</li>
@@ -200,9 +168,9 @@
           </div>
         </article>
 
-        <article class="plan card">
+        <article class="card">
           <h3>Bi-Annual Tune-Up</h3>
-          <p class="price">Best for commercial, large homes &amp; heavily treed lots</p>
+          <p class="muted">Best for commercial, large homes &amp; treed lots</p>
           <ul class="checklist">
             <li><span class="tick">✓</span> 2 visits/year (pre-rain &amp; mid-season)</li>
             <li><span class="tick">✓</span> Gutter &amp; drain maintenance each visit</li>
@@ -217,7 +185,8 @@
       <p class="tip"><strong>ROI:</strong> Avoiding one interior leak can pay for years of tune-ups—especially on flat roofs with drains and scuppers.</p>
     </section>
 
-    <section id="gallery" class="card">
+    <!-- GALLERY -->
+    <section id="gallery" class="card airy">
       <h2>Before &amp; After</h2>
       <div class="gallery">
         <img src="/images/repairs/tuneup-valley-before.jpg" width="1280" height="853" alt="Valley cleared of debris during roof tune-up" loading="lazy" decoding="async" />
@@ -227,7 +196,8 @@
       </div>
     </section>
 
-    <section class="cta-band">
+    <!-- CTA (reuse hero style for visual consistency) -->
+    <section class="hero" aria-label="Final call to action">
       <p><strong>Ready to tune up your roof?</strong> We service North County San Diego, the rest of San Diego &amp; Temecula.</p>
       <div class="cta" style="margin:0">
         <a class="btn btn-primary" href="/index.html#estimate">Book a Tune-Up</a>
@@ -235,6 +205,7 @@
       </div>
     </section>
 
+    <!-- FAQ (scoped so footer remains navy) -->
     <section id="faq" class="card faq">
       <h2>Roof Tune-Up FAQs</h2>
       <details>
@@ -258,20 +229,44 @@
     <p class="muted">Zenith Roofing Services, Inc. • CA License #1036112 C-39 • North County San Diego &amp; Temecula</p>
   </main>
 
-  <!-- Mobile quick-actions (visible on phone only) -->
+  <!-- Mobile quick-actions (visible on phone only via /css/ui.css) -->
   <nav class="actionbar" role="navigation" aria-label="Mobile quick actions">
     <a class="ab-btn call" href="tel:8589006163" aria-label="Call 858-900-6163">Call</a>
     <a class="ab-btn text" href="sms:8589006163" aria-label="Text 858-900-6163">Text</a>
     <a class="ab-btn estimate" href="/index.html#estimate" aria-label="Get a Free Estimate">Estimate</a>
   </nav>
 
+  <!-- Footer include -->
   <div data-include="/components/footer.html"></div>
 
+  <!-- Scripts -->
   <script src="/js/loader.js" defer></script>
   <script src="/js/header.js" defer></script>
 
-  <!-- Schema (unchanged) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Roof Tune-Up & Maintenance","serviceType":"Roof Tune-Up","provider":{"@type":"LocalBusiness","name":"Zenith Roofing Services, Inc."},"areaServed":["North County San Diego","San Diego County","Temecula","Murrieta","Menifee","Escondido","Carlsbad","San Marcos","Vista","Oceanside"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Tune-Up Add-Ons","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Skylight Re-seal"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Gutter Guards"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Solar Penetration Re-flash"}}]}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How often should I get a roof tune-up?","acceptedAnswer":{"@type":"Answer","text":"Typically every 12–24 months, or after major wind/rain events. Commercial roofs with drains benefit from bi-annual service."}},{"@type":"Question","name":"Will a tune-up fix active leaks?","acceptedAnswer":{"@type":"Answer","text":"Tune-ups are preventative. If we discover an active leak, we’ll perform a targeted repair (with your approval) or schedule it promptly."}},{"@type":"Question","name":"Does this extend the life of an older roof?","acceptedAnswer":{"@type":"Answer","text":"Yes, within reason. For systems near ~25+ years in Southern California, we’ll show you when replacement becomes the smarter spend."}},{"@type":"Question","name":"Residential and commercial?","acceptedAnswer":{"@type":"Answer","text":"Yes—single-family homes, HOAs, retail/office, and light industrial. We tailor visit frequency and reporting to your property."}}]}</script>
+  <!-- Schema: Service + FAQ -->
+  <script type="application/ld+json">{
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Roof Tune-Up & Maintenance",
+    "serviceType":"Roof Tune-Up",
+    "provider":{"@type":"LocalBusiness","name":"Zenith Roofing Services, Inc."},
+    "areaServed":["North County San Diego","San Diego County","Temecula","Murrieta","Menifee","Escondido","Carlsbad","San Marcos","Vista","Oceanside"],
+    "hasOfferCatalog":{"@type":"OfferCatalog","name":"Tune-Up Add-Ons","itemListElement":[
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Skylight Re-seal"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Gutter Guards"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Solar Penetration Re-flash"}}
+    ]}
+  }</script>
+
+  <script type="application/ld+json">{
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"How often should I get a roof tune-up?","acceptedAnswer":{"@type":"Answer","text":"Typically every 12–24 months, or after major wind/rain events. Commercial roofs with drains benefit from bi-annual service."}},
+      {"@type":"Question","name":"Will a tune-up fix active leaks?","acceptedAnswer":{"@type":"Answer","text":"Tune-ups are preventative. If we discover an active leak, we’ll perform a targeted repair (with your approval) or schedule it promptly."}},
+      {"@type":"Question","name":"Does this extend the life of an older roof?","acceptedAnswer":{"@type":"Answer","text":"Yes, within reason. For systems near ~25+ years in Southern California, we’ll show you when replacement becomes the smarter spend."}},
+      {"@type":"Question","name":"Residential and commercial?","acceptedAnswer":{"@type":"Answer","text":"Yes—single-family homes, HOAs, retail/office, and light industrial. We tailor visit frequency and reporting to your property."}}
+    ]
+  }</script>
 </body>
 </html>
