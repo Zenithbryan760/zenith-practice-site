@@ -157,3 +157,53 @@
 @media (prefers-reduced-motion: reduce){
   .page .actionbar .ab-btn, .page .btn { transition: none; }
 }
+/* ===== iPhone 15 Pro Max mobile polish (<=480px) ===== */
+@media (max-width: 480px){
+  /* Layout + safe space for bottom action bar */
+  .page{ padding: 10px 12px; padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+
+  /* Hero density */
+  .page .hero{ border-radius:14px; padding:16px 14px; margin:8px 0 12px; }
+  .page .hero h1{ font-size:1.5rem; line-height:1.2; margin-bottom:.35rem; }
+  .page .lede{ font-size:1rem; }
+
+  /* Chips: horizontal scroll (fast scan, no wrap mess) */
+  .page .hero-feats{
+    display:grid; grid-auto-flow:column; grid-auto-columns:max-content;
+    gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:6px;
+    scroll-snap-type:x mandatory;
+  }
+  .page .chip{ white-space:nowrap; scroll-snap-align:start; }
+
+  /* Sticky pills under header */
+  .sticky-pills{ top: var(--header-offset, 56px); padding:6px 0; }
+  .page .pillnav{ overflow-x:auto; white-space:nowrap; gap:6px; padding-bottom:6px; -webkit-overflow-scrolling:touch; }
+  .page .pillnav a{ display:inline-block; }
+
+  /* Cards + grids */
+  .page .card{ padding:14px; border-radius:12px; }
+  .page .grid.cols-2{ grid-template-columns:1fr; gap:12px; }
+  .page .micro-grid{ grid-template-columns:1fr 1fr; gap:10px; } /* faster two-up scan */
+  .page .gallery{ grid-template-columns:1fr; }
+
+  /* Tables */
+  .page .table th, .page .table td{ padding:.5rem .55rem; }
+
+  /* Buttons */
+  .page .cta .btn{ flex:1 1 100%; }            /* stack hero CTAs */
+  .page .btn, .page .ab-btn{ font-size:1rem; } /* avoids iOS zoom */
+
+  /* Anchor offset so sticky pills don't cover headings */
+  .page [id]{ scroll-margin-top:110px; }
+
+  /* Helpers to selectively hide/show bits on phone */
+  .hide-on-mobile{ display:none !important; }
+  .show-on-mobile{ display:initial !important; }
+}
+
+/* Bottom mobile action bar already added earlier;
+   ensure generous hit targets across iOS */
+:root{ -webkit-tap-highlight-color: transparent; }
+@media (prefers-reduced-motion: reduce){
+  .page .actionbar .ab-btn, .page .btn{ transition:none; }
+}
