@@ -10,6 +10,33 @@
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/footer.css">
 
+  <style>
+    .page{max-width:1200px;margin:24px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+
+    /* 🔵 Cards: brand navy with white text */
+    .card{
+      background:#072e59;            /* brand navy */
+      color:#fff;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:12px;
+      padding:16px;
+      box-shadow:0 10px 30px rgba(0,0,0,.18);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .grid a.card, .grid a.card:visited{color:#fff!important;text-decoration:none}
+    .grid a.card *{color:inherit!important}
+    .grid a.card:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,.22)}
+    .grid .card strong{display:block;margin-bottom:4px}
+
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+    .btn{display:inline-block;padding:10px 16px;border-radius:999px;font-weight:700;text-decoration:none}
+    .btn-primary{background:#f7941d;color:#072e59}
+    .btn-outline{border:2px solid #f7941d;color:#f7941d}
+
+    details{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-top:12px}
+    details>summary{font-weight:700;cursor:pointer}
+  </style>
 </head>
 <body>
   <!-- header include (same pattern as your working page) -->
@@ -67,9 +94,23 @@
     </div>
   </main>
 
-  <!-- footer include (same pattern as working page) -->
-  <div data-include="/components/footer.html"></div>
-  <script src="/js/loader.js" defer></script>
+  <!-- footer include (same pattern as your working page) -->
+  <div id="site-footer"></div>
+
+  <!-- same scripts as your working page -->
   <script src="/js/header.js" defer></script>
+  <script>
+    // fetch + inject header & footer, just like your working page
+    async function include(id, url){
+      const el = document.getElementById(id);
+      try { const res = await fetch(url); el.innerHTML = await res.text(); }
+      catch(e) { el.innerHTML = ""; }
+    }
+    (async () => {
+      await include('site-header','/components/header-section.html');
+      await include('site-footer','/components/footer.html');
+      if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
+    })();
+  </script>
 </body>
 </html>
