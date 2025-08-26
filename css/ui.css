@@ -1,0 +1,105 @@
+/* =========================================================
+   Zenith UI — shared components for all interior pages
+   Safe scope: .page, .faq, and specific component classes
+   ========================================================= */
+
+/* Design tokens (fallbacks to your root vars) */
+:root{
+  --ui-radius: 14px;
+  --ui-line: var(--line, #e5e7eb);
+  --ui-bg: var(--surface, #ffffff);
+  --ui-muted: var(--muted, #6b7280);
+  --ui-shadow: 0 12px 28px rgba(2,12,32,.08);
+}
+
+/* ---------- Layout ---------- */
+.page{ max-width:1040px; margin:24px auto; padding:0 16px; }
+.page .lede{ font-size:1.1rem; color:#334155; margin:.5rem 0 1.25rem; }
+.page .muted{ color:var(--ui-muted); }
+
+/* Simple responsive grid */
+.page .grid{ display:grid; gap:18px; }
+.page .grid.cols-2{ grid-template-columns:1fr; }
+@media (min-width:860px){ .page .grid.cols-2{ grid-template-columns:1fr 1fr; } }
+
+/* Section anchors */
+.page .sys{ scroll-margin-top:88px; }
+.page .sys small{ color:var(--ui-muted); }
+
+/* ---------- Cards ---------- */
+.page .card{
+  background:var(--ui-bg);
+  border:1px solid var(--ui-line);
+  border-radius:var(--ui-radius);
+  padding:18px;
+  box-shadow:var(--ui-shadow);
+}
+
+/* ---------- Buttons ---------- */
+.page .cta{ display:flex; gap:12px; flex-wrap:wrap; margin:16px 0; }
+.page .btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:10px 16px; min-height:44px;
+  border-radius:999px; font-weight:700; text-decoration:none;
+  transition:transform .12s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+  outline: none;
+}
+.page .btn:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:2px; }
+.page .btn:hover{ transform:translateY(-1px); }
+.page .btn-primary{ background:var(--zenith-orange,#f7941d); color:var(--zenith-navy,#072e59); }
+.page .btn-primary:hover{ box-shadow:0 10px 20px rgba(247,148,29,.25); }
+.page .btn-outline{
+  border:2px solid var(--zenith-orange,#f7941d); color:var(--zenith-orange,#f7941d); background:transparent;
+}
+.page .btn-outline:hover{ background:rgba(247,148,29,.08); }
+
+/* ---------- Pills / quick nav ---------- */
+.page .pillnav{ display:flex; flex-wrap:wrap; gap:8px; margin:.75rem 0 1rem; }
+.page .pillnav a{
+  border:1px solid var(--ui-line); border-radius:999px;
+  padding:.45rem .75rem; text-decoration:none; color:var(--zenith-navy,#072e59);
+}
+.page .pillnav a:hover{ background:#f8fafc; }
+
+/* ---------- Lists ---------- */
+.page .list{ margin:.5rem 0 .75rem .95rem; }
+.page .list li{ margin:.25rem 0; }
+
+/* ---------- Tips / callouts ---------- */
+.page .tip{
+  font-size:.95rem; color:#334155; background:#f8fafc;
+  border-left:4px solid var(--zenith-orange,#f7941d);
+  padding:.75rem .9rem; border-radius:8px; margin:.75rem 0;
+}
+
+/* ---------- Tables ---------- */
+.page .table{ width:100%; border-collapse:separate; border-spacing:0; }
+.page .table th, .page .table td{ border:1px solid var(--ui-line); padding:.6rem .7rem; }
+.page .table th{ background:#f9fafb; text-align:left; }
+
+/* ---------- Service areas ---------- */
+.page .service-areas ul{ columns:2; gap:1rem; }
+@media (max-width:640px){ .page .service-areas ul{ columns:1; } }
+
+/* ---------- Media helpers (images/figures) ---------- */
+.page .media{ margin:1rem 0; }
+.page .media img{ display:block; width:100%; height:auto; border-radius:12px; }
+.page .media figcaption{ font-size:.9rem; color:var(--ui-muted); margin-top:.4rem; }
+
+/* ---------- FAQ (scoped!) ---------- */
+/* IMPORTANT: Only FAQ sections get the white accordion look.
+   This prevents footer <details> from turning into white cards. */
+.page .faq details{
+  border:1px solid var(--ui-line); border-radius:10px;
+  padding:12px 14px; background:#fff;
+}
+.page .faq details + details{ margin-top:10px; }
+.page .faq summary{
+  cursor:pointer; font-weight:700; color:#0f172a;
+}
+.page .faq summary::-webkit-details-marker{ display:none; }
+
+/* Motion-respect */
+@media (prefers-reduced-motion:reduce){
+  .page .btn{ transition:none; }
+}
