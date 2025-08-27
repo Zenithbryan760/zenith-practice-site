@@ -16,6 +16,11 @@
   <meta property="og:image" content="/images/seo/roof-tune-up-zenith.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
+  <!-- Site CSS (same order as home) -->
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/footer.css">
+
   <!-- Minimal, conflict‑free styles (scoped to .rtu) -->
   <style>
     :root{ --rtu-navy:#072e59; --rtu-orange:#f7941d; --rtu-text:#0f172a; --rtu-muted:#475569; --rtu-bg:#ffffff; --rtu-line:#e5e7eb; --rtu-radius:14px; --rtu-shadow:0 12px 32px rgba(2,12,32,.08); }
@@ -46,7 +51,7 @@
     .rtu-hero-media img{display:block;width:100%;height:auto}
 
     /* Jump nav */
-    .rtu-toc{position:sticky;top:0;z-index:10;background:#fff;border-block:1px solid var(--rtu-line)}
+    .rtu-toc{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(8px);border-block:1px solid var(--rtu-line)}
     .rtu-toc .wrap{display:flex;gap:.5rem;overflow:auto;padding-block:.5rem}
     .rtu-chip{white-space:nowrap;border:1px solid var(--rtu-line);padding:.55rem .9rem;border-radius:999px;font-weight:600}
 
@@ -107,12 +112,8 @@
 <body class="rtu">
 
   <!-- (Optional) Swap these with your site includes if you use partials -->
-  <header class="wrap" role="banner" aria-label="Site header">
-    <a href="/" aria-label="Go to homepage" style="display:inline-flex;gap:.6rem;align-items:center;font-weight:800;color:var(--rtu-navy)">
-      <img src="/images/badges/logo-zenith-icon.png" alt="Zenith Roofing Services" width="44" height="44" loading="eager" decoding="async" style="border-radius:10px;border:1px solid var(--rtu-line)">
-      <span>Zenith Roofing Services <span class="rtu-small">• CSLB #1036112</span></span>
-    </a>
-  </header>
+  <!-- Global header include from home page -->
+  <div data-include="/components/header-section.html"></div>
 
   <!-- HERO -->
   <section class="rtu-hero rtu-section" id="top">
@@ -200,13 +201,13 @@
 
       <div class="rtu-grid">
         <article class="rtu-card rtu-col-6" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-          <h3><span class="rtu-tag">Most Homes</span> Basic Tune‑Up</h3>
-          <p class="rtu-price" itemprop="priceCurrency" content="USD">$<span itemprop="price">299–549</span></p>
+          <h3><span class="rtu-tag">Best Value</span> Premium Tune‑Up</h3>
+          <p class="rtu-meta"><em>See the <a href="/">Home page</a> for current pricing and promotions.</em></p>
           <ul class="rtu-list">
-            <li>Safety inspection & debris removal</li>
-            <li>Seal minor penetrations & exposed fasteners</li>
-            <li>Gutter clean‑out (1 story)</li>
-            <li>Photo report</li>
+            <li>Everything in Basic + skylight & chimney flashing tune‑up</li>
+            <li>Tile resets or shingle replacements (minor)</li>
+            <li>Flat roof seam & termination repairs (minor)</li>
+            <li>Priority scheduling</li>
           </ul>
         </article>
         <article class="rtu-card rtu-col-6" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
@@ -351,11 +352,29 @@
   </section>
 
   <!-- (Optional) Footer include placeholder -->
-  <footer class="wrap" role="contentinfo">
-    <div class="rtu-small">© <span id="y"></span> Zenith Roofing Services, Inc. • CSLB #1036112 • <a href="/service-areas.html">Service Areas</a> • <a href="/contact.html">Contact</a></div>
-  </footer>
+  <!-- Global footer include from home page -->
+  <div data-include="/components/footer.html"></div>
 
   <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+
+  <!-- Safe, one-time include loader (only runs if data-include elements are present) -->
+  <script>
+  if(!window.__inc){window.__inc=1;(async()=>{
+    const slots=[...document.querySelectorAll('[data-include]')];
+    if(!slots.length) return;
+    await Promise.all(slots.map(async slot=>{
+      const url=slot.getAttribute('data-include');
+      try{
+        const res=await fetch(url,{cache:'no-store'});
+        const html=await res.text();
+        const tmp=document.createElement('div'); tmp.innerHTML=html.trim();
+        const parent=slot.parentNode; const nodes=[...tmp.childNodes];
+        nodes.forEach(n=>parent.insertBefore(n,slot));
+        parent.removeChild(slot);
+      }catch(err){ console.error('Include failed:', url, err); }
+    }));
+  })();}
+  </script>
 
   <!-- JSON‑LD: Service + FAQ + Breadcrumb + HowTo -->
   <script type="application/ld+json">
@@ -365,11 +384,7 @@
     "name": "Roof Tune-Up & Preventative Maintenance",
     "provider": {"@type":"LocalBusiness","name":"Zenith Roofing Services, Inc.","telephone":"+1-858-900-6163","areaServed":["San Diego","Escondido","Temecula"],"image":"https://www.zenithroofingservices.com/images/badges/logo-zenith-icon.png"},
     "serviceType": "Roof maintenance, inspection, gutter cleaning, flashing tune-up",
-    "areaServed": [{"@type":"City","name":"San Diego"},{"@type":"City","name":"Escondido"},{"@type":"City","name":"Temecula"}],
-    "hasOfferCatalog": {"@type":"OfferCatalog","name":"Roof Tune-Up Packages","itemListElement":[
-      {"@type":"Offer","name":"Basic Tune-Up","priceCurrency":"USD","price":"299-549"},
-      {"@type":"Offer","name":"Premium Tune-Up","priceCurrency":"USD","price":"549-949"}
-    ]}
+    "areaServed": [{"@type":"City","name":"San Diego"},{"@type":"City","name":"Escondido"},{"@type":"City","name":"Temecula"}]
   }
   </script>
   <script type="application/ld+json">
