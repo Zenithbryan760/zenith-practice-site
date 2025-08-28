@@ -2,247 +2,237 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Roof Tune-Up & Preventative Maintenance | Zenith Roofing Services</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Roof tune-ups for roofs under 30 years: reseal pipes and roof jacks, reset slipped tiles/shingles, clean valleys and gutters, replace missing pieces, and improve drainage. Serving San Diego, Escondido, and Temecula. Licensed C-39.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Roof Tune-Up & Maintenance | Zenith Roofing Services</title>
+  <meta name="description" content="Roof tune-ups for single-family homes: seal vent pipes, caulk around penetrations, clean valleys & gutters, fix broken tiles, and touch up flashings. Serving San Diego & Temecula.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://www.zenithroofingservices.com/services/roof-tune-up.html">
 
-  <!-- Global styles (same order as your other pages) -->
+  <!-- Use the same global CSS order as your other pages -->
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/footer.css">
-
-  <!-- Page-scoped styles -->
-  <style>
-    /* ---------------------------------------------
-       Zenith • Roof Tune-Up page (scoped)
-       Safe scope root: #tuneup-root
-       --------------------------------------------- */
-    #tuneup-root{
-      --zenith-navy:#072e59;
-      --zenith-orange:#f7941d;
-      --surface:#fff;
-      --muted:#475569;
-      --line:#e5e7eb;
-      --radius:14px;
-      --shadow-sm:0 6px 18px rgba(2,12,32,.10);
-      --shadow-lg:0 14px 40px rgba(2,12,32,.14);
-    }
-
-    /* Layout wrapper */
-    #tuneup-root.page{max-width:1200px;margin:24px auto;padding:0 16px}
-
-    /* Hero */
-    #tuneup-root .tu-hero{ text-align:center; padding: clamp(1.2rem, 3vw, 2rem) 0 0; }
-    #tuneup-root .tu-hero h1{ margin:.1rem 0 .4rem; font-size: clamp(1.7rem, 3.4vw, 2.35rem); }
-    #tuneup-root .tu-hero p{ color:var(--muted); margin:.25rem 0 .9rem; }
-
-    /* CTA buttons */
-    #tuneup-root .tu-cta{ display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
-    #tuneup-root .tu-btn{ display:inline-flex; align-items:center; justify-content:center; padding:.68rem 1rem; border-radius:9999px; font-weight:700; text-decoration:none; box-shadow:var(--shadow-sm); transition:transform .08s ease, box-shadow .18s ease, background .18s ease; }
-    #tuneup-root .tu-btn:focus-visible{ outline:3px solid rgba(7,46,89,.25); outline-offset:2px; }
-    #tuneup-root .tu-btn-primary{ background:var(--zenith-orange); color:#fff; }
-    #tuneup-root .tu-btn-primary:hover{ transform:translateY(-1px); box-shadow:var(--shadow-lg); }
-    #tuneup-root .tu-btn-ghost{ background:var(--zenith-navy); color:#fff; }
-    #tuneup-root .tu-btn-ghost:hover{ transform:translateY(-1px); box-shadow:var(--shadow-lg); }
-
-    /* Age chips */
-    #tuneup-root .tu-chips{ display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap; margin:.65rem 0 0; }
-    #tuneup-root .tu-chip{ display:inline-flex; align-items:center; gap:.4rem; padding:.4rem .65rem; border-radius:9999px; font-size:.86rem; color:#fff; background:var(--zenith-navy); }
-    #tuneup-root .tu-chip.warn{ background:#ef4444; }      /* red note */
-    #tuneup-root .tu-chip.note{ background:#0b3a6f; }      /* deeper navy */
-
-    /* Sections */
-    #tuneup-root .tu-section{ margin: 26px 0 30px; border-top:1px solid var(--line); padding-top:16px; }
-    #tuneup-root .tu-section h2{ margin:0 0 10px; font-size: clamp(1.2rem, 2.6vw, 1.5rem); }
-    #tuneup-root .tu-sub{ color:var(--muted); margin:-.2rem 0 .8rem; }
-
-    /* Two-column content that collapses on mobile */
-    #tuneup-root .tu-split{ display:grid; grid-template-columns: 1.1fr .9fr; gap: clamp(1rem, 3vw, 1.5rem); align-items:start; }
-    @media (max-width: 880px){ #tuneup-root .tu-split{ grid-template-columns: 1fr; } }
-
-    /* Cards / lists */
-    #tuneup-root .tu-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding: clamp(1rem, 2.2vw, 1.25rem); box-shadow:var(--shadow-sm); }
-    #tuneup-root .tu-list{ margin:.1rem 0 .25rem; padding-left:1.15rem; color:#334155; }
-    #tuneup-root .tu-list li{ margin:.28rem 0; }
-
-    /* Grid of small cards */
-    #tuneup-root .tu-grid{ --cols:3; display:grid; gap: clamp(.8rem, 2.2vw, 1.1rem); grid-template-columns: repeat(var(--cols), minmax(0,1fr)); }
-    @media (max-width: 980px){ #tuneup-root .tu-grid{ --cols:2; } }
-    @media (max-width: 640px){ #tuneup-root .tu-grid{ --cols:1; } }
-
-    #tuneup-root .tu-mini{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding: clamp(.9rem, 2vw, 1.1rem); box-shadow:var(--shadow-sm); }
-    #tuneup-root .tu-mini h3{ font-size:1.02rem; margin:0 0 .35rem; }
-    #tuneup-root .tu-muted{ color:var(--muted); }
-
-    /* Pricing notes (text only here; add numbers later if you want) */
-    #tuneup-root .tu-note{ font-size:.95rem; color:var(--muted); }
-
-    /* FAQ (simple details/summary) */
-    #tuneup-root details{ border:1px solid var(--line); border-radius:var(--radius); padding:.75rem 1rem; box-shadow:var(--shadow-sm); background:#fff; }
-    #tuneup-root details + details{ margin-top:.6rem; }
-    #tuneup-root summary{ cursor:pointer; font-weight:700; }
-    #tuneup-root summary::-webkit-details-marker{ display:none; }
-
-    /* Breadcrumb */
-    #tuneup-root .crumb{ font-size:.9rem; margin-bottom:8px; }
-  </style>
 </head>
 <body>
-  <!-- Header include -->
-  <div id="site-header"></div>
 
-  <main id="tuneup-root" class="page">
-    <nav aria-label="Breadcrumb" class="crumb"><a href="/">Home</a> / Roof Tune-Up</nav>
+  <!-- Header include (same as home) -->
+  <div data-include="/components/header-section.html"></div>
 
+  <main class="page">
     <!-- HERO -->
-    <header class="tu-hero" aria-labelledby="tu-title">
-      <h1 id="tu-title">Roof Tune-Up &amp; Preventative Maintenance</h1>
-      <p>Reseal pipes and roof jacks, reset slipped tiles/shingles, clean valleys & gutters, replace missing pieces, and keep water moving where it should.</p>
-      <div class="tu-cta">
-        <a class="tu-btn tu-btn-primary" href="/index.html#estimate">Schedule Your Tune-Up</a>
-        <a class="tu-btn tu-btn-ghost" href="tel:8589006163" aria-label="Call Zenith Roofing Services at 858-900-6163">Call 858-900-6163</a>
+    <section class="hero sys" id="top">
+      <h1>Roof Tune-Up & Preventative Maintenance</h1>
+      <p class="lede">Focused on the most common leak points for single-family homes: <strong>sealing vent pipes</strong>, <strong>caulking around penetrations</strong>, <strong>cleaning valleys & gutters</strong>, <strong>fixing broken/slipped tiles</strong>, and <strong>touching up flashings</strong>.</p>
+      <div class="hero-feats">
+        <span class="chip">Same-week scheduling (most cases)</span>
+        <span class="chip">Tile • Shingle • Flat</span>
+        <span class="chip">Photo notes included</span>
       </div>
-      <div class="tu-chips" aria-label="Age guidelines">
-        <span class="tu-chip">Best for roofs &lt; 30 years</span>
-        <span class="tu-chip note">Often helpful at 25–29 years</span>
-        <span class="tu-chip warn">At ~30 years: replacement is typically recommended</span>
-      </div>
-    </header>
-
-    <!-- WHAT'S INCLUDED + RIGHT SIDEBAR -->
-    <section class="tu-section" aria-labelledby="tu-included">
-      <div class="tu-split">
-        <div>
-          <h2 id="tu-included">What’s included in a Zenith Tune-Up</h2>
-          <p class="tu-sub">A practical service for well-built roofs that are aging but still serviceable.</p>
-          <div class="tu-card">
-            <ul class="tu-list">
-              <li>Reseal/replace pipe flashings, roof jacks, and plumbing vent boots</li>
-              <li>Seal minor penetrations, exposed fasteners, and flashing terminations</li>
-              <li>Reset slipped or lifted tiles/shingles; address nail pops where feasible</li>
-              <li>Replace missing shingles/tiles (homeowner-supplied or best match available)</li>
-              <li>Clean roof valleys and clear debris from gutters & downspouts</li>
-              <li>Improve drainage paths; check dead-valleys and transitions</li>
-              <li>Basic photo documentation of areas serviced</li>
-            </ul>
-            <div class="tu-cta" style="margin-top:.6rem">
-              <a class="tu-btn tu-btn-primary" href="/index.html#estimate">Book a Tune-Up</a>
-            </div>
-          </div>
-          <p class="tu-note" style="margin-top:.6rem">Note: If we discover underlying issues (e.g., brittle underlayment on tile, saturated decking, widespread material failure), we’ll show you photos and advise on next steps before proceeding.</p>
-        </div>
-
-        <aside>
-          <div class="tu-mini">
-            <h3>Is a tune-up right for your roof?</h3>
-            <p class="tu-muted">Great candidates typically include:</p>
-            <ul class="tu-list">
-              <li>Roofs under ~30 years with localized wear</li>
-              <li>Roofs with minor leaks at pipes/penetrations</li>
-              <li>Valleys/gutters collecting debris and slowing drainage</li>
-            </ul>
-            <p class="tu-muted" style="margin-top:.5rem"><strong>Not ideal when:</strong> underlayment is at end-of-life (common near 30 years on tile), there’s widespread shingle granule loss, saturated decking, or systemic flashing failure—in those cases, replacement is the smarter investment.</p>
-          </div>
-        </aside>
+      <div class="cta">
+        <a class="btn btn-primary" href="#estimate">Request Roof Tune-Up</a>
+        <a class="btn btn-outline" href="tel:8589006163">Call 858-900-6163</a>
       </div>
     </section>
 
-    <!-- SMALL FEATURE CARDS -->
-    <section class="tu-section" aria-labelledby="tu-why">
-      <h2 id="tu-why">Why a tune-up helps</h2>
-      <p class="tu-sub">Small maintenance now can buy time and prevent nuisance leaks, especially around penetrations and drainage paths.</p>
-      <div class="tu-grid">
-        <div class="tu-mini">
-          <h3>Penetration sealing</h3>
-          <p class="tu-muted">Pipes and roof jacks are the most common leak points. We reseal, replace brittle boots, and secure flashings.</p>
-        </div>
-        <div class="tu-mini">
-          <h3>Valleys &amp; gutters</h3>
-          <p class="tu-muted">We clear debris so water can shed properly—simple, effective, and often overlooked.</p>
-        </div>
-        <div class="tu-mini">
-          <h3>Loose/missing pieces</h3>
-          <p class="tu-muted">Reset slipped tiles/shingles and replace missing ones to close easy entry points for water.</p>
+    <!-- STICKY PILL NAV (centered via inline style) -->
+    <nav class="sticky-pills" aria-label="Quick jump">
+      <div class="pillnav" style="justify-content:center">
+        <a href="#included">What’s Included</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#process">Our Process</a>
+        <a href="#faq">FAQ</a>
+        <a href="#areas">Service Areas</a>
+        <a href="#estimate">Book Now</a>
+      </div>
+    </nav>
+
+    <!-- WHAT'S INCLUDED -->
+    <section class="sys" id="included" aria-labelledby="inc-title">
+      <h2 id="inc-title">What’s Included in a Tune-Up</h2>
+      <p class="muted">We focus on <strong>leak prevention</strong> and manufacturer-friendly maintenance for tile, shingle, and flat roofs.</p>
+
+      <div class="grid cols-2">
+        <article class="card airy">
+          <h3>Tile Roof</h3>
+          <ul class="checklist relaxed grid-2">
+            <li><span class="tick">✓</span><div>Replace slipped/broken tiles <small class="muted">(owner-provided or matching stock when available)</small></div></li>
+            <li><span class="tick">✓</span><div>Clear valleys & debris dams to improve drainage</div></li>
+            <li><span class="tick">✓</span><div>Seal & fasten at penetrations (vents, pipes, satellite holes)</div></li>
+            <li><span class="tick">✓</span><div>Note any exposed/brittle underlayment</div></li>
+          </ul>
+        </article>
+
+        <article class="card airy">
+          <h3>Shingle & Flat</h3>
+          <ul class="checklist relaxed grid-2">
+            <li><span class="tick">✓</span><div>Reseal lifted tabs; replace missing shingles where feasible</div></li>
+            <li><span class="tick">✓</span><div>Re-fasten exposed nails/screws and seal heads</div></li>
+            <li><span class="tick">✓</span><div>Touch up flashings at walls, chimneys, skylights</div></li>
+            <li><span class="tick">✓</span><div>Clean gutters, downspouts, scuppers & drains</div></li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <strong>Deliverables:</strong> Photo notes and a short summary. Items beyond tune-up scope (e.g., new flashing, underlayment, wood repairs) are quoted separately.
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="sys" id="pricing" aria-labelledby="pricing-title">
+      <h2 id="pricing-title">Transparent Pricing</h2>
+      <p class="muted">Final cost depends on roof size, access, pitch, and condition. We confirm after an initial look.</p>
+
+      <div class="grid cols-2">
+        <article class="card">
+          <h3>Basic Tune-Up</h3>
+          <ul class="list">
+            <li>Seal vent pipes & penetrations</li>
+            <li>Clean valleys & gutters</li>
+            <li>Fix minor broken/slipped tiles or shingle tabs</li>
+            <li>Touch up exposed flashings</li>
+          </ul>
+          <div class="cta" style="justify-content:center">
+            <a class="btn btn-primary" href="#estimate">Book Basic</a>
+            <a class="btn btn-outline" href="tel:8589006163">Call</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Premium Tune-Up</h3>
+          <ul class="list">
+            <li>Everything in Basic</li>
+            <li>Extra flashing tune-up (chimney/skylight)</li>
+            <li>Minor flat-roof seam/termination touch-ups</li>
+            <li>Priority scheduling</li>
+          </ul>
+          <div class="cta" style="justify-content:center">
+            <a class="btn btn-primary" href="#estimate">Book Premium</a>
+            <a class="btn btn-outline" href="/reviews.html">Read Reviews</a>
+          </div>
+        </article>
+      </div>
+
+      <p class="muted" style="margin-top:.5rem">Structural wood, new metal fabrication, or code upgrades are outside a tune-up and will be quoted if needed.</p>
+    </section>
+
+    <!-- OUR PROCESS (block centered & narrowed via inline style) -->
+    <section class="sys" id="process" aria-labelledby="process-title">
+      <h2 id="process-title" style="text-align:center">Our Roof Tune-Up Process</h2>
+      <div style="max-width:820px;margin:0 auto">
+        <div class="card">
+          <ol class="list">
+            <li><strong>Inspection & Photos:</strong> We walk the roof, note leak-prone areas, and document with pictures.</li>
+            <li><strong>Maintenance & Minor Repairs:</strong> Debris removal, sealing/caulking, fastener work, and small part swaps where feasible.</li>
+            <li><strong>Clean-Up & Report:</strong> We tidy up and provide simple notes with recommendations.</li>
+            <li><strong>Optional Repairs:</strong> If we find issues beyond tune-up scope, we’ll provide a separate estimate.</li>
+          </ol>
         </div>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="tu-section" aria-labelledby="tu-faq">
-      <h2 id="tu-faq">Common questions</h2>
-      <details>
-        <summary>How long does a tune-up last?</summary>
-        <p class="tu-muted">It’s maintenance, not a new roof. The goal is to slow wear, fix small issues, and buy time. On a healthy sub-structure, the benefit can be meaningful; on roofs at the end of life, it’s a short-term patch.</p>
+    <section class="sys faq" id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Roof Tune-Up FAQs</h2>
+      <details class="card">
+        <summary>Will this stop my leak?</summary>
+        <div>A tune-up often fixes minor causes (cracked sealant, debris dams). If the source is worn underlayment or failed flashing, we’ll quote a repair.</div>
       </details>
-      <details>
-        <summary>Do you guarantee no future leaks?</summary>
-        <p class="tu-muted">We warrant our workmanship on the specific areas we service. A tune-up can’t reverse age-related failure (e.g., brittle underlayment) or defects in areas we didn’t touch.</p>
+      <details class="card">
+        <summary>How often should I schedule maintenance?</summary>
+        <div>Annually for most homes; every 6–12 months if under trees, near the coast, or with older roofs.</div>
       </details>
-      <details>
-        <summary>Will you replace a lot of broken tiles/shingles?</summary>
-        <p class="tu-muted">We replace missing/damaged pieces we can reasonably match during the visit. If a roof needs broader material replacement, we’ll recommend a targeted repair or full replacement.</p>
+      <details class="card">
+        <summary>What roof types do you service?</summary>
+        <div>Concrete/clay tile, asphalt shingles, torch-down, and TPO.</div>
       </details>
     </section>
 
-    <!-- FRIENDLY LIMITATIONS / DISCLAIMER -->
-    <section class="tu-section" aria-labelledby="tu-fine">
-      <h2 id="tu-fine">Friendly fine print</h2>
-      <div class="tu-card">
-        <ul class="tu-list">
-          <li>Tune-ups are intended for maintainable roofs, generally under ~30 years.</li>
-          <li>Interior damage, unrelated leaks, or issues caused by other trades/third parties aren’t covered.</li>
-          <li>If conditions indicate end-of-life (e.g., aged tile underlayment, extensive granule loss, saturated wood), we’ll recommend replacement.</li>
-          <li>Service is performed per our written proposal; recommendations on this page are informational.</li>
-        </ul>
+    <!-- SERVICE AREAS + CTA -->
+    <section class="sys service-areas" id="areas" aria-labelledby="areas-title">
+      <h2 id="areas-title">Serving San Diego County & Temecula Valley</h2>
+      <p class="muted">Based in Escondido & Temecula. Common areas: Carlsbad, Oceanside, Vista, San Marcos, Escondido, Poway, Rancho Bernardo, Fallbrook, Murrieta & Temecula.</p>
+
+      <div class="card">
+        <div class="grid cols-2">
+          <div>
+            <strong>Ready to extend your roof’s life?</strong>
+            <p class="muted">Most tune-ups take 1–3 hours.</p>
+          </div>
+          <div class="cta" style="justify-content:center">
+            <a class="btn btn-primary" href="#estimate">Book a Tune-Up</a>
+            <a class="btn btn-outline" href="/reviews.html">Read Reviews</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="tu-section" aria-labelledby="tu-cta">
-      <h2 id="tu-cta">Ready to schedule your tune-up?</h2>
-      <p class="tu-sub">Honest advice. Clear photos. Clean, professional crews.</p>
-      <div class="tu-cta">
-        <a class="tu-btn tu-btn-primary" href="/index.html#estimate">Get on the Schedule</a>
-        <a class="tu-btn tu-btn-ghost" href="tel:8589006163">Call 858-900-6163</a>
+    <!-- BOOKING / ESTIMATE FORM -->
+    <section class="sys" id="estimate" aria-labelledby="estimate-title">
+      <h2 id="estimate-title">Request a Roof Tune-Up</h2>
+      <p class="muted">Use the form below or call <a href="tel:8589006163">858-900-6163</a>.</p>
+
+      <form class="card" name="roof-tune-up" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html">
+        <input type="hidden" name="form-name" value="roof-tune-up">
+        <p style="display:none"><label>Don’t fill this out: <input name="bot-field"></label></p>
+
+        <div class="grid cols-2">
+          <label>Full Name<input name="name" autocomplete="name" required></label>
+          <label>Phone<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required></label>
+        </div>
+        <div class="grid cols-2">
+          <label>Email<input name="email" type="email" autocomplete="email"></label>
+          <label>City<select name="city" required>
+            <option value="" selected disabled>Select city</option>
+            <option>Escondido</option><option>San Diego</option><option>Temecula</option>
+            <option>Carlsbad</option><option>Vista</option><option>Oceanside</option>
+            <option>San Marcos</option><option>Murrieta</option>
+          </select></label>
+        </div>
+
+        <label>Roof Type<select name="roof-type" required>
+          <option value="" selected disabled>Choose roof system</option>
+          <option>Tile</option><option>Asphalt Shingle</option>
+          <option>Flat — TPO</option><option>Flat — Torch-Down / Mod-Bit</option><option>Metal</option>
+        </select></label>
+
+        <label>Notes<textarea name="notes" rows="4" placeholder="Tell us about any leaks, stains, or areas of concern..."></textarea></label>
+
+        <!-- Form CTA centered -->
+        <div class="cta" style="justify-content:center">
+          <button class="btn btn-primary" type="submit">Request My Tune-Up</button>
+          <a class="btn btn-outline" href="tel:8589006163">Prefer to call? 858-900-6163</a>
+        </div>
+
+        <p class="muted">By submitting, you agree we may contact you about your service request.</p>
+      </form>
+
+      <div class="tip">
+        This page explains common maintenance tasks. Final scope, pricing, and warranty coverage are defined by your signed proposal/contract. We’re not responsible for pre-existing conditions, concealed damage, or work by other trades unless explicitly included.
       </div>
     </section>
   </main>
 
   <!-- Footer include -->
-  <div id="site-footer"></div>
+  <div data-include="/components/footer.html"></div>
 
-  <!-- Same include pattern as your working pages -->
-  <script src="/js/header.js" defer></script>
+  <!-- Lightweight include loader (same pattern you use) -->
   <script>
-    async function include(id, url){
-      const el = document.getElementById(id);
-      try { const res = await fetch(url, {cache:'no-store'}); el.innerHTML = await res.text(); }
-      catch(e) { el.innerHTML = ""; }
-    }
-    (async () => {
-      await include('site-header','/components/header-section.html');
-      await include('site-footer','/components/footer.html');
-      if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
-    })();
-  </script>
-
-  <!-- JSON-LD: Service schema for this page -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Roof Tune-Up & Preventative Maintenance",
-    "serviceType": "Roof maintenance",
-    "provider": {
-      "@type": "RoofingContractor",
-      "name": "Zenith Roofing Services, Inc.",
-      "telephone": "+1-858-900-6163",
-      "areaServed": ["San Diego County","Escondido","Temecula"],
-      "url": "https://www.zenithroofingservices.com"
-    },
-    "description": "Reseal pipes and roof jacks, reset slipped tiles/shingles, clean valleys and gutters, replace missing pieces, and improve drainage on roofs under ~30 years.",
-    "category": "HomeAndConstructionBusiness"
-  }
+  if(!window.__inc){window.__inc=1;(async()=>{
+    const slots=[...document.querySelectorAll('[data-include]')];
+    if(!slots.length) return;
+    await Promise.all(slots.map(async slot=>{
+      const url=slot.getAttribute('data-include');
+      try{
+        const res=await fetch(url,{cache:'no-store'});
+        const html=await res.text();
+        const tmp=document.createElement('div'); tmp.innerHTML=html.trim();
+        const parent=slot.parentNode; const nodes=[...tmp.childNodes];
+        nodes.forEach(n=>parent.insertBefore(n,slot));
+        parent.removeChild(slot);
+      }catch(err){ console.error('Include failed:', url, err); }
+    }));
+  })();}
   </script>
 </body>
 </html>
