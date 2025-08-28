@@ -65,6 +65,10 @@
     .rtu-col-12{grid-column:span 12}
     @media(max-width:900px){ .rtu-hero .wrap{grid-template-columns:1fr} .rtu-bullets{grid-template-columns:1fr} .rtu-col-6,.rtu-col-4{grid-column:span 12} }
 
+    .rtu-grid.auto{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));justify-items:stretch;align-items:stretch}
+    .rtu-center{text-align:center}
+    .rtu-card h3,.rtu-card .rtu-meta{text-align:center}
+
     .rtu-card{background:#fff;border:1px solid var(--rtu-line);border-radius:var(--rtu-radius);padding:clamp(14px,2vw,18px);box-shadow:var(--rtu-shadow)}
     .rtu-card h3{margin-bottom:.25rem}
     .rtu-meta{color:var(--rtu-muted);font-size:.95rem}
@@ -199,7 +203,7 @@
       <h2>Transparent Pricing</h2>
       <p class="rtu-meta">Final cost depends on roof size, access, pitch, and condition. We confirm pricing after an initial inspection.</p>
 
-      <div class="rtu-grid">
+      <div class="rtu-grid auto">
         <!-- Residential Tune-Up Card -->
         <article class="rtu-card rtu-col-6" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
           <h3>Tune‑Up <span class="rtu-tag">Homes ≤ 3,000 sq ft</span></h3>
@@ -319,30 +323,25 @@
 
   <!-- ESTIMATE / BOOKING FORM -->
   <section id="estimate" class="rtu-section" aria-labelledby="estimate-title">
-  <div class="wrap">
-    <h2 id="estimate-title">Book a Roof Tune‑Up</h2>
-    <p class="rtu-meta">Homes up to <strong>3,000 sq ft</strong> qualify for our published tune‑up pricing shown on the <a href="/">Home page</a>. Larger homes and <strong>commercial roofs</strong> vary — please call for pricing.</p>
+    <div class="wrap">
+      <h2 id="estimate-title">Book a Roof Tune‑Up</h2>
+      <p class="rtu-meta">Homes up to <strong>3,000 sq ft</strong> qualify for our published tune‑up pricing shown on the <a href="/">Home page</a>. Larger homes and <strong>commercial roofs</strong> vary — please call for pricing.</p>
 
-    <div class="rtu-card">
-      <h3>How to book (fastest)</h3>
-      <ol class="rtu-steps" style="margin:0">
-        <li class="rtu-step"><div></div><div><strong>Open the main request form</strong> on the Home page (routes to our Netlify CRM).</div></li>
-        <li class="rtu-step"><div></div><div>In <strong>Notes/Description</strong>, add: <em>“Tune‑Up (≤ 3,000 sq ft)”</em> if your home qualifies.</div></li>
-        <li class="rtu-step"><div></div><div>For homes <strong>&gt; 3,000 sq ft</strong> or <strong>commercial</strong>, write “Large Home / Commercial – Call for Pricing”.</div></li>
-      </ol>
+      <div class="rtu-cta rtu-center" style="margin-top:.25rem">
+        <a class="rtu-btn primary" href="/#estimate" aria-label="Open the Home page estimate form">Go to Estimate Form</a>
+        <a class="rtu-btn outline" href="tel:8589006163">Call for Pricing</a>
+      </div>
+
+      <div class="rtu-card" style="margin-top:14px">
+        <strong>Helpful:</strong> In the form <em>Notes/Description</em>, add: <em>“Tune‑Up (≤ 3,000 sq ft)”</em> if your home qualifies. For homes &gt; 3,000 sq ft or commercial roofs, write “Large Home / Commercial – Call for Pricing”.
+      </div>
+
+      <details style="margin-top:10px">
+        <summary><strong>Important notes</strong></summary>
+        <div class="rtu-small">This page provides general information about common roofing maintenance practices. Actual scope, materials, and warranty coverage are governed solely by your signed contract and final invoice. We’re not responsible for pre‑existing conditions, concealed damage, work by other trades, or interior damages unless explicitly included in the contract.</div>
+      </details>
     </div>
-
-    <div class="rtu-cta" style="margin-top:12px">
-      <a class="rtu-btn primary" href="/#estimate" aria-label="Open the Home page estimate form">Go to Estimate Form</a>
-      <a class="rtu-btn outline" href="tel:8589006163">Call for Pricing (Large/Commercial)</a>
-    </div>
-
-    <details style="margin-top:10px">
-      <summary><strong>Important notes</strong></summary>
-      <div class="rtu-small">This page provides general information about common roofing maintenance practices. Actual scope, materials, and warranty coverage are governed solely by your signed contract and final invoice. We’re not responsible for pre‑existing conditions, concealed damage, work by other trades, or interior damages unless explicitly included in the contract.</div>
-    </details>
-  </div>
-</section>
+  </section>
 
   <!-- (Optional) Footer include placeholder -->
   <!-- Global footer include from home page -->
