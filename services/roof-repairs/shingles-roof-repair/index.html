@@ -19,8 +19,7 @@
     <p>Starter page. Replace this with your content.</p><p><a class="call-button" href="tel:8589006163">Call 858-900-6163</a></p>
   </main>
   <div id="site-footer"></div>
-  <script src="/js/header.js" defer></script>
-  <script>
+<script>
     async function include(id, url){
       const el = document.getElementById(id);
       try { const res = await fetch(url); el.innerHTML = await res.text(); }
@@ -120,6 +119,7 @@
   })();
   </script>
   <section data-include="components/footer.html"></section>
-  <script src="/js/loader.js" defer></script>
+<script src="/js/loader.js" defer></script>
+<script src="/js/header.js" defer></script>
 </body>
 </html>

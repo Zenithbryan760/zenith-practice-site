@@ -347,9 +347,7 @@
       } catch (e) { console.warn('Header/Footer include failed:', e); }
     })();
   </script>
-
-  <script src="/js/header.js" defer></script>
-  <script>
+<script>
     async function include(id, url){
       const el = document.getElementById(id);
       try { const res = await fetch(url, {cache:'no-store'}); el.innerHTML = await res.text(); }
@@ -449,6 +447,7 @@
   })();
   </script>
   <section data-include="components/footer.html"></section>
-  <script src="/js/loader.js" defer></script>
+<script src="/js/loader.js" defer></script>
+<script src="/js/header.js" defer></script>
 </body>
 </html>
