@@ -154,6 +154,26 @@
       .rtu-hero .wrap > figure{ order:2; }
       .rtu-hero .wrap > div{ order:1; }
     }
+  
+    /* ===== Hero text: distinct desktop vs mobile formatting ===== */
+    /* Desktop: text on right, left-aligned; photo left */
+    @media (min-width:901px){
+      .rtu-hero .wrap{ grid-template-columns: .95fr 1.05fr; }
+      .rtu-hero .wrap > div{ text-align:left; max-width:60ch; margin:0 0 0 auto; }
+      .rtu-hero h1{ font-size:clamp(2rem,3vw,2.6rem); }
+      .rtu-hero p{ font-size:1.05rem; }
+      .rtu-hero .rtu-cta{ justify-content:flex-start; }
+      .rtu-bullets{ grid-template-columns:repeat(2,minmax(0,1fr)); margin-inline:0; }
+    }
+    /* Mobile: stack, centered text for quick scanning */
+    @media (max-width:900px){
+      .rtu-hero .wrap{ grid-template-columns:1fr; }
+      .rtu-hero .wrap > div{ text-align:center; max-width:68ch; margin-inline:auto; }
+      .rtu-hero h1{ font-size:clamp(1.6rem,5vw,2rem); }
+      .rtu-hero p{ font-size:1rem; }
+      .rtu-hero .rtu-cta{ justify-content:center; }
+      .rtu-bullets{ grid-template-columns:1fr; margin-inline:auto; }
+    }
   </style>
 </head>
 <body class="rtu">
