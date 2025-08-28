@@ -253,13 +253,14 @@
   .page .pillnav a{ padding:.5rem .7rem; }
   .page .micro-grid{ grid-template-columns:1fr; } /* avoid cramped two-up */
 }
-@media (max-width:320px){
 
-   /* ========== 19) Minimal utilities (no overrides, brand-safe) ========== */
+/* ========== 19) Minimal utilities (GLOBAL, no duplicates) ========== */
 .page .center      { text-align: center; }
 .page .center-flex { display: flex; justify-content: center; }
 .page .narrow      { max-width: 820px; margin: 0 auto; }
 
+/* ========== 20) Tiny devices (<=320px) ========== */
+@media (max-width:320px){
   .page{ padding:6px 8px; }
   .page h1{ font-size: clamp(1.35rem, 1.1rem + 3vw, 1.6rem); }
 }
