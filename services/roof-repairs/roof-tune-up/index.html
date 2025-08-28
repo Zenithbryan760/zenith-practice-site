@@ -111,6 +111,18 @@
 
     /* Smooth scroll */
     html{scroll-behavior:smooth}
+
+    /* ===== Centering & readability polish ===== */
+    .rtu h1, .rtu h2 { text-wrap: balance; }
+    .rtu-section > .wrap > h2,
+    .rtu-section > .wrap > p.rtu-meta{ text-align:center; margin-inline:auto; max-width:68ch; }
+    .rtu-hero .wrap > div:first-child{ text-align:center; margin-inline:auto; max-width:68ch; }
+    .rtu-cta{ justify-content:center; }
+    .rtu-toc .wrap{ justify-content:center; }
+    .rtu-card{ display:flex; flex-direction:column; align-items:center; text-align:center; }
+    .rtu-card .rtu-list{ text-align:left; max-width:60ch; width:100%; margin-inline:auto; }
+    .rtu-gallery{ justify-items:center; }
+    .rtu-gallery img{ display:block; margin:0 auto; }
   </style>
 </head>
 <body class="rtu">
