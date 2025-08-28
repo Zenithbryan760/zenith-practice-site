@@ -18,29 +18,42 @@
   <div data-include="/components/header-section.html"></div>
 
   <main class="page" id="top">
-    <!-- HERO -->
-    <section class="hero sys" aria-labelledby="hero-title">
-      <div class="grid cols-2">
-        <figure class="media" aria-label="Roof tune-up image">
-          <img src="/images/seo/roof-tune-up-hero.jpg" width="900" height="600" alt="Roof tune‑up: clearing debris and sealing around flashing." loading="eager" decoding="async" />
-        </figure>
-        <div>
-          <p class="chip" style="display:inline-block">San Diego • Escondido • Temecula</p>
-          <h1 id="hero-title">Roof Tune‑Up & <span class="muted">Preventative Maintenance</span></h1>
-          <p class="lede narrow">Quick preventative service for tile, shingle, and flat roofs. We clean, seal, and tighten common leak points so small issues don’t become big ones.</p>
-          <div class="hero-feats">
-            <span class="chip">Same‑week scheduling</span>
-            <span class="chip">Tile • Shingle • Flat</span>
-            <span class="chip">Gutter & valley clean‑up</span>
-            <span class="chip">Photo report</span>
-          </div>
-          <div class="cta">
-            <a class="btn btn-primary" href="/#estimate">Book a Tune‑Up</a>
-            <a class="btn btn-outline" href="tel:8589006163">Call 858‑900‑6163</a>
-          </div>
-        </div>
+  <!-- HERO (mobile-first: text first, image second) -->
+<section class="hero sys" aria-labelledby="hero-title">
+  <div class="grid cols-2">
+    <!-- TEXT FIRST for mobile -->
+    <div>
+      <p class="chip" style="display:inline-block">San Diego • Escondido • Temecula</p>
+      <h1 id="hero-title">Roof Tune-Up & <span class="muted">Preventative Maintenance</span></h1>
+      <p class="lede narrow">Quick preventative service for tile, shingle, and flat roofs. We clean, seal, and tighten common leak points so small issues don’t become big ones.</p>
+
+      <div class="hero-feats">
+        <span class="chip">Same-week scheduling</span>
+        <span class="chip">Tile • Shingle • Flat</span>
+        <span class="chip">Gutter & valley clean-up</span>
+        <span class="chip">Photo report</span>
       </div>
-    </section>
+
+      <div class="cta center-flex">
+        <a class="btn btn-primary" href="/#estimate">Book a Tune-Up</a>
+        <a class="btn btn-outline" href="tel:8589006163">Call 858-900-6163</a>
+      </div>
+    </div>
+
+    <!-- IMAGE SECOND for mobile -->
+    <figure class="media" aria-label="Roof tune-up image">
+      <img
+        src="/images/seo/roof-tune-up-hero.jpg"
+        srcset="/images/seo/roof-tune-up-hero-600.jpg 600w,
+                /images/seo/roof-tune-up-hero-900.jpg 900w,
+                /images/seo/roof-tune-up-hero.jpg 1200w"
+        sizes="(max-width: 860px) 100vw, 50vw"
+        width="900" height="600"
+        alt="Roof tune-up: clearing debris and sealing around flashing."
+        loading="eager" decoding="async" />
+    </figure>
+  </div>
+</section>
 
     <!-- Sticky pill nav -->
     <div class="sticky-pills">
