@@ -177,12 +177,12 @@
   <!-- Footer include target -->
   <div id="site-footer"></div>
 
-  <!-- (Optional) Your global header JS can still load; not required for the page fix -->
+  <!-- (Optional) Your global header JS can still load -->
   <script src="/js/header.js" defer></script>
 
-  <!-- Includes + PAGE-ONLY fixed-header patch -->
+  <!-- Includes + PAGE-ONLY fixed-header patch (navy blue) -->
   <script>
-    // Lightweight include helper (kept local to this page)
+    // Lightweight include helper
     async function include(id, url){
       const el = document.getElementById(id);
       try { const res = await fetch(url, { cache: 'no-store' }); el.innerHTML = await res.text(); }
@@ -194,7 +194,7 @@
       await include('site-header','/components/header-section.html');
       await include('site-footer','/components/footer.html');
 
-      // 2) PAGE-ONLY FIX: keep header fixed and push content below it
+      // 2) PAGE-ONLY FIX: keep header fixed and push content below it (NAVY BLUE)
       (function fixThisPageHeader(){
         const header =
           document.querySelector('#site-header header') ||
@@ -203,19 +203,21 @@
 
         if (!header) return;
 
-        // Lock header to top with minimal inline styles (no global overrides)
+        // Lock header to top; force Zenith navy + white text
         Object.assign(header.style, {
           position: 'fixed',
           top: '0',
           left: '0',
           right: '0',
           zIndex: '9999',
-          background: '#fff',
+          background: 'var(--zenith-navy, #072e59)',
+          color: '#fff',
           transform: 'none' // avoid iOS fixed bugs
         });
-
-        // Ensure the header spans full width cleanly
         header.style.boxSizing = 'border-box';
+
+        // Ensure links inside stay readable if your header.css isn't already doing it
+        header.querySelectorAll('a').forEach(a => { a.style.color = 'inherit'; });
 
         // Add padding so content isn't hidden under the fixed header
         function setPad(){
@@ -229,9 +231,9 @@
         window.addEventListener('orientationchange', setPad, { passive: true });
         if ('ResizeObserver' in window){ new ResizeObserver(setPad).observe(header); }
 
-        // Subtle shadow when page is scrolled
+        // Subtle shadow when page is scrolled (shows against hero)
         function onScroll(){
-          header.style.boxShadow = (window.scrollY > 2) ? '0 8px 24px rgba(2,12,32,.08)' : 'none';
+          header.style.boxShadow = (window.scrollY > 2) ? '0 8px 24px rgba(2,12,32,.18)' : 'none';
         }
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
@@ -240,20 +242,9 @@
         document.querySelectorAll('[data-nav-toggle], .nav-toggle, #nav-toggle').forEach(btn=>{
           btn.addEventListener('click', () => requestAnimationFrame(setPad));
         });
-
-        // Optional: make logo click scroll to top if already on home
-        const logoLink = header.querySelector('.site-logo a, .logo a, a[aria-label="Home"]');
-        if (logoLink){
-          logoLink.addEventListener('click', (e) => {
-            if (location.pathname === '/' || logoLink.getAttribute('href') === '/'){
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-          });
-        }
       })();
 
-      // 3) If your global header script exposes init, let it run
+      // 3) Run your global header init if present
       if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
     })();
   </script>
