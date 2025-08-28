@@ -7,11 +7,9 @@
   <meta name="description" content="Full‑service residential and commercial roofing in San Diego & Temecula: shingles, tile lift‑and‑lay, TPO, torch‑down, silicone coatings, gutters, skylights, inspections, real‑estate certifications, and more." />
 
   <!-- Use your existing global styles so header/footer match the home page -->
-  <link rel="stylesheet" href="/css/base.css" />
-  <link rel="stylesheet" href="/css/header.css" />
-  <link rel="stylesheet" href="/css/footer.css" />
 
-  <!-- Page‑scoped styles (kept tiny + namespaced to avoid overrides) -->
+
+<!-- Page‑scoped styles (kept tiny + namespaced to avoid overrides) -->
   <style>
     :root{
       --zenith-navy:#072e59; 
@@ -65,13 +63,18 @@
     /* Little divider line */
     .line{ height:1px; background:var(--line); margin: 1.4rem auto; max-width:1150px; }
   </style>
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/footer.css">
 </head>
 <body class="services-page">
+<div data-include="/components/header-section.html"></div>
+
   <!-- Header include (same as home page) -->
-  <div id="site-header"></div>
+  
 
   <main class="page" id="top">
-    <div data-include="/components/header-section.html"></div>
+    
 
     <!-- Residential -->
     <section class="svc-section" aria-labelledby="svc-residential">
@@ -447,6 +450,9 @@
   })();
   </script>
   <section data-include="components/footer.html"></section>
+<script src="/js/loader.js" defer></script>
+<script src="/js/header.js" defer></script>
+<div data-include="/components/footer.html"></div>
 <script src="/js/loader.js" defer></script>
 <script src="/js/header.js" defer></script>
 </body>

@@ -8,12 +8,9 @@
   <meta name="description" content="Fast diagnostics and durable roof repairs for shingle, tile, TPO/PVC, built-up/torch, silicone coatings, metal panels, and SPF foam. Photo reports, clear pricing, and warranties across North County San Diego, the rest of San Diego, and Temecula." />
 
   <!-- Core site CSS -->
-  <link rel="stylesheet" href="/css/base.css" />
-  <link rel="stylesheet" href="/css/header.css" />
-  <link rel="stylesheet" href="/css/ui.css" />
-  <link rel="stylesheet" href="/css/footer.css" />
 
-  <!-- Page-scoped enhancements (safe; all under .page) -->
+<link rel="stylesheet" href="/css/ui.css" />
+<!-- Page-scoped enhancements (safe; all under .page) -->
   <style>
     .page .hero{
       background: linear-gradient(135deg, #f8fafc, #eef6ff);
@@ -47,12 +44,17 @@
     }
     .page .cta-band .btn-primary{ color:#0b0b0b; }
   </style>
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
+<div data-include="/components/header-section.html"></div>
+
   <span id="top" aria-hidden="true"></span>
 
   <!-- Header include -->
-  <div data-include="/components/header-section.html"></div>
+  
 
   <main class="page">
     <!-- HERO -->
@@ -540,6 +542,9 @@
     }
   })();
   </script>
+<script src="/js/loader.js" defer></script>
+<script src="/js/header.js" defer></script>
+<div data-include="/components/footer.html"></div>
 <script src="/js/loader.js" defer></script>
 <script src="/js/header.js" defer></script>
 </body>
