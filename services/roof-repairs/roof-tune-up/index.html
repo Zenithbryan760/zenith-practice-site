@@ -174,6 +174,18 @@
       .rtu-hero .rtu-cta{ justify-content:center; }
       .rtu-bullets{ grid-template-columns:1fr; margin-inline:auto; }
     }
+  
+    /* ===== ALT HERO VARIANT: photo left, centered copy, buttons centered ===== */
+    .rtu-hero--alt .wrap{display:grid;grid-template-columns:minmax(320px,1fr) minmax(360px,1.1fr);gap:clamp(16px,3vw,32px);align-items:center}
+    .rtu-hero--alt .rtu-hero-media{border-radius:var(--rtu-radius);overflow:hidden;box-shadow:var(--rtu-shadow)}
+    .rtu-hero--alt .rtu-hero-copy{max-width:62ch;margin-inline:auto;text-align:center}
+    .rtu-hero--alt .rtu-hero-copy .rtu-cta{justify-content:center}
+    .rtu-hero--alt .rtu-bullets{max-width:60ch;margin:1rem auto;text-align:left}
+    @media(max-width:900px){
+      .rtu-hero--alt .wrap{grid-template-columns:1fr}
+      .rtu-hero--alt .rtu-hero-copy{order:1}
+      .rtu-hero--alt .rtu-hero-media{order:2}
+    }
   </style>
 </head>
 <body class="rtu">
@@ -183,9 +195,15 @@
   <div data-include="/components/header-section.html"></div>
 
   <!-- HERO -->
-  <section class="rtu-hero rtu-section" id="top">
+  <section class="rtu-hero rtu-section rtu-hero--alt" id="top">
     <div class="wrap">
-      <div>
+      <!-- Photo left -->
+      <figure class="rtu-hero-media" aria-label="Roof tune-up in action">
+        <img src="/images/seo/roof-tune-up-hero.jpg" alt="Technician performing roof tune‑up: clearing debris and sealing around flashing." width="900" height="600" loading="eager" decoding="async">
+      </figure>
+
+      <!-- Copy right (centered), buttons centered with text -->
+      <div class="rtu-hero-copy">
         <div class="rtu-kicker">San Diego • Escondido • Temecula</div>
         <h1><strong>Roof Tune‑Up & Preventative Maintenance</strong> — stop small issues before they become leaks</h1>
         <p>Professional <strong>roof tune‑ups, inspections, and minor repairs</strong> for tile, shingle, and flat roofs. We clear debris, seal penetrations, tighten fasteners, check flashing, and address the common leak points so your roof lasts longer.</p>
@@ -200,9 +218,6 @@
           <a class="rtu-btn outline" href="tel:8589006163" aria-label="Call Zenith Roofing Services at 858-900-6163">Call 858‑900‑6163</a>
         </div>
       </div>
-      <figure class="rtu-hero-media" aria-label="Roof tune-up in action">
-        <img src="/images/seo/roof-tune-up-hero.jpg" alt="Technician performing roof tune‑up: clearing debris and sealing around flashing." width="900" height="600" loading="eager" decoding="async">
-      </figure>
     </div>
   </section>
 
