@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
+  <section data-include="components/header-section.html"></section>
+
   <div id="site-header"></div>
   <main style="max-width:1200px;margin:24px auto;padding:0 16px;">
     <nav aria-label="Breadcrumb" style="font-size:.9rem;margin-bottom:8px;"><a href="/services/">Services</a> › <a href="/services/real-estate/">Real Estate Services</a></nav>
@@ -17,8 +19,7 @@
     <p>Starter page. Replace this with your content.</p><p><a class="call-button" href="tel:8589006163">Call 858-900-6163</a></p>
   </main>
   <div id="site-footer"></div>
-  <script src="/js/header.js" defer></script>
-  <script>
+<script>
     async function include(id, url){
       const el = document.getElementById(id);
       try { const res = await fetch(url); el.innerHTML = await res.text(); }
@@ -30,5 +31,95 @@
       if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
     })();
   </script>
+<script>
+  (function () {
+    // fetch + inject a single [data-include]
+    async function include(el) {
+      const src = el.getAttribute('data-include');
+      if (!src) return;
+      try {
+        const res = await fetch(src);             // normal caching
+        if (!res.ok) throw new Error('Failed ' + src);
+        const html = await res.text();
+        el.outerHTML = html;
+      } catch (e) {
+        console.error('❌ Include error:', src, e);
+      }
+    }
+
+    // Header height + collapsed state WITHOUT scroll reflow
+    function setupHeaderObservers() {
+      const root = document.documentElement;
+      const getHeader = () => document.querySelector('.mobile-header') || document.querySelector('.header');
+
+      function updateHeaderH() {
+        const h = getHeader();
+        if (h) root.style.setProperty('--header-h', Math.round(h.offsetHeight) + 'px');
+      }
+
+      // update when the header actually resizes
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(updateHeaderH);
+        const h = getHeader(); if (h) ro.observe(h);
+      }
+      window.addEventListener('load', updateHeaderH, { passive: true });
+      window.addEventListener('resize', () => requestAnimationFrame(updateHeaderH), { passive: true });
+
+      // toggle nav-collapsed via IntersectionObserver (no scroll work)
+      const sent = document.createElement('div');
+      sent.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;';
+      document.body.prepend(sent);
+      new IntersectionObserver(([e]) => {
+        root.classList.toggle('nav-collapsed', !e.isIntersecting);
+      }, { rootMargin: '-80px 0px 0px 0px' }).observe(sent); // adjust -80px if your header is taller
+    }
+
+    async function init() {
+      // include everything ELSE (hero has an LCP stub now)
+      const includes = Array.from(document.querySelectorAll('[data-include]'));
+      await Promise.all(includes.map(include));
+
+      // Upgrade the stub to the real hero component while REUSING the already-downloaded LCP <img>
+      const stub = document.getElementById('hero-stub');
+      if (stub) {
+        const res = await fetch('components/hero-section.html');
+        if (res.ok) {
+          const html = await res.text();
+          const tpl = document.createElement('template');
+          tpl.innerHTML = html.trim();
+          const real = tpl.content.querySelector('section.zenith-hero') || tpl.content.firstElementChild;
+          if (real) {
+            const lcp = document.getElementById('lcp-img');
+            const realPic = real.querySelector('.zenith-hero-media picture') || real.querySelector('.zenith-hero-media');
+            if (lcp && realPic) {
+              const existing = realPic.querySelector('.zenith-hero-mobile-img');
+              if (existing) existing.replaceWith(lcp); else realPic.appendChild(lcp);
+            }
+            stub.replaceWith(real);
+          }
+        }
+      }
+
+      // your existing inits (unchanged)
+      if (window.initMobileMenu) window.initMobileMenu();
+      [
+        'initEstimateForm','initAboutSection','initWhyChoose','initTrustSection',
+        'initPhotoSection','initTestimonials','initCTA','initServiceAreas',
+        'initRealEstate','initFooter','initHeader'
+      ].forEach(n => { if (typeof window[n] === 'function') window[n](); });
+
+      setupHeaderObservers();   // replaces old setLayoutFlags/scroll listeners
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+  </script>
+  <section data-include="components/footer.html"></section>
+<script src="/js/loader.js" defer></script>
+<script src="/js/header.js" defer></script>
 </body>
 </html>
