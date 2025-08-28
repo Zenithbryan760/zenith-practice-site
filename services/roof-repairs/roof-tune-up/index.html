@@ -145,7 +145,16 @@
     .rtu-toc .wrap{ justify-content:center; }
     /* CTA bar mobile centering */
     @media(max-width:720px){ .rtu-cta-bar{ flex-direction:column; align-items:center; text-align:center; } }
-</style>
+
+    /* Hero: photo left on desktop, text right; swap on mobile for readability */
+    .rtu-hero .wrap > figure{ order:1; }
+    .rtu-hero .wrap > div{ order:2; }
+    @media(max-width:900px){
+      .rtu-hero .wrap{ grid-template-columns:1fr; }
+      .rtu-hero .wrap > figure{ order:2; }
+      .rtu-hero .wrap > div{ order:1; }
+    }
+  </style>
 </head>
 <body class="rtu">
 
