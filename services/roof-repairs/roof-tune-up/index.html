@@ -129,7 +129,7 @@
           <li>Written report with photos</li>
         </ul>
         <div class="rtu-cta">
-          <a class="rtu-btn primary" href="#estimate" aria-label="Request your roof tune-up online">Request Roof Tune‑Up</a>
+          <a class="rtu-btn primary" href="/#estimate" aria-label="Request your roof tune-up online">Request Roof Tune‑Up</a>
           <a class="rtu-btn outline" href="tel:8589006163" aria-label="Call Zenith Roofing Services at 858-900-6163">Call 858‑900‑6163</a>
         </div>
       </div>
@@ -147,7 +147,7 @@
       <a class="rtu-chip" href="#process">Our Process</a>
       <a class="rtu-chip" href="#faq">FAQ</a>
       <a class="rtu-chip" href="#areas">Service Areas</a>
-      <a class="rtu-chip" href="#estimate">Book Now</a>
+      <a class="rtu-chip" href="/#estimate">Book Now</a>
     </div>
   </nav>
 
@@ -200,25 +200,30 @@
       <p class="rtu-meta">Final cost depends on roof size, access, pitch, and condition. We confirm pricing after an initial inspection.</p>
 
       <div class="rtu-grid">
+        <!-- Residential Tune-Up Card -->
         <article class="rtu-card rtu-col-6" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-          <h3><span class="rtu-tag">Best Value</span> Premium Tune‑Up</h3>
-          <p class="rtu-meta"><em>See the <a href="/">Home page</a> for current pricing and promotions.</em></p>
+          <h3>Tune‑Up <span class="rtu-tag">Homes ≤ 3,000 sq ft</span></h3>
+          <p class="rtu-meta"><em>Use the <a href="/">Home page</a> form for current pricing. In the description, add: <strong>“Tune‑Up (≤ 3,000 sq ft)”</strong> so we apply the correct price. 1‑story is typically lower than 2‑story due to added safety/access.</em></p>
           <ul class="rtu-list">
-            <li>Everything in Basic + skylight & chimney flashing tune‑up</li>
-            <li>Tile resets or shingle replacements (minor)</li>
-            <li>Flat roof seam & termination repairs (minor)</li>
-            <li>Priority scheduling</li>
+            <li>Replace up to <strong>5 concrete tiles</strong> (not clay) <em>or</em> up to <strong>5 shingles</strong>, when matching stock is available.</li>
+            <li>Seal/secure <strong>vent pipes</strong> and <strong>boots</strong>; touch‑up <strong>flashing paint</strong> to help prevent rust.</li>
+            <li>Clear <strong>roof valleys</strong> and <strong>clean gutters</strong> (about <strong>100 linear feet</strong> included; two‑story may be extra).</li>
+            <li>Cover <strong>exposed nails</strong> at ridge/caps and minor <strong>nail pop‑outs</strong> (widespread or improper installs are quoted separately).</li>
           </ul>
+          <div class="rtu-small">Notes: Clay tile repairs are excluded from the included count. Long perimeter nail‑hole lines or heavy caulking are abnormal conditions and will be quoted as repairs.</div>
         </article>
+
+        <!-- Large Homes & Commercial Card -->
         <article class="rtu-card rtu-col-6" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-          <h3><span class="rtu-tag">Best Value</span> Premium Tune‑Up</h3>
-          <p class="rtu-price">$549–949</p>
+          <h3>Large Homes & Commercial <span class="rtu-tag">&gt; 3,000 sq ft</span></h3>
+          <p class="rtu-meta"><em>Call <a href="tel:858-900-6163">858‑900‑6163</a> for pricing. Commercial pricing varies by roof size, access, number of penetrations, debris load, parapet/coping details, and inside/outside corners.</em></p>
           <ul class="rtu-list">
-            <li>Everything in Basic + skylight & chimney flashing tune‑up</li>
-            <li>Tile resets or shingle replacements (minor)</li>
-            <li>Flat roof seam & termination repairs (minor)</li>
-            <li>Priority scheduling</li>
+            <li><strong>Clean drains & scuppers</strong> to restore flow; remove roof‑field debris.</li>
+            <li>Seal <strong>pipe penetrations</strong>, boots, and pitch pans; minor seam/termination touch‑ups.</li>
+            <li>If sealing <strong>all</strong> penetrations is requested, pricing is based on count and access.</li>
+            <li><strong>On‑site assessment</strong> recommended for accurate scope; larger findings may be quoted as repairs.</li>
           </ul>
+          <div class="rtu-small">Commercial tune‑ups focus on maintenance; final price is confirmed after site review.</div>
         </article>
       </div>
 
@@ -305,7 +310,7 @@
           <div class="rtu-small">Request a roof tune‑up today — most visits take 1–3 hours.</div>
         </div>
         <div class="rtu-cta">
-          <a class="rtu-btn primary" href="#estimate">Book a Tune‑Up</a>
+          <a class="rtu-btn primary" href="/#estimate">Book a Tune‑Up</a>
           <a class="rtu-btn outline" href="/reviews.html">Read Reviews</a>
         </div>
       </div>
@@ -314,48 +319,36 @@
 
   <!-- ESTIMATE / BOOKING FORM -->
   <section id="estimate" class="rtu-section" aria-labelledby="estimate-title">
-    <div class="wrap">
-      <h2 id="estimate-title">Request a Roof Tune‑Up</h2>
-      <p class="rtu-meta">Fill out the form and we’ll confirm a time. You can also call <a href="tel:8589006163">858‑900‑6163</a>.</p>
+  <div class="wrap">
+    <h2 id="estimate-title">Book a Roof Tune‑Up</h2>
+    <p class="rtu-meta">Homes up to <strong>3,000 sq ft</strong> qualify for our published tune‑up pricing shown on the <a href="/">Home page</a>. Larger homes and <strong>commercial roofs</strong> vary — please call for pricing.</p>
 
-      <form class="rtu-form rtu-card" name="roof-tune-up" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html">
-        <input type="hidden" name="form-name" value="roof-tune-up">
-        <p style="display:none"><label>Don’t fill this out: <input name="bot-field"></label></p>
-        <div class="row">
-          <label>Full Name<input name="name" autocomplete="name" required></label>
-          <label>Phone<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required></label>
-        </div>
-        <div class="row">
-          <label>Email<input name="email" type="email" autocomplete="email"></label>
-          <label>City<select name="city" required>
-            <option value="" selected disabled>Select city</option>
-            <option>Escondido</option><option>San Diego</option><option>Temecula</option><option>Carlsbad</option><option>Vista</option><option>Oceanside</option><option>San Marcos</option><option>Murrieta</option>
-          </select></label>
-        </div>
-        <label>Roof Type<select name="roof-type" required>
-          <option value="" selected disabled>Choose roof system</option>
-          <option>Tile</option><option>Asphalt Shingle</option><option>Flat — TPO</option><option>Flat — Torch‑Down / Mod‑Bit</option><option>Metal</option>
-        </select></label>
-        <label>Notes<textarea name="notes" rows="4" placeholder="Tell us about any leaks, stains, or areas of concern..."></textarea></label>
-        <div class="rtu-cta" style="margin-top:.25rem">
-          <button class="rtu-btn primary" type="submit">Request My Tune‑Up</button>
-          <a class="rtu-btn outline" href="tel:8589006163">Prefer to call? 858‑900‑6163</a>
-        </div>
-        <div class="rtu-small">We respect your time and privacy. By submitting, you agree we may contact you about your service request.</div>
-      </form>
-
-      <details style="margin-top:10px">
-        <summary><strong>Important notes</strong></summary>
-        <div class="rtu-small">This page provides general information about common roofing maintenance practices. Actual scope, materials, and warranty coverage are governed solely by your signed contract and final invoice. We’re not responsible for pre‑existing conditions, concealed damage, work by other trades, or interior damages unless explicitly included in the contract.</div>
-      </details>
+    <div class="rtu-card">
+      <h3>How to book (fastest)</h3>
+      <ol class="rtu-steps" style="margin:0">
+        <li class="rtu-step"><div></div><div><strong>Open the main request form</strong> on the Home page (routes to our Netlify CRM).</div></li>
+        <li class="rtu-step"><div></div><div>In <strong>Notes/Description</strong>, add: <em>“Tune‑Up (≤ 3,000 sq ft)”</em> if your home qualifies.</div></li>
+        <li class="rtu-step"><div></div><div>For homes <strong>&gt; 3,000 sq ft</strong> or <strong>commercial</strong>, write “Large Home / Commercial – Call for Pricing”.</div></li>
+      </ol>
     </div>
-  </section>
+
+    <div class="rtu-cta" style="margin-top:12px">
+      <a class="rtu-btn primary" href="/#estimate" aria-label="Open the Home page estimate form">Go to Estimate Form</a>
+      <a class="rtu-btn outline" href="tel:8589006163">Call for Pricing (Large/Commercial)</a>
+    </div>
+
+    <details style="margin-top:10px">
+      <summary><strong>Important notes</strong></summary>
+      <div class="rtu-small">This page provides general information about common roofing maintenance practices. Actual scope, materials, and warranty coverage are governed solely by your signed contract and final invoice. We’re not responsible for pre‑existing conditions, concealed damage, work by other trades, or interior damages unless explicitly included in the contract.</div>
+    </details>
+  </div>
+</section>
 
   <!-- (Optional) Footer include placeholder -->
   <!-- Global footer include from home page -->
   <div data-include="/components/footer.html"></div>
 
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+  <script>(function(){var y=document.getElementById('y'); if(y){y.textContent=new Date().getFullYear();}})();</script>
 
   <!-- Safe, one-time include loader (only runs if data-include elements are present) -->
   <script>
