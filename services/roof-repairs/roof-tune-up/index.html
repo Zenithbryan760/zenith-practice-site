@@ -1,35 +1,328 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Roof Tune-Up | Zenith Roofing Services</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Roof Tune-Up service in San Diego County.">
-  <link rel="stylesheet" href="/css/header.css">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/footer.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Roof Tune-Up & Maintenance | Zenith Roofing Services</title>
+  <meta name="description" content="Mobile-first roof tune-up service for tile, shingle, and flat roofs—valley & gutter clean-up, sealing vents and flashing, minor shingle/tile swaps, and a simple photo report." />
+  <link rel="canonical" href="https://www.zenithroofingservices.com/services/roof-tune-up.html" />
+
+  <!-- Site CSS (single source of truth) -->
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+  <link rel="stylesheet" href="/css/ui.css" />
 </head>
 <body>
-  <div id="site-header"></div>
-  <main style="max-width:1200px;margin:24px auto;padding:0 16px;">
-    <nav aria-label="Breadcrumb" style="font-size:.9rem;margin-bottom:8px;"><a href="/services/">Services</a> › <a href="/services/roof-repairs/">Roof Repairs</a></nav>
-    <h1>Roof Tune-Up</h1>
-    <p>Starter page. Replace this with your content.</p><p><a class="call-button" href="tel:8589006163">Call 858-900-6163</a></p>
+  <!-- Header include -->
+  <div data-include="/components/header-section.html"></div>
+
+  <main class="page tune" id="top">
+    <!-- ===== HERO ===== -->
+    <section class="sys hero" aria-labelledby="hero-title">
+      <!-- Mobile-first: media first, copy after; your grid utilities will place side-by-side on larger screens -->
+      <figure class="media">
+        <picture>
+          <source srcset="/images/seo/roof-tune-up-hero.webp" type="image/webp" />
+          <img
+            src="/images/seo/roof-tune-up-hero.jpg"
+            width="1200" height="800"
+            alt="Tech performing a roof tune-up: clearing debris and sealing flashing."
+            loading="eager" decoding="async"
+            sizes="(max-width: 768px) 100vw, 50vw" />
+        </picture>
+      </figure>
+
+      <div class="content">
+        <p class="chip" style="display:inline-block">San Diego • Escondido • Temecula</p>
+        <h1 id="hero-title">Roof Tune-Up & <span class="muted">Preventative Maintenance</span></h1>
+        <p class="lede narrow">
+          Quick, preventative service for tile, shingle, and flat roofs. We clean, seal, and tighten common leak points so small issues don’t become big ones.
+        </p>
+
+        <div class="hero-feats">
+          <span class="chip">Same-week scheduling</span>
+          <span class="chip">Tile • Shingle • Flat</span>
+          <span class="chip">Gutter & valley clean-up</span>
+          <span class="chip">Photo report</span>
+        </div>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="/#estimate">Book a Tune-Up</a>
+          <a class="btn btn-outline" href="tel:8589006163">Call 858-900-6163</a>
+        </div>
+      </div>
+
+      <!-- Optional: if your ui.css supports grids, this wrapper enables side-by-side on desktop without harming mobile -->
+      <div class="grid cols-2 only-desktop" aria-hidden="true" hidden></div>
+    </section>
+
+    <!-- ===== STICKY SECTION PILLS ===== -->
+    <div class="sticky-pills">
+      <nav class="pillnav center" aria-label="Page sections">
+        <a href="#included">What’s Included</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#process">Process</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#faq">FAQ</a>
+        <a href="#estimate">Book Now</a>
+      </nav>
+    </div>
+
+    <!-- ===== WHAT’S INCLUDED ===== -->
+    <section id="included" class="sys" aria-labelledby="inc-title">
+      <h2 id="inc-title" class="center">What’s Included</h2>
+      <p class="lede center narrow">
+        Straightforward maintenance designed to prevent leaks and improve drainage. Scope may vary by system and condition.
+      </p>
+
+      <div class="narrow">
+        <ul class="checklist grid-2 relaxed">
+          <li>
+            <span class="tick" aria-hidden="true">✓</span>
+            <div>Replace up to <strong>5 concrete tiles</strong> (not clay) <em>or</em> up to <strong>5 shingles</strong> when matching stock is available.</div>
+          </li>
+          <li>
+            <span class="tick" aria-hidden="true">✓</span>
+            <div>Seal and secure <strong>vent pipes/boots</strong>; touch-up <strong>flashing paint</strong> to help prevent rust.</div>
+          </li>
+          <li>
+            <span class="tick" aria-hidden="true">✓</span>
+            <div>Clear <strong>valleys</strong> and clean <strong>~100 ft of gutters</strong> (two-story may require additional safety/access).</div>
+          </li>
+          <li>
+            <span class="tick" aria-hidden="true">✓</span>
+            <div>Cover <strong>exposed nails</strong> at ridge/caps and minor <strong>nail pop-outs</strong> (abnormal perimeter nail lines/heavy caulking quoted separately).</div>
+          </li>
+        </ul>
+        <p class="tip">Clay tile repairs are excluded from the included count. Matching materials used when available.</p>
+      </div>
+    </section>
+
+    <!-- ===== PRICING ===== -->
+    <section id="pricing" class="sys" aria-labelledby="pricing-title">
+      <h2 id="pricing-title" class="center">Transparent Pricing</h2>
+      <p class="lede center narrow">We confirm final pricing after a quick inspection. Residential uses published pricing; large homes and commercial vary.</p>
+
+      <div class="cards grid cols-2">
+        <article class="card airy">
+          <h3>Tune-Up <span class="muted">Homes ≤ 3,000 sq ft</span></h3>
+          <p class="muted">Book on the Home page and add: <em>“Tune-Up (≤ 3,000 sq ft)”</em> in the description. 1-story is typically lower than 2-story.</p>
+          <ul class="list">
+            <li>Debris removal, sealing, fasteners, minor part swaps</li>
+            <li>Gutters/valleys cleaned as noted above</li>
+            <li>Photo notes & simple recommendations</li>
+          </ul>
+          <div class="cta center-flex">
+            <a class="btn btn-primary" href="/#estimate">Request on Home Page</a>
+          </div>
+        </article>
+
+        <article class="card airy">
+          <h3>Large Homes & Commercial <span class="muted">&gt; 3,000 sq ft</span></h3>
+          <p class="muted">Pricing depends on size, access, penetrations, debris load, and parapet/coping details. We’ll take a look and confirm.</p>
+          <ul class="list">
+            <li>Clean drains & scuppers; restore flow</li>
+            <li>Seal pipes/boots/pitch pans; minor seam/termination touch-ups</li>
+            <li>On-site review recommended for accurate scope</li>
+          </ul>
+          <div class="cta center-flex">
+            <a class="btn btn-outline" href="tel:8589006163">Call for Pricing</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== PROCESS ===== -->
+    <section id="process" class="sys" aria-labelledby="proc-title">
+      <h2 id="proc-title" class="center">Our Process</h2>
+      <p class="lede center narrow">A simple, reliable path to a tighter, longer-lasting roof.</p>
+
+      <div class="micro-grid auto-fit">
+        <div class="micro"><strong>1) Inspection & Photos</strong><br/><span class="muted">We identify leak-prone areas and document with photos.</span></div>
+        <div class="micro"><strong>2) Maintenance & Minor Repairs</strong><br/><span class="muted">Debris removal, sealing, fastener work, and small part replacements.</span></div>
+        <div class="micro"><strong>3) Clean-Up & Report</strong><br/><span class="muted">Simple report with findings and next steps.</span></div>
+        <div class="micro"><strong>4) Optional Repairs</strong><br/><span class="muted">If needed, we’ll quote repairs beyond a tune-up.</span></div>
+      </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section id="gallery" class="sys" aria-labelledby="gal-title">
+      <h2 id="gal-title" class="center">Before & After</h2>
+      <p class="lede center narrow">A few common tune-up items.</p>
+
+      <div class="gallery grid auto-fit">
+        <picture>
+          <source srcset="/images/seo/tuneup-valley-before.webp" type="image/webp" />
+          <img src="/images/seo/tuneup-valley-before.jpg" width="900" height="600" alt="Before: debris build-up in tile valley" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" />
+        </picture>
+        <picture>
+          <source srcset="/images/seo/tuneup-valley-after.webp" type="image/webp" />
+          <img src="/images/seo/tuneup-valley-after.jpg" width="900" height="600" alt="After: valley cleared and flowing" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" />
+        </picture>
+        <picture>
+          <source srcset="/images/seo/tuneup-vent-before.webp" type="image/webp" />
+          <img src="/images/seo/tuneup-vent-before.jpg" width="900" height="600" alt="Before: cracked boot at plumbing vent" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" />
+        </picture>
+        <picture>
+          <source srcset="/images/seo/tuneup-vent-after.webp" type="image/webp" />
+          <img src="/images/seo/tuneup-vent-after.jpg" width="900" height="600" alt="After: vent boot sealed and secure" loading="lazy" decoding="async" sizes="(max-width:768px) 100vw, 33vw" />
+        </picture>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="sys" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="center">FAQ</h2>
+      <div class="faq narrow">
+        <details>
+          <summary>What is a roof tune-up vs. a full repair?</summary>
+          <div class="muted">A tune-up is preventative maintenance: cleaning, sealing, tightening, and small part swaps. Larger issues like underlayment or new flashing are quoted separately.</div>
+        </details>
+        <details>
+          <summary>How often should I schedule roof maintenance?</summary>
+          <div class="muted">Most homes benefit from an annual tune-up; homes under trees, near the coast, or with older roofs may need maintenance every 6–12 months.</div>
+        </details>
+        <details>
+          <summary>Will a tune-up stop my leak?</summary>
+          <div class="muted">If the leak is due to a minor issue such as a failed sealant or debris dam, a tune-up may resolve it. If the cause is worn underlayment or flashing failure, we will recommend a repair.</div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===== SERVICE AREAS ===== -->
+    <section class="sys service-areas" aria-labelledby="areas-title">
+      <h2 id="areas-title" class="center">Serving San Diego County & Temecula Valley</h2>
+      <div class="narrow">
+        <ul>
+          <li>Carlsbad</li><li>Oceanside</li><li>Vista</li><li>San Marcos</li><li>Escondido</li><li>Poway</li><li>Rancho Bernardo</li><li>Fallbrook</li><li>Murrieta</li><li>Temecula</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== BOOK / ESTIMATE ===== -->
+    <section id="estimate" class="sys" aria-labelledby="book-title">
+      <h2 id="book-title" class="center">Book a Roof Tune-Up</h2>
+      <p class="lede center narrow">Homes up to 3,000 sq ft qualify for our standard pricing.</p>
+      <div class="cta center-flex">
+        <a class="btn btn-primary" href="/#estimate">Go to Estimate Form</a>
+        <a class="btn btn-outline" href="tel:8589006163">Call for Pricing</a>
+      </div>
+      <p class="tip narrow"><strong>Helpful:</strong> In the form Notes/Description, add: “Tune-Up (≤ 3,000 sq ft)” if your home qualifies. For larger homes or commercial, write “Large Home / Commercial – Call for Pricing”.</p>
+
+      <!-- Light, protective fine-print (info-only) -->
+      <p class="fineprint muted narrow" style="margin-top:1rem">
+        Information provided is for general guidance on common practices. Final scope, pricing, and obligations are set by the written contract and may differ based on site conditions.
+      </p>
+    </section>
   </main>
-  <div id="site-footer"></div>
-  <script src="/js/header.js" defer></script>
+
+  <!-- Footer include -->
+  <div data-include="/components/footer.html"></div>
+
+  <!-- Lightweight includes loader (unchanged) -->
   <script>
-    async function include(id, url){
-      const el = document.getElementById(id);
-      try { const res = await fetch(url); el.innerHTML = await res.text(); }
-      catch(e) { el.innerHTML = ""; }
-    }
-    (async () => {
-      await include('site-header','/components/header-section.html');
-      await include('site-footer','/components/footer.html');
-      if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
-    })();
+  if(!window.__inc){window.__inc=1;(async()=>{
+    const slots=[...document.querySelectorAll('[data-include]')];
+    if(!slots.length) return;
+    await Promise.all(slots.map(async slot=>{
+      try{
+        const res=await fetch(slot.getAttribute('data-include'),{cache:'no-store'});
+        const html=await res.text();
+        const tmp=document.createElement('div'); tmp.innerHTML=html.trim();
+        const parent=slot.parentNode; const nodes=[...tmp.childNodes];
+        nodes.forEach(n=>parent.insertBefore(n,slot)); parent.removeChild(slot);
+      }catch(e){console.error('Include failed:',e)}
+    }));
+  })();}
   </script>
-  <script src="/js/nav-delegate.js" defer></script>
+  <script src="/js/header.js" defer></script>
+<script>
+  (function () {
+    // fetch + inject a single [data-include]
+    async function include(el) {
+      const src = el.getAttribute('data-include');
+      if (!src) return;
+      try {
+        const res = await fetch(src);             // normal caching
+        if (!res.ok) throw new Error('Failed ' + src);
+        const html = await res.text();
+        el.outerHTML = html;
+      } catch (e) {
+        console.error('❌ Include error:', src, e);
+      }
+    }
+
+    // Header height + collapsed state WITHOUT scroll reflow
+    function setupHeaderObservers() {
+      const root = document.documentElement;
+      const getHeader = () => document.querySelector('.mobile-header') || document.querySelector('.header');
+
+      function updateHeaderH() {
+        const h = getHeader();
+        if (h) root.style.setProperty('--header-h', Math.round(h.offsetHeight) + 'px');
+      }
+
+      // update when the header actually resizes
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(updateHeaderH);
+        const h = getHeader(); if (h) ro.observe(h);
+      }
+      window.addEventListener('load', updateHeaderH, { passive: true });
+      window.addEventListener('resize', () => requestAnimationFrame(updateHeaderH), { passive: true });
+
+      // toggle nav-collapsed via IntersectionObserver (no scroll work)
+      const sent = document.createElement('div');
+      sent.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;';
+      document.body.prepend(sent);
+      new IntersectionObserver(([e]) => {
+        root.classList.toggle('nav-collapsed', !e.isIntersecting);
+      }, { rootMargin: '-80px 0px 0px 0px' }).observe(sent); // adjust -80px if your header is taller
+    }
+
+    async function init() {
+      // include everything ELSE (hero has an LCP stub now)
+      const includes = Array.from(document.querySelectorAll('[data-include]'));
+      await Promise.all(includes.map(include));
+
+      // Upgrade the stub to the real hero component while REUSING the already-downloaded LCP <img>
+      const stub = document.getElementById('hero-stub');
+      if (stub) {
+        const res = await fetch('components/hero-section.html');
+        if (res.ok) {
+          const html = await res.text();
+          const tpl = document.createElement('template');
+          tpl.innerHTML = html.trim();
+          const real = tpl.content.querySelector('section.zenith-hero') || tpl.content.firstElementChild;
+          if (real) {
+            const lcp = document.getElementById('lcp-img');
+            const realPic = real.querySelector('.zenith-hero-media picture') || real.querySelector('.zenith-hero-media');
+            if (lcp && realPic) {
+              const existing = realPic.querySelector('.zenith-hero-mobile-img');
+              if (existing) existing.replaceWith(lcp); else realPic.appendChild(lcp);
+            }
+            stub.replaceWith(real);
+          }
+        }
+      }
+
+      // your existing inits (unchanged)
+      if (window.initMobileMenu) window.initMobileMenu();
+      [
+        'initEstimateForm','initAboutSection','initWhyChoose','initTrustSection',
+        'initPhotoSection','initTestimonials','initCTA','initServiceAreas',
+        'initRealEstate','initFooter','initHeader'
+      ].forEach(n => { if (typeof window[n] === 'function') window[n](); });
+
+      setupHeaderObservers();   // replaces old setLayoutFlags/scroll listeners
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+  </script>
 </body>
 </html>
