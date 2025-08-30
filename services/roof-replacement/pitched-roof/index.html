@@ -4,354 +4,222 @@
   <meta charset="utf-8">
   <title>Pitched Roof Replacement (Shingles, Tile, Metal, Slate) | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Pitched roof replacement experts in San Diego County. Asphalt shingles, architectural shingles, clay & concrete tile, metal, and slate. Water-shedding systems installed to code with clean-up, permits, and warranties. Free estimates for homeowners.">
-  <link rel="stylesheet" href="/css/base.css">
+  <meta name="description" content="Pitched roof replacement experts for shingles, tile, metal, and slate in San Diego County & Temecula. Code-compliant water-shedding systems, clean-up, permits, and warranties. Free estimates.">
+  <link rel="canonical" href="https://www.zenithroofingservices.com/services/roof-replacement/pitched-roof/">
+
+  <!-- Shared site CSS -->
   <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/ui.css">
-  <link rel="stylesheet" href="/css/lead-form.css">
+  <!-- Lead form CSS -->
+  <link rel="stylesheet" href="/css/estimate-form.css">
+
+  <!-- Include loader (for header/footer/forms) + header behavior + lead form logic -->
+  <script defer src="/js/loader.js"></script>
+  <script defer src="/js/header.js"></script>
+  <script defer src="/js/estimate-form.js"></script>
+
   <style>
-    /* ------- Page-local polish (keeps things centered & even) ------- */
-    html,body{overflow-x:hidden;}
-    .page.pitched{max-width:1080px;margin:24px auto;padding:0 16px;}
-    .page.pitched .hero{text-align:center;}
-    /* equal-height cards inside grids */
-    .page.pitched .grid{align-items:stretch;}
-    .page.pitched .grid > .card{display:flex;flex-direction:column;gap:.45rem;}
-    .page.pitched .grid > .card .cta{margin-top:auto;}
-    .page.pitched .card h2,.page.pitched .card h3{margin:.2rem 0 .25rem;}
-    /* nicer bullet spacing */
-    .page.pitched .checklist.relaxed li{line-height:1.55;}
-    /* keep CTAs tidy on phones */
-    @media (max-width:700px){ .page.pitched .cta .btn{flex:1 1 100%;} }
-    /* quick fix so sticky pills never hide under header */
-    .page .sticky-pills{ top: calc(var(--header-h, 80px) + 6px); }
+    /* Page-local layout polish (safe, minimal) */
+    .page.pitched { max-width: 1100px; margin: 24px auto; padding: 0 16px; }
+    .page .lede { color: #475569; font-size: 1.075rem; margin: 8px 0 18px; }
+    .badge { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#f1f5f9; font-weight:600; font-size:.95rem; }
+    .tick { font-weight:800; color:#0a3a6f; }
+    .muted { color: var(--ui-muted); }
   </style>
+
+  <!-- Service JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Pitched Roof Replacement",
+    "serviceType":["Shingle roof replacement","Tile roof replacement","Metal roof replacement","Slate roof replacement"],
+    "provider":{"@type":"LocalBusiness","name":"Zenith Roofing Services, Inc.","telephone":"+1-858-900-6163","areaServed":"San Diego County & Temecula"},
+    "areaServed":[{"@type":"City","name":"San Diego"},{"@type":"City","name":"Temecula"}],
+    "category":"https://schema.org/HomeAndConstructionBusiness",
+    "url":"https://www.zenithroofingservices.com/services/roof-replacement/pitched-roof/"
+  }
+  </script>
 </head>
 <body>
 
-  <!-- Universal Header -->
+  <!-- Header include -->
   <div data-include="/components/header-section.html"></div>
 
-  <main class="page pitched">
+  <main class="page pitched" id="top">
     <!-- HERO -->
-    <section class="hero">
-      <h1>Pitched Roof Replacement</h1>
-      <p class="lede">
-        Water-shedding systems built for long-term performance and curb appeal:
-        asphalt/architectural shingles, clay &amp; concrete tile, metal, and slate.
-        Licensed • Insured • Local.
-      </p>
-      <div class="hero-feats">
-        <span class="chip">Free estimates (homeowners)</span>
-        <span class="chip">Code-compliant installs</span>
-        <span class="chip">Manufacturer warranties</span>
-        <span class="chip">Daily clean-up</span>
-      </div>
-      <div class="cta" style="margin-top:14px">
-        <a class="btn btn-primary" href="#estimate">Schedule Free Estimate</a>
-        <a class="btn btn-outline" href="tel:8589006163">Call 858-900-6163</a>
+    <section class="card airy" aria-label="Pitched Roof Replacement">
+      <span class="badge">Pitched Roof Replacement</span>
+      <h1 style="margin:10px 0 6px;">Shingles, Tile, Metal & Slate</h1>
+      <p class="lede">Code-compliant water-shedding systems with clean tear-off, wood repairs as needed, new flashing, and manufacturer-approved installation.</p>
+      <div class="cta">
+        <a class="btn" href="#estimate">Get a Free Estimate</a>
+        <a class="btn outline" href="tel:8589006163">Call 858-900-6163</a>
       </div>
     </section>
 
-    <!-- Quick jump pills -->
-    <nav class="pillnav sticky-pills" aria-label="Quick navigation">
-      <a href="#asphalt-shingles">Asphalt / Architectural Shingles</a>
-      <a href="#tile">Clay &amp; Concrete Tile</a>
-      <a href="#metal">Metal Roofing</a>
-      <a href="#slate">Natural &amp; Synthetic Slate</a>
-      <a href="#process">Our Process</a>
-      <a href="#faq">FAQ</a>
-      <a href="#estimate">Get an Estimate</a>
-    </nav>
-
-    <!-- What “pitched” means -->
-    <section class="card airy">
-      <h2>What counts as a “pitched” roof?</h2>
-      <p>
-        A <strong>pitched (sloped) roof</strong> is a <em>water-shedding</em> roof—gravity moves water off quickly.
-        If your roof is ≳ 3:12, you’re in the pitched category.
-      </p>
-      <ul class="checklist relaxed">
-        <li><span class="tick">✓</span><div><strong>Designed to shed</strong> water (not hold it)</div></li>
-        <li><span class="tick">✓</span><div><strong>Common materials:</strong> asphalt shingles (also called <em>architectural, composition, three-tab, 30-year/50-year</em>), clay &amp; concrete tile, metal, slate</div></li>
-        <li><span class="tick">✓</span><div>Correct ventilation, flashing, and underlayment are key</div></li>
-      </ul>
+    <!-- WHY CHOOSE US (3-up even) -->
+    <section class="grid micro-grid" aria-label="Why homeowners choose Zenith">
+      <div class="card">
+        <h3>Licensed & Insured</h3>
+        <p class="muted">C-39 #1036112. Permits pulled where required. Photos and line-item scopes for clarity.</p>
+      </div>
+      <div class="card">
+        <h3>Built to Spec</h3>
+        <p class="muted">Manufacturer guidelines, proper underlayment, flashings, and ventilation recommendations.</p>
+      </div>
+      <div class="card">
+        <h3>Clean & Courteous</h3>
+        <p class="muted">Landscape protection, daily clean-up, magnet sweep, final walk-through.</p>
+      </div>
     </section>
 
-    <!-- Systems overview -->
-    <section class="grid cols-2">
-      <article id="asphalt-shingles" class="card">
-        <h2>Asphalt / Architectural Shingles</h2>
-        <p class="muted">a.k.a. architectural • composition • three-tab • 30-year / 50-year</p>
-        <ul class="checklist relaxed">
-          <li><span class="tick">✓</span><div>Most budget-friendly pitched option</div></li>
-          <li><span class="tick">✓</span><div>Great curb appeal; wide color/texture selection</div></li>
-          <li><span class="tick">✓</span><div>Upgraded underlayments improve wind & algae resistance</div></li>
-        </ul>
-        <div class="cta"><a class="btn btn-outline" href="#estimate">Request Estimate</a></div>
-      </article>
-
-      <article id="tile" class="card">
-        <h2>Clay &amp; Concrete Tile</h2>
-        <ul class="checklist relaxed">
-          <li><span class="tick">✓</span><div>Premium look & long service life</div></li>
-          <li><span class="tick">✓</span><div>Energy-smart mass, ventilation channels</div></li>
-          <li><span class="tick">✓</span><div>Quality underlayment is critical—we install premium systems</div></li>
-        </ul>
-        <div class="cta"><a class="btn btn-outline" href="#estimate">Request Estimate</a></div>
-      </article>
-
-      <article id="metal" class="card">
-        <h2>Metal Roofing</h2>
-        <p class="muted">steel, aluminum, standing seam, stone-coated</p>
-        <ul class="checklist relaxed">
-          <li><span class="tick">✓</span><div>Excellent durability & fire resistance</div></li>
-          <li><span class="tick">✓</span><div>Reflective finishes can reduce heat gain</div></li>
-          <li><span class="tick">✓</span><div>Modern profiles or classic shake/tile looks</div></li>
-        </ul>
-        <div class="cta"><a class="btn btn-outline" href="#estimate">Request Estimate</a></div>
-      </article>
-
-      <article id="slate" class="card">
-        <h2>Natural &amp; Synthetic Slate</h2>
-        <ul class="checklist relaxed">
-          <li><span class="tick">✓</span><div>Premium appearance & longevity</div></li>
-          <li><span class="tick">✓</span><div>Fastening & structural details matter; we spec it right</div></li>
-          <li><span class="tick">✓</span><div>Composite slate options lower weight & cost</div></li>
-        </ul>
-        <div class="cta"><a class="btn btn-outline" href="#estimate">Request Estimate</a></div>
-      </article>
-    </section>
-
-    <!-- Our Process -->
-    <section id="process" class="card airy">
-      <h2>Our replacement process (simple &amp; stress-free)</h2>
-      <div class="grid cols-2">
+    <!-- ROOF TYPES (4-up on desktop, 2-up tablet, 1-up mobile via auto-fit) -->
+    <section class="card airy" aria-label="Pitched roof systems we replace">
+      <h2>Systems We Replace</h2>
+      <div class="grid auto-fit" style="--ui-gap:16px;">
         <div class="card">
-          <h3>1) Free homeowner estimate</h3>
+          <h3>Architectural Shingles</h3>
           <ul class="checklist relaxed">
-            <li><span class="tick">✓</span><div>Call/Text <a href="tel:8589006163">858-900-6163</a> or use the form below</div></li>
-            <li><span class="tick">✓</span><div>Confirm address, roof type, goals (budget, look, longevity)</div></li>
-            <li><span class="tick">✓</span><div><strong>Note:</strong> Real-estate transactions aren’t part of free estimates</div></li>
+            <li><span class="tick">✓</span>Cool-roof options (Title 24)</li>
+            <li><span class="tick">✓</span>Starter, ice/water at eaves/valleys as required</li>
+            <li><span class="tick">✓</span>Ridge vents & attic airflow recommendations</li>
           </ul>
         </div>
         <div class="card">
-          <h3>2) Options &amp; Quote</h3>
+          <h3>Concrete/Clay Tile (Lift & Lay)</h3>
           <ul class="checklist relaxed">
-            <li><span class="tick">✓</span><div>Side-by-side options + underlayment/ventilation plan</div></li>
-            <li><span class="tick">✓</span><div>Clear, line-item proposal; photos so there are no surprises</div></li>
+            <li><span class="tick">✓</span>Remove/reuse tiles; replace underlayment</li>
+            <li><span class="tick">✓</span>New flashings and bird-stops where applicable</li>
+            <li><span class="tick">✓</span>Broken tile swaps included line-item</li>
           </ul>
+        </div>
+        <div class="card">
+          <h3>Standing-Seam Metal</h3>
+          <ul class="checklist relaxed">
+            <li><span class="tick">✓</span>Panel layout, clips, and expansion detail</li>
+            <li><span class="tick">✓</span>Underlayment & high-temp membranes as needed</li>
+            <li><span class="tick">✓</span>Custom flashing at penetrations</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Natural Slate</h3>
+          <ul class="checklist relaxed">
+            <li><span class="tick">✓</span>Selective deck reinforcement</li>
+            <li><span class="tick">✓</span>Copper/steel flashings per spec</li>
+            <li><span class="tick">✓</span>Historic-friendly practices</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS (4 steps; 2-up even) -->
+    <section class="card airy" aria-label="Our process">
+      <h2>How It Works</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>1) Inspection</h3>
+          <p class="muted">Photos of current conditions, ventilation check, and code items.</p>
+        </div>
+        <div class="card">
+          <h3>2) Proposal</h3>
+          <p class="muted">Clear line-items with options (underlayment, vents, skylights, gutters).</p>
         </div>
         <div class="card">
           <h3>3) Preparation</h3>
-          <ul class="checklist relaxed">
-            <li><span class="tick">✓</span><div>Protect landscaping; remove old roofing; inspect deck</div></li>
-            <li><span class="tick">✓</span><div>Replace bad wood; install flashings</div></li>
-          </ul>
+          <p class="muted">Tear-off, deck assessment, wood replacement as needed, flashings staged.</p>
         </div>
         <div class="card">
-          <h3>4) Install &amp; Clean Up</h3>
-          <ul class="checklist relaxed">
-            <li><span class="tick">✓</span><div>Manufacturer-spec layout, fasteners, starters/edges/valleys/ridge vents</div></li>
-            <li><span class="tick">✓</span><div>Magnet sweep, debris haul-off, final walkthrough & documentation</div></li>
-          </ul>
+          <h3>4) Install & Clean-Up</h3>
+          <p class="muted">Manufacturer-approved install, final sweep, walkthrough, warranty docs.</p>
         </div>
-      </div>
-      <div class="cta">
-        <a class="btn btn-primary" href="#estimate">Schedule Your Free Estimate</a>
-        <a class="btn btn-outline" href="sms:+18589006163">Text 858-900-6163</a>
       </div>
     </section>
 
-    <!-- Estimate (Universal Lead Form with fallback) -->
-    <section id="estimate" class="card airy" aria-label="Request a Free Estimate">
+    <!-- OPTIONS (6-up even) -->
+    <section class="card airy" aria-label="Popular options & upgrades">
+      <h2>Popular Options & Upgrades</h2>
+      <div class="grid micro-grid" style="--ui-gap:14px;">
+        <div class="card"><h3>Duration Cool Shingles</h3><p class="muted">Energy-efficient colors for Title 24 compliance.</p></div>
+        <div class="card"><h3>Peel-&-Stick Membrane</h3><p class="muted">Valleys, dead-valleys, and lower slopes.</p></div>
+        <div class="card"><h3>Ridge Venting</h3><p class="muted">Balanced intake/exhaust for attic health.</p></div>
+        <div class="card"><h3>Skylight Swap</h3><p class="muted">New curb/flashing; modern, leak-resistant units.</p></div>
+        <div class="card"><h3>Gutters & Guards</h3><p class="muted">New aluminum or steel with debris control.</p></div>
+        <div class="card"><h3>Custom Flashings</h3><p class="muted">Copper/drip-edge details and color-matched metals.</p></div>
+      </div>
+    </section>
+
+    <!-- ESTIMATE (universal form include + robust fallback) -->
+    <section id="estimate" class="card airy" aria-label="Request a Free Estimate" data-estimate-context data-category="Pitched Roof Replacement" data-redirect="/thank-you/">
       <h2>Request a Free Estimate</h2>
-      <p class="muted">Homeowners only. Real-estate transactions are not eligible for free estimates.</p>
+      <p class="muted">Homeowners only. Real-estate transactions not eligible for free estimates.</p>
 
-      <!-- Primary: pull the universal component -->
-      <div id="lead-form-slot" data-include="/components/lead-form.html"></div>
+      <!-- Primary: include the universal form bootstrap -->
+      <div data-include="/components/forms/estimate.html"></div>
 
-      <!-- Fallback: render a slim version if the include fails (keeps page usable & scrollable) -->
+      <!-- Fallback slim form (keeps page usable if include fails) -->
       <template id="lead-form-fallback">
         <form id="estimate-form" novalidate>
           <input type="hidden" name="service_type" value="Pitched Roof Replacement">
           <input type="hidden" name="page" value="">
           <div class="form-row">
-            <div class="form-group form-col-6">
-              <label class="sr-only" for="firstName">First Name*</label>
-              <input id="firstName" name="first_name" placeholder="First Name*" required>
+            <div class="form-col-6">
+              <label>Full Name</label>
+              <input name="name" type="text" required placeholder="Jane Doe">
             </div>
-            <div class="form-group form-col-6">
-              <label class="sr-only" for="lastName">Last Name*</label>
-              <input id="lastName" name="last_name" placeholder="Last Name*" required>
+            <div class="form-col-6">
+              <label>Phone</label>
+              <input name="phone" type="tel" required placeholder="(555) 555-5555">
             </div>
           </div>
-
           <div class="form-row">
-            <div class="form-group form-col-6">
-              <label class="sr-only" for="phone">Phone*</label>
-              <input id="phone" name="phone" inputmode="tel" placeholder="Phone Number*" pattern="[\d\s\-\(\)\.]{10,}" required>
+            <div class="form-col-6">
+              <label>Email</label>
+              <input name="email" type="email" required placeholder="you@email.com">
             </div>
-            <div class="form-group form-col-6">
-              <label class="sr-only" for="email">Email*</label>
-              <input id="email" name="email" type="email" placeholder="Email Address*" required>
+            <div class="form-col-6">
+              <label>ZIP</label>
+              <input name="zip" type="text" required placeholder="92025">
             </div>
           </div>
-
           <div class="form-row">
-            <div class="form-group">
-              <label class="sr-only" for="streetAddress">Street Address*</label>
-              <input id="streetAddress" name="street_address" placeholder="Street Address*" required>
+            <div class="form-col-12">
+              <label>Notes (optional)</label>
+              <textarea name="message" rows="4" placeholder="Roof type, leaks, timeline, etc."></textarea>
             </div>
           </div>
-
-          <div class="form-row">
-            <div class="form-group form-col-4">
-              <label class="sr-only" for="city">City*</label>
-              <input id="city" name="city" placeholder="City*" required>
-            </div>
-            <div class="form-group form-col-4">
-              <label class="sr-only" for="state">State*</label>
-              <input id="state" name="state" value="CA" readonly>
-            </div>
-            <div class="form-group form-col-4">
-              <label class="sr-only" for="zip">ZIP*</label>
-              <input id="zip" name="zip" placeholder="ZIP Code*" inputmode="numeric" pattern="\d{5}(-\d{4})?" maxlength="10" required>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group form-col-4">
-              <label class="sr-only" for="serviceType">Service Type*</label>
-              <select id="serviceType" name="service_type_select" required>
-                <option value="" selected disabled hidden>Service Type*</option>
-                <option>Roof Replacement</option>
-                <option>Roof Repair</option>
-                <option>Gutters</option>
-                <option>Roof Maintenance</option>
-                <option>Commercial Roofing</option>
-                <option>Residential Roofing</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="form-group form-col-4">
-              <label class="sr-only" for="referral">How did you hear about us?*</label>
-              <select id="referral" name="referral_source" required>
-                <option value="" selected disabled hidden>How did you hear about us?*</option>
-                <option>Google</option><option>Yelp</option><option>Angi</option>
-                <option>Social Media</option><option>Referral</option><option>Other</option>
-              </select>
-            </div>
-            <div class="form-group form-col-4">
-              <label class="sr-only" for="photos">Upload Photos</label>
-              <input id="photos" name="photos" type="file" accept="image/*" multiple>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="sr-only" for="description">Brief Description*</label>
-              <textarea id="description" name="description" rows="4" placeholder="Brief Description* — tell us what you need help with" required></textarea>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group recaptcha-container">
-              <div id="recaptcha-slot" aria-label="reCAPTCHA widget"></div>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <button type="submit" class="zenith-btn">Request Free Estimate</button>
-          </div>
-
-          <p class="form-disclaimer">
-            <em>*Free estimates are not available for real estate transactions. For transactions, see our Real Estate Services.</em>
-          </p>
+          <button class="btn" type="submit">Send Request</button>
         </form>
       </template>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="faq">
-      <details>
-        <summary>Is asphalt shingle the same as architectural/composition/three-tab?</summary>
-        <div class="card">Yes — different names for similar products. We’ll match the right profile and warranty for your home.</div>
-      </details>
-      <details>
-        <summary>Can I switch materials (e.g., tile → shingles or shingles → metal)?</summary>
-        <div class="card">Often yes; we’ll verify structure/weight/ventilation/code and HOA before recommending changes.</div>
-      </details>
-      <details>
-        <summary>How long does replacement take?</summary>
-        <div class="card">Most homes: 1–4 days depending on size, layers, repairs, and weather.</div>
-      </details>
-      <details>
-        <summary>Do you handle permits and clean-up?</summary>
-        <div class="card">Yes. We pull permits as required, protect landscaping, magnet sweep nails, and haul debris.</div>
-      </details>
+    <!-- FAQ (2-up even) -->
+    <section class="card airy" aria-label="FAQs">
+      <h2>Pitched Roof FAQs</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>How long does a replacement take?</h3>
+          <p class="muted">Most single-family pitched roofs complete in 1–3 days depending on size, access, and wood repairs.</p>
+        </div>
+        <div class="card">
+          <h3>Do you handle permits?</h3>
+          <p class="muted">Yes—where required, we pull permits and schedule inspections per city/county rules.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Bottom CTA -->
-    <section class="center narrow" style="margin-top:16px;">
-      <div class="cta center-flex">
-        <a class="btn btn-primary" href="#estimate">Schedule Free Estimate</a>
-        <a class="btn btn-outline" href="/contact/">Message the Team</a>
-      </div>
+    <!-- Service area & soft disclaimer -->
+    <section class="card airy" aria-label="Service area">
+      <h2>Service Area</h2>
+      <p class="muted">North County San Diego, Greater San Diego, Temecula & nearby communities.</p>
+      <p class="muted" style="font-size:.9rem;">Info above reflects common practices and code requirements. Final scope, materials, pricing, and warranties are governed solely by your signed contract and manufacturer documentation.</p>
     </section>
   </main>
 
-  <!-- Universal Footer -->
-  <section data-include="/components/footer.html"></section>
-
-  <!-- Your standard site scripts -->
-  <script src="/js/loader.js" defer></script>
-  <script src="/js/header.js" defer></script>
-  <!-- Universal form logic (same as home) -->
-  <script src="/js/lead-form.js" defer></script>
-
-  <!-- Robust include + fallback + page defaults -->
-  <script>
-    (function(){
-      function ready(fn){ document.readyState!=='loading' ? fn() : document.addEventListener('DOMContentLoaded',fn); }
-
-      // If the universal include fails, inject fallback form so page stays tall/scrollable
-      function ensureLeadFormFallback(){
-        const slot = document.getElementById('lead-form-slot');
-        if (!slot) return;
-        // if loader.js replaced it, it should now contain a <form id="estimate-form">
-        const hasForm = !!slot.querySelector('form#estimate-form');
-        if (hasForm) return;
-
-        // inject fallback
-        const tpl = document.getElementById('lead-form-fallback');
-        if (tpl && 'content' in tpl) { slot.replaceWith(tpl.content.cloneNode(true)); }
-      }
-
-      // Set page-specific defaults once the form exists
-      function stampFormDefaults(){
-        const form = document.getElementById('estimate-form');
-        if (!form) return;
-        const svc = form.querySelector('input[name="service_type"]');
-        if (svc && !svc.value) svc.value = 'Pitched Roof Replacement';
-        const page = form.querySelector('input[name="page"]');
-        if (page) page.value = location.pathname;
-        // Bind the universal JS if not already
-        if (window.initEstimateForm) window.initEstimateForm();
-      }
-
-      ready(function(){
-        // Give loader.js up to ~1s to do [data-include] replacements, then fallback if needed
-        let t=0; const iv=setInterval(function(){
-          t+=120;
-          ensureLeadFormFallback();
-          const form = document.getElementById('estimate-form');
-          if (form || t>1200){ clearInterval(iv); stampFormDefaults(); }
-        },120);
-      });
-    })();
-  </script>
+  <!-- Footer include -->
+  <div data-include="/components/footer.html"></div>
 
   <!-- Mobile action bar -->
   <div class="actionbar">
