@@ -1,216 +1,147 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Pitched Roof Replacement (Shingles, Tile, Metal) | Zenith Roofing</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Free estimates for pitched roof replacement in San Diego County. Architectural shingles, clay & concrete tile, slate, and metal. Licensed & insured.">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/header.css">
-  <link rel="stylesheet" href="/css/footer.css">
-  <link rel="stylesheet" href="/css/ui.css">
-</head>
-<body>
-  <!-- Universal header include -->
-  <div id="site-header" data-include="/components/header-section.html"></div>
+<!-- ===== Pitched Roof: Lead Form (home-form compatible) ===== -->
+<section class="page" id="get-an-estimate">
+  <h2>Request a Free Estimate</h2>
+  <p class="lede">Homeowners only. Real-estate transactions aren’t eligible for free estimates.</p>
 
-  <!-- ===================== HERO + HOME-STYLE FORM ===================== -->
-  <section class="zenith-hero" id="pitched-roof-estimate" aria-label="Pitched Roof Replacement estimate">
-    <span id="home" class="sr-only" aria-hidden="true"></span>
+  <form id="estimate-form" method="POST" novalidate>
+    <!-- Tag this lead so your backend knows where it came from -->
+    <input type="hidden" name="page" value="/services/roof-replacement/pitched-roof/">
+    <input type="hidden" name="category" value="Pitched Roof">
+    <input type="hidden" name="service_type" value="Pitched Roof Replacement">
 
-    <div class="zenith-hero-media">
-      <picture>
-        <source type="image/webp"
-                srcset="/images/modern-tile-roof-640.webp 640w,
-                        /images/modern-tile-roof-960.webp 960w,
-                        /images/modern-tile-roof-1280.webp 1280w,
-                        /images/modern-tile-roof-1600.webp 1600w"
-                sizes="100vw">
-        <img class="zenith-hero-mobile-img"
-             src="/images/modern-tile-roof-1280.webp"
-             srcset="/images/modern-tile-roof-640.webp 640w,
-                     /images/modern-tile-roof-960.webp 960w,
-                     /images/modern-tile-roof-1280.webp 1280w,
-                     /images/modern-tile-roof-1600.webp 1600w"
-             sizes="100vw"
-             alt="Pitched roof systems background"
-             width="1600" height="900"
-             decoding="async" fetchpriority="high">
-      </picture>
-      <div class="zenith-image-overlay" aria-hidden="true"></div>
-    </div>
-
-    <div class="zenith-card">
-      <div class="zenith-header">
-        <div class="zenith-logo-container">
-          <img src="/images/badges/logo-zenith-icon.png" alt="Zenith Roofing" class="zenith-logo" width="86" height="48" decoding="async">
-          <div class="logo-backdrop" aria-hidden="true"></div>
-        </div>
-        <div class="zenith-header-text">
-          <h1>FREE ESTIMATES</h1>
-          <h2>Pitched Roof Replacement &amp; Re-Roofing</h2>
-          <p class="service-area">Escondido • San Diego County • Temecula • SoCal</p>
-        </div>
+    <!-- Row 1 -->
+    <div class="form-row">
+      <div class="form-group form-col-6">
+        <label for="firstName" class="sr-only">First Name*</label>
+        <input type="text" id="firstName" name="first_name" placeholder="First Name*" autocomplete="given-name" required>
       </div>
-
-      <!-- *********** IMPORTANT: same form id + same field names as home *********** -->
-      <form id="estimate-form" method="POST" novalidate>
-        <!-- tag this lead -->
-        <input type="hidden" name="page" value="/services/roof-replacement/pitched-roof/">
-        <input type="hidden" name="category" value="Pitched Roof">
-        <input type="hidden" name="service_type" value="Pitched Roof Replacement">
-
-        <!-- Row 1 -->
-        <div class="form-row">
-          <div class="form-group form-col-6">
-            <label for="firstName" class="sr-only">First Name*</label>
-            <input type="text" id="firstName" name="first_name" placeholder="First Name*" autocomplete="given-name" required>
-          </div>
-          <div class="form-group form-col-6">
-            <label for="lastName" class="sr-only">Last Name*</label>
-            <input type="text" id="lastName" name="last_name" placeholder="Last Name*" autocomplete="family-name" required>
-          </div>
-        </div>
-
-        <!-- Row 2 -->
-        <div class="form-row">
-          <div class="form-group form-col-6">
-            <label for="phone" class="sr-only">Phone Number*</label>
-            <input type="tel" id="phone" name="phone" inputmode="tel" placeholder="Phone Number*" pattern="[\d\s\-\(\)\.]{10,}" autocomplete="tel" required>
-          </div>
-          <div class="form-group form-col-6">
-            <label for="email" class="sr-only">Email Address*</label>
-            <input type="email" id="email" name="email" placeholder="Email Address*" autocomplete="email" required>
-          </div>
-        </div>
-
-        <!-- Row 3 -->
-        <div class="form-row">
-          <div class="form-group">
-            <label for="streetAddress" class="sr-only">Street Address*</label>
-            <input type="text" id="streetAddress" name="street_address" placeholder="Street Address*" autocomplete="address-line1" required>
-          </div>
-        </div>
-
-        <!-- Row 4 -->
-        <div class="form-row">
-          <div class="form-group form-col-4">
-            <label for="city" class="sr-only">City*</label>
-            <input type="text" id="city" name="city" placeholder="City*" autocomplete="address-level2" required>
-          </div>
-          <div class="form-group form-col-4">
-            <label for="state" class="sr-only">State*</label>
-            <input type="text" id="state" name="state" value="CA" placeholder="State*" readonly>
-          </div>
-          <div class="form-group form-col-4">
-            <label for="zip" class="sr-only">ZIP Code*</label>
-            <input type="text" id="zip" name="zip" placeholder="ZIP Code*" inputmode="numeric" pattern="\d{5}(-\d{4})?" maxlength="10" autocomplete="postal-code" required>
-          </div>
-        </div>
-
-        <!-- Row 5 (pitched-roof specifics; names are extra, won’t break your backend) -->
-        <div class="form-row">
-          <div class="form-group form-col-4">
-            <label for="roofSystem" class="sr-only">Current Roof System</label>
-            <select id="roofSystem" name="roof_system">
-              <option value="" selected>Current Roof System (if known)</option>
-              <option>Architectural Shingles</option>
-              <option>3-Tab / Composition Shingles</option>
-              <option>Clay Tile</option>
-              <option>Lightweight Concrete Tile</option>
-              <option>Slate</option>
-              <option>Metal (Standing Seam / Stone-Coated)</option>
-              <option>Not Sure</option>
-            </select>
-          </div>
-          <div class="form-group form-col-4">
-            <label for="preferredSystem" class="sr-only">Preferred Roof System</label>
-            <select id="preferredSystem" name="preferred_system">
-              <option value="" selected>Preferred Roof System (optional)</option>
-              <option>Architectural Shingles (30–50 yr)</option>
-              <option>Clay / Concrete Tile</option>
-              <option>Metal (Standing Seam / Stone-Coated)</option>
-              <option>Slate</option>
-              <option>Unsure — Need Guidance</option>
-            </select>
-          </div>
-          <div class="form-group form-col-4">
-            <label for="referral" class="sr-only">How did you hear about us?*</label>
-            <select id="referral" name="referral_source" required>
-              <option value="" selected disabled hidden>How did you hear about us?*</option>
-              <option>Google</option>
-              <option>Yelp</option>
-              <option>Angi</option>
-              <option>Social Media</option>
-              <option>Referral</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Row 6 -->
-        <div class="form-row">
-          <div class="form-group">
-            <label for="description" class="sr-only">Brief Description*</label>
-            <textarea id="description" name="description" rows="4" placeholder="Brief Description* — leaks, age, hail/wind, re-roof timing, etc." required></textarea>
-          </div>
-        </div>
-
-        <!-- Optional photos -->
-        <div class="form-row">
-          <div class="form-group form-col-6">
-            <label for="photos" class="sr-only">Upload Photos</label>
-            <input type="file" id="photos" name="photos" accept="image/*" multiple>
-          </div>
-          <div class="form-group form-col-6">
-            <small class="muted">Photos help us prep your estimate (damage, access, material).</small>
-          </div>
-        </div>
-
-        <!-- reCAPTCHA slot (your JS renders this) -->
-        <div class="form-row">
-          <div class="form-group recaptcha-container">
-            <div id="recaptcha-slot" aria-label="reCAPTCHA widget"></div>
-          </div>
-        </div>
-
-        <!-- Submit -->
-        <div class="form-row">
-          <button type="submit" class="zenith-btn">Request Free Estimate</button>
-        </div>
-
-        <p class="form-disclaimer">
-          <em>*Free estimates are for homeowners only. For real-estate transactions, please see our
-          <a href="/services/real-estate/">Real Estate Services</a>.</em>
-        </p>
-      </form>
+      <div class="form-group form-col-6">
+        <label for="lastName" class="sr-only">Last Name*</label>
+        <input type="text" id="lastName" name="last_name" placeholder="Last Name*" autocomplete="family-name" required>
+      </div>
     </div>
-  </section>
 
-  <!-- Optional sticky bottom action bar from ui.css (mobile only) -->
-  <div class="page actionbar" role="navigation" aria-label="Quick actions">
-    <a class="ab-btn call" href="tel:8589006163">Call</a>
-    <a class="ab-btn text" href="sms:8589006163">Text</a>
-    <a class="ab-btn estimate" href="#pitched-roof-estimate">Get Estimate</a>
+    <!-- Row 2 -->
+    <div class="form-row">
+      <div class="form-group form-col-6">
+        <label for="phone" class="sr-only">Phone Number*</label>
+        <input type="tel" id="phone" name="phone" inputmode="tel"
+               placeholder="Phone Number*" pattern="[\d\s\-\(\)\.]{10,}" autocomplete="tel" required>
+      </div>
+      <div class="form-group form-col-6">
+        <label for="email" class="sr-only">Email Address*</label>
+        <input type="email" id="email" name="email" placeholder="Email Address*" autocomplete="email" required>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="streetAddress" class="sr-only">Street Address*</label>
+        <input type="text" id="streetAddress" name="street_address"
+               placeholder="Street Address*" autocomplete="address-line1" required>
+      </div>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="form-row">
+      <div class="form-group form-col-4">
+        <label for="city" class="sr-only">City*</label>
+        <input type="text" id="city" name="city" placeholder="City*" autocomplete="address-level2" required>
+      </div>
+      <div class="form-group form-col-4">
+        <label for="state" class="sr-only">State*</label>
+        <input type="text" id="state" name="state" value="CA" placeholder="State*" readonly>
+      </div>
+      <div class="form-group form-col-4">
+        <label for="zip" class="sr-only">ZIP Code*</label>
+        <input type="text" id="zip" name="zip" placeholder="ZIP Code*"
+               inputmode="numeric" pattern="\d{5}(-\d{4})?" maxlength="10"
+               autocomplete="postal-code" required>
+      </div>
+    </div>
+
+    <!-- Row 5 (optional pitched-roof context for your CRM) -->
+    <div class="form-row">
+      <div class="form-group form-col-4">
+        <label for="roofSystem" class="sr-only">Current Roof System</label>
+        <select id="roofSystem" name="roof_system">
+          <option value="" selected>Current Roof System (if known)</option>
+          <option>Architectural Shingles</option>
+          <option>3-Tab / Composition Shingles</option>
+          <option>Clay Tile</option>
+          <option>Lightweight Concrete Tile</option>
+          <option>Slate</option>
+          <option>Metal (Standing Seam / Stone-Coated)</option>
+          <option>Not Sure</option>
+        </select>
+      </div>
+      <div class="form-group form-col-4">
+        <label for="preferredSystem" class="sr-only">Preferred Roof System</label>
+        <select id="preferredSystem" name="preferred_system">
+          <option value="" selected>Preferred Roof System</option>
+          <option>Architectural Shingles</option>
+          <option>3-Tab / Composition Shingles</option>
+          <option>Clay Tile</option>
+          <option>Lightweight Concrete Tile</option>
+          <option>Slate</option>
+          <option>Metal (Standing Seam / Stone-Coated)</option>
+          <option>Open to Recommendations</option>
+        </select>
+      </div>
+      <div class="form-group form-col-4">
+        <label for="referral" class="sr-only">How did you hear about us?*</label>
+        <select id="referral" name="referral_source" required>
+          <option value="" selected disabled hidden>How did you hear about us?*</option>
+          <option>Google</option>
+          <option>Yelp</option>
+          <option>Angi</option>
+          <option>Social Media</option>
+          <option>Referral</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Row 6 -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="photos" class="sr-only">Upload Photos</label>
+        <input type="file" id="photos" name="photos" accept="image/*" multiple>
+      </div>
+    </div>
+
+    <!-- Row 7 -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="description" class="sr-only">Brief Description*</label>
+        <textarea id="description" name="description" rows="4"
+                  placeholder="Brief Description* — tell us what you need help with" required></textarea>
+      </div>
+    </div>
+
+    <!-- reCAPTCHA (same slot id your home page JS uses) -->
+    <div class="form-row">
+      <div class="form-group recaptcha-container">
+        <div id="recaptcha-slot" aria-label="reCAPTCHA widget"></div>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="form-row">
+      <button type="submit" class="btn btn-primary">Send My Request</button>
+    </div>
+
+    <p class="muted" style="margin-top:.5rem">
+      <em>By submitting, you agree to our Terms &amp; Privacy Policy. Message/data rates may apply.
+      Free estimates are not available for real-estate transactions.</em>
+    </p>
+  </form>
+
+  <!-- Optional quick actions under the form -->
+  <div class="cta">
+    <a class="btn btn-outline" href="tel:8589006163">Call 858-900-6163</a>
+    <a class="btn btn-outline" href="sms:+18589006163">Text Us</a>
+    <a class="btn btn-primary" href="/contact/">Prefer email? Contact page</a>
   </div>
-
-  <!-- Universal footer include -->
-  <div id="site-footer" data-include="/components/footer.html"></div>
-
-  <!-- ===== Shared include/observer bootstrap (same as your other pages) ===== -->
-  <script>
-    async function include(el){ const src=el.getAttribute('data-include'); if(!src) return;
-      try{ const res=await fetch(src); if(!res.ok) throw new Error(src); el.outerHTML=await res.text(); }catch(e){ console.error('Include error',src,e); }
-    }
-    (async()=>{ const incs=[...document.querySelectorAll('[data-include]')]; await Promise.all(incs.map(include));
-      if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
-    })();
-  </script>
-
-  <!-- Your existing scripts (same as home page) -->
-  <script src="/js/loader.js" defer></script>
-  <script src="/js/header.js" defer></script>
-  <!-- This is the one that posts to your Netlify function -> JobNimbus -->
-  <script src="/js/jn-create-lead.js" defer></script>
-</body>
-</html>
+</section>
