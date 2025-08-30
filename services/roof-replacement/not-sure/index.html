@@ -4,63 +4,24 @@
   <meta charset="utf-8" />
   <title>Not Sure? Find My Roof Type | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Not sure what roof you have or which service you need? Answer a few quick questions and we’ll route you to the right option—pitched vs flat, shingles vs tile vs metal, repair vs replacement. Free estimates for homeowners in San Diego & Temecula." />
+  <meta name="description" content="Not sure what roof you have or which service you need? Answer quick questions and we’ll route you to the right option—pitched vs flat, shingles vs tile vs metal, repair vs replacement." />
   <link rel="canonical" href="https://www.zenithroofingservices.com/services/roof-replacement/not-sure/">
 
-  <!-- Shared CSS -->
-  <link rel="stylesheet" href="/css/header.css">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/footer.css">
-  <link rel="stylesheet" href="/css/ui.css">
-  <!-- Lead form CSS -->
-  <link rel="stylesheet" href="/css/estimate-form.css">
+  <link rel="stylesheet" href="/css/header.css"><link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/footer.css"><link rel="stylesheet" href="/css/ui.css"><link rel="stylesheet" href="/css/estimate-form.css">
+  <script defer src="/js/loader.js"></script><script defer src="/js/header.js"></script><script defer src="/js/estimate-form.js"></script>
 
-  <!-- Includes + header behavior + lead form -->
-  <script defer src="/js/loader.js"></script>
-  <script defer src="/js/header.js"></script>
-  <script defer src="/js/estimate-form.js"></script>
-
-  <style>
-    .page.nsure{ max-width:1100px; margin:24px auto; padding:0 16px; }
-    .badge{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#f1f5f9; font-weight:600; font-size:.95rem; }
-    .lede{ color:#475569; font-size:1.075rem; margin:8px 0 18px; }
-    .muted{ color:var(--ui-muted); }
-    .q-group h3{ margin-bottom:6px; }
-    .opt{ display:flex; align-items:center; gap:10px; padding:10px 12px; border:1px solid var(--ui-line); border-radius:12px; background:#fff; }
-    .opt input{ transform:scale(1.1); }
-    .opt:hover{ box-shadow:var(--ui-shadow); border-color:rgba(7,46,89,.12); }
-    .grid.auto-fit-tight{ display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
-    .small{ font-size:.9rem; }
-  </style>
-
-  <!-- JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Service",
-    "name":"Roof Type Help & Routing",
-    "serviceType":"Roofing consultation & estimate routing",
-    "provider":{"@type":"LocalBusiness","name":"Zenith Roofing Services, Inc.","telephone":"+1-858-900-6163"},
-    "areaServed":["San Diego County","Temecula"],
-    "url":"https://www.zenithroofingservices.com/services/roof-replacement/not-sure/"
-  }
-  </script>
+  <style>.page.nsure{max-width:1100px;margin:24px auto;padding:0 16px}.badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#f1f5f9;font-weight:600;font-size:.95rem}.lede{color:#475569;font-size:1.075rem;margin:8px 0 18px}.muted{color:var(--ui-muted)}.q-group h3{margin-bottom:6px}.opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--ui-line);border-radius:12px;background:#fff}.opt input{transform:scale(1.1)}.opt:hover{box-shadow:var(--ui-shadow);border-color:rgba(7,46,89,.12)}.grid.auto-fit-tight{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.small{font-size:.9rem}</style>
 </head>
 <body>
-
-  <!-- Header include -->
   <div data-include="/components/header-section.html"></div>
-
   <main class="page nsure" id="top">
-    <!-- HERO -->
-    <section class="card airy" aria-label="Help me choose my roof service">
+    <section class="card airy">
       <span class="badge">Need Help?</span>
       <h1 style="margin:10px 0 6px;">Not Sure What You Need?</h1>
-      <p class="lede">Answer a few quick questions. We’ll point you to the right service and prefill your estimate request so scheduling is fast.</p>
-      <p class="muted small">Free estimates are for homeowners (not real-estate transactions). If you need an inspection/certification for a sale, we have a paid Real Estate Service.</p>
+      <p class="lede">Answer a few questions. We’ll point you to the right service and prefill your estimate request.</p>
+      <p class="muted small">Free estimates are for homeowners (not real-estate transactions).</p>
     </section>
 
-    <!-- QUICK QUESTIONS -->
     <section class="card airy q-group" aria-label="Step 1: Roof style">
       <h2>1) What’s your roof style?</h2>
       <div class="grid auto-fit-tight">
@@ -73,11 +34,11 @@
     <section class="card airy q-group" aria-label="Step 2: Visible material">
       <h2>2) What material do you see?</h2>
       <div class="grid auto-fit-tight">
-        <label class="opt"><input type="radio" name="q_material" value="Shingle"> <span>Asphalt/architectural shingles</span></label>
+        <label class="opt"><input type="radio" name="q_material" value="Shingle"> <span>Asphalt shingles</span></label>
         <label class="opt"><input type="radio" name="q_material" value="Tile"> <span>Concrete or clay tile</span></label>
-        <label class="opt"><input type="radio" name="q_material" value="Metal"> <span>Metal panels (standing seam)</span></label>
+        <label class="opt"><input type="radio" name="q_material" value="Metal"> <span>Standing-seam metal</span></label>
         <label class="opt"><input type="radio" name="q_material" value="Single-ply (TPO/PVC)"> <span>White sheet membrane (TPO/PVC)</span></label>
-        <label class="opt"><input type="radio" name="q_material" value="Torch-down"> <span>Torch-down (granulated cap sheet)</span></label>
+        <label class="opt"><input type="radio" name="q_material" value="Torch-down"> <span>Granulated cap sheet (torch-down)</span></label>
         <label class="opt"><input type="radio" name="q_material" value="Silicone"> <span>White/grey silicone coating</span></label>
         <label class="opt"><input type="radio" name="q_material" value="Not sure"> <span>Not sure</span></label>
       </div>
@@ -92,7 +53,6 @@
         <label class="opt"><input type="radio" name="q_need" value="Inspection/Certification (Paid)"> <span>Inspection / certification (paid)</span></label>
         <label class="opt"><input type="radio" name="q_need" value="Not sure"> <span>Not sure</span></label>
       </div>
-      <p class="muted small" style="margin-top:8px;">Note: Real-estate inspections/certificates are a paid service and not part of our free estimate program.</p>
     </section>
 
     <section class="card airy q-group" aria-label="Step 4: Issues you notice">
@@ -105,152 +65,74 @@
         <label class="opt"><input type="checkbox" name="q_issue" value="Old/skylights/gutters"> <span>Old skylights/gutters</span></label>
         <label class="opt"><input type="checkbox" name="q_issue" value="Hail/wind damage"> <span>Possible hail/wind damage</span></label>
       </div>
-    </section>
-
-    <section class="card airy q-group" aria-label="Step 5: Timing">
-      <h2>5) Timeline</h2>
-      <div class="grid auto-fit-tight">
-        <label class="opt"><input type="radio" name="q_time" value="ASAP"> <span>ASAP (leak or urgent)</span></label>
-        <label class="opt"><input type="radio" name="q_time" value="1–2 weeks"> <span>1–2 weeks</span></label>
-        <label class="opt"><input type="radio" name="q_time" value="1–3 months"> <span>1–3 months</span></label>
-        <label class="opt"><input type="radio" name="q_time" value="Just budgeting"> <span>Just budgeting</span></label>
-      </div>
-
       <div class="cta" style="margin-top:14px;">
         <a id="to-estimate" class="btn" href="#estimate">Get My Recommendation &amp; Estimate</a>
         <a class="btn outline" href="tel:8589006163">Call 858-900-6163</a>
       </div>
     </section>
 
-    <!-- ESTIMATE (include only; we prefill from answers) -->
-    <section id="estimate" class="card airy" aria-label="Request a Free Estimate"
-             data-estimate-context
-             data-category="Not Sure / Help Me Choose"
-             data-redirect="/thank-you/">
+    <section id="estimate" class="card airy" data-estimate-context data-category="Not Sure / Help Me Choose" data-redirect="/thank-you/">
       <div data-include="/components/forms/estimate.html"></div>
-
-      <!-- Fallback slim form -->
-      <template id="lead-form-fallback">
-        <form id="estimate-form" novalidate>
-          <input type="hidden" name="service_type" value="Help Me Choose">
-          <input type="hidden" name="page" value="">
-          <div class="form-row">
-            <div class="form-col-6"><label>Full Name</label><input name="name" required></div>
-            <div class="form-col-6"><label>Phone</label><input name="phone" type="tel" required></div>
-          </div>
-          <div class="form-row">
-            <div class="form-col-6"><label>Email</label><input name="email" type="email" required></div>
-            <div class="form-col-6"><label>ZIP</label><input name="zip" required></div>
-          </div>
-          <div class="form-row">
-            <div class="form-col-12"><label>Notes</label><textarea name="message" rows="4"></textarea></div>
-          </div>
-          <button class="btn" type="submit">Send Request</button>
-        </form>
-      </template>
+      <template id="lead-form-fallback"><form id="estimate-form" novalidate>
+        <input type="hidden" name="service_type" value="Help Me Choose"><input type="hidden" name="page" value="">
+        <div class="form-row"><div class="form-col-6"><label>Name</label><input name="name" required></div><div class="form-col-6"><label>Phone</label><input name="phone" type="tel" required></div></div>
+        <div class="form-row"><div class="form-col-6"><label>Email</label><input name="email" type="email" required></div><div class="form-col-6"><label>ZIP</label><input name="zip" required></div></div>
+        <div class="form-row"><div class="form-col-12"><label>Notes</label><textarea name="message" rows="4"></textarea></div></div>
+        <button class="btn" type="submit">Send Request</button>
+      </form></template>
     </section>
 
-    <!-- Service area & soft disclaimer -->
-    <section class="card airy" aria-label="Service area">
-      <h2>Service Area</h2>
-      <p class="muted">North County San Diego, Greater San Diego, Temecula &amp; nearby communities.</p>
-      <p class="muted small">Information above reflects common practices. Final scope, materials, pricing, and warranties are governed solely by your signed contract and manufacturer documentation.</p>
-    </section>
+    <section class="card airy"><h2>Service Area</h2><p class="muted">North County San Diego, Greater San Diego, Temecula & nearby communities.</p></section>
   </main>
 
-  <!-- Footer include -->
   <div data-include="/components/footer.html"></div>
+  <div class="actionbar"><a class="ab-btn call" href="tel:8589006163">Call</a><a class="ab-btn text" href="sms:+18589006163">Text</a><a class="ab-btn estimate" href="#estimate">Free Estimate</a></div>
 
-  <!-- Mobile action bar -->
-  <div class="actionbar">
-    <a class="ab-btn call" href="tel:8589006163">Call</a>
-    <a class="ab-btn text" href="sms:+18589006163">Text</a>
-    <a class="ab-btn estimate" href="#estimate">Free Estimate</a>
-  </div>
-
-  <!-- Mini helper: compile answers → prefill service type & message -->
   <script>
     (function(){
       const $ = (s, r=document) => r.querySelector(s);
       const $$ = (s, r=document) => [...r.querySelectorAll(s)];
-
-      function readVal(name){ const el = $(`input[name="${name}"]:checked`); return el ? el.value : ""; }
-      function readChecks(name){ return $$( `input[name="${name}"]:checked` ).map(x=>x.value); }
-
+      function readVal(n){ const el = $(`input[name="${n}"]:checked`); return el ? el.value : ""; }
+      function readChecks(n){ return $$(`input[name="${n}"]:checked`).map(x=>x.value); }
       function inferServiceType(style, material, need){
-        // Basic routing
         if (need.includes('Inspection')) return 'Real Estate Inspection / Certification (Paid)';
-        if (style === 'Flat' || /Single-ply|Torch-down|Silicone/i.test(material)) {
-          if (need === 'Replacement') return 'Flat / Low-Slope Roof Replacement';
-          if (need === 'Leak Repair') return 'Flat Roof Leak Repair';
+        if (style==='Flat' || /Single-ply|Torch-down|Silicone/i.test(material)){
+          if (need==='Replacement') return 'Flat / Low-Slope Roof Replacement';
+          if (need==='Leak Repair') return 'Flat Roof Leak Repair';
           if (need.includes('Maintenance')) return 'Flat Roof Maintenance / Tune-Up';
           return 'Help Me Choose — Flat';
         }
-        if (style === 'Pitched' || /Shingle|Tile|Metal/i.test(material)) {
-          if (need === 'Replacement') {
-            if (material === 'Shingle') return 'Pitched Roof Replacement — Shingle';
-            if (material === 'Tile') return 'Pitched Roof Replacement — Tile';
-            if (material === 'Metal') return 'Pitched Roof Replacement — Metal';
+        if (style==='Pitched' || /Shingle|Tile|Metal/i.test(material)){
+          if (need==='Replacement'){
+            if (material==='Shingle') return 'Pitched Roof Replacement — Shingle';
+            if (material==='Tile') return 'Pitched Roof Replacement — Tile';
+            if (material==='Metal') return 'Pitched Roof Replacement — Metal';
             return 'Pitched Roof Replacement';
           }
-          if (need === 'Leak Repair') return 'Pitched Roof Leak Repair';
+          if (need==='Leak Repair') return 'Pitched Roof Leak Repair';
           if (need.includes('Maintenance')) return 'Pitched Roof Maintenance / Tune-Up';
           return 'Help Me Choose — Pitched';
         }
         return 'Help Me Choose';
       }
-
-      function buildMessage(style, material, need, issues, time){
-        const lines = [
-          `Style: ${style || 'Unknown'}`,
-          `Material: ${material || 'Unknown'}`,
-          `Need: ${need || 'Unknown'}`,
-          issues.length ? `Issues: ${issues.join(', ')}` : '',
-          time ? `Timeline: ${time}` : ''
-        ].filter(Boolean);
-        return `Answers from "Not Sure" page:\n` + lines.join('\n');
-      }
-
-      function prefillForm(){
-        const style = readVal('q_style');
-        const material = readVal('q_material');
-        const need = readVal('q_need');
-        const issues = readChecks('q_issue');
-        const time = readVal('q_time');
-
-        const svc = inferServiceType(style, material, need);
-        const summary = buildMessage(style, material, need, issues, time);
-
-        // After include loads, fill fields (retry a few times if needed)
-        let tries = 0;
-        const iv = setInterval(()=>{
-          const form = document.getElementById('estimate-form');
-          if (form){
-            clearInterval(iv);
-            const svcSelect = form.querySelector('select[name="service_type"]');
-            if (svcSelect){
-              // Try to match an option; else set directly and keep it
-              const opt = [...svcSelect.options].find(o => o.textContent.trim() === svc || o.value === svc);
-              if (opt) svcSelect.value = opt.value; else { svcSelect.value = svc; }
-            } else {
-              const svcInput = form.querySelector('input[name="service_type"]');
-              if (svcInput) svcInput.value = svc;
-            }
-            const msg = form.querySelector('textarea[name="message"]');
-            if (msg && !msg.value) msg.value = summary;
-            // Scroll into view smoothly
+      function prefill(){
+        const style=readVal('q_style'), material=readVal('q_material'), need=readVal('q_need');
+        const issues=readChecks('q_issue'), time=readVal('q_time');
+        const svc=inferServiceType(style,material,need);
+        const lines=[`Style: ${style||'Unknown'}`,`Material: ${material||'Unknown'}`,`Need: ${need||'Unknown'}`, issues.length?`Issues: ${issues.join(', ')}`:'', time?`Timeline: ${time}`:''].filter(Boolean);
+        const summary='Answers from "Not Sure" page:\\n'+lines.join('\\n');
+        let t=0; const iv=setInterval(()=>{
+          const form=document.getElementById('estimate-form');
+          if(form){ clearInterval(iv);
+            const sel=form.querySelector('select[name="service_type"]'), inp=form.querySelector('input[name="service_type"]'), msg=form.querySelector('textarea[name="message"]');
+            if(sel){ const opt=[...sel.options].find(o=>o.textContent.trim()===svc||o.value===svc); if(opt) sel.value=opt.value; else sel.value=svc; }
+            else if(inp){ inp.value=svc; }
+            if(msg && !msg.value) msg.value=summary;
             form.scrollIntoView({behavior:'smooth', block:'start'});
-          } else if (++tries > 30){ clearInterval(iv); }
-        }, 100);
+          } else if(++t>30){ clearInterval(iv); }
+        },100);
       }
-
-      // Primary CTA
-      document.addEventListener('click', (e)=>{
-        const t = e.target.closest('#to-estimate');
-        if (!t) return;
-        // allow hash nav, also prefill
-        prefillForm();
-      });
+      document.addEventListener('click',e=>{ if(e.target.closest('#to-estimate')) prefill(); });
     })();
   </script>
 </body>
