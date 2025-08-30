@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <title>Customer Reviews & Testimonials | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Read verified reviews of Zenith Roofing Services from Google, Yelp, GuildQuality, and Owens Corning. See what homeowners in San Diego & Temecula say about our roof repairs and replacements." />
+  <meta name="description" content="Read verified reviews of Zenith Roofing Services from Google, Yelp, GuildQuality, Owens Corning, and HomeAdvisor. See what homeowners in San Diego & Temecula say about our roof repairs and replacements." />
   <link rel="canonical" href="https://www.zenithroofingservices.com/reviews/">
 
   <!-- Shared CSS -->
@@ -24,18 +24,22 @@
     .badge{ display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; background:#eef2ff; color:#334155; font-weight:700; }
     .lede{ color:#475569; margin:8px 0 0; }
 
+    /* Source pills (dynamic) */
     .pills{ margin:16px 0 0; display:flex; flex-wrap:wrap; gap:8px; }
     .pill{ border:1px solid var(--line); border-radius:999px; padding:8px 12px; cursor:pointer; background:#fff; font-weight:700; }
     .pill[aria-pressed="true"]{ background:#0b3a6f; color:#fff; border-color:transparent; }
 
+    /* Highlights */
     .highlights{ display:grid; gap:12px; margin:16px 0; }
     .kpi{ border:1px solid var(--line); border-radius:14px; padding:14px; background:#fff; display:flex; align-items:center; justify-content:space-between; }
     .kpi strong{ font-size:1.15rem; }
     @media (min-width:800px){ .highlights{ grid-template-columns:1fr 1fr 1fr; } }
 
+    /* Filters */
     .filters{ display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 0; }
     .filters select, .filters input{ border:1px solid var(--line); border-radius:10px; padding:8px 10px; }
 
+    /* Review list */
     .grid{ display:grid; gap:12px; }
     .reviews{ margin-top:16px; }
     .card.review{ border:1px solid var(--line); border-radius:16px; padding:14px; background:#fff; }
@@ -47,17 +51,20 @@
     .body{ margin:8px 0 0; color:#334155; }
     .more{ display:inline-block; margin-top:8px; color:var(--ink); font-weight:700; }
 
+    /* CTA row */
     .cta-wrap{ display:grid; gap:12px; margin:18px 0; }
-    @media (min-width:800px){ .cta-wrap{ grid-template-columns: repeat(4,1fr); } }
+    @media (min-width:800px){ .cta-wrap{ grid-template-columns: repeat(5,1fr); } }
     .cta{ border:1px solid var(--line); border-radius:14px; padding:14px; background:#fff; }
     .cta h3{ margin:0 0 6px; font-size:1rem; }
     .cta .btn{ display:inline-flex; align-items:center; justify-content:center; min-height:var(--tap); padding:10px 14px; border-radius:12px; border:1px solid var(--line); }
     .cta .btn.primary{ background:var(--ink); color:#fff; border-color:transparent; }
 
+    /* Load more */
     .loadmore { display:flex; justify-content:center; margin:16px 0 8px; }
     .loadmore .btn { min-height:var(--tap); padding:10px 18px; border-radius:12px; border:1px solid var(--line); font-weight:700; }
     .btn[disabled]{ opacity:.6; cursor:not-allowed; }
 
+    /* Sticky actions */
     .actionbar{ position:sticky; bottom:0; left:0; width:100%; display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; background:rgba(255,255,255,.97); backdrop-filter: saturate(180%) blur(6px); border-top:1px solid var(--line); padding:10px var(--pad) calc(env(safe-area-inset-bottom,0) + 10px); }
     .ab-btn{ display:flex; align-items:center; justify-content:center; min-height:var(--tap); border-radius:12px; border:1px solid var(--line); font-weight:700; }
     .ab-btn.primary{ background:var(--ink); color:#fff; border-color:transparent; }
@@ -91,16 +98,10 @@
     <section class="hero card airy">
       <span class="badge">Customer Reviews</span>
       <h1 style="margin:10px 0 6px;">What Homeowners Say About Us</h1>
-      <p class="lede">Real feedback from Google, Yelp, GuildQuality, and Owens Corning for projects across San Diego &amp; Temecula.</p>
+      <p class="lede">Real feedback from Google, Yelp, GuildQuality, Owens Corning, and HomeAdvisor for projects across San Diego &amp; Temecula.</p>
 
-      <!-- Source selector -->
-      <div class="pills" role="toolbar" aria-label="Filter by source">
-        <button class="pill" aria-pressed="true" data-src="all">All</button>
-        <button class="pill" aria-pressed="false" data-src="google">Google</button>
-        <button class="pill" aria-pressed="false" data-src="yelp">Yelp</button>
-        <button class="pill" aria-pressed="false" data-src="guildquality">GuildQuality</button>
-        <button class="pill" aria-pressed="false" data-src="owens">Owens Corning</button>
-      </div>
+      <!-- Source selector (built dynamically) -->
+      <div class="pills" id="pillBar" role="toolbar" aria-label="Filter by source"></div>
 
       <!-- Highlights (no averages) -->
       <div class="highlights" aria-label="Review highlights">
@@ -142,6 +143,11 @@
         <p class="muted">Manufacturer partner profile.</p>
         <a class="btn primary" rel="noopener" target="_blank" href="https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828">Open OC Profile</a>
       </div>
+      <div class="cta">
+        <h3>HomeAdvisor / Angi</h3>
+        <p class="muted">Historic project reviews.</p>
+        <a class="btn primary" rel="noopener" target="_blank" href="https://www.angi.com/">Open Angi</a>
+      </div>
     </section>
 
     <!-- Reviews -->
@@ -151,7 +157,7 @@
     <!-- Trust note -->
     <section class="card airy" style="margin-top:14px;">
       <h2>How we collect and display reviews</h2>
-      <p class="muted">We show excerpts from public platforms and independent surveys. For transparency, each card links to the original source. Counts reflect what’s rendered on this page.</p>
+      <p class="muted">We show excerpts from public platforms and independent surveys. Each card links to the original source where available. Counts reflect what’s rendered on this page.</p>
     </section>
   </main>
 
@@ -164,52 +170,124 @@
     <a class="ab-btn primary" href="/services/roof-inspection/#free">Book Free Inspection</a>
   </div>
 
-  <!-- Seed data: expanded real reviews you provided (trimmed excerpts) -->
+  <!-- SEED DATA: expanded real reviews -->
   <script type="application/json" id="reviews-seed">
   {
     "reviews":[
+      /* ---------- GOOGLE ---------- */
       {"source":"google","rating":5,"author":"Jeffrey Powell","location":"San Diego, CA","date":"2025-08-09","body":"Helpful, same-day crew visit and clear scope at a reasonable price.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Yoko W.","location":"","date":"2025-07-26","body":"Highly recommended experience — thoughtful communication and great result.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Devon T.","location":"","date":"2025-07-12","body":"On time, knowledgeable, professional gear and presentation. Great price.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Mike P.","location":"San Diego, CA","date":"2025-06-15","body":"Coordinated removal/reinstall of 28 solar panels; detailed proposal and no surprises.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Pam S.","location":"","date":"2025-02-21","body":"Remote estimate was accurate; project finished on time and on budget.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"MJ H.","location":"","date":"2025-02-21","body":"Easy to work with on roof replacement. Ensured we were happy with the job.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Dylan L.","location":"","date":"2025-02-07","body":"Top-rated for a reason — you get what you pay for!","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Vivian's Quality","location":"","date":"2025-02-07","body":"Came out, diagnosed two leaks, provided a clear plan.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Laura S.","location":"","date":"2024-08-21","body":"100% satisfied. Options explained clearly; prompt, efficient crew and immaculate cleanup.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"K & R Kalahiki","location":"","date":"2024-08-20","body":"On time, super clean, efficient — even saved us money. 10/10.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Lance P.","location":"","date":"2024-08-07","body":"Fair price, quality work, great representatives. Very satisfied.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Eric D.","location":"","date":"2024-07-15","body":"Outstanding quality and on-time execution even in July heat.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Andrew V.","location":"","date":"2024-05-14","body":"Fantastic full roof replacement; communication and workmanship stood out.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Marco C.","location":"","date":"2024-04-18","body":"Removed 2 shingle layers, repaired wood, installed new system — excellent job.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Nicholas S.","location":"","date":"2024-04-06","body":"Great roof replacement before solar; transparent and professional.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Itzy M.","location":"","date":"2024-03-20","body":"Very knowledgeable, reliable, and quality work at great prices.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Chris L.","location":"","date":"2024-02-18","body":"Helped navigate homeowner’s insurance requirements — excellent documentation.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Salomeh B.","location":"","date":"2024-02-07","body":"Fair pricing and well-done job. Highly recommend.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Angelina E.","location":"","date":"2023-10-23","body":"Honest and professional. Quick response and thorough work.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Robert H.","location":"","date":"2023-08-20","body":"Great insight and solutions for attic ventilation issues.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Scott","location":"","date":"2023-08-01","body":"Underlayment replacement under clay tiles — best value and strong workmanship.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Mike F.","location":"","date":"2023-07-18","body":"Amazing job on a very old roof replacement; smooth process end-to-end.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Evette F.","location":"","date":"2023-05-16","body":"Detailed, fair pricing, and responsive; would choose again.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"google","rating":5,"author":"Tim P.","location":"","date":"2023-04-27","body":"Clay tile removal and replacement done carefully and correctly.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Yoko Wickersham","location":"","date":"2025-07-22","body":"A highly recommended experience — thoughtful communication and great result.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Devon Thormodsgaard","location":"","date":"2025-07-06","body":"On time, very knowledgeable and professional. Gear and presentation looked great. Solid price.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Mike Panlasigui","location":"","date":"2025-06-15","body":"Rains exposed issues; Zenith coordinated removal/reinstall of 28 solar panels and delivered on time with no cost surprises.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Pam Soggu","location":"","date":"2025-02-28","body":"Remote estimate was accurate; project finished on time and on budget.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Mj H","location":"","date":"2025-02-28","body":"Great find for a replacement — easy to work with and ensured we were happy with the job.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"dylan lam","location":"","date":"2025-02-07","body":"Top-rated for a reason — you get what you pay for!","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Vivian's Quality","location":"","date":"2025-02-07","body":"Called for two leaks — came out, diagnosed and set a clear plan. Transparent and helpful.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Laura Stanley","location":"","date":"2024-08-21","body":"100% satisfied. Options explained clearly; prompt, efficient crew and immaculate cleanup. No pressure — just expertise.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"K & R Kalahiki","location":"","date":"2024-08-20","body":"On time, super clean, efficient — even saved us money. We’d give them a 10!","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Lance Parrow","location":"","date":"2024-08-07","body":"Fair price, quality work, and great communication. Very satisfied.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"eric delatorre","location":"","date":"2024-07-15","body":"Outstanding quality and on-time execution. Crew worked hard in the July heat.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Andrew Vitollo","location":"","date":"2024-05-14","body":"Fantastic full replacement; communication and workmanship stood out.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Marco Corona","location":"","date":"2024-04-18","body":"Removed two shingle layers, repaired wood, installed new system — excellent work.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Nicholas Sites","location":"","date":"2024-04-06","body":"Great roof replacement prior to solar. Transparent and professional.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Itzy Moore","location":"","date":"2024-03-20","body":"Very knowledgeable, reliable and quality work at great prices.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Chris Lucian","location":"","date":"2024-02-18","body":"Helped navigate homeowner’s insurance requirements with detailed documentation.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Salomeh Barati","location":"","date":"2024-02-07","body":"Fair pricing and job well done. Highly recommend.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Angelina Ehrlich","location":"","date":"2023-10-23","body":"Honest and professional. Quick response and thorough work.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Robert Hunt","location":"","date":"2023-08-20","body":"Great insight and solutions for attic ventilation issues.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"scott","location":"","date":"2023-08-01","body":"Underlayment replacement under clay tiles — best value and strong workmanship.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Mike Farkas","location":"","date":"2023-07-18","body":"Amazing job on very old roof replacement; smooth process end-to-end.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Evette Fink","location":"","date":"2023-05-16","body":"Detailed, fair pricing, and responsive — would choose again.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Tim Parillo","location":"","date":"2023-04-27","body":"Clay tile removal and replacement done carefully and correctly.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"David Child","location":"","date":"2022-12-28","body":"Diagnosed and fixed a leak quickly and effectively — same day response.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+
+      /* ---------- YELP ---------- */
       {"source":"yelp","rating":5,"author":"Evan M.","location":"Carlsbad, CA","date":"2025-07-01","body":"Used Zenith at 3 houses over 5 years. On time, honest recommendations, consistently great work.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
       {"source":"yelp","rating":5,"author":"Pam S.","location":"Arlington, VA","date":"2025-02-28","body":"Estimate without site visit, best rate, on time, within budget. Would use again.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
       {"source":"yelp","rating":5,"author":"S. I.","location":"San Diego, CA","date":"2025-03-17","body":"Very honest, ethical, reliable. Highly recommend.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
-      {"source":"yelp","rating":5,"author":"James B.","location":"Escondido, CA","date":"2025-06-02","body":"Underlayment replacement before a move; coordinated with solar; flexible around rain; outstanding cleanup.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
+      {"source":"yelp","rating":5,"author":"James B.","location":"Escondido, CA","date":"2025-06-02","body":"Underlayment replacement; coordinated with solar; flexible around rain; outstanding cleanup and communication.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
       {"source":"yelp","rating":5,"author":"Donna F.","location":"Encinitas, CA","date":"2025-02-20","body":"Reliable crew, finished a day early. Would recommend.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
       {"source":"yelp","rating":5,"author":"Lisa M.","location":"Fallbrook, CA","date":"2025-01-19","body":"Professional, knowledgeable, fair pricing, timely communication. Using them again.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
-      {"source":"guildquality","rating":5,"author":"Renatte A.","location":"San Diego, CA","date":"2025-05-14","body":"Clear itemization and best value for flat roof; team was informative and respectful.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
-      {"source":"guildquality","rating":5,"author":"Barbara P.","location":"San Diego, CA","date":"2025-04-23","body":"Very professional; knew their stuff and explained the process thoroughly.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
+      {"source":"yelp","rating":5,"author":"Eric D.","location":"Honolulu, HI","date":"2024-07-15","body":"Outstanding quality, on schedule, and attention to detail. Thank you to the crew working through hot days.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
+      {"source":"yelp","rating":5,"author":"Karen M.","location":"San Diego, CA","date":"2023-04-29","body":"Roof looks good; repair completed before the next rain; cleanup was thorough. Would use again.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
+      {"source":"yelp","rating":5,"author":"Brooke G.","location":"Santee, CA","date":"2023-04-30","body":"Responded immediately and gave a fair, itemized estimate. Great experience.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
+      {"source":"yelp","rating":1,"author":"Cheng L.","location":"La Costa, CA","date":"2023-11-17","body":"No-show for an estimate. (Owner followed up with an apology the same day.)","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
+
+      /* ---------- GUILDQUALITY ---------- */
+      {"source":"guildquality","rating":5,"author":"Renatte A.","location":"San Diego, CA","date":"2025-05-14","body":"Clear itemization and best value for a flat roof; team kept me informed and protected property.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
+      {"source":"guildquality","rating":5,"author":"Barbara P.","location":"San Diego, CA","date":"2025-04-23","body":"Very professional — knew their stuff and explained the process thoroughly.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
       {"source":"guildquality","rating":5,"author":"Temecula Review","location":"Temecula, CA","date":"2025-03-19","body":"Excellent customer service and a quality roof replacement.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
-      {"source":"guildquality","rating":5,"author":"Laurie W.","location":"Escondido, CA","date":"2025-01-08","body":"Excellent from quote to completion.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
-      {"source":"guildquality","rating":5,"author":"Janet R.","location":"Temecula, CA","date":"2024-10-23","body":"Great communication and punctuality — never left me waiting.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
-      {"source":"guildquality","rating":5,"author":"Marco C.","location":"San Diego, CA","date":"2024-04-23","body":"Courteous and on schedule as advertised.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
-      {"source":"owens","rating":5,"author":"Barbara P.","location":"San Diego, CA","date":"2025-04-22","body":"Professional team; knowledgeable and pleasant to work with.","permalink":"https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828"},
+      {"source":"guildquality","rating":5,"author":"Laurie W.","location":"Escondido, CA","date":"2025-01-08","body":"Excellent to work with from quote to job completed.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
+      {"source":"guildquality","rating":5,"author":"Janet R.","location":"Temecula, CA","date":"2024-10-23","body":"Great communication and punctual; appreciated the reliability.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
+      {"source":"guildquality","rating":5,"author":"Marco C.","location":"San Diego, CA","date":"2024-04-23","body":"Courteous, on time and on schedule as advertised.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
+      {"source":"guildquality","rating":5,"author":"Steven L.","location":"San Diego, CA","date":"2023-01-05","body":"Smooth and easy; they go the extra mile to make sure everything is right.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
+      {"source":"guildquality","rating":5,"author":"Barbara F.","location":"San Diego, CA","date":"2022-10-30","body":"Professional and proactive; impressed by insulation guidance and modern practices.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
+      {"source":"guildquality","rating":5,"author":"Evette F.","location":"Poway, CA","date":"2021-02-25","body":"Answered all questions, straightforward, reasonable price — fantastic experience.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
+
+      /* ---------- OWENS CORNING ---------- */
+      {"source":"owens","rating":5,"author":"Barbara P.","location":"San Diego, CA","date":"2025-04-22","body":"Professional, knowledgeable crew; licensing and process clearly explained.","permalink":"https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828"},
       {"source":"owens","rating":5,"author":"Lisa H.","location":"Temecula, CA","date":"2025-02-17","body":"Excellent customer service and quality roof replacement.","permalink":"https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828"},
-      {"source":"owens","rating":5,"author":"Janet R.","location":"Temecula, CA","date":"2024-10-21","body":"On time and communicative; appreciated the responsiveness.","permalink":"https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828"},
+      {"source":"owens","rating":5,"author":"Janet R.","location":"Temecula, CA","date":"2024-10-21","body":"On time and communicative. Appreciated the responsiveness.","permalink":"https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828"},
       {"source":"owens","rating":5,"author":"Marco C.","location":"San Diego, CA","date":"2024-04-13","body":"Courteous and kept to schedule.","permalink":"https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828"},
-      {"source":"google","rating":5,"author":"David C.","location":"","date":"2022-12-28","body":"Diagnosed and fixed a leak quickly and effectively — same day response.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
-      {"source":"yelp","rating":5,"author":"Aaron L.","location":"San Diego, CA","date":"2022-10-14","body":"Above and beyond on quality and customer service. Smooth and seamless process.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"}
+
+      /* ---------- HOMEADVISOR / ANGI (historic) ---------- */
+      {"source":"homeadvisor","rating":5,"author":"Michael P.","location":"","date":"2025-06-01","body":"Neighbor’s project convinced me. Detailed proposal, fair price, coordinated around 28 solar panels — no surprises. Highly recommend."},
+      {"source":"homeadvisor","rating":5,"author":"Mei H.","location":"","date":"2025-02-01","body":"Great for roof replacement. Easy to work with; ensured we were happy with the job."},
+      {"source":"homeadvisor","rating":5,"author":"Mike S.","location":"","date":"2025-02-01","body":"Quick, courteous and clean. Would definitely recommend and use again."},
+      {"source":"homeadvisor","rating":4,"author":"Steven M.","location":"","date":"2024-11-01","body":"Good job."},
+      {"source":"homeadvisor","rating":5,"author":"Laura S.","location":"","date":"2024-08-21","body":"Leak repair, dry rot, 4 skylights replaced; professional and prompt with options and no pressure."},
+      {"source":"homeadvisor","rating":5,"author":"Diana H.","location":"","date":"2023-06-01","body":"Project still in progress — communication and detail are excellent so far."},
+      {"source":"homeadvisor","rating":5,"author":"Sherri G.","location":"","date":"2023-02-01","body":"Came in the rain to inspect, delivered 3 estimates in 24 hours, finished repairs during a dry window. Highly recommend. (~$8,400)"},
+      {"source":"homeadvisor","rating":5,"author":"Diane U.","location":"","date":"2022-11-01","body":"Honest assessment; report helped me win an insurance appeal and save over $10,000."},
+      {"source":"homeadvisor","rating":5,"author":"George N.","location":"","date":"2022-11-01","body":"Excellent communication; prompt and clean A+ service."},
+      {"source":"homeadvisor","rating":4.5,"author":"Jim C.","location":"","date":"2022-02-01","body":"Professional, responsive, fair bid; finished before others even replied."},
+      {"source":"homeadvisor","rating":5,"author":"Betty L.","location":"","date":"2021-12-01","body":"Provided a professional solution to my roof."},
+      {"source":"homeadvisor","rating":5,"author":"Steven A.","location":"","date":"2021-03-01","body":"Would hire again for future repairs. Excellent company! (~$3,000)"},
+      {"source":"homeadvisor","rating":5,"author":"Evette F.","location":"","date":"2021-02-01","body":"On time, worked fast; honest advice to check insurance first saved me money. Great experience. (~$3,010)"},
+      {"source":"homeadvisor","rating":5,"author":"Cindy P.","location":"","date":"2020-11-01","body":"Quick response and remedy."},
+      {"source":"homeadvisor","rating":5,"author":"Michelle L.","location":"","date":"2020-10-01","body":"They really care — very impressed. (Project completed elsewhere, but appreciated Zenith’s help.)"},
+      {"source":"homeadvisor","rating":3.5,"author":"Harry K.","location":"","date":"2020-09-01","body":"Friendly and professional."},
+      {"source":"homeadvisor","rating":5,"author":"Sumant P.","location":"","date":"2020-08-01","body":"Tile color mismatch resolved; good value. (~$1,250)"},
+      {"source":"homeadvisor","rating":5,"author":"John M.","location":"","date":"2020-06-01","body":"Local, professional, detailed proposal; repaired after rains in 4 days working through weekend."},
+      {"source":"homeadvisor","rating":5,"author":"Dora S.","location":"","date":"2020-05-01","body":"Easy to work with; job finished quickly."},
+      {"source":"homeadvisor","rating":5,"author":"Fred B.","location":"","date":"2020-04-01","body":"Leak fixed promptly before rain; gutters reset at no extra charge; quality job and cleanup."},
+      {"source":"homeadvisor","rating":5,"author":"Frank C.","location":"","date":"2020-04-01","body":"Exceptional from start to finish. Great quality."},
+      {"source":"homeadvisor","rating":5,"author":"Jim M.","location":"","date":"2020-03-01","body":"Chose Zenith over out-of-county option; replaced underlayment after leaks; professional and recommended."},
+      {"source":"homeadvisor","rating":5,"author":"Joe P.","location":"","date":"2020-01-01","body":"Great job at a reasonable price."},
+      {"source":"homeadvisor","rating":5,"author":"Brooke G.","location":"","date":"2020-01-01","body":"Immediate response and next-day estimate; fair pricing and spot-on suggestions."},
+      {"source":"homeadvisor","rating":5,"author":"James N.","location":"","date":"2020-01-01","body":"Professional, responsive, fair bid; completed work before other companies replied."},
+      {"source":"homeadvisor","rating":5,"author":"Mike A.","location":"","date":"2020-01-01","body":"Roof looks good; repair completed before next rain; thorough cleanup."},
+      {"source":"homeadvisor","rating":4.5,"author":"Gary R.","location":"","date":"2019-12-01","body":"Very professional; shared photos of results. (~$1,631)"},
+      {"source":"homeadvisor","rating":5,"author":"Paul P.","location":"","date":"2019-11-01","body":"Knowledgeable on sunroom roofs; genuine desire to do best job possible. (~$2,700)"},
+      {"source":"homeadvisor","rating":5,"author":"Timothy N.","location":"","date":"2019-10-01","body":"Responsive and fast; no upsell."},
+      {"source":"homeadvisor","rating":5,"author":"Jill K.","location":"","date":"2019-09-01","body":"Super friendly and knowledgeable. Will call again for full replacement."},
+      {"source":"homeadvisor","rating":5,"author":"Vinton V.","location":"","date":"2019-08-01","body":"Owner on the job daily; honest and thorough. Zenith was the clear choice among 3 bids."},
+      {"source":"homeadvisor","rating":5,"author":"David S.","location":"","date":"2019-08-01","body":"Excellent."},
+      {"source":"homeadvisor","rating":5,"author":"Patrick C.","location":"","date":"2019-08-01","body":"Very efficient; great cleanup."},
+      {"source":"homeadvisor","rating":5,"author":"Connor B.","location":"","date":"2019-07-01","body":"Needed ASAP inspection for closing — on time, courteous, extremely knowledgeable."},
+      {"source":"homeadvisor","rating":5,"author":"Carlene Y.","location":"","date":"2019-07-01","body":"Professional, on time, respectful, and thorough cleanup."},
+      {"source":"homeadvisor","rating":5,"author":"Keith K.","location":"","date":"2019-06-01","body":"Excellent job from start to finish!"},
+      {"source":"homeadvisor","rating":5,"author":"Tim S.","location":"","date":"2019-05-01","body":"Outstanding service and quality — superior to others I’ve used."},
+      {"source":"homeadvisor","rating":5,"author":"John E.","location":"","date":"2019-05-01","body":"Great job done."},
+      {"source":"homeadvisor","rating":5,"author":"Greg M.","location":"","date":"2019-05-01","body":"Helpful and professional. 5-year warranty met or exceeded competitors."},
+      {"source":"homeadvisor","rating":5,"author":"Daryl W.","location":"","date":"2019-04-01","body":"Very professional; timely estimate."},
+      {"source":"homeadvisor","rating":5,"author":"Roger W.","location":"","date":"2019-03-01","body":"Courteous crew and easy to work with."},
+      {"source":"homeadvisor","rating":5,"author":"Melinda H.","location":"","date":"2019-02-01","body":"Thorough and professional; on time with clean site daily."},
+      {"source":"homeadvisor","rating":5,"author":"Linda M.","location":"","date":"2019-02-01","body":"Professional and accommodating; a delight to work with."},
+      {"source":"homeadvisor","rating":5,"author":"Gary S.","location":"","date":"2019-02-01","body":"Extremely professional and knowledgeable. Highly recommend."},
+      {"source":"homeadvisor","rating":5,"author":"Amber D.","location":"","date":"2019-01-01","body":"Great experience — would recommend."},
+      {"source":"homeadvisor","rating":5,"author":"Wei H.","location":"","date":"2018-12-01","body":"Above and beyond; fast response and reasonable cost. Highly recommend."},
+      {"source":"homeadvisor","rating":5,"author":"Timothy M.","location":"","date":"2018-12-01","body":"Crew worked hard all day; handled special needs quickly and effectively."},
+      {"source":"homeadvisor","rating":5,"author":"Jeff M.","location":"","date":"2018-12-01","body":"Outstanding work, honest dealings, competitive pricing — a pleasure to work with."},
+      {"source":"homeadvisor","rating":5,"author":"Luz N.","location":"","date":"2018-11-01","body":"On time, knowledgeable, stayed on schedule, fair price. Highly recommended."},
+      {"source":"homeadvisor","rating":5,"author":"W B.","location":"","date":"2018-11-01","body":"Prompt, competitive, great follow up — would definitely use again."},
+      {"source":"homeadvisor","rating":5,"author":"Fil R.","location":"","date":"2018-09-01","body":"Excellent professional and timely service; a pleasure to work with."},
+      {"source":"homeadvisor","rating":4.5,"author":"William D.","location":"","date":"2018-09-01","body":"Good value; minor miscommunication but job completed well."},
+      {"source":"homeadvisor","rating":5,"author":"Barbara M.","location":"","date":"2018-08-01","body":"Very professional and accommodating."},
+      {"source":"homeadvisor","rating":5,"author":"Lezlie M.","location":"","date":"2018-07-01","body":"Fast and helpful — roof passed all inspections when we sold."},
+      {"source":"homeadvisor","rating":5,"author":"Ken K.","location":"","date":"2018-07-01","body":"Great work — would hire again."},
+      {"source":"homeadvisor","rating":5,"author":"Tim P.","location":"","date":"2018-04-01","body":"Excellent."},
+      {"source":"homeadvisor","rating":5,"author":"Kenny S.","location":"","date":"2018-03-01","body":"Beat anyone’s prices; quality install and replacement."}
     ]
   }
   </script>
@@ -225,11 +303,34 @@
     function starText(n){ const full = Math.round(n); return '★'.repeat(full) + '☆'.repeat(5-full); }
 
     const all = loadReviews();
-    let state = { src:'all', min:0, q:'', page:1 };
     const PAGE_SIZE = 18;
+    let state = { src:'all', min:0, q:'', page:1 };
+
+    // Build dynamic pills from sources
+    const sources = Array.from(new Set(all.map(r=>r.source))).sort();
+    const pillBar = $$('#pillBar');
+    function makePill(label, key, active=false){
+      const b = document.createElement('button');
+      b.className = 'pill';
+      b.textContent = label;
+      b.dataset.src = key;
+      b.setAttribute('aria-pressed', active ? 'true':'false');
+      b.addEventListener('click', ()=>{
+        $$$('.pill', pillBar).forEach(p=>p.setAttribute('aria-pressed','false'));
+        b.setAttribute('aria-pressed','true');
+        state.src = key;
+        state.page = 1;
+        apply();
+      });
+      pillBar.appendChild(b);
+    }
+    makePill('All','all',true);
+    // Show a friendly label for known sources
+    const LABELS = { google:'Google', yelp:'Yelp', guildquality:'GuildQuality', owens:'Owens Corning', homeadvisor:'HomeAdvisor/Angi' };
+    sources.forEach(k=> makePill(LABELS[k] || k.charAt(0).toUpperCase()+k.slice(1), k));
 
     function computeCounts(list){
-      const counts = { all:list.length, google:0, yelp:0, guildquality:0, owens:0 };
+      const counts = { all:list.length, google:0, yelp:0, guildquality:0, owens:0, homeadvisor:0 };
       list.forEach(r=>{ if(counts[r.source] !== undefined) counts[r.source]++; });
       return counts;
     }
@@ -244,28 +345,26 @@
       }
       list.sort((a,b)=> new Date(b.date) - new Date(a.date));
 
-      // Update counts (based on current filters EXCEPT pagination)
-      const counts = computeCounts(list);
-      $$('#totalCount').textContent = counts.all;
-      $$('#googleCount').textContent = counts.google;
-      $$('#yelpCount').textContent = counts.yelp;
-      $$('#gqCount').textContent = counts.guildquality;
-      $$('#ocCount').textContent = counts.owens;
+      // Update counts (filtered, not paginated)
+      const c = computeCounts(list);
+      $$('#totalCount').textContent = c.all;
+      $$('#googleCount').textContent = c.google || 0;
+      $$('#yelpCount').textContent = c.yelp || 0;
+      $$('#gqCount').textContent = c.guildquality || 0;
+      $$('#ocCount').textContent = c.owens || 0;
 
-      // Pagination
-      const start = 0;
+      // Pagination + render
       const end = state.page * PAGE_SIZE;
-      render(list.slice(start, end));
+      render(list.slice(0, end));
 
-      // Load more button
+      // Load more control
       const moreBtn = $$('#loadMore');
       if(end >= list.length){ moreBtn.setAttribute('disabled',''); moreBtn.textContent = 'No more reviews'; }
       else { moreBtn.removeAttribute('disabled'); moreBtn.textContent = 'Load more reviews'; }
     }
 
     function render(list){
-      const wrap = $$('#reviewsList');
-      wrap.innerHTML = '';
+      const wrap = $$('#reviewsList'); wrap.innerHTML = '';
       list.forEach(r=>{
         const card = document.createElement('article');
         card.className = 'card review';
@@ -284,22 +383,12 @@
       });
     }
 
-    // UI wiring
-    const pills = $$$('.pill');
-    pills.forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        pills.forEach(b=>b.setAttribute('aria-pressed','false'));
-        btn.setAttribute('aria-pressed','true');
-        state.src = btn.dataset.src;
-        state.page = 1;
-        apply();
-      });
-    });
+    // Wiring
     $$('#minStars').addEventListener('change', e=>{ state.min = Number(e.target.value||0); state.page = 1; apply(); });
     $$('#q').addEventListener('input', e=>{ state.q = e.target.value.trim(); state.page = 1; apply(); });
     $$('#loadMore').addEventListener('click', ()=>{ state.page++; apply(); });
 
-    // Initial render
+    // Init
     apply();
   </script>
 </body>
