@@ -24,47 +24,57 @@
     :root{
       --primary:#0b3a6f; --primary-2:#1e4a82;
       --ink:#0b3a6f; --muted:#64748b; --line:#e2e8f0; --bg:#f8fafc;
-      --radius:14px; --shadow:0 8px 20px rgba(2,6,23,.06);
     }
-    .page{max-width:1100px;margin:36px auto;padding:0 18px;color:#334155;}
-    .hero{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:22px 20px;margin-bottom:22px}
+    body{color:#334155;}
+    .page{max-width:1100px;margin:36px auto;padding:0 18px;}
+    .hero{padding:12px 0 6px;margin-bottom:8px}
     .badge{display:inline-block;background:#eef2ff;color:#334155;border-radius:999px;padding:6px 12px;font-weight:700}
     h1{margin:8px 0 4px;color:var(--ink);font-size:2rem}
     .lede{color:var(--muted);max-width:70ch}
     .bar{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .cta{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;font-weight:700}
+    .cta{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:transparent;font-weight:700}
     .cta.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
-    .section{margin:26px 0}
+    .section{margin:24px 0}
     .section h2{color:var(--ink);margin:0 0 8px}
     .muted{color:var(--muted)}
 
-    /* Grid & cards (2 columns, consistent) */
-    .grid{display:grid;grid-template-columns:1fr;gap:14px}
+    /* Grid: 2 columns on desktop, no "card" look */
+    .grid{display:grid;grid-template-columns:1fr;gap:0}
     @media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
-    .card{border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:100%}
-    .body{padding:16px}
-    .price-tag{display:inline-flex;align-items:center;gap:8px;font-weight:800;border:1px solid var(--line);border-radius:10px;padding:6px 10px;background:#fff}
+    .service{padding:16px 0;border-top:1px solid var(--line);}
+    /* add column separator on desktop */
+    @media(min-width:820px){
+      .service{padding:16px 18px;border-left:1px solid var(--line);}
+      .service:nth-child(-n+2){border-top:1px solid var(--line);} /* top row */
+      .grid{border-top:1px solid var(--line);border-left:1px solid var(--line)}
+    }
+    .service h3{margin:4px 0 6px;color:#0b3a6f;font-size:1.05rem}
+    .service p{margin:0 0 10px}
+    .list{display:grid;gap:6px;margin:6px 0}
+    .tick{display:flex;gap:8px}
+    .tick:before{content:"•";color:#059669;font-weight:900}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:8px;border:1px solid var(--primary);font-weight:700;text-decoration:none}
+    .btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+    .btn.outline{background:transparent;color:var(--primary)}
+
+    /* Price chips */
+    .price-tag{display:inline-flex;align-items:center;gap:8px;font-weight:800;border:1px solid var(--line);border-radius:999px;padding:4px 10px;margin-bottom:6px}
     .price-tag.firm{background:#ecfdf5;border-color:#99f6e4;color:#065f46}
     .price-tag.free{background:#ecfdf5;border-color:#99f6e4;color:#065f46}
     .price-tag.call{background:#f1f5f9;border-color:#cbd5e1;color:#334155}
-    .card h3{margin:10px 0 6px;color:#0b3a6f}
-    .card p{margin:0 0 12px}
-    .list{display:grid;gap:8px;margin:6px 0}
-    .tick{display:flex;gap:10px}
-    .tick:before{content:"✔";color:#059669}
-    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:10px;border:1px solid var(--primary);font-weight:700;text-decoration:none}
-    .btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
-    .btn.outline{background:#fff;color:var(--primary)}
 
-    /* FAQ & notes */
-    details{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff}
-    details+details{margin-top:10px}
+    /* FAQ */
+    details{border-top:1px solid var(--line);padding:10px 0}
+    details+details{border-top:1px solid var(--line)}
     summary{cursor:pointer;font-weight:800;color:#0b3a6f}
+
+    /* Neutralize "card" look on this page only (matches your other flat pages) */
+    .card, .airy {background:transparent !important; box-shadow:none !important; border:none !important; border-radius:0 !important;}
 
     /* Sticky quick actions */
     .actionbar{position:sticky;bottom:0;left:0;width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 18px;z-index:50}
-    .ab-btn{display:flex;align-items:center;justify-content:center;padding:14px;border:1px solid var(--line);border-radius:12px;font-weight:800}
+    .ab-btn{display:flex;align-items:center;justify-content:center;padding:14px;border:1px solid var(--line);border-radius:10px;font-weight:800;background:transparent}
     .ab-btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
     @media(max-width:720px){.actionbar{grid-template-columns:1fr}}
   </style>
@@ -103,115 +113,103 @@
       </div>
     </section>
 
-    <!-- Services (2 columns, consistent cards) -->
+    <!-- Services (flat, no cards) -->
     <section class="section" id="menu" aria-label="Real-estate services">
       <h2>Transaction Services</h2>
       <p class="muted">Firm prices shown below. Need something custom? <a href="#book">Send details</a> and we’ll confirm scope fast.</p>
 
       <div class="grid">
         <!-- Visual Inspection -->
-        <article class="card">
-          <div class="body">
-            <span class="price-tag firm">$295 • Firm</span>
-            <h3><a href="/services/real-estate/visual-inspections/">Visual Roof Inspection</a></h3>
-            <p>Photo-documented site walk for real-estate transactions. Clear notes on condition, leaks, and remaining life—ideal for disclosures and due diligence.</p>
-            <ul class="list">
-              <li class="tick">On-site photos & written findings</li>
-              <li class="tick">Action items prioritized by urgency</li>
-              <li class="tick">Typical turnaround: next business day</li>
-            </ul>
-            <div class="actions">
-              <a class="btn primary" href="#book">Request $295</a>
-              <a class="btn outline" href="/services/real-estate/visual-inspections/">Details</a>
-            </div>
+        <article class="service">
+          <span class="price-tag firm">$295 • Firm</span>
+          <h3><a href="/services/real-estate/visual-inspections/">Visual Roof Inspection</a></h3>
+          <p>Photo-documented site walk for real-estate transactions. Clear notes on condition, leaks, and remaining life—ideal for disclosures and due diligence.</p>
+          <ul class="list">
+            <li class="tick">On-site photos & written findings</li>
+            <li class="tick">Action items prioritized by urgency</li>
+            <li class="tick">Typical turnaround: next business day</li>
+          </ul>
+          <div class="actions">
+            <a class="btn primary" href="#book">Request $295</a>
+            <a class="btn outline" href="/services/real-estate/visual-inspections/">Details</a>
           </div>
         </article>
 
         <!-- Real-Estate Estimate -->
-        <article class="card">
-          <div class="body">
-            <span class="price-tag firm">$295 • Firm</span>
-            <h3><a href="/services/real-estate/roof-estimates/">Real-Estate Roof Estimate</a></h3>
-            <p>Negotiation-ready, line-item pricing tailored for credits or repair requests—based on our inspection findings or agent notes.</p>
-            <ul class="list">
-              <li class="tick">Detailed, itemized scope & pricing</li>
-              <li class="tick">Photos/annotations for context</li>
-              <li class="tick">Change-order language included</li>
-            </ul>
-            <div class="actions">
-              <a class="btn primary" href="#book">Request $295</a>
-              <a class="btn outline" href="/services/real-estate/roof-estimates/">Details</a>
-            </div>
+        <article class="service">
+          <span class="price-tag firm">$295 • Firm</span>
+          <h3><a href="/services/real-estate/roof-estimates/">Real-Estate Roof Estimate</a></h3>
+          <p>Negotiation-ready, line-item pricing tailored for credits or repair requests—based on our inspection findings or agent notes.</p>
+          <ul class="list">
+            <li class="tick">Detailed, itemized scope & pricing</li>
+            <li class="tick">Photos/annotations for context</li>
+            <li class="tick">Change-order language included</li>
+          </ul>
+          <div class="actions">
+            <a class="btn primary" href="#book">Request $295</a>
+            <a class="btn outline" href="/services/real-estate/roof-estimates/">Details</a>
           </div>
         </article>
 
         <!-- Roof Certification -->
-        <article class="card">
-          <div class="body">
-            <span class="price-tag firm">$395 • Firm</span>
-            <h3><a href="/services/real-estate/roof-certifications/">Roof Certification</a></h3>
-            <p>Pass/fail certificate when eligibility standards are met. Often requested by lenders or buyers for added confidence.</p>
-            <ul class="list">
-              <li class="tick">Eligibility inspection included</li>
-              <li class="tick">Deficiency list if not eligible</li>
-              <li class="tick">Re-inspection available after fixes</li>
-            </ul>
-            <div class="actions">
-              <a class="btn primary" href="#book">Request $395</a>
-              <a class="btn outline" href="/services/real-estate/roof-certifications/">Details</a>
-            </div>
+        <article class="service">
+          <span class="price-tag firm">$395 • Firm</span>
+          <h3><a href="/services/real-estate/roof-certifications/">Roof Certification</a></h3>
+          <p>Pass/fail certificate when eligibility standards are met. Often requested by lenders or buyers for added confidence.</p>
+          <ul class="list">
+            <li class="tick">Eligibility inspection included</li>
+            <li class="tick">Deficiency list if not eligible</li>
+            <li class="tick">Re-inspection available after fixes</li>
+          </ul>
+          <div class="actions">
+            <a class="btn primary" href="#book">Request $395</a>
+            <a class="btn outline" href="/services/real-estate/roof-certifications/">Details</a>
           </div>
         </article>
 
         <!-- Certified Roof Report -->
-        <article class="card">
-          <div class="body">
-            <span class="price-tag firm">$495 • Firm</span>
-            <h3><a href="/services/roof-inspection/certified-roof-reports/">Certified Roof Report</a></h3>
-            <p>Contractor-certified narrative with photos and prioritized recommendations. Useful for complex roofs or formal documentation needs.</p>
-            <ul class="list">
-              <li class="tick">Narrative + annotated photos</li>
-              <li class="tick">Repair/replacement options with budgets</li>
-              <li class="tick">Great for underwriting or appraisal addenda</li>
-            </ul>
-            <div class="actions">
-              <a class="btn primary" href="#book">Order $495</a>
-              <a class="btn outline" href="/services/roof-inspection/certified-roof-reports/">Details</a>
-            </div>
+        <article class="service">
+          <span class="price-tag firm">$495 • Firm</span>
+          <h3><a href="/services/roof-inspection/certified-roof-reports/">Certified Roof Report</a></h3>
+          <p>Contractor-certified narrative with photos and prioritized recommendations. Useful for complex roofs or formal documentation needs.</p>
+          <ul class="list">
+            <li class="tick">Narrative + annotated photos</li>
+            <li class="tick">Repair/replacement options with budgets</li>
+            <li class="tick">Great for underwriting or appraisal addenda</li>
+          </ul>
+          <div class="actions">
+            <a class="btn primary" href="#book">Order $495</a>
+            <a class="btn outline" href="/services/roof-inspection/certified-roof-reports/">Details</a>
           </div>
         </article>
 
         <!-- Verbal Opinion -->
-        <article class="card">
-          <div class="body">
-            <span class="price-tag free">Free</span>
-            <h3><a href="/services/real-estate/verbal-opinions/">Verbal Roof Opinion</a></h3>
-            <p>Quick call for triage during short contingency windows. Not a written deliverable—helps you pick the right next step.</p>
-            <ul class="list">
-              <li class="tick">Fast, practical guidance</li>
-              <li class="tick">Clarify scope before ordering services</li>
-            </ul>
-            <div class="actions">
-              <a class="btn primary" href="tel:8589006163">Call Now</a>
-              <a class="btn outline" href="sms:+18589006163">Text</a>
-            </div>
+        <article class="service">
+          <span class="price-tag free">Free</span>
+          <h3><a href="/services/real-estate/verbal-opinions/">Verbal Roof Opinion</a></h3>
+          <p>Quick call for triage during short contingency windows. Not a written deliverable—helps you pick the right next step.</p>
+          <ul class="list">
+            <li class="tick">Fast, practical guidance</li>
+            <li class="tick">Clarify scope before ordering services</li>
+          </ul>
+          <div class="actions">
+            <a class="btn primary" href="tel:8589006163">Call Now</a>
+            <a class="btn outline" href="sms:+18589006163">Text</a>
           </div>
         </article>
 
         <!-- Satellite Imagery -->
-        <article class="card">
-          <div class="body">
-            <span class="price-tag call">Call for Pricing</span>
-            <h3><a href="/services/real-estate/satellite-imagery-analysis/">Satellite Imagery Analysis</a></h3>
-            <p>Remote measurements & take-offs for early budgeting or pre-offer diligence—handy when access is limited.</p>
-            <ul class="list">
-              <li class="tick">Eave, ridge, pitch & area take-offs</li>
-              <li class="tick">Great for ballpark budgeting</li>
-            </ul>
-            <div class="actions">
-              <a class="btn primary" href="#book">Start Request</a>
-              <a class="btn outline" href="/services/real-estate/satellite-imagery-analysis/">Details</a>
-            </div>
+        <article class="service">
+          <span class="price-tag call">Call for Pricing</span>
+          <h3><a href="/services/real-estate/satellite-imagery-analysis/">Satellite Imagery Analysis</a></h3>
+          <p>Remote measurements & take-offs for early budgeting or pre-offer diligence—handy when access is limited.</p>
+          <ul class="list">
+            <li class="tick">Eave, ridge, pitch & area take-offs</li>
+            <li class="tick">Great for ballpark budgeting</li>
+          </ul>
+          <div class="actions">
+            <a class="btn primary" href="#book">Start Request</a>
+            <a class="btn outline" href="/services/real-estate/satellite-imagery-analysis/">Details</a>
           </div>
         </article>
       </div>
@@ -246,16 +244,14 @@
       </details>
     </section>
 
-    <!-- Neutral lead form (no “free estimate”) -->
-    <section class="section card airy" id="book"
+    <!-- Neutral lead form (no “free estimate”); wrapper is flat via CSS above -->
+    <section class="section" id="book"
       data-estimate-context
       data-category="Real-Estate Services"
       data-redirect="/thank-you/">
-      <div class="body">
-        <h2>Request Info / Schedule</h2>
-        <p class="muted">Tell us the property address, your timeline, and which item you need (Visual Inspection, Estimate, Certification, or Certified Report).</p>
-        <div data-include="/components/forms/estimate.html"></div>
-      </div>
+      <h2>Request Info / Schedule</h2>
+      <p class="muted">Tell us the property address, your timeline, and which item you need (Visual Inspection, Estimate, Certification, or Certified Report).</p>
+      <div data-include="/components/forms/estimate.html"></div>
     </section>
   </main>
 
