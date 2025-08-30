@@ -2,39 +2,283 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Roof Inspections | Zenith Roofing Services</title>
+  <title>Roof Inspection for Homeowners (Free) | Third-Party Letters $295 | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Roof inspections with photos and clear findings for leaks, condition, and planning in San Diego & Temecula." />
+  <meta name="description" content="Free roof inspections for homeowners in San Diego & Temecula. Need a document for an insurer, lender, or HOA (moss, algae, condition letter)? Third-party requests are $295. Book now." />
   <link rel="canonical" href="https://www.zenithroofingservices.com/services/roof-inspection/">
 
-  <link rel="stylesheet" href="/css/header.css"><link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/footer.css"><link rel="stylesheet" href="/css/ui.css"><link rel="stylesheet" href="/css/estimate-form.css">
-  <script defer src="/js/loader.js"></script><script defer src="/js/header.js"></script><script defer src="/js/estimate-form.js"></script>
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/ui.css">
+  <link rel="stylesheet" href="/css/estimate-form.css">
 
-  <style>.page.inspect{max-width:1100px;margin:24px auto;padding:0 16px}.badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#f1f5f9;font-weight:600;font-size:.95rem}.muted{color:var(--ui-muted)}.tick{font-weight:800;color:#0b3a6f}</style>
+  <!-- Shared JS -->
+  <script defer src="/js/loader.js"></script>
+  <script defer src="/js/header.js"></script>
+  <script defer src="/js/estimate-form.js"></script>
+
+  <style>
+    .page.hinsp { max-width:1100px; margin:24px auto; padding:0 16px; }
+    .badge { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#f1f5f9; font-weight:600; font-size:.95rem; }
+    .lede { color:#475569; font-size:1.075rem; margin:8px 0 18px; }
+    .muted { color:var(--ui-muted); }
+    .small { font-size:.9rem; }
+    .tick { font-weight:800; color:#0b3a6f; }
+    .price { font-weight:800; }
+    .note { background:#f8fafc; border:1px solid var(--ui-line); border-radius:14px; padding:12px 14px; }
+    .split { display:grid; grid-template-columns: 1fr; gap:16px; }
+    @media (min-width: 900px){ .split{ grid-template-columns: 1fr 1fr; } }
+    /* Minimal inline form styles for fallbacks */
+    .form { background:#fff; border:1px solid var(--ui-line); border-radius:16px; padding:16px; }
+    .form-row { display:flex; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+    .form-col-6 { flex:1 1 260px; min-width:260px; }
+    .form-col-12 { flex:1 1 100%; }
+    .form label { display:block; font-weight:600; margin:0 0 6px; }
+    .form input, .form select, .form textarea { width:100%; border:1px solid var(--ui-line); border-radius:10px; padding:10px; font:inherit; background:#fff; }
+    .agree { display:flex; gap:10px; align-items:flex-start; }
+    .btn.primary { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 16px; border-radius:12px; background:var(--ui-accent,#0b3a6f); color:#fff; border:none; cursor:pointer; font-weight:700; }
+  </style>
+
+  <!-- SEO: Service & FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Homeowner Roof Inspection (Free) — Third-Party Letters ($295)",
+    "provider":{"@type":"LocalBusiness","name":"Zenith Roofing Services"},
+    "areaServed":[{"@type":"City","name":"San Diego"},{"@type":"City","name":"Temecula"}],
+    "serviceType":"Roof inspection for homeowners; third-party/letter requests",
+    "description":"Free inspections for homeowners. Insurance/lender/HOA documentation requests are $295. Certified reports and certifications available.",
+    "offers":[
+      {"@type":"Offer","name":"Homeowner Roof Inspection","price":"0","priceCurrency":"USD"},
+      {"@type":"Offer","name":"Third-Party Inspection Letter","price":"295","priceCurrency":"USD"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"What’s free and what’s paid?",
+        "acceptedAnswer":{"@type":"Answer","text":"Free inspections are for homeowners seeking help with their own roof (leaks, maintenance planning, replacement quotes). If a third party asks you to obtain documentation (insurer, lender/refi, HOA, property manager, or a specific moss/algae letter), that documentation visit is $295."}
+      },
+      {
+        "@type":"Question",
+        "name":"What do you check on a homeowner inspection?",
+        "acceptedAnswer":{"@type":"Answer","text":"Roof surface, flashings, penetrations, edges, drainage, and ventilation. We share photos as needed and provide a proposal if repairs or replacement are appropriate."}
+      },
+      {
+        "@type":"Question",
+        "name":"Do you offer formal reports or certifications?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. Our Certified Roof Report is $495 and our Roof Certification (pass/fail certificate) is $395. Visual inspection with photos and findings is $295."}
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div data-include="/components/header-section.html"></div>
-  <main class="page inspect" id="top">
+
+  <main class="page hinsp" id="top">
+    <!-- Hero -->
     <section class="card airy">
-      <span class="badge">Roof Inspections</span>
-      <h1 style="margin:10px 0 6px;">Photo-Documented Roof Inspections</h1>
-      <p class="muted">We evaluate current conditions, identify risks, and recommend repairs or replacement with clear photos.</p>
-      <div class="cta"><a class="btn" href="#estimate">Request Inspection</a></div>
+      <span class="badge">Roof Inspection</span>
+      <h1 style="margin:10px 0 6px;">Roof Inspections for Homeowners (Free) — Third-Party Letters <span class="price">$295</span></h1>
+      <p class="lede">If you’re a homeowner looking for help with <strong>your own roof</strong>—leaks, age, or planning a replacement—your inspection is <strong>free</strong>. If a <strong>third party</strong> needs documentation (insurer, lender/refi, HOA, property manager, or a <em>moss/algae</em> letter), that inspection visit and write-up is <strong>$295</strong>.</p>
+      <div class="cta" style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="#free">Book Free Homeowner Inspection</a>
+        <a class="btn outline" href="#paid">Book Third-Party Letter ($295)</a>
+      </div>
+      <p class="small muted" style="margin-top:8px;">Service area: San Diego • Temecula • Nearby communities.</p>
     </section>
 
-    <section class="card airy" aria-label="What we check">
-      <h2>What We Check</h2>
-      <div class="grid auto-fit" style="--ui-gap:16px;">
-        <div class="card"><h3>Surface & Flashings</h3><ul class="checklist relaxed"><li><span class="tick">✓</span> Shingles/tiles/membranes</li><li><span class="tick">✓</span> Valleys, walls, penetrations</li></ul></div>
-        <div class="card"><h3>Drainage & Venting</h3><ul class="checklist relaxed"><li><span class="tick">✓</span> Gutters, drains, scuppers</li><li><span class="tick">✓</span> Attic ventilation</li></ul></div>
+    <!-- Quick comparison (6 even cards) -->
+    <section class="card airy" aria-label="Free vs Paid quick comparison">
+      <h2>Free vs. Paid—What’s the Difference?</h2>
+      <div class="grid micro-grid">
+        <div class="card"><h3>Free: Your Own Roof</h3><p class="muted">You want advice, photos, and a proposal for your home.</p></div>
+        <div class="card"><h3>Paid: Third-Party Ask</h3><p class="muted">Insurer, lender/refi, HOA, PM, or employer requests a letter.</p></div>
+        <div class="card"><h3>Free: Troubleshoot Leaks</h3><p class="muted">We trace likely sources and propose fixes.</p></div>
+        <div class="card"><h3>Paid: Special Letters</h3><p class="muted">Moss/algae letter, “roof condition” letter, underwriter form.</p></div>
+        <div class="card"><h3>Other Options</h3><p class="muted">Visual Inspection $295 • Certification $395 • Certified Report $495.</p></div>
+        <div class="card"><h3>Clear Photos</h3><p class="muted">We provide photos either way when relevant.</p></div>
       </div>
     </section>
 
-    <section id="estimate" class="card airy" data-estimate-context data-category="Roof Inspection" data-redirect="/thank-you/">
-      <div data-include="/components/forms/estimate.html"></div>
+    <!-- Two clear paths -->
+    <section class="split" aria-label="Choose your path">
+      <!-- Free homeowner inspection -->
+      <div class="card airy" id="free">
+        <h2>Free Homeowner Roof Inspection</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>What We Check</h3>
+            <ul class="checklist relaxed">
+              <li><span class="tick">✓</span> Surface condition (shingle/tile/metal/flat)</li>
+              <li><span class="tick">✓</span> Flashings: walls, pipes, skylights</li>
+              <li><span class="tick">✓</span> Drainage: valleys, gutters/drains/scuppers</li>
+              <li><span class="tick">✓</span> Ventilation & attic cues (where accessible)</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Typical Reasons</h3>
+            <ul class="checklist relaxed">
+              <li><span class="tick">✓</span> A new leak or recurring stain</li>
+              <li><span class="tick">✓</span> End-of-life planning / replacement quote</li>
+              <li><span class="tick">✓</span> Maintenance/tune-up before rainy season</li>
+              <li><span class="tick">✓</span> Adding solar or other rooftop equipment</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Include-based lead form -->
+        <section class="card airy" data-estimate-context data-category="Homeowner Roof Inspection — Free" data-redirect="/thank-you/">
+          <h3>Book Your Free Homeowner Inspection</h3>
+          <div data-include="/components/forms/estimate.html"></div>
+          <!-- Fallback form -->
+          <template id="lead-form-fallback">
+            <form class="form" method="post" action="/api/lead" novalidate>
+              <input type="hidden" name="service_type" value="Homeowner Roof Inspection (Free)">
+              <input type="hidden" name="page" value="">
+              <div class="form-row">
+                <div class="form-col-6"><label>Full Name</label><input name="name" required></div>
+                <div class="form-col-6"><label>Phone</label><input name="phone" type="tel" required></div>
+              </div>
+              <div class="form-row">
+                <div class="form-col-6"><label>Email</label><input name="email" type="email" required></div>
+                <div class="form-col-6"><label>ZIP</label><input name="zip" required></div>
+              </div>
+              <div class="form-row">
+                <div class="form-col-12">
+                  <label>Notes</label>
+                  <textarea name="message" rows="4" placeholder="Leak location? Roof type if known? Timeline?"></textarea>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-col-12 agree">
+                  <input id="free-ok" type="checkbox" required>
+                  <label for="free-ok">This request is for <strong>my own home</strong> and doesn’t require third-party documentation.</label>
+                </div>
+              </div>
+              <button class="btn primary" type="submit">Request Free Inspection</button>
+            </form>
+          </template>
+        </section>
+      </div>
+
+      <!-- Paid third-party letters -->
+      <div class="card airy" id="paid">
+        <h2>Third-Party Inspection Letters — <span class="price">$295</span></h2>
+        <p class="muted small">For documentation requested by someone else (insurer, lender/refi, HOA, property manager, employer, etc.). Includes brief letter and photos as applicable.</p>
+
+        <div class="grid micro-grid">
+          <div class="card"><h3>Insurance Underwriting</h3><p class="muted">Moss/algae checks, debris notes, “roof condition” letters.</p></div>
+          <div class="card"><h3>Lender / Refinance</h3><p class="muted">Simple “roof condition” letter for financing.</p></div>
+          <div class="card"><h3>HOA Compliance</h3><p class="muted">Letter confirming maintenance or moss remediation.</p></div>
+          <div class="card"><h3>Property Management</h3><p class="muted">Move-in/out or annual condition letters.</p></div>
+          <div class="card"><h3>Solar Readiness Letter</h3><p class="muted">Pre-solar roof condition confirmation.</p></div>
+          <div class="card"><h3>Workmanship Opinion</h3><p class="muted">Short letter when we didn’t install the roof.</p></div>
+        </div>
+
+        <div class="note" style="margin-top:12px;">
+          <strong>Need more formal documentation?</strong>
+          Visual Inspection (photos + findings) <a href="/services/real-estate/visual-inspections/">$295</a> •
+          Roof Certification <a href="/services/real-estate/roof-certifications/">$395</a> •
+          Certified Roof Report <a href="/services/roof-inspection/certified-roof-reports/">$495</a>.
+        </div>
+
+        <!-- Include-based lead form -->
+        <section class="card airy" data-estimate-context data-category="Third-Party Roof Inspection Letter — $295" data-redirect="/thank-you/">
+          <h3>Book Third-Party Inspection Letter — <span class="price">$295</span></h3>
+          <div data-include="/components/forms/estimate.html"></div>
+          <!-- Fallback form -->
+          <template id="paid-form-fallback">
+            <form class="form" method="post" action="/api/lead" novalidate>
+              <input type="hidden" name="service_type" value="Third-Party Roof Inspection Letter ($295)">
+              <input type="hidden" name="price_usd" value="295">
+              <div class="form-row">
+                <div class="form-col-6"><label>Full Name</label><input name="name" required></div>
+                <div class="form-col-6"><label>Phone</label><input name="phone" type="tel" required></div>
+              </div>
+              <div class="form-row">
+                <div class="form-col-6"><label>Email</label><input name="email" type="email" required></div>
+                <div class="form-col-6">
+                  <label>Requesting Party</label>
+                  <select name="requester" required>
+                    <option value="">Select…</option>
+                    <option>Insurance</option>
+                    <option>Lender / Refi</option>
+                    <option>HOA</option>
+                    <option>Property Manager</option>
+                    <option>Employer</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-col-12">
+                  <label>Details</label>
+                  <textarea name="message" rows="4" placeholder="What do they need? (e.g., moss letter, ‘roof condition’ letter). Any deadlines? Attach/Link any forms."></textarea>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-col-12 agree">
+                  <input id="paid-ack" type="checkbox" required>
+                  <label for="paid-ack">I understand this is a <strong>paid</strong> third-party documentation visit priced at <strong>$295</strong> in San Diego or Temecula.</label>
+                </div>
+              </div>
+              <button class="btn primary" type="submit">Book Letter Visit — $295</button>
+            </form>
+          </template>
+        </section>
+      </div>
+    </section>
+
+    <!-- Related homeowner services (6 even cards) -->
+    <section class="card airy" aria-label="Related services">
+      <h2>Related Services</h2>
+      <div class="grid micro-grid">
+        <a class="card" href="/services/residential/preventive-maintenance/">
+          <h3>Maintenance & Tune-Up</h3><p class="muted">Seal penetrations, clear valleys/gutters.</p>
+        </a>
+        <a class="card" href="/services/residential/leak-repair-troubleshooting/">
+          <h3>Leak Repair</h3><p class="muted">Trace sources & targeted fixes.</p>
+        </a>
+        <a class="card" href="/services/residential/asphalt-shingles/">
+          <h3>Shingle Roofing</h3><p class="muted">Architectural shingles, cool options.</p>
+        </a>
+        <a class="card" href="/services/residential/tile-lift-lay/">
+          <h3>Tile Lift & Lay</h3><p class="muted">Reuse tiles; new underlayment.</p>
+        </a>
+        <a class="card" href="/services/roof-inspection/certified-roof-reports/">
+          <h3>Certified Roof Report — $495</h3><p class="muted">Narrative with photos & recommendations.</p>
+        </a>
+        <a class="card" href="/services/real-estate/roof-certifications/">
+          <h3>Roof Certification — $395</h3><p class="muted">Pass/fail certificate when eligible.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Service area + disclaimer -->
+    <section class="card airy">
+      <h2>Service Area</h2>
+      <p class="muted">San Diego • Temecula • Nearby communities.</p>
+      <p class="muted small">Final scope, pricing, and warranties are governed by your signed proposal and manufacturer documentation.</p>
     </section>
   </main>
+
   <div data-include="/components/footer.html"></div>
-  <div class="actionbar"><a class="ab-btn call" href="tel:8589006163">Call</a><a class="ab-btn text" href="sms:+18589006163">Text</a><a class="ab-btn estimate" href="#estimate">Free Estimate</a></div>
+
+  <!-- Sticky Action Bar -->
+  <div class="actionbar">
+    <a class="ab-btn call" href="tel:8589006163">Call</a>
+    <a class="ab-btn text" href="sms:+18589006163">Text</a>
+    <a class="ab-btn estimate" href="#free">Free Homeowner Inspection</a>
+  </div>
 </body>
 </html>
