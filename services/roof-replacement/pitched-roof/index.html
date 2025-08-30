@@ -2,38 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Pitched Roof Replacement | Zenith Roofing Services</title>
+  <title>Pitched Roof Replacement (Shingles, Tile, Metal, Slate) | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description"
-        content="Pitched (sloped) roof replacement in San Diego County — asphalt shingles, clay/concrete tile, steel-coated metal, and slate. Licensed & insured. Free estimates for homeowners.">
+  <meta name="description" content="Pitched roof replacement experts in San Diego County. Asphalt shingles, architectural shingles, concrete & clay tile, metal, and slate. Water-shedding systems installed to code with clean-up, permits, and warranties. Free estimates for homeowners.">
 
-  <!-- site styles -->
+  <!-- Site styles -->
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/ui.css">
 
-  <!-- universal lead form styles (needed!) -->
+  <!-- Universal lead form styles (REQUIRED for the form) -->
   <link rel="stylesheet" href="/css/lead-form.css">
 
-  <!-- Page-only tiny patch to keep layout tidy/even -->
+  <!-- Page-only polish for even spacing/heights -->
   <style>
     .page.pitched { max-width: 1100px; }
-    /* Even heights in our grids */
-    .page.pitched .grid, .page.pitched .steps { align-items: stretch; }
-    .page.pitched .card.equal { height: 100%; display:flex; flex-direction:column; }
-    .page.pitched .card.equal > * + * { margin-top:.6rem; }
+    /* Make all cards inside 2-col grids the same height */
+    .page.pitched .grid.cols-2 { align-items: stretch; }
+    .page.pitched .grid.cols-2 > .card { height: 100%; display: flex; flex-direction: column; }
+    .page.pitched .grid.cols-2 > .card > * + * { margin-top: .5rem; }
 
-    /* Steps grid: same height columns, responsive */
-    .page.pitched .steps{
-      display:grid; gap:14px;
-      grid-template-columns:repeat(5,minmax(0,1fr));
-    }
-    @media (max-width:1024px){ .page.pitched .steps{ grid-template-columns:repeat(3,1fr); } }
-    @media (max-width:680px){  .page.pitched .steps{ grid-template-columns:repeat(2,1fr); } }
-    @media (max-width:420px){  .page.pitched .steps{ grid-template-columns:1fr; } }
+    /* Step panels look even, responsive */
+    .page.pitched .steps { display: grid; gap: 14px; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    @media (max-width: 1024px){ .page.pitched .steps { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 680px){  .page.pitched .steps { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 420px){  .page.pitched .steps { grid-template-columns: 1fr; } }
 
-    /* small step badge */
     .page.pitched .step-num{
       display:inline-flex; align-items:center; justify-content:center;
       width:30px; height:30px; border-radius:999px;
@@ -43,178 +38,204 @@
   </style>
 </head>
 <body>
-  <!-- universal header include -->
-  <div id="site-header"></div>
+
+  <!-- Universal Header -->
+  <div data-include="/components/header-section.html"></div>
 
   <main class="page pitched">
-    <nav aria-label="Breadcrumb" style="font-size:.9rem;margin-bottom:8px;">
-      <a href="/services/">Services</a> › <a href="/services/roof-replacement/">Roof Replacement</a>
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Pitched Roof Replacement</h1>
+      <p class="lede">
+        Water-shedding systems built for long-term performance and curb appeal:
+        asphalt/architectural shingles, clay & concrete tile, metal, and slate.
+        Licensed • Insured • Local.
+      </p>
+      <div class="hero-feats">
+        <span class="chip">Free estimates (homeowners)</span>
+        <span class="chip">Code-compliant installs</span>
+        <span class="chip">Manufacturer warranties</span>
+        <span class="chip">Job-site clean-up</span>
+      </div>
+
+      <div class="cta" style="margin-top:14px">
+        <a class="btn btn-primary" href="#estimate">Schedule Free Estimate</a>
+        <a class="btn btn-outline" href="tel:8589006163">Call 858-900-6163</a>
+      </div>
+    </section>
+
+    <!-- Quick jump pills -->
+    <nav class="pillnav sticky-pills" aria-label="Quick navigation">
+      <a href="#asphalt-shingles">Asphalt / Architectural Shingles</a>
+      <a href="#tile">Clay & Concrete Tile</a>
+      <a href="#metal">Metal (Steel/Aluminum/Stone-Coated)</a>
+      <a href="#slate">Natural & Synthetic Slate</a>
+      <a href="#process">Our Process</a>
+      <a href="#faq">FAQ</a>
+      <a href="#estimate">Get an Estimate</a>
     </nav>
 
-    <section class="hero card center">
-      <h1>Pitched Roof Replacement</h1>
-      <p class="lede narrow">
-        Water-shedding systems for homes with noticeable slope (≈3:12+). We install architectural asphalt shingles,
-        clay & concrete tile, steel-coated metal, and slate — to manufacturer specs with clear, itemized quotes.
+    <!-- What “pitched” means -->
+    <section class="card airy">
+      <h2>What counts as a “pitched” roof?</h2>
+      <p>
+        A <strong>pitched roof</strong> is a <em>water-shedding</em> roof: rain flows down the slope and off the edges
+        (vs. a low-slope/flat roof which uses water-proofing membranes to hold out standing water).
       </p>
-      <div class="pillnav">
-        <a href="#overview">Overview</a>
-        <a href="#process">Our Process</a>
-        <a href="#estimate">Get an Estimate</a>
-      </div>
+      <ul class="checklist relaxed">
+        <li><span class="tick">✓</span><div><strong>Typical pitches:</strong> ~3:12 and steeper</div></li>
+        <li><span class="tick">✓</span><div><strong>Common materials:</strong> asphalt shingles (also called <em>architectural shingles, composition shingles, 30-year/50-year shingles, three-tab shingles</em>), clay & concrete tile, metal, slate</div></li>
+        <li><span class="tick">✓</span><div><strong>Best for:</strong> Homes seeking durability, ventilation, and classic curb appeal</div></li>
+      </ul>
     </section>
 
-    <!-- Overview two-up -->
-    <section id="overview" class="section">
-      <div class="grid cols-2">
-        <article class="card equal">
-          <h2>What counts as a pitched roof?</h2>
-          <p>A pitched (sloped) roof is a <em>water-shedding</em> system — gravity moves water off quickly. If your roof has noticeable slope, you’re in this category (not low-slope membranes like TPO/PVC/torch-down).</p>
-          <ul class="checklist relaxed">
-            <li><span class="tick">✓</span> Designed to <strong>shed</strong> water (not hold it)</li>
-            <li><span class="tick">✓</span> Uses shingles, tiles, slate, or metal panels</li>
-            <li><span class="tick">✓</span> Requires correct underlayment, flashing & ventilation</li>
-          </ul>
+    <!-- Systems overview -->
+    <section class="grid cols-2">
+      <article id="asphalt-shingles" class="card">
+        <h2>Asphalt / Architectural Shingles</h2>
+        <p class="muted">Also called: architectural, composition, three-tab, 30-year/50-year shingles</p>
+        <ul class="checklist relaxed">
+          <li><span class="tick">✓</span><div>Most budget-friendly pitched option</div></li>
+          <li><span class="tick">✓</span><div>Wide color/texture selection</div></li>
+          <li><span class="tick">✓</span><div>Solid wind & algae protection with upgraded underlayments</div></li>
+        </ul>
+        <div class="cta"><a class="btn btn-outline" href="#estimate">Request Estimate</a></div>
+      </article>
 
-          <h3>Common pitched materials</h3>
-          <ul class="list">
-            <li><strong>Architectural Asphalt Shingles</strong> — also called “composition,” “30-year/50-year,” “three-tab” (older) or just “architectural.” Great value and curb appeal.</li>
-            <li><strong>Clay & Concrete Tile</strong> — premium look, long-service life; lightweight options available.</li>
-            <li><strong>Steel-Coated Metal</strong> — stone-coated panels & standing seam; modern look, high wind/fire performance.</li>
-            <li><strong>Slate</strong> — natural or synthetic; beautiful, heavy, and long-lasting.</li>
-          </ul>
+      <article id="tile" class="card">
+        <h2>Clay &amp; Concrete Tile</h2>
+        <ul class="checklist relaxed">
+          <li><span class="tick">✓</span><div>Iconic look & long service life</div></li>
+          <li><span class="tick">✓</span><div>Energy-smart mass & ventilation channels</div></li>
+          <li><span class="tick">✓</span><div>Underlayment matters — we install premium systems</div></li>
+        </ul>
+        <div class="cta"><a class="btn btn-outline" href="#estimate">Request Estimate</a></div>
+      </article>
 
-          <div class="cta">
-            <a class="btn btn-primary" href="#estimate">Get My Free Estimate</a>
-            <a class="btn btn-outline" href="/services/roof-repairs/shingles-roof-repair/">Need Shingle Repair?</a>
-          </div>
-        </article>
+      <article id="metal" class="card">
+        <h2>Metal Roofing</h2>
+        <p class="muted">Steel, aluminum, standing seam, stone-coated metal</p>
+        <ul class="checklist relaxed">
+          <li><span class="tick">✓</span><div>Excellent durability & fire resistance</div></li>
+          <li><span class="tick">✓</span><div>Reflective finishes help reduce heat gain</div></li>
+          <li><span class="tick">✓</span><div>Modern profiles or classic shake/tile looks</div></li>
+        </ul>
+        <div class="cta"><a class="btn btn-outline" href="#estimate">Request Estimate</a></div>
+      </article>
 
-        <aside class="card equal">
-          <h2>At-a-Glance Benefits</h2>
-          <ul class="checklist relaxed with-dividers">
-            <li><span class="tick">✓</span> Licensed & insured</li>
-            <li><span class="tick">✓</span> Manufacturer-approved installs</li>
-            <li><span class="tick">✓</span> Upgrade ventilation & energy tweaks</li>
-            <li><span class="tick">✓</span> Leak-proof flashings & clean details</li>
-            <li><span class="tick">✓</span> Clear, itemized quotes</li>
-          </ul>
-          <p class="muted">We recommend architectural shingles as the best value for most pitched roofs.</p>
-        </aside>
-      </div>
+      <article id="slate" class="card">
+        <h2>Natural &amp; Synthetic Slate</h2>
+        <ul class="checklist relaxed">
+          <li><span class="tick">✓</span><div>Premium appearance & longevity</div></li>
+          <li><span class="tick">✓</span><div>Structural and fastening details are critical</div></li>
+          <li><span class="tick">✓</span><div>Composite/slate-look options lower weight/cost</div></li>
+        </ul>
+        <div class="cta"><a class="btn btn-outline" href="#estimate">Request Estimate</a></div>
+      </article>
     </section>
 
-    <!-- Process -->
-    <section id="process" class="section card">
-      <h2 class="center">Our replacement process (simple & stress-free)</h2>
+    <!-- Our Process -->
+    <section id="process" class="card airy">
+      <h2>Our Process</h2>
       <div class="steps">
-        <div class="card equal">
+        <div class="card">
           <span class="step-num">1</span>
-          <h3>Free Assessment</h3>
-          <p>Call, text, or submit the form. We inspect your roof, review photos/docs, and discuss goals (budget, look, longevity).</p>
+          <h3>Free homeowner estimate</h3>
+          <ul class="checklist relaxed">
+            <li><span class="tick">✓</span><div>Call/Text <a href="tel:8589006163">858-900-6163</a> or use the form below</div></li>
+            <li><span class="tick">✓</span><div>We confirm your address, roof type & goals</div></li>
+            <li><span class="tick">✓</span><div><strong>Note:</strong> Real-estate transactions are not covered under free estimates</div></li>
+          </ul>
         </div>
-        <div class="card equal">
+        <div class="card">
           <span class="step-num">2</span>
-          <h3>Options & Quote</h3>
-          <p>Side-by-side options (shingle/tile/metal), underlayment & ventilation upgrades, and a clear line-item quote.</p>
+          <h3>On-site assessment</h3>
+          <ul class="checklist relaxed">
+            <li><span class="tick">✓</span><div>Measure roof, verify layers, ventilation, and decking</div></li>
+            <li><span class="tick">✓</span><div>Check flashings, penetrations, and code items</div></li>
+            <li><span class="tick">✓</span><div>Photos + clear scope so there are no surprises</div></li>
+          </ul>
         </div>
-        <div class="card equal">
+        <div class="card">
           <span class="step-num">3</span>
-          <h3>Preparation</h3>
-          <p>Protect landscaping, set safety lines, remove old roofing, inspect deck, replace bad wood, install flashings.</p>
+          <h3>Transparent proposal</h3>
+          <ul class="checklist relaxed">
+            <li><span class="tick">✓</span><div>Material options (good / better / best)</div></li>
+            <li><span class="tick">✓</span><div>Underlayment & ventilation plan</div></li>
+            <li><span class="tick">✓</span><div>Timeline, warranties, and clean-up plan</div></li>
+          </ul>
         </div>
-        <div class="card equal">
+        <div class="card">
           <span class="step-num">4</span>
-          <h3>Install</h3>
-          <p>Manufacturer-spec layout/fastening; starters/edges/valleys; ridge caps/vents — meticulous fit and finish.</p>
-        </div>
-        <div class="card equal">
-          <span class="step-num">5</span>
-          <h3>Clean Up & Final Walk</h3>
-          <p>Magnet sweep nails, haul debris, final walkthrough, warranty info, and care tips.</p>
-        </div>
-      </div>
-
-      <h3 class="center" style="margin-top:1rem;">System-specific notes</h3>
-      <div class="grid cols-2">
-        <div class="card equal">
-          <h4>Asphalt Shingles</h4>
-          <ul class="checklist with-dividers">
-            <li><span class="tick">✓</span> Synthetic underlayment + ice/valley protection as needed</li>
-            <li><span class="tick">✓</span> Architectural shingles standard; designer upgrades optional</li>
-            <li><span class="tick">✓</span> Ridge ventilation & intake balancing for cooler attic</li>
-          </ul>
-
-          <h4>Tile (Clay/Concrete)</h4>
-          <ul class="checklist with-dividers">
-            <li><span class="tick">✓</span> Lift & relay or full replacement depending on underlayment</li>
-            <li><span class="tick">✓</span> Lightweight options available after structural check</li>
-            <li><span class="tick">✓</span> Bird-stops, head-laps, and valley metal done right</li>
-          </ul>
-        </div>
-
-        <div class="card equal">
-          <h4>Steel-Coated Metal</h4>
-          <ul class="checklist with-dividers">
-            <li><span class="tick">✓</span> Panel layout for wind, expansion, and water management</li>
-            <li><span class="tick">✓</span> Hidden fasteners & high-temp underlayment where specified</li>
-            <li><span class="tick">✓</span> Excellent fire/wind ratings; modern curb appeal</li>
-          </ul>
-
-          <h4>Slate</h4>
-          <ul class="checklist with-dividers">
-            <li><span class="tick">✓</span> Deck review, correct fasteners, flashing craftsmanship</li>
-            <li><span class="tick">✓</span> Synthetic slate available where weight or budget demands</li>
+          <h3>Professional installation</h3>
+          <ul class="checklist relaxed">
+            <li><span class="tick">✓</span><div>Permits, safety, daily clean-up</div></li>
+            <li><span class="tick">✓</span><div>Final walkthrough & documentation</div></li>
+            <li><span class="tick">✓</span><div>Support after the job — we stand behind our work</div></li>
           </ul>
         </div>
       </div>
-
-      <div class="cta center">
-        <a class="btn btn-primary" href="#estimate">Schedule My Free Estimate</a>
-        <a class="btn btn-outline" href="/services/roof-replacement/flat-roof/">See Flat Roof Options</a>
+      <div class="cta">
+        <a class="btn btn-primary" href="#estimate">Schedule Your Free Estimate</a>
+        <a class="btn btn-outline" href="sms:+18589006163">Text 858-900-6163</a>
       </div>
     </section>
 
-    <!-- ⭐ UNIVERSAL LEAD FORM (component include) -->
+    <!-- ⭐ UNIVERSAL LEAD FORM (same behavior as home page) -->
     <section id="estimate" data-include="/components/lead-form.html"></section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+      <details>
+        <summary>Is asphalt shingle the same as architectural/composition/three-tab?</summary>
+        <div class="card">
+          Yes — homeowners use different names. We’ll match the right shingle profile and warranty level for your budget and neighborhood.
+        </div>
+      </details>
+      <details>
+        <summary>Can I switch materials (e.g., tile → shingles or shingles → metal)?</summary>
+        <div class="card">
+          Often yes, but we’ll verify structure, weight, ventilation, local code, and HOA (if applicable) before recommending a change.
+        </div>
+      </details>
+      <details>
+        <summary>How long does a pitched roof replacement take?</summary>
+        <div class="card">
+          Most homes are 1–4 days depending on size, layers, decking repairs, and weather.
+        </div>
+      </details>
+      <details>
+        <summary>Do you handle permits and clean-up?</summary>
+        <div class="card">
+          Yes. We pull permits as required, protect landscaping, magnet sweep for nails, and haul away debris.
+        </div>
+      </details>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="center narrow" style="margin-top:16px;">
+      <div class="cta center-flex">
+        <a class="btn btn-primary" href="#estimate">Schedule Free Estimate</a>
+        <a class="btn btn-outline" href="/contact/">Message the Team</a>
+      </div>
+    </section>
   </main>
 
-  <!-- universal footer include -->
-  <div id="site-footer"></div>
+  <!-- Universal Footer -->
+  <section data-include="/components/footer.html"></section>
 
-  <!-- includes + behavior -->
-  <script>
-    async function include(id, url){
-      const el = document.getElementById(id);
-      try { const res = await fetch(url); el.innerHTML = await res.text(); }
-      catch(e) { el.innerHTML = ""; }
-    }
-    (async () => {
-      await include('site-header','/components/header-section.html');
-      await include('site-footer','/components/footer.html');
-      if (window.ZenithHeader?.init) window.ZenithHeader.init();
-    })();
-  </script>
-  <script>
-    // Simple include for any [data-include] blocks (like the lead form)
-    (async () => {
-      const blocks = Array.from(document.querySelectorAll('[data-include]'));
-      await Promise.all(blocks.map(async (el) => {
-        try {
-          const src = el.getAttribute('data-include');
-          const res = await fetch(src);
-          if (!res.ok) throw new Error('Failed include '+src);
-          el.outerHTML = await res.text();
-        } catch (e) { console.error(e); }
-      }));
-    })();
-  </script>
-
-  <!-- site JS -->
+  <!-- Site scripts -->
   <script src="/js/loader.js" defer></script>
   <script src="/js/header.js" defer></script>
 
-  <!-- ⭐ universal lead form behavior (needed!) -->
+  <!-- ⭐ Universal lead form behavior (REQUIRED) -->
   <script src="/js/lead-form.js" defer></script>
+
+  <!-- Mobile action bar (uses ui.css) -->
+  <div class="actionbar">
+    <a class="ab-btn call" href="tel:8589006163">Call</a>
+    <a class="ab-btn text" href="sms:+18589006163">Text</a>
+    <a class="ab-btn estimate" href="#estimate">Free Estimate</a>
+  </div>
 </body>
 </html>
