@@ -1,130 +1,37 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Roof Asset Maintenance | Zenith Roofing Services</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Roof Asset Maintenance for commercial roofs in San Diego County.">
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/css/header.css">
-<link rel="stylesheet" href="/css/footer.css">
+  <meta charset="utf-8" />
+  <title>Commercial Roof Asset Maintenance | Zenith Roofing Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Quarterly/semiannual checks, drain cleaning, minor sealing, and photo documentation to extend roof life and reduce leaks." />
+  <link rel="canonical" href="https://www.zenithroofingservices.com/services/commercial/roof-asset-maintenance/">
+  <link rel="stylesheet" href="/css/header.css"><link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/footer.css"><link rel="stylesheet" href="/css/ui.css"><link rel="stylesheet" href="/css/estimate-form.css">
+  <script defer src="/js/loader.js"></script><script defer src="/js/header.js"></script><script defer src="/js/estimate-form.js"></script>
+  <style>.page.cmaint{max-width:1100px;margin:24px auto;padding:0 16px}.badge{display:inline-flex;gap:8px;padding:8px 12px;border-radius:999px;background:#f1f5f9;font-weight:600}.muted{color:var(--ui-muted)}.tick{font-weight:800;color:#0b3a6f}</style>
 </head>
 <body>
 <div data-include="/components/header-section.html"></div>
+<main class="page cmaint" id="top">
+  <section class="card airy">
+    <span class="badge">Commercial</span>
+    <h1 style="margin:10px 0 6px;">Roof Asset Maintenance</h1>
+    <p class="muted">Scheduled checks, drain cleaning, minor sealing, and reporting—keep systems healthy and predictable.</p>
+    <div class="cta"><a class="btn" href="#estimate">Request Maintenance Plan</a></div>
+  </section>
 
-  
+  <section class="card airy"><h2>Program Outline</h2>
+    <div class="grid auto-fit" style="--ui-gap:16px;">
+      <div class="card"><h3>Routine Tasks</h3><ul class="checklist relaxed"><li><span class="tick">✓</span> Drains & scuppers clear</li><li><span class="tick">✓</span> Minor sealing touch-ups</li></ul></div>
+      <div class="card"><h3>Reporting</h3><ul class="checklist relaxed"><li><span class="tick">✓</span> Photo logs</li><li><span class="tick">✓</span> Repair recommendations</li></ul></div>
+    </div>
+  </section>
 
-  
-  <main style="max-width:1200px;margin:24px auto;padding:0 16px;">
-    <nav aria-label="Breadcrumb" style="font-size:.9rem;margin-bottom:8px;"><a href="/services/">Services</a> › <a href="/services/commercial/">Commercial Roofing</a></nav>
-    <h1>Roof Asset Maintenance</h1>
-    <p>Starter page. Replace this with your content.</p><p><a class="call-button" href="tel:8589006163">Call 858-900-6163</a></p>
-  </main>
-  <div id="site-footer"></div>
-<script>
-    async function include(id, url){
-      const el = document.getElementById(id);
-      try { const res = await fetch(url); el.innerHTML = await res.text(); }
-      catch(e) { el.innerHTML = ""; }
-    }
-    (async () => {
-      await include('site-header','/components/header-section.html');
-      await include('site-footer','/components/footer.html');
-      if (window.ZenithHeader && window.ZenithHeader.init) window.ZenithHeader.init();
-    })();
-  </script>
-<script>
-  (function () {
-    // fetch + inject a single [data-include]
-    async function include(el) {
-      const src = el.getAttribute('data-include');
-      if (!src) return;
-      try {
-        const res = await fetch(src);             // normal caching
-        if (!res.ok) throw new Error('Failed ' + src);
-        const html = await res.text();
-        el.outerHTML = html;
-      } catch (e) {
-        console.error('❌ Include error:', src, e);
-      }
-    }
-
-    // Header height + collapsed state WITHOUT scroll reflow
-    function setupHeaderObservers() {
-      const root = document.documentElement;
-      const getHeader = () => document.querySelector('.mobile-header') || document.querySelector('.header');
-
-      function updateHeaderH() {
-        const h = getHeader();
-        if (h) root.style.setProperty('--header-h', Math.round(h.offsetHeight) + 'px');
-      }
-
-      // update when the header actually resizes
-      if ('ResizeObserver' in window) {
-        const ro = new ResizeObserver(updateHeaderH);
-        const h = getHeader(); if (h) ro.observe(h);
-      }
-      window.addEventListener('load', updateHeaderH, { passive: true });
-      window.addEventListener('resize', () => requestAnimationFrame(updateHeaderH), { passive: true });
-
-      // toggle nav-collapsed via IntersectionObserver (no scroll work)
-      const sent = document.createElement('div');
-      sent.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;';
-      document.body.prepend(sent);
-      new IntersectionObserver(([e]) => {
-        root.classList.toggle('nav-collapsed', !e.isIntersecting);
-      }, { rootMargin: '-80px 0px 0px 0px' }).observe(sent); // adjust -80px if your header is taller
-    }
-
-    async function init() {
-      // include everything ELSE (hero has an LCP stub now)
-      const includes = Array.from(document.querySelectorAll('[data-include]'));
-      await Promise.all(includes.map(include));
-
-      // Upgrade the stub to the real hero component while REUSING the already-downloaded LCP <img>
-      const stub = document.getElementById('hero-stub');
-      if (stub) {
-        const res = await fetch('components/hero-section.html');
-        if (res.ok) {
-          const html = await res.text();
-          const tpl = document.createElement('template');
-          tpl.innerHTML = html.trim();
-          const real = tpl.content.querySelector('section.zenith-hero') || tpl.content.firstElementChild;
-          if (real) {
-            const lcp = document.getElementById('lcp-img');
-            const realPic = real.querySelector('.zenith-hero-media picture') || real.querySelector('.zenith-hero-media');
-            if (lcp && realPic) {
-              const existing = realPic.querySelector('.zenith-hero-mobile-img');
-              if (existing) existing.replaceWith(lcp); else realPic.appendChild(lcp);
-            }
-            stub.replaceWith(real);
-          }
-        }
-      }
-
-      // your existing inits (unchanged)
-      if (window.initMobileMenu) window.initMobileMenu();
-      [
-        'initEstimateForm','initAboutSection','initWhyChoose','initTrustSection',
-        'initPhotoSection','initTestimonials','initCTA','initServiceAreas',
-        'initRealEstate','initFooter','initHeader'
-      ].forEach(n => { if (typeof window[n] === 'function') window[n](); });
-
-      setupHeaderObservers();   // replaces old setLayoutFlags/scroll listeners
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      init();
-    }
-  })();
-  </script>
-  <section data-include="/components/footer.html"></section>
-<script src="/js/loader.js" defer></script>
-<script src="/js/header.js" defer></script>
+  <section id="estimate" class="card airy" data-estimate-context data-category="Commercial — Roof Asset Maintenance" data-redirect="/thank-you/">
+    <div data-include="/components/forms/estimate.html"></div>
+  </section>
+</main>
 <div data-include="/components/footer.html"></div>
-<script src="/js/loader.js" defer></script>
-<script src="/js/header.js" defer></script>
+<div class="actionbar"><a class="ab-btn call" href="tel:8589006163">Call</a><a class="ab-btn text" href="sms:+18589006163">Text</a><a class="ab-btn estimate" href="#estimate">Free Estimate</a></div>
 </body>
 </html>
