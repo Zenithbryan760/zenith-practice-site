@@ -7,162 +7,347 @@
   <meta name="description" content="Pitched roof replacement in San Diego County: shingles, tile, metal, and slate. We inspect, source leaks, replace underlayment and flashings, and install to manufacturer specs. Free estimates for homeowners.">
   <link rel="canonical" href="/services/roof-replacement/pitched-roof/">
 
-  <!-- Match your site’s CSS includes -->
+  <!-- Match your site's CSS includes -->
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/footer.css">
+  <style>
+    /* Enhanced component styles for this page */
+    :root {
+      --primary: #0056b3;
+      --primary-dark: #004494;
+      --secondary: #e67e22;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --gray: #6c757d;
+      --border: #dee2e6;
+      --success: #28a745;
+    }
+    
+    /* Improved call-to-action buttons */
+    .call-button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid var(--primary);
+      text-align: center;
+    }
+    
+    .call-button:hover {
+      background-color: var(--primary-dark);
+      border-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .call-button.secondary {
+      background-color: white;
+      color: var(--primary);
+    }
+    
+    .call-button.secondary:hover {
+      background-color: var(--light);
+    }
+    
+    /* Improved card components */
+    .material-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .material-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      border-color: var(--primary);
+    }
+    
+    .material-card h3 {
+      margin-top: 0;
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 0.5rem;
+    }
+    
+    .material-card p {
+      flex-grow: 1;
+      margin-bottom: 1rem;
+    }
+    
+    /* Process section improvements */
+    .process-list {
+      counter-reset: process-counter;
+      list-style: none;
+      padding-left: 0;
+      max-width: 75ch;
+    }
+    
+    .process-list li {
+      margin-bottom: 1.5rem;
+      padding-left: 3.5rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    
+    .process-list li::before {
+      counter-increment: process-counter;
+      content: counter(process-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    
+    /* Layout improvements */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .content-section {
+      margin: 2.5rem 0;
+      padding: 1.5rem 0;
+    }
+    
+    .content-section:not(:last-child) {
+      border-bottom: 1px solid var(--border);
+    }
+    
+    /* Related links styling */
+    .related-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+    }
+    
+    .related-links li a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: var(--light);
+      color: var(--dark);
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+    
+    .related-links li a:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    /* Hero section */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/roof-hero-bg.jpg') center/cover;
+      color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .process-list li {
+        padding-left: 2.5rem;
+      }
+      
+      .process-list li::before {
+        width: 2rem;
+        height: 2rem;
+      }
+      
+      .call-button {
+        display: block;
+        margin-bottom: 0.5rem;
+        width: 100%;
+      }
+      
+      .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- UNIVERSAL HEADER (same include style as your other pages) -->
   <div data-include="/components/header-section.html"></div>
 
-  <main style="max-width:1100px;margin:24px auto;padding:0 16px;">
+  <main class="container" style="max-width:1100px;margin:24px auto;padding:0 16px;">
     <!-- Breadcrumb -->
-    <nav aria-label="Breadcrumb" style="font-size:.9rem;margin-bottom:8px;">
-      <a href="/services/">Services</a> › <a href="/services/roof-replacement/">Roof Replacement</a> › Pitched Roof
+    <nav aria-label="Breadcrumb" style="font-size:.9rem;margin-bottom:16px;">
+      <a href="/">Home</a> › <a href="/services/">Services</a> › <a href="/services/roof-replacement/">Roof Replacement</a> › Pitched Roof
     </nav>
 
     <h1>Pitched Roof Replacement</h1>
-    <p style="max-width:72ch;line-height:1.8;">
-      Pitched roofs are <strong>water-shedding</strong> systems—slope and overlapping layers move water off the home.
-      We replace shingles, tile, metal, and slate with the right underlayment, flashings, and ventilation so your new
-      roof lasts. <strong>Free estimates for homeowners</strong> (real-estate transactions billed—see
-      <a href="/services/real-estate/">Real Estate Services</a>).
-    </p>
-    <p>
-      <a class="call-button" href="/contact/">Request a Free Estimate</a>
-      &nbsp; &nbsp;
-      <a class="call-button" href="tel:8589006163">Call/Text 858-900-6163</a>
-    </p>
+    
+    <div class="hero">
+      <p style="max-width:72ch;line-height:1.8;font-size:1.1rem;">
+        Pitched roofs are <strong>water-shedding</strong> systems—slope and overlapping layers move water off the home.
+        We replace shingles, tile, metal, and slate with the right underlayment, flashings, and ventilation so your new
+        roof lasts. <strong>Free estimates for homeowners</strong> (real-estate transactions billed—see
+        <a href="/services/real-estate/" style="color:white;text-decoration:underline;">Real Estate Services</a>).
+      </p>
+      <div class="button-group">
+        <a class="call-button" href="/contact/">Request a Free Estimate</a>
+        <a class="call-button secondary" href="tel:8589006163">Call/Text 858-900-6163</a>
+      </div>
+    </div>
 
-    <section style="margin-top:1.25rem;">
-      <h2>What Counts as a “Pitched” Roof?</h2>
+    <section class="content-section">
+      <h2>What Counts as a "Pitched" Roof?</h2>
       <p style="max-width:75ch;line-height:1.8;">
         Any roof with enough slope to shed water without ponding—typically <em>3:12 pitch</em> or steeper. Common materials:
         asphalt shingles, clay/concrete tile, metal (stone-coated steel or standing seam), and natural slate.
       </p>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;">
-        <div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;">
-          <h3 style="margin-top:0;">Shingles (Most Common)</h3>
-          <p style="margin:0;">Also called: architectural shingles, composition shingles, asphalt shingles, 3-tab shingles, 30-year / 50-year shingles.</p>
+      <div class="grid-container">
+        <div class="material-card">
+          <h3>Shingles (Most Common)</h3>
+          <p>Also called: architectural shingles, composition shingles, asphalt shingles, 3-tab shingles, 30-year / 50-year shingles.</p>
           <p style="margin:.5rem 0 0;"><a href="/services/residential/asphalt-shingles/">Learn more</a></p>
         </div>
-        <div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;">
-          <h3 style="margin-top:0;">Clay &amp; Concrete Tile</h3>
-          <p style="margin:0;">Standard or lightweight profiles. Longevity with proper underlayment and flashing details.</p>
+        <div class="material-card">
+          <h3>Clay & Concrete Tile</h3>
+          <p>Standard or lightweight profiles. Longevity with proper underlayment and flashing details.</p>
           <p style="margin:.5rem 0 0;"><a href="/services/residential/tile-roof/">Learn more</a></p>
         </div>
-        <div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;">
-          <h3 style="margin-top:0;">Metal</h3>
-          <p style="margin:0;">Stone-coated steel “tile” look or standing seam panels. Durable, energy efficient, lightweight.</p>
+        <div class="material-card">
+          <h3>Metal</h3>
+          <p>Stone-coated steel "tile" look or standing seam panels. Durable, energy efficient, lightweight.</p>
           <p style="margin:.5rem 0 0;"><a href="/services/commercial/metal/">Learn more</a></p>
         </div>
-        <div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;">
-          <h3 style="margin-top:0;">Slate</h3>
-          <p style="margin:0;">Premium, long-life option with copper/stainless flashings and expert detailing.</p>
+        <div class="material-card">
+          <h3>Slate</h3>
+          <p>Premium, long-life option with copper/stainless flashings and expert detailing.</p>
         </div>
       </div>
     </section>
 
-    <section style="margin-top:2rem;">
+    <section class="content-section">
       <h2>Our Process</h2>
-      <ol style="line-height:1.9;max-width:75ch;margin-left:1.25rem;">
-        <li><strong>Contact &amp; scheduling.</strong> Call/text or <a href="/contact/">use the form</a> for a free homeowner estimate.</li>
-        <li><strong>Inspection &amp; leak sourcing.</strong> Decking, underlayment, penetrations, flashings, valleys, and ventilation.</li>
-        <li><strong>Options &amp; written scope.</strong> Materials, warranties, ventilation upgrades, and wood repairs as needed.</li>
-        <li><strong>Prep &amp; protection.</strong> Safety lines, property/landscape protection, and staging.</li>
-        <li><strong>Tear-off &amp; deck repairs.</strong> Remove old roof; replace damaged sheathing; re-nail to code.</li>
-        <li><strong>Underlayment &amp; flashings.</strong> Synthetic base; self-sealing membranes at valleys/eaves; new metal flashings.</li>
+      <ol class="process-list">
+        <li><strong>Contact & scheduling.</strong> Call/text or <a href="/contact/">use the form</a> for a free homeowner estimate.</li>
+        <li><strong>Inspection & leak sourcing.</strong> Decking, underlayment, penetrations, flashings, valleys, and ventilation.</li>
+        <li><strong>Options & written scope.</strong> Materials, warranties, ventilation upgrades, and wood repairs as needed.</li>
+        <li><strong>Prep & protection.</strong> Safety lines, property/landscape protection, and staging.</li>
+        <li><strong>Tear-off & deck repairs.</strong> Remove old roof; replace damaged sheathing; re-nail to code.</li>
+        <li><strong>Underlayment & flashings.</strong> Synthetic base; self-sealing membranes at valleys/eaves; new metal flashings.</li>
         <li><strong>System install.</strong> Installed to manufacturer specs for warranty compliance.</li>
-        <li><strong>Quality check &amp; cleanup.</strong> Detail inspection, magnet sweep, and photo documentation.</li>
+        <li><strong>Quality check & cleanup.</strong> Detail inspection, magnet sweep, and photo documentation.</li>
       </ol>
-      <p>
+      <div class="button-group">
         <a class="call-button" href="/contact/">Schedule My Free Estimate</a>
-        &nbsp; &nbsp;
-        <a class="call-button" href="tel:8589006163">Call/Text 858-900-6163</a>
-      </p>
+        <a class="call-button secondary" href="tel:8589006163">Call/Text 858-900-6163</a>
+      </div>
     </section>
 
-    <section style="margin-top:2rem;">
+    <section class="content-section">
       <h2>General Process by System</h2>
 
-      <article style="margin-top:1rem;border:1px solid #e5e7eb;border-radius:12px;padding:14px;">
-        <h3>Asphalt / Composition Shingles</h3>
-        <ul style="line-height:1.9;margin-left:1.25rem;">
-          <li><strong>Best for:</strong> most homes; cost-effective; many styles/colors.</li>
-          <li><strong>Tear-off &amp; deck work:</strong> remove shingles; replace bad sheathing; re-nail deck.</li>
-          <li><strong>Underlayment:</strong> synthetic base; self-sealing membrane at valleys/eaves/penetrations as required.</li>
-          <li><strong>Flashings:</strong> new drip edge, pipe boots, step &amp; counter-flashing, chimney/skylight flashings.</li>
-          <li><strong>Install:</strong> architectural (laminated) or 3-tab; correct nailing; ridge caps; balanced ventilation.</li>
-        </ul>
-        <p style="margin:.5rem 0 0;"><a href="/services/residential/asphalt-shingles/">Shingle options &amp; styles</a></p>
-      </article>
+      <div class="grid-container">
+        <article class="material-card">
+          <h3>Asphalt / Composition Shingles</h3>
+          <ul>
+            <li><strong>Best for:</strong> most homes; cost-effective; many styles/colors.</li>
+            <li><strong>Tear-off & deck work:</strong> remove shingles; replace bad sheathing; re-nail deck.</li>
+            <li><strong>Underlayment:</strong> synthetic base; self-sealing membrane at valleys/eaves/penetrations as required.</li>
+            <li><strong>Flashings:</strong> new drip edge, pipe boots, step & counter-flashing, chimney/skylight flashings.</li>
+            <li><strong>Install:</strong> architectural (laminated) or 3-tab; correct nailing; ridge caps; balanced ventilation.</li>
+          </ul>
+          <p style="margin:.5rem 0 0;"><a href="/services/residential/asphalt-shingles/">Shingle options & styles</a></p>
+        </article>
 
-      <article style="margin-top:1rem;border:1px solid #e5e7eb;border-radius:12px;padding:14px;">
-        <h3>Clay &amp; Concrete Tile (incl. Lightweight)</h3>
-        <ul style="line-height:1.9;margin-left:1.25rem;">
-          <li><strong>Best for:</strong> longevity and curb appeal (Mediterranean/Spanish profiles).</li>
-          <li><strong>Lift &amp; reset or tear-off:</strong> save good tiles, replace waterproofing/underlayment, re-install tiles.</li>
-          <li><strong>Underlayment:</strong> high-performance tile underlayment; valley metal; battens where specified.</li>
-          <li><strong>Flashings:</strong> headwall/sidewall/chimney/skylight; bird-stops and closures as needed.</li>
-          <li><strong>Install:</strong> replace broken tiles; proper fastening per profile and wind zone.</li>
-        </ul>
-        <p style="margin:.5rem 0 0;"><a href="/services/residential/tile-roof/">Tile systems overview</a> · <a href="/services/residential/tile-lift-lay/">Tile Lift &amp; Reset</a></p>
-      </article>
+        <article class="material-card">
+          <h3>Clay & Concrete Tile (incl. Lightweight)</h3>
+          <ul>
+            <li><strong>Best for:</strong> longevity and curb appeal (Mediterranean/Spanish profiles).</li>
+            <li><strong>Lift & reset or tear-off:</strong> save good tiles, replace waterproofing/underlayment, re-install tiles.</li>
+            <li><strong>Underlayment:</strong> high-performance tile underlayment; valley metal; battens where specified.</li>
+            <li><strong>Flashings:</strong> headwall/sidewall/chimney/skylight; bird-stops and closures as needed.</li>
+            <li><strong>Install:</strong> replace broken tiles; proper fastening per profile and wind zone.</li>
+          </ul>
+          <p style="margin:.5rem 0 0;">
+            <a href="/services/residential/tile-roof/">Tile systems overview</a> · 
+            <a href="/services/residential/tile-lift-lay/">Tile Lift & Reset</a>
+          </p>
+        </article>
 
-      <article style="margin-top:1rem;border:1px solid #e5e7eb;border-radius:12px;padding:14px;">
-        <h3>Metal (Stone-Coated Steel &amp; Standing Seam)</h3>
-        <ul style="line-height:1.9;margin-left:1.25rem;">
-          <li><strong>Best for:</strong> durability, energy efficiency, lighter weight.</li>
-          <li><strong>Deck &amp; underlayment:</strong> confirm fastening substrate; high-temp underlayment where needed.</li>
-          <li><strong>Flashings:</strong> custom trim at eaves/rakes/valleys/ridges; specialized pipe/vent flashings.</li>
-          <li><strong>Install:</strong> interlocking panels or concealed-fastener seams; expansion/clip details; hemmed edges.</li>
-        </ul>
-        <p style="margin:.5rem 0 0;"><a href="/services/commercial/metal/">Metal roofing info</a></p>
-      </article>
+        <article class="material-card">
+          <h3>Metal (Stone-Coated Steel & Standing Seam)</h3>
+          <ul>
+            <li><strong>Best for:</strong> durability, energy efficiency, lighter weight.</li>
+            <li><strong>Deck & underlayment:</strong> confirm fastening substrate; high-temp underlayment where needed.</li>
+            <li><strong>Flashings:</strong> custom trim at eaves/rakes/valleys/ridges; specialized pipe/vent flashings.</li>
+            <li><strong>Install:</strong> interlocking panels or concealed-fastener seams; expansion/clip details; hemmed edges.</li>
+          </ul>
+          <p style="margin:.5rem 0 0;"><a href="/services/commercial/metal/">Metal roofing info</a></p>
+        </article>
 
-      <article style="margin-top:1rem;border:1px solid #e5e7eb;border-radius:12px;padding:14px;">
-        <h3>Slate</h3>
-        <ul style="line-height:1.9;margin-left:1.25rem;">
-          <li><strong>Best for:</strong> premium look and very long service life.</li>
-          <li><strong>Deck &amp; flashings:</strong> solid decking; copper/stainless flashings and fasteners.</li>
-          <li><strong>Install:</strong> slate layout &amp; coursing; proper headlap; specialty ridge/hip details.</li>
-        </ul>
-      </article>
+        <article class="material-card">
+          <h3>Slate</h3>
+          <ul>
+            <li><strong>Best for:</strong> premium look and very long service life.</li>
+            <li><strong>Deck & flashings:</strong> solid decking; copper/stainless flashings and fasteners.</li>
+            <li><strong>Install:</strong> slate layout & coursing; proper headlap; specialty ridge/hip details.</li>
+          </ul>
+        </article>
+      </div>
     </section>
 
-    <section style="margin-top:2rem;">
+    <section class="content-section">
       <h2>Repair or Full Replacement?</h2>
       <p style="max-width:75ch;line-height:1.8;">
         If damage is isolated, a focused repair may be right. If you see widespread wear (brittle shingles, curling tiles, repeated leaks,
         exhausted underlayment), a full replacement protects your home and can lower long-term costs.
       </p>
-      <p style="margin:.75rem 0 0;">
+      <div class="button-group">
         <a class="call-button" href="/services/roof-repairs/">Explore Roof Repairs</a>
-        &nbsp; &nbsp;
-        <a href="/pricing.html">See Typical Pricing</a>
-      </p>
+        <a class="call-button secondary" href="/pricing.html">See Typical Pricing</a>
+      </div>
     </section>
 
-    <section aria-label="Get started" style="margin-top:1.5rem;">
-      <a class="call-button" href="/contact/">Schedule a Free Estimate</a>
-      &nbsp; &nbsp;
-      <a class="call-button" href="tel:8589006163">Call/Text 858-900-6163</a>
-      &nbsp; &nbsp;
-      <a class="call-button" href="/services/roof-inspection/">Book a Roof Inspection</a>
+    <section aria-label="Get started" class="content-section" style="text-align: center;">
+      <h2>Ready to Get Started?</h2>
+      <div class="button-group">
+        <a class="call-button" href="/contact/">Schedule a Free Estimate</a>
+        <a class="call-button secondary" href="tel:8589006163">Call/Text 858-900-6163</a>
+        <a class="call-button" href="/services/roof-inspection/">Book a Roof Inspection</a>
+      </div>
     </section>
 
-    <nav aria-label="Related" style="margin-top:1.25rem;">
-      <ul style="display:flex;gap:1rem;flex-wrap:wrap;list-style:none;padding:0;">
+    <section class="content-section">
+      <h2>Related Services</h2>
+      <ul class="related-links">
         <li><a href="/services/roof-replacement/flat-roof/">Flat Roof Replacement</a></li>
         <li><a href="/services/roof-replacement/">All Roof Replacement Options</a></li>
         <li><a href="/services/residential/asphalt-shingles/">Asphalt Shingles</a></li>
-        <li><a href="/services/residential/tile-roof/">Clay &amp; Concrete Tile</a></li>
+        <li><a href="/services/residential/tile-roof/">Clay & Concrete Tile</a></li>
         <li><a href="/services/residential/tpo/">TPO (for low-slope areas)</a></li>
         <li><a href="/services/roof-inspection/">Roof Inspection</a></li>
       </ul>
-    </nav>
+    </section>
   </main>
 
   <!-- UNIVERSAL FOOTER (same include style) -->
