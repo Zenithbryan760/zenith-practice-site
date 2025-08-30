@@ -1,77 +1,225 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Flat / Low-Slope Roof Replacement | Zenith Roofing</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Flat and low-slope roof replacement options in San Diego: TPO/PVC single-ply, torch down, and silicone coatings.">
-  <link rel="preload" href="/css/ui.css" as="style">
+  <meta charset="utf-8" />
+  <title>Flat / Low-Slope Roof Replacement | Zenith Roofing Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Flat & low-slope roof replacement for commercial and residential buildings in San Diego County & Temecula. TPO/PVC single-ply, torch-down modified bitumen, and silicone restoration. Free estimates." />
+  <link rel="canonical" href="https://www.zenithroofingservices.com/services/roof-replacement/flat-roof/">
+
+  <!-- Shared site CSS -->
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/ui.css">
-  <script defer src="/js/includes.js"></script>
+  <!-- Lead form CSS -->
+  <link rel="stylesheet" href="/css/estimate-form.css">
+
+  <!-- Includes + header behavior + lead form -->
+  <script defer src="/js/loader.js"></script>
+  <script defer src="/js/header.js"></script>
+  <script defer src="/js/estimate-form.js"></script>
+
+  <style>
+    /* Page-local polish (minimal, safe) */
+    .page.flat{ max-width:1100px; margin:24px auto; padding:0 16px; }
+    .page .lede{ color:#475569; font-size:1.075rem; margin:8px 0 18px; }
+    .badge{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#f1f5f9; font-weight:600; font-size:.95rem; }
+    .tick{ font-weight:800; color:#0b3a6f; }
+    .muted{ color:var(--ui-muted); }
+  </style>
+
+  <!-- Service JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Flat / Low-Slope Roof Replacement",
+    "serviceType": [
+      "TPO roof replacement",
+      "PVC roof replacement",
+      "Modified bitumen (torch-down) roof replacement",
+      "Silicone roof coating/restoration"
+    ],
+    "provider": {
+      "@type":"LocalBusiness",
+      "name":"Zenith Roofing Services, Inc.",
+      "telephone":"+1-858-900-6163",
+      "areaServed":"San Diego County & Temecula"
+    },
+    "areaServed":[{"@type":"City","name":"San Diego"},{"@type":"City","name":"Temecula"}],
+    "category":"https://schema.org/HomeAndConstructionBusiness",
+    "url":"https://www.zenithroofingservices.com/services/roof-replacement/flat-roof/"
+  }
+  </script>
 </head>
 <body>
+
   <!-- Header include -->
   <div data-include="/components/header-section.html"></div>
 
-  <main class="container" style="max-width:1100px;margin:2rem auto;padding:1rem;">
-    <h1 style="margin-bottom:.5rem;">Flat / Low-Slope Roof Replacement</h1>
-    <p style="font-size:1.1rem;line-height:1.7;max-width:72ch;">
-      For flat and low-slope areas, shingles won’t work. Here are the best systems and when each is the right choice.
-    </p>
-
-    <section style="margin-top:1.5rem;">
-      <h2>Best Options for Flat/Low-Slope</h2>
-      <div style="display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
-        <article style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem;">
-          <h3 style="margin:.25rem 0;">TPO Single-Ply</h3>
-          <p style="margin:.25rem 0;">White reflective membrane, seams heat-welded.</p>
-          <ul style="margin:.25rem 0 0 1rem;line-height:1.8;">
-            <li>Great energy performance; clean look.</li>
-            <li>Excellent for residential and commercial low-slope.</li>
-          </ul>
-          <p style="margin:.5rem 0;"><a href="/services/residential/tpo/">See TPO</a></p>
-        </article>
-
-        <article style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem;">
-          <h3 style="margin:.25rem 0;">Torch Down (Mod Bit)</h3>
-          <p style="margin:.25rem 0;">Durable, layered system with mineral surface.</p>
-          <ul style="margin:.25rem 0 0 1rem;line-height:1.8;">
-            <li>Proven performance; works where access is tight.</li>
-            <li>Often used on small patios/porches and ADUs.</li>
-          </ul>
-          <p style="margin:.5rem 0;"><a href="/services/commercial/torch-down/">See Torch Down</a></p>
-        </article>
-
-        <article style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem;">
-          <h3 style="margin:.25rem 0;">Silicone Coatings</h3>
-          <p style="margin:.25rem 0;">Restoration option for certain flat roofs.</p>
-          <ul style="margin:.25rem 0 0 1rem;line-height:1.8;">
-            <li>Requires sound substrate and prep.</li>
-            <li>Can extend life and improve reflectivity.</li>
-          </ul>
-          <p style="margin:.5rem 0;"><a href="/services/residential/silicone/">See Silicone Coatings</a></p>
-        </article>
+  <main class="page flat" id="top">
+    <!-- HERO -->
+    <section class="card airy" aria-label="Flat & Low-Slope Roof Replacement">
+      <span class="badge">Flat / Low-Slope Roof Replacement</span>
+      <h1 style="margin:10px 0 6px;">TPO • PVC • Torch-Down • Silicone</h1>
+      <p class="lede">Durable, energy-efficient systems with proper insulation, tapered layout where needed, heat-welded or torch-applied seams, and code-compliant edge metal & drains.</p>
+      <div class="cta">
+        <a class="btn" href="#estimate">Get a Free Estimate</a>
+        <a class="btn outline" href="tel:8589006163">Call 858-900-6163</a>
       </div>
     </section>
 
-    <section style="margin-top:1.5rem;">
-      <h2>Drainage &amp; details that matter</h2>
-      <ul style="line-height:1.9;margin:0;padding-left:1.25rem;max-width:72ch;">
-        <li>Ensure slope to drains/scuppers; ponding shortens roof life.</li>
-        <li>Flashing at walls, skylights, and penetrations is critical.</li>
-        <li>Parapet caps and terminations must be properly sealed.</li>
-      </ul>
+    <!-- WHY CHOOSE US (3-up even) -->
+    <section class="grid micro-grid" aria-label="Why choose Zenith">
+      <div class="card">
+        <h3>Licensed &amp; Insured</h3>
+        <p class="muted">C-39 #1036112. Permits and inspections where required. Line-item scopes with photos.</p>
+      </div>
+      <div class="card">
+        <h3>Watertight Details</h3>
+        <p class="muted">Proper edge metal, penetrations, curbs, drains/scuppers, and expansion details.</p>
+      </div>
+      <div class="card">
+        <h3>Low Disruption</h3>
+        <p class="muted">Clean tear-off or recover (when code allows), daily clean-up, and clear communication.</p>
+      </div>
     </section>
 
-    <div style="margin-top:1.75rem;display:flex;gap:.75rem;flex-wrap:wrap;">
-      <a class="btn" href="/contact/" style="padding:.75rem 1rem;border-radius:10px;background:#1e293b;color:#fff;text-decoration:none;">Get a Quote</a>
-      <a class="btn" href="/services/roof-inspection/" style="padding:.75rem 1rem;border-radius:10px;border:1px solid #1e293b;color:#1e293b;text-decoration:none;">Book Inspection</a>
-      <a class="btn" href="/services/roof-replacement/not-sure/" style="padding:.75rem 1rem;border-radius:10px;border:1px solid #cbd5e1;color:#1e293b;text-decoration:none;">Not Sure? Find My Roof Type</a>
-    </div>
+    <!-- SYSTEMS (auto-fit grid) -->
+    <section class="card airy" aria-label="Flat & low-slope systems we install">
+      <h2>Systems We Install</h2>
+      <div class="grid auto-fit" style="--ui-gap:16px;">
+        <div class="card">
+          <h3>TPO Single-Ply</h3>
+          <ul class="checklist relaxed">
+            <li><span class="tick">✓</span> White, reflective membrane; energy efficient</li>
+            <li><span class="tick">✓</span> Heat-welded seams; mechanically attached or fully-adhered</li>
+            <li><span class="tick">✓</span> Walk pads at service paths</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>PVC Single-Ply</h3>
+          <ul class="checklist relaxed">
+            <li><span class="tick">✓</span> Excellent chemical resistance (ideal near kitchens/HVAC)</li>
+            <li><span class="tick">✓</span> Heat-welded seams; adhered or mechanically attached</li>
+            <li><span class="tick">✓</span> Compatible accessories &amp; edge metal</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Torch-Down (Mod-Bit)</h3>
+          <ul class="checklist relaxed">
+            <li><span class="tick">✓</span> Granulated cap sheet over base; proven durability</li>
+            <li><span class="tick">✓</span> Proper vents, flashings, term bars, and edge details</li>
+            <li><span class="tick">✓</span> Great for small flats &amp; patios</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Silicone Restoration</h3>
+          <ul class="checklist relaxed">
+            <li><span class="tick">✓</span> Prep, seam reinforcement, then high-solids silicone</li>
+            <li><span class="tick">✓</span> Extends life when deck/roof is still recover-eligible</li>
+            <li><span class="tick">✓</span> Bright, reflective, low maintenance</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS (4 steps; 2-up) -->
+    <section class="card airy" aria-label="Our process">
+      <h2>How It Works</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>1) Inspection &amp; Plan</h3>
+          <p class="muted">Moisture check, deck review, drain/scupper layout, and code requirements (tear-off vs recover).</p>
+        </div>
+        <div class="card">
+          <h3>2) Proposal</h3>
+          <p class="muted">Clear line-items (membrane, insulation, edge metal, curbs, walk pads). Photos included.</p>
+        </div>
+        <div class="card">
+          <h3>3) Preparation</h3>
+          <p class="muted">Tear-off as needed, deck repairs, insulation/taper, curbs, drains, and edge metals staged.</p>
+        </div>
+        <div class="card">
+          <h3>4) Install &amp; Seal</h3>
+          <p class="muted">Heat-welded or torch-applied seams, details completed, final sweep and walkthrough.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPTIONS (6-up even) -->
+    <section class="card airy" aria-label="Popular options & upgrades">
+      <h2>Popular Options &amp; Upgrades</h2>
+      <div class="grid micro-grid" style="--ui-gap:14px;">
+        <div class="card"><h3>Tapered Insulation</h3><p class="muted">Promotes drainage; reduces ponding.</p></div>
+        <div class="card"><h3>Recover vs Tear-Off</h3><p class="muted">We verify eligibility with code and deck condition.</p></div>
+        <div class="card"><h3>Edge Metal System</h3><p class="muted">ANSI/SPRI ES-1 compliant perimeter.</p></div>
+        <div class="card"><h3>Walk Pads</h3><p class="muted">Protects traffic paths to HVAC &amp; skylights.</p></div>
+        <div class="card"><h3>New Curbs/Skylights</h3><p class="muted">Factory flashings and insulated domes.</p></div>
+        <div class="card"><h3>Drains &amp; Scuppers</h3><p class="muted">New bowls, strainers, and overflow details.</p></div>
+      </div>
+    </section>
+
+    <!-- ESTIMATE (include only; no duplicate page H2) -->
+    <section id="estimate" class="card airy" aria-label="Request a Free Estimate"
+             data-estimate-context
+             data-category="Flat / Low-Slope Roof Replacement"
+             data-redirect="/thank-you/">
+      <div data-include="/components/forms/estimate.html"></div>
+
+      <!-- Fallback slim form -->
+      <template id="lead-form-fallback">
+        <form id="estimate-form" novalidate>
+          <input type="hidden" name="service_type" value="Flat / Low-Slope Roof Replacement">
+          <input type="hidden" name="page" value="">
+          <div class="form-row">
+            <div class="form-col-6"><label>Full Name</label><input name="name" required></div>
+            <div class="form-col-6"><label>Phone</label><input name="phone" type="tel" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-col-6"><label>Email</label><input name="email" type="email" required></div>
+            <div class="form-col-6"><label>ZIP</label><input name="zip" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-col-12"><label>Notes</label><textarea name="message" rows="4"></textarea></div>
+          </div>
+          <button class="btn" type="submit">Send Request</button>
+        </form>
+      </template>
+    </section>
+
+    <!-- FAQ (2-up even) -->
+    <section class="card airy" aria-label="FAQs">
+      <h2>Flat Roof FAQs</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>TPO vs PVC — how do I choose?</h3>
+          <p class="muted">Both are single-ply with heat-welded seams. PVC excels near grease/chemicals; TPO is widely used for energy savings.</p>
+        </div>
+        <div class="card">
+          <h3>Recover or full tear-off?</h3>
+          <p class="muted">We verify code and deck condition. If saturated or over the layer limit, tear-off is required.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service area & soft disclaimer -->
+    <section class="card airy" aria-label="Service area">
+      <h2>Service Area</h2>
+      <p class="muted">North County San Diego, Greater San Diego, Temecula &amp; nearby communities.</p>
+      <p class="muted" style="font-size:.9rem;">Information above reflects common practices and code requirements. Final scope, materials, pricing, and warranties are governed solely by your signed contract and manufacturer documentation.</p>
+    </section>
   </main>
 
   <!-- Footer include -->
   <div data-include="/components/footer.html"></div>
-  <script defer src="/js/header.js"></script>
+
+  <!-- Mobile action bar -->
+  <div class="actionbar">
+    <a class="ab-btn call" href="tel:8589006163">Call</a>
+    <a class="ab-btn text" href="sms:+18589006163">Text</a>
+    <a class="ab-btn estimate" href="#estimate">Free Estimate</a>
+  </div>
 </body>
 </html>
