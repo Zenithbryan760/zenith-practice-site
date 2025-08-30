@@ -1,288 +1,203 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Real-Estate Roofing Services | Inspections, Estimates, Certifications</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0b3a6f" />
-  <meta name="description" content="Real-estate roof inspections, transaction estimates, roof certifications, and certified reports for San Diego & Temecula. Fast scheduling for agents, buyers, and sellers." />
-  <link rel="canonical" href="https://www.zenithroofingservices.com/services/real-estate/">
-
-  <!-- Shared CSS -->
-  <link rel="stylesheet" href="/css/header.css">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/footer.css">
-  <link rel="stylesheet" href="/css/ui.css">
-  <link rel="stylesheet" href="/css/estimate-form.css">
-
-  <!-- Shared JS -->
-  <script defer src="/js/loader.js"></script>
-  <script defer src="/js/header.js"></script>
-  <script defer src="/js/estimate-form.js"></script>
-
+<!-- /components/forms/estimate.html -->
+<section class="lead-form card airy" aria-label="Request information or a call back">
   <style>
-    :root{
-      --primary:#0b3a6f; --primary-2:#1e4a82;
-      --ink:#0b3a6f; --muted:#64748b; --line:#e2e8f0; --bg:#f8fafc;
-      --radius:14px; --shadow:0 8px 20px rgba(2,6,23,.06);
+    /* Scoped to this include */
+    .lead-form{--line:#e2e8f0;--muted:#64748b;--ink:#0b3a6f;--bg:#f8fafc;--radius:14px;}
+    .lead-form .head{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+    .lead-form .kicker{display:inline-block;background:#eef2ff;color:#334155;border-radius:999px;padding:6px 10px;font-weight:700}
+    .lead-form h2{margin:4px 0;color:var(--ink)}
+    .lead-form p.muted{color:var(--muted);margin:0}
+    .lead-form .quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .lead-form .qbtn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border:1px solid var(--line);border-radius:12px;font-weight:700;background:#fff}
+    .lead-form .qbtn.primary{background:#0b3a6f;color:#fff;border-color:#0b3a6f}
+    .lead-form form{display:grid;gap:10px}
+    .lead-form .row{display:grid;gap:10px}
+    @media(min-width:720px){.lead-form .row.cols-2{grid-template-columns:1fr 1fr}}
+    @media(min-width:900px){.lead-form .row.cols-3{grid-template-columns:1fr 1fr 1fr}}
+    .lead-form label{font-weight:700;color:#0f172a}
+    .lead-form input,.lead-form select,.lead-form textarea{
+      border:1px solid var(--line);border-radius:12px;padding:12px 12px;background:#fff;font:inherit
     }
-    .page{max-width:1100px;margin:36px auto;padding:0 18px;color:#334155;}
-    .hero{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:22px 20px;margin-bottom:22px}
-    .badge{display:inline-block;background:#eef2ff;color:#334155;border-radius:999px;padding:6px 12px;font-weight:700}
-    h1{margin:8px 0 4px;color:var(--ink);font-size:2rem}
-    .lede{color:var(--muted);max-width:70ch}
-    .bar{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .cta{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;font-weight:700}
-    .cta.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
-    .grid{display:grid;grid-template-columns:1fr;gap:14px}
-    @media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
-    .card{border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow);display:flex;flex-direction:column}
-    .card .body{padding:16px}
-    .price-tag{display:inline-flex;align-items:center;gap:8px;font-weight:800;border:1px solid var(--line);border-radius:10px;padding:6px 10px;background:#fff}
-    .price-tag.firm{background:#ecfdf5;border-color:#99f6e4;color:#065f46}
-    .price-tag.free{background:#ecfdf5;border-color:#99f6e4;color:#065f46}
-    .price-tag.call{background:#f1f5f9;border-color:#cbd5e1;color:#334155}
-    .card h3{margin:10px 0 6px;color:#0b3a6f}
-    .card p{margin:0 0 12px}
-    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:10px;border:1px solid var(--primary);font-weight:700;text-decoration:none}
-    .btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
-    .btn.outline{background:#fff;color:var(--primary)}
-    .section{margin:26px 0}
-    .section h2{color:var(--ink);margin:0 0 8px}
-    .muted{color:var(--muted)}
-    .list{display:grid;gap:10px}
-    .tick{display:flex;gap:10px}
-    .tick:before{content:"✔";color:#059669}
-    .faq{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}
-    details{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff}
-    details+details{margin-top:10px}
-    summary{cursor:pointer;font-weight:800;color:#0b3a6f}
-    .actionbar{position:sticky;bottom:0;left:0;width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 18px;z-index:50}
-    .ab-btn{display:flex;align-items:center;justify-content:center;padding:14px;border:1px solid var(--line);border-radius:12px;font-weight:800}
-    .ab-btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
-    @media(max-width:720px){.actionbar{grid-template-columns:1fr}}
+    .lead-form textarea{min-height:110px;resize:vertical}
+    .lead-form .hint{font-size:.9rem;color:var(--muted)}
+    .lead-form .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+    .lead-form .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:12px;border:1px solid #0b3a6f;font-weight:800}
+    .lead-form .btn.primary{background:#0b3a6f;color:#fff}
+    .lead-form .btn.ghost{background:#fff;color:#0b3a6f}
+    .lead-form .note{font-size:.9rem;color:var(--muted)}
+    .lead-form .divider{height:1px;background:var(--line);margin:6px 0}
   </style>
 
-  <!-- SEO: Real Estate ItemList with firm pricing -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"ItemList",
-    "name":"Real-Estate Roofing Services",
-    "itemListElement":[
-      {"@type":"ListItem","position":1,"item":{"@type":"Service","name":"Visual Roof Inspection","url":"https://www.zenithroofingservices.com/services/real-estate/visual-inspections/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"295"}}},
-      {"@type":"ListItem","position":2,"item":{"@type":"Service","name":"Real-Estate Roof Estimate","url":"https://www.zenithroofingservices.com/services/real-estate/roof-estimates/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"295"}}},
-      {"@type":"ListItem","position":3,"item":{"@type":"Service","name":"Roof Certification","url":"https://www.zenithroofingservices.com/services/real-estate/roof-certifications/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"395"}}},
-      {"@type":"ListItem","position":4,"item":{"@type":"Service","name":"Certified Roof Report","url":"https://www.zenithroofingservices.com/services/roof-inspection/certified-roof-reports/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"495"}}},
-      {"@type":"ListItem","position":5,"item":{"@type":"Service","name":"Verbal Roof Opinion","url":"https://www.zenithroofingservices.com/services/real-estate/verbal-opinions/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"0"}}},
-      {"@type":"ListItem","position":6,"item":{"@type":"Service","name":"Satellite Imagery Analysis","url":"https://www.zenithroofingservices.com/services/real-estate/satellite-imagery-analysis/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"0","priceSpecification":{"@type":"PriceSpecification","priceCurrency":"USD","price":"0","description":"Call for Pricing"}}}}
-    ]
-  }
-  </script>
-</head>
-<body>
-  <div data-include="/components/header-section.html"></div>
-
-  <main class="page" id="top">
-    <!-- Hero -->
-    <section class="hero">
-      <span class="badge">For Agents • Buyers • Sellers</span>
-      <h1>Real-Estate Roofing Services</h1>
-      <p class="lede">Fast, transaction-ready roofing documentation for escrows and listings in San Diego &amp; Temecula: visual inspections, line-item estimates, certifications, and certified reports—scheduled quickly and delivered clearly.</p>
-      <div class="bar">
-        <a class="cta primary" href="#book">Book Now</a>
-        <a class="cta" href="#menu">See Services</a>
-        <a class="cta" href="#faq">FAQ</a>
-        <a class="cta" href="/reviews/">Read Reviews</a>
-      </div>
-    </section>
-
-    <!-- Services menu (2 columns) -->
-    <section class="section" id="menu" aria-label="Real-estate services">
-      <h2>Transaction Services</h2>
-      <p class="muted">Firm prices shown below. Need something custom? <a href="#book">Send details</a> and we’ll confirm scope fast.</p>
-
-      <div class="grid">
-        <!-- Visual Inspection -->
-        <article class="card">
-          <div class="body">
-            <span class="price-tag firm">$295 • Firm</span>
-            <h3><a href="/services/real-estate/visual-inspections/">Visual Roof Inspection</a></h3>
-            <p>Photo-documented site walk for real-estate transactions. Clear notes on condition, leaks, and remaining life. Perfect for disclosures and due diligence.</p>
-            <ul class="list">
-              <li class="tick">On-site photos & written findings</li>
-              <li class="tick">Action items prioritized by urgency</li>
-              <li class="tick">Turnaround typically next business day</li>
-            </ul>
-            <div class="actions">
-              <a class="btn primary" href="#book">Book $295</a>
-              <a class="btn outline" href="/services/real-estate/visual-inspections/">Details</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Real-Estate Estimate -->
-        <article class="card">
-          <div class="body">
-            <span class="price-tag firm">$295 • Firm</span>
-            <h3><a href="/services/real-estate/roof-estimates/">Real-Estate Roof Estimate</a></h3>
-            <p>Line-item scope & pricing tailored for negotiations, credits, or repair requests. Based on inspection findings or agent notes.</p>
-            <ul class="list">
-              <li class="tick">Negotiation-ready, itemized pricing</li>
-              <li class="tick">Photos/annotations for context</li>
-              <li class="tick">Change-order language included</li>
-            </ul>
-            <div class="actions">
-              <a class="btn primary" href="#book">Order $295</a>
-              <a class="btn outline" href="/services/real-estate/roof-estimates/">Details</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Certification -->
-        <article class="card">
-          <div class="body">
-            <span class="price-tag firm">$395 • Firm</span>
-            <h3><a href="/services/real-estate/roof-certifications/">Roof Certification</a></h3>
-            <p>Pass/fail certificate when eligibility standards are met. Often requested by lenders or buyers for peace of mind.</p>
-            <ul class="list">
-              <li class="tick">Eligibility inspection included</li>
-              <li class="tick">Deficiency list if not eligible</li>
-              <li class="tick">Re-inspection available after fixes</li>
-            </ul>
-            <div class="actions">
-              <a class="btn primary" href="#book">Request $395</a>
-              <a class="btn outline" href="/services/real-estate/roof-certifications/">Details</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Certified Report -->
-        <article class="card">
-          <div class="body">
-            <span class="price-tag firm">$495 • Firm</span>
-            <h3><a href="/services/roof-inspection/certified-roof-reports/">Certified Roof Report</a></h3>
-            <p>Contractor-certified narrative with photos & prioritized recommendations. Ideal for complex roofs or when you need formal documentation.</p>
-            <ul class="list">
-              <li class="tick">Narrative + annotated photos</li>
-              <li class="tick">Repair/replacement paths with budgets</li>
-              <li class="tick">Useful for underwriting or appraisal addenda</li>
-            </ul>
-            <div class="actions">
-              <a class="btn primary" href="#book">Order $495</a>
-              <a class="btn outline" href="/services/roof-inspection/certified-roof-reports/">Details</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Verbal Opinion -->
-        <article class="card">
-          <div class="body">
-            <span class="price-tag free">Free</span>
-            <h3><a href="/services/real-estate/verbal-opinions/">Verbal Roof Opinion</a></h3>
-            <p>Quick phone guidance for buyers/sellers/agents. No written deliverable—great for triage during short contingency windows.</p>
-            <ul class="list">
-              <li class="tick">Fast, practical guidance</li>
-              <li class="tick">Clarify scope before ordering services</li>
-            </ul>
-            <div class="actions">
-              <a class="btn primary" href="tel:8589006163">Call Now</a>
-              <a class="btn outline" href="sms:+18589006163">Text</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Satellite Imagery -->
-        <article class="card">
-          <div class="body">
-            <span class="price-tag call">Call for Pricing</span>
-            <h3><a href="/services/real-estate/satellite-imagery-analysis/">Satellite Imagery Analysis</a></h3>
-            <p>Remote measurement & take-offs for early budgeting or pre-offer diligence. Useful when access is limited.</p>
-            <ul class="list">
-              <li class="tick">Eave, ridge, pitch, and area take-offs</li>
-              <li class="tick">Good for “ballpark” budgeting</li>
-            </ul>
-            <div class="actions">
-              <a class="btn primary" href="#book">Start Request</a>
-              <a class="btn outline" href="/services/real-estate/satellite-imagery-analysis/">Details</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Notes for homeowners vs. third-party -->
-    <section class="section">
-      <h2>What’s Free vs. Paid?</h2>
-      <div class="faq">
-        <p class="muted">
-          For <strong>homeowners</strong> asking us to inspect their own roof for normal wear/tear or to price a repair, <a href="/services/roof-inspection/#free">our inspection is free</a>. For <strong>third-party requests</strong> (insurance, lender/refi, HOA, property manager, or letters), a <strong>$295 letter</strong> applies, and a <strong>$495 certified report</strong> is available when you need formal documentation with photos.
-        </p>
-      </div>
-    </section>
-
-    <!-- Why Zenith for real estate -->
-    <section class="section">
-      <h2>Built for Real-Estate Timelines</h2>
-      <div class="grid">
-        <div class="card"><div class="body">
-          <h3>Fast Scheduling</h3>
-          <p>We prioritize escrows and listing timelines—same-week visit windows, and rapid deliverables.</p>
-        </div></div>
-        <div class="card"><div class="body">
-          <h3>Clear, Negotiation-Ready Docs</h3>
-          <p>Itemized scopes and photos help buyers and sellers agree on credits or scope without confusion.</p>
-        </div></div>
-        <div class="card"><div class="body">
-          <h3>Local Expertise</h3>
-          <p>Tile, shingle, and flat roofs are common here—our recommendations reflect local best practices.</p>
-        </div></div>
-        <div class="card"><div class="body">
-          <h3>Honest Guidance</h3>
-          <p>No pressure. If a roof has years left, we’ll say so—and if it needs work, we’ll show exactly why.</p>
-        </div></div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <h2>Real-Estate FAQ</h2>
-      <details>
-        <summary>How fast can you inspect and deliver?</summary>
-        <p>We typically schedule within a few business days and deliver most visual inspections and estimates by the next business day after the visit.</p>
-      </details>
-      <details>
-        <summary>What if a certification isn’t eligible?</summary>
-        <p>We’ll provide a deficiency list and a path to eligibility. After repairs, we can re-inspect and issue the certificate if standards are met.</p>
-      </details>
-      <details>
-        <summary>Do you handle storm-damage insurance inspections?</summary>
-        <p>Yes—<a href="/services/insurance/storm-damage-inspection/">storm damage claim inspections are free</a> for active claims. For other third-party requests, see our $295 letter and $495 certified report options above.</p>
-      </details>
-      <details>
-        <summary>Can you give a quick opinion before I order?</summary>
-        <p>Yes—our <a href="/services/real-estate/verbal-opinions/">Verbal Roof Opinion</a> is free. We’ll help you choose the right deliverable for your situation.</p>
-      </details>
-    </section>
-
-    <!-- Lead form -->
-    <section class="section card airy" id="book" data-estimate-context data-category="Real-Estate Services" data-redirect="/thank-you/">
-      <div class="body">
-        <h2>Book or Request Documentation</h2>
-        <p class="muted">Tell us your property address, timeline, and which item you need (Visual Inspection, Estimate, Certification, or Certified Report).</p>
-        <div data-include="/components/forms/estimate.html"></div>
-      </div>
-    </section>
-  </main>
-
-  <div data-include="/components/footer.html"></div>
-
-  <!-- Sticky quick actions -->
-  <div class="actionbar" role="navigation" aria-label="Quick actions">
-    <a class="ab-btn" href="tel:8589006163">Call</a>
-    <a class="ab-btn" href="sms:+18589006163">Text</a>
-    <a class="ab-btn primary" href="#book">Book / Request</a>
+  <div class="head">
+    <span class="kicker">Request Info / Schedule</span>
+    <h2>Tell us about your roof—we’ll follow up fast</h2>
+    <p class="muted">Use this form to request information, scheduling, or pricing. Or contact us directly:</p>
+    <div class="quick" role="navigation" aria-label="Quick contact">
+      <a class="qbtn primary" href="tel:8589006163">Call 858-900-6163</a>
+      <a class="qbtn" href="sms:+18589006163">Text Us</a>
+    </div>
   </div>
-</body>
-</html>
+
+  <form id="estimate-form" novalidate>
+    <!-- Contact -->
+    <div class="row cols-2">
+      <div>
+        <label for="name">Full Name *</label>
+        <input id="name" name="name" type="text" autocomplete="name" required />
+      </div>
+      <div>
+        <label for="phone">Phone *</label>
+        <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required />
+      </div>
+    </div>
+    <div class="row cols-2">
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" />
+      </div>
+      <div>
+        <label for="contact_pref">Preferred Contact</label>
+        <select id="contact_pref" name="contact_pref">
+          <option value="">No preference</option>
+          <option>Call</option>
+          <option>Text</option>
+          <option>Email</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Property -->
+    <div class="row cols-3">
+      <div>
+        <label for="address">Property Address *</label>
+        <input id="address" name="address" type="text" autocomplete="street-address" required />
+      </div>
+      <div>
+        <label for="city">City *</label>
+        <input id="city" name="city" type="text" required />
+      </div>
+      <div>
+        <label for="zip">ZIP *</label>
+        <input id="zip" name="zip" type="text" inputmode="numeric" pattern="[0-9]*" required />
+      </div>
+    </div>
+
+    <!-- Service -->
+    <div class="row cols-2">
+      <div>
+        <label for="service">What do you need? *</label>
+        <select id="service" name="service" required>
+          <option value="">Select one…</option>
+          <optgroup label="Real-Estate">
+            <option>Visual Roof Inspection ($295)</option>
+            <option>Real-Estate Roof Estimate ($295)</option>
+            <option>Roof Certification ($395)</option>
+            <option>Certified Roof Report ($495)</option>
+            <option>Verbal Roof Opinion (Free)</option>
+            <option>Satellite Imagery Analysis (Call for pricing)</option>
+          </optgroup>
+          <optgroup label="Homeowners / Repairs">
+            <option>Homeowner Roof Inspection (Free)</option>
+            <option>Roof Tune-Up (Quote)</option>
+            <option>Tile Roof Repair (Quote)</option>
+            <option>Asphalt Shingle Roof (Quote)</option>
+            <option>Flat / Low-Slope Roof (Quote)</option>
+          </optgroup>
+          <optgroup label="Insurance">
+            <option>Storm Damage Inspection for Claim (Free)</option>
+            <option>Insurance Letter / Third Party Request ($295)</option>
+          </optgroup>
+          <optgroup label="Other">
+            <option>Gutters / Guards (Quote)</option>
+            <option>Other / Not sure</option>
+          </optgroup>
+        </select>
+      </div>
+      <div>
+        <label for="timeline">Timeline</label>
+        <select id="timeline" name="timeline">
+          <option value="">Select…</option>
+          <option>ASAP (in escrow)</option>
+          <option>1–2 weeks</option>
+          <option>2–4 weeks</option>
+          <option>Just planning</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Details -->
+    <div>
+      <label for="details">Notes for our team</label>
+      <textarea id="details" name="details" placeholder="Tell us about leaks, age, material, or what triggered this request."></textarea>
+      <p class="hint">You can also reply with photos after we follow up.</p>
+    </div>
+
+    <!-- Consent -->
+    <div>
+      <label class="note">
+        <input type="checkbox" name="ok_to_text" value="yes" />
+        OK to text me about this request
+      </label>
+    </div>
+
+    <!-- Hidden context populated by /js/estimate-form.js -->
+    <input type="hidden" name="category" value="">
+    <input type="hidden" name="page_url" value="">
+    <input type="hidden" name="page_title" value="">
+    <input type="hidden" name="context" value="">
+
+    <div class="divider" role="presentation"></div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="btn primary" type="submit">Send Request</button>
+      <a class="btn ghost" href="tel:8589006163">Or Call 858-900-6163</a>
+    </div>
+
+    <p class="note">Submitting this form does not place an order or schedule work; it simply lets us contact you to discuss your roof and next steps.</p>
+  </form>
+
+  <script>
+    // Light integration with your existing /js/estimate-form.js (if present)
+    (function(){
+      try{
+        // Fill hidden context if parent set data attributes
+        const host = document.currentScript.closest('[data-estimate-context]') || document;
+        const form = document.getElementById('estimate-form');
+        if(!form) return;
+        const get = (name)=> form.querySelector(`input[name="${name}"]`);
+        const ctx = host.getAttribute('data-estimate-context') || '';
+        const cat = host.getAttribute('data-category') || '';
+        const redir = host.getAttribute('data-redirect') || '';
+
+        if(get('context')) get('context').value = ctx;
+        if(get('category')) get('category').value = cat;
+        if(get('page_url')) get('page_url').value = location.href;
+        if(get('page_title')) get('page_title').value = document.title;
+
+        // If your global handler exists, let it take over
+        if (window.initEstimateForm) {
+          window.initEstimateForm(form, { redirect: redir });
+        } else {
+          // Minimal fallback submission (no backend, just mailto as a backup)
+          form.addEventListener('submit', function(e){
+            e.preventDefault();
+            const data = new FormData(form);
+            const subject = encodeURIComponent('Website Request: ' + (data.get('service') || 'Roofing'));
+            const lines = [];
+            for (const [k,v] of data.entries()){
+              if(['page_url','page_title','category','context','ok_to_text'].includes(k) || v) {
+                lines.push(`${k}: ${v}`);
+              }
+            }
+            const body = encodeURIComponent(lines.join('\n'));
+            // Try redirect param first
+            if (redir) { window.location.assign(redir); }
+            // Fallback mailto (user can still call/text from sticky bar)
+            window.location.href = `mailto:info@zenithroofingservices.com?subject=${subject}&body=${body}`;
+          });
+        }
+      }catch(e){}
+    })();
+  </script>
+</section>
