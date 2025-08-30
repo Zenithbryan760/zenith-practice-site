@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Certified Roof Reports (Photos & Findings) | Zenith Roofing Services</title>
+  <title>Certified Roof Report (Paid) — $4,495 | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Licensed C-39 certified roof reports with photos, findings, and recommendations. Useful for insurance, refinancing, HOAs, property managers, and pre-listing. San Diego & Temecula." />
+  <meta name="description" content="Certified roof report with photos, findings, and recommendations. Flat price $4,495 in San Diego or Temecula. Ideal for insurance, lenders, HOAs, property managers, and pre-listing." />
   <link rel="canonical" href="https://www.zenithroofingservices.com/services/roof-inspection/certified-roof-reports/">
 
   <!-- Shared CSS -->
@@ -12,13 +12,10 @@
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/ui.css">
-  <!-- Lead form CSS -->
-  <link rel="stylesheet" href="/css/estimate-form.css">
 
   <!-- Shared JS -->
   <script defer src="/js/loader.js"></script>
   <script defer src="/js/header.js"></script>
-  <script defer src="/js/estimate-form.js"></script>
 
   <style>
     .page.crr { max-width:1100px; margin:24px auto; padding:0 16px; }
@@ -30,30 +27,38 @@
     .note{ background:#f8fafc; border:1px solid var(--ui-line); border-radius:14px; padding:12px 14px; }
     .svc-card h3{ margin-bottom:6px; }
     .svc-card p{ margin:0; }
+    .price { font-weight:800; font-size:1.25rem; }
+    /* Simple in-page form styles to match your UI system */
+    .form { background:#fff; border:1px solid var(--ui-line); border-radius:16px; padding:16px; }
+    .form-row { display:flex; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+    .form-col-6 { flex:1 1 260px; min-width:260px; }
+    .form-col-12 { flex:1 1 100%; }
+    .form label { display:block; font-weight:600; margin:0 0 6px; }
+    .form input, .form select, .form textarea {
+      width:100%; border:1px solid var(--ui-line); border-radius:10px; padding:10px; font:inherit; background:#fff;
+    }
+    .form .agree { display:flex; gap:10px; align-items:flex-start; }
+    .btn.primary { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 16px; border-radius:12px; background:var(--ui-accent,#0b3a6f); color:#fff; border:none; cursor:pointer; font-weight:700; }
+    .btn.inline { margin-left:8px; }
   </style>
 
-  <!-- FAQ Schema -->
+  <!-- Product/Offer Schema for SEO -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"What is a certified roof report?",
-        "acceptedAnswer":{"@type":"Answer","text":"A licensed contractor documents roof condition with photos, notes, and recommendations. The report can be used for insurance, refinancing, HOAs, and planning repairs or replacement."}
-      },
-      {
-        "@type":"Question",
-        "name":"Is this different from a free estimate?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes. Certified reports are a paid inspection deliverable with formal written findings and photos. Free estimates are for homeowners seeking pricing and do not include a full report."}
-      },
-      {
-        "@type":"Question",
-        "name":"Who typically requests certified roof reports?",
-        "acceptedAnswer":{"@type":"Answer","text":"Homeowners, property managers, HOAs, buyers/sellers, and lenders/insurers often request certified roof reports to verify condition and plan next steps."}
-      }
-    ]
+    "@type":"Service",
+    "name":"Certified Roof Report",
+    "provider":{"@type":"LocalBusiness","name":"Zenith Roofing Services"},
+    "areaServed":[{"@type":"City","name":"San Diego"},{"@type":"City","name":"Temecula"}],
+    "offers":{
+      "@type":"Offer",
+      "price":"4495",
+      "priceCurrency":"USD",
+      "availability":"https://schema.org/InStock",
+      "category":"Roof Inspection Report",
+      "url":"https://www.zenithroofingservices.com/services/roof-inspection/certified-roof-reports/"
+    },
+    "description":"Licensed contractor-certified roof report with photos, findings, and recommendations."
   }
   </script>
 </head>
@@ -63,85 +68,103 @@
   <main class="page crr" id="top">
     <!-- Hero -->
     <section class="card airy">
-      <span class="badge">Roof Inspection</span>
-      <h1 style="margin:10px 0 6px;">Certified Roof Reports (Photos & Findings)</h1>
-      <p class="lede">Get a licensed, photo-rich roof report with clear findings and recommendations—designed for insurance, refinancing, HOAs, property managers, and pre-listing decisions.</p>
+      <span class="badge">Roof Inspection • Certified Report</span>
+      <h1 style="margin:10px 0 6px;">Certified Roof Report <span class="price">— $4,495</span></h1>
+      <p class="lede">A contractor-certified report with photos, findings, and recommendations. Designed for insurance, lenders, HOAs, property managers, and pre-listing decisions in <strong>San Diego</strong> or <strong>Temecula</strong>.</p>
       <div class="cta">
-        <a class="btn" href="#estimate">Book a Certified Report</a>
-        <a class="btn outline" href="/services/need-help/">New to Roofing? Start Here</a>
+        <a class="btn" href="#book">Book This Report</a>
+        <a class="btn outline" href="tel:8589006163">Call 858-900-6163</a>
       </div>
-      <p class="small muted" style="margin-top:8px;">This is a <strong>paid</strong> service and separate from our free homeowner estimates.</p>
+      <p class="small muted" style="margin-top:8px;">Fixed price applies in San Diego or Temecula. Travel/out-of-area requests can be quoted separately.</p>
     </section>
 
     <!-- What you get -->
     <section class="card airy" aria-label="What’s included">
       <h2>What’s Included</h2>
       <div class="grid micro-grid">
-        <div class="card"><h3>Photos</h3><p class="muted">Overview & detail shots of roof, flashings, penetrations, and drainage.</p></div>
-        <div class="card"><h3>Written Findings</h3><p class="muted">Clear condition summary, risk items, and urgency level.</p></div>
+        <div class="card"><h3>Photo Documentation</h3><p class="muted">Overview & detail shots (roof, flashings, penetrations, drainage).</p></div>
+        <div class="card"><h3>Written Findings</h3><p class="muted">Condition summary, risks, and urgency level.</p></div>
         <div class="card"><h3>Recommendations</h3><p class="muted">Repair vs replacement guidance with next-step options.</p></div>
         <div class="card"><h3>Lifecycle Notes</h3><p class="muted">Approximate remaining service life (where assessable).</p></div>
-        <div class="card"><h3>Code/Detail Review</h3><p class="muted">Flashings, ventilation, drainage, and edge details.</p></div>
-        <div class="card"><h3>Deliverable PDF</h3><p class="muted">Shareable PDF suitable for stakeholders.</p></div>
+        <div class="card"><h3>Code/Detail Review</h3><p class="muted">Flashings, ventilation, drainage, edge details.</p></div>
+        <div class="card"><h3>Shareable PDF</h3><p class="muted">Deliverable formatted for stakeholders.</p></div>
+      </div>
+      <div class="note" style="margin-top:12px;">
+        <strong>Scope note:</strong> This is a visual, non-destructive inspection. If moisture mapping, cores, or engineering are required, we’ll outline add-on options before proceeding.
       </div>
     </section>
 
-    <!-- Who it's for + common reasons (6 even cards) -->
+    <!-- Uses -->
     <section class="card airy" aria-label="Who it’s for">
       <h2>Popular Uses</h2>
       <div class="grid micro-grid">
-        <div class="card"><h3>Insurance</h3><p class="muted">Claim support or underwriting questions.</p></div>
-        <div class="card"><h3>Refinancing</h3><p class="muted">Lender requests and condition verification.</p></div>
-        <div class="card"><h3>HOAs</h3><p class="muted">Common-area assessments and reserve planning.</p></div>
-        <div class="card"><h3>Property Managers</h3><p class="muted">Annual portfolio health checks.</p></div>
-        <div class="card"><h3>Pre-Listing</h3><p class="muted">Know issues before you list a home.</p></div>
-        <div class="card"><h3>Buyer Diligence</h3><p class="muted">Get clarity on risks and likely costs.</p></div>
+        <div class="card"><h3>Insurance</h3><p class="muted">Underwriting or claim documentation.</p></div>
+        <div class="card"><h3>Lenders / Refinance</h3><p class="muted">Condition verification for loans.</p></div>
+        <div class="card"><h3>HOAs</h3><p class="muted">Common-area planning and reserve studies.</p></div>
+        <div class="card"><h3>Property Managers</h3><p class="muted">Annual/bi-annual asset health checks.</p></div>
+        <div class="card"><h3>Pre-Listing</h3><p class="muted">Address issues before going to market.</p></div>
+        <div class="card"><h3>Buyer Diligence</h3><p class="muted">Clarity on near-term risks & costs.</p></div>
       </div>
     </section>
 
-    <!-- How we inspect (2-col) -->
-    <section class="card airy" aria-label="How we inspect">
-      <h2>How We Inspect</h2>
-      <div class="grid cols-2">
-        <div class="card">
-          <h3>On-Site Assessment</h3>
-          <ul class="checklist relaxed">
-            <li><span class="tick">✓</span> Roof surface, flashings, penetrations, edges</li>
-            <li><span class="tick">✓</span> Attic/ceiling checks where accessible</li>
-            <li><span class="tick">✓</span> Drainage: gutters, scuppers, and drains</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Professional Report</h3>
-          <ul class="checklist relaxed">
-            <li><span class="tick">✓</span> Photo documentation & captions</li>
-            <li><span class="tick">✓</span> Findings with risk rating</li>
-            <li><span class="tick">✓</span> Actionable recommendations</li>
-          </ul>
-        </div>
-      </div>
-      <div class="note" style="margin-top:12px;">
-        <strong>Note:</strong> Opening up assemblies or destructive testing is not included. If moisture mapping, cores, or engineering are needed, we’ll outline options.
-      </div>
-    </section>
+    <!-- Booking Form (PAID ONLY) -->
+    <section id="book" class="card airy" aria-label="Book certified roof report">
+      <h2>Book Your Certified Roof Report — <span class="price">$4,495</span></h2>
+      <p class="muted small">This is a <strong>paid</strong> service available in <strong>San Diego</strong> or <strong>Temecula</strong>. Complete the form and we’ll confirm scheduling and access details.</p>
 
-    <!-- Related services (4 even cards) -->
-    <section class="card airy" aria-label="Related services">
-      <h2>Related Services</h2>
-      <div class="grid micro-grid">
-        <a class="card svc-card" href="/services/real-estate/roof-estimates/">
-          <h3>Real Estate Roof Estimates</h3><p class="muted">Line-item scopes & photos (paid).</p>
-        </a>
-        <a class="card svc-card" href="/services/real-estate/roof-certifications/">
-          <h3>Roof Certifications</h3><p class="muted">Certification when eligible (paid).</p>
-        </a>
-        <a class="card svc-card" href="/services/residential/leak-repair-troubleshooting/">
-          <h3>Leak Repair</h3><p class="muted">Trace sources and fix issues.</p>
-        </a>
-        <a class="card svc-card" href="/services/residential/preventive-maintenance/">
-          <h3>Maintenance</h3><p class="muted">Clear drains/valleys and minor sealing.</p>
-        </a>
-      </div>
+      <form class="form" id="crr-form" method="post" action="/api/lead" novalidate>
+        <input type="hidden" name="service_type" value="Certified Roof Report (Paid)">
+        <input type="hidden" name="price_usd" value="4495">
+        <div class="form-row">
+          <div class="form-col-6">
+            <label for="name">Full Name</label>
+            <input id="name" name="name" required autocomplete="name" />
+          </div>
+          <div class="form-col-6">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" required autocomplete="tel" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-col-6">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required autocomplete="email" />
+          </div>
+          <div class="form-col-6">
+            <label for="zip">ZIP</label>
+            <input id="zip" name="zip" required inputmode="numeric" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-col-6">
+            <label for="city">City</label>
+            <select id="city" name="city" required>
+              <option value="">Select…</option>
+              <option>San Diego</option>
+              <option>Temecula</option>
+              <option>Other (request custom quote)</option>
+            </select>
+          </div>
+          <div class="form-col-6">
+            <label for="deadline">Deadline (optional)</label>
+            <input id="deadline" name="deadline" placeholder="e.g., Lender needs by Sept 20" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-col-12">
+            <label for="notes">Notes for the Inspector</label>
+            <textarea id="notes" name="message" rows="4" placeholder="Purpose (insurance, lender, HOA, sale), access info, roof type if known."></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-col-12 agree">
+            <input id="paid" name="paid_ack" type="checkbox" required />
+            <label for="paid">I understand this is a <strong>paid certified report</strong> priced at <strong>$4,495</strong> in San Diego or Temecula (out-of-area quoted separately).</label>
+          </div>
+        </div>
+        <button class="btn primary" type="submit">Request Scheduling</button>
+        <a class="btn inline outline" href="tel:8589006163">Or Call 858-900-6163</a>
+      </form>
     </section>
 
     <!-- FAQs -->
@@ -149,51 +172,21 @@
       <h2>FAQs</h2>
       <div class="grid cols-2">
         <div class="card">
-          <h3>How fast can I get the report?</h3>
-          <p class="muted">Turnaround depends on access and roof complexity. We’ll provide an ETA when we schedule your visit.</p>
+          <h3>How fast do I get the PDF?</h3>
+          <p class="muted">Turnaround depends on access and complexity. Tell us your deadline—we’ll confirm timing when we schedule.</p>
         </div>
         <div class="card">
-          <h3>Will this satisfy my lender/insurer?</h3>
-          <p class="muted">Our reports are contractor-authored and photo-documented. If your lender/insurer has a checklist, share it—we’ll align where feasible.</p>
+          <h3>Will this satisfy my lender or insurer?</h3>
+          <p class="muted">Reports are contractor-authored with photo documentation. If your lender/insurer has a checklist, share it and we’ll align where feasible.</p>
         </div>
       </div>
     </section>
 
-    <!-- Book / lead -->
-    <section id="estimate" class="card airy" data-estimate-context data-category="Certified Roof Reports (Paid)" data-redirect="/thank-you/">
-      <h2>Book a Certified Roof Report</h2>
-      <p class="muted small">Tell us the property details and any deadlines (insurance, lender, HOA, etc.).</p>
-      <div data-include="/components/forms/estimate.html"></div>
-
-      <!-- Fallback if include is unavailable -->
-      <template id="lead-form-fallback">
-        <form id="estimate-form" novalidate>
-          <input type="hidden" name="service_type" value="Certified Roof Report (Paid)">
-          <input type="hidden" name="page" value="">
-          <div class="form-row">
-            <div class="form-col-6"><label>Full Name</label><input name="name" required></div>
-            <div class="form-col-6"><label>Phone</label><input name="phone" type="tel" required></div>
-          </div>
-          <div class="form-row">
-            <div class="form-col-6"><label>Email</label><input name="email" type="email" required></div>
-            <div class="form-col-6"><label>ZIP</label><input name="zip" required></div>
-          </div>
-          <div class="form-row">
-            <div class="form-col-12">
-              <label>Notes</label>
-              <textarea name="message" rows="4" placeholder="Purpose (insurance, refinance, HOA), property type, timelines, access info."></textarea>
-            </div>
-          </div>
-          <button class="btn" type="submit">Book Report</button>
-        </form>
-      </template>
-    </section>
-
-    <!-- Service area -->
+    <!-- Service Area -->
     <section class="card airy">
       <h2>Service Area</h2>
-      <p class="muted">North County San Diego, Greater San Diego, Temecula & nearby communities.</p>
-      <p class="muted small">Information above describes typical practices. Final scope, pricing, and deliverables are governed by your signed service agreement.</p>
+      <p class="muted">San Diego • Temecula (nearby communities by custom quote).</p>
+      <p class="muted small">Final scope, pricing, and deliverables are governed by your signed service agreement.</p>
     </section>
   </main>
 
@@ -203,7 +196,7 @@
   <div class="actionbar">
     <a class="ab-btn call" href="tel:8589006163">Call</a>
     <a class="ab-btn text" href="sms:+18589006163">Text</a>
-    <a class="ab-btn estimate" href="#estimate">Book</a>
+    <a class="ab-btn estimate" href="#book">Book Report</a>
   </div>
 </body>
 </html>
