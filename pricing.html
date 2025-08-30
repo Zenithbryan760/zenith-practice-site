@@ -1,126 +1,290 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pricing – Zenith Roofing Services</title>
-  <link rel="stylesheet" href="/css/base.css" />
-  <link rel="stylesheet" href="/css/header.css" /><link rel="stylesheet" href="/css/footer.css">
+  <meta charset="utf-8" />
+  <title>Roofing Prices & Service Rates | Zenith Roofing Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Roofing pricing for San Diego & Temecula. Fixed rates for real-estate services listed; all other services are call-for-pricing or request a quote. Easy to update as we go." />
+  <link rel="canonical" href="https://www.zenithroofingservices.com/pricing/">
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/ui.css">
+  <link rel="stylesheet" href="/css/estimate-form.css">
+
+  <!-- Shared JS -->
+  <script defer src="/js/loader.js"></script>
+  <script defer src="/js/header.js"></script>
+  <script defer src="/js/estimate-form.js"></script>
+
+  <style>
+    .page.price { max-width:1100px; margin:24px auto; padding:0 16px; }
+    .badge{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#f1f5f9; font-weight:600; font-size:.95rem; }
+    .lede{ color:#475569; font-size:1.075rem; margin:8px 0 18px; }
+    .muted{ color:var(--ui-muted); }
+    .small{ font-size:.9rem; }
+    .tag{ font-weight:700; padding:2px 8px; border-radius:999px; border:1px solid var(--ui-line); font-size:.85rem; white-space:nowrap; }
+    .tag.firm{ background:#ecfdf5; border-color:#99f6e4; }
+    .tag.call{ background:#f8fafc; }
+    .price-val{ font-weight:800; }
+    .grid.pricing .card{ display:flex; flex-direction:column; gap:8px; }
+    .grid.pricing h3{ margin:0 0 4px; }
+    .grid.pricing p{ margin:0; }
+    .grid.pricing .row{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .grid.pricing .actions{ margin-top:6px; display:flex; gap:8px; flex-wrap:wrap; }
+    .divider{ height:1px; background:var(--ui-line); margin:20px 0; }
+  </style>
+
+  <!-- SEO: ItemList for Real Estate fixed-price services -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ItemList",
+    "name":"Real Estate Roofing Services Pricing",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Visual Roof Inspection","url":"https://www.zenithroofingservices.com/services/real-estate/visual-inspections/","additionalProperty":{"@type":"PropertyValue","name":"price","value":"$295"}},
+      {"@type":"ListItem","position":2,"name":"Real-Estate Roof Estimate","url":"https://www.zenithroofingservices.com/services/real-estate/roof-estimates/","additionalProperty":{"@type":"PropertyValue","name":"price","value":"$295"}},
+      {"@type":"ListItem","position":3,"name":"Roof Certification","url":"https://www.zenithroofingservices.com/services/real-estate/roof-certifications/","additionalProperty":{"@type":"PropertyValue","name":"price","value":"$395"}},
+      {"@type":"ListItem","position":4,"name":"Certified Roof Report","url":"https://www.zenithroofingservices.com/services/roof-inspection/certified-roof-reports/","additionalProperty":{"@type":"PropertyValue","name":"price","value":"$495"}},
+      {"@type":"ListItem","position":5,"name":"Verbal Roof Opinion","url":"https://www.zenithroofingservices.com/services/real-estate/verbal-opinions/","additionalProperty":{"@type":"PropertyValue","name":"price","value":"Free"}}
+    ]
+  }
+  </script>
 </head>
 <body>
-  <!-- copy your header block from index.html here -->
   <div data-include="/components/header-section.html"></div>
 
-  <!-- ===== PRICING CONTENT ===== -->
-  <section class="light-section" id="pricing">
-    <div class="container">
-      <h2 class="section-title">Our Pricing</h2>
-      <p>These are ballpark rates. Contact us for an exact quote:</p>
-      <ul>
-        <li><strong>Asphalt Shingles:</strong> $4.50–$7.00 / sq ft</li>
-        <li><strong>Torch-Down Systems:</strong> $5.00–$8.00 / sq ft</li>
-        <li><strong>Clay & Concrete Tile:</strong> $6.50–$10.00 / sq ft</li>
-        <li><strong>TPO Single-Ply:</strong> $5.50–$9.00 / sq ft</li>
-        <li><strong>Silicone Coatings:</strong> $1.00–$2.50 / sq ft</li>
+  <main class="page price" id="top">
+    <!-- Hero -->
+    <section class="card airy">
+      <span class="badge">Pricing</span>
+      <h1 style="margin:10px 0 6px;">Roofing Prices & Service Rates</h1>
+      <p class="lede">Below are our current rates in <strong>San Diego</strong> and <strong>Temecula</strong>. Real-estate services show firm pricing. All other services are <strong>Call for Pricing</strong> or <strong>Request a Quote</strong> (scope- and material-based). Update this page anytime—each item is a simple card.</p>
+      <div class="small muted">Legend: <span class="tag firm">Firm Price</span> • <span class="tag call">Call for Pricing</span></div>
+    </section>
+
+    <!-- REAL ESTATE (Firm Prices) -->
+    <section class="card airy" id="real-estate">
+      <h2>Real-Estate Services (Firm Pricing)</h2>
+      <div class="grid pricing micro-grid">
+        <a class="card" href="/services/real-estate/visual-inspections/">
+          <div class="row">
+            <h3>Visual Roof Inspection</h3>
+            <span class="tag firm">$<span class="price-val">295</span></span>
+          </div>
+          <p class="muted">On-site photos + written findings for transactions.</p>
+          <div class="actions">
+            <a class="btn" href="/services/real-estate/visual-inspections/#book">Book</a>
+            <a class="btn outline" href="tel:8589006163">Call</a>
+          </div>
+        </a>
+
+        <a class="card" href="/services/real-estate/roof-estimates/">
+          <div class="row">
+            <h3>Real-Estate Roof Estimate</h3>
+            <span class="tag firm">$<span class="price-val">295</span></span>
+          </div>
+          <p class="muted">Line-item scope & pricing for negotiations.</p>
+          <div class="actions">
+            <a class="btn" href="/services/real-estate/roof-estimates/#book">Book</a>
+            <a class="btn outline" href="tel:8589006163">Call</a>
+          </div>
+        </a>
+
+        <a class="card" href="/services/real-estate/roof-certifications/">
+          <div class="row">
+            <h3>Roof Certification</h3>
+            <span class="tag firm">$<span class="price-val">395</span></span>
+          </div>
+          <p class="muted">Written certificate when eligibility standards are met.</p>
+          <div class="actions">
+            <a class="btn" href="/services/real-estate/roof-certifications/#book">Book</a>
+            <a class="btn outline" href="tel:8589006163">Call</a>
+          </div>
+        </a>
+
+        <a class="card" href="/services/roof-inspection/certified-roof-reports/">
+          <div class="row">
+            <h3>Certified Roof Report</h3>
+            <span class="tag firm">$<span class="price-val">495</span></span>
+          </div>
+          <p class="muted">Contractor-certified narrative with photos & recommendations.</p>
+          <div class="actions">
+            <a class="btn" href="/services/roof-inspection/certified-roof-reports/#book">Book</a>
+            <a class="btn outline" href="tel:8589006163">Call</a>
+          </div>
+        </a>
+
+        <a class="card" href="/services/real-estate/verbal-opinions/">
+          <div class="row">
+            <h3>Verbal Roof Opinion</h3>
+            <span class="tag firm">Free</span>
+          </div>
+          <p class="muted">Quick phone guidance—no written deliverable.</p>
+          <div class="actions">
+            <a class="btn" href="tel:8589006163">Call</a>
+            <a class="btn outline" href="sms:+18589006163">Text</a>
+          </div>
+        </a>
+
+        <a class="card" href="/services/insurance/storm-damage-inspection/">
+          <div class="row">
+            <h3>Storm Damage Inspection (Insurance Claims)</h3>
+            <span class="tag firm">Free</span>
+          </div>
+          <p class="muted">For active storm-damage insurance claims only.</p>
+          <div class="actions">
+            <a class="btn" href="/services/insurance/storm-damage-inspection/#inspection">Book Free Inspection</a>
+            <a class="btn outline" href="tel:8589006163">Call</a>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <div class="divider" role="presentation"></div>
+
+    <!-- RESIDENTIAL ROOFING (Call for Pricing) -->
+    <section class="card airy" id="residential">
+      <h2>Residential Roofing (Call for Pricing)</h2>
+      <div class="grid pricing micro-grid">
+        <a class="card" href="/services/residential/asphalt-shingles/">
+          <div class="row"><h3>Asphalt Shingle Roofs</h3><span class="tag call">Call for Pricing</span></div>
+          <p class="muted">Architectural shingles, cool colors, full replacements.</p>
+          <div class="actions"><a class="btn" href="/services/residential/asphalt-shingles/#estimate">Get a Quote</a><a class="btn outline" href="tel:8589006163">Call</a></div>
+        </a>
+        <a class="card" href="/services/residential/tile-roof/">
+          <div class="row"><h3>Tile Roofing (New/Replace)</h3><span class="tag call">Call for Pricing</span></div>
+          <p class="muted">Concrete & clay systems with modern flashings.</p>
+          <div class="actions"><a class="btn" href="/services/residential/tile-roof/#estimate">Get a Quote</a><a class="btn outline" href="tel:8589006163">Call</a></div>
+        </a>
+        <a class="card" href="/services/residential/tile-lift-lay/">
+          <div class="row"><h3>Tile Lift &amp; Lay</h3><span class="tag call">Call for Pricing</span></div>
+          <p class="muted">Reuse tiles, new underlayment & flashings.</p>
+          <div class="actions"><a class="btn" href="/services/residential/tile-lift-lay/#estimate">Get a Quote</a><a class="btn outline" href="tel:8589006163">Call</a></div>
+        </a>
+        <a class="card" href="/services/residential/metal/">
+          <div class="row"><h3>Metal Roofing</h3><span class="tag call">Call for Pricing</span></div>
+          <p class="muted">Standing seam & specialty profiles.</p>
+          <div class="actions"><a class="btn" href="/services/residential/metal/#estimate">Get a Quote</a><a class="btn outline" href="tel:8589006163">Call</a></div>
+        </a>
+        <a class="card" href="/services/residential/preventive-maintenance/">
+          <div class="row"><h3>Maintenance &amp; Tune-Ups</h3><span class="tag call">Call for Pricing</span></div>
+          <p class="muted">Seal penetrations, clear valleys/gutters.</p>
+          <div class="actions"><a class="btn" href="/services/residential/preventive-maintenance/#estimate">Get a Quote</a><a class="btn outline" href="tel:8589006163">Call</a></div>
+        </a>
+        <a class="card" href="/services/residential/leak-repair-troubleshooting/">
+          <div class="row"><h3>Leak Repair &amp; Troubleshooting</h3><span class="tag call">Call for Pricing</span></div>
+          <p class="muted">Targeted fixes with photos & documentation.</p>
+          <div class="actions"><a class="btn" href="/services/residential/leak-repair-troubleshooting/#estimate">Get a Quote</a><a class="btn outline" href="tel:8589006163">Call</a></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- FLAT / LOW-SLOPE (Call for Pricing) -->
+    <section class="card airy" id="flat">
+      <h2>Flat / Low-Slope Roofing (Call for Pricing)</h2>
+      <div class="grid pricing micro-grid">
+        <a class="card" href="/services/residential/tpo/">
+          <div class="row"><h3>TPO / PVC Systems</h3><span class="tag call">Call for Pricing</span></div>
+          <p class="muted">Heat-welded seams, drains & scuppers, ES-1 edges.</p>
+          <div class="actions"><a class="btn" href="/services/residential/tpo/#estimate">Get a Quote</a><a class="btn outline" href="tel:8589006163">Call</a></div>
+        </a>
+        <a class="card" href="/services/residential/torch-down/">
+          <div class="row"><h3>Torch-Down (Mod-Bit)</h3><span class="tag call">Call for Pricing</span></div>
+          <p class="muted">Base + granulated cap sheet, term bars & flashings.</p>
+          <div class="actions"><a class="btn" href="/services/residential/torch-down/#estimate">Get a Quote</a><a class="btn outline" href="tel:8589006163">Call</a></div>
+        </a>
+        <a class="card" href="/services/residential/silicone/">
+          <div class="row"><h3>Silicone Coatings</h3><span class="tag call">Call for Pricing</span></div>
+          <p class="muted">Restoration coatings for eligible roofs.</p>
+          <div class="actions"><a class="btn" href="/services/residential/silicone/#estimate">Get a Quote</a><a class="btn outline" href="tel:8589006163">Call</a></div>
+        </a>
+        <a class="card" href="/services/real-estate/satellite-imagery-analysis/">
+          <div class="row"><h3>Satellite Imagery Takeoff</h3><span class="tag call">Call for Pricing</span></div>
+          <p class="muted">Remote measurements for early budgeting.</p>
+          <div class="actions"><a class="btn" href="/services/real-estate/satellite-imagery-analysis/#start">Start</a><a class="btn outline" href="tel:8589006163">Call</a></div>
+        </a>
+        <a class="card" href="/services/insurance/storm-damage-inspection/">
+          <div class="row"><h3>Insurance Claim Scope Alignment</h3><span class="tag call">Call for Pricing</span></div>
+          <p class="muted">Scope review & adjuster coordination (post-inspection).</p>
+          <div class="actions"><a class="btn" href="/services/insurance/storm-damage-inspection/#inspection">Free Claim Inspection</a><a class="btn outline" href="tel:8589006163">Call</a></div>
+        </a>
+        <a class="card" href="/services/gutters/">
+          <div class="row"><h3>Gutters &amp; Guards</h3><span class="tag call">Call for Pricing</span></div>
+          <p class="muted">Seamless gutters, downspouts, debris control.</p>
+          <div class="actions"><a class="btn" href="/services/gutters/#estimate">Get a Quote</a><a class="btn outline" href="tel:8589006163">Call</a></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- INSPECTIONS for HOMEOWNERS (Free path + paid letters) -->
+    <section class="card airy" id="inspections">
+      <h2>Inspections for Homeowners</h2>
+      <div class="grid pricing micro-grid">
+        <a class="card" href="/services/roof-inspection/">
+          <div class="row"><h3>Homeowner Roof Inspection</h3><span class="tag firm">Free</span></div>
+          <p class="muted">For your own roof; proposals provided if needed.</p>
+          <div class="actions"><a class="btn" href="/services/roof-inspection/#free">Book Free Inspection</a><a class="btn outline" href="tel:8589006163">Call</a></div>
+        </a>
+        <a class="card" href="/services/roof-inspection/">
+          <div class="row"><h3>Third-Party Inspection Letter</h3><span class="tag firm">$<span class="price-val">295</span></span></div>
+          <p class="muted">Insurance, lender/refi, HOA, moss/algae letters.</p>
+          <div class="actions"><a class="btn" href="/services/roof-inspection/#paid">Book Letter Visit</a><a class="btn outline" href="tel:8589006163">Call</a></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- CTA: general quote form -->
+    <section class="card airy" id="quote" data-estimate-context data-category="Pricing Page — General Quote" data-redirect="/thank-you/">
+      <h2>Don’t See Your Item? Get a Quick Quote</h2>
+      <p class="muted small">Most roof work is scope- and material-based. Share a few details and we’ll price it promptly.</p>
+      <div data-include="/components/forms/estimate.html"></div>
+
+      <!-- Fallback form if include unavailable -->
+      <template id="lead-form-fallback">
+        <form id="pricing-form" class="form" method="post" action="/api/lead" novalidate>
+          <input type="hidden" name="service_type" value="General Quote (Pricing Page)">
+          <input type="hidden" name="page" value="">
+          <div class="form-row">
+            <div class="form-col-6"><label>Full Name</label><input name="name" required></div>
+            <div class="form-col-6"><label>Phone</label><input name="phone" type="tel" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-col-6"><label>Email</label><input name="email" type="email" required></div>
+            <div class="form-col-6"><label>ZIP</label><input name="zip" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-col-12">
+              <label>What do you need priced?</label>
+              <textarea name="message" rows="4" placeholder="Roof type if known, leak or replacement, timelines, any photos/links."></textarea>
+            </div>
+          </div>
+          <button class="btn" type="submit">Request Pricing</button>
+          <a class="btn outline" href="tel:8589006163">Or Call 858-900-6163</a>
+        </form>
+      </template>
+    </section>
+
+    <!-- Notes -->
+    <section class="card airy">
+      <h2>Notes & Fine Print</h2>
+      <ul class="muted small">
+        <li>Firm prices above apply in San Diego & Temecula; nearby communities may require a travel adjustment.</li>
+        <li>Scope-based pricing reflects roof size/complexity, access, materials, ventilation/drainage, and code details.</li>
+        <li>Written proposals define final scope, pricing, and warranties.</li>
       </ul>
-    </div>
-  </section>
-
-  <main>
-    <h1>Our Pricing</h1>
-    <!-- pricing tables or details -->
+    </section>
   </main>
-  <script src="js/header.js"></script>
-<script>
-  (function () {
-    // fetch + inject a single [data-include]
-    async function include(el) {
-      const src = el.getAttribute('data-include');
-      if (!src) return;
-      try {
-        const res = await fetch(src);             // normal caching
-        if (!res.ok) throw new Error('Failed ' + src);
-        const html = await res.text();
-        el.outerHTML = html;
-      } catch (e) {
-        console.error('❌ Include error:', src, e);
-      }
-    }
 
-    // Header height + collapsed state WITHOUT scroll reflow
-    function setupHeaderObservers() {
-      const root = document.documentElement;
-      const getHeader = () => document.querySelector('.mobile-header') || document.querySelector('.header');
+  <div data-include="/components/footer.html"></div>
 
-      function updateHeaderH() {
-        const h = getHeader();
-        if (h) root.style.setProperty('--header-h', Math.round(h.offsetHeight) + 'px');
-      }
-
-      // update when the header actually resizes
-      if ('ResizeObserver' in window) {
-        const ro = new ResizeObserver(updateHeaderH);
-        const h = getHeader(); if (h) ro.observe(h);
-      }
-      window.addEventListener('load', updateHeaderH, { passive: true });
-      window.addEventListener('resize', () => requestAnimationFrame(updateHeaderH), { passive: true });
-
-      // toggle nav-collapsed via IntersectionObserver (no scroll work)
-      const sent = document.createElement('div');
-      sent.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;';
-      document.body.prepend(sent);
-      new IntersectionObserver(([e]) => {
-        root.classList.toggle('nav-collapsed', !e.isIntersecting);
-      }, { rootMargin: '-80px 0px 0px 0px' }).observe(sent); // adjust -80px if your header is taller
-    }
-
-    async function init() {
-      // include everything ELSE (hero has an LCP stub now)
-      const includes = Array.from(document.querySelectorAll('[data-include]'));
-      await Promise.all(includes.map(include));
-
-      // Upgrade the stub to the real hero component while REUSING the already-downloaded LCP <img>
-      const stub = document.getElementById('hero-stub');
-      if (stub) {
-        const res = await fetch('components/hero-section.html');
-        if (res.ok) {
-          const html = await res.text();
-          const tpl = document.createElement('template');
-          tpl.innerHTML = html.trim();
-          const real = tpl.content.querySelector('section.zenith-hero') || tpl.content.firstElementChild;
-          if (real) {
-            const lcp = document.getElementById('lcp-img');
-            const realPic = real.querySelector('.zenith-hero-media picture') || real.querySelector('.zenith-hero-media');
-            if (lcp && realPic) {
-              const existing = realPic.querySelector('.zenith-hero-mobile-img');
-              if (existing) existing.replaceWith(lcp); else realPic.appendChild(lcp);
-            }
-            stub.replaceWith(real);
-          }
-        }
-      }
-
-      // your existing inits (unchanged)
-      if (window.initMobileMenu) window.initMobileMenu();
-      [
-        'initEstimateForm','initAboutSection','initWhyChoose','initTrustSection',
-        'initPhotoSection','initTestimonials','initCTA','initServiceAreas',
-        'initRealEstate','initFooter','initHeader'
-      ].forEach(n => { if (typeof window[n] === 'function') window[n](); });
-
-      setupHeaderObservers();   // replaces old setLayoutFlags/scroll listeners
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      init();
-    }
-  })();
-  </script>
-  <section data-include="/components/footer.html"></section>
-<div data-include="/components/footer.html"></div>
-<script src="/js/loader.js" defer></script>
-<script src="/js/header.js" defer></script>
+  <!-- Sticky Action Bar -->
+  <div class="actionbar">
+    <a class="ab-btn call" href="tel:8589006163">Call</a>
+    <a class="ab-btn text" href="sms:+18589006163">Text</a>
+    <a class="ab-btn estimate" href="#quote">Request Pricing</a>
+  </div>
 </body>
 </html>
