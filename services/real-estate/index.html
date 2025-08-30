@@ -244,15 +244,139 @@
       </details>
     </section>
 
-    <!-- Neutral lead form (no “free estimate”); wrapper is flat via CSS above -->
-    <section class="section" id="book"
-      data-estimate-context
-      data-category="Real-Estate Services"
-      data-redirect="/thank-you/">
-      <h2>Request Info / Schedule</h2>
-      <p class="muted">Tell us the property address, your timeline, and which item you need (Visual Inspection, Estimate, Certification, or Certified Report).</p>
-      <div data-include="/components/forms/estimate.html"></div>
-    </section>
+<!-- /components/forms/estimate.html -->
+<section class="lead-form card airy" aria-label="Request information or a call back">
+  <div class="head">
+    <span class="kicker">Request Info / Schedule</span>
+    <h2>Tell us about your roof—we’ll follow up fast</h2>
+    <p class="muted">Use this form to request information, scheduling, or pricing. Or contact us directly:</p>
+    <nav class="quick" aria-label="Quick contact">
+      <a class="qbtn primary" href="tel:8589006163">Call 858-900-6163</a>
+      <a class="qbtn" href="sms:+18589006163">Text Us</a>
+    </nav>
+  </div>
+
+  <form id="estimate-form" novalidate>
+    <!-- Contact -->
+    <div class="row cols-2">
+      <div>
+        <label for="name">Full Name *</label>
+        <input id="name" name="name" type="text" autocomplete="name" required />
+      </div>
+      <div>
+        <label for="phone">Phone *</label>
+        <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required />
+      </div>
+    </div>
+
+    <div class="row cols-2">
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" />
+      </div>
+      <div>
+        <label for="contact_pref">Preferred Contact</label>
+        <select id="contact_pref" name="contact_pref">
+          <option value="">No preference</option>
+          <option>Call</option>
+          <option>Text</option>
+          <option>Email</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Property -->
+    <div class="row cols-3">
+      <div>
+        <label for="address">Property Address *</label>
+        <input id="address" name="address" type="text" autocomplete="street-address" required />
+      </div>
+      <div>
+        <label for="city">City *</label>
+        <input id="city" name="city" type="text" required />
+      </div>
+      <div>
+        <label for="zip">ZIP *</label>
+        <input id="zip" name="zip" type="text" inputmode="numeric" pattern="[0-9]*" required />
+      </div>
+    </div>
+
+    <!-- Service -->
+    <div class="row cols-2">
+      <div>
+        <label for="service">What do you need? *</label>
+        <select id="service" name="service" required>
+          <option value="">Select one…</option>
+          <optgroup label="Real-Estate">
+            <option>Visual Roof Inspection ($295)</option>
+            <option>Real-Estate Roof Estimate ($295)</option>
+            <option>Roof Certification ($395)</option>
+            <option>Certified Roof Report ($495)</option>
+            <option>Verbal Roof Opinion</option>
+            <option>Satellite Imagery Analysis</option>
+          </optgroup>
+          <optgroup label="Homeowners / Repairs">
+            <option>Homeowner Roof Inspection</option>
+            <option>Roof Tune-Up (Quote)</option>
+            <option>Tile Roof Repair (Quote)</option>
+            <option>Asphalt Shingle Roof (Quote)</option>
+            <option>Flat / Low-Slope Roof (Quote)</option>
+          </optgroup>
+          <optgroup label="Insurance">
+            <option>Storm Damage Inspection for Claim</option>
+            <option>Insurance Letter / Third Party Request ($295)</option>
+          </optgroup>
+          <optgroup label="Other">
+            <option>Gutters / Guards (Quote)</option>
+            <option>Other / Not sure</option>
+          </optgroup>
+        </select>
+      </div>
+      <div>
+        <label for="timeline">Timeline</label>
+        <select id="timeline" name="timeline">
+          <option value="">Select…</option>
+          <option>ASAP (in escrow)</option>
+          <option>1–2 weeks</option>
+          <option>2–4 weeks</option>
+          <option>Just planning</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Details -->
+    <div>
+      <label for="details">Notes for our team</label>
+      <textarea id="details" name="details" placeholder="Tell us about leaks, age, material, or what triggered this request."></textarea>
+      <p class="hint">You can also reply with photos after we follow up.</p>
+    </div>
+
+    <!-- Consent -->
+    <div>
+      <label class="note">
+        <input type="checkbox" name="ok_to_text" value="yes" />
+        OK to text me about this request
+      </label>
+    </div>
+
+    <!-- Hidden context populated by /js/estimate-form.js -->
+    <input type="hidden" name="category" value="">
+    <input type="hidden" name="page_url" value="">
+    <input type="hidden" name="page_title" value="">
+    <input type="hidden" name="context" value="">
+
+    <div class="divider" role="presentation"></div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="btn primary" type="submit">Send Request</button>
+      <a class="btn ghost" href="tel:8589006163">Or Call 858-900-6163</a>
+    </div>
+
+    <p class="note">Submitting this form does not place an order or schedule work; it simply lets us contact you to discuss your roof and next steps.</p>
+  </form>
+</section>
+
   </main>
 
   <div data-include="/components/footer.html"></div>
