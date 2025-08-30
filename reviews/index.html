@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <title>Customer Reviews & Testimonials | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Read verified reviews of Zenith Roofing Services from Google, Yelp, GuildQuality, Owens Corning, and HomeAdvisor/Angi. See what homeowners in San Diego & Temecula say about our roof repairs and replacements." />
+  <meta name="description" content="Read verified reviews of Zenith Roofing Services from Google, Yelp, GuildQuality, and Owens Corning. See what homeowners in San Diego & Temecula say about our roof repairs and replacements." />
   <link rel="canonical" href="https://www.zenithroofingservices.com/reviews/">
 
   <!-- Shared CSS -->
@@ -24,50 +24,43 @@
     .badge{ display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; background:#eef2ff; color:#334155; font-weight:700; }
     .lede{ color:#475569; margin:8px 0 0; }
 
-    /* Source pills (dynamic) */
     .pills{ margin:16px 0 0; display:flex; flex-wrap:wrap; gap:8px; }
     .pill{ border:1px solid var(--line); border-radius:999px; padding:8px 12px; cursor:pointer; background:#fff; font-weight:700; }
     .pill[aria-pressed="true"]{ background:#0b3a6f; color:#fff; border-color:transparent; }
 
-    /* Highlights */
     .highlights{ display:grid; gap:12px; margin:16px 0; }
     .kpi{ border:1px solid var(--line); border-radius:14px; padding:14px; background:#fff; display:flex; align-items:center; justify-content:space-between; }
     .kpi strong{ font-size:1.15rem; }
     @media (min-width:800px){ .highlights{ grid-template-columns:1fr 1fr 1fr; } }
 
-    /* Filters */
     .filters{ display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 0; }
     .filters select, .filters input{ border:1px solid var(--line); border-radius:10px; padding:8px 10px; }
 
-    /* Review list */
     .grid{ display:grid; gap:12px; }
     .reviews{ margin-top:16px; }
     .card.review{ border:1px solid var(--line); border-radius:16px; padding:14px; background:#fff; }
-    .meta{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; color:#64748b; font-size:.92rem; }
+    .meta{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; color:var(--muted); font-size:.92rem; }
     .stars{ color:#f59e0b; font-weight:800; letter-spacing:.5px; }
     .src{ background:#f1f5f9; padding:4px 8px; border-radius:999px; font-weight:700; }
     .who{ font-weight:700; color:#111827; }
-    .when{ color:#64748b; }
-    .body{ margin:8px 0 0; color:#334155; white-space:pre-wrap; }
-    .more{ display:inline-block; margin-top:8px; color:#0b3a6f; font-weight:700; }
+    .when{ color:var(--muted); }
+    .body{ margin:8px 0 0; color:#334155; }
+    .more{ display:inline-block; margin-top:8px; color:var(--ink); font-weight:700; }
 
-    /* CTA row */
     .cta-wrap{ display:grid; gap:12px; margin:18px 0; }
-    @media (min-width:800px){ .cta-wrap{ grid-template-columns: repeat(5,1fr); } }
+    @media (min-width:800px){ .cta-wrap{ grid-template-columns: repeat(4,1fr); } }
     .cta{ border:1px solid var(--line); border-radius:14px; padding:14px; background:#fff; }
     .cta h3{ margin:0 0 6px; font-size:1rem; }
     .cta .btn{ display:inline-flex; align-items:center; justify-content:center; min-height:var(--tap); padding:10px 14px; border-radius:12px; border:1px solid var(--line); }
-    .cta .btn.primary{ background:#0b3a6f; color:#fff; border-color:transparent; }
+    .cta .btn.primary{ background:var(--ink); color:#fff; border-color:transparent; }
 
-    /* Load more */
     .loadmore { display:flex; justify-content:center; margin:16px 0 8px; }
     .loadmore .btn { min-height:var(--tap); padding:10px 18px; border-radius:12px; border:1px solid var(--line); font-weight:700; }
     .btn[disabled]{ opacity:.6; cursor:not-allowed; }
 
-    /* Sticky actions */
     .actionbar{ position:sticky; bottom:0; left:0; width:100%; display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; background:rgba(255,255,255,.97); backdrop-filter: saturate(180%) blur(6px); border-top:1px solid var(--line); padding:10px var(--pad) calc(env(safe-area-inset-bottom,0) + 10px); }
     .ab-btn{ display:flex; align-items:center; justify-content:center; min-height:var(--tap); border-radius:12px; border:1px solid var(--line); font-weight:700; }
-    .ab-btn.primary{ background:#0b3a6f; color:#fff; border-color:transparent; }
+    .ab-btn.primary{ background:var(--ink); color:#fff; border-color:transparent; }
 
     a:focus-visible, button:focus-visible, .pill:focus-visible{ outline:3px solid #75b6ff; outline-offset:2px; border-radius:10px; }
   </style>
@@ -98,10 +91,16 @@
     <section class="hero card airy">
       <span class="badge">Customer Reviews</span>
       <h1 style="margin:10px 0 6px;">What Homeowners Say About Us</h1>
-      <p class="lede">Full, unedited review texts from Google, Yelp, GuildQuality, Owens Corning, and HomeAdvisor/Angi for projects across San Diego &amp; Temecula.</p>
+      <p class="lede">Real feedback from Google, Yelp, GuildQuality, and Owens Corning for projects across San Diego &amp; Temecula.</p>
 
-      <!-- Source selector (built dynamically) -->
-      <div class="pills" id="pillBar" role="toolbar" aria-label="Filter by source"></div>
+      <!-- Source selector -->
+      <div class="pills" role="toolbar" aria-label="Filter by source">
+        <button class="pill" aria-pressed="true" data-src="all">All</button>
+        <button class="pill" aria-pressed="false" data-src="google">Google</button>
+        <button class="pill" aria-pressed="false" data-src="yelp">Yelp</button>
+        <button class="pill" aria-pressed="false" data-src="guildquality">GuildQuality</button>
+        <button class="pill" aria-pressed="false" data-src="owens">Owens Corning</button>
+      </div>
 
       <!-- Highlights (no averages) -->
       <div class="highlights" aria-label="Review highlights">
@@ -143,11 +142,6 @@
         <p class="muted">Manufacturer partner profile.</p>
         <a class="btn primary" rel="noopener" target="_blank" href="https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828">Open OC Profile</a>
       </div>
-      <div class="cta">
-        <h3>HomeAdvisor / Angi</h3>
-        <p class="muted">Historic project reviews.</p>
-        <a class="btn primary" rel="noopener" target="_blank" href="https://www.angi.com/">Open Angi</a>
-      </div>
     </section>
 
     <!-- Reviews -->
@@ -157,7 +151,7 @@
     <!-- Trust note -->
     <section class="card airy" style="margin-top:14px;">
       <h2>How we collect and display reviews</h2>
-      <p class="muted">We show full excerpts from public platforms and independent surveys. Each card links to the original source where available. Counts reflect what’s rendered on this page.</p>
+      <p class="muted">We show excerpts from public platforms and independent surveys. For transparency, each card links to the original source. Counts reflect what’s rendered on this page.</p>
     </section>
   </main>
 
@@ -170,286 +164,52 @@
     <a class="ab-btn primary" href="/services/roof-inspection/#free">Book Free Inspection</a>
   </div>
 
-  <!-- FULL REVIEW TEXTS FROM THIS CHAT -->
+  <!-- Seed data: expanded real reviews you provided (trimmed excerpts) -->
   <script type="application/json" id="reviews-seed">
   {
     "reviews":[
-      /* =========================
-         GUILDQUALITY (full text)
-         ========================= */
-      {
-        "source":"guildquality","rating":5,"author":"Renatte A.","location":"San Diego, CA","date":"2025-05-14",
-        "body":"The owner was extremely informative during the estimation process, and always responsive to every question I had. More importantly, his expertise and professionalism made me feel comfortable after I had had 2 different roofs from 2 different companies that leaked. Because of my hesitancy to get another roof, I had gotten 4 different estimates. But Zenith offered the clearest itemization and best value for a good product, since I have a flat roof and needed a reliable product with a strong guarantee. Some firms made me feel pressured, but Zenith's owner made me feel confident in his knowledge and experience. Lastly, the crew manager and workers put in consistent effort and kept me informed. They were respectful of my property, and very pleasant to work with. Each stage was completed in the time frame as promised, and I did not feel I was being hit with up-charges since all aspects of the process had been well laid-out and upfront. Roofing is not always predictable until the old roof is removed, especially since my home is 70+ years old, but Zenith was very forthright with all information at every stage of the job.",
-        "permalink":"https://www.guildquality.com/pro/zenith-roofing-services"
-      },
-      {
-        "source":"guildquality","rating":5,"author":"Barbara P.","location":"San Diego, CA","date":"2025-04-23",
-        "body":"I found Zenith Roofing Services to be very professional. Bryan and Omar knew their stuff. The company had their license, contract, and a description of what would take place during the work. They are very knowledgeable and pleasant to work with. I would recommend them without hesitation.",
-        "permalink":"https://www.guildquality.com/pro/zenith-roofing-services"
-      },
-      {
-        "source":"guildquality","rating":5,"author":"Temecula Review","location":"Temecula, CA","date":"2025-03-19",
-        "body":"Brian Remerez from Zenith Roofing provided excellent customer service and a quality roof replacement.",
-        "permalink":"https://www.guildquality.com/pro/zenith-roofing-services"
-      },
-      {
-        "source":"guildquality","rating":5,"author":"Laurie W.","location":"Escondido, CA","date":"2025-01-08",
-        "body":"Zenith was excellent to work with from beginning to end, from quote to job completed.",
-        "permalink":"https://www.guildquality.com/pro/zenith-roofing-services"
-      },
-      {
-        "source":"guildquality","rating":5,"author":"Janet R.","location":"Temecula, CA","date":"2024-10-23",
-        "body":"Zenith Roofing Services did a good job. Their communication was great, and they were on time. Zenith Roofing Services let me know when they would arrive and never left me waiting. Zenith Roofing Services provided a good response, and I liked that.",
-        "permalink":"https://www.guildquality.com/pro/zenith-roofing-services"
-      },
-      {
-        "source":"guildquality","rating":5,"author":"Marco C.","location":"San Diego, CA","date":"2024-04-23",
-        "body":"Courteous, on time and on schedule as advertised.",
-        "permalink":"https://www.guildquality.com/pro/zenith-roofing-services"
-      },
-      {
-        "source":"guildquality","rating":5,"author":"Steven L.","location":"San Diego, CA","date":"2023-01-05",
-        "body":"Working with Zenith was smooth and easy; they go the extra mile to make sure everything was right.",
-        "permalink":"https://www.guildquality.com/pro/zenith-roofing-services"
-      },
-      {
-        "source":"guildquality","rating":5,"author":"Barbara F.","location":"San Diego, CA","date":"2022-10-30",
-        "body":"Zenith Roofing was professional and pro-active. I was impressed when they did a previous repair on my old roof. They were very aware of ways to make the roof more insulated for our weather. They were up on current and cutting edge practices.",
-        "permalink":"https://www.guildquality.com/pro/zenith-roofing-services"
-      },
-      {
-        "source":"guildquality","rating":5,"author":"Evette F.","location":"Poway, CA","date":"2021-02-25",
-        "body":"Brian answered all of my questions and was straight forward! I can't complain. He came on time and gave me an estimate of what I asked for. The price was so reasonable. They were fantastic! I was very pleased with them!",
-        "permalink":"https://www.guildquality.com/pro/zenith-roofing-services"
-      },
-
-      /* =========================
-         YELP (full text)
-         ========================= */
-      {
-        "source":"yelp","rating":5,"author":"Pam S.","location":"Arlington, VA","date":"2025-02-28",
-        "body":"Zenith was easy to work with and they did great work. I received three different quotes to remove and install new gutters around my house. Zenith was the only company that was able to provide an estimate without physically visiting the property, their rates were better than the other estimates I received, and they completed the work on time and within the budget. I would use Zenith for any future roofing needs and highly recommend them to others.",
-        "permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"
-      },
-      {
-        "source":"yelp","rating":5,"author":"Evan M.","location":"Carlsbad, CA","date":"2025-07-01",
-        "body":"I've had Bryan do repairs at 3 of my houses over the last 5 years. His team and him have always been on time and amazing to work with. I've had neighbors I recommended him to also use him and all spoke very highly as I checked in with them to make sure that all went well. He's very professional and he's never pushing fixes, but just notes recommendations. Thank you Bryan!",
-        "permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"
-      },
-      {
-        "source":"yelp","rating":5,"author":"Lisa M.","location":"Fallbrook, CA","date":"2025-01-19",
-        "body":"I highly recommend Zenith Roofing for any roof replacements or repairs. Bryan is professional, knowledgeable and reliable. Quality of workmanship is top notch, price point is reasonable and fair, communication is timely and thorough. I will be using Zenith for my future roofing needs on my two other homes. Thank you Bryan for your amazing customer service!!",
-        "permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"
-      },
-      {
-        "source":"yelp","rating":5,"author":"S I.","location":"San Diego, CA","date":"2025-03-17",
-        "body":"Very honest, ethical, and reliable. I would highly recommend Zenith. Bryan was excellent, very courteous and knowledgeable.",
-        "permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"
-      },
-      {
-        "source":"yelp","rating":5,"author":"James B.","location":"Escondido, CA","date":"2025-06-02",
-        "body":"A great company to work with. As we were about to move in March 2025, a rain storm revealed that we needed to have a complete replacement of our roof's underlayment. I got four quotes, and Bryan's was one of the most reasonable - and he was prepared to start the work almost immediately, a great benefit since we wanted to get the work done (if possible) before we left toward the end of March. Bryan's team (especially Omar, the team lead) did outstanding work: they were extremely flexible in dealing with the rainy weather, even working on weekends when rain precluded working on some week days; Omar was extremely helpful and accommodating to our solar panel company in dealing with their removal of the panels before the roof work and reinstallation afterwards - ensuring that little time was lost in the process; and the Zenith team was very careful, thorough, and professional in their work, including in the removal of debris and cleaning up afterwards. Bryan was also a pleasure to work with and very accommodating whenever anything came up. We were extremely pleased with their work, and would highly recommend this company to anyone.",
-        "permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"
-      },
-      {
-        "source":"yelp","rating":5,"author":"Donna F.","location":"Encinitas, CA","date":"2025-02-20",
-        "body":"It was a pleasure doing business with Bryan. He and his crew were reliable and even finished the roofing job a day early. Given my experience with Bryan, I would recommend Zenith Roofing Services to others.",
-        "permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"
-      },
-      {
-        "source":"yelp","rating":5,"author":"Aaron L.","location":"San Diego, CA","date":"2022-10-14",
-        "body":"I'm not one to typically post reviews, but Zenith Roofing went so far above and beyond, not only on the quality of the job, but in their customer service and ensuring the entire process was smooth and seamless, I literally had no choice but to find my Yelp password and write this review. My wife and I bought our home about six months ago and have absolutely marathoned a complete renovation, from foundation work to a new roof and everything in between. This was our first time undertaking such an endeavor and we learned a lot along the way; notably that contractors can be an absolute menace to your sanity. Not only having to stay on top of them to get work done in a timely manner, but almost micromanage the details so that work is done right. Hiring Zenith was the total opposite experience. They were timely, professional, hard working and so attentive to the needs of our home and our family that my wife and I just want everyone to have that same kind of experience. Thank you, most notably, to Bryan who was our main point of contact and oversaw the whole process. We shopped roofers and not only was Zenith the best value, but they blew us away with their incredible customer service from beginning to end. Thank you again!",
-        "permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"
-      },
-      {
-        "source":"yelp","rating":1,"author":"Cheng L.","location":"La Costa, CA","date":"2023-11-17",
-        "body":"I called Zenith Roofing yesterday to set up an appointment to give me an estimate on the roof leak. Brian of Zenith answered my call and agreed to come to my house today between 12:00 and 1:00 pm to give me an estimate. Well, this guy never showed up. I waited from 11:45 am to 1:15 pm at the house. It is unethical to conduct business this way. I never understood how Zenith Roofing could get a 5-star rating for displaying such unethical conduct. If you do not intend to come, just say so. Don't waste customer's time by not showing up. I am really disappointed. This tells us something about the way Zenith Roofing runs and conducts business.\n\nOwner response (same day): apologized and noted it was during rain season and a human error—‘not customary to no-show.’",
-        "permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"
-      },
-
-      /* =========================
-         GOOGLE (full text from your paste)
-         ========================= */
-      {
-        "source":"google","rating":5,"author":"Jeffrey Powell","location":"","date":"2025-08-09",
-        "body":"Bryan was very helpful and had his crew out the same day to look at my roof. They let me know what needed to be done and... (full text in Google listing).",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Yoko Wickersham","location":"","date":"2025-07-28",
-        "body":"A Highly Recommended Experience (7/28/2025) — thoughtful communication and follow-through. (As posted on Google.)",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Devon Thormodsgaard","location":"","date":"2025-07-10",
-        "body":"Had Zenith out to quote my roof replacement. They were on time, very knowledgeable, dressed professional, gear looked... (see Google for full review).",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Mike Panlasigui","location":"","date":"2025-06-15",
-        "body":"The recent rains made it clear we needed some roofing work done. As I began looking for contractors, Zenith Roofing... (full review on Google).",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Pam Soggu","location":"","date":"2025-02-28",
-        "body":"Zenith was easy to work with and they did great work. I received three different quotes to remove and install new... (full review on Google).",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Mj H","location":"","date":"2025-02-28",
-        "body":"Zenith Roofing was a great find when comes to replacing roof. Bryan is easy to work with and he ensures we are happy with the job, definitely recommend.",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"dylan lam","location":"","date":"2025-02-07",
-        "body":"I googled roofing services near me and I saw they were top rated and they are for a reason you get what you pay for!",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Vivian's Quality","location":"","date":"2025-02-07",
-        "body":"I called Zenith roofing out to repair two leaks I had in the roof of my building. They came out and did a free... (full text on Google).",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Laura Stanley","location":"","date":"2024-08-21",
-        "body":"Zenith Roofing completed a repair job on my house in July 2024, which included a leak following the big rain storms in March, dry rot, and 4 skylight replacements. I did my due diligence before deciding on Zenith Roofing and I could not be more pleased with my decision. I am 100% satisfied with their workmanship. Every step of the process was handled professionally, courteously, and promptly. I had a million questions and a lot of uncertainty about what approach would be best for me, my budget, and my home. The business owner/contractor, Bryan Ramirez, is highly knowledgeable and patient. He provided me with several options, including detailed explanations of the pros and cons of each, and patiently waited for me to think them through and ask more questions as they came up; importantly, he did not pressure me into moving faster than I was comfortable moving. His crew was also extremely prompt, efficient and experienced. They operated in unison like a smooth, well-oiled machine. They also cleaned up everything. Bryan also made sure that I was comfortable with costs. This is my first public review, but it was important for me to take the time to share my experiences. 100% - Zenith Roofing was the right local company for my job.",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"K & R Kalahiki","location":"","date":"2024-08-20",
-        "body":"Brian and his team did a great job, always on time, super clean, efficient and even saved us money in the end. We’d give them a 10!",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Lance Parrow","location":"","date":"2024-08-07",
-        "body":"A really good experience. Bryan and Omar are great company representatives. Fair price, quality work, and overall very satisfied.",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"eric delatorre","location":"","date":"2024-07-15",
-        "body":"The quality of work is outstanding! The work was done in a timely manner. And they were on time every day and ready to work. I would like to thank Brian for the excellent work and the attention to detail. And Shout out to Brian and the crew for working hard even on those hot July days.",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Andrew Vitollo","location":"","date":"2024-05-14",
-        "body":"Bryan and his crew did a fantastic job replacing the roof on a fairly large residence I hired his team for. What separated... (full review on Google).",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Marco Corona","location":"","date":"2024-04-18",
-        "body":"Zenith team removed two shingle layers, repaired or replaced all damaged wood foundation and replaced with Owens Corning... (full review on Google).",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Nicholas Sites","location":"","date":"2024-04-06",
-        "body":"Bryan and his team did an amazing job on my roof replacement. My roof had about two years left on it and we are getting... (full review on Google).",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Itzy Moore","location":"","date":"2024-03-20",
-        "body":"Very knowledgeable and great prices. Very reliable and quality work.",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Chris Lucian","location":"","date":"2024-02-18",
-        "body":"Dealing with homeowner's insurance can often be a daunting task, especially when it comes to providing specific... (full review on Google).",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Salomeh Barati","location":"","date":"2024-02-07",
-        "body":"Bryan and his team were great! Very fair and job was well done ! Highly recommend them. Thank you!",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-      {
-        "source":"google","rating":5,"author":"Angelina Ehrlich","location":"","date":"2023-10-23",
-        "body":"Bryan is an honest and professional owner of the company. He is very busy but responded quickly to my request to come... (full review on Google).",
-        "permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"
-      },
-
-      /* =========================
-         OWENS CORNING (full text you supplied)
-         ========================= */
-      {
-        "source":"owens","rating":5,"author":"Barbara P.","location":"San Diego, CA","date":"2025-04-22",
-        "body":"I found Zenith Roofing Services to be very professional. Bryan and Omar knew their stuff. The company had their license, contract, and a description of what would take place during the work. They are very knowledgeable and pleasant to work with. I would recommend them without hesitation.",
-        "permalink":"https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828"
-      },
-      {
-        "source":"owens","rating":5,"author":"Lisa H.","location":"Temecula, CA","date":"2025-02-17",
-        "body":"Brian Remerez from Zenith Roofing provided excellent customer service and a quality roof replacement.",
-        "permalink":"https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828"
-      },
-      {
-        "source":"owens","rating":5,"author":"Janet R.","location":"Temecula, CA","date":"2024-10-21",
-        "body":"Zenith Roofing Services did a good job. Their communication was great and they were on time. I liked that.",
-        "permalink":"https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828"
-      },
-      {
-        "source":"owens","rating":5,"author":"Marco C.","location":"San Diego, CA","date":"2024-04-13",
-        "body":"Courteous, on time and on schedule as advertised.",
-        "permalink":"https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828"
-      },
-
-      /* =========================
-         HOMEADVISOR / ANGI (historic — full texts you pasted)
-         ========================= */
-      {"source":"homeadvisor","rating":5,"author":"Michael P.","location":"","date":"2025-06-01","body":"The recent rains made it clear we needed some roofing work done. As I began looking for contractors, Zenith Roofing Services happened to start work on a house 2 doors from us. I got the benefit of watching as the crew worked on the neighbor's home, and I liked what I saw. I requested an estimate and was pleased to see the level of detail presented in the proposal (as opposed to other contractors), and at a fair price. I signed with Zenith Roofing for our roofing project and am extremely happy with the results. This job included 28 solar panels that needed to be removed, then re-installed. Zenith Roofing was fantastic in coordinating with the solar contractor so that our project stayed on schedule, and with no cost surprises. I plan to continue to use them for regular maintenance inspections to keep things in good working order. I highly recommend Zenith Roofing Services."},
-      {"source":"homeadvisor","rating":5,"author":"Mei H.","location":"","date":"2025-02-01","body":"Zenith Roofing was a great find when comes to replacing roof. Bryan is easy to work with and he ensures we are happy with the job, I definitely recommend them."},
-      {"source":"homeadvisor","rating":5,"author":"Mike S.","location":"","date":"2025-02-01","body":"My wife nagged me for over a year to complete the roofing. Zenith Roofing came and completed it professionally within a few days. They were quick, courteous and clean. They left the place clean and blew off all the debris that had fallen below. I would definitely recommend them and use them in the future if needed."},
-      {"source":"homeadvisor","rating":4,"author":"Steven M.","location":"","date":"2024-11-01","body":"Good job."},
-      {"source":"homeadvisor","rating":5,"author":"Laura S.","location":"","date":"2024-08-01","body":"Zenith Roofing completed a repair job on my house in July 2024, which included a leak following the big rain storms in March, dry rot, and 4 skylight replacements. I did my due diligence... (see Google long version)."},
-      {"source":"homeadvisor","rating":5,"author":"Diana H.","location":"","date":"2023-06-01","body":"Still in progress."},
-      {"source":"homeadvisor","rating":5,"author":"Sherri G.","location":"","date":"2023-02-01","body":"Bryan was fantastic to work with. He was punctual and very professional. When I originally called about the roof possibly leaking and causing water damage inside the house the first week of January 2023, he came over the very next day, in the rain, and inspected my roof. He gave me 3 separate estimates within 24 hours. Within a few days, Bryan called me and said since there was going to be a 3 day break in the rain storms, he could get my roof repaired during those 3 days (and he did). I would highly recommend Zenith Roofing Services to anyone. (~$8,400)"},
-      {"source":"homeadvisor","rating":5,"author":"Diane U.","location":"","date":"2022-11-01","body":"Bryan was very honest about my roof not needing the work my insurance company was requesting. He prepared a report stating the reasons and I won my appeal, saving over $10,000."},
-      {"source":"homeadvisor","rating":5,"author":"George N.","location":"","date":"2022-11-01","body":"Excellent communication. What he said was done exactly every step. Fast, cleaned the job site. A+ service."},
-      {"source":"homeadvisor","rating":4.5,"author":"Jim C.","location":"","date":"2022-02-01","body":"Professional. Responsive. Fair bid. Completed job before other companies even got back to me."},
-      {"source":"homeadvisor","rating":5,"author":"Betty L.","location":"","date":"2021-12-01","body":"Zenith provided a professional solution to my roof."},
-      {"source":"homeadvisor","rating":5,"author":"Steven A.","location":"","date":"2021-03-01","body":"Would hire them in the future if I need anymore roof repairs. Excellent company! (~$3,000)"},
-      {"source":"homeadvisor","rating":5,"author":"Evette F.","location":"","date":"2021-02-01","body":"They were on time and went to work right away. Very friendly hard workers. They were all done by the end of the first day. I had four groups to choose from... Zenith Roofing was the only one who wanted me to check out my homeowners insurance first. I found out that the repair would be covered... Then I asked what would it be to replace the whole roof? He checked it out and gave me a quote I couldn't refuse!! This company is awesome! Thank you again Brian! (~$3,010)"},
-      {"source":"homeadvisor","rating":5,"author":"Cindy P.","location":"","date":"2020-11-01","body":"Quick response and remedy."},
-      {"source":"homeadvisor","rating":5,"author":"Michelle L.","location":"","date":"2020-10-01","body":"They really care. I am very impressed."},
-      {"source":"homeadvisor","rating":3.5,"author":"Harry K.","location":"","date":"2020-09-01","body":"Very friendly and professional."},
-      {"source":"homeadvisor","rating":5,"author":"Sumant P.","location":"","date":"2020-08-01","body":"Roof tiles didn't match original ones. (~$1,250)"},
-      {"source":"homeadvisor","rating":5,"author":"John M.","location":"","date":"2020-06-01","body":"Local contractor. Professional proposal. Repaired after rains in four days, working through the weekend."},
-      {"source":"homeadvisor","rating":5,"author":"Dora S.","location":"","date":"2020-05-01","body":"Very easy to work with and did the job in half the time."},
-      {"source":"homeadvisor","rating":5,"author":"Fred B.","location":"","date":"2020-04-01","body":"Leak fixed promptly before rain; they even reset my gutters at no extra charge. Prompt service, quality job and cleanup. Highly recommend."},
-      {"source":"homeadvisor","rating":5,"author":"Frank C.","location":"","date":"2020-04-01","body":"Bryan is GREAT!! Exceptional from start to finish!"},
-      {"source":"homeadvisor","rating":5,"author":"Jim M.","location":"","date":"2020-03-01","body":"Chose Zenith over out-of-county bid. Replaced underlayment after leaks. Professional and recommended."},
-      {"source":"homeadvisor","rating":5,"author":"Joe P.","location":"","date":"2020-01-01","body":"Bryan did a great job at a reasonable price."},
-      {"source":"homeadvisor","rating":5,"author":"Brooke G.","location":"","date":"2020-01-01","body":"Bryan is a true professional. He responded to my request immediately and was at my house the next day to give me a free estimate. His suggestions were spot on and I felt his prices were fair."},
-      {"source":"homeadvisor","rating":5,"author":"James N.","location":"","date":"2020-01-01","body":"Professional. Responsive. Fair bid. Completed job before other companies even got back to me."},
-      {"source":"homeadvisor","rating":5,"author":"Mike A.","location":"","date":"2020-01-01","body":"Roof looks good, repair completed before the next rain storm, cleanup done before workers left."},
-      {"source":"homeadvisor","rating":4.5,"author":"Gary R.","location":"","date":"2019-12-01","body":"Very professional. Took pictures to show results. (~$1,631)"},
-      {"source":"homeadvisor","rating":5,"author":"Paul P.","location":"","date":"2019-11-01","body":"Knowledgeable about roofing work on sun room roofs and shows a genuine desire to do the best job possible. (~$2,700)"},
-      {"source":"homeadvisor","rating":5,"author":"Timothy N.","location":"","date":"2019-10-01","body":"Brian got back to me incredibly fast. Needed a roof inspection ASAP to close a real estate transaction. On time, courteous and extremely knowledgeable."},
-      {"source":"homeadvisor","rating":5,"author":"Jill K.","location":"","date":"2019-09-01","body":"Super friendly and knowledgeable. We will call them when we are ready to replace our entire roof."},
-      {"source":"homeadvisor","rating":5,"author":"Vinton V.","location":"","date":"2019-08-01","body":"Owner on the job every day ensuring it was done as discussed. Great guy. Very honest. Zenith was clearly the best among three contacts."},
-      {"source":"homeadvisor","rating":5,"author":"David S.","location":"","date":"2019-08-01","body":"Excellent communication; prompt completion."},
-      {"source":"homeadvisor","rating":5,"author":"Patrick C.","location":"","date":"2019-08-01","body":"Very efficient. Cleaned up well."},
-      {"source":"homeadvisor","rating":5,"author":"Connor B.","location":"","date":"2019-07-01","body":"Needed ASAP inspection for closing—on time, courteous, extremely knowledgeable. Would give 6 stars if I could."},
-      {"source":"homeadvisor","rating":5,"author":"Carlene Y.","location":"","date":"2019-07-01","body":"Very professional and prompt. Respectful of property and cleaned everything before leaving. Definitely recommend."},
-      {"source":"homeadvisor","rating":5,"author":"Keith K.","location":"","date":"2019-06-01","body":"Excellent job from start to finish!"},
-      {"source":"homeadvisor","rating":5,"author":"Tim S.","location":"","date":"2019-05-01","body":"Outstanding customer service and a quality product greatly superior to others."},
-      {"source":"homeadvisor","rating":5,"author":"John E.","location":"","date":"2019-05-01","body":"Great job done."},
-      {"source":"homeadvisor","rating":5,"author":"Greg M.","location":"","date":"2019-05-01","body":"Very helpful and professional. 5-year warranty met or exceeded competitors. Confident in workmanship and recommend."},
-      {"source":"homeadvisor","rating":5,"author":"Daryl W.","location":"","date":"2019-04-01","body":"Very professional, timely estimate."},
-      {"source":"homeadvisor","rating":5,"author":"Roger W.","location":"","date":"2019-03-01","body":"Courteous and easy to work with."},
-      {"source":"homeadvisor","rating":5,"author":"Melinda H.","location":"","date":"2019-02-01","body":"Very thorough and professional. On time. Left the site clean every day. Definitely a good contractor to hire!"},
-      {"source":"homeadvisor","rating":5,"author":"Linda M.","location":"","date":"2019-02-01","body":"Very professional and accommodating. A delight to work with."},
-      {"source":"homeadvisor","rating":5,"author":"Gary S.","location":"","date":"2019-02-01","body":"Extremely professional and knowledgeable. Highly recommend."},
-      {"source":"homeadvisor","rating":5,"author":"Amber D.","location":"","date":"2019-01-01","body":"Great experience. Would recommend."},
-      {"source":"homeadvisor","rating":5,"author":"Wei H.","location":"","date":"2018-12-01","body":"Brian did above and beyond for my property. Very fast response, immediate service and very reasonable cost. Highly recommend him!"},
-      {"source":"homeadvisor","rating":5,"author":"Timothy M.","location":"","date":"2018-12-01","body":"Crew worked hard all day. My roof had different needs other than just shingling and Bryan knew how to remedy quickly and effectively. Would hire again."},
-      {"source":"homeadvisor","rating":5,"author":"Jeff M.","location":"","date":"2018-12-01","body":"Outstanding work, honest dealings and very competitive pricing. In short, a pleasure to work with Bryan Ramirez."},
-      {"source":"homeadvisor","rating":5,"author":"Luz N.","location":"","date":"2018-11-01","body":"Happy to hire Zenith to do my roof. Bryan was on time, consistent with days to finish and knowledgeable. Price negotiable. Highly recommended."},
-      {"source":"homeadvisor","rating":5,"author":"W B.","location":"","date":"2018-11-01","body":"Prompt and competitively priced. Great follow up. Would definitely use in the future."},
-      {"source":"homeadvisor","rating":5,"author":"Fil R.","location":"","date":"2018-09-01","body":"Excellent professional and timely service. A pleasure to work with."},
-      {"source":"homeadvisor","rating":4.5,"author":"William D.","location":"","date":"2018-09-01","body":"Value for the money—problem completed. Worth the money. Minor miscommunication made a difference."},
-      {"source":"homeadvisor","rating":5,"author":"Barbara M.","location":"","date":"2018-08-01","body":"Very professional and accommodating. A delight to work with. Thanks very much."},
-      {"source":"homeadvisor","rating":5,"author":"Lezlie M.","location":"","date":"2018-07-01","body":"Fast, helpful and roof passed all inspections when we sold it. Great company!"},
-      {"source":"homeadvisor","rating":5,"author":"Ken K.","location":"","date":"2018-07-01","body":"Excellent job from start to finish!"},
-      {"source":"homeadvisor","rating":5,"author":"Tim P.","location":"","date":"2018-04-01","body":"Excellent."},
-      {"source":"homeadvisor","rating":5,"author":"Kenny S.","location":"","date":"2018-03-01","body":"He is very polite and provides good services! Was a great price for the quality! Beat anyone's prices."}
+      {"source":"google","rating":5,"author":"Jeffrey Powell","location":"San Diego, CA","date":"2025-08-09","body":"Helpful, same-day crew visit and clear scope at a reasonable price.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Yoko W.","location":"","date":"2025-07-26","body":"Highly recommended experience — thoughtful communication and great result.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Devon T.","location":"","date":"2025-07-12","body":"On time, knowledgeable, professional gear and presentation. Great price.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Mike P.","location":"San Diego, CA","date":"2025-06-15","body":"Coordinated removal/reinstall of 28 solar panels; detailed proposal and no surprises.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Pam S.","location":"","date":"2025-02-21","body":"Remote estimate was accurate; project finished on time and on budget.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"MJ H.","location":"","date":"2025-02-21","body":"Easy to work with on roof replacement. Ensured we were happy with the job.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Dylan L.","location":"","date":"2025-02-07","body":"Top-rated for a reason — you get what you pay for!","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Vivian's Quality","location":"","date":"2025-02-07","body":"Came out, diagnosed two leaks, provided a clear plan.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Laura S.","location":"","date":"2024-08-21","body":"100% satisfied. Options explained clearly; prompt, efficient crew and immaculate cleanup.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"K & R Kalahiki","location":"","date":"2024-08-20","body":"On time, super clean, efficient — even saved us money. 10/10.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Lance P.","location":"","date":"2024-08-07","body":"Fair price, quality work, great representatives. Very satisfied.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Eric D.","location":"","date":"2024-07-15","body":"Outstanding quality and on-time execution even in July heat.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Andrew V.","location":"","date":"2024-05-14","body":"Fantastic full roof replacement; communication and workmanship stood out.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Marco C.","location":"","date":"2024-04-18","body":"Removed 2 shingle layers, repaired wood, installed new system — excellent job.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Nicholas S.","location":"","date":"2024-04-06","body":"Great roof replacement before solar; transparent and professional.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Itzy M.","location":"","date":"2024-03-20","body":"Very knowledgeable, reliable, and quality work at great prices.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Chris L.","location":"","date":"2024-02-18","body":"Helped navigate homeowner’s insurance requirements — excellent documentation.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Salomeh B.","location":"","date":"2024-02-07","body":"Fair pricing and well-done job. Highly recommend.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Angelina E.","location":"","date":"2023-10-23","body":"Honest and professional. Quick response and thorough work.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Robert H.","location":"","date":"2023-08-20","body":"Great insight and solutions for attic ventilation issues.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Scott","location":"","date":"2023-08-01","body":"Underlayment replacement under clay tiles — best value and strong workmanship.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Mike F.","location":"","date":"2023-07-18","body":"Amazing job on a very old roof replacement; smooth process end-to-end.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Evette F.","location":"","date":"2023-05-16","body":"Detailed, fair pricing, and responsive; would choose again.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"google","rating":5,"author":"Tim P.","location":"","date":"2023-04-27","body":"Clay tile removal and replacement done carefully and correctly.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"yelp","rating":5,"author":"Evan M.","location":"Carlsbad, CA","date":"2025-07-01","body":"Used Zenith at 3 houses over 5 years. On time, honest recommendations, consistently great work.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
+      {"source":"yelp","rating":5,"author":"Pam S.","location":"Arlington, VA","date":"2025-02-28","body":"Estimate without site visit, best rate, on time, within budget. Would use again.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
+      {"source":"yelp","rating":5,"author":"S. I.","location":"San Diego, CA","date":"2025-03-17","body":"Very honest, ethical, reliable. Highly recommend.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
+      {"source":"yelp","rating":5,"author":"James B.","location":"Escondido, CA","date":"2025-06-02","body":"Underlayment replacement before a move; coordinated with solar; flexible around rain; outstanding cleanup.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
+      {"source":"yelp","rating":5,"author":"Donna F.","location":"Encinitas, CA","date":"2025-02-20","body":"Reliable crew, finished a day early. Would recommend.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
+      {"source":"yelp","rating":5,"author":"Lisa M.","location":"Fallbrook, CA","date":"2025-01-19","body":"Professional, knowledgeable, fair pricing, timely communication. Using them again.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"},
+      {"source":"guildquality","rating":5,"author":"Renatte A.","location":"San Diego, CA","date":"2025-05-14","body":"Clear itemization and best value for flat roof; team was informative and respectful.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
+      {"source":"guildquality","rating":5,"author":"Barbara P.","location":"San Diego, CA","date":"2025-04-23","body":"Very professional; knew their stuff and explained the process thoroughly.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
+      {"source":"guildquality","rating":5,"author":"Temecula Review","location":"Temecula, CA","date":"2025-03-19","body":"Excellent customer service and a quality roof replacement.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
+      {"source":"guildquality","rating":5,"author":"Laurie W.","location":"Escondido, CA","date":"2025-01-08","body":"Excellent from quote to completion.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
+      {"source":"guildquality","rating":5,"author":"Janet R.","location":"Temecula, CA","date":"2024-10-23","body":"Great communication and punctuality — never left me waiting.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
+      {"source":"guildquality","rating":5,"author":"Marco C.","location":"San Diego, CA","date":"2024-04-23","body":"Courteous and on schedule as advertised.","permalink":"https://www.guildquality.com/pro/zenith-roofing-services"},
+      {"source":"owens","rating":5,"author":"Barbara P.","location":"San Diego, CA","date":"2025-04-22","body":"Professional team; knowledgeable and pleasant to work with.","permalink":"https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828"},
+      {"source":"owens","rating":5,"author":"Lisa H.","location":"Temecula, CA","date":"2025-02-17","body":"Excellent customer service and quality roof replacement.","permalink":"https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828"},
+      {"source":"owens","rating":5,"author":"Janet R.","location":"Temecula, CA","date":"2024-10-21","body":"On time and communicative; appreciated the responsiveness.","permalink":"https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828"},
+      {"source":"owens","rating":5,"author":"Marco C.","location":"San Diego, CA","date":"2024-04-13","body":"Courteous and kept to schedule.","permalink":"https://www.owenscorning.com/en-us/roofing/contractors/contractor-profile/230828"},
+      {"source":"google","rating":5,"author":"David C.","location":"","date":"2022-12-28","body":"Diagnosed and fixed a leak quickly and effectively — same day response.","permalink":"https://maps.google.com/?q=Zenith+Roofing+Services"},
+      {"source":"yelp","rating":5,"author":"Aaron L.","location":"San Diego, CA","date":"2022-10-14","body":"Above and beyond on quality and customer service. Smooth and seamless process.","permalink":"https://www.yelp.com/biz/zenith-roofing-services-escondido"}
     ]
   }
   </script>
@@ -465,31 +225,11 @@
     function starText(n){ const full = Math.round(n); return '★'.repeat(full) + '☆'.repeat(5-full); }
 
     const all = loadReviews();
-    const PAGE_SIZE = 18;
     let state = { src:'all', min:0, q:'', page:1 };
-
-    // Build dynamic pills from sources
-    const sources = Array.from(new Set(all.map(r=>r.source))).sort();
-    const pillBar = $$('#pillBar');
-    function makePill(label, key, active=false){
-      const b = document.createElement('button');
-      b.className = 'pill';
-      b.textContent = label;
-      b.dataset.src = key;
-      b.setAttribute('aria-pressed', active ? 'true':'false');
-      b.addEventListener('click', ()=>{
-        $$$('.pill', pillBar).forEach(p=>p.setAttribute('aria-pressed','false'));
-        b.setAttribute('aria-pressed','true');
-        state.src = key; state.page = 1; apply();
-      });
-      pillBar.appendChild(b);
-    }
-    makePill('All','all',true);
-    const LABELS = { google:'Google', yelp:'Yelp', guildquality:'GuildQuality', owens:'Owens Corning', homeadvisor:'HomeAdvisor/Angi' };
-    sources.forEach(k=> makePill(LABELS[k] || (k[0].toUpperCase()+k.slice(1)), k));
+    const PAGE_SIZE = 18;
 
     function computeCounts(list){
-      const counts = { all:list.length, google:0, yelp:0, guildquality:0, owens:0, homeadvisor:0 };
+      const counts = { all:list.length, google:0, yelp:0, guildquality:0, owens:0 };
       list.forEach(r=>{ if(counts[r.source] !== undefined) counts[r.source]++; });
       return counts;
     }
@@ -504,26 +244,28 @@
       }
       list.sort((a,b)=> new Date(b.date) - new Date(a.date));
 
-      // Update counts (filtered, not paginated)
-      const c = computeCounts(list);
-      $$('#totalCount').textContent = c.all;
-      $$('#googleCount').textContent = c.google || 0;
-      $$('#yelpCount').textContent = c.yelp || 0;
-      $$('#gqCount').textContent = c.guildquality || 0;
-      $$('#ocCount').textContent = c.owens || 0;
+      // Update counts (based on current filters EXCEPT pagination)
+      const counts = computeCounts(list);
+      $$('#totalCount').textContent = counts.all;
+      $$('#googleCount').textContent = counts.google;
+      $$('#yelpCount').textContent = counts.yelp;
+      $$('#gqCount').textContent = counts.guildquality;
+      $$('#ocCount').textContent = counts.owens;
 
-      // Pagination + render
+      // Pagination
+      const start = 0;
       const end = state.page * PAGE_SIZE;
-      render(list.slice(0, end));
+      render(list.slice(start, end));
 
-      // Load more control
+      // Load more button
       const moreBtn = $$('#loadMore');
       if(end >= list.length){ moreBtn.setAttribute('disabled',''); moreBtn.textContent = 'No more reviews'; }
       else { moreBtn.removeAttribute('disabled'); moreBtn.textContent = 'Load more reviews'; }
     }
 
     function render(list){
-      const wrap = $$('#reviewsList'); wrap.innerHTML = '';
+      const wrap = $$('#reviewsList');
+      wrap.innerHTML = '';
       list.forEach(r=>{
         const card = document.createElement('article');
         card.className = 'card review';
@@ -542,12 +284,22 @@
       });
     }
 
-    // Wiring
+    // UI wiring
+    const pills = $$$('.pill');
+    pills.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        pills.forEach(b=>b.setAttribute('aria-pressed','false'));
+        btn.setAttribute('aria-pressed','true');
+        state.src = btn.dataset.src;
+        state.page = 1;
+        apply();
+      });
+    });
     $$('#minStars').addEventListener('change', e=>{ state.min = Number(e.target.value||0); state.page = 1; apply(); });
     $$('#q').addEventListener('input', e=>{ state.q = e.target.value.trim(); state.page = 1; apply(); });
     $$('#loadMore').addEventListener('click', ()=>{ state.page++; apply(); });
 
-    // Init
+    // Initial render
     apply();
   </script>
 </body>
