@@ -2,36 +2,190 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Insurance Consulting (Real Estate) | Zenith Roofing Services</title>
+  <title>Insurance Consulting — Storm Damage (Wind, Hail, Water) | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Consulting on roof-related insurance scope alignment, documentation, and repair/replacement options." />
-  <link rel="canonical" href="https://www.zenithroofingservices.com/services/real-estate/insurance-consulting/">
-  <link rel="stylesheet" href="/css/header.css"><link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/footer.css"><link rel="stylesheet" href="/css/ui.css"><link rel="stylesheet" href="/css/estimate-form.css">
-  <script defer src="/js/loader.js"></script><script defer src="/js/header.js"></script><script defer src="/js/estimate-form.js"></script>
-  <style>.page.re3{max-width:1100px;margin:24px auto;padding:0 16px}.badge{display:inline-flex;gap:8px;padding:8px 12px;border-radius:999px;background:#f1f5f9;font-weight:600}.muted{color:var(--ui-muted)}</style>
+  <meta name="description" content="Get help assessing roof storm damage: wind uplift, hail impacts, tree strikes, and water intrusion. We review photos, document conditions, align scopes with carriers, and outline next steps." />
+  <link rel="canonical" href="https://www.zenithroofingservices.com/services/insurance/storm-damage-consulting/">
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/ui.css">
+  <!-- Lead form CSS (if using your site-wide include) -->
+  <link rel="stylesheet" href="/css/estimate-form.css">
+
+  <!-- Shared JS -->
+  <script defer src="/js/loader.js"></script>
+  <script defer src="/js/header.js"></script>
+  <script defer src="/js/estimate-form.js"></script>
+
+  <style>
+    .page.ins { max-width:1100px; margin:24px auto; padding:0 16px; }
+    .badge{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#f1f5f9; font-weight:600; font-size:.95rem; }
+    .lede{ color:#475569; font-size:1.075rem; margin:8px 0 18px; }
+    .muted{ color:var(--ui-muted); }
+    .small{ font-size:.9rem; }
+    .tick{ font-weight:800; color:#0b3a6f; }
+    .note{ background:#f8fafc; border:1px solid var(--ui-line); border-radius:14px; padding:12px 14px; }
+    .svc-card h3{ margin-bottom:6px; }
+    .svc-card p{ margin:0; }
+  </style>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"What does insurance consulting for storm damage include?",
+        "acceptedAnswer":{"@type":"Answer","text":"We assess roof damage (wind uplift, hail strikes, tree impact, and water entry), review your carrier estimate, align scope and line items, and provide documentation and next-step recommendations."}
+      },
+      {
+        "@type":"Question",
+        "name":"Can you work with my adjuster or public adjuster?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. We can discuss scope, details, and materials to help align expectations. If an on-site joint inspection is needed, we’ll coordinate scheduling."}
+      },
+      {
+        "@type":"Question",
+        "name":"Do you handle emergency dry-in?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. If the roof is open to weather, we can provide temporary dry-in/tarping to mitigate further damage. Permanent repairs or replacement can follow once scope is approved."}
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-<div data-include="/components/header-section.html"></div>
-<main class="page re3" id="top">
-  <section class="card airy">
-    <span class="badge">Real Estate</span>
-    <h1 style="margin:10px 0 6px;">Insurance Consulting</h1>
-    <p class="muted">We review damage, scope alignment, and provide documentation to support decisions.</p>
-    <div class="cta"><a class="btn" href="#estimate">Book Consulting</a></div>
-  </section>
+  <div data-include="/components/header-section.html"></div>
 
-  <section class="card airy"><h2>Topics We Cover</h2>
-    <div class="grid auto-fit" style="--ui-gap:16px;">
-      <div class="card"><h3>Scope Reviews</h3><p class="muted">Compare estimates & line items.</p></div>
-      <div class="card"><h3>Options</h3><p class="muted">Repair vs replacement advisement.</p></div>
-    </div>
-  </section>
+  <main class="page ins" id="top">
+    <!-- Hero -->
+    <section class="card airy">
+      <span class="badge">Insurance Consulting</span>
+      <h1 style="margin:10px 0 6px;">Storm Damage Assessment: Wind • Hail • Water • Tree Impact</h1>
+      <p class="lede">Need help navigating a storm claim? We document damage, review adjuster scopes, align line items, and advise on repair vs. replacement—so you can move forward with clarity.</p>
+      <div class="cta" style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="#estimate">Request Insurance Consultation</a>
+        <a class="btn outline" href="tel:8589006163">Call 858-900-6163</a>
+      </div>
+      <p class="small muted" style="margin-top:8px;">Homeowners • Property Managers • HOAs • Light Commercial</p>
+    </section>
 
-  <section id="estimate" class="card airy" data-estimate-context data-category="Real Estate — Insurance Consulting (Paid)" data-redirect="/thank-you/">
-    <div data-include="/components/forms/estimate.html"></div>
-  </section>
-</main>
-<div data-include="/components/footer.html"></div>
-<div class="actionbar"><a class="ab-btn call" href="tel:8589006163">Call</a><a class="ab-btn text" href="sms:+18589006163">Text</a><a class="ab-btn estimate" href="#estimate">Free Estimate</a></div>
+    <!-- What we assess (6 even cards) -->
+    <section class="card airy" aria-label="What we assess">
+      <h2>What We Assess</h2>
+      <div class="grid micro-grid">
+        <div class="card"><h3>Wind Uplift</h3><p class="muted">Shingle shingle-lift, missing tabs, bent edges, displaced tiles/metal.</p></div>
+        <div class="card"><h3>Hail Strikes</h3><p class="muted">Granule loss, bruising, fractures, dented metals and flashings.</p></div>
+        <div class="card"><h3>Tree/Impact</h3><p class="muted">Broken tiles/shingles, punctures, and deck damage.</p></div>
+        <div class="card"><h3>Water Intrusion</h3><p class="muted">Ceiling stains, wet insulation, failed seams or flashings.</p></div>
+        <div class="card"><h3>Edges & Metals</h3><p class="muted">Drip edge, term bars, scuppers, gutters, downspouts.</p></div>
+        <div class="card"><h3>Ventilation/Drainage</h3><p class="muted">Intake/exhaust balance, ponding, blocked valleys or drains.</p></div>
+      </div>
+    </section>
+
+    <!-- How we help (6 even cards) -->
+    <section class="card airy" aria-label="How we help with insurance">
+      <h2>How We Help with Insurance</h2>
+      <div class="grid micro-grid">
+        <div class="card"><h3>Photo Documentation</h3><p class="muted">Clear images & captions of storm-related damage.</p></div>
+        <div class="card"><h3>Scope Alignment</h3><p class="muted">Compare carrier estimate to real-world labor/materials.</p></div>
+        <div class="card"><h3>Code/Detail Items</h3><p class="muted">Kickouts, step/headwall flashings, underlayment, ES-1 edges.</p></div>
+        <div class="card"><h3>Repair vs Replace</h3><p class="muted">When targeted repairs work—and when full systems make sense.</p></div>
+        <div class="card"><h3>Temporary Dry-In</h3><p class="muted">Tarping/seal as needed to prevent further damage.</p></div>
+        <div class="card"><h3>Scheduling & Pricing</h3><p class="muted">Options that fit timelines, materials, and budgets.</p></div>
+      </div>
+      <div class="note" style="margin-top:12px;">
+        <strong>Tip:</strong> If you already have an adjuster’s estimate, upload it with your request—we’ll reference line items and notes directly.
+      </div>
+    </section>
+
+    <!-- Process (2-col) -->
+    <section class="card airy" aria-label="Our process">
+      <h2>Our Process</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>1) Intake & Triage</h3>
+          <p class="muted">We review your photos, claim number, and carrier notes. If active leaks exist, we prioritize temporary dry-in.</p>
+        </div>
+        <div class="card">
+          <h3>2) Site Visit & Documentation</h3>
+          <p class="muted">On-site assessment, photos, and condition notes. We identify storm-related damages and code items.</p>
+        </div>
+        <div class="card">
+          <h3>3) Scope Review</h3>
+          <p class="muted">We compare repair/replacement options against the carrier scope and align line items, quantities, and materials.</p>
+        </div>
+        <div class="card">
+          <h3>4) Proposal & Next Steps</h3>
+          <p class="muted">Clear written scope with scheduling and warranty notes. We can coordinate with your adjuster if needed.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQs (2-col) -->
+    <section class="card airy" aria-label="FAQs">
+      <h2>FAQs</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Can you meet my adjuster on site?</h3>
+          <p class="muted">Yes. Joint inspections help align scope and answer technical questions quickly. Tell us your adjuster’s availability.</p>
+        </div>
+        <div class="card">
+          <h3>Is every storm mark a replacement?</h3>
+          <p class="muted">Not always. Some issues are repairable; others need system replacement. We document conditions so decisions are defensible.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lead form include -->
+    <section id="estimate" class="card airy" data-estimate-context data-category="Insurance Consulting — Storm Damage" data-redirect="/thank-you/">
+      <h2>Request Insurance Consultation</h2>
+      <p class="muted small">Share your situation and any carrier documents—we’ll follow up to schedule and outline next steps.</p>
+      <div data-include="/components/forms/estimate.html"></div>
+
+      <!-- Fallback form (if component include is unavailable) -->
+      <template id="lead-form-fallback">
+        <form id="estimate-form" class="form" method="post" action="/api/lead" novalidate>
+          <input type="hidden" name="service_type" value="Insurance Consulting — Storm Damage">
+          <input type="hidden" name="page" value="">
+          <div class="form-row">
+            <div class="form-col-6"><label>Full Name</label><input name="name" required></div>
+            <div class="form-col-6"><label>Phone</label><input name="phone" type="tel" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-col-6"><label>Email</label><input name="email" type="email" required></div>
+            <div class="form-col-6"><label>ZIP</label><input name="zip" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-col-12">
+              <label>Notes</label>
+              <textarea name="message" rows="4" placeholder="Wind/hail/tree/water? Active leak? Claim #? Adjuster estimate link? Deadlines?"></textarea>
+            </div>
+          </div>
+          <button class="btn" type="submit">Send Request</button>
+          <a class="btn outline" href="tel:8589006163">Or Call 858-900-6163</a>
+        </form>
+      </template>
+    </section>
+
+    <!-- Service area -->
+    <section class="card airy">
+      <h2>Service Area</h2>
+      <p class="muted">North County San Diego • Greater San Diego • Temecula & nearby communities.</p>
+      <p class="muted small">Final scope, pricing, and warranties are governed by your signed proposal and manufacturer documentation.</p>
+    </section>
+  </main>
+
+  <div data-include="/components/footer.html"></div>
+
+  <!-- Sticky Action Bar -->
+  <div class="actionbar">
+    <a class="ab-btn call" href="tel:8589006163">Call</a>
+    <a class="ab-btn text" href="sms:+18589006163">Text</a>
+    <a class="ab-btn estimate" href="#estimate">Request Consulting</a>
+  </div>
 </body>
 </html>
