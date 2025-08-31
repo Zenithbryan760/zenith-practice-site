@@ -4,203 +4,54 @@
   <meta charset="utf-8" />
   <title>Visual Roof Inspection (Paid) — $295 | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Paid visual roof inspection with photos and written findings. Flat price $295. Ideal for buyers, sellers, agents, lenders, HOAs, and property managers in San Diego & Temecula." />
+  <meta name="description" content="Paid visual roof inspection for transactions: on-site photos, written findings, and prioritized action items. San Diego & Temecula." />
   <link rel="canonical" href="https://www.zenithroofingservices.com/services/real-estate/visual-inspections/">
 
-  <!-- Shared CSS -->
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/ui.css">
+  <link rel="stylesheet" href="/css/estimate-form.css">
 
-  <!-- Shared JS -->
   <script defer src="/js/loader.js"></script>
   <script defer src="/js/header.js"></script>
+  <script defer src="/js/estimate-form.js"></script>
 
   <style>
-    .page.vinsp { max-width:1100px; margin:24px auto; padding:0 16px; }
-    .badge { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#f1f5f9; font-weight:600; font-size:.95rem; }
-    .lede { color:#475569; font-size:1.075rem; margin:8px 0 18px; }
-    .muted { color:var(--ui-muted); }
-    .small { font-size:.9rem; }
-    .tick { font-weight:800; color:#0b3a6f; }
-    .note { background:#f8fafc; border:1px solid var(--ui-line); border-radius:14px; padding:12px 14px; }
-    .price { font-weight:800; font-size:1.25rem; }
-
-    /* Form */
-    .form { background:#fff; border:1px solid var(--ui-line); border-radius:16px; padding:16px; }
-    .form-row { display:flex; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
-    .form-col-6 { flex:1 1 260px; min-width:260px; }
-    .form-col-12 { flex:1 1 100%; }
-    .form label { display:block; font-weight:600; margin:0 0 6px; }
-    .form input, .form select, .form textarea { width:100%; border:1px solid var(--ui-line); border-radius:10px; padding:10px; font:inherit; background:#fff; }
-    .form .agree { display:flex; gap:10px; align-items:flex-start; }
-    .btn.primary { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 16px; border-radius:12px; background:var(--ui-accent,#0b3a6f); color:#fff; border:none; cursor:pointer; font-weight:700; }
-    .btn.inline { margin-left:8px; }
+    .page.vi{max-width:1100px;margin:24px auto;padding:0 16px}
+    .badge{display:inline-block;background:#f1f5f9;border-radius:999px;padding:6px 12px;font-weight:700}
+    .lede{color:#475569}
+    .muted{color:#64748b}
+    .small{font-size:.9rem}
+    .price{font-weight:800}
   </style>
-
-  <!-- Offer Schema -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Service",
-    "name":"Visual Roof Inspection (Paid)",
-    "provider":{"@type":"LocalBusiness","name":"Zenith Roofing Services"},
-    "areaServed":[{"@type":"City","name":"San Diego"},{"@type":"City","name":"Temecula"}],
-    "offers":{
-      "@type":"Offer",
-      "price":"295",
-      "priceCurrency":"USD",
-      "availability":"https://schema.org/InStock",
-      "category":"Roof Inspection (Visual)",
-      "url":"https://www.zenithroofingservices.com/services/real-estate/visual-inspections/"
-    },
-    "description":"Paid visual roof inspection with photos and written findings for transactions and documentation needs."
-  }
-  </script>
 </head>
 <body>
   <div data-include="/components/header-section.html"></div>
 
-  <main class="page vinsp" id="top">
-    <!-- Hero -->
+  <main class="page vi" id="top">
     <section class="card airy">
-      <span class="badge">Real Estate • Visual Inspection</span>
-      <h1 style="margin:10px 0 6px;">Visual Roof Inspection <span class="price">— $295</span></h1>
-      <p class="lede">A contractor-performed visual inspection with photos and written findings. Useful for buyers/sellers, agents, lenders, HOAs, and property managers in <strong>San Diego</strong> or <strong>Temecula</strong>.</p>
-      <div class="cta">
-        <a class="btn" href="#book">Book This Inspection</a>
+      <span class="badge">Real Estate</span>
+      <h1 style="margin:10px 0 6px;">Visual Roof Inspection — <span class="price">$295</span></h1>
+      <p class="lede">Photo-documented site walk for transactions. Clear notes on condition, leaks, and remaining life—ideal for disclosures and due diligence.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="#book">Request Scheduling</a>
         <a class="btn outline" href="tel:8589006163">Call 858-900-6163</a>
       </div>
-      <p class="small muted" style="margin-top:8px;">Flat price applies in San Diego or Temecula. Out-of-area requests can be quoted separately.</p>
     </section>
 
-    <!-- What's included -->
-    <section class="card airy" aria-label="What’s included">
-      <h2>What’s Included</h2>
-      <div class="grid micro-grid">
-        <div class="card"><h3>Photo Set</h3><p class="muted">Overview & detail shots of roof, flashings, penetrations, and drainage.</p></div>
-        <div class="card"><h3>Written Findings</h3><p class="muted">Plain-English summary of condition & notable risks.</p></div>
-        <div class="card"><h3>Recommendations</h3><p class="muted">Repair vs replacement guidance with next steps.</p></div>
-        <div class="card"><h3>Scope Boundaries</h3><p class="muted">Visual, non-destructive inspection (no cores or engineering).</p></div>
-        <div class="card"><h3>Deliverable PDF</h3><p class="muted">Shareable with stakeholders.</p></div>
-        <div class="card"><h3>Scheduling Help</h3><p class="muted">We coordinate access with agents/occupants.</p></div>
-      </div>
-      <div class="note" style="margin-top:12px;">
-        <strong>Need a more formal document?</strong> If your lender/insurer requires a certified narrative with risk ratings, choose our
-        <a href="/services/roof-inspection/certified-roof-reports/">Certified Roof Report</a> (paid).
-      </div>
+    <!-- What’s included, use cases, etc… keep your existing content -->
+
+    <!-- Request (neutral shared form) -->
+    <section id="book" data-estimate-context data-category="Real-Estate — Visual Roof Inspection (Paid)" data-redirect="/thank-you/">
+      <h2>Request Scheduling</h2>
+      <p class="muted small">Tell us the property details and preferred timing—we’ll confirm access and next steps.</p>
+      <div data-include="/components/forms/estimate.html"></div>
     </section>
 
-    <!-- Popular uses -->
-    <section class="card airy" aria-label="Popular uses">
-      <h2>Popular Uses</h2>
-      <div class="grid micro-grid">
-        <div class="card"><h3>Buyer/Seller Decisions</h3><p class="muted">Understand condition before contingencies expire.</p></div>
-        <div class="card"><h3>Agent Guidance</h3><p class="muted">Set expectations & timelines for closing.</p></div>
-        <div class="card"><h3>HOA / Property Mgmt</h3><p class="muted">Document issues for maintenance planning.</p></div>
-        <div class="card"><h3>Insurance Questions</h3><p class="muted">Photo evidence to discuss coverage or risk.</p></div>
-        <div class="card"><h3>Refinance Checks</h3><p class="muted">Lightweight condition confirmation.</p></div>
-        <div class="card"><h3>Pre-Listing Prep</h3><p class="muted">Fix surprises before going to market.</p></div>
-      </div>
-    </section>
-
-    <!-- Booking Form (PAID ONLY) -->
-    <section id="book" class="card airy" aria-label="Book visual roof inspection">
-      <h2>Book Your Visual Roof Inspection — <span class="price">$295</span></h2>
-      <p class="muted small">Complete the form and we’ll confirm access instructions and timing.</p>
-
-      <form class="form" id="visual-inspection-form" method="post" action="/api/lead" novalidate>
-        <input type="hidden" name="service_type" value="Visual Roof Inspection (Paid)">
-        <input type="hidden" name="price_usd" value="295">
-
-        <div class="form-row">
-          <div class="form-col-6">
-            <label for="name">Full Name</label>
-            <input id="name" name="name" required autocomplete="name" />
-          </div>
-          <div class="form-col-6">
-            <label for="phone">Phone</label>
-            <input id="phone" name="phone" type="tel" required autocomplete="tel" />
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-col-6">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required autocomplete="email" />
-          </div>
-          <div class="form-col-6">
-            <label for="zip">ZIP</label>
-            <input id="zip" name="zip" required inputmode="numeric" />
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-col-6">
-            <label for="city">City</label>
-            <select id="city" name="city" required>
-              <option value="">Select…</option>
-              <option>San Diego</option>
-              <option>Temecula</option>
-              <option>Other (request custom quote)</option>
-            </select>
-          </div>
-          <div class="form-col-6">
-            <label for="deadline">Deadline (optional)</label>
-            <input id="deadline" name="deadline" placeholder="e.g., Need by Sept 20" />
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-col-12">
-            <label for="notes">Property & Notes</label>
-            <textarea id="notes" name="message" rows="4" placeholder="Buyer/seller? SFR, condo, or multifamily? Known issues, roof type if known, access info."></textarea>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-col-12 agree">
-            <input id="paid" name="paid_ack" type="checkbox" required />
-            <label for="paid">I understand this is a <strong>paid visual inspection</strong> priced at <strong>$295</strong> in San Diego or Temecula (out-of-area quoted separately).</label>
-          </div>
-        </div>
-
-        <button class="btn primary" type="submit">Request Scheduling</button>
-        <a class="btn inline outline" href="tel:8589006163">Or Call 858-900-6163</a>
-      </form>
-    </section>
-
-    <!-- FAQs -->
-    <section class="card airy" aria-label="FAQs">
-      <h2>FAQs</h2>
-      <div class="grid cols-2">
-        <div class="card">
-          <h3>Is this a certified report?</h3>
-          <p class="muted">No—this is a visual inspection with photos and written findings. If you need a certified narrative for lenders/insurers, see our <a href="/services/roof-inspection/certified-roof-reports/">Certified Roof Report</a> (paid).</p>
-        </div>
-        <div class="card">
-          <h3>How fast can I get it?</h3>
-          <p class="muted">Timing depends on access and complexity. Share your deadline—we’ll confirm when we schedule.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Service Area -->
-    <section class="card airy">
-      <h2>Service Area</h2>
-      <p class="muted">San Diego • Temecula (nearby communities by custom quote).</p>
-      <p class="muted small">Final scope, pricing, and deliverables are governed by your signed service agreement.</p>
-    </section>
+    <!-- FAQs etc… -->
   </main>
 
   <div data-include="/components/footer.html"></div>
-
-  <!-- Sticky Action Bar -->
-  <div class="actionbar">
-    <a class="ab-btn call" href="tel:8589006163">Call</a>
-    <a class="ab-btn text" href="sms:+18589006163">Text</a>
-    <a class="ab-btn estimate" href="#book">Book Inspection</a>
-  </div>
 </body>
 </html>
