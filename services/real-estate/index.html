@@ -22,8 +22,7 @@
 
   <style>
     :root{
-      --primary:#0b3a6f; --primary-2:#1e4a82;
-      --ink:#0b3a6f; --muted:#64748b; --line:#e2e8f0; --bg:#f8fafc;
+      --primary:#0b3a6f; --ink:#0b3a6f; --muted:#64748b; --line:#e2e8f0;
     }
     body{color:#334155;}
     .page{max-width:1100px;margin:36px auto;padding:0 18px;}
@@ -38,14 +37,11 @@
     .section h2{color:var(--ink);margin:0 0 8px}
     .muted{color:var(--muted)}
 
-    /* Grid: 2 columns on desktop, no "card" look */
+    /* Services grid — flat rows (no cards) */
     .grid{display:grid;grid-template-columns:1fr;gap:0}
     @media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
-    .service{padding:16px 0;border-top:1px solid var(--line);}
-    /* add column separator on desktop */
+    .service{padding:16px 18px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
     @media(min-width:820px){
-      .service{padding:16px 18px;border-left:1px solid var(--line);}
-      .service:nth-child(-n+2){border-top:1px solid var(--line);} /* top row */
       .grid{border-top:1px solid var(--line);border-left:1px solid var(--line)}
     }
     .service h3{margin:4px 0 6px;color:#0b3a6f;font-size:1.05rem}
@@ -61,15 +57,15 @@
     /* Price chips */
     .price-tag{display:inline-flex;align-items:center;gap:8px;font-weight:800;border:1px solid var(--line);border-radius:999px;padding:4px 10px;margin-bottom:6px}
     .price-tag.firm{background:#ecfdf5;border-color:#99f6e4;color:#065f46}
-    .price-tag.free{background:#ecfdf5;border-color:#99f6e4;color:#065f46}
     .price-tag.call{background:#f1f5f9;border-color:#cbd5e1;color:#334155}
+    .price-tag.free{background:#ecfdf5;border-color:#99f6e4;color:#065f46}
 
-    /* FAQ */
+    /* FAQ rows */
     details{border-top:1px solid var(--line);padding:10px 0}
     details+details{border-top:1px solid var(--line)}
     summary{cursor:pointer;font-weight:800;color:#0b3a6f}
 
-    /* Neutralize "card" look on this page only (matches your other flat pages) */
+    /* Ensure no white “card” wrappers on this page */
     .card, .airy {background:transparent !important; box-shadow:none !important; border:none !important; border-radius:0 !important;}
 
     /* Sticky quick actions */
@@ -90,7 +86,7 @@
       {"@type":"ListItem","position":2,"item":{"@type":"Service","name":"Real-Estate Roof Estimate","url":"https://www.zenithroofingservices.com/services/real-estate/roof-estimates/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"295"}}},
       {"@type":"ListItem","position":3,"item":{"@type":"Service","name":"Roof Certification","url":"https://www.zenithroofingservices.com/services/real-estate/roof-certifications/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"395"}}},
       {"@type":"ListItem","position":4,"item":{"@type":"Service","name":"Certified Roof Report","url":"https://www.zenithroofingservices.com/services/roof-inspection/certified-roof-reports/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"495"}}},
-      {"@type":"ListItem","position":5,"item":{"@type":"Service","name":"Verbal Roof Opinion","url":"https://www.zenithroofingservices.com/services/real-estate/verbal-opinions/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"0"}}},
+      {"@type":"ListItem","position":5,"item":{"@type":"Service","name":"Verbal Roof Opinion","url":"https://www.zenithroofingservices.com/services/real-estate/verbal-opinions/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"0","description":"Phone guidance"}}},
       {"@type":"ListItem","position":6,"item":{"@type":"Service","name":"Satellite Imagery Analysis","url":"https://www.zenithroofingservices.com/services/real-estate/satellite-imagery-analysis/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"0","description":"Call for pricing"}}}
     ]
   }
@@ -183,11 +179,11 @@
           </div>
         </article>
 
-        <!-- Verbal Opinion -->
+        <!-- Verbal Opinion (page can say free; form stays neutral) -->
         <article class="service">
           <span class="price-tag free">Free</span>
           <h3><a href="/services/real-estate/verbal-opinions/">Verbal Roof Opinion</a></h3>
-          <p>Quick call for triage during short contingency windows. Not a written deliverable—helps you pick the right next step.</p>
+          <p>Quick phone guidance during short contingency windows. Helps you choose the right next step—no written deliverable.</p>
           <ul class="list">
             <li class="tick">Fast, practical guidance</li>
             <li class="tick">Clarify scope before ordering services</li>
@@ -240,143 +236,19 @@
       </details>
       <details>
         <summary>Can I get quick guidance before ordering?</summary>
-        <p>Absolutely—our <a href="/services/real-estate/verbal-opinions/">Verbal Roof Opinion</a> is free by phone to help you choose the right service.</p>
+        <p>Absolutely—our <a href="/services/real-estate/verbal-opinions/">Verbal Roof Opinion</a> is by phone to help you choose the right service.</p>
       </details>
     </section>
 
-<!-- /components/forms/estimate.html -->
-<section class="lead-form card airy" aria-label="Request information or a call back">
-  <div class="head">
-    <span class="kicker">Request Info / Schedule</span>
-    <h2>Tell us about your roof—we’ll follow up fast</h2>
-    <p class="muted">Use this form to request information, scheduling, or pricing. Or contact us directly:</p>
-    <nav class="quick" aria-label="Quick contact">
-      <a class="qbtn primary" href="tel:8589006163">Call 858-900-6163</a>
-      <a class="qbtn" href="sms:+18589006163">Text Us</a>
-    </nav>
-  </div>
-
-  <form id="estimate-form" novalidate>
-    <!-- Contact -->
-    <div class="row cols-2">
-      <div>
-        <label for="name">Full Name *</label>
-        <input id="name" name="name" type="text" autocomplete="name" required />
-      </div>
-      <div>
-        <label for="phone">Phone *</label>
-        <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required />
-      </div>
-    </div>
-
-    <div class="row cols-2">
-      <div>
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" autocomplete="email" />
-      </div>
-      <div>
-        <label for="contact_pref">Preferred Contact</label>
-        <select id="contact_pref" name="contact_pref">
-          <option value="">No preference</option>
-          <option>Call</option>
-          <option>Text</option>
-          <option>Email</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Property -->
-    <div class="row cols-3">
-      <div>
-        <label for="address">Property Address *</label>
-        <input id="address" name="address" type="text" autocomplete="street-address" required />
-      </div>
-      <div>
-        <label for="city">City *</label>
-        <input id="city" name="city" type="text" required />
-      </div>
-      <div>
-        <label for="zip">ZIP *</label>
-        <input id="zip" name="zip" type="text" inputmode="numeric" pattern="[0-9]*" required />
-      </div>
-    </div>
-
-    <!-- Service -->
-    <div class="row cols-2">
-      <div>
-        <label for="service">What do you need? *</label>
-        <select id="service" name="service" required>
-          <option value="">Select one…</option>
-          <optgroup label="Real-Estate">
-            <option>Visual Roof Inspection ($295)</option>
-            <option>Real-Estate Roof Estimate ($295)</option>
-            <option>Roof Certification ($395)</option>
-            <option>Certified Roof Report ($495)</option>
-            <option>Verbal Roof Opinion</option>
-            <option>Satellite Imagery Analysis</option>
-          </optgroup>
-          <optgroup label="Homeowners / Repairs">
-            <option>Homeowner Roof Inspection</option>
-            <option>Roof Tune-Up (Quote)</option>
-            <option>Tile Roof Repair (Quote)</option>
-            <option>Asphalt Shingle Roof (Quote)</option>
-            <option>Flat / Low-Slope Roof (Quote)</option>
-          </optgroup>
-          <optgroup label="Insurance">
-            <option>Storm Damage Inspection for Claim</option>
-            <option>Insurance Letter / Third Party Request ($295)</option>
-          </optgroup>
-          <optgroup label="Other">
-            <option>Gutters / Guards (Quote)</option>
-            <option>Other / Not sure</option>
-          </optgroup>
-        </select>
-      </div>
-      <div>
-        <label for="timeline">Timeline</label>
-        <select id="timeline" name="timeline">
-          <option value="">Select…</option>
-          <option>ASAP (in escrow)</option>
-          <option>1–2 weeks</option>
-          <option>2–4 weeks</option>
-          <option>Just planning</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Details -->
-    <div>
-      <label for="details">Notes for our team</label>
-      <textarea id="details" name="details" placeholder="Tell us about leaks, age, material, or what triggered this request."></textarea>
-      <p class="hint">You can also reply with photos after we follow up.</p>
-    </div>
-
-    <!-- Consent -->
-    <div>
-      <label class="note">
-        <input type="checkbox" name="ok_to_text" value="yes" />
-        OK to text me about this request
-      </label>
-    </div>
-
-    <!-- Hidden context populated by /js/estimate-form.js -->
-    <input type="hidden" name="category" value="">
-    <input type="hidden" name="page_url" value="">
-    <input type="hidden" name="page_title" value="">
-    <input type="hidden" name="context" value="">
-
-    <div class="divider" role="presentation"></div>
-
-    <!-- Actions -->
-    <div class="actions">
-      <button class="btn primary" type="submit">Send Request</button>
-      <a class="btn ghost" href="tel:8589006163">Or Call 858-900-6163</a>
-    </div>
-
-    <p class="note">Submitting this form does not place an order or schedule work; it simply lets us contact you to discuss your roof and next steps.</p>
-  </form>
-</section>
-
+    <!-- Neutral lead form (shared include; no “free” on the form) -->
+    <section class="section" id="book"
+      data-estimate-context
+      data-category="Real-Estate Services"
+      data-redirect="/thank-you/">
+      <h2>Request Info / Schedule</h2>
+      <p class="muted">Tell us the property address, your timeline, and which item you need (Visual Inspection, Estimate, Certification, or Certified Report).</p>
+      <div data-include="/components/forms/estimate.html"></div>
+    </section>
   </main>
 
   <div data-include="/components/footer.html"></div>
