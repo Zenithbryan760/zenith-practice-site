@@ -6,7 +6,7 @@
   </style>
 
   <form id="re-minimal-form" method="POST" novalidate>
-    <!-- Hidden context (auto-filled by JS / script below) -->
+    <!-- Hidden context (auto-filled by script) -->
     <input type="hidden" name="page" value="">
     <input type="hidden" name="category" value="">
     <!-- Honeypot -->
@@ -124,7 +124,7 @@
       const form = host.querySelector('#re-minimal-form') || document.getElementById('re-minimal-form');
       if (!form) return;
 
-      const get = n => form.querySelector(`[name="${n}"]`);
+      const get = n => form.querySelector(\`[name="\${n}"]\`);
       const svc   = form.querySelector('#serviceType');
       const btn   = form.querySelector('button[type="submit"]');
 
@@ -155,7 +155,7 @@
 
       if (ctaLabel && btn) btn.textContent = ctaLabel;
 
-      // Use your existing universal initializer (validation + reCAPTCHA + JobNimbus)
+      // Use your existing initializer (validation + reCAPTCHA + JobNimbus submit + redirect)
       if (window.initEstimateForm) {
         window.initEstimateForm(form, { redirect: redir });
       }
