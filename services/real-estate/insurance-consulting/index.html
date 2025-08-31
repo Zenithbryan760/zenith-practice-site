@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Free Storm Damage Roof Inspection (Insurance Claims) | Zenith Roofing Services</title>
+  <title>Insurance Consulting for Storm Damage Claims | Zenith Roofing Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Free storm damage roof inspection for insurance claims in San Diego & Temecula. We assess wind, hail, tree impact, and water intrusion, document damage with photos, and help you move your claim forward." />
-  <link rel="canonical" href="https://www.zenithroofingservices.com/services/insurance/storm-damage-inspection/">
+  <meta name="description" content="Storm damage insurance consulting for wind, hail, and rain events. We document damage, coordinate with adjusters, and guide claim next steps. Free on-site inspection for active claims. San Diego & Temecula." />
+  <link rel="canonical" href="https://www.zenithroofingservices.com/services/real-estate/insurance-consulting/">
 
   <!-- Shared CSS -->
   <link rel="stylesheet" href="/css/header.css">
@@ -20,30 +20,39 @@
   <script defer src="/js/estimate-form.js"></script>
 
   <style>
-    .page.sdi { max-width:1100px; margin:24px auto; padding:0 16px; }
-    .badge{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#f1f5f9; font-weight:600; font-size:.95rem; }
-    .lede{ color:#475569; font-size:1.075rem; margin:8px 0 18px; }
-    .muted{ color:var(--ui-muted); }
-    .small{ font-size:.9rem; }
-    .tick{ font-weight:800; color:#0b3a6f; }
-    .note{ background:#f8fafc; border:1px solid var(--ui-line); border-radius:14px; padding:12px 14px; }
-    .svc-card h3{ margin-bottom:6px; }
-    .svc-card p{ margin:0; }
+    :root { --ink:#0b3a6f; --muted:#475569; --line:#e2e8f0; }
+    .page.ins-claim{max-width:1100px;margin:24px auto;padding:0 16px}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#eef2ff;color:#334155;font-weight:700}
+    .lede{color:var(--muted);font-size:1.05rem;margin:8px 0 14px}
+    .muted{color:#64748b}
+    .small{font-size:.92rem}
+    .cta{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px}
+    /* Grids – even columns only */
+    .grid{display:grid;gap:12px}
+    .cols-2{grid-template-columns:1fr}
+    @media(min-width:800px){.cols-2{grid-template-columns:1fr 1fr}}
+    .micro-grid{grid-template-columns:1fr 1fr}
+    @media(min-width:900px){.micro-grid{grid-template-columns:1fr 1fr 1fr}}
+    /* Micro “cards” without heavy white boxes */
+    .micro{padding:12px 10px;border:1px solid var(--line);border-radius:12px;background:#fff}
+    .micro h3{margin:0 0 6px 0;font-size:1.02rem;color:#0f172a}
+    .micro p{margin:0;color:#64748b}
+    /* Section spacing */
+    section{margin:22px 0}
+    .divider{height:1px;background:var(--line);margin:24px 0}
+    /* Buttons (reuse ui.css classes if present) */
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid var(--ink);font-weight:800;text-decoration:none}
+    .btn.primary{background:var(--ink);color:#fff}
+    .btn.outline{background:#fff;color:var(--ink)}
+    /* Sticky action bar */
+    .actionbar{position:sticky;bottom:0;left:0;right:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;background:rgba(255,255,255,.98);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:12px 16px;z-index:50}
+    .ab-btn{display:flex;align-items:center;justify-content:center;padding:12px;border:1px solid var(--line);border-radius:12px;text-decoration:none;font-weight:700;color:#0f172a;background:#fff}
+    .ab-btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+    @media(max-width:760px){.actionbar{grid-template-columns:1fr}}
   </style>
 
-  <!-- Service + FAQ Schema for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Service",
-    "name":"Free Storm Damage Roof Inspection (Insurance Claims)",
-    "provider":{"@type":"LocalBusiness","name":"Zenith Roofing Services"},
-    "areaServed":[{"@type":"City","name":"San Diego"},{"@type":"City","name":"Temecula"}],
-    "serviceType":"Roof storm damage inspection for insurance claims",
-    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD","category":"Storm Damage Inspection"},
-    "description":"Free inspection to assess wind, hail, tree impact, and water intrusion; photo documentation for insurance claims."
-  }
-  </script>
+  <!-- FAQ schema -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -51,23 +60,13 @@
     "mainEntity":[
       {
         "@type":"Question",
-        "name":"Is the storm damage inspection really free?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes. For active storm-damage insurance claims in San Diego or Temecula, we provide a free roof inspection to assess damage and help you move your claim forward."}
+        "name":"Do you offer free inspections for insurance claims?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. For active storm-damage insurance claims, we provide a free on-site inspection to document conditions and guide next steps. Written third-party letters and certified reports are paid add-ons if required by your carrier or lender."}
       },
       {
         "@type":"Question",
-        "name":"What types of damage do you inspect?",
-        "acceptedAnswer":{"@type":"Answer","text":"Wind uplift, missing shingles/tiles, hail impacts, dented flashings, tree/branch strikes, open seams, ponding, and water intrusion at flashings, skylights, and penetrations."}
-      },
-      {
-        "@type":"Question",
-        "name":"Do you provide photos for my insurer?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes. We document storm-related conditions with photos and notes. We can also discuss scope alignment with your adjuster if needed."}
-      },
-      {
-        "@type":"Question",
-        "name":"Do you offer emergency tarping?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes, temporary dry-in/tarping is available if the roof is open to weather. We’ll outline options during intake."}
+        "name":"What documentation can you provide for my claim?",
+        "acceptedAnswer":{"@type":"Answer","text":"We can provide photo documentation, a scoped line-item estimate, roof condition notes, and when requested, a paid third-party letter or certified report."}
       }
     ]
   }
@@ -76,95 +75,98 @@
 <body>
   <div data-include="/components/header-section.html"></div>
 
-  <main class="page sdi" id="top">
+  <main class="page ins-claim" id="top">
     <!-- Hero -->
-    <section class="card airy">
-      <span class="badge">Insurance Claims • Storm Damage</span>
-      <h1 style="margin:10px 0 6px;">Free Storm Damage Roof Inspection</h1>
-      <p class="lede">Roof hit by wind, hail, falling branches, or heavy rain? Get a <strong>free storm damage inspection</strong> in <strong>San Diego</strong> or <strong>Temecula</strong>. We assess roof damage, document with photos, and explain next steps for your insurance claim.</p>
-      <div class="cta" style="display:flex; gap:10px; flex-wrap:wrap;">
-        <a class="btn" href="#inspection">Book Free Inspection</a>
+    <section aria-label="Intro">
+      <span class="badge">Real-Estate • Insurance Consulting</span>
+      <h1 style="margin:10px 0 6px;">Storm Damage Insurance Consulting</h1>
+      <p class="lede">Wind, hail, or wind-driven rain? We assess the roof, document what insurers look for, and guide your next steps. <strong>Free on-site inspection for active insurance claims</strong> in San Diego, Temecula, and nearby areas.</p>
+      <div class="cta">
+        <a class="btn primary" href="#claim">Request Claim Inspection</a>
         <a class="btn outline" href="tel:8589006163">Call 858-900-6163</a>
       </div>
-      <p class="small muted" style="margin-top:8px;">For active storm-damage insurance claims. If you need a paid report outside of a storm claim, see <a href="/services/roof-inspection/certified-roof-reports/">Certified Roof Reports</a>.</p>
+      <p class="small muted" style="margin-top:8px;">If you need a written third-party letter or certified report for your carrier, see options below.</p>
     </section>
 
-    <!-- What we inspect (6 even cards) -->
-    <section class="card airy" aria-label="What we inspect">
-      <h2>What We Inspect</h2>
+    <!-- How it works -->
+    <section aria-label="How it works">
+      <h2>How It Works</h2>
       <div class="grid micro-grid">
-        <div class="card"><h3>Wind Damage</h3><p class="muted">Lifted shingles, missing tabs, displaced tiles, bent metal.</p></div>
-        <div class="card"><h3>Hail Impacts</h3><p class="muted">Granule loss, bruising, fractures, dented flashings.</p></div>
-        <div class="card"><h3>Tree/Impact</h3><p class="muted">Punctures, broken tiles/shingles, deck intrusion.</p></div>
-        <div class="card"><h3>Water Intrusion</h3><p class="muted">Ceiling stains, wet insulation, failed seams/flashings.</p></div>
-        <div class="card"><h3>Edges & Metals</h3><p class="muted">Drip edge, term bars, scuppers, gutters & downspouts.</p></div>
-        <div class="card"><h3>Drainage/Ventilation</h3><p class="muted">Ponding, blocked valleys/drains, intake/exhaust balance.</p></div>
+        <div class="micro">
+          <h3>1) Quick Triage</h3>
+          <p>We discuss what happened and any active leaks or interior damage.</p>
+        </div>
+        <div class="micro">
+          <h3>2) On-Site Inspection</h3>
+          <p>We check roof coverings, flashings, penetrations, and vulnerable edges.</p>
+        </div>
+        <div class="micro">
+          <h3>3) Photo Documentation</h3>
+          <p>Clear photos showing storm-related conditions vs. wear-and-tear.</p>
+        </div>
+        <div class="micro">
+          <h3>4) Claim Strategy</h3>
+          <p>We recommend next steps and coordinate with your adjuster as needed.</p>
+        </div>
       </div>
     </section>
 
-    <!-- Claim support (6 even cards) -->
-    <section class="card airy" aria-label="Insurance claim support">
-      <h2>How We Support Your Insurance Claim</h2>
+    <!-- What we assess -->
+    <section aria-label="What we assess">
+      <h2>What We Assess</h2>
       <div class="grid micro-grid">
-        <div class="card"><h3>Photo Documentation</h3><p class="muted">Clear images & captions of storm-related damage.</p></div>
-        <div class="card"><h3>Adjuster Coordination</h3><p class="muted">We can meet or discuss scope with your adjuster.</p></div>
-        <div class="card"><h3>Scope Alignment</h3><p class="muted">Match real-world materials & labor to claim line items.</p></div>
-        <div class="card"><h3>Repair vs Replacement</h3><p class="muted">When targeted repairs work—and when full systems make sense.</p></div>
-        <div class="card"><h3>Emergency Dry-In</h3><p class="muted">Tarping/seal options to prevent further damage.</p></div>
-        <div class="card"><h3>Next-Step Proposal</h3><p class="muted">If you proceed, we’ll provide a written proposal for the work.</p></div>
-      </div>
-      <div class="note" style="margin-top:12px;">
-        <strong>Important:</strong> This is a <em>free inspection</em> for storm-related insurance claims. Written proposals for repairs/replacement are provided after inspection if you choose to proceed.
+        <div class="micro"><h3>Wind Uplift</h3><p>Creased shingles, displaced tiles, lifted laps.</p></div>
+        <div class="micro"><h3>Impact Marks</h3><p>Hail/impact on shingles, tiles, skylights, and caps.</p></div>
+        <div class="micro"><h3>Water Entry</h3><p>Underlayment failure, valleys, pipe & wall flashings.</p></div>
+        <div class="micro"><h3>Edges & Parapets</h3><p>Metal terminations, scuppers, drains, ES-1 edges.</p></div>
+        <div class="micro"><h3>Sealants & Penetrations</h3><p>HVAC boots, satellite mounts, solar standoffs.</p></div>
+        <div class="micro"><h3>Interior Signs</h3><p>Ceiling stains, moisture mapping, attic viewpoints.</p></div>
       </div>
     </section>
 
-    <!-- Process (4 even cards) -->
-    <section class="card airy" aria-label="Process">
-      <h2>Our 4-Step Process</h2>
+    <!-- Deliverables -->
+    <section aria-label="Documentation we can provide">
+      <h2>Documentation We Can Provide</h2>
+      <div class="grid micro-grid">
+        <div class="micro"><h3>Photo Set</h3><p>Organized images highlighting storm-related conditions.</p></div>
+        <div class="micro"><h3>Line-Item Scope</h3><p>Estimate formatted for claim discussions.</p></div>
+        <div class="micro"><h3>Third-Party Letter</h3><p>Formal letter if your carrier requests one <span class="pill">$295</span>.</p></div>
+        <div class="micro"><h3>Certified Roof Report</h3><p>Contractor-certified report with photos <span class="pill">$495</span>.</p></div>
+      </div>
+      <p class="small muted" style="margin-top:8px;">Inspection for active storm claims is free. Paid documentation is optional and only needed when requested by your carrier, lender, or HOA.</p>
+    </section>
+
+    <div class="divider" role="presentation"></div>
+
+    <!-- Request Form (headerless, generic) -->
+    <section id="claim"
+      data-estimate-context
+      data-category="Insurance — Storm Damage Claim"
+      data-service="Storm Damage Inspection for Claim"
+      data-cta="Request Claim Inspection"
+      data-redirect="/thank-you/">
+      <div data-include="/components/forms/request-minimal.html"></div>
+    </section>
+
+    <!-- FAQs -->
+    <section aria-label="FAQs">
+      <h2>FAQs</h2>
       <div class="grid cols-2">
-        <div class="card"><h3>1) Intake & Triage</h3><p class="muted">Share claim details, photos, and any urgent issues.</p></div>
-        <div class="card"><h3>2) On-Site Inspection</h3><p class="muted">We document storm damage with photos and notes.</p></div>
-        <div class="card"><h3>3) Claim Alignment</h3><p class="muted">We discuss findings and align next steps with your claim.</p></div>
-        <div class="card"><h3>4) Proposal (Optional)</h3><p class="muted">If requested, we prepare a written proposal for the work.</p></div>
+        <div class="micro">
+          <h3>Is the inspection really free?</h3>
+          <p class="muted">Yes—if you have an active storm-damage insurance claim. We’ll assess the roof and advise on next steps. Any paid documents are optional and requested only when needed.</p>
+        </div>
+        <div class="micro">
+          <h3>What if my insurer asks for a letter?</h3>
+          <p class="muted">We can provide a third-party letter for <strong>$295</strong> or a certified roof report for <strong>$495</strong>. Your adjuster will usually specify the format.</p>
+        </div>
       </div>
-    </section>
-
-    <!-- Lead form include -->
-    <section id="inspection" class="card airy" data-estimate-context data-category="Free Storm Damage Inspection (Insurance Claims)" data-redirect="/thank-you/">
-      <h2>Book Your Free Storm Damage Inspection</h2>
-      <p class="muted small">Tell us about the storm event and your claim. We’ll confirm a time and access details.</p>
-      <div data-include="/components/forms/estimate.html"></div>
-
-      <!-- Fallback form if component include is unavailable -->
-      <template id="lead-form-fallback">
-        <form id="inspection-form" class="form" method="post" action="/api/lead" novalidate>
-          <input type="hidden" name="service_type" value="Free Storm Damage Inspection (Insurance Claims)">
-          <input type="hidden" name="page" value="">
-          <div class="form-row">
-            <div class="form-col-6"><label>Full Name</label><input name="name" required></div>
-            <div class="form-col-6"><label>Phone</label><input name="phone" type="tel" required></div>
-          </div>
-          <div class="form-row">
-            <div class="form-col-6"><label>Email</label><input name="email" type="email" required></div>
-            <div class="form-col-6"><label>ZIP</label><input name="zip" required></div>
-          </div>
-          <div class="form-row">
-            <div class="form-col-12">
-              <label>Claim Details</label>
-              <textarea name="message" rows="4" placeholder="Wind/hail/tree/water? Claim #? Adjuster name? Active leaks? Deadlines?"></textarea>
-            </div>
-          </div>
-          <button class="btn" type="submit">Request Free Inspection</button>
-          <a class="btn outline" href="tel:8589006163">Or Call 858-900-6163</a>
-        </form>
-      </template>
     </section>
 
     <!-- Service area -->
-    <section class="card airy">
+    <section aria-label="Service Area">
       <h2>Service Area</h2>
       <p class="muted">San Diego • Temecula • Nearby communities.</p>
-      <p class="muted small">Final repair/replacement scope, pricing, and warranties are defined by your signed proposal and manufacturer documentation.</p>
     </section>
   </main>
 
@@ -172,9 +174,9 @@
 
   <!-- Sticky Action Bar -->
   <div class="actionbar">
-    <a class="ab-btn call" href="tel:8589006163">Call</a>
-    <a class="ab-btn text" href="sms:+18589006163">Text</a>
-    <a class="ab-btn estimate" href="#inspection">Book Free Inspection</a>
+    <a class="ab-btn" href="tel:8589006163">Call</a>
+    <a class="ab-btn" href="sms:+18589006163">Text</a>
+    <a class="ab-btn primary" href="#claim">Request Claim Inspection</a>
   </div>
 </body>
 </html>
