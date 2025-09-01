@@ -1,14 +1,13 @@
-<!-- js/universal-form.js -->
-<script>
+// js/universal-form.js
 (function () {
   const FORM_ID = 'universal-form'; // unique to avoid hero conflicts
   const RECAPTCHA_SITEKEY = '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI';
   const FN_ENDPOINT = '/.netlify/functions/jn-universal-lead';
-  const MAX_ATTACH_MB = 25; // total attachments cap for email
+  const MAX_ATTACH_MB = 25;
 
-  const getCtx = () => document.querySelector('[data-estimate-context]') || document.body;
+  const getCtx = () => document.querySelector('[data-estimate-context]') || document.getElementById('universal-form-context') || document.body;
 
-  // --- reCAPTCHA (lazy) ---
+  // reCAPTCHA (lazy)
   function ensureRecaptchaScript() {
     if (document.querySelector('script[data-zenith-recaptcha]')) return;
     const s = document.createElement('script');
@@ -32,7 +31,7 @@
     form.addEventListener('focusin', trigger, { once:true });
   }
 
-  // --- Phone mask ---
+  // Phone mask
   function bindPhoneMask() {
     const el = document.getElementById('phone');
     if (!el || el._masked) return;
@@ -52,7 +51,7 @@
     });
   }
 
-  // --- ZIP -> City ---
+  // ZIP -> City
   function bindZipToCity() {
     const zipInput  = document.getElementById('zip');
     const cityInput = document.getElementById('city');
@@ -88,7 +87,7 @@
     maybeFill();
   }
 
-  // --- Error UI helpers ---
+  // Error UI helpers
   function ensureErrorSummary(form) {
     let box = form.querySelector('.error-summary');
     if (!box) {
@@ -139,13 +138,13 @@
     return true;
   }
 
-  // --- files -> base64 (for SendGrid attachments) ---
+  // files -> base64 (for SendGrid attachments)
   function readFileBase64(file) {
     return new Promise((resolve, reject) => {
       const fr = new FileReader();
       fr.onload = () => {
         const result = String(fr.result || '');
-        const base64 = result.split(',')[1] || ''; // strip "data:*/*;base64,"
+        const base64 = result.split(',')[1] || '';
         resolve({ filename: file.name, type: file.type || 'application/octet-stream', data: base64, size: file.size });
       };
       fr.onerror = reject;
@@ -153,7 +152,7 @@
     });
   }
 
-  // --- Submit ---
+  // Submit
   async function submitHandler(e) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -186,9 +185,7 @@
     // photos -> base64, enforce total size cap
     const files = Array.from(document.getElementById('photos')?.files || []);
     const totalBytes = files.reduce((n,f)=>n+f.size,0);
-    if (totalBytes > MAX_ATTACH_MB * 1024 * 1024) {
-      alert(`Please keep photo uploads under ${MAX_ATTACH_MB} MB total.`); return;
-    }
+    if (totalBytes > MAX_ATTACH_MB * 1024 * 1024) { alert(`Please keep photo uploads under ${MAX_ATTACH_MB} MB total.`); return; }
     const attachments = await Promise.all(files.map(readFileBase64));
 
     const data = {
@@ -271,4 +268,3 @@
     if (document.getElementById(FORM_ID)) initUniversalForm();
   });
 })();
-</script>
