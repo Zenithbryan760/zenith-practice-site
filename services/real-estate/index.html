@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Real-Estate Roofing Services | Inspections, Estimates, Certifications</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0b3a6f" />
-  <meta name="description" content="Transaction-ready roofing services for agents, buyers, and sellers in San Diego & Temecula: visual inspections, line-item estimates, roof certifications, and certified reports. Fast scheduling, clear deliverables." />
+  <title>Real-Estate Roofing Services | Zenith Roofing Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Roof certifications, visual inspections, certified roof reports, real-estate roof estimates, and satellite imagery analysis for San Diego & Temecula." />
   <link rel="canonical" href="https://www.zenithroofingservices.com/services/real-estate/">
 
   <!-- Shared CSS -->
@@ -21,73 +20,24 @@
   <script defer src="/js/estimate-form.js"></script>
 
   <style>
-    :root{
-      --primary:#0b3a6f; --ink:#0b3a6f; --muted:#64748b; --line:#e2e8f0;
-    }
-    body{color:#334155;}
-    .page{max-width:1100px;margin:36px auto;padding:0 18px;}
-    .hero{padding:12px 0 6px;margin-bottom:8px}
-    .badge{display:inline-block;background:#eef2ff;color:#334155;border-radius:999px;padding:6px 12px;font-weight:700}
-    h1{margin:8px 0 4px;color:var(--ink);font-size:2rem}
-    .lede{color:var(--muted);max-width:70ch}
-    .bar{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .cta{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:transparent;font-weight:700}
-    .cta.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
-    .section{margin:24px 0}
-    .section h2{color:var(--ink);margin:0 0 8px}
-    .muted{color:var(--muted)}
-
-    /* Services grid — flat rows (no cards) */
-    .grid{display:grid;grid-template-columns:1fr;gap:0}
-    @media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
-    .service{padding:16px 18px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-    @media(min-width:820px){
-      .grid{border-top:1px solid var(--line);border-left:1px solid var(--line)}
-    }
-    .service h3{margin:4px 0 6px;color:#0b3a6f;font-size:1.05rem}
-    .service p{margin:0 0 10px}
-    .list{display:grid;gap:6px;margin:6px 0}
-    .tick{display:flex;gap:8px}
-    .tick:before{content:"•";color:#059669;font-weight:900}
-    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:8px;border:1px solid var(--primary);font-weight:700;text-decoration:none}
-    .btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
-    .btn.outline{background:transparent;color:var(--primary)}
-
-    /* Price chips */
-    .price-tag{display:inline-flex;align-items:center;gap:8px;font-weight:800;border:1px solid var(--line);border-radius:999px;padding:4px 10px;margin-bottom:6px}
-    .price-tag.firm{background:#ecfdf5;border-color:#99f6e4;color:#065f46}
-    .price-tag.call{background:#f1f5f9;border-color:#cbd5e1;color:#334155}
-    .price-tag.free{background:#ecfdf5;border-color:#99f6e4;color:#065f46}
-
-    /* FAQ rows */
-    details{border-top:1px solid var(--line);padding:10px 0}
-    details+details{border-top:1px solid var(--line)}
-    summary{cursor:pointer;font-weight:800;color:#0b3a6f}
-
-    /* Ensure no white “card” wrappers on this page */
-    .card, .airy {background:transparent !important; box-shadow:none !important; border:none !important; border-radius:0 !important;}
-
-    /* Sticky quick actions */
-    .actionbar{position:sticky;bottom:0;left:0;width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 18px;z-index:50}
-    .ab-btn{display:flex;align-items:center;justify-content:center;padding:14px;border:1px solid var(--line);border-radius:10px;font-weight:800;background:transparent}
-    .ab-btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
-    @media(max-width:720px){.actionbar{grid-template-columns:1fr}}
+    .page{max-width:1100px;margin:24px auto;padding:0 16px}
+    .muted{color:#64748b}
+    .price-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid #e2e8f0;padding:6px 10px;border-radius:10px;font-weight:700}
+    .grid-tight{display:grid;gap:14px}
+    @media(min-width:760px){.grid-tight{grid-template-columns:1fr 1fr}}
+    @media(min-width:1040px){.grid-tight{grid-template-columns:1fr 1fr 1fr}}
+    .svc-card h3{margin:0 0 6px}
+    .svc-card p{margin:0}
   </style>
 
-  <!-- SEO: ItemList (firm pricing) -->
+  <!-- Breadcrumbs (SEO) -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"ItemList",
-    "name":"Real-Estate Roofing Services",
+    "@type":"BreadcrumbList",
     "itemListElement":[
-      {"@type":"ListItem","position":1,"item":{"@type":"Service","name":"Visual Roof Inspection","url":"https://www.zenithroofingservices.com/services/real-estate/visual-inspections/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"295"}}},
-      {"@type":"ListItem","position":2,"item":{"@type":"Service","name":"Real-Estate Roof Estimate","url":"https://www.zenithroofingservices.com/services/real-estate/roof-estimates/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"295"}}},
-      {"@type":"ListItem","position":3,"item":{"@type":"Service","name":"Roof Certification","url":"https://www.zenithroofingservices.com/services/real-estate/roof-certifications/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"395"}}},
-      {"@type":"ListItem","position":4,"item":{"@type":"Service","name":"Certified Roof Report","url":"https://www.zenithroofingservices.com/services/roof-inspection/certified-roof-reports/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"495"}}},
-      {"@type":"ListItem","position":5,"item":{"@type":"Service","name":"Verbal Roof Opinion","url":"https://www.zenithroofingservices.com/services/real-estate/verbal-opinions/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"0","description":"Phone guidance"}}},
-      {"@type":"ListItem","position":6,"item":{"@type":"Service","name":"Satellite Imagery Analysis","url":"https://www.zenithroofingservices.com/services/real-estate/satellite-imagery-analysis/","areaServed":"San Diego & Temecula","offers":{"@type":"Offer","priceCurrency":"USD","price":"0","description":"Call for pricing"}}}
+      {"@type":"ListItem","position":1,"name":"Services","item":"https://www.zenithroofingservices.com/services/"},
+      {"@type":"ListItem","position":2,"name":"Real-Estate","item":"https://www.zenithroofingservices.com/services/real-estate/"}
     ]
   }
   </script>
@@ -97,167 +47,99 @@
 
   <main class="page" id="top">
     <!-- Hero -->
-    <section class="hero">
-      <span class="badge">For Agents • Buyers • Sellers</span>
+    <section class="card airy">
+      <span class="badge">For Agents • Buyers • Sellers • Lenders</span>
       <h1>Real-Estate Roofing Services</h1>
-      <p class="lede">Fast, transaction-ready roofing documentation for escrows and listings in San Diego &amp; Temecula: visual inspections, line-item estimates, certifications, and certified reports—scheduled quickly and delivered clearly.</p>
-      <div class="bar">
-        <a class="cta primary" href="#book">Request Info</a>
-        <a class="cta" href="#menu">See Services</a>
-        <a class="cta" href="#faq">FAQ</a>
-        <a class="cta" href="/reviews/">Read Reviews</a>
+      <p class="muted">Fast, clear deliverables designed for escrow timelines and lender/insurer requests. Serving San Diego & Temecula.</p>
+      <div class="quick" style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="tel:8589006163">Call 858-900-6163</a>
+        <a class="btn outline" href="sms:+18589006163">Text Us</a>
       </div>
     </section>
 
-    <!-- Services (flat, no cards) -->
-    <section class="section" id="menu" aria-label="Real-estate services">
-      <h2>Transaction Services</h2>
-      <p class="muted">Firm prices shown below. Need something custom? <a href="#book">Send details</a> and we’ll confirm scope fast.</p>
+    <!-- Services grid -->
+    <section class="card airy" aria-label="Real-estate services">
+      <h2>Choose the Service You Need</h2>
+      <div class="grid-tight">
+        <a class="card svc-card" href="/services/real-estate/visual-inspections/">
+          <div class="price-badge">$295</div>
+          <h3>Visual Roof Inspection</h3>
+          <p class="muted">On-site photos & written findings for basic documentation.</p>
+        </a>
 
-      <div class="grid">
-        <!-- Visual Inspection -->
-        <article class="service">
-          <span class="price-tag firm">$295 • Firm</span>
-          <h3><a href="/services/real-estate/visual-inspections/">Visual Roof Inspection</a></h3>
-          <p>Photo-documented site walk for real-estate transactions. Clear notes on condition, leaks, and remaining life—ideal for disclosures and due diligence.</p>
-          <ul class="list">
-            <li class="tick">On-site photos & written findings</li>
-            <li class="tick">Action items prioritized by urgency</li>
-            <li class="tick">Typical turnaround: next business day</li>
-          </ul>
-          <div class="actions">
-            <a class="btn primary" href="#book">Request $295</a>
-            <a class="btn outline" href="/services/real-estate/visual-inspections/">Details</a>
-          </div>
-        </article>
+        <a class="card svc-card" href="/services/real-estate/roof-estimates/">
+          <div class="price-badge">$295</div>
+          <h3>Real-Estate Roof Estimate</h3>
+          <p class="muted">Line-item scope & pricing for negotiations or credits.</p>
+        </a>
 
-        <!-- Real-Estate Estimate -->
-        <article class="service">
-          <span class="price-tag firm">$295 • Firm</span>
-          <h3><a href="/services/real-estate/roof-estimates/">Real-Estate Roof Estimate</a></h3>
-          <p>Negotiation-ready, line-item pricing tailored for credits or repair requests—based on our inspection findings or agent notes.</p>
-          <ul class="list">
-            <li class="tick">Detailed, itemized scope & pricing</li>
-            <li class="tick">Photos/annotations for context</li>
-            <li class="tick">Change-order language included</li>
-          </ul>
-          <div class="actions">
-            <a class="btn primary" href="#book">Request $295</a>
-            <a class="btn outline" href="/services/real-estate/roof-estimates/">Details</a>
-          </div>
-        </article>
+        <a class="card svc-card" href="/services/real-estate/roof-certifications/">
+          <div class="price-badge">$395</div>
+          <h3>Roof Certification</h3>
+          <p class="muted">Pass/fail certificate when eligibility standards are met.</p>
+        </a>
 
-        <!-- Roof Certification -->
-        <article class="service">
-          <span class="price-tag firm">$395 • Firm</span>
-          <h3><a href="/services/real-estate/roof-certifications/">Roof Certification</a></h3>
-          <p>Pass/fail certificate when eligibility standards are met. Often requested by lenders or buyers for added confidence.</p>
-          <ul class="list">
-            <li class="tick">Eligibility inspection included</li>
-            <li class="tick">Deficiency list if not eligible</li>
-            <li class="tick">Re-inspection available after fixes</li>
-          </ul>
-          <div class="actions">
-            <a class="btn primary" href="#book">Request $395</a>
-            <a class="btn outline" href="/services/real-estate/roof-certifications/">Details</a>
-          </div>
-        </article>
+        <a class="card svc-card" href="/services/roof-inspection/certified-roof-reports/">
+          <div class="price-badge">$495</div>
+          <h3>Certified Roof Report</h3>
+          <p class="muted">Contractor-certified narrative with photos & recommendations.</p>
+        </a>
 
-        <!-- Certified Roof Report -->
-        <article class="service">
-          <span class="price-tag firm">$495 • Firm</span>
-          <h3><a href="/services/roof-inspection/certified-roof-reports/">Certified Roof Report</a></h3>
-          <p>Contractor-certified narrative with photos and prioritized recommendations. Useful for complex roofs or formal documentation needs.</p>
-          <ul class="list">
-            <li class="tick">Narrative + annotated photos</li>
-            <li class="tick">Repair/replacement options with budgets</li>
-            <li class="tick">Great for underwriting or appraisal addenda</li>
-          </ul>
-          <div class="actions">
-            <a class="btn primary" href="#book">Order $495</a>
-            <a class="btn outline" href="/services/roof-inspection/certified-roof-reports/">Details</a>
-          </div>
-        </article>
+        <a class="card svc-card" href="/services/real-estate/satellite-imagery-analysis/">
+          <div class="price-badge">Quote</div>
+          <h3>Satellite Imagery Analysis</h3>
+          <p class="muted">Remote take-offs for early budgeting and scope planning.</p>
+        </a>
 
-        <!-- Verbal Opinion (page can say free; form stays neutral) -->
-        <article class="service">
-          <span class="price-tag free">Free</span>
-          <h3><a href="/services/real-estate/verbal-opinions/">Verbal Roof Opinion</a></h3>
-          <p>Quick phone guidance during short contingency windows. Helps you choose the right next step—no written deliverable.</p>
-          <ul class="list">
-            <li class="tick">Fast, practical guidance</li>
-            <li class="tick">Clarify scope before ordering services</li>
-          </ul>
-          <div class="actions">
-            <a class="btn primary" href="tel:8589006163">Call Now</a>
-            <a class="btn outline" href="sms:+18589006163">Text</a>
-          </div>
-        </article>
-
-        <!-- Satellite Imagery -->
-        <article class="service">
-          <span class="price-tag call">Call for Pricing</span>
-          <h3><a href="/services/real-estate/satellite-imagery-analysis/">Satellite Imagery Analysis</a></h3>
-          <p>Remote measurements & take-offs for early budgeting or pre-offer diligence—handy when access is limited.</p>
-          <ul class="list">
-            <li class="tick">Eave, ridge, pitch & area take-offs</li>
-            <li class="tick">Great for ballpark budgeting</li>
-          </ul>
-          <div class="actions">
-            <a class="btn primary" href="#book">Start Request</a>
-            <a class="btn outline" href="/services/real-estate/satellite-imagery-analysis/">Details</a>
-          </div>
-        </article>
+        <a class="card svc-card" href="/services/real-estate/verbal-opinions/">
+          <div class="price-badge">Call</div>
+          <h3>Verbal Roof Opinion</h3>
+          <p class="muted">Quick phone guidance—what you’re seeing & smart next steps.</p>
+        </a>
       </div>
     </section>
 
-    <!-- Clarifications -->
-    <section class="section" aria-label="Notes for third-party requests">
-      <h2>What’s Free vs. Paid for Inspections?</h2>
-      <p class="muted">
-        For homeowners asking us to inspect their own roof for normal wear/tear or to price a repair, our <a href="/services/roof-inspection/#free">homeowner inspection is free</a>. For third-party requests (insurance, lender/refi, HOA, property manager, or formal letters), choose a <strong>$295 letter</strong> or a <strong>$495 certified report</strong> depending on what your counterpart requires.
-      </p>
+    <!-- Decision help -->
+    <section class="card airy">
+      <h2>Not Sure Which One?</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Need a document for escrow?</h3>
+          <p class="muted">Pick <strong>Visual Inspection</strong> for basic findings, or a <strong>Certified Report</strong> for a full narrative with photos. For pricing to negotiate, choose <strong>Roof Estimate</strong>.</p>
+        </div>
+        <div class="card">
+          <h3>Lender / Insurer asking for proof?</h3>
+          <p class="muted">If your roof qualifies, request a <strong>Roof Certification</strong>. For storm claims, see <a href="/services/real-estate/insurance-consulting/">Insurance Consulting</a>.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <h2>Real-Estate FAQ</h2>
-      <details>
-        <summary>How fast can you inspect and deliver?</summary>
-        <p>We prioritize transaction timelines: typically schedule within a few business days and deliver visual inspections/estimates by the next business day after the visit.</p>
-      </details>
-      <details>
-        <summary>What if a roof certification isn’t eligible?</summary>
-        <p>We provide a deficiency list and a path to eligibility. After required fixes, we can re-inspect and issue the certificate when standards are met.</p>
-      </details>
-      <details>
-        <summary>Do you handle storm-damage insurance inspections?</summary>
-        <p>Yes—<a href="/services/insurance/storm-damage-inspection/">storm-damage claim inspections are free</a> for active claims. Otherwise use our $295 letter or $495 certified report.</p>
-      </details>
-      <details>
-        <summary>Can I get quick guidance before ordering?</summary>
-        <p>Absolutely—our <a href="/services/real-estate/verbal-opinions/">Verbal Roof Opinion</a> is by phone to help you choose the right service.</p>
-      </details>
+    <!-- Generic headerless form (no “free” anywhere) -->
+    <section id="request"
+      data-estimate-context
+      data-category="Real-Estate — General"
+      data-service="Real-Estate — General Inquiry"
+      data-cta="Request Info or Scheduling"
+      data-redirect="/thank-you/">
+      <div data-include="/components/forms/request-minimal.html"></div>
     </section>
 
-    <!-- Neutral lead form (shared include; no “free” on the form) -->
-<section id="request"
-  data-estimate-context
-  data-category="Real-Estate — General Request"
-  data-service="Other / Not sure"
-  data-cta="Send Request"
-  data-redirect="/thank-you/">
-  <div data-include="/components/forms/request-minimal.html"></div>
-</section>
+    <!-- FAQs -->
+    <section class="card airy">
+      <h2>FAQs</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>How fast can you schedule?</h3>
+          <p class="muted">Often within 24–48 hours depending on location and access. Rush options available.</p>
+        </div>
+        <div class="card">
+          <h3>Can you coordinate with tenants or listing agents?</h3>
+          <p class="muted">Yes. Provide contact info in the form and we’ll arrange access.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <div data-include="/components/footer.html"></div>
-
-  <!-- Sticky quick actions -->
-  <div class="actionbar" role="navigation" aria-label="Quick actions">
-    <a class="ab-btn" href="tel:8589006163">Call</a>
-    <a class="ab-btn" href="sms:+18589006163">Text</a>
-    <a class="ab-btn primary" href="#book">Request Info</a>
-  </div>
 </body>
 </html>
