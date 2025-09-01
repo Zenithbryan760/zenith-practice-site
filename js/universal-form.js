@@ -1,7 +1,8 @@
-<!-- /js/universal-form.js -->
+<!-- js/universal-form.js -->
 <script>
 (function () {
-  const RECAPTCHA_SITEKEY = 'YOUR_RECAPTCHA_SITE_KEY'; // keep using your working site key
+  const FORM_ID = 'universal-form';                 // this targets the new test form only
+  const RECAPTCHA_SITEKEY = 'YOUR_RECAPTCHA_SITE_KEY'; // <-- put your site key here
   const FN_ENDPOINT = '/.netlify/functions/jn-universal-lead';
 
   function getCtx() {
@@ -57,7 +58,7 @@
   // ZIP -> City
   function bindZipToCity() {
     const zipInput  = document.getElementById('zip');
-    const cityInput = document.getElementById('city');
+    aconst cityInput = document.getElementById('city');
     if (!zipInput || !cityInput || zipInput._zipBound) return;
     zipInput._zipBound = true;
 
@@ -183,11 +184,10 @@
       service_type:    fd.get("service_type")    || "",
       referral_source: fd.get("referral_source") || "",
       description:     (fd.get("description")    || "").trim(),
-
       page:            (fd.get("page")      || "").trim(),
       category:        (fd.get("category")  || "").trim(),
 
-      // context
+      // extra context
       recaptcha_token: token,
       page_url:        location.href,
       page_title:      document.title,
@@ -207,7 +207,6 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
       });
-
       const text = await res.text();
       if (!res.ok) { console.error("JobNimbus error:", text); alert("Sorry, there was a problem submitting your request."); return; }
 
@@ -230,7 +229,7 @@
   }
 
   function initUniversalForm() {
-    const form = document.getElementById('estimate-form');
+    const form = document.getElementById(FORM_ID);
     if (!form || form._bound) return; form._bound = true;
 
     // fill hidden context
@@ -260,9 +259,8 @@
     form.addEventListener('submit', submitHandler);
   }
 
-  window.initUniversalForm = initUniversalForm;
   document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('estimate-form')) initUniversalForm();
+    if (document.getElementById(FORM_ID)) initUniversalForm();
   });
 })();
 </script>
