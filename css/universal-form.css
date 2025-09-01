@@ -1,0 +1,98 @@
+/* universal-form.css — scoped to .est-wrap */
+:root{
+  --uf-bg: var(--surface, #fff);
+  --uf-text: var(--zenith-text, #1e293b);
+  --uf-muted: var(--zenith-muted, #64748b);
+  --uf-line: var(--zenith-border, #e2e8f0);
+  --uf-accent: var(--zenith-orange, #f7941d);
+  --uf-primary: var(--zenith-navy, #072e59);
+  --uf-radius: 14px;
+  --uf-shadow: 0 10px 30px rgba(2,12,32,.08);
+}
+
+.est-wrap{
+  background: var(--uf-bg);
+  color: var(--uf-text);
+  border: 1px solid var(--uf-line);
+  border-radius: var(--uf-radius);
+  box-shadow: var(--uf-shadow);
+  padding: clamp(1rem, 3vw, 1.75rem);
+  max-width: 860px;
+  margin: clamp(1rem, 3vw, 2rem) auto;
+}
+
+.est-title{
+  font-size: clamp(1.25rem, 1.6vw + .8rem, 1.85rem);
+  line-height: 1.2;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+}
+
+.form-row{
+  display: grid; grid-template-columns: 1fr;
+  gap: clamp(.75rem, 2.4vw, 1rem);
+  margin-bottom: clamp(.75rem, 2.4vw, 1rem);
+}
+@media (min-width: 680px){
+  .form-row{ grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+}
+
+.form-group{ display:flex; flex-direction:column; gap:.375rem; }
+.form-group label{ font-size:.925rem; font-weight:600; color:var(--uf-text); }
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+  appearance: none;
+  background:#fff;
+  border:1px solid var(--uf-line);
+  border-radius:12px;
+  padding:.7rem .9rem;
+  font-size:1rem; line-height:1.2; color:var(--uf-text);
+  outline:none;
+  transition:border-color .15s ease, box-shadow .15s ease;
+  min-height:44px;
+}
+.form-group textarea{ min-height:110px; resize:vertical; }
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+  border-color: color-mix(in oklab, var(--uf-primary) 70%, #fff);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--uf-primary) 20%, #fff);
+}
+
+.form-group ::placeholder{ color: color-mix(in oklab, var(--uf-muted) 75%, #fff); }
+
+.error-summary{
+  display:none;
+  background:#fff7f7; border:1px solid #f5b5b5; color:#8a1f1f;
+  border-radius:12px; padding:.75rem .9rem; margin:0 0 1rem 0; font-size:.95rem;
+}
+.error-summary.show{ display:block; }
+
+.form-group.has-error input,
+.form-group.has-error select,
+.form-group.has-error textarea{
+  border-color:#d92d20; box-shadow:0 0 0 3px rgba(217,45,32,.12);
+}
+
+.field-error{ font-size:.85rem; color:#8a1f1f; }
+.recaptcha-slot{ margin-top:.5rem; }
+
+.form-actions{ display:flex; gap:.75rem; justify-content:flex-start; margin-top:.5rem; }
+
+/* Scoped button (won’t override global .btn elsewhere) */
+.est-wrap .btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:.8rem 1.1rem; font-weight:700; border-radius:12px;
+  text-decoration:none; border:1px solid transparent; cursor:pointer; min-height:44px;
+}
+.est-wrap .btn-primary{ background:var(--uf-primary); color:#fff; border-color:var(--uf-primary); }
+.est-wrap .btn-primary:hover{ filter:brightness(1.05); }
+.est-wrap .btn-primary:focus-visible{ outline:2px solid color-mix(in oklab, var(--uf-accent) 60%, #fff); outline-offset:2px; }
+
+@media (max-width:380px){
+  .est-wrap{ padding:.9rem; }
+  .est-title{ font-size:1.2rem; }
+}
