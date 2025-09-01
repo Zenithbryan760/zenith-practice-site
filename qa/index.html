@@ -6,34 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
 
-  <!-- Your normal site CSS (copy these if different on your site) -->
+  <!-- Your site’s regular CSS (copy exact filenames from a working page if different) -->
   <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/footer.css" />
 
-  <!-- Universal form CSS -->
+  <!-- Universal form CSS (do NOT paste its contents into this file) -->
   <link rel="stylesheet" href="/css/universal-form.css" />
 </head>
 <body>
+  <!-- Header include -->
   <div data-include="/components/header-section.html"></div>
 
   <main class="page" style="max-width:1100px;margin:2rem auto;padding:0 1rem">
-    <h1>QA – Lead Form</h1>
+    <h1>QA – Universal Lead Form</h1>
+    <p style="color:#64748b;margin-bottom:1rem">This page tests the new universal form and backend.</p>
 
-    <!-- UNIVERSAL FORM: change these per-page for SEO / “Free” toggle -->
+    <!-- UNIVERSAL FORM include (configurable via data- attributes below) -->
     <section data-estimate-context
              data-title="Request an Estimate"
              data-button="Request Free Estimate"
              data-disclaimer="*Free estimates exclude real estate transactions."
              data-category="QA – Universal Lead"
              data-redirect="/qa/thanks.html">
+      <!-- IMPORTANT: never include CSS files with data-include; only HTML components -->
       <div data-include="/components/forms/universal-form.html"></div>
     </section>
   </main>
 
+  <!-- Footer include -->
   <div data-include="/components/footer.html"></div>
 
-  <!-- Include resolver + universal form logic -->
+  <!-- Include resolver + the universal form JS -->
   <script defer src="/js/loader.js"></script>
   <script defer src="/js/universal-form.js"></script>
 </body>
