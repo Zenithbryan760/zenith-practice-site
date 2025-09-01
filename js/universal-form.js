@@ -1,15 +1,14 @@
-<!-- /js/universal-form.js -->
+<!-- js/universal-form.js -->
 <script>
 (function () {
-  const FORM_ID = 'universal-form';                 // targets ONLY the new form
-  const RECAPTCHA_SITEKEY = '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI'; // your working site key
+  const FORM_ID = 'universal-form'; // unique to avoid hero conflicts
+  const RECAPTCHA_SITEKEY = '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI';
   const FN_ENDPOINT = '/.netlify/functions/jn-universal-lead';
+  const MAX_ATTACH_MB = 25; // total attachments cap for email
 
-  function getCtx() {
-    return document.querySelector('[data-estimate-context]') || document.body;
-  }
+  const getCtx = () => document.querySelector('[data-estimate-context]') || document.body;
 
-  // Lazy-load reCAPTCHA
+  // --- reCAPTCHA (lazy) ---
   function ensureRecaptchaScript() {
     if (document.querySelector('script[data-zenith-recaptcha]')) return;
     const s = document.createElement('script');
@@ -20,9 +19,7 @@
   window.recaptchaOnload = function() {
     const slot = document.getElementById('recaptcha-slot');
     if (slot && !slot.dataset.rendered && window.grecaptcha) {
-      window._recaptchaWidgetId = grecaptcha.render(slot, {
-        sitekey: RECAPTCHA_SITEKEY, theme: 'light', size: 'normal'
-      });
+      window._recaptchaWidgetId = grecaptcha.render(slot, { sitekey: RECAPTCHA_SITEKEY, theme: 'light', size: 'normal' });
       slot.dataset.rendered = '1';
     }
   };
@@ -35,7 +32,7 @@
     form.addEventListener('focusin', trigger, { once:true });
   }
 
-  // Phone mask
+  // --- Phone mask ---
   function bindPhoneMask() {
     const el = document.getElementById('phone');
     if (!el || el._masked) return;
@@ -55,7 +52,7 @@
     });
   }
 
-  // ZIP -> City
+  // --- ZIP -> City ---
   function bindZipToCity() {
     const zipInput  = document.getElementById('zip');
     const cityInput = document.getElementById('city');
@@ -64,6 +61,7 @@
 
     const cache = {};
     cityInput.addEventListener('input', () => { cityInput.dataset.autofilled = ''; });
+
     async function lookup(zip5) {
       if (cache[zip5]) return cache[zip5];
       const res = await fetch('https://api.zippopotam.us/us/' + zip5);
@@ -74,6 +72,7 @@
       cache[zip5] = city;
       return city;
     }
+
     async function maybeFill() {
       const digits = (zipInput.value || '').replace(/\D/g, '');
       if (!(digits.length === 5 || digits.length === 9)) return;
@@ -83,19 +82,19 @@
         if (canOverwrite) { cityInput.value = city || ''; cityInput.dataset.autofilled = '1'; }
       } catch {}
     }
+
     zipInput.addEventListener('input',  maybeFill);
     zipInput.addEventListener('change', maybeFill);
     maybeFill();
   }
 
-  // Validation helpers
+  // --- Error UI helpers ---
   function ensureErrorSummary(form) {
     let box = form.querySelector('.error-summary');
     if (!box) {
       box = document.createElement('div');
       box.className = 'error-summary';
-      box.setAttribute('role', 'alert');
-      box.setAttribute('aria-live', 'assertive');
+      box.setAttribute('role', 'alert'); box.setAttribute('aria-live', 'assertive');
       const firstRow = form.querySelector('.form-row');
       (firstRow?.parentNode || form).insertBefore(box, firstRow);
     }
@@ -140,24 +139,35 @@
     return true;
   }
 
-  // Submit
+  // --- files -> base64 (for SendGrid attachments) ---
+  function readFileBase64(file) {
+    return new Promise((resolve, reject) => {
+      const fr = new FileReader();
+      fr.onload = () => {
+        const result = String(fr.result || '');
+        const base64 = result.split(',')[1] || ''; // strip "data:*/*;base64,"
+        resolve({ filename: file.name, type: file.type || 'application/octet-stream', data: base64, size: file.size });
+      };
+      fr.onerror = reject;
+      fr.readAsDataURL(file);
+    });
+  }
+
+  // --- Submit ---
   async function submitHandler(e) {
     e.preventDefault();
     const form = e.currentTarget;
     if (!validateForm(form)) return;
 
-    // Honeypot
+    // honeypot
     if ((form.querySelector('input[name="website"]')?.value || '').trim()) { form.reset(); return; }
 
-    // reCAPTCHA token
+    // reCAPTCHA
     let token = '';
     if (window.grecaptcha && typeof window.grecaptcha.getResponse === 'function') {
-      if (typeof window._recaptchaWidgetId !== 'undefined') {
-        token = window.grecaptcha.getResponse(window._recaptchaWidgetId) || '';
-      }
+      if (typeof window._recaptchaWidgetId !== 'undefined') token = window.grecaptcha.getResponse(window._recaptchaWidgetId) || '';
       if (!token) {
-        const t = document.querySelector('textarea[name="g-recaptcha-response"]');
-        if (t && t.value) token = t.value.trim();
+        const t = document.querySelector('textarea[name="g-recaptcha-response"]'); if (t && t.value) token = t.value.trim();
       }
     }
     if (!token) {
@@ -167,10 +177,19 @@
       return;
     }
 
+    // build data
     const fd = new FormData(form);
     const ctx = getCtx();
     const params = new URLSearchParams(location.search);
     const isQA = location.pathname.startsWith('/qa') || params.get('qa') === '1';
+
+    // photos -> base64, enforce total size cap
+    const files = Array.from(document.getElementById('photos')?.files || []);
+    const totalBytes = files.reduce((n,f)=>n+f.size,0);
+    if (totalBytes > MAX_ATTACH_MB * 1024 * 1024) {
+      alert(`Please keep photo uploads under ${MAX_ATTACH_MB} MB total.`); return;
+    }
+    const attachments = await Promise.all(files.map(readFileBase64));
 
     const data = {
       first_name:      (fd.get("first_name") || "").trim(),
@@ -187,14 +206,17 @@
       page:            (fd.get("page")      || "").trim(),
       category:        (fd.get("category")  || "").trim(),
 
-      // extra context
+      // context
       recaptcha_token: token,
       page_url:        location.href,
       page_title:      document.title,
       hostname:        location.hostname,
       service_category:(ctx?.dataset.category || document.body.dataset.category || '').trim(),
       test:            isQA,
-      submitted_at:    new Date().toISOString()
+      submitted_at:    new Date().toISOString(),
+
+      // attachments for SendGrid
+      attachments
     };
 
     const submitBtn = form.querySelector('#est-submit');
@@ -202,11 +224,7 @@
     if (submitBtn) { submitBtn.textContent = "Submitting…"; submitBtn.disabled = true; }
 
     try {
-      const res = await fetch(FN_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
+      const res = await fetch(FN_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
       const text = await res.text();
       if (!res.ok) { console.error("JobNimbus error:", text); alert("Sorry, there was a problem submitting your request."); return; }
 
@@ -214,12 +232,9 @@
       if (redirect) window.location.href = redirect; else alert("Thanks! Your request has been submitted.");
 
       form.reset();
-      if (window.grecaptcha && typeof window.grecaptcha.reset === "function" &&
-          typeof window._recaptchaWidgetId !== "undefined") {
+      if (window.grecaptcha && typeof window.grecaptcha.reset === "function" && typeof window._recaptchaWidgetId !== "undefined") {
         window.grecaptcha.reset(window._recaptchaWidgetId);
-      } else {
-        const t = document.querySelector('textarea[name="g-recaptcha-response"]'); if (t) t.value = '';
-      }
+      } else { const t = document.querySelector('textarea[name="g-recaptcha-response"]'); if (t) t.value = ''; }
       clearErrors(form);
     } catch (err) {
       console.error(err); alert("Network error. Please try again.");
@@ -232,26 +247,19 @@
     const form = document.getElementById(FORM_ID);
     if (!form || form._bound) return; form._bound = true;
 
-    // fill hidden context
+    // fill hidden context and per-page overrides
     const pageInput = form.querySelector('input[name="page"]');
     const catInput  = form.querySelector('input[name="category"]');
     if (pageInput) pageInput.value = location.pathname || '';
     const ctx = getCtx();
-    if (catInput) catInput.value = ctx?.dataset.category || document.body.dataset.category || '';
+    if (catInput) catInput.value = (ctx?.dataset.category || document.body.dataset.category || '').trim();
 
-    // optional per-page config
     const title = ctx?.dataset.title;
     const button = ctx?.dataset.button;
-    const serviceDefault = ctx?.dataset.service;
-    if (title)  { const h = document.getElementById('est-title');  if (h) h.textContent = title; }
+    const disclaimer = ctx?.dataset.disclaimer;
+    if (title)  { const h = document.getElementById('est-title'); if (h) h.textContent = title; }
     if (button) { const b = document.getElementById('est-submit'); if (b) b.textContent = button; }
-    if (serviceDefault) {
-      const sel = document.getElementById('serviceType');
-      if (sel) {
-        const opt = Array.from(sel.options).find(o => o.textContent.trim().toLowerCase() === serviceDefault.trim().toLowerCase());
-        if (opt) sel.value = opt.textContent;
-      }
-    }
+    if (disclaimer) { const d = document.getElementById('est-disclaimer'); if (d) d.innerHTML = disclaimer; }
 
     bindPhoneMask();
     bindZipToCity();
