@@ -1,15 +1,15 @@
-<!-- /components/forms/universal-lead.html -->
+<!-- /components/forms/universal-form.html -->
 <section class="est-wrap">
   <h2 id="est-title" class="est-title">Request a Roofing Estimate</h2>
 
-  <!-- success/error messages inserted here by JS -->
   <div class="error-summary" role="alert" aria-live="assertive" style="display:none;"></div>
 
   <form id="estimate-form" novalidate>
-    <!-- Honeypot (anti-bot) -->
-    <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0" aria-hidden="true">
+    <!-- Honeypot -->
+    <input type="text" name="website" tabindex="-1" autocomplete="off"
+           style="position:absolute;left:-9999px;opacity:0" aria-hidden="true">
 
-    <!-- Hidden context filled by JS -->
+    <!-- Hidden context (filled by JS) -->
     <input type="hidden" name="page" value="">
     <input type="hidden" name="category" value="">
 
@@ -94,7 +94,7 @@
       </div>
     </div>
 
-    <!-- reCAPTCHA mount slot (JS renders widget here) -->
+    <!-- reCAPTCHA mount -->
     <div id="recaptcha-slot" class="recaptcha-slot" aria-label="reCAPTCHA"></div>
 
     <div class="form-actions">
