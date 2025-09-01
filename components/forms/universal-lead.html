@@ -1,0 +1,104 @@
+<!-- /components/forms/universal-lead.html -->
+<section class="est-wrap">
+  <h2 id="est-title" class="est-title">Request a Roofing Estimate</h2>
+
+  <!-- success/error messages inserted here by JS -->
+  <div class="error-summary" role="alert" aria-live="assertive" style="display:none;"></div>
+
+  <form id="estimate-form" novalidate>
+    <!-- Honeypot (anti-bot) -->
+    <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0" aria-hidden="true">
+
+    <!-- Hidden context filled by JS -->
+    <input type="hidden" name="page" value="">
+    <input type="hidden" name="category" value="">
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="first_name">First name*</label>
+        <input id="first_name" name="first_name" type="text" required autocomplete="given-name">
+      </div>
+      <div class="form-group">
+        <label for="last_name">Last name*</label>
+        <input id="last_name" name="last_name" type="text" required autocomplete="family-name">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="phone">Phone*</label>
+        <input id="phone" name="phone" type="tel" inputmode="tel" required
+               pattern="^\(\d{3}\)\s?\d{3}-\d{4}$" placeholder="(555) 123-4567" autocomplete="tel">
+      </div>
+      <div class="form-group">
+        <label for="email">Email*</label>
+        <input id="email" name="email" type="email" required autocomplete="email">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="street_address">Street Address*</label>
+        <input id="street_address" name="street_address" type="text" required autocomplete="address-line1">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="city">City*</label>
+        <input id="city" name="city" type="text" required autocomplete="address-level2">
+      </div>
+      <div class="form-group">
+        <label for="state">State*</label>
+        <input id="state" name="state" type="text" required maxlength="2" placeholder="CA" autocomplete="address-level1">
+      </div>
+      <div class="form-group">
+        <label for="zip">ZIP*</label>
+        <input id="zip" name="zip" type="text" required inputmode="numeric"
+               pattern="^\d{5}(-\d{4})?$" placeholder="92025" autocomplete="postal-code">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="serviceType">Service Type</label>
+        <select id="serviceType" name="service_type">
+          <option value="">Select…</option>
+          <option>Roof Repair</option>
+          <option>Roof Replacement</option>
+          <option>Tile Lift & Lay</option>
+          <option>Roof Tune-Up / Maintenance</option>
+          <option>TPO / Flat Roof</option>
+          <option>Gutters</option>
+          <option>Inspection / Real Estate</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="referral_source">How did you hear about us?</label>
+        <select id="referral_source" name="referral_source">
+          <option value="">Select…</option>
+          <option>Google</option>
+          <option>Yelp</option>
+          <option>Angi</option>
+          <option>Referral</option>
+          <option>Repeat Customer</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="description">Tell us about the roof</label>
+        <textarea id="description" name="description" rows="4" placeholder="Leak area, roof type, age, access notes…"></textarea>
+      </div>
+    </div>
+
+    <!-- reCAPTCHA mount slot (JS renders widget here) -->
+    <div id="recaptcha-slot" class="recaptcha-slot" aria-label="reCAPTCHA"></div>
+
+    <div class="form-actions">
+      <button id="est-submit" type="submit" class="btn btn-primary">Request Estimate</button>
+    </div>
+  </form>
+</section>
