@@ -1,4 +1,4 @@
-/* universal-form.css — scoped to .est-wrap */
+/* css/universal-form.css — scoped to .est-wrap */
 :root{
   --uf-bg: var(--surface, #fff);
   --uf-text: var(--zenith-text, #1e293b);
@@ -82,7 +82,7 @@
 
 .form-actions{ display:flex; gap:.75rem; justify-content:flex-start; margin-top:.5rem; }
 
-/* Scoped button (won’t override global .btn elsewhere) */
+/* Scoped button */
 .est-wrap .btn{
   display:inline-flex; align-items:center; justify-content:center;
   padding:.8rem 1.1rem; font-weight:700; border-radius:12px;
