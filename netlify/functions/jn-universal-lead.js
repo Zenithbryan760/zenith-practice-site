@@ -87,7 +87,7 @@ exports.handler = async (event) => {
       first_name: first,
       last_name:  last,
       email,
-      phone, // numeric
+      phone,
       phone_formatted: formattedPhone,
       address: `${data.street_address || ''}, ${data.city || ''}, ${data.state || ''} ${data.zip || ''}`.trim(),
       description: combinedDescription,
@@ -118,7 +118,6 @@ exports.handler = async (event) => {
             <tr><td><b>Address</b></td><td>${data.street_address}, ${data.city}, ${data.state} ${data.zip}</td></tr>
             <tr><td><b>Details</b></td><td>${(combinedDescription || '').replace(/\n/g, '<br>')}</td></tr>
           </table>`;
-
         const text = `New website lead
 Name: ${first} ${last}
 Email: ${email}
