@@ -1,8 +1,8 @@
-<!-- js/universal-form.js -->
+<!-- /js/universal-form.js -->
 <script>
 (function () {
-  const FORM_ID = 'universal-form';                 // this targets the new test form only
-  const RECAPTCHA_SITEKEY = 'YOUR_RECAPTCHA_SITE_KEY'; // <-- put your site key here
+  const FORM_ID = 'universal-form';                 // targets ONLY the new form
+  const RECAPTCHA_SITEKEY = '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI'; // your working site key
   const FN_ENDPOINT = '/.netlify/functions/jn-universal-lead';
 
   function getCtx() {
@@ -58,7 +58,7 @@
   // ZIP -> City
   function bindZipToCity() {
     const zipInput  = document.getElementById('zip');
-    aconst cityInput = document.getElementById('city');
+    const cityInput = document.getElementById('city');
     if (!zipInput || !cityInput || zipInput._zipBound) return;
     zipInput._zipBound = true;
 
