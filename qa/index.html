@@ -2,27 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>QA Form | Zenith Roofing Services</title>
+  <title>QA — Universal Lead Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
-  <link rel="stylesheet" href="/css/header.css" />
-  <link rel="stylesheet" href="/css/base.css" />
-  <link rel="stylesheet" href="/css/footer.css" />
-  <link rel="stylesheet" href="/css/estimate-form.css" />
+
+  <!-- Scoped styles for the universal form -->
+  <link rel="stylesheet" href="/css/universal-form.css" />
 </head>
 <body>
+  <!-- Optional header include -->
   <div data-include="/components/header-section.html"></div>
 
-  <main class="page" style="max-width:900px;margin:3rem auto">
+  <main class="page" style="max-width:1100px;margin:2rem auto;padding:0 1rem">
     <h1>QA – Lead Form</h1>
-    <p>Submissions here are flagged as TEST and won’t ping your normal inbox.</p>
+    <p style="color:#64748b;margin-bottom:1.25rem">
+      This page uses the new, separate universal lead form and function.
+    </p>
 
-    <section data-estimate-context data-category="QA – Manual Test" data-redirect="/qa/thanks.html">
-      <div data-include="/components/forms/estimate.html"></div>
+    <!-- UNIVERSAL FORM include (separate from your hero form) -->
+    <section data-estimate-context
+             data-title="Request an Estimate"
+             data-button="Request Estimate"
+             data-category="QA – Universal Lead"
+             data-redirect="/qa/thanks.html">
+      <div data-include="/components/forms/universal-form.html"></div>
     </section>
   </main>
 
+  <!-- Optional footer include -->
   <div data-include="/components/footer.html"></div>
+
+  <!-- Include resolver + the NEW JS that posts to jn-universal-lead -->
   <script defer src="/js/loader.js"></script>
-  <script defer src="/js/estimate-form.js"></script>
+  <script defer src="/js/universal-form.js"></script>
 </body>
 </html>
