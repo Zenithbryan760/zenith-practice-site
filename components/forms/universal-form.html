@@ -1,10 +1,11 @@
-<!-- /components/forms/universal-form.html -->
+<!-- components/forms/universal-form.html -->
 <section class="est-wrap">
   <h2 id="est-title" class="est-title">Request a Roofing Estimate</h2>
 
   <div class="error-summary" role="alert" aria-live="assertive" style="display:none;"></div>
 
-  <form id="estimate-form" novalidate>
+  <!-- NOTE: unique id so it won't collide with your hero script -->
+  <form id="universal-form" novalidate>
     <!-- Honeypot -->
     <input type="text" name="website" tabindex="-1" autocomplete="off"
            style="position:absolute;left:-9999px;opacity:0" aria-hidden="true">
