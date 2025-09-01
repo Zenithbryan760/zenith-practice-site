@@ -59,7 +59,7 @@ exports.handler = async (event) => {
       return { statusCode: 500, headers: cors, body: JSON.stringify({ error: 'Server not configured (missing env vars)' }) };
     }
 
-    // reCAPTCHA verification (optional but recommended)
+    // reCAPTCHA verification if secret present
     try {
       const SECRET = process.env.RECAPTCHA_SECRET;
       const token = (data.recaptcha_token || '').trim();
@@ -123,7 +123,7 @@ exports.handler = async (event) => {
     });
     const jnResponseText = await res.text();
 
-    // Optional SendGrid notification with QA routing
+    // Optional SendGrid notification w/ QA routing
     let mailStatus = 'skipped';
     try {
       const SG_KEY = process.env.SENDGRID_API_KEY;
@@ -166,11 +166,7 @@ ${combinedDescription || ''}`;
     } catch (e) { console.error('SendGrid error:', e); mailStatus = 'error'; }
 
     let responseBody = jnResponseText;
-    try {
-      const jnJson = JSON.parse(jnResponseText);
-      jnJson._mailStatus = mailStatus;
-      responseBody = JSON.stringify(jnJson);
-    } catch {}
+    try { const jnJson = JSON.parse(jnResponseText); jnJson._mailStatus = mailStatus; responseBody = JSON.stringify(jnJson); } catch {}
 
     return { statusCode: res.status, headers: cors, body: responseBody };
   } catch (err) {
