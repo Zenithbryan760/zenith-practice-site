@@ -6,39 +6,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
 
-  <!-- Your site’s normal CSS (copy these from a working page).
-       If your site uses different filenames, paste those exact links here. -->
+  <!-- Your normal site CSS (copy these if different on your site) -->
   <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/footer.css" />
 
-  <!-- NEW: scoped styles for the universal form -->
+  <!-- Universal form CSS -->
   <link rel="stylesheet" href="/css/universal-form.css" />
 </head>
 <body>
-  <!-- Optional header include (keeps your normal header) -->
   <div data-include="/components/header-section.html"></div>
 
   <main class="page" style="max-width:1100px;margin:2rem auto;padding:0 1rem">
     <h1>QA – Lead Form</h1>
-    <p style="color:#64748b;margin-bottom:1.25rem">
-      This page uses the new, separate universal lead form and function.
-    </p>
 
-    <!-- UNIVERSAL FORM include (separate from your hero form) -->
+    <!-- UNIVERSAL FORM: change these per-page for SEO / “Free” toggle -->
     <section data-estimate-context
              data-title="Request an Estimate"
-             data-button="Request Estimate"
+             data-button="Request Free Estimate"
+             data-disclaimer="*Free estimates exclude real estate transactions."
              data-category="QA – Universal Lead"
              data-redirect="/qa/thanks.html">
       <div data-include="/components/forms/universal-form.html"></div>
     </section>
   </main>
 
-  <!-- Optional footer include -->
   <div data-include="/components/footer.html"></div>
 
-  <!-- Include resolver + the NEW JS that posts to jn-universal-lead -->
+  <!-- Include resolver + universal form logic -->
   <script defer src="/js/loader.js"></script>
   <script defer src="/js/universal-form.js"></script>
 </body>
