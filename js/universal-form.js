@@ -5,9 +5,12 @@
   const FN_ENDPOINT = '/.netlify/functions/jn-universal-lead';
   const MAX_ATTACH_MB = 25;
 
-  const getCtx = () => document.querySelector('[data-estimate-context]') || document.getElementById('universal-form-context') || document.body;
+  const getCtx = () =>
+    document.querySelector('[data-estimate-context]') ||
+    document.getElementById('universal-form-context') ||
+    document.body;
 
-  // reCAPTCHA (lazy)
+  // ---------- reCAPTCHA (lazy) ----------
   function ensureRecaptchaScript() {
     if (document.querySelector('script[data-zenith-recaptcha]')) return;
     const s = document.createElement('script');
@@ -31,7 +34,7 @@
     form.addEventListener('focusin', trigger, { once:true });
   }
 
-  // Phone mask
+  // ---------- Phone mask ----------
   function bindPhoneMask() {
     const el = document.getElementById('phone');
     if (!el || el._masked) return;
@@ -51,7 +54,7 @@
     });
   }
 
-  // ZIP -> City
+  // ---------- ZIP -> City ----------
   function bindZipToCity() {
     const zipInput  = document.getElementById('zip');
     const cityInput = document.getElementById('city');
@@ -87,7 +90,7 @@
     maybeFill();
   }
 
-  // Error UI helpers
+  // ---------- Error UI ----------
   function ensureErrorSummary(form) {
     let box = form.querySelector('.error-summary');
     if (!box) {
@@ -138,7 +141,7 @@
     return true;
   }
 
-  // files -> base64 (for SendGrid attachments)
+  // ---------- Files → base64 (SendGrid attachments) ----------
   function readFileBase64(file) {
     return new Promise((resolve, reject) => {
       const fr = new FileReader();
@@ -152,7 +155,7 @@
     });
   }
 
-  // Submit
+  // ---------- Submit ----------
   async function submitHandler(e) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -176,13 +179,9 @@
       return;
     }
 
-    // build data
+    // payload
     const fd = new FormData(form);
     const ctx = getCtx();
-    const params = new URLSearchParams(location.search);
-    const isQA = location.pathname.startsWith('/qa') || params.get('qa') === '1';
-
-    // photos -> base64, enforce total size cap
     const files = Array.from(document.getElementById('photos')?.files || []);
     const totalBytes = files.reduce((n,f)=>n+f.size,0);
     if (totalBytes > MAX_ATTACH_MB * 1024 * 1024) { alert(`Please keep photo uploads under ${MAX_ATTACH_MB} MB total.`); return; }
@@ -202,17 +201,12 @@
       description:     (fd.get("description")    || "").trim(),
       page:            (fd.get("page")      || "").trim(),
       category:        (fd.get("category")  || "").trim(),
-
-      // context
       recaptcha_token: token,
       page_url:        location.href,
       page_title:      document.title,
       hostname:        location.hostname,
       service_category:(ctx?.dataset.category || document.body.dataset.category || '').trim(),
-      test:            isQA,
       submitted_at:    new Date().toISOString(),
-
-      // attachments for SendGrid
       attachments
     };
 
@@ -221,12 +215,16 @@
     if (submitBtn) { submitBtn.textContent = "Submitting…"; submitBtn.disabled = true; }
 
     try {
-      const res = await fetch(FN_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+      const res = await fetch(FN_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
       const text = await res.text();
       if (!res.ok) { console.error("JobNimbus error:", text); alert("Sorry, there was a problem submitting your request."); return; }
 
-      const redirect = ctx?.dataset.redirect || ctx?.dataset.thanks || "";
-      if (redirect) window.location.href = redirect; else alert("Thanks! Your request has been submitted.");
+      const redirect = ctx?.dataset.redirect || ctx?.dataset.thanks || "/qa/thanks.html";
+      window.location.href = redirect;
 
       form.reset();
       if (window.grecaptcha && typeof window.grecaptcha.reset === "function" && typeof window._recaptchaWidgetId !== "undefined") {
@@ -240,11 +238,13 @@
     }
   }
 
+  // ---------- Init + robust binding (handles late-loaded includes) ----------
   function initUniversalForm() {
     const form = document.getElementById(FORM_ID);
-    if (!form || form._bound) return; form._bound = true;
+    if (!form || form._bound) return;
+    form._bound = true;
 
-    // fill hidden context and per-page overrides
+    // fill hidden context + per-page overrides
     const pageInput = form.querySelector('input[name="page"]');
     const catInput  = form.querySelector('input[name="category"]');
     if (pageInput) pageInput.value = location.pathname || '';
@@ -264,7 +264,29 @@
     form.addEventListener('submit', submitHandler);
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById(FORM_ID)) initUniversalForm();
-  });
+  // Try immediately, then watch for the form to appear (loader includes)
+  function bindWhenReady() {
+    if (document.getElementById(FORM_ID)) { initUniversalForm(); return; }
+
+    // MutationObserver to catch when loader inserts the form
+    const mo = new MutationObserver(() => {
+      if (document.getElementById(FORM_ID)) {
+        mo.disconnect();
+        initUniversalForm();
+      }
+    });
+    mo.observe(document.documentElement, { childList: true, subtree: true });
+
+    // Fallback: small retry loop (in case MO is blocked)
+    let tries = 0;
+    const iv = setInterval(() => {
+      if (document.getElementById(FORM_ID)) { clearInterval(iv); initUniversalForm(); }
+      if (++tries > 50) clearInterval(iv); // stop after ~5s
+    }, 100);
+  }
+
+  // Expose manual hook (if your loader wants to call it)
+  window.initUniversalLeadForm = initUniversalForm;
+
+  document.addEventListener('DOMContentLoaded', bindWhenReady);
 })();
