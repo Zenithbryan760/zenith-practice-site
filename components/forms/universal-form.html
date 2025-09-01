@@ -1,76 +1,129 @@
-/* ===== Form grid ===== */
-.form-row{ display:flex; flex-wrap:wrap; gap:1.25rem; margin-bottom:1.25rem; }
-.form-group{ flex:1; display:flex; flex-direction:column; gap:.45rem; min-width:0; }
-.form-col-6{ flex:0 0 calc(50% - .625rem); }
-.form-col-4{ flex:0 0 calc(33.333% - .84rem); }
+<!-- components/forms/universal-form.html -->
+<section class="est-wrap">
+  <h2 id="est-title" class="est-title">Request an Estimate</h2>
 
-/* A11y helper */
-.sr-only{
-  position:absolute !important; width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0,0,1px,1px); white-space:nowrap; border:0;
-}
+  <div class="error-summary" role="alert" aria-live="assertive" style="display:none;"></div>
 
-/* Wrapper + title */
-.est-wrap{ background:#fff; border:1px solid var(--zenith-border,#e2e8f0); border-radius:14px; padding:1.25rem; box-shadow:0 10px 30px rgba(2,12,32,.08); }
-.est-title{ font-size:clamp(1.25rem,1.6vw + .8rem,1.85rem); margin:0 0 1rem; font-weight:800; }
+  <!-- unique id so it won’t collide with hero form -->
+  <form id="universal-form" method="POST" novalidate>
+    <!-- Honeypot -->
+    <input type="text" name="website" tabindex="-1" autocomplete="off"
+           style="position:absolute;left:-9999px;opacity:0" aria-hidden="true">
 
-/* Labels */
-label{ font-weight:600; font-size:.92rem; color:#334155; }
+    <!-- Hidden context (filled by JS) -->
+    <input type="hidden" name="page" value="">
+    <input type="hidden" name="category" value="">
 
-/* Inputs / selects / textareas */
-input, select, textarea{
-  width:100%; font-size:1rem;
-  border:1px solid var(--zenith-border,#e2e8f0); border-radius:10px;
-  padding:.9rem .95rem;
-  background:#fff; color:#0f172a;
-  transition: box-shadow .15s ease, border-color .15s ease, transform .05s ease;
-  box-shadow:0 2px 10px rgba(2,12,32,.03);
-}
-input::placeholder, textarea::placeholder{ color:#94a3b8; opacity:1; font-weight:500; }
-input:focus, select:focus, textarea:focus{
-  outline:none; border-color:var(--zenith-navy,#072e59);
-  box-shadow:0 0 0 3px rgba(7,46,89,.15), 0 2px 10px rgba(2,12,32,.03);
-}
+    <!-- Row 1 -->
+    <div class="form-row">
+      <div class="form-group form-col-6">
+        <label for="firstName" class="sr-only">First Name*</label>
+        <input type="text" id="firstName" name="first_name" placeholder="First Name*" autocomplete="given-name" required />
+      </div>
+      <div class="form-group form-col-6">
+        <label for="lastName" class="sr-only">Last Name*</label>
+        <input type="text" id="lastName" name="last_name" placeholder="Last Name*" autocomplete="family-name" required />
+      </div>
+    </div>
 
-/* Invalid state -> ORANGE */
-input:invalid, select:invalid, textarea:invalid{ border-color:var(--zenith-orange,#f7941d); }
-input:invalid:focus, select:invalid:focus, textarea:invalid:focus{ box-shadow:0 0 0 3px rgba(247,148,29,.18); }
+    <!-- Row 2 -->
+    <div class="form-row">
+      <div class="form-group form-col-6">
+        <label for="phone" class="sr-only">Phone Number*</label>
+        <input type="tel" id="phone" name="phone" inputmode="tel"
+               placeholder="(555) 123-4567"
+               pattern="^\(\d{3}\)\s?\d{3}-\d{4}$" autocomplete="tel" required />
+      </div>
+      <div class="form-group form-col-6">
+        <label for="email" class="sr-only">Email Address*</label>
+        <input type="email" id="email" name="email" placeholder="Email Address*" autocomplete="email" required />
+      </div>
+    </div>
 
-/* File input */
-input[type="file"]{ width:100%; padding:.55rem .75rem; border:1px solid var(--zenith-border,#e2e8f0); border-radius:10px; background:#fff; color:#334155; box-shadow:none; }
-input[type="file"]::file-selector-button,
-input[type="file"]::-webkit-file-upload-button{
-  background:var(--zenith-orange,#f7941d); color:#fff; border:none;
-  padding:.6rem .9rem; margin-right:.75rem; border-radius:10px; font-weight:700;
-  cursor:pointer; transition:background .2s, box-shadow .2s, transform .08s;
-  box-shadow:0 6px 18px rgba(247,148,29,.25);
-}
-input[type="file"]::file-selector-button:hover,
-input[type="file"]::-webkit-file-upload-button:hover{
-  background:#e9830b; box-shadow:0 10px 24px rgba(247,148,29,.35); transform:translateY(-1px);
-}
-input[type="file"]:focus-within{ outline:3px solid rgba(247,148,29,.35); outline-offset:2px; }
+    <!-- Row 3 -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="streetAddress" class="sr-only">Street Address*</label>
+        <input type="text" id="streetAddress" name="street_address" placeholder="Street Address*" autocomplete="address-line1" required />
+      </div>
+    </div>
 
-/* Buttons */
-.zenith-btn{
-  background:var(--zenith-orange,#f7941d); color:#fff; border:none;
-  padding:1rem 1.25rem; font-size:1rem; font-weight:700; width:100%;
-  border-radius:12px; cursor:pointer;
-  transition:transform .08s, box-shadow .2s, background .2s;
-  box-shadow:0 10px 24px rgba(247,148,29,.25);
-}
-.zenith-btn:hover{ background:#e9830b; box-shadow:0 14px 28px rgba(247,148,29,.35); transform:translateY(-1px); }
-.zenith-btn:active{ transform:translateY(0); }
-.zenith-btn:focus-visible{ outline:3px solid rgba(247,148,29,.35); outline-offset:3px; }
+    <!-- Row 4 -->
+    <div class="form-row">
+      <div class="form-group form-col-4">
+        <label for="city" class="sr-only">City*</label>
+        <input type="text" id="city" name="city" placeholder="City*" autocomplete="address-level2" required />
+      </div>
+      <div class="form-group form-col-4">
+        <label for="state" class="sr-only">State*</label>
+        <input type="text" id="state" name="state" value="CA" placeholder="State*" readonly required />
+      </div>
+      <div class="form-group form-col-4">
+        <label for="zip" class="sr-only">ZIP Code*</label>
+        <input type="text" id="zip" name="zip" placeholder="ZIP Code*"
+               inputmode="numeric" pattern="^\d{5}(-\d{4})?$" maxlength="10"
+               autocomplete="postal-code" required />
+      </div>
+    </div>
 
-/* reCAPTCHA */
-.recaptcha-container{ display:flex; justify-content:center; align-items:center; width:100%; margin:.35rem 0 .35rem; }
-#recaptcha-slot{ display:block; min-width:304px; min-height:78px; }
+    <!-- Row 5 -->
+    <div class="form-row">
+      <div class="form-group form-col-4">
+        <label for="photos" class="sr-only">Upload Photos (optional)</label>
+        <input type="file" id="photos" name="photos" accept="image/*" multiple />
+      </div>
+      <div class="form-group form-col-4">
+        <label for="serviceType" class="sr-only">Service Type*</label>
+        <select id="serviceType" name="service_type" required>
+          <option value="" selected disabled hidden>Service Type*</option>
+          <option>Roof Replacement</option>
+          <option>Roof Repair</option>
+          <option>Gutters</option>
+          <option>Roof Maintenance</option>
+          <option>Commercial Roofing</option>
+          <option>Residential Roofing</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group form-col-4">
+        <label for="referral" class="sr-only">How did you hear about us?*</label>
+        <select id="referral" name="referral_source" required>
+          <option value="" selected disabled hidden>How did you hear about us?*</option>
+          <option>Google</option>
+          <option>Yelp</option>
+          <option>Angi</option>
+          <option>Social Media</option>
+          <option>Referral</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
 
-/* Error UI */
-.error-summary{ display:none; background:#fff7f7; border:1px solid #f5b5b5; color:#8a1f1f; border-radius:12px; padding:.75rem .9rem; margin:0 0 1rem 0; font-size:.95rem; }
-.error-summary.show{ display:block; }
-.form-disclaimer{ font-size:.85rem; color:#6b7280; margin-top:1rem; text-align:center; line-height:1.5; }
-.form-disclaimer a{ color:var(--zenith-orange,#f7941d); font-weight:800; text-decoration:none; }
-.form-disclaimer a:hover{ text-decoration:underline; }
-.form-disclaimer a:focus-visible{ outline:2px dotted var(--zenith-orange,#f7941d); outline-offset:2px; }
+    <!-- Row 6 -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="description" class="sr-only">Brief Description*</label>
+        <textarea id="description" name="description" rows="4"
+                  placeholder="Brief Description* — tell us what you need help with"
+                  required></textarea>
+      </div>
+    </div>
+
+    <!-- reCAPTCHA -->
+    <div class="form-row">
+      <div class="form-group recaptcha-container">
+        <div id="recaptcha-slot" aria-label="reCAPTCHA widget"></div>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="form-row">
+      <button id="est-submit" type="submit" class="zenith-btn">Request Free Estimate</button>
+    </div>
+
+    <!-- Disclaimer -->
+    <p id="est-disclaimer" class="form-disclaimer">
+      <em>*Free estimates are not available for real estate transactions.</em>
+    </p>
+  </form>
+</section>
