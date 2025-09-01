@@ -1,14 +1,11 @@
-<!-- js/estimate-form.js -->
+<!-- js/estimate-form.js (drop-in replacement) -->
 <script>
 (function () {
   const RECAPTCHA_SITEKEY = '6LclaJ4rAAAAAEMe8ppXrEJvIgLeFVxgmkq4DBrI';
 
   // --- helper to find config wrapper that survives includes ---
   function getContextEl() {
-    // Prefer an outer wrapper you place around the include:
-    // <section data-estimate-context data-category="Pitched Roof" ...>
-    return document.querySelector('[data-estimate-context]') ||
-           document.body; // fallback
+    return document.querySelector('[data-estimate-context]') || document.body;
   }
 
   // --- Lazy-load reCAPTCHA ---
@@ -156,11 +153,10 @@
 
     // Honeypot check
     if ((form.querySelector('input[name="website"]')?.value || '').trim()) {
-      // likely a bot — silently succeed
       form.reset(); return;
     }
 
-    // reCAPTCHA required
+    // reCAPTCHA required (and we will SEND the token)
     let token = '';
     if (window.grecaptcha && typeof window.grecaptcha.getResponse === 'function') {
       if (typeof window._recaptchaWidgetId !== 'undefined') {
@@ -179,20 +175,37 @@
     }
 
     const fd = new FormData(form);
+    // context + QA flag
+    const ctx = getContextEl();
+    const params = new URLSearchParams(location.search);
+    const isQA = location.pathname.startsWith('/qa') || params.get('qa') === '1';
+
     const data = {
-      first_name: (fd.get("first_name") || "").trim(),
-      last_name:  (fd.get("last_name")  || "").trim(),
-      phone:      (fd.get("phone")      || "").trim(),
-      email:      (fd.get("email")      || "").trim(),
-      street_address: (fd.get("street_address") || "").trim(),
-      city:       (fd.get("city")       || "").trim(),
-      state:      (fd.get("state")      || "").trim(),
-      zip:        (fd.get("zip")        || "").trim(),
+      // --- visible fields ---
+      first_name:      (fd.get("first_name") || "").trim(),
+      last_name:       (fd.get("last_name")  || "").trim(),
+      phone:           (fd.get("phone")      || "").trim(),
+      email:           (fd.get("email")      || "").trim(),
+      street_address:  (fd.get("street_address") || "").trim(),
+      city:            (fd.get("city")       || "").trim(),
+      state:           (fd.get("state")      || "").trim(),
+      zip:             (fd.get("zip")        || "").trim(),
       service_type:    fd.get("service_type")    || "",
       referral_source: fd.get("referral_source") || "",
       description:     (fd.get("description")    || "").trim(),
-      page:            (fd.get("page")           || "").trim(),
-      category:        (fd.get("category")       || "").trim()
+
+      // --- hidden fields you already had ---
+      page:            (fd.get("page")      || "").trim(),
+      category:        (fd.get("category")  || "").trim(),
+
+      // --- NEW context we send to the Function ---
+      recaptcha_token: token,                // <— now included
+      page_url:        location.href,
+      page_title:      document.title,
+      hostname:        location.hostname,
+      service_category: (ctx?.dataset.category || document.body.dataset.category || '').trim(),
+      test:            isQA,                 // mark QA submissions
+      submitted_at:    new Date().toISOString()
     };
 
     const submitBtn = form.querySelector('#est-submit');
@@ -213,7 +226,6 @@
         return;
       }
 
-      const ctx = getContextEl();
       const redirect = ctx?.dataset.redirect || ctx?.dataset.thanks || "";
       if (redirect) {
         window.location.href = redirect;
@@ -248,28 +260,21 @@
     const pageInput = form.querySelector('input[name="page"]');
     const catInput  = form.querySelector('input[name="category"]');
     if (pageInput) pageInput.value = location.pathname || '';
-
     const ctx = getContextEl();
     if (catInput) catInput.value = ctx?.dataset.category || document.body.dataset.category || '';
 
     // Optional config via data- attrs on the context wrapper
     const title = ctx?.dataset.title;
     const button = ctx?.dataset.button;
-    const serviceDefault = ctx?.dataset.service; // e.g. "Roof Replacement"
+    const serviceDefault = ctx?.dataset.service;
 
-    if (title) {
-      const h = document.getElementById('est-title');
-      if (h) h.textContent = title;
-    }
-    if (button) {
-      const b = document.getElementById('est-submit');
-      if (b) b.textContent = button;
-    }
+    if (title)  { const h = document.getElementById('est-title');  if (h) h.textContent = title; }
+    if (button) { const b = document.getElementById('est-submit'); if (b) b.textContent = button; }
     if (serviceDefault) {
       const sel = document.getElementById('serviceType');
       if (sel) {
         const opt = Array.from(sel.options).find(o => o.textContent.trim().toLowerCase() === serviceDefault.trim().toLowerCase());
-        if (opt) { sel.value = opt.textContent; }
+        if (opt) sel.value = opt.textContent;
       }
     }
 
