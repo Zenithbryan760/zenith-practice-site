@@ -51,6 +51,7 @@
     el.addEventListener('blur', e => {
       const len = e.target.value.replace(/\D/g, '').length;
       e.target.setCustomValidity(len === 0 || len === 10 ? '' : 'Enter a 10-digit phone number');
+      touchValidate(e.target);
     });
   }
 
@@ -85,8 +86,8 @@
       } catch {}
     }
 
-    zipInput.addEventListener('input',  maybeFill);
-    zipInput.addEventListener('change', maybeFill);
+    zipInput.addEventListener('input',  () => { maybeFill(); touchValidate(zipInput); });
+    zipInput.addEventListener('change', () => { maybeFill(); touchValidate(zipInput); });
     maybeFill();
   }
 
@@ -119,6 +120,13 @@
       group.appendChild(note);
     }
   }
+  function hideFieldError(input) {
+    const group = input.closest('.form-group') || input.parentElement;
+    if (!group) return;
+    group.classList.remove('has-error');
+    const note = group.querySelector('.field-error');
+    if (note) note.remove();
+  }
   function getMessageFor(input) {
     if (input.validity.valueMissing) return 'This field is required.';
     if (input.id === 'email' && input.validity.typeMismatch) return 'Enter a valid email address.';
@@ -126,6 +134,28 @@
     if (input.id === 'zip'   && input.validity.patternMismatch) return 'Enter a 5-digit ZIP (or ZIP+4).';
     return 'Please check this field.';
   }
+
+  // Show red on blur and remove red as user fixes the value
+  function touchValidate(input) {
+    if (!input) return;
+    if (input.checkValidity()) {
+      hideFieldError(input);
+    } else {
+      showFieldError(input, getMessageFor(input));
+    }
+  }
+  function wireLiveValidation(form) {
+    const els = form.querySelectorAll('input[required], select[required], textarea[required]');
+    els.forEach(el => {
+      el.addEventListener('blur', () => touchValidate(el));
+      el.addEventListener('input', () => {
+        // For selects, 'input' may not fire; change handler below covers it
+        touchValidate(el);
+      });
+      el.addEventListener('change', () => touchValidate(el));
+    });
+  }
+
   function validateForm(form) {
     clearErrors(form);
     const required = Array.from(form.querySelectorAll('[required]'));
@@ -261,32 +291,24 @@
     bindPhoneMask();
     bindZipToCity();
     setupLazyRecaptcha(form);
+    wireLiveValidation(form);     // 👈 live red outline as user interacts
     form.addEventListener('submit', submitHandler);
   }
 
-  // Try immediately, then watch for the form to appear (loader includes)
+  // Wait for form to exist (supports loader-inserted components)
   function bindWhenReady() {
     if (document.getElementById(FORM_ID)) { initUniversalForm(); return; }
-
-    // MutationObserver to catch when loader inserts the form
     const mo = new MutationObserver(() => {
-      if (document.getElementById(FORM_ID)) {
-        mo.disconnect();
-        initUniversalForm();
-      }
+      if (document.getElementById(FORM_ID)) { mo.disconnect(); initUniversalForm(); }
     });
     mo.observe(document.documentElement, { childList: true, subtree: true });
-
-    // Fallback: small retry loop (in case MO is blocked)
     let tries = 0;
     const iv = setInterval(() => {
       if (document.getElementById(FORM_ID)) { clearInterval(iv); initUniversalForm(); }
-      if (++tries > 50) clearInterval(iv); // stop after ~5s
+      if (++tries > 50) clearInterval(iv);
     }, 100);
   }
 
-  // Expose manual hook (if your loader wants to call it)
   window.initUniversalLeadForm = initUniversalForm;
-
   document.addEventListener('DOMContentLoaded', bindWhenReady);
 })();
